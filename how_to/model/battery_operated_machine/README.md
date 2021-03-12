@@ -14,6 +14,6 @@ The level of the battery is capped by the battery capacity so if in this example
 
 [t=20,l=20]--A->[t=30,l=10] ... [t=100,l=30]--B->[t=120,l=10]
 
-I attach an OPL model (single-machine.mod) on a single battery operated machine, assuming the battery consumption/production rate is 1 (the model can trivially be adapted to the case of different rates). Activities are optional, have specific time-windows and the objective is to maximize the number of executed activities. It uses expressions *typeOfPrev* to track the level of the battery at the end of ach operation.
+I attach an OPL model ([single-machine.mod](./opl/single-machine.mod)) on a single battery operated machine, assuming the battery consumption/production rate is 1 (the model can trivially be adapted to the case of different rates). Activities are optional, have specific time-windows and the objective is to maximize the number of executed activities. It uses expressions *typeOfPrev* to track the level of the battery at the end of ach operation.
 
-A second OPL model (jobshop-batteries.mod) integrates the battery operated machines in a classical jobshop scheduling problem. 
+A second OPL model ([jobshop-batteries.mod](./opl/jobshop-batteries.mod)) integrates the battery operated machines in a classical jobshop scheduling problem. 
