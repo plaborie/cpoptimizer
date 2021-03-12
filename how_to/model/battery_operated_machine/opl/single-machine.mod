@@ -1,3 +1,5 @@
+using CP;
+
 int N = 1000; // Number of activities
 int C = 100;  // Battery capacity
 int H = 30*N;
