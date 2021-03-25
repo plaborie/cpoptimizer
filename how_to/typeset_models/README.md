@@ -130,13 +130,13 @@ v[i] <= v[j]                : i,j in [1..N] | i<j
 endBeforeStart(x[i],x[i+1]) : i in [1..N)
 ```
 
-In the case of constraints using vectors as arguments, if there is no ambiguity, the `[` `]` delimiters of the vector can be omitted. For instance `allDifferent( [ x[i] : in in [1..N] ] )` can be simply written `allDifferent(x[i] : i in [1..N])`.
+In the case of constraints using vectors as arguments, if there is no ambiguity, the `[` `]` delimiters of the vector can be omitted. For instance `allDifferent( [ x[i] : i in [1..N] ] )` can be simply written `allDifferent(x[i] : i in [1..N])`.
 
 ## Expressions
 
 The signature of the different constraints available in CP Optimizer is listed in the [Keywords](#keywords) section.
 
-In the case of expressions using vectors as arguments, if there is no ambiguity, the `[` `]` delimiters of the vector can be omitted. For instance `sum( [ x[i] : in in [1..N] ] )` can be simply written `sum(x[i] : i in [1..N])`.
+In the case of expressions using vectors as arguments, if there is no ambiguity, the `[` `]` delimiters of the vector can be omitted. For instance `sum( [ x[i] : i in [1..N] ] )` can be simply written `sum(x[i] : i in [1..N])`.
 
 Note that constraints can be used as boolean expressions where CP Optimizer allows it. For example:
 * `x=3 || y=4`
