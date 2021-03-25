@@ -130,8 +130,8 @@ The signature of the different constraints available in CP Optimizer is summariz
 | forbiddenAssignments(U,M)       | Forbidden combinations of values   |
 | lexicographic(U,V )             | Lexicographic ordering constraint   |
 | presenceOf(x)                   |  Presence of an interval variable   |
-| [start\|end][Before\|At][Start\|End](x,y,a)     | Precedence constraints |
-| forbid[Start\|End\|Extent](x,stp) | Forbidden values   |
+| \[start\|end\]\[Before\|At\]\[Start\|End\](x,y,a)     | Precedence constraints |
+| forbid\[Start\|End\|Extent\](x,stp) | Forbidden values   |
 | alternative(x,Y,u)              | Alternative   |
 | span(x,Y)                       | Span   |
 | noOverlap(s,M,bool)             | No-overlap   |
