@@ -117,7 +117,7 @@ CONSTRAINT
 CONSTRAINT[s] : s in SCOPE
 ```
 
-The signature of the different constraints available in CP Optimizer is summarized below. 
+The signature of the different constraints available in CP Optimizer is summarized in the [Keywords](#constraints-keywords) section.
 
 | Keyword                         | Short description     |
 | :------------------------------ | :-------------        |
@@ -248,3 +248,9 @@ minimize max( [ endOf(x[i]) : i in [1..N] ] )
 sum( [ pulse(x[i],Q[i,k]) :i in [1..N] ] ) <= C[k]  : k in [1..M]
 endBeforeStart(x[i], x[j])                          : (i,j) in P
 ```
+
+# Keywords
+
+## Constraint keywords
+
+Bla bla
