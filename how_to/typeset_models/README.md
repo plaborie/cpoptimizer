@@ -2,6 +2,8 @@ A document proposing a way to typeset CP Optimizer models in LaTeX is available 
 
 Here is the adaptation of these conventions that we will adopt for typesetting CP Optimizer models in text format.
 
+# General constructs
+
 ## Scopes
 
 A scope is a set of tuples used for indexing. For describing a scope, we use the
@@ -174,4 +176,27 @@ u <= D
 ```
 f = sum( [pulse(y[i],Q[i]) : i in [1..N]] )
 f <= C
+```
+
+# Examples
+
+## Job-shop schedulin problem
+
+The model below formulates a general job-shop scheduling problem (not necessarily rectangular):
+
+```
+Given:
+ N                                     # Number of jobs
+ M                                     # Number of machines
+ O[i]   : i in [1..N]                  # Number of operations of job i
+ D[i,j] : i in [1..N], j in [1..O[i]]  # Duration of the jth operation of job i
+ R[i,j] : i in [1..N], j in [1..O[i]]  # Machine of the jth operation of job i
+ 
+interval x[i,j] size D[i,j]                                          : i in [1..N], j in [1..O[i]]  # Interval variable of the jth operation of job i
+ 
+minimize max( [ endOf(x[i,O[i]]) : i in [1..N] ] )
+
+noOverlap( [ x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k ] )     : k in [1..M]
+endBeforeStart( x[i,j-1], x[i,j] )                                   : i in [1..N], j in [2..O[i]]  
+ 
 ```
