@@ -210,7 +210,11 @@ We use the following notations for the arguments of the operators:
 * `cf` Cumul function
 * `sf` State function 
 
-Upper cases denote vectors, for instance `Y` denotes a vector of interval variables, `A` denotes a vector of integer constants. `M` denotes a matrix of integers. Variants of a given keyword are denoted `[VARIANT1|VARIANT2...]`.
+Upper cases denote vectors, for instance `Y` denotes a vector of interval variables, `A` denotes a vector of integer constants. 
+
+`M` denotes a matrix of integers. 
+
+Variants of a given keyword are denoted `[VARIANT1|VARIANT2...]`.
 
 ## Constraint keywords
 
