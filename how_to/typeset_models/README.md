@@ -159,6 +159,27 @@ endBeforeStart(x[i],x[i+1]) : i in [1..N)
 The signature of the different expressions available in CP Optimizer is summarized below. 
 
 
+| Keyword                            | Short description     |
+| ---------------------------------- | -------------         |
+| `-, log(x), abs(x), ...`           | Classical unary arithmetical expressions   |
+| `!`                                | Classical logical `Not` unary expression   |
+| `+, -, *, /, :, mod, x^y`          | Classical binary arithmetical expressions   |
+| `x \|\| y, x && y`                   | Classical logical binary expressions   |
+| `sum(X), prod(X), min(X), max(X)`  | Classical n-ary arithmetical expressions, `X` is a vector |
+| `or(X), and(X)`                    | Classical n-ary logical expressions, `X` is a vector |
+| `A[v], U[v]`                       | Array expressions: `v` is an integer index variable |
+| `count(U,a)`                       | Count variables with given value   |
+| `countDifferent(U)`                | Count number of different values   |
+| `standardDeviation(U,a,b)`         | Standard deviation   |
+| `[start\|end\|size\|length]Of(x,a)`  |  Start (end, etc.) value of an interval variable   |
+| `[start\|end\|size\|length]Eval(pwl,x,a)` | Piecewise linear function evaluated on the start (etc.) value  |
+| `[start\|end\|size\|length]OfNext(s,x,a,b)` | Start (etc.) value of next interval in a sequence  |
+| `[start\|end\|size\|length]OfPrev(s,x,a,b)` | Start (etc.) value of previous interval in a sequence  |
+| `heightAt[Start\|End](cf,x)` | Contribution of `x` to a cumul function at start (or end)  |
+| `overlapLength(x,y,a)` | Overlap length between interval variables  |
+| `pulse(x,a,b])` |  Cumul expression: pulse  |
+| `step(a, b)`  |  Cumul expression: step at constant value |
+| `stepAt[Start\|End](x,a,b)` | Cumul expression: step at start (or end) of interval variable |
 
 Expressions can be defined directly in the constraints they are used in (case 1) or as separate definitions (case 2). The second case is particularly useful when a given expression is used in several constraints.
 
@@ -192,11 +213,11 @@ Given:
  D[i,j] : i in [1..N], j in [1..O[i]]  # Duration of the jth operation of job i
  R[i,j] : i in [1..N], j in [1..O[i]]  # Machine of the jth operation of job i
  
-interval x[i,j] size D[i,j]                                          : i in [1..N], j in [1..O[i]]  # Interval variable of the jth operation of job i
+interval x[i,j] size D[i,j]                                        : i in [1..N], j in [1..O[i]]
  
 minimize max( [ endOf(x[i,O[i]]) : i in [1..N] ] )
 
-noOverlap( [ x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k ] )     : k in [1..M]
-endBeforeStart( x[i,j-1], x[i,j] )                                   : i in [1..N], j in [2..O[i]]  
+noOverlap( [ x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k ] )   : k in [1..M]
+endBeforeStart( x[i,j-1], x[i,j] )                                 : i in [1..N], j in [2..O[i]]  
  
 ```
