@@ -117,7 +117,7 @@ CONSTRAINT
 CONSTRAINT[s] : s in SCOPE
 ```
 
-The signature of the different constraints available in CP Optimizer is summarized in the [Keywords](#constraints-keywords) section.
+The signature of the different constraints available in CP Optimizer is summarized in the [Keywords](#constraint-keywords) section.
 
 | Keyword                         | Short description     |
 | :------------------------------ | :-------------        |
