@@ -201,7 +201,7 @@ f <= C
 
 # Examples
 
-## Job-shop schedulin problem
+## Job-shop scheduling problem
 
 The model below formulates a general job-shop scheduling problem (not necessarily rectangular):
 
