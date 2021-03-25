@@ -66,12 +66,12 @@ As a rule of thumb, we denote decision variables with lower cases whereas consta
 
 ### Integer variables
 
-The keyword for the type of an integer variable is `integer`. The domain is a set of integers. So for instance we can have:
+The keyword for the type of an integer variable is `integer`. The domain is a set or a vector of integers. So for instance we can have:
 
 ```
 integer x      in [1..N]
-integer y[i]   in [2k+1 : k in [0..M)]  : i in [1..N]
-integer z[i,j] in [0,1]                 : i,j in [1..N] | i!=j
+integer y[i]   in {2k+1 : k in [0..M)}  : i in [1..N]
+integer z[i,j] in {0,1}                 : i,j in [1..N] | i!=j
 ```
 
 ### Interval variables
@@ -120,7 +120,7 @@ CONSTRAINT[s] : s in SCOPE
 The signature of the different constraints available in CP Optimizer is summarized below. 
 
 | Keyword                         | Short description     |
-| ------------------------------- | -------------         |
+| :------------------------------ | :-------------        |
 | `=, !=, <=, >=, <, >`             | Classical arithmetical constraints   |
 | `allDifferent(V)`                 | Global all different constraint   |
 | `pack(U,V,A,w)`                   | Bin-packing constraint   |
@@ -160,7 +160,7 @@ The signature of the different expressions available in CP Optimizer is summariz
 
 
 | Keyword                            | Short description     |
-| ---------------------------------- | -------------         |
+| :--------------------------------- | :-------------        |
 | `-, log(x), abs(x), ...`           | Classical unary arithmetical expressions   |
 | `!`                                | Classical logical `Not` unary expression   |
 | `+, -, *, /, :, mod, x^y`          | Classical binary arithmetical expressions   |
