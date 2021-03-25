@@ -168,12 +168,12 @@ f <= C
 Given:
  G[r,c] : r,c in [0..8]  # Value of the input grid, G[r,c]=0 means that the cell is empty
 
-integer x[r,c] in [1..9]                         : r,c in [0..8]
+integer x[r,c] in [1..9]                   : r,c in [0..8]
 
-x[r,c] = G[r,c]                                  : r,c in [0..8] | G[r,c]!=0  # Input values
-allDifferent( x[r,c] : c in [0..8] )         : r in [0..8]    # Different value on each row
-allDifferent( x[r,c] : r in [0..8] )         : c in [0..8]    # Different value on each column
-allDifferent( x[3i+r,3j+c] : r,c in [0..2] ) : i,j in [0..2]  # Different value on sub-squares
+x[r,c] = G[r,c]                            : r,c in [0..8] | G[r,c]!=0  # Input grid values
+allDifferent(x[r,c] : c in [0..8])         : r in [0..8]                # Different value on rows
+allDifferent(x[r,c] : r in [0..8])         : c in [0..8]                # Different value on columns
+allDifferent(x[3i+r,3j+c] : r,c in [0..2]) : i,j in [0..2]              # Different value on sub-squares
 ```
 
 ## Job-shop scheduling problem
@@ -188,12 +188,12 @@ Given:
  D[i,j] : i in [1..N], j in [1..O[i]]  # Duration of the jth operation of job i
  R[i,j] : i in [1..N], j in [1..O[i]]  # Machine of the jth operation of job i
  
-interval x[i,j] size D[i,j]                                    : i in [1..N], j in [1..O[i]]
+interval x[i,j] size D[i,j]                                  : i in [1..N], j in [1..O[i]]
  
-minimize max( endOf(x[i,O[i]]) : i in [1..N] )
+minimize max(endOf(x[i,O[i]]) : i in [1..N])
 
-noOverlap( x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k )   : k in [1..M]
-endBeforeStart( x[i,j-1], x[i,j] )                             : i in [1..N], j in [2..O[i]]  
+noOverlap(x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k)   : k in [1..M]
+endBeforeStart(x[i,j-1], x[i,j])                             : i in [1..N], j in [2..O[i]]  
 ```
 
 ## Resource-constrained project scheduling problem (RCPSP)
@@ -210,12 +210,12 @@ Given:
  C[k]   : k in [1..M]              # Capacity of resource k
  P                                 # Set of precedence constraints (i,j) between tasks
 
-interval x[i] size D[i]                         : i in [1..N]
+interval x[i] size D[i]                        : i in [1..N]
 
-minimize max( endOf(x[i]) : i in [1..N] )
+minimize max(endOf(x[i]) : i in [1..N])
 
-sum( pulse(x[i],Q[i,k]) :i in [1..N] ) <= C[k]  : k in [1..M]
-endBeforeStart(x[i], x[j])                      : (i,j) in P
+sum(pulse(x[i],Q[i,k]) : i in [1..N]) <= C[k]  : k in [1..M]
+endBeforeStart(x[i],x[j])                      : (i,j) in P
 ```
 
 # Keywords
