@@ -16,7 +16,7 @@ The level of the battery is capped by the battery capacity so if in this example
 
 Here is a formulation of the problem on a single battery operated machine, assuming the battery consumption/production rate is 1 (the model can trivially be adapted to the case of different rates). Activities are optional, have specific time-windows and the objective is to maximize the number of executed activities. It uses expressions `typeOfPrev` to track the level of the battery at the end of each operation.
 
-NOTE: The conventions for typesetting CP Optimizer models are available [here](how_to/typeset_models/README.md)
+NOTE: The conventions for typesetting CP Optimizer models are available [here](https://github.com/plaborie/cpoptimizer/blob/main/how_to/typeset_models/README.md)
 ```
 Given:
  N                    # Number of activities
