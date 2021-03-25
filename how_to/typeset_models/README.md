@@ -105,3 +105,24 @@ The keyword for the type of a state function is `stateFunction`. The domain of a
 stateFunction f[k]                                : k in [1..M] 
 stateFunction g[k] with [D[i,j] : i,j in [0..S)]  : k in [1..M] 
 ```
+
+
+
+## Constraints
+
+Constraints are defined as follows:
+
+```
+CONSTRAINT
+CONSTRAINT[s] : s in SCOPE
+```
+
+The signature of the different constraints available in CP Optimizer is summarized below. 
+
+
+For instance:
+
+```
+v[i] <= v[j]                : i,j in [1..N] | i<j
+endBeforeStart(x[i],x[i+1]) : i in [1..N)
+```
