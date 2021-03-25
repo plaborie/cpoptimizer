@@ -106,8 +106,6 @@ stateFunction f[k]                                : k in [1..M]
 stateFunction g[k] with [D[i,j] : i,j in [0..S)]  : k in [1..M] 
 ```
 
-
-
 ## Constraints
 
 Constraints are defined as follows:
@@ -152,4 +150,28 @@ For instance:
 ```
 v[i] <= v[j]                : i,j in [1..N] | i<j
 endBeforeStart(x[i],x[i+1]) : i in [1..N)
+```
+
+## Expressions
+
+The signature of the different expressions available in CP Optimizer is summarized below. 
+
+
+
+Expressions can be defined directly in the constraints they are used in (case 1) or as separate definitions (case 2). The second case is particularly useful when a given expression is used in several constraints.
+
+Two examples of case 1:
+* `sum( [R[i]*x[i] : i in [1..N]] ) <= D`
+* `sum( [pulse(y[i],Q[i]) : i in [1..N]] ) <= C`
+
+Equivalent examples using case 2:
+
+```
+u = sum( [R[i]*x[i] : i in [1..N]] )
+u <= D
+```
+
+```
+f = sum( [pulse(y[i],Q[i]) : i in [1..N]] )
+f <= C
 ```
