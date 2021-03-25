@@ -158,6 +158,20 @@ f <= C
 
 # Examples
 
+## Sudoku
+
+```
+Given:
+ G[r,c] : r,c in [1..9]  # Value of the input grid, G[r,c]=0 means that the cell is empty
+
+integer x[r,c] in [1..9]                  : r,c in [1..9]
+
+x[r,c] = G[r,c]                           : r,c in [1..9] | G[r,c]!=0
+allDifferent( [x[r,c] : c in [1..9] ] )   : r in [1..9]  # Different value on each row
+allDifferent( [x[r,c] : r in [1..9] ] )   : c in [1..9]  # Different value on each column
+
+```
+
 ## Job-shop scheduling problem
 
 The model below formulates a general job-shop scheduling problem (not necessarily rectangular):
@@ -176,9 +190,7 @@ minimize max( [ endOf(x[i,O[i]]) : i in [1..N] ] )
 
 noOverlap( [ x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k ] )   : k in [1..M]
 endBeforeStart( x[i,j-1], x[i,j] )                                 : i in [1..N], j in [2..O[i]]  
- 
 ```
-
 
 ## Resource-constrained project scheduling problem (RCPSP)
 
