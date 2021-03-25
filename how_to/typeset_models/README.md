@@ -225,3 +225,28 @@ noOverlap( [ x[i,j] : i in [1..N], j in [1..O[i]] | R[i,j]=k ] )   : k in [1..M]
 endBeforeStart( x[i,j-1], x[i,j] )                                 : i in [1..N], j in [2..O[i]]  
  
 ```
+
+
+## Resource-constrained project scheduling problem (RCPSP)
+
+Here is a CP Optimizer formulation of the classical RCPSP with N tasks and M
+resources. Task i has a processing time of Pi and requires Qij units of resource
+j. The capacity of resource j is Cj . The precedence constraints are described
+as a set of pairs of tasks P.
+
+```
+Given:
+ N                                 # Number of tasks
+ M                                 # Number of resources
+ D[i]   : i in [1..N]              # Duration of task i
+ Q[i,k] : i in [1..N], k in [1..M] # Number of units of resource k used by task i
+ C[k]   : k in [1..M]              # Capacity of resource k
+ P                                 # Set of precedence constraints (i,j) between tasks
+
+interval x[i] size D[i]                             : i in [1..N]
+
+minimize max( [endOf(x[i]) : i in [1..N]] )
+
+sum( [ pulse(x[i],Q[i,k]) :i in [1..N] ] ) <= C[k]  : k in [1..M]
+endBeforeStart(x[i], x[j])                          : (i,j) in P
+```
