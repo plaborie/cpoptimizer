@@ -1,8 +1,12 @@
 A document proposing a way to typeset CP Optimizer models in LaTeX is available [here](conventions.pdf).
 
-Here is the adaptation of these conventions that we will adopt for typesetting CP Optimizer models in text format.
+Here is the adaptation of these conventions that we will adopt for typesetting CP Optimizer models in text format. If you just want to see a couple of examples, jump to the [Examples](#examples) section.
 
 # General constructs
+
+## Comments
+
+Comments are prefixed by `#`
 
 ## Scopes
 
