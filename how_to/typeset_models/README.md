@@ -117,35 +117,7 @@ CONSTRAINT
 CONSTRAINT[s] : s in SCOPE
 ```
 
-The signature of the different constraints available in CP Optimizer is summarized in the [Keywords](#constraint-keywords) section.
-
-| Keyword                         | Short description     |
-| :------------------------------ | :-------------        |
-| `=, !=, <=, >=, <, >`             | Classical arithmetical constraints   |
-| `allDifferent(V)`                 | Global all different constraint   |
-| `pack(U,V,A,w)`                   | Bin-packing constraint   |
-| `allMinDistance(U,a)`             | Minimal distance between all values   |
-| `inverse(U,V)`                    | Inverse constraint   |
-| `allowedAssignments(U,M)`         | Allowed combinations of values   |
-| `forbiddenAssignments(U,M)`       | Forbidden combinations of values   |
-| `lexicographic(U,V )`             | Lexicographic ordering constraint   |
-| `presenceOf(x)`                   |  Presence of an interval variable   |
-| `[start\|end][Before\|At][Start\|End](x,y,a)`     | Precedence constraints |
-| `forbid[Start\|End\|Extent](x,stp)` | Forbidden values   |
-| `alternative(x,Y,u)`              | Alternative   |
-| `span(x,Y)`                       | Span   |
-| `noOverlap(s,M,bool)`             | No-overlap   |
-| `first(s,x)`                      | First on a sequence   |
-| `last(s,x)`                       | Last on a sequence   |
-| `prev(s,x,y)`                     | Immediately before on a sequence   |
-| `before(s,x,y)`                   | Before on a sequence   |
-| `sameSequence(r,s,X,Y)`           | Same sequence   |
-| `sameCommonSubsequence(r,s,X,Y)`  | Same common subsequence   |
-| `isomorphism(X,Y)`                | Isomorphism   |
-| `alwaysIn(f,x,a,b)`               | Always-in constraint on cumul or state function   |
-| `alwaysEqual(sf,x,a,bool,bool)`   | Always-equal constraint on state function   |
-| `alwaysConstant(sf,x,bool,bool)`  | Always-constant constraint on state function   |
-| `alwaysNoState(sf,x)`             | Always-no-state constraint on state function   |
+The signature of the different constraints available in CP Optimizer is listed in the [Keywords](#keywords) section.
 
 For instance:
 
@@ -156,30 +128,7 @@ endBeforeStart(x[i],x[i+1]) : i in [1..N)
 
 ## Expressions
 
-The signature of the different expressions available in CP Optimizer is summarized below. 
-
-
-| Keyword                            | Short description     |
-| :--------------------------------- | :-------------        |
-| `-, log(x), abs(x), ...`           | Classical unary arithmetical expressions   |
-| `!`                                | Classical logical `Not` unary expression   |
-| `+, -, *, /, :, mod, x^y`          | Classical binary arithmetical expressions   |
-| `x \|\| y, x && y`                   | Classical logical binary expressions   |
-| `sum(X), prod(X), min(X), max(X)`  | Classical n-ary arithmetical expressions, `X` is a vector |
-| `or(X), and(X)`                    | Classical n-ary logical expressions, `X` is a vector |
-| `A[v], U[v]`                       | Array expressions: `v` is an integer index variable |
-| `count(U,a)`                       | Count variables with given value   |
-| `countDifferent(U)`                | Count number of different values   |
-| `standardDeviation(U,a,b)`         | Standard deviation   |
-| `[start\|end\|size\|length]Of(x,a)`  |  Start (end, etc.) value of an interval variable   |
-| `[start\|end\|size\|length]Eval(pwl,x,a)` | Piecewise linear function evaluated on the start (etc.) value  |
-| `[start\|end\|size\|length]OfNext(s,x,a,b)` | Start (etc.) value of next interval in a sequence  |
-| `[start\|end\|size\|length]OfPrev(s,x,a,b)` | Start (etc.) value of previous interval in a sequence  |
-| `heightAt[Start\|End](cf,x)` | Contribution of `x` to a cumul function at start (or end)  |
-| `overlapLength(x,y,a)` | Overlap length between interval variables  |
-| `pulse(x,a,b])` |  Cumul expression: pulse  |
-| `step(a, b)`  |  Cumul expression: step at constant value |
-| `stepAt[Start\|End](x,a,b)` | Cumul expression: step at start (or end) of interval variable |
+The signature of the different constraints available in CP Optimizer is listed in the [Keywords](#keywords) section.
 
 Note that constraints can be used as boolean expressions where CP Optimizer allows it. For example:
 * `x=3 || y=4`
@@ -251,6 +200,69 @@ endBeforeStart(x[i], x[j])                          : (i,j) in P
 
 # Keywords
 
+We use the following notations for the arguments of the operators:
+* `a,b,c,d` Integer or numerical constants
+* `stp` Stepwise function
+* `pwl` Piecewise linear function
+* `u,v,w` Integer variables or expressions
+* `x,y,z` Interval variables
+* `r,s` Sequence variables
+* `cf` Cumul function
+* `sf` State function 
+
+Upper cases denote vectors, for instance `Y` denotes a vector of interval variables, `A` denotes a vector of integer constants. `M` denotes a matrix of integers. Variants of a given keyword are denoted `[VARIANT1|VARIANT2...]`.
+
 ## Constraint keywords
 
-Bla bla
+| Keyword                         | Short description     |
+| :------------------------------ | :-------------        |
+| `=, !=, <=, >=, <, >`             | Classical arithmetical constraints   |
+| `allDifferent(V)`                 | Global all different constraint   |
+| `pack(U,V,A,w)`                   | Bin-packing constraint   |
+| `allMinDistance(U,a)`             | Minimal distance between all values   |
+| `inverse(U,V)`                    | Inverse constraint   |
+| `allowedAssignments(U,M)`         | Allowed combinations of values   |
+| `forbiddenAssignments(U,M)`       | Forbidden combinations of values   |
+| `lexicographic(U,V )`             | Lexicographic ordering constraint   |
+| `presenceOf(x)`                   |  Presence of an interval variable   |
+| `[start\|end][Before\|At][Start\|End](x,y,a)`     | Precedence constraints |
+| `forbid[Start\|End\|Extent](x,stp)` | Forbidden values   |
+| `alternative(x,Y,u)`              | Alternative   |
+| `span(x,Y)`                       | Span   |
+| `noOverlap(s,M,bool)`             | No-overlap   |
+| `first(s,x)`                      | First on a sequence   |
+| `last(s,x)`                       | Last on a sequence   |
+| `prev(s,x,y)`                     | Immediately before on a sequence   |
+| `before(s,x,y)`                   | Before on a sequence   |
+| `sameSequence(r,s,X,Y)`           | Same sequence   |
+| `sameCommonSubsequence(r,s,X,Y)`  | Same common subsequence   |
+| `isomorphism(X,Y)`                | Isomorphism   |
+| `alwaysIn(f,x,a,b)`               | Always-in constraint on cumul or state function   |
+| `alwaysEqual(sf,x,a,bool,bool)`   | Always-equal constraint on state function   |
+| `alwaysConstant(sf,x,bool,bool)`  | Always-constant constraint on state function   |
+| `alwaysNoState(sf,x)`             | Always-no-state constraint on state function   |
+
+
+## Expression keywords
+
+| Keyword                            | Short description     |
+| :--------------------------------- | :-------------        |
+| `-, log(x), abs(x), ...`           | Classical unary arithmetical expressions   |
+| `!`                                | Classical logical `Not` unary expression   |
+| `+, -, *, /, :, mod, x^y`          | Classical binary arithmetical expressions   |
+| `x \|\| y, x && y`                   | Classical logical binary expressions   |
+| `sum(X), prod(X), min(X), max(X)`  | Classical n-ary arithmetical expressions, `X` is a vector |
+| `or(X), and(X)`                    | Classical n-ary logical expressions, `X` is a vector |
+| `A[v], U[v]`                       | Array expressions: `v` is an integer index variable |
+| `count(U,a)`                       | Count variables with given value   |
+| `countDifferent(U)`                | Count number of different values   |
+| `standardDeviation(U,a,b)`         | Standard deviation   |
+| `[start\|end\|size\|length]Of(x,a)`  |  Start (end, etc.) value of an interval variable   |
+| `[start\|end\|size\|length]Eval(pwl,x,a)` | Piecewise linear function evaluated on the start (etc.) value  |
+| `[start\|end\|size\|length]OfNext(s,x,a,b)` | Start (etc.) value of next interval in a sequence  |
+| `[start\|end\|size\|length]OfPrev(s,x,a,b)` | Start (etc.) value of previous interval in a sequence  |
+| `heightAt[Start\|End](cf,x)` | Contribution of `x` to a cumul function at start (or end)  |
+| `overlapLength(x,y,a)` | Overlap length between interval variables  |
+| `pulse(x,a,b])` |  Cumul expression: pulse  |
+| `step(a, b)`  |  Cumul expression: step at constant value |
+| `stepAt[Start\|End](x,a,b)` | Cumul expression: step at start (or end) of interval variable |
