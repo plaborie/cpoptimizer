@@ -181,6 +181,10 @@ The signature of the different expressions available in CP Optimizer is summariz
 | `step(a, b)`  |  Cumul expression: step at constant value |
 | `stepAt[Start\|End](x,a,b)` | Cumul expression: step at start (or end) of interval variable |
 
+Note that constraints can be used as boolean expressions where CP Optimizer allows it. For example:
+* `x=3 || y=4`
+* `sum( [x[i]!=x[j] : i,j in [1..N] | i!=j] ) <= K`
+
 Expressions can be defined directly in the constraints they are used in (case 1) or as separate definitions (case 2). The second case is particularly useful when a given expression is used in several constraints.
 
 Two examples of case 1:
