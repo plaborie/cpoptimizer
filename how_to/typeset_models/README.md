@@ -121,31 +121,31 @@ The signature of the different constraints available in CP Optimizer is summariz
 
 | Keyword                         | Short description     |
 | ------------------------------- | -------------         |
-| =, !=, <=, >=, <, >             | Classical arithmetical constraints   |
-| allDifferent(V)                 | Global all different constraint   |
-| pack(U,V,A,w)                   | Bin-packing constraint   |
-| allMinDistance(U,a)             | Minimal distance between all values   |
-| inverse(U,V)                    | Inverse constraint   |
-| allowedAssignments(U,M)         | Allowed combinations of values   |
-| forbiddenAssignments(U,M)       | Forbidden combinations of values   |
-| lexicographic(U,V )             | Lexicographic ordering constraint   |
-| presenceOf(x)                   |  Presence of an interval variable   |
-| \[start\|end\]\[Before\|At\]\[Start\|End\](x,y,a)     | Precedence constraints |
-| forbid\[Start\|End\|Extent\](x,stp) | Forbidden values   |
-| alternative(x,Y,u)              | Alternative   |
-| span(x,Y)                       | Span   |
-| noOverlap(s,M,bool)             | No-overlap   |
-| first(s,x)                      | First on a sequence   |
-| last(s,x)                       | Last on a sequence   |
-| prev(s,x,y)                     | Immediately before on a sequence   |
-| before(s,x,y)                   | Before on a sequence   |
-| sameSequence(r,s,X,Y)           | Same sequence   |
-| sameCommonSubsequence(r,s,X,Y)  | Same common subsequence   |
-| isomorphism(X,Y)                | Isomorphism   |
-| alwaysIn(f,x,a,b)               | Always-in constraint on cumul or state function   |
-| alwaysEqual(sf,x,a,bool,bool)   | Always-equal constraint on state function   |
-| alwaysConstant(sf,x,bool,bool)  | Always-constant constraint on state function   |
-| alwaysNoState(sf,x)             | Always-no-state constraint on state function   |
+| `=, !=, <=, >=, <, >`             | Classical arithmetical constraints   |
+| `allDifferent(V)`                 | Global all different constraint   |
+| `pack(U,V,A,w)`                   | Bin-packing constraint   |
+| `allMinDistance(U,a)`             | Minimal distance between all values   |
+| `inverse(U,V)`                    | Inverse constraint   |
+| `allowedAssignments(U,M)`         | Allowed combinations of values   |
+| `forbiddenAssignments(U,M)`       | Forbidden combinations of values   |
+| `lexicographic(U,V )`             | Lexicographic ordering constraint   |
+| `presenceOf(x)`                   |  Presence of an interval variable   |
+| `[start\|end][Before\|At][Start\|End](x,y,a)`     | Precedence constraints |
+| `forbid[Start\|End\|Extent](x,stp)` | Forbidden values   |
+| `alternative(x,Y,u)`              | Alternative   |
+| `span(x,Y)`                       | Span   |
+| `noOverlap(s,M,bool)`             | No-overlap   |
+| `first(s,x)`                      | First on a sequence   |
+| `last(s,x)`                       | Last on a sequence   |
+| `prev(s,x,y)`                     | Immediately before on a sequence   |
+| `before(s,x,y)`                   | Before on a sequence   |
+| `sameSequence(r,s,X,Y)`           | Same sequence   |
+| `sameCommonSubsequence(r,s,X,Y)`  | Same common subsequence   |
+| `isomorphism(X,Y)`                | Isomorphism   |
+| `alwaysIn(f,x,a,b)`               | Always-in constraint on cumul or state function   |
+| `alwaysEqual(sf,x,a,bool,bool)`   | Always-equal constraint on state function   |
+| `alwaysConstant(sf,x,bool,bool)`  | Always-constant constraint on state function   |
+| `alwaysNoState(sf,x)`             | Always-no-state constraint on state function   |
 
 For instance:
 
