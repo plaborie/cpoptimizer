@@ -58,7 +58,7 @@ The keyword for the type of a sequence variable is `sequence`. The domain is a v
 
 ```
 sequence s[i] in [x[i,j] : j in [1,M]]                                : i \in [1,N]
-sequence s[i] in [x[i,j] : j in [1,M]], types [[T[i,j] : j in [1,M]]  : i \in [1,N]
+sequence r[i] in [x[i,j] : j in [1,M]], types [[T[i,j] : j in [1,M]]  : i \in [1,N]
 ```
 
 ### State functions
