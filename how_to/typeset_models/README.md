@@ -169,7 +169,7 @@ integer x[r,c] in [1..9]                         : r,c in [0..8]
 x[r,c] = G[r,c]                                  : r,c in [0..8] | G[r,c]!=0  # Input values
 allDifferent( [ x[r,c] : c in [0..8] ] )         : r in [0..8]    # Different value on each row
 allDifferent( [ x[r,c] : r in [0..8] ] )         : c in [0..8]    # Different value on each column
-allDifferent( [ x[3i+r,3j+c] : r,c in [0..2] ] ) : i, j in [0..2] # Different value on sub-squares
+allDifferent( [ x[3i+r,3j+c] : r,c in [0..2] ] ) : i,j in [0..2]  # Different value on sub-squares
 ```
 
 ## Job-shop scheduling problem
