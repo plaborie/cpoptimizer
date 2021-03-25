@@ -119,6 +119,35 @@ CONSTRAINT[s] : s in SCOPE
 
 The signature of the different constraints available in CP Optimizer is summarized below. 
 
+| Keyword  | Short description |
+| ------------- | ------------- |
+| =, !=, <=, >=, <, > | Classical arithmetical constraints |
+
+
+, , <, >
+allDierent(V ) Global all dierent constraint
+pack(U; V; A;w) Bin-packing constraint
+allMinDistance(U; a) Minimal distance between all values
+inverse(U; V ) Inverse constraint
+allowedAssignments(U;M) Allowed combinations of values
+forbiddenAssignments(U;M) Forbidden combinations of values
+lexicographic(U; V ) Lexicographic ordering constraint
+presenceOf(x) Presence of an interval variable
+[startjend][BeforejAt][StartjEnd](x; y[; a]) Precedence constraints
+forbid[StartjEndjExtent](x; stp) Forbidden values
+alternative(x; Y [; u]) Alternative
+span(x; Y ) Span
+noOverlap(s[;M; bool]) No-overlap
+rst(s; x) First on a sequence
+last(s; x) Last on a sequence
+prev(s; x; y) Immediately before on a sequence
+before(s; x; y) Before on a sequence
+sameSequence(r; s[;X; Y ]) Same sequence
+sameCommonSubsequence(r; s[;X; Y ]) Same common subsequence
+alwaysIn(f; x; a; b) Always-in constraint on cumul or state function
+alwaysEqual(sf ; x; a[; bool; bool]) Always-equal constraint on state function
+alwaysConstant(sf ; x[; bool; bool]) Always-constant constraint on state function
+alwaysNoState(sf ; x) Always-no-state constraint on state function
 
 For instance:
 
