@@ -51,3 +51,21 @@ interval x
 interval y[i] in [-H,H]                                                  : i in [1,N]
 interval z[i,j] in [0,H], optional, size in [A[i],B[i]], intensity=F[j]  : i in [1,N], j in [1,M] 
 ```
+
+### Sequence variables
+
+The keyword for the type of a sequence variable is `sequence`. The domain is a vector `X` of interval variables (see section Vector above). Optionally, the domain can specify a vector of integer types `T` (`T` must have the same dimension as `X`). For instance:
+
+```
+sequence s[i] in [x[i,j] : j in [1,M]]                                : i \in [1,N]
+sequence s[i] in [x[i,j] : j in [1,M]], types [[T[i,j] : j in [1,M]]  : i \in [1,N]
+```
+
+### State functions
+
+The keyword for the type of a state function is `stateFunction`. The domain of a state function can specify a matrix of integers as transition distance between the states. For instance:
+
+```
+stateFunction f[k]                                  : k in [1,M] 
+stateFunction g[k] with [D[i,j] : i,j in [0,S)]     : k in [1,M] 
+```
