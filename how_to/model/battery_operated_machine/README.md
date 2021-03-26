@@ -1,3 +1,5 @@
+# Problem description
+
 Suppose you have a machine available for performing activities one at a time. 
 Processing an activity `i` consumes some energy on the machine `RD*D[i]` that is proportional to the activity duration `D[i]`. 
 The energy is stored on a battery of limited capacity `C`. In between activities, the machine batterry can be recharged at a constant rate `RR`.
@@ -13,6 +15,8 @@ Another solution could be :
 The level of the battery is capped by the battery capacity so if in this example the battery capacity is `C=30`, another feasible solution is for instance:
 
 `[t=20,l=20]--A->[t=30,l=10] ... [t=100,l=30]--B->[t=120,l=10]`
+
+# CP Optimizer formulation
 
 Here is a formulation of the problem on a single battery operated machine, assuming the battery consumption/production rate is 1 (the model can trivially be adapted to the case of different rates). Activities are optional, have specific time-windows and the objective is to maximize the number of executed activities. It uses expressions `typeOfPrev` to track the level of the battery at the end of each operation.
 
@@ -35,6 +39,8 @@ noOverlap(seq)
 le[0] = 0
 le[i] = min( C, le[typeOfPrev(s,x[i],0)] + startOf(x[i],D[i]) - endOfPrev(s,x[i],0) ) - D[i]  : i in [1..N]
 ```
+
+# Code samples
 
 The corresponding formulation in OPL is here : [single-machine.mod](./opl/single-machine.mod)
 
