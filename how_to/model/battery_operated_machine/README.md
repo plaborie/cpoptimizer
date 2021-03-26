@@ -46,8 +46,7 @@ Variable `l[i]` denotes the level of the battery at the end of activity `x[i]`. 
 
 The last constraints of the formulation define the level of the battery at the end of activity `x[i]` to be equal to the level of the battery at the end of the previous activity (with index `typeOfPrev(s,x[i],0)`) plus the delay between the end time of the previous activity (`endOfPrev(s,x[i],0)`) and the start time of `x[i]` capped by battery capacity `C`, minus the baterry consumption of activity `x[i]` (`D[i]`).
 
-These constraints are alo valid when interval variable `x[i]` is absent as in this case all the expressions involving `x[i]` are 0 and the constraint boils down to `l[i] = min(C,l[0])`
-
+These constraints are alo valid when interval variable `x[i]` is absent as in this case `typeOfPrev(s,x[i],0)=0`, `startOf(x[i],D[i])=D[i]`, `endOfPrev(s,x[i],0)=0` and the constraint boils down to `l[i] = min(C,l[0]+D[i])-D[i]` which is a valid value in the domain of `l[i]`.
 
 
 # Code samples
