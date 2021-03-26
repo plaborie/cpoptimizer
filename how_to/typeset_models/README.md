@@ -138,6 +138,22 @@ The signature of the different constraints available in CP Optimizer is listed i
 
 In the case of expressions using vectors as arguments, if there is no ambiguity, the `[` `]` delimiters of the vector can be omitted. For instance `sum( [ x[i] : i in [1..N] ] )` can be simply written `sum(x[i] : i in [1..N])`.
 
+Blackbox functions are first declared as follow (by default, the dimension D that is the size of the returned vector is 1):
+
+```
+blackbox FUNCTION
+blackbox FUNCTION dim D
+```
+
+For instance:
+
+```
+blackbox f dim 2              # f(X)[0] is the average of X, f(X)[1] is the standard deviation
+integer  x[i] : i in [1..N]
+stats = f(X)
+maximize(stats[0] + stats[1])
+```
+
 Note that constraints can be used as boolean expressions where CP Optimizer allows it. For example:
 * `x=3 || y=4`
 * `sum( x[i]!=x[j] : i,j in [1..N] | i!=j ) <= K`
