@@ -22,7 +22,7 @@ Given:
 interval op[i] size D[i]    : i in [1..N]
 interval sb[k] size 1       : k in [1..N]
  
-makespan = max( endOf(op[i]) i in [1..N )
+makespan = max( endOf(op[i]) i in [1..N] )
 nstations = (makespan + C) div (C+1)
  
 minimize makespan
