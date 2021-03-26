@@ -23,24 +23,23 @@ The level of the battery is capped by the battery capacity so if in this example
 Here is a formulation of the problem on a single battery operated machine, assuming the battery consumption/production rate is 1 (the model can trivially be adapted to the case of different rates). Activities are optional, have specific time-windows and the objective is to maximize the number of executed activities. It uses expressions `typeOfPrev` to track the level of the battery at the end of each operation.
 
 :green_book: _NOTE: The conventions for typesetting CP Optimizer models are available [here](https://github.com/plaborie/cpoptimizer/blob/main/how_to/typeset_models/README.md)_
-```
-Given:
- N                    # Number of activities
- C                    # Battery capacity
- D[i] : i in [1..N]   # Duration of activity i
- S[i] : i in [1..N]   # Earliest start time of activity i
- E[i] : i in [1..N]   # Latest end time of activity i
 
-interval x[i] in [S[i]..E[i]], optional, size=D[i]  : i in [1..N]  # Optional activity i
-integer  l[i] in 0..C                               : i in [0..N]  # Battery level at the end of x[i]
-sequence s in x types [1..N]
+    Given:
+     N                    # Number of activities
+     C                    # Battery capacity
+     D[i] : i in [1..N]   # Duration of activity i
+     S[i] : i in [1..N]   # Earliest start time of activity i
+     E[i] : i in [1..N]   # Latest end time of activity i
 
-maximize sum(presenceOf(x[i]) : i in [1..N])
+    interval x[i] in [S[i]..E[i]], optional, size=D[i]  : i in [1..N]  # Optional activity i
+    integer  l[i] in 0..C                               : i in [0..N]  # Battery level at the end of x[i]
+    sequence s in x types [1..N]
 
-noOverlap(seq)
-l[0] = 0
-l[i] = min( C, l[typeOfPrev(s,x[i],0)] + startOf(x[i],D[i]) - endOfPrev(s,x[i],0) ) - D[i]  : i in [1..N]
-```
+    maximize sum(presenceOf(x[i]) : i in [1..N])
+
+    noOverlap(seq)
+    l[0] = 0
+    l[i] = min( C, l[typeOfPrev(s,x[i],0)] + startOf(x[i],D[i]) - endOfPrev(s,x[i],0) ) - D[i]  : i in [1..N]
 
 The formulation uses a sequence variable `s` on the set of optional actvities `x`. In this sequence variables, the type of activity `x[i]` is the index `i` of the activity.
 
