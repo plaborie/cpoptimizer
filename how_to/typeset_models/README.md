@@ -1,6 +1,6 @@
 A document proposing a way to typeset CP Optimizer models in LaTeX is available [here](conventions.pdf).
 
-Here is the adaptation of these conventions that we will adopt for typesetting CP Optimizer models in text format. If you just want to see a couple of examples, jump to the [Examples](#abcd) section.
+Here is the adaptation of these conventions that we will adopt for typesetting CP Optimizer models in text format. If you just want to see a couple of examples, jump to the [Examples](#section_examples) section.
 
 # General constructs
 
@@ -187,8 +187,7 @@ f = sum( pulse(y[i],Q[i]) : i in [1..N] )
 f <= C
 ```
 
-# Examples
-<a name="abcd"></a>
+# Examples <a name="section_examples"></a>
 
 ## Sudoku
 
