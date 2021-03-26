@@ -30,15 +30,15 @@ dvar sequence mchs[m in Mchs]
   in    all(j in Jobs, o in Mchs : Ops[j][o].mch == m) op[j][o]
   types all(j in Jobs, o in Mchs : Ops[j][o].mch == m) j;
           
-dvar int le[m in Mchs][j in 0..nbJobs] in 0..C; // Battery level at the end of operation of job j on machine m
+dvar int l[m in Mchs][j in 0..nbJobs] in 0..C; // Battery level at the end of operation of job j on machine m
 
 minimize max(j in Jobs) endOf(op[j][nbMchs]);
 subject to {
   forall (m in Mchs) {
-    le[m][0] == 0;
+    l[m][0] == 0;
     noOverlap(mchs[m]);
     forall (j in Jobs) {
-      le[m][j] == minl(C, le[m][typeOfPrev(mchs[m],op[j][O[j][m]],0)] + (startOf(op[j][O[j][m]])-endOfPrev(mchs[m],op[j][O[j][m]],0)))-Ops[j][O[j][m]].pt;
+      l[m][j] == minl(C, l[m][typeOfPrev(mchs[m],op[j][O[j][m]],0)] + (startOf(op[j][O[j][m]])-endOfPrev(mchs[m],op[j][O[j][m]],0)))-Ops[j][O[j][m]].pt;
     }      
   }    
   forall (j in Jobs, o in 1..nbMchs-1)
