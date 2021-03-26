@@ -11,7 +11,7 @@ More information about the formulation of this problem in CP Optimizer and the p
 
 The formulation creates one interval variable `op[i]` per operation. There are at most `n` stations. The time boundaries of stations is modeled by fixed interval variables of length 1 (the value 1 could be any positive integer, it represents the time taken to move from one station to the next one, the value of this duration has no impact on the problem). Precedence relations are posted using `endBeforeStart` constraints between operations and a global `noOverlap` constraint is posted to ensure that operations do not overlap each other and do not overlap station boundaries. Finally, the objective function is to minimize the makespan (end time of the last operation) as the number of stations is directly related with the makespan: `nstations = ceil(makespan/(C+1))`.
 
-:green_book: _NOTE: The conventions for typesetting CP Optimizer models are available [here](https://github.com/plaborie/cpoptimizer/blob/main/how_to/typeset_models/README.md)_
+> _NOTE: The conventions for typesetting CP Optimizer models are available [here](https://github.com/plaborie/cpoptimizer/blob/main/how_to/typeset_models/README.md)_
 
     Given:
      N                    # Number of activities
