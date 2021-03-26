@@ -36,6 +36,9 @@ For the examples above:
 * `V1[1]=1, V1[2]=2, ...` 
 * `V2[1,2]=3, V2[1,3]=4,...`
 
+Vectors can be appended by using the `+` operator:
+* `[a,b,c] + [u,v] = [a,b,c,u,v]`
+
 ## Sets
 
 Sets are denoted `{v1,v2,...,vn}` or `{ v(s) : s in SCOPE }`
