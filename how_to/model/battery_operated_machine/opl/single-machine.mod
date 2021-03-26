@@ -13,7 +13,7 @@ int S[i in 1..N] = rand(H - (H div 10));
 int E[i in 1..N] = S[i]+D[i]+rand(H div 10);
 
 dvar interval x[i in 1..N] optional in S[i]..E[i] size D[i]; // Optional activities x[i]
-dvar int le[i in 0..N] in 0..C; // Battery level at the end of x[i]
+dvar int l[i in 0..N] in 0..C; // Battery level at the end of x[i]
 
 dvar sequence seq in all(i in 1..N) x[i] types all(i in 1..N) i; // sequence of activities on the machine
 
@@ -25,9 +25,9 @@ execute {
 maximize sum(i in 1..N) presenceOf(x[i]);
 subject to {
   noOverlap(seq);
-  le[0]==0;
+  l[0]==0;
   forall (i in 1..N) {
-    le[i] == minl(C, le[typeOfPrev(seq,x[i],0)] + (startOf(x[i],D[i])-endOfPrev(seq,x[i],0)))-D[i];
-    // When x[i] is absent, by the above constraint: le[i]=0
+    l[i] == minl(C, l[typeOfPrev(seq,x[i],0)] + (startOf(x[i],D[i])-endOfPrev(seq,x[i],0)))-D[i];
+    // When x[i] is absent, by the above constraint: l[i]=0
   }
 }
