@@ -2,7 +2,7 @@
 
 ## Problem description
 
-The classical flow-shop scheduling problem (FSP) is a particular case of job-shop scheduling problem where the i-th operation of the job must be executed on the i-th machine. No machine can perform more than one operation simultaneously. For each operation of each job, execution time is specified. Operations within one job must be performed in the specified order. The first operation gets executed on the first machine, then (as the first operation is finished) the second operation on the second machine, and so on until the n-th operation. The problem, known to be NP-hard, is to sequence operations on the machines so that the maximum completion time over all jobs (makespan) is minimized. 
+The classical flow-shop scheduling problem (FSP) is a particular case of [job-shop scheduling](../job_shop/README.md) problem where the i-th operation of the job must be executed on the i-th machine. No machine can perform more than one operation simultaneously. For each operation of each job, execution time is specified. Operations within one job must be performed in the specified order. The first operation gets executed on the first machine, then (as the first operation is finished) the second operation on the second machine, and so on until the n-th operation. The problem, known to be NP-hard, is to sequence operations on the machines so that the maximum completion time over all jobs (makespan) is minimized. 
 
 ## CP Optimizer formulation
 
