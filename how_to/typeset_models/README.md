@@ -12,6 +12,7 @@ Comments are prefixed by `#`
 
 A scope is a set of tuples used for indexing. For describing a scope, we use the
 classical set notation. For instance if N and M are two integers:
+
    * `i in [N..M]` is the set of all integers i in {N,N+1,...M} (assuming N<=M) 
    * `i in [N..M)` is the set of all integers i in {N,N+1,...M-1}
    * `i in [1..N], j in [1..M]` is the cartesian product (i,j) in [1,N]x[1,M]
@@ -27,16 +28,19 @@ iterating on the indexes from left to right. For instance:
 Vectors are denoted `[v1,v2,...,vn]` or `[ v(s) : s in SCOPE ]`
 
 For instance:
+
    * `V1 = [i : i in [1..5]]` is vector `[1,2,3,4,5]`
    * `V2 = [i+j: i,j in [1..3] | i!=j]` is vector `[3,4,3,5,4,5]` (see section 'Scopes' above)
 
 Vectors are indexed by the tuples in the scope. If `V` is a vector and `s` a tuple in its scope, the value of `V` for tuple `s` is `V[s]`.
 
 For the examples above:
+
    * `V1[1]=1, V1[2]=2, ...` 
    * `V2[1,2]=3, V2[1,3]=4,...`
 
 Vectors can be appended by using the `+` operator:
+
    * `[a,b,c] + [u,v] = [a,b,c,u,v]`
 
 ## Sets
@@ -44,6 +48,7 @@ Vectors can be appended by using the `+` operator:
 Sets are denoted `{v1,v2,...,vn}` or `{ v(s) : s in SCOPE }`
 
 For instance:
+
    * `S1 = {i : i in [1..5]}` is set `{1,2,3,4,5}`
    * `S2 = {i+j: i,j in [1..3] | i!=j}` is set `{3,4,5}` (see section 'Scopes' above)
 
@@ -84,6 +89,7 @@ integer z[i,j] in {0,1}                 : i,j in [1..N] | i!=j
 ### Interval variables
 
 The keyword for the type of an interval variable is `interval`. The domain is a subset of domain specifiers in the following order, separated by a comma:
+
    * Minimal start (R) and maximal end (D) range: `in [R..D]` (default: `in [0..+oo]`)
    * Specification whether the interval is optional: `optional` (default: not optional that is, interval is present)
    * Value or range for the interval size: `size = S` or `size in [S1..S2]` (default: `size in [0..+oo]`)
@@ -158,12 +164,14 @@ maximize(stats[0] + stats[1])
 ```
 
 Note that constraints can be used as boolean expressions where CP Optimizer allows it. For example:
+
    * `x=3 || y=4`
    * `sum( x[i]!=x[j] : i,j in [1..N] | i!=j ) <= K`
 
 Expressions can be defined directly in the constraints they are used in (case 1) or as separate definitions (case 2). The second case is particularly useful when a given expression is used in several constraints.
 
 Two examples of case 1:
+
    * `sum( R[i]*x[i] : i in [1..N] ) <= D`
    * `sum( pulse(y[i],Q[i]) : i in [1..N] ) <= C`
 
@@ -240,6 +248,7 @@ endBeforeStart(x[i],x[j])                      : (i,j) in P
 # Keywords
 
 We use the following notations for the arguments of the operators:
+
    * `a,b,c,d` Integer or numerical constants
    * `stp` Stepwise function
    * `pwl` Piecewise linear function
