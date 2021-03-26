@@ -35,3 +35,7 @@ noOverlap(op+sb)
 ## Code samples
 
 The corresponding formulations in Python and OPL are here : [salbp1.py](./python/salbp1.py), [salbp1.mod](./opl/salbp1.mod)
+
+A more realistic variant where there are multiple operators for handling the operations are available here: [salbp1W.py](./python/salbp1W.py), [salbp1W.mod](./opl/salbp1W.mod). They use a _cumul function_ instead of a _no overlap_ constraint.
+
+The variant that minimizes the cycle time given a fixed number of stations (known as SALBP-2) is available here: [salbp2.py](./python/salbp2.py), [salbp2.mod](./opl/salbp2.mod).
