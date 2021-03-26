@@ -187,7 +187,8 @@ f = sum( pulse(y[i],Q[i]) : i in [1..N] )
 f <= C
 ```
 
-# Examples <a name="section_examples"></a>
+<a name="section_examples"></a>
+# Examples 
 
 ## Sudoku
 
