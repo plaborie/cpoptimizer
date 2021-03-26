@@ -2,7 +2,7 @@
 
 ## Problem description
 
-The permutation flow-shop scheduling problem (PFSP) is a special type of flow-shop scheduling problem in which the processing order of the jobs on the machines is the same for each subsequent operation of processing. No machine can perform more than one operation simultaneously. For each operation of each job, execution time is specified. Operations within one job must be performed in the specified order. The first operation gets executed on the first machine, then (as the first operation is finished) the second operation on the second machine, and so on until the n-th operation. The problem, known to be NP-hard, is to sequence operations on the machines so that the maximum completion time over all jobs (makespan) is minimized. 
+The permutation flow-shop scheduling problem (PFSP) is a special type of [flow-shop](../flow_shop/README.md) scheduling problem in which the processing order of the jobs on the machines is the same for each subsequent operation of processing. No machine can perform more than one operation simultaneously. For each operation of each job, execution time is specified. Operations within one job must be performed in the specified order. The first operation gets executed on the first machine, then (as the first operation is finished) the second operation on the second machine, and so on until the n-th operation. The problem, known to be NP-hard, is to sequence operations on the machines so that the maximum completion time over all jobs (makespan) is minimized. 
 
 ## CP Optimizer formulation
 
