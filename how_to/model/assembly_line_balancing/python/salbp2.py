@@ -16,7 +16,7 @@ M = range(m+1)
 from docplex.cp.model import *
 model = CpoModel()
 
-# Decision variables: operations and station boundaries
+# Decision variables: operations, station boundaries and cycle time
 op = [interval_var(size=D[i]) for i in N ]
 sb = [interval_var(size=1) for k in M ]
 c  = integer_var(max([D[i] for i in N]), sum([D[i] for i in N]))
