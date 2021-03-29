@@ -1,6 +1,12 @@
 # cpoptimizer
-Examples and guidelines for modeling and solving combinatorial optimization problems with CP Optimizer
+Examples and guidelines for modeling and solving combinatorial optimization problems with [IBM ILOG CP Optimizer](https://ibm.biz/CPOptimizer)
 
+* Some material about CP Optimizer
+   * [Python API](https://pypi.org/project/docplex/) of CP Optimizer
+   * CP Optimizer [forum](https://ibm.biz/ConstraintProgForums)
+   * Overview of CP Optimizer in [CONSTRAINTS Journal](https://ibm.biz/Constraints2018)
+   * [Tutorial](material/cpotutorial-icaps-2017.pdf) on CP Optimizer at ICAPS 2017
+   * CP Optimizer [documentation](https://ibm.biz/COS_Documentation)
 * How to
    * [Typeset models](./how_to/typeset_models/README.md)
    * Model
