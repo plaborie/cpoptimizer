@@ -21,7 +21,7 @@ x = [ [interval_var(size=o[1]) for o in J[i]] for i in N ]
 
 model.add(
  # Objective: minimize makespan
- [ minimize(max([end_of(x[i][O[i]-1]) for i in N]))) ] +
+ [ minimize(max([end_of(x[i][O[i]-1]) for i in N])) ] +
  # Constraints: operations do not overlap on machines
  [ no_overlap([x[i][j] for i in N for j in range(O[i]) if J[i][j][0]==k])  for k in M ] +
  # Constraints: precedence between consecutive operations of a job
