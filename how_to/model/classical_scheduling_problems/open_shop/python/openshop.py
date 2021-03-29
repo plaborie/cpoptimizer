@@ -18,14 +18,14 @@ model = CpoModel()
 # Decision variables: operations
 x = [ [interval_var(size=d) for d in J[i]] for i in N ]
 
-# Objective: minimize makespan
-model.add(minimize(max([end_of(x[i][m-1]) for i in N])))
-
-# Constraints: operations do not overlap on machines
-model.add([ no_overlap([x[i][k] for i in N])  for k in M])
-
-# Constraints: operations of a job do not overlap
-model.add([ no_overlap([x[i][k] for k in M])  for i in N])
+model.add(
+ # Objective: minimize makespan
+ [ minimize(max([end_of(x[i][m-1]) for i in N])) ] +
+ # Constraints: operations do not overlap on machines
+ [ no_overlap([x[i][k] for i in N])  for k in M ] +
+ # Constraints: operations of a job do not overlap
+ [ no_overlap([x[i][k] for k in M])  for i in N ]
+)
 
 # 3. SOLVING THE PROBLEM
 
