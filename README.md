@@ -1,5 +1,4 @@
-# cpoptimizer
-Examples and guidelines for modeling and solving combinatorial optimization problems with [IBM ILOG CP Optimizer](https://ibm.biz/CPOptimizer)
+# Examples and guidelines for modeling and solving combinatorial optimization problems with [IBM ILOG CP Optimizer](https://ibm.biz/CPOptimizer)
 
 * Some material about CP Optimizer
    * [Python API](https://pypi.org/project/docplex/) of CP Optimizer
