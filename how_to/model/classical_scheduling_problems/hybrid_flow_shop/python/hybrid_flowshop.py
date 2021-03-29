@@ -17,16 +17,16 @@ from docplex.cp.model import *
 model = CpoModel()
 
 # Decision variables: operations
-x = [ [interval_var(size=d) for d in J[i]] for i in N ]
+x = [ [ interval_var(size=d) for d in J[i]] for i in N ]
 
-# Objective: minimize makespan
-model.add(minimize(max([end_of(x[i][m-1]) for i in N])))
-
-# Constraints: number of machines for each operations
-model.add([ sum([ pulse(x[i][k],1) for i in N]) <= C[k]   for k in M])
-
-# Constraints: precedence between consecutive operations of a job
-model.add([ end_before_start(x[i][j-1], x[i][j])  for i in N for j in range(1,m)])
+model.add(
+ # Objective: minimize makespan
+ [ minimize(max([end_of(x[i][m-1]) for i in N])) ] + 
+ # Constraints: number of machines for each operations
+ [ sum([ pulse(x[i][k],1) for i in N]) <= C[k]   for k in M ] +
+ # Constraints: precedence between consecutive operations of a job
+ [ end_before_start(x[i][j-1], x[i][j])  for i in N for j in range(1,m) ]
+)
 
 # 3. SOLVING THE PROBLEM
 
