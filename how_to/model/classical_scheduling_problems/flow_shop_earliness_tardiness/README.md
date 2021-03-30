@@ -15,7 +15,12 @@ sum( W[i]*abs(C[i]-DD[i]) ) : i in [1..N]) / NW
 NW = sum( W[i] * sum(D[i,j] : j in [1..M]) : i in [1..N])
 ```
 
+The results of the CP Optimizer automatic search on these problems are reported in [2].
+
 [1] T. Morton, D. Pentico. _Heuristic Scheduling Systems_. Wiley (1993)
+
+[2] P. Laborie. _IBM ILOG CP Optimizer for Detailed Scheduling Illustrated on Three Problems_. Proc. 6th International Conference on Integration of AI and OR Techniques in Constraint Programming for Combinatorial Optimization Problems (CPAIOR 2009) 
+
 
 ## CP Optimizer formulation
 
