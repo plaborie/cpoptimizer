@@ -13,6 +13,7 @@
          * [Job-shop](./how_to/model/classical_scheduling_problems/job_shop/README.md)
          * [Open-shop](./how_to/model/classical_scheduling_problems/open_shop/README.md)
          * [Flow-shop](./how_to/model/classical_scheduling_problems/flow_shop/README.md)
+         * [Flow-shop with earliness/tardiness cost](./how_to/model/classical_scheduling_problems/flow_shop_earliness_tardiness/README.md)
          * [Permutation flow-shop](./how_to/model/classical_scheduling_problems/permutation_flow_shop/README.md)
          * [Hybrid flow-shop](./how_to/model/classical_scheduling_problems/hybrid_flow_shop/README.md)
          * [Flexible job-shop](./how_to/model/classical_scheduling_problems/flexible_job_shop/README.md)
