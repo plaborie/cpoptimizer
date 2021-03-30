@@ -18,5 +18,6 @@
          * [Flexible job-shop](./how_to/model/classical_scheduling_problems/flexible_job_shop/README.md)
       * Classical project scheduling problems
          * [Resource-Constrained Project Scheduling Problem (RCPSP)](./how_to/model/classical_scheduling_problems/RCPSP/README.md)
+      * [Mixed Resource Allocation and Scheduling](./how_to/model/mixed_resource_allocation_scheduling/README.md)
       * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
