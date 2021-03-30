@@ -21,17 +21,16 @@ op = [interval_var(size=D[i]) for i in N ]
 # Decision expressions: number of operations over time
 load = sum([pulse(op[i],1) for i in N])
 
+model.add(
 # Objective: minimize project makespan
-model.add(minimize(max(end_of(op[i]) for i in N)))
-
+[ minimize( max(end_of(op[i]) for i in N))              ] +
 # Constraints: precedence between operations
-model.add([end_before_start(op[i],op[j]) for [i,j] in S])
-
+[ end_before_start(op[i],op[j])          for [i,j] in S ] +
 # Constraints: time values of station boundaries
-model.add([always_in(load,k*(1+c),k*(1+c)+1,0,0) for k in N])
-
+[ always_in(load,k*(1+c),k*(1+c)+1,0,0)  for k in N     ] +
 # Constraints: maximal number of workers
-model.add(load <= W)
+[ load <= W                                             ]
+)
 
 # 3. SOLVING THE PROBLEM
 
