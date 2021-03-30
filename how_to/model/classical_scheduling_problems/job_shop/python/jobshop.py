@@ -4,7 +4,6 @@ import json
 with open("data-ft10.json") as file:
     data = json.load(file)
 J = data["jobs"]
-
 n = len(J)
 N = range(n)
 O = [len(J[i]) for i in N]
