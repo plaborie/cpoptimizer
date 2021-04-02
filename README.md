@@ -22,6 +22,7 @@
          * [Resource-Constrained Project Scheduling Problem (RCPSP)](./how_to/model/classical_scheduling_problems/RCPSP/README.md)
          * [Resource-Constrained Project Scheduling Problem with max delays (RCPSP/MAX)](./how_to/model/classical_scheduling_problems/RCPSP_max/README.md)
          * [Multi-Mode Resource-Constrained Project Scheduling Problem (MM-RCPSP)](./how_to/model/classical_scheduling_problems/RCPSP_multi_mode/README.md)
+         * [Resource-Constrained Project Scheduling Problem with doscounted cash flows (RCPSPDC)](./how_to/model/classical_scheduling_problems/RCPSPDC/README.md)
       * [Mixed Resource Allocation and Scheduling](./how_to/model/mixed_resource_allocation_scheduling/README.md)
       * [Oversubscribed satellite scheduling](./how_to/model/oversubscribed_satellite/README.md)
       * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
