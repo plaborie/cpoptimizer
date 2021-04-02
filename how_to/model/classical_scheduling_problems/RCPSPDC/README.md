@@ -2,7 +2,7 @@
 
 ## Problem description
 
-The Resource-Constrained Project Scheduling Problem with discounted cash flows is an extension of the classical [RCPSP](../RCPSP/README.md).The problem can be stated as follows. Given:
+The Resource-Constrained Project Scheduling Problem with discounted cash flows is an extension of the classical [RCPSP](../RCPSP/README.md). The problem can be stated as follows. Given:
 
    * A set of `N` tasks with given durations
    * A set of `M` resources with given capacities,
