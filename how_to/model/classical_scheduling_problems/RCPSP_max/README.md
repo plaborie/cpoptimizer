@@ -10,6 +10,8 @@ Here is a formulation of the RCPSP/max in CP Optimizer.
 
 Some experiments with the CP Optimizer automatic search on this formulation were performed in 2019 on the 90 largest instances (with 1000 tasks) of the classical [UBO benchmark](https://www.wiwi.tu-clausthal.de/en/chairs/produktion/research/research-areas/project-generator/rcpspmax/) and compared with the best known results: [52 bounds](https://www.wiwi.tu-clausthal.de/fileadmin/Produktion/Benchmark/RCPSP/benchmarks_ubo1000.txt) (either lower-bounds or better solutions) were improved.
 
+> NOTE: The conventions for typesetting CP Optimizer models are available [here](../../../typeset_models/README.md)
+
 ```
 Given:
  N                                 # Number of tasks

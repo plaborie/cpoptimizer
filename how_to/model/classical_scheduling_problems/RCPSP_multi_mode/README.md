@@ -21,6 +21,8 @@ Here is a formulation of the MM-RCPSP in CP Optimizer.
 
 Each task `i` is represented by an interval variable `x[i]`. The possible execution modes of a task `i` are represented by optional interval variables `y[i,m]`. Interval variable `y[i,m]` will be present if and only if mode `m` is the selected mode for task `i`. Mode selection is formulated as `alternative` constraints. Resource constraints are posted on the mode variables `y[i,m]` for renewable and non-renewable resources. Non-renewable resources use classical linear expressions on the Boolean presents status of the mode whereas renewable resources use cumul functions as they constrain the resource level at any point in time. 
 
+> NOTE: The conventions for typesetting CP Optimizer models are available [here](../../../typeset_models/README.md)
+
 ```
 Given:
  S                                 # Number of non-renewable resources

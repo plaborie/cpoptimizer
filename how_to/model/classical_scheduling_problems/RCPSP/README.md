@@ -19,6 +19,8 @@ Here is a formulation of the RCPSP in CP Optimizer.
 
 More information about the formulation of this problem in CP Optimizer and the performance of the search is available in this [post](https://ibm.biz/CPO_RCPSP).
 
+> NOTE: The conventions for typesetting CP Optimizer models are available [here](../../../typeset_models/README.md)
+
 ```
 Given:
  N                                 # Number of tasks
