@@ -4,7 +4,12 @@
 
 This formulation describes a complex Work-Breakdown Structure (WBS) of a project. The project consists of `N` tasks whose decomposition structures are provided. A given decomposition consists of a parent task and a set of subtasks.
 
-A given task may be the parent of several decompositions, meaning that there are alternative ways to decompose the task. In this case, deciding which decomposition is selected is part of the problem. A given sub-task may be compulsory in the decomposition it belongs to, meaning that whenever the decomposition is selected the sub-task must be executed. Otherwise the execution of the sub-task is optional. 
+A given task may be the parent of several decompositions, meaning that there are alternative ways to decompose the task (for instance in the figure below, there are two ways to decomposite task T0, either D0 or D1). In this case, deciding which decomposition is selected is part of decisions of the problem. A given sub-task may be compulsory in the decomposition it belongs to, meaning that whenever the decomposition is selected the sub-task must be executed. Otherwise the execution of the sub-task is optional (in the figure below, task T4 in dotted line is optional, meaning that one could decide to select decomposition D1 of task T0 but without executing task T4 and thus, without its subtasks T6 and T7). 
+
+The decomposition structure may have arbitrary levels of tasks and decompositions.
+
+![WBS example](./WBS.jpg)
+
 
 ## CP Optimizer formulation
 
