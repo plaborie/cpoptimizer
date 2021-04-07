@@ -3,7 +3,8 @@
 ## Problem description
 
 This formulation describes a complex Work-Breakdown Structure (WBS) of a project. The project consists of `N` tasks whose decomposition structures are provided. A given decomposition consists of a parent task and a set of subtasks.
-A given task may be the parent of several decompositions, meaning that there are alternative ways to decompose the task. In this case, deciding which decomposition is selected is part of the problem. A given sub-task may be compulsory in the decomposition it belongs to, meaning that whenever the decomposition is selected the sub-task must be executed. Otherwise the execution of the sub-task is optional. 
+
+A given task may be the parent of several decompositions, meaning that there are alternative ways to decompose the task. In this case, deciding which decomposition is selected is part of the problem. A given sub-task may be compulsory in the decomposition it belongs to, meaning that whenever the decomposition is selected the sub-task must be executed. Otherwise the execution of the sub-task is optional. 
 
 ## CP Optimizer formulation
 
@@ -27,7 +28,7 @@ This formulation describes a complex Work-Breakdown Structure (WBS) of a project
     
     presenceOf(x[i])                       : i in [1..N] | NP[i]=0, C[i]   # (1) Top level tasks
     alternative(x[i], y[j] : j in D[i])    : i in [1..N] | 0<card(D[i])    # (2) Task decompositions
-    span(y[j], x[i] : i in S[j])           : j in [1..D]                   # (3) Decomposition span their sub-tasks
+    span(y[j], x[i] : i in S[j])           : j in [1..D]                   # (3) Decompositions span their sub-tasks
     presenceOf(y[j]) => presenceOf(x[i])   : j in [1..D], i in S[j] | C[i] # (4) Presence of compulsory sub-tasks
 
 
