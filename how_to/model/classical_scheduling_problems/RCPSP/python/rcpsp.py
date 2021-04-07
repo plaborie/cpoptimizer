@@ -3,14 +3,14 @@
 import json
 with open("data.json") as file:
     data = json.load(file)
-n = data["ntasks"]
-m = data["nresources"]
-C = data["capacities"]
-D = data["durations"]
-R = data["requirements"]
-S = data["successors"]
-N = range(n)
-M = range(m)
+n  = data["ntasks"]
+m  = data["nresources"]
+C  = data["capacities"]
+PT = data["durations"]
+R  = data["requirements"]
+P  = data["successors"]
+N  = range(n)
+M  = range(m)
 
 # 2. MODELING THE PROBLEM WITH CP-OPTIMIZER
 
@@ -18,15 +18,15 @@ from docplex.cp.model import *
 model = CpoModel()
 
 # Decision variables: tasks x[i]
-x = [interval_var(size = D[i]) for i in N]
+x = [ interval_var(size = PT[i])                 for i in N      ]
 
 model.add(
  # Objective: minimize project makespan
- [ minimize(max(end_of(x[i])                     for i in N)) ] +
+ [ minimize( max(end_of(x[i]) for i in N) )                      ] +
  # Constraints: precedence between tasks
- [ end_before_start(x[i],x[j])                   for [i,j] in S ] +
+ [ end_before_start(x[i],x[j])                   for (i,j) in P  ] +
  # Constraints: resource capacity
- [ sum(pulse(x[i],q) for [i,q] in R[j]) <= C[j]  for j in M ]
+ [ sum(pulse(x[i],q) for (i,q) in R[k]) <= C[k]  for k in M      ]
 )
 
 # 3. SOLVING THE PROBLEM
