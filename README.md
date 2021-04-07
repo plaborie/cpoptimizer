@@ -28,4 +28,5 @@
       * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
       * [Simplified photolitography machine](./how_to/model/simplified_photolithography_machine/README.md)
       * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
+      * [Work-Breakdown Structures](./how_to/model/work_breakdown_structures/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
