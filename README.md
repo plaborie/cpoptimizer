@@ -30,3 +30,4 @@
       * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
       * [Work-Breakdown Structures](./how_to/model/work_breakdown_structures/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
+      * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
