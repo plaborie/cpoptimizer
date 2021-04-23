@@ -31,4 +31,4 @@
       * [Work-Breakdown Structures](./how_to/model/work_breakdown_structures/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
       * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
-      * [Parallel machines scheduling](./how_to/model/parallel_machines/README.md)
+      * [Parallel machine scheduling](./how_to/model/parallel_machines/README.md)
