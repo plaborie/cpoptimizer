@@ -6,9 +6,9 @@
    * Overview of CP Optimizer in [CONSTRAINTS Journal](https://ibm.biz/Constraints2018)
    * [Tutorial](material/cpotutorial-icaps-2017.pdf) on CP Optimizer at ICAPS 2017
    * CP Optimizer [documentation](https://ibm.biz/COS_Documentation)
-* How to
+* How to ...
    * [Typeset models](./how_to/typeset_models/README.md)
-   * Model
+   * Model ...
       * Some classical patterns
          * Allocation with alternative constraints
          * Chains of optional interval variables
