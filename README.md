@@ -27,11 +27,16 @@
          * [Resource-Constrained Project Scheduling Problem with max delays (RCPSP/MAX)](./how_to/model/classical_scheduling_problems/RCPSP_max/README.md)
          * [Multi-Mode Resource-Constrained Project Scheduling Problem (MM-RCPSP)](./how_to/model/classical_scheduling_problems/RCPSP_multi_mode/README.md)
          * [Resource-Constrained Project Scheduling Problem with discounted cash flows (RCPSPDC)](./how_to/model/classical_scheduling_problems/RCPSPDC/README.md)
+      * Satellite scheduling
+        * [Oversubscribed satellite scheduling](./how_to/model/oversubscribed_satellite/README.md)
+        * Satellite observations scheduling (GEOCAPE)
+      * Semiconductor manufacturing
+        * [Simplified photolitography machine](./how_to/model/simplified_photolithography_machine/README.md)
+        * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
+      * Uncertainties and robustness
+        * 2-stage stochastic job-shop scheduling problem
+        * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
       * [Mixed Resource Allocation and Scheduling](./how_to/model/mixed_resource_allocation_scheduling/README.md)
-      * [Oversubscribed satellite scheduling](./how_to/model/oversubscribed_satellite/README.md)
       * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
-      * [Simplified photolitography machine](./how_to/model/simplified_photolithography_machine/README.md)
-      * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
-      * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
       * [Parallel machine scheduling](./how_to/model/parallel_machines/README.md)
