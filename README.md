@@ -34,7 +34,7 @@
         * [Simplified photolitography machine](./how_to/model/simplified_photolithography_machine/README.md)
         * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
       * Uncertainties and robustness
-        * 2-stage stochastic job-shop scheduling problem
+        * Two-stage stochastic job-shop scheduling problem
         * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
       * Assembly line balancing
         * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
