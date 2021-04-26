@@ -36,7 +36,9 @@
       * Uncertainties and robustness
         * 2-stage stochastic job-shop scheduling problem
         * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
-      * [Mixed Resource Allocation and Scheduling](./how_to/model/mixed_resource_allocation_scheduling/README.md)
-      * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
-      * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
-      * [Parallel machine scheduling](./how_to/model/parallel_machines/README.md)
+      * Assembly line balancing
+        * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
+      * Miscellaneous scheduling problems
+        * [Parallel machine scheduling](./how_to/model/parallel_machines/README.md)
+        * [Mixed Resource Allocation and Scheduling](./how_to/model/mixed_resource_allocation_scheduling/README.md)
+        * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
