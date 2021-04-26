@@ -9,6 +9,10 @@
 * How to
    * [Typeset models](./how_to/typeset_models/README.md)
    * Model
+      * Some classical patterns
+         * Allocation with alternative constraints
+         * Chains of optional interval variables
+         * [Work-Breakdown Structures](./how_to/model/work_breakdown_structures/README.md)
       * Classical machine scheduling problems
          * [Job-shop](./how_to/model/classical_scheduling_problems/job_shop/README.md)
          * [Open-shop](./how_to/model/classical_scheduling_problems/open_shop/README.md)
@@ -28,7 +32,6 @@
       * [Simple assembly line balancing](./how_to/model/assembly_line_balancing/README.md)
       * [Simplified photolitography machine](./how_to/model/simplified_photolithography_machine/README.md)
       * [Semiconductor manufacturing](./how_to/model/semiconductor_manufacturing/README.md)
-      * [Work-Breakdown Structures](./how_to/model/work_breakdown_structures/README.md)
       * [Battery-operated machines](./how_to/model/battery_operated_machine/README.md)
       * [Two-stage stochastic programming and recoverable robustness](./how_to/model/recoverable_robustness/README.md)
       * [Parallel machine scheduling](./how_to/model/parallel_machines/README.md)
