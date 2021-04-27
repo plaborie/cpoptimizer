@@ -9,6 +9,7 @@
 * How to ...
    * [Typeset models](./how_to/typeset_models/README.md)
    * Model ...
+      * The Basics: optional interval variables, precedence and logical constraints
       * Some classical patterns
          * Allocation with alternative constraints
          * Chains of optional interval variables
