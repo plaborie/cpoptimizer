@@ -99,8 +99,8 @@ For instance:
 
 ```
 interval x 
-interval y[i] in [-H..H]                                                  : i in [1..N]
-interval z[i,j] in [0..H], optional, size in [A[i],B[i]], intensity=F[j]  : i in [1..N], j in [1..M] 
+interval y[i] in [-H..H]                                                   : i in [1..N]
+interval z[i,j] in [0..H], optional, size in [A[i]..B[i]], intensity=F[j]  : i in [1..N], j in [1..M] 
 ```
 
 ### Sequence variables
