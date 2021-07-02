@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sched_rcpspmm", "sched_rcpspmm.vcxproj", "{AE5EF84A-A36F-F86A-5C60-30C499ED60AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE5EF84A-A36F-F86A-5C60-30C499ED60AA}.Release|Win32.ActiveCfg = Release|Win32
+		{AE5EF84A-A36F-F86A-5C60-30C499ED60AA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

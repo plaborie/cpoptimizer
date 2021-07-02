@@ -1,0 +1,59 @@
+
+NbHouses = 5;
+NbWorkers = 2;
+AllStates = { clean, dirty };
+
+TaskNames = { 
+  masonry, 
+  carpentry, 
+  plumbing, 
+  ceiling,
+  roofing, 
+  painting, 
+  windows, 
+  facade,
+  garden, 
+  moving 
+};
+
+Duration =  [
+  35,
+  15,
+  40,
+  15,
+  05,
+  10,
+  05,
+  10,
+  05,
+  05
+];
+
+States = {
+  < masonry,   dirty >,
+  < carpentry, dirty >,
+  < plumbing,  clean >,
+  < ceiling,   clean >,
+  < roofing,   dirty >,
+  < painting,  clean >, 
+  < windows,   dirty >
+};
+
+Precedences = {
+  <masonry,   carpentry>,
+  <masonry,   plumbing>,
+  <masonry,   ceiling>,
+  <carpentry, roofing>,
+  <ceiling,   painting>,
+  <roofing,   windows>,
+  <roofing,   facade>,
+  <plumbing,  facade>,
+  <roofing,   garden>,
+  <plumbing,  garden>,
+  <windows,   moving>,
+  <facade,    moving>,
+  <garden,    moving>,
+  <painting,  moving>
+};
+
+

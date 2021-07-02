@@ -1,0 +1,15 @@
+Field|NAMES,ModelName,InstanceName,Parameters,TimeLimit,CostLimit
+Field|KEYS,1,1,1,0,0
+
+FlowShopEarliTardi,jb1,,180,-1
+FlowShopEarliTardi,jb2,,180,-1
+FlowShopEarliTardi,jb4,,300,-1
+FlowShopEarliTardi,jb9,,270,-1
+FlowShopEarliTardi,jb11,,450,-1
+FlowShopEarliTardi,jb12,,450,-1
+FlowShopEarliTardi,ljb1,,540,-1
+FlowShopEarliTardi,ljb2,,540,-1
+FlowShopEarliTardi,ljb7,,1200,-1
+FlowShopEarliTardi,ljb9,,1200,-1
+FlowShopEarliTardi,ljb10,,1560,-1
+FlowShopEarliTardi,ljb12,,1560,-1

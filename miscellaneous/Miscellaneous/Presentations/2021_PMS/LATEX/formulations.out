@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{General constructs}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Scopes}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Vectors}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Matrices}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Decision variables}{section.2}% 6
+\BOOKMARK [3][-]{section*.1}{Integer variables}{subsection.2.4}% 7
+\BOOKMARK [3][-]{section*.2}{Interval variables}{subsection.2.4}% 8
+\BOOKMARK [3][-]{section*.3}{Sequence variables}{subsection.2.4}% 9
+\BOOKMARK [3][-]{section*.4}{State functions}{subsection.2.4}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Constraints}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.6}{Expressions}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Examples}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{Job-shop scheduling problem}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{Extended flexible job-shop scheduling problem}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.3}{Resource-constrained project scheduling problem}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{Multi-Mode Resource-constrained project scheduling problem}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.5}{Multi-Mode Resource-constrained project scheduling problem with discounted cash flows}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.6}{Resource allocation and scheduling problem}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.7}{Simplified photo-lithography machine}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.8}{Satellite observation scheduling}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.9}{Energy-aware multiple state machine scheduling problem}{section.3}% 22
+\BOOKMARK [1][-]{appendix.A}{Appendix: Keywords}{}% 23

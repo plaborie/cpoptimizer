@@ -1,0 +1,20 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-search SchedulerLNS -result ResultFlowShopEarliTardi.csv -scenarii c:\ilog\scheduler-papers\mista-2007\scenarii\FlowShopEarliTardi\scenario.csv -numberOfRuns 3
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, FlowShopEarliTardi, jb1, , 0.360518, 7, 0, 0.0714209, 0.19146, 100, -1, 0
+RESULT, FlowShopEarliTardi, jb2, , 0.100144, 9, 0, 0, 0.136864, 100, -1, 0
+RESULT, FlowShopEarliTardi, jb4, , 0, 1, 0, 0.471264, 0.567978, 100, -1, 0
+RESULT, FlowShopEarliTardi, jb9, , 6.89992, 27, 0, 0.0188084, 0.338116, 100, -1, 0
+RESULT, FlowShopEarliTardi, jb11, , 3.86556, 27, 0, 0, 0.213451, 100, -1, 0
+RESULT, FlowShopEarliTardi, jb12, , 0.230331, 13, 0, 0.114594, 0.201855, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb1, , 198.2798, 49, 0, 0.0587265, 0.215281, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb2, , 51.6643, 58, 0, 0.0369684, 0.524614, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb7, , 3398.28, 137, 0, 0.0141973, 0.118005, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb9, , 2009.6, 197, 0, 0.0703496, 0.741636, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb10, , 1667.56, 153, 0, 0.152859, 0.539304, 100, -1, 0
+RESULT, FlowShopEarliTardi, ljb12, , 3588.79, 289, 0, 0.0136177, 0.46749, 100, -1, 0

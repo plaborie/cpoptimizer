@@ -1,0 +1,68 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result RCPSPEarliTardi.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\RCPSPEarliTardi\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, RCPSPEarliTardi, mv427_1.25.rcp, , 3.71875, 6, 0, 15, 613, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv433_1.25.rcp, , 0.40625, 4, 0, 4, 371, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv441_1.25.rcp, , 4.84375, 11, 0, 92, 246, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv565_1.25.rcp, , 0.03125, 2, 0, 0, 212, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv572_1.25.rcp, , 3.07813, 12, 0, 0, 649, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv576_1.25.rcp, , 51.1875, 6, 0, 0, 783, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv625_1.25.rcp, , 0.015625, 3, 0, 56, 234, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv728_1.25.rcp, , 0.09375, 3, 0, 59, 387, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv796_1.25.rcp, , 17.625, 13, 0, 138, 1529, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv865_1.25.rcp, , 11.3281, 4, 0, 32, 432, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv901_1.25.rcp, , 2.95313, 5, 0, 177, 1138, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1018_1.25.rcp, , 0.03125, 3, 0, 0, 380, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1080_1.25.rcp, , 0.09375, 2, 0, 808, 1162, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1170_1.25.rcp, , 0.1875, 3, 0, 51, 406, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1180_1.25.rcp, , 35.25, 61, 0, 223, 8384, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1181_1.25.rcp, , 22.8906, 23, 0, 170, 2765, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1187_1.25.rcp, , 48.7031, 37, 0, 170, 2646, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1269_1.25.rcp, , 18.9375, 25, 0, 66, 2691, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1271_1.25.rcp, , 8.64063, 13, 0, 15, 998, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1394_1.25.rcp, , 4.71875, 6, 0, 28, 913, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1511_1.25.rcp, , 12.3281, 17, 0, 15, 2254, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1519_1.25.rcp, , 212.016, 15, 0, 15, 1826, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1652_1.25.rcp, , 212.484, 80, 0, 118, 7560, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1720_1.25.rcp, , 6.95313, 4, 0, 83, 1188, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv374_1.75.rcp, , 0, 1, 0, 0, 137, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv399_1.75.rcp, , 1.21875, 2, 0, 54, 724, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv542_1.75.rcp, , 12.3125, 12, 0, 0, 433, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv561_1.75.rcp, , 0.015625, 3, 0, 0, 288, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv834_1.75.rcp, , 0.40625, 4, 0, 0, 165, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv926_1.75.rcp, , 2.75, 3, 0, 0, 403, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1145_1.75.rcp, , 292.688, 22, 0, 0, 1276, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1173_1.75.rcp, , 21.6563, 44, 0, 31, 4044, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1271_1.75.rcp, , 3.45313, 7, 0, 0, 281, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1343_1.75.rcp, , 0.140625, 5, 0, 0, 464, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1383_1.75.rcp, , 119.109, 26, 0, 40, 3197, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1393_1.75.rcp, , 1.32813, 5, 0, 0, 660, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1489_1.75.rcp, , 7.64063, 9, 0, 69, 728, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1533_1.75.rcp, , 178.891, 75, 0, 36, 7742, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1536_1.75.rcp, , 99.2344, 89, 0, 36, 7171, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1540_1.75.rcp, , 69.625, 105, 0, 662, 14670, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1544_1.75.rcp, , 12.3906, 27, 0, 155, 1976, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1603_1.75.rcp, , 1.07813, 5, 0, 0, 413, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1633_1.75.rcp, , 9.20313, 7, 0, 0, 577, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv471_2.25.rcp, , 0.265625, 2, 0, 0, 111, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv800_2.25.rcp, , 3.95313, 6, 0, 0, 294, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv823_2.25.rcp, , 87.6406, 6, 0, 0, 270, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv916_2.25.rcp, , 0.125, 3, 0, 10, 264, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv943_2.25.rcp, , 0.03125, 2, 0, 0, 537, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv985_2.25.rcp, , 0.03125, 3, 0, 32, 256, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1009_2.25.rcp, , 0.015625, 2, 0, 0, 194, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1177_2.25.rcp, , 44.8125, 50, 0, 5, 1864, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1234_2.25.rcp, , 0.28125, 3, 0, 0, 255, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1345_2.25.rcp, , 0.046875, 2, 0, 0, 192, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1357_2.25.rcp, , 0.1875, 3, 0, 0, 211, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1385_2.25.rcp, , 1.60938, 3, 0, 0, 453, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1520_2.25.rcp, , 39.1875, 10, 0, 0, 613, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1541_2.25.rcp, , 67.4688, 16, 0, 138, 791, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1609_2.25.rcp, , 0.234375, 4, 0, 8, 361, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1623_2.25.rcp, , 250.016, 12, 0, 8, 702, 100, -1, 0
+RESULT, RCPSPEarliTardi, mv1716_2.25.rcp, , 0.34375, 4, 0, 145, 585, 100, -1, 0

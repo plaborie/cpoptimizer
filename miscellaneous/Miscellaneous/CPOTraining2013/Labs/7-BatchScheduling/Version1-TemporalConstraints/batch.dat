@@ -1,0 +1,16 @@
+/***********************************************************
+* CP Optimizer Training - Batch Scheduling SOLUTION        *
+************************************************************/
+ 
+numberProducts = 5;
+preparationTime = 30;
+
+steps = [
+{<1, 30>, <2, 30>, <3, 30>}, // product 1 steps: <stepNumber, duration>
+{<1, 45>, <2, 45>, <3, 45>, <4, 45>}, // product 2 steps
+{<1, 30>, <2, 30>, <3, 30>}, // product 3 steps
+{<1, 45>, <2, 45>, <3, 45>}, // product 4 steps
+{<1, 30>, <2, 30>, <3, 30>} // product 5 steps
+];
+
+orders = [12, 16, 14, 18, 13];

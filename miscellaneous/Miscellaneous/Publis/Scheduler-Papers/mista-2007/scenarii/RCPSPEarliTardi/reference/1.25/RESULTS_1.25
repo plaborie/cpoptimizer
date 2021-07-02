@@ -1,0 +1,24 @@
+   1     198501        57312          613      2.50   optimal
+   2      93329        28804          371      1.45   optimal
+   3      30783         7128          246      0.42   optimal
+   4         69           30          196      0.00   optimal
+   5       6161         2902          624      0.09   optimal
+   6      11554         5153          783      0.14   optimal
+   7         14            2          199      0.00   optimal
+   8       3476         1047          368      0.06   optimal
+   9   17704492      5059999         1677    300.27   heuristic  (time limit!)
+  10        137           49          427      0.02   optimal
+  11      48578        22179         1138      0.95   optimal
+  12         28           12          373      0.00   optimal
+  13        292          144         1132      0.02   optimal
+  14      26838         6607          402      1.11   optimal
+  15    8384576      2449999         9552    301.19   heuristic  (time limit!)
+  16   32313580      6819999         3144    300.15   heuristic  (time limit!)
+  17   32214161      6799999         3144    300.43   heuristic  (time limit!)
+  18   12470600      5409999         3357    300.40   heuristic  (time limit!)
+  19    2376060       988299          770    153.00   optimal
+  20       3835         1910          856      0.13   optimal
+  21    3253241      1049999         1995    301.66   heuristic  (time limit!)
+  22    3162487      1019999         1995    302.24   heuristic  (time limit!)
+  23    7092352      2369999         8805    300.27   heuristic  (time limit!)
+  24       2847         1418         1127      0.17   optimal

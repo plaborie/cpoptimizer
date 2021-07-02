@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project description="Flowshop scheduling for a computer assembly plant">
+
+    <configs>
+
+        <config name="Configuration1" category="opl" default="true">
+
+            <ref name="sched_flowshop2.mod"/>
+
+          <ref name="sched_flowshop2.dat"/>
+    </config>
+
+    </configs>
+
+    <model name="sched_flowshop2.mod"/>
+
+  <data name="sched_flowshop2.dat"/>
+</project>

@@ -1,0 +1,256 @@
+\PresentationOfAuthors{Introduction written by~}
+\ChapterAuthor[%
+Introduction]{%
+Introduction}{%
+Roger \Name{Rousseau}\and Christian \Name{Scheen}}
+\label{chap-introduction}
+
+This document describes how to use \latex{} in order to typeset books
+(namely, monographs or edited collections) according to the
+\Hermes{}~(\HSP{}) guidelines and instructions to authors, with the \oh{}
+package.
+Many examples are given (\latex{} source files templates, syntax of user
+commands and environments,~etc.\@).
+
+The \oh{} package consists of the following files:
+\begin{itemize}
+ \item\index{ouvrage-hermes.cls@\class{ouvrage-hermes}}
+ the \class{ouvrage-hermes} \latex{} document class file.
+ It shall be used instead of the \class{book} standard \latex{} document
+ class file;
+ \item\index{ouvrage-hermes.bst@\bstyle{ouvrage-hermes}}
+ the \bstyle{ouvrage-hermes} \bibtex{} bibliography style file.
+ It shall drive the \bibtex{} program in order to produce appropriate
+ alphanumeric bibliographies;
+ \item\index{ouvrage-hermes.ist@\istyle{ouvrage-hermes}}
+ the \Makeindex{}\index{Makeindex script@\Makeindex{} (script)} Bourne shell
+ script.
+ It can be used instead of the standard \mkndx{} program, but this mechanism
+ is completely optional; if it is actually used, it will automatically
+ produce the desired index layout and it will properly sort out
+ (French,~etc.\@) words with diacritical signs (in alphabetical order).
+ This script uses two filters written in the AWK~language (namely the
+ \preawk{}\index{makeindex-pre.awk@\preawk{}} pre-processor and the
+ \postawk{}\index{makeindex-post.awk@\postawk{}} post-processor).
+ It also uses the \istyle{ouvrage-hermes} \mkndx{} index style file; if one
+ does not use the \Makeindex{} script, this index style file shall drive the
+ standard \mkndx{} program that comes with every \tex{} system distribution;
+ \item\index{Makefile script@\Makefile{} (script)}
+ the \Makefile{} script.
+ It can drive the \make{} utility, but this mechanism is also completely
+ optional; if it is actually used, it will automatically keep the final
+ document (in PostScript format) current, based on differences in the
+ modification times of the \tex{} source files that the PostScript target is
+ dependent on.
+\end{itemize}
+
+Though the \oh{} package scrupulously respects each and every typesetting
+guideline designed by \Hermes{}, it does its utmost to achieve this aim
+without sacrificing compatibility with standard \latex{} system commands and
+environments.
+One should therefore use those standard structures in the usual way, with the
+usual syntax and semantics (some have indeed been internally redefined in
+order to comply with specific \hermes{} guidelines, but this is transparent
+from the user's point of view).
+
+However, there are few cases where compliance could not be achieved through
+the redefinition of existing standard \latex{} commands and environments.
+In that case, we provide the user with a new structure whose name always has
+an initial capital letter (this distinguishes new structures from standard
+ones).
+Here is the complete list of these new commands and environments (see also
+Table~\ref{tab:new_commands}):
+\begin{itemize}
+ \item\index{ChapterAuthor@\cmd{ChapterAuthor}}
+ the \cmd{ChapterAuthor} command.
+ It is used in the case of edited collections (joint works) and starts a new
+ chapter that has been written by specific authors;
+ \item\index{Name@\cmd{Name}}
+ the \cmd{Name} command.
+ It mentions the name of an author and typesets it in small capitals font
+ shape;
+ \item\index{PresentationOfAuthors@\cmd{PresentationOfAuthors}}
+ the \cmd{PresentationOfAuthors} command.
+ It introduces specifically the names of the authors of an unnumbered chapter
+ (such as a foreword or an introduction);
+ \item\index{Figure@\env{Figure}}\index{Table@\env{Table}}
+ the \env{Figure} and \env{Table} environments.
+ These are functionally similar to their standard counterparts (namely, the
+ \env{figure} and \env{table} standard \latex{} environments), but the
+ caption and the label are now specified as the mandatory argument of the new
+ environments.
+ This mechanism controls the caption positioning;
+ \item\index{GenericRemark@\cmd{GenericRemark}}
+ the \cmd{Remark},\index{Remark@\cmd{Remark}}
+ \cmd{Example},\index{Example@\cmd{Example}}
+ and \cmd{Note}\index{Note@\cmd{Note}} commands.
+ These typeset a \emph{short} text as a comment, an example, or a note.
+ Actually, any similar inset may be designed with the \cmd{GenericRemark}
+ command;
+ \item
+ the \env{Remarks},\index{Remarks@\env{Remarks}}
+ \env{Examples},\index{Examples@\env{Examples}}
+ and \env{Notes}\index{Notes@\env{Notes}} environments.
+ These typeset a \emph{longer} text (made up of two or more paragraphs) as a
+ comment, an example, or a note;
+ \item\index{GenericDefinition@\cmd{GenericDefinition}}
+ the \cmd{Definition},\index{Definition@\cmd{Definition}}
+ \cmd{Theorem},\index{Theorem@\cmd{Theorem}}
+ and \cmd{Lemma}\index{Lemma@\cmd{Lemma}} commands.
+ These typeset text as a definition, a theorem, or a lemma.
+ Actually, any similar inset may be designed with the \cmd{GenericDefinition}
+ command;
+ \item\index{Publisher@\cmd{Publisher}}
+ the \cmd{Publisher} command.
+ It typesets (at the end of the book) a note intended for the \hermes{}
+ office.
+\end{itemize}
+
+We have also introduced some supplementary commands that will certainly be
+seldom used, but that can be a help to \latex{} novices (see also
+Table~\ref{tab:new_commands}):
+\begin{itemize}
+ \item the \cmd{DelayNewPage}\index{DelayNewPage@\cmd{DelayNewPage}} and
+ \cmd{ForceNewPage}\index{ForceNewPage@\cmd{ForceNewPage}} commands.
+ These control \tex{}'s page-breaking mechanism in the remaining problematic
+ cases where \tex{}'s decision is not satisfactory;
+ \item\index{EqnCont@\cmd{EqnCont}}
+ the \cmd{EqnCont} command.
+ Within the \env{eqnarray} environment, it breaks a long equation into two
+ lines and helps to stay in the type area;
+ \item\index{AddToContents@\cmd{AddToContents}}
+ the \cmd{AddToContents} command.
+ It introduces some specific text in the table of contents;
+ \item the \cmd{CropMarksOn}\index{CropMarksOn@\cmd{CropMarksOn}} and
+ \cmd{CropMarksOff}\index{CropMarksOff@\cmd{CropMarksOff}} commands.
+ These respectively activate and disable crop marks on output pages;
+ \item the \cmd{LargeFnRule}\index{LargeFnRule@\cmd{LargeFnRule}} and
+ \cmd{SmallFnRule}\index{SmallFnRule@\cmd{SmallFnRule}} commands.
+ These respectively produce long (namely,~12\,cm) and short (namely,~25\,mm)
+ footnote rules.
+ These commands shall be used whenever a footnote exceptionally extends over
+ two or more pages.
+\end{itemize}
+
+\begin{Table}[!htbp]{%
+New structures introduced by the \oh{} package\label{tab:new_commands}}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+ \begin{tabular}{|l|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Command or environment}}
+  & \multicolumn{1}{c|}{\textbf{Description}}
+  & \multicolumn{1}{c|}{\textbf{Scope}} \\ \hline
+  \cmd{ChapterAuthor[]\{\}\{\}}
+  \index{ChapterAuthor@\cmd{ChapterAuthor}}
+  & start a chapter with specific authors & collections \\
+  \cmd{Name\{\}}
+  \index{Name@\cmd{Name}}
+  & typeset a surname in small capitals & all books \\
+  \cmd{PresentationOfAuthors\{\}}
+  \index{PresentationOfAuthors@\cmd{PresentationOfAuthors}}
+  & introduce author full names & collections \\
+  \env{Figure[]\{\}}
+  \index{Figure@\env{Figure}}
+  & control typesetting of floating figures & all books \\
+  \env{Table[]\{\}}
+  \index{Table@\env{Table}}
+  & control typesetting of floating tables & all books \\
+  \cmd{Remark\{\}}
+  \index{Remark@\cmd{Remark}}
+  & typeset a small comment (single paragraph) & all books \\
+  \cmd{Example\{\}}
+  \index{Example@\cmd{Example}}
+  & typeset a small example (single paragraph) & all books \\
+  \cmd{Note\{\}}
+  \index{Note@\cmd{Note}}
+  & typeset a small note (single paragraph) & all books \\
+  \cmd{GenericRemark\{\}\{\}}
+  \index{GenericRemark@\cmd{GenericRemark}}
+  & define a new ``comment-like'' inset & all books \\
+  \env{Remarks}
+  \index{Remarks@\env{Remarks}}
+  & typeset a longer comment & all books \\
+  \env{Examples}
+  \index{Examples@\env{Examples}}
+  & typeset a longer example & all books \\
+  \env{Notes}
+  \index{Notes@\env{Notes}}
+  & typeset a longer note & all books \\
+  \cmd{Definition\{\}}
+  \index{Definition@\cmd{Definition}}
+  & typeset a definition (italic shape) & all books \\
+  \cmd{Theorem\{\}}
+  \index{Theorem@\cmd{Theorem}}
+  & typeset a theorem (italic shape) & all books \\
+  \cmd{Lemma\{\}}
+  \index{Lemma@\cmd{Lemma}}
+  & typeset a lemma (italic shape) & all books \\
+  \cmd{GenericDefinition\{\}\{\}}
+  \index{GenericDefinition@\cmd{GenericDefinition}}
+  & define a new ``definition-like'' inset & all books \\
+  \cmd{Publisher\{\}\{\}\{\}}
+  \index{Publisher@\cmd{Publisher}}
+  & produce a note for the \hermes{} office & optional \\ \hline
+  \cmd{DelayNewPage\{\}}
+  \index{DelayNewPage@\cmd{DelayNewPage}}
+  & control \tex{}'s page breaks & optional \\
+  \cmd{ForceNewPage}
+  \index{ForceNewPage@\cmd{ForceNewPage}}
+  & control \tex{}'s page breaks & optional \\
+  \cmd{EqnCont}
+  \index{EqnCont@\cmd{EqnCont}}
+  & break a long equation into two lines & optional \\
+  \cmd{AddToContents\{\}\{\}\{\}}
+  \index{AddToContents@\cmd{AddToContents}}
+  & introduce text in the table of contents & optional \\
+  \cmd{CropMarksOn}
+  \index{CropMarksOn@\cmd{CropMarksOn}}
+  & activate crop marks on output pages & optional \\
+  \cmd{CropMarksOff}
+  \index{CropMarksOff@\cmd{CropMarksOff}}
+  & disable crop marks on output pages & optional \\
+  \cmd{LargeFnRule}
+  \index{LargeFnRule@\cmd{LargeFnRule}}
+  & make long footnote rules & all books \\
+  \cmd{SmallFnRule}
+  \index{SmallFnRule@\cmd{SmallFnRule}}
+  & make short footnote rules & all books \\ \hline
+ \end{tabular}
+\end{Table}
+
+The \oh{} package shall be used in order to typeset either a monograph
+or an edited collection (see section~\ref{type-ouvrage} on
+page~\pageref{type-ouvrage} for the definition of these terms).
+Though this user's guide is basically laid out as an edited collection,
+it does exhibit some features that are only encountered in the case of
+monographs; its general layout is somewhat hybrid.
+For this very reason, authors should definitely \emph{not} use the \latex{}
+source files of this user's guide as the starting point of the \latex{}
+source files of any actual book.
+Instead, the \dir{Ouvrage-Hermes} top-level directory holds appropriate
+templates of master \latex{} source files.
+On the other hand, local excerpts from this user's guide may provide one with
+examples of good typographic practice.
+
+Chapter~\ref{chap-struct} describes structure commands.
+These commands shall be used in order to lay out any actual book; they
+structure the whole document and all its components (\latex{} preamble, front
+matter, main matter, and back matter; these great subdivisions may then
+contain parts, chapters, sections, paragraphs, and all other components down
+to the smallest units).
+Chapter~\ref{chap-autres-commandes} describes new commands and environments
+that are introduced by the \oh{} package through its \class{ouvrage-hermes}
+\latex{} document class file.
+Excerpts from the \Hermes{} guidelines and instructions to authors are given
+wherever appropriate.
+The final bibliography and the index have been produced respectively by the
+\bibtex{} program (with the mandatory \bstyle{ouvrage-hermes} style file) and
+by the suggested \Makeindex{} Bourne shell script (with the mandatory
+\istyle{ouvrage-hermes} style file and the optional \awk{} utility and
+scripts).
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "users-guide.ltx"
+%%% End: 

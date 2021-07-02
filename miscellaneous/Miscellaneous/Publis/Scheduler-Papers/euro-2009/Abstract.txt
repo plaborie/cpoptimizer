@@ -1,0 +1,15 @@
+Title:
+
+Modeling and solving resource-constrained project scheduling problems with IBM ILOG CP Optimizer
+
+Abstract:
+
+Since version 2.0, IBM ILOG CP Optimizer provides a new scheduling
+language supported by a robust and efficient automatic search. We will
+show how the main features of resource-constrained project scheduling
+such as work-breakdown structures, optional tasks, different types of
+resources, multiple modes and skills, resource calendars and objective
+functions such as earliness/tardiness, unperformed tasks or resource
+costs can be modeled in CP Optimizer. The robustness of the automatic
+search will be illustrated on some classical resource-constrained
+project scheduling benchmarks.

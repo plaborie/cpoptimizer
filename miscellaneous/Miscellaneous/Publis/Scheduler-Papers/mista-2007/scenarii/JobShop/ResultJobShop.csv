@@ -1,0 +1,41 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-search SchedulerLNS -result ResultJobShop.csv -scenarii c:\ilog\scheduler-papers\mista-2007\scenarii\JobShop\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, JobShop, abz5, , 27.8801, 7, 0, 859, 1239, 100, -1, 0
+RESULT, JobShop, abz6, , 12.0173, 2, 0, 742, 948, 100, -1, 0
+RESULT, JobShop, abz7, , 874.738, 30, 0, 410, 676, 100, -1, 0
+RESULT, JobShop, abz8, , 410.821, 42, 0, 443, 695, 100, -1, 0
+RESULT, JobShop, abz9, , 875.259, 62, 0, 467, 708, 100, -1, 0
+RESULT, JobShop, swv01, , 233.556, 65, 0, 727, 1503, 100, -1, 0
+RESULT, JobShop, swv04, , 711.643, 48, 0, 642, 1611, 100, -1, 0
+RESULT, JobShop, swv08, , 874.267, 97, 0, 1058, 1858, 100, -1, 0
+RESULT, JobShop, swv09, , 1100.83, 95, 0, 947, 1748, 100, -1, 0
+RESULT, JobShop, swv17, , 0.0701008, 1, 0, 683, 2794, 100, -1, 0
+RESULT, JobShop, swv18, , 0.0701008, 1, 0, 643, 2852, 100, -1, 0
+RESULT, JobShop, swv19, , 54.1479, 15, 0, 684, 2843, 100, -1, 0
+RESULT, JobShop, swv20, , 0.0801152, 1, 0, 684, 2823, 100, -1, 0
+RESULT, JobShop, tail02, , 196.883, 30, 0, 942, 1269, 100, -1, 0
+RESULT, JobShop, tail03, , 884.021, 29, 0, 921, 1249, 100, -1, 0
+RESULT, JobShop, tail04, , 307.722, 44, 0, 911, 1209, 100, -1, 0
+RESULT, JobShop, tail05, , 66.5757, 38, 0, 940, 1256, 100, -1, 0
+RESULT, JobShop, tail15, , 172.738, 60, 0, 880, 1374, 100, -1, 0
+RESULT, JobShop, tail17, , 866.336, 58, 0, 979, 1513, 100, -1, 0
+RESULT, JobShop, tail19, , 981.481, 57, 0, 920, 1378, 100, -1, 0
+RESULT, JobShop, tail20, , 170.034, 48, 0, 928, 1411, 100, -1, 0
+RESULT, JobShop, tail21, , 199.978, 63, 0, 1217, 1746, 100, -1, 0
+RESULT, JobShop, tail23, , 252.533, 54, 0, 1164, 1645, 100, -1, 0
+RESULT, JobShop, tail26, , 1340.5, 52, 0, 1207, 1748, 100, -1, 0
+RESULT, JobShop, tail29, , 126.872, 62, 0, 1227, 1645, 100, -1, 0
+RESULT, JobShop, tail31, , 778.71, 108, 0, 990, 1812, 100, -1, 0
+RESULT, JobShop, tail33, , 1414.05, 88, 0, 1056, 1874, 100, -1, 0
+RESULT, JobShop, tail38, , 1452.13, 89, 0, 952, 1723, 100, -1, 0
+RESULT, JobShop, tail40, , 1678.92, 82, 0, 961, 1766, 100, -1, 0
+RESULT, JobShop, yam1, , 742.838, 39, 0, 694, 922, 100, -1, 0
+RESULT, JobShop, yam2, , 68.3383, 40, 0, 713, 951, 100, -1, 0
+RESULT, JobShop, yam3, , 1364.65, 59, 0, 680, 921, 100, -1, 0
+RESULT, JobShop, yam4, , 945.99, 80, 0, 719, 1001, 100, -1, 0

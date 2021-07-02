@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project>
+	<version>1.0</version>
+	<description>Multiple drivers</description>
+	<configs>
+		<config name="Solve with CP Optimizer" default="true" category="opl">
+			<ref type="model" name="Model.mod">
+			</ref>
+			<ref type="setting" name="Model.ops">
+			</ref>
+			<ref type="data" name="Model.dat">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project description="Multi-Machine Assignment Problem">
+        <configs>
+               
+               <config name="sched_mmasp single1.1" category="opl" default="true" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single1.1.dat"/>
+                </config>
+                <config name="sched_mmasp single1.2" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single1.2.dat"/>
+                </config>
+                <config name="sched_mmasp single2.1" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single2.1.dat"/>
+                </config>
+                <config name="sched_mmasp single2.2" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single2.2.dat"/>
+                </config>
+                <config name="sched_mmasp single3.1" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single3.1.dat"/>
+                </config>
+                <config name="sched_mmasp single3.2" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single3.2.dat"/>
+                </config>
+                <config name="sched_mmasp single4.1" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single4.1.dat"/>
+                </config>
+                <config name="sched_mmasp single4.2" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single4.2.dat"/>
+                </config>
+                <config name="sched_mmasp single5.1" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single5.1.dat"/>
+                </config>
+		<config name="sched_mmasp single5.2" category="opl" default="false" closed="true">
+                        <ref name="sched_mmasp.mod"/>
+                        <ref name="single5.2.dat"/>
+               </config>
+        </configs>
+        <model name="sched_mmasp.mod"/>
+        <data name="single1.1.dat"/>
+        <data name="single1.2.dat"/>
+        <data name="single2.1.dat"/>
+        <data name="single2.2.dat"/>
+        <data name="single3.1.dat"/>
+        <data name="single3.2.dat"/>
+        <data name="single4.1.dat"/>
+        <data name="single4.2.dat"/>
+        <data name="single5.1.dat"/>
+        <data name="single5.2.dat"/>
+</project>

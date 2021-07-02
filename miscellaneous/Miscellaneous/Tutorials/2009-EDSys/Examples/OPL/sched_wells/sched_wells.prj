@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project description="Well Mining">
+
+    <configs>
+
+        <config name="Basic Configuration" category="opl" default="true">
+
+            <ref name="sched_wells.mod"/>
+          <ref name="sched_wells.dat"/>
+    </config>
+
+    </configs>
+
+    <model name="sched_wells.mod"/>
+
+  <data name="sched_wells.dat"/>
+</project>

@@ -1,0 +1,11 @@
+Field|NAMES,ModelName,InstanceName,Parameters,TimeLimit,CostLimit
+Field|KEYS,1,1,1,0,0
+
+AirLand,airland1.txt,,60,-1
+AirLand,airland2.txt,,90,-1
+AirLand,airland3.txt,,120,-1
+AirLand,airland4.txt,,120,-1
+AirLand,airland5.txt,,120,-1
+AirLand,airland6.txt,,180,-1
+AirLand,airland7.txt,,264,-1
+AirLand,airland8.txt,,300,-1

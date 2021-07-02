@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project>
+	<version>1.0</version>
+	<configs>
+		<config name="Configuration1" default="true" category="opl">
+			<ref type="model" name="wbs.mod">
+			</ref>
+			<ref type="setting" name="wbs.ops">
+			</ref>
+			<ref type="data" name="wbs.dat">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

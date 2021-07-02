@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <version>1.0</version>
+  <description>Multi-Machine Assignment Problem</description>
+  <configs>
+    <config name="sched_mmasp single1.1" default="true" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single1.1.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single1.2" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single1.2.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single2.1" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single2.1.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single2.2" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single2.2.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single3.1" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single3.1.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single3.2" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single3.2.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single4.1" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single4.1.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single4.2" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single4.2.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single5.1" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single5.1.dat" type="data"/>
+    </config>
+    <config name="sched_mmasp single5.2" default="false" category="opl">
+      <ref name="sched_mmasp.mod" type="model"/>
+      <ref name="single5.2.dat" type="data"/>
+    </config>
+  </configs>
+</project>

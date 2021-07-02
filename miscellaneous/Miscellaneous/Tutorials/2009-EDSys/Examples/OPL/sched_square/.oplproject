@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<version>1.0</version>
+	<description>Place small squares of different sizes into a large square</description>
+	<configs>
+		<config category="opl" default="true" name="Configuration1">
+			<ref name="sched_square.mod" type="model">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

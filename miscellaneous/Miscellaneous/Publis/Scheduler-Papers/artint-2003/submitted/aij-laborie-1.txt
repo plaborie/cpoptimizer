@@ -1,0 +1,66 @@
+Title:
+Algorithms for Propagating Resource  Constraints in A.I.  Planning and
+Scheduling: Existing Approaches and New Results
+
+Author: 
+Philippe Laborie
+
+1. What is the original contribution of this work?
+
+This  paper describes   two  new  algorithms to  propagate  cumulative
+resources in  constraint-based   scheduling and AI  planning.  It also
+discusses some of their possible extensions.
+
+2. Why should this contribution be considered important?  
+
+Some tools  are still missing  to solve problems  that lie  between AI
+planning and pure  scheduling and that is  one of the main reasons why
+AI planning often fails to solve  realistic problems.  This paper is a
+contribution to bridge this gap. The algorithms proposed in this paper
+are inspired  from AI planning  techniques - that  is  why they easily
+extend to AI planning - and were successfully applied to close a serie
+of open scheduling problems involving complex resources.
+
+3. What is the most closely-related work by others and how does this
+  work differ?
+
+The most  closely-related work is   [Cesta&Stella97] where the authors
+propose a constraint  propagation algorithm to discover new precedence
+constraint  on reservoirs. Our contribution   can  be considered as  a
+substantial extension and generalization of this work.
+
+[Cesta&Stella97].  A. Cesta and C. Stella. A Time and Resource Problem
+for Planning Architectures. ECP-97. 1997.
+
+4. How can other researchers make use of the results of this work?
+
+This  contribution offers   perspectives in   both  AI  planning   and
+scheduling.
+
+In  constraint  based    scheduling,  this   contribution   shows that
+approaches inspired from AI planning  may be competitive and even  may
+outperform  some more classical approaches.   From  a more theoretical
+perspective, this work tends to show that cumulative scheduling is not
+much more  complex than disjunctive  scheduling  and that most  of the
+techniques   traditionally  used in  disjunctive  scheduling  could be
+extended to cumulative scheduling. This work is clearly a step forward
+in this direction.
+
+In PO   or  HTN planning,   this  work shows    that complex  resource
+constraints (cumulative, producible  and  consumable) can be   handled
+during    planning   in   a     very   similar   way   as    classical
+attributes. Furthermore, the  constraint programming  framework allows
+inheriting a large  panel of mature  constraint propagation and search
+techniques developed for pure scheduling.
+
+5. If any part of this work has been submitted elsewhere, please state
+  where it has been submitted and how it differs from this paper.
+
+This  work is an extension   and  an improvement  on  an article  that
+received  the  best paper  award   at the  6th  European Conference on
+Planning (ECP-01), Toledo, Spain, Sept 2001.
+
+6  Keywords:   
+Scheduling, AI Planning, Constraint Programming, Cumulative resources
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+	<version>1.0</version>
+	<description>Sudoku</description>
+	<configs>
+		<config default="true" name="Grid #1" category="opl">
+			<ref type="data" name="grid1.dat">
+			</ref>
+			<ref type="setting" name="sudoku.ops">
+			</ref>
+			<ref type="model" name="sudoku.mod">
+			</ref>
+		</config>
+		<config default="false" name="Grid #2" category="opl">
+			<ref type="model" name="sudoku.mod">
+			</ref>
+			<ref type="data" name="grid2.dat">
+			</ref>
+			<ref type="setting" name="sudoku.ops">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

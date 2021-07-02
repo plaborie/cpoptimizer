@@ -1,0 +1,28 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result MultiProcessorTotalTardiness.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\MultiProcessorTotalTardiness\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.14, 1, 316.031, 49, 0, 0, 69666, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.22, 1, 738.359, 65, 0, 0, 186452, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.43, 1, 18.0469, 2, 0, 0, 6, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.44, 1, 18.0469, 2, 0, 0, 24, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.50, 1, 18.0469, 2, 0, 0, 12, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.86, 1, 0.078125, 2, 1, 0, 0, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.119, 1, 18.0625, 2, 0, 19723, 376542, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.133, 1, 150.063, 4, 0, 0, 1683, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.168, 1, 0.0625, 2, 1, 0, 0, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 200/inp200.199, 1, 18.0469, 2, 0, 102074, 403677, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.2, 1, 1160.25, 20, 0, 0, 48276, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.3, 1, 1173.42, 13, 0, 0, 49276, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.43, 1, 24.2188, 2, 0, 0, 45, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.49, 1, 24.2188, 2, 0, 0, 26, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.72, 1, 24.2969, 2, 0, 239, 2.42348e+006, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.146, 1, 24.2813, 2, 0, 96, 820915, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.177, 1, 0.40625, 2, 1, 0, 0, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.180, 1, 0.421875, 2, 1, 0, 0, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.191, 1, 817.578, 3, 0, 603803, 2.59111e+006, 100, -1, 0
+RESULT, MultiProcessorTotalTardiness, 500/inp500.198, 1, 24.2656, 2, 0, 646009, 2.60771e+006, 100, -1, 0

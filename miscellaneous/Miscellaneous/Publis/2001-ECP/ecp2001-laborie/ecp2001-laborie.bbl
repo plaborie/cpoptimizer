@@ -1,0 +1,137 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Baptiste}{1995}]{Baptiste1995}
+Baptiste, P.
+\newblock 1995.
+\newblock Resource constraints for preemptive and non-preemptive scheduling.
+\newblock Master's thesis, University of Paris VI.
+\newblock MSc Thesis.
+
+\bibitem[\protect\citeauthoryear{Beck \bgroup et al\mbox.\egroup
+  }{1997}]{Beck1997}
+Beck, C.; Davenport, A.; Sitarski, E.; and Fox, M.
+\newblock 1997.
+\newblock Texture-based {H}euristics for {S}cheduling {R}evisited.
+\newblock In {\em Proceedings AAAI-97}.
+
+\bibitem[\protect\citeauthoryear{Carlier and Pinson}{1990}]{Carlier1990}
+Carlier, J., and Pinson, E.
+\newblock 1990.
+\newblock A practical use of {J}ackson's preemptive schedule for solving the
+  job shop problem.
+\newblock {\em Annals of Operations Research} 26:269--287.
+
+\bibitem[\protect\citeauthoryear{Cesta and Stella}{1997}]{Cesta1997}
+Cesta, A., and Stella, C.
+\newblock 1997.
+\newblock A time and resource problem for planning architectures.
+\newblock In {\em ECP-97}.
+
+\bibitem[\protect\citeauthoryear{Cesta, Oddi, and Smith}{2000}]{Cesta2000}
+Cesta, A.; Oddi, A.; and Smith, S.
+\newblock 2000.
+\newblock Iterative flattening: A scalable method for solving multi-capacity
+  scheduling problems.
+\newblock In {\em Proceedings of the National Conference on Artificial
+  Intelligence (AAAI-00)}.
+
+\bibitem[\protect\citeauthoryear{Chapman}{1987}]{Chapman1987}
+Chapman, D.
+\newblock 1987.
+\newblock Planning for conjunctive goals.
+\newblock {\em Artificial Intelligence} 32:333--377.
+
+\bibitem[\protect\citeauthoryear{Erschler, Lopez, and
+  Thuriot}{1991}]{Erschler1991}
+Erschler, J.; Lopez, P.; and Thuriot, C.
+\newblock 1991.
+\newblock Raisonnement temporel sous contraintes de ressources et probl\`emes
+  d'ordonnancement.
+\newblock {\em Revue d'Intelligence Artificielle} 5(3):7--32.
+
+\bibitem[\protect\citeauthoryear{Erschler}{1976}]{Erschler1976}
+Erschler, J.
+\newblock 1976.
+\newblock {\em Analyse sous contraintes et aide \`a la d\'ecision pour certains
+  probl\`emes d'ordonnancement}.
+\newblock Th\`ese de doctorat d'etat, Universit\'e Paul Sabatier.
+
+\bibitem[\protect\citeauthoryear{Focacci, Laborie, and
+  Nuijten}{2000}]{Focacci2000}
+Focacci, F.; Laborie, P.; and Nuijten, W.
+\newblock 2000.
+\newblock Solving scheduling problems with setup times and alternative
+  resources.
+\newblock In {\em Proc.\ Fifth International Conference on Artificial
+  Intelligence Planning and Scheduling, {AIPS}'00},  92--101.
+\newblock AAAI Press.
+
+\bibitem[\protect\citeauthoryear{Garcia and Laborie}{1996}]{Garcia1996}
+Garcia, F., and Laborie, P.
+\newblock 1996.
+\newblock {\em New Directions in AI Planning}.
+\newblock IOS Press, Amsterdam.
+\newblock chapter Hierarchisation of the Search Space in Temporal Planning,
+  217--232.
+
+\bibitem[\protect\citeauthoryear{ILOG}{2001}]{ILOG2001}
+ILOG.
+\newblock 2001.
+\newblock {ILOG} {S}cheduler 5.2 {R}eference {M}anual.
+\newblock {\em {h}ttp://www.ilog.com/}.
+
+\bibitem[\protect\citeauthoryear{Khambhampati and
+  Yang}{1996}]{Khambhampati1996}
+Khambhampati, S., and Yang, X.
+\newblock 1996.
+\newblock On the role of disjunctive representations and constraint propagation
+  in refinement planning.
+\newblock In {\em KR96}.
+
+\bibitem[\protect\citeauthoryear{Laborie and Ghallab}{1995}]{Laborie1995}
+Laborie, P., and Ghallab, M.
+\newblock 1995.
+\newblock Ix{T}e{T}: an integrated approach for plan generation and scheduling.
+\newblock In {\em Proc. ETFA-95}.
+
+\bibitem[\protect\citeauthoryear{{Le~Pape}}{1994}]{LePape1994}
+{Le~Pape}, C.
+\newblock 1994.
+\newblock Implementation of resource constraints in {ILOG} {S}chedule: A
+  library for the development of constraint-based scheduling systems.
+\newblock {\em Intelligent Systems Engineering} 3(2):55--66.
+
+\bibitem[\protect\citeauthoryear{Neumann and Schwindt}{1999}]{Neumann1999}
+Neumann, K., and Schwindt, C.
+\newblock 1999.
+\newblock Project scheduling with inventory constraints.
+\newblock Technical Report WIOR-572, Institut f\"ur Wirtschaftstheorie und
+  Operations Research. Universit\"at Karlsruhe.
+
+\bibitem[\protect\citeauthoryear{Nuijten}{1994}]{Nuijten1994}
+Nuijten, W.
+\newblock 1994.
+\newblock {\em Time and Resource Constrained Scheduling: A Constraint
+  Satisfaction Approach}.
+\newblock Ph.D. Dissertation, Eindhoven University of Technology.
+
+\bibitem[\protect\citeauthoryear{Pacciarelli and
+  Mascis}{1999}]{Pacciarelli1999}
+Pacciarelli, D., and Mascis, A.
+\newblock 1999.
+\newblock Job-shop scheduling of perishable items.
+\newblock In {\em INFORMS'99}.
+
+\bibitem[\protect\citeauthoryear{Smith, Frank, and Jonsson}{2000}]{Smith2000}
+Smith, D.; Frank, J.; and Jonsson, A.
+\newblock 2000.
+\newblock Bridging the gap between planning and scheduling.
+\newblock {\em Knowledge Engineering Review} 15(1):61--94.
+
+\bibitem[\protect\citeauthoryear{Sourd and Nuijten}{2000}]{Sourd2000}
+Sourd, F., and Nuijten, W.
+\newblock 2000.
+\newblock Relations de pr\'ec\'edences sous constraintes disjonctives.
+\newblock In {\em Proc.\ ROADEF 2000}.
+
+\end{thebibliography}

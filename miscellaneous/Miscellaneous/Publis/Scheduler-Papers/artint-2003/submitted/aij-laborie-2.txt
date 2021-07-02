@@ -1,0 +1,26 @@
+Algorithms for Propagating Resource  Constraints in A.I.  Planning and
+Scheduling: Existing Approaches and New Results
+
+Philippe Laborie
+ILOG S.A., 9, rue de Verdun, BP 85
+F-94253 Gentilly Cedex, France
+Email: plaborie@ilog.fr
+
+Abstract:
+This paper summarizes   the main   existing approaches  to   propagate
+resource constraints  in  Constraint-Based  scheduling and  identifies
+some of their limitations for using them in an integrated planning and
+scheduling framework. We then describe two new algorithms to propagate
+resource constraints on discrete resources and reservoirs. Unlike most
+of the   classical work in scheduling,  our  algorithms focus   on the
+precedence relations between activities  rather than on their absolute
+position in time. They are  efficient even when  the set of activities
+is not completely  defined and when the time  window of activities  is
+large.  These  features explain why   our  algorithms are particularly
+suited  for integrated planning  and   scheduling approaches. All  our
+algorithms  are   illustrated with  examples.  Encouraging preliminary
+results are  reported on  pure  scheduling  problems as  well as  some
+possible extensions of our framework.
+
+Keywords:
+Scheduling, AI Planning, Constraint Programming, Cumulative resources

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <version>1.0</version>
+  <description>Progressive party problem</description>  
+  <configs>
+    <config name="Basic Configuration" default="true" category="opl">
+      <ref name="PPP.dat" type="data"/>
+      <ref name="PPP.mod" type="model"/>
+    </config>
+    <config name="Excel version" default="false" category="opl">
+      <ref name="PPP.mod" type="model"/>
+      <ref name="PPPSheet.dat" type="data"/>
+    </config>
+  </configs>
+</project>

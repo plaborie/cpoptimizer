@@ -1,0 +1,1095 @@
+\documentclass[runningheads]{llncs}
+\usepackage[numbers]{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{enumerate}
+\usepackage{soul}    % For text highlighting using \hl
+\usepackage{listings}
+\usepackage{bold-extra} % Support for bold typewriter
+
+\def\cplx{ {\mathcal O} }
+
+\DeclareMathOperator{\abs}{abs}
+\DeclareMathOperator{\est}{est}
+\DeclareMathOperator{\lct}{lct}
+\DeclareMathOperator{\dur}{p}
+\DeclareMathOperator{\capacity}{c}
+\DeclareMathOperator{\energy}{e}
+\DeclareMathOperator{\present}{present}
+\DeclareMathOperator{\true}{true}
+\DeclareMathOperator{\false}{false}
+\DeclareMathOperator{\ect}{ect}
+\DeclareMathOperator{\ECT}{Ect}
+\DeclareMathOperator{\preECT}{preEct}
+\DeclareMathOperator{\envelope}{Env}
+\DeclareMathOperator{\extenv}{ExtEnv}
+\DeclareMathOperator{\env1}{Env1}
+\DeclareMathOperator{\fail}{fail}
+\DeclareMathOperator{\LCut}{LCut}
+\DeclareMathOperator{\lson}{left}
+\DeclareMathOperator{\rson}{right}
+\DeclareMathOperator{\Leaves}{Leaves}
+\DeclareMathOperator{\Left}{Left}
+\DeclareMathOperator{\Right}{Right}
+\DeclareMathOperator{\rest}{rest}
+\DeclareMathOperator{\before}{EndsBefore}
+\DeclareMathOperator{\maxx}{maxX}
+
+\newcommand{\capmax}{\overline{\capacity}}
+\newcommand{\durmax}{\overline{\dur}}
+\newcommand{\enermax}{\overline{\energy}}
+\newcommand{\envmax}{\overline{\envelope}}
+
+\newcommand{\lenergy}{\energy^\Lambda}
+\newcommand{\lenvelope}{\envelope^\Lambda}
+
+\newcommand{\TODO}{\hl{TODO}}
+\newcommand{\todo}[1]{\hl{TODO: #1}}
+\newcommand{\azaroven} {\; \& \;}
+
+\def\eg{e.g.,\ }
+\def\Eg{E.g.,\ }
+\def\ie{i.e.,\ }
+\def\Ie{I.e.,\ }
+
+\newgray{barva1}{0.85}
+\newgray{barva2}{0.80}
+\newgray{barva3}{0.90}
+\newgray{barva4}{0.70}
+
+\newcommand{\sectionref}[1]{Section~\ref{#1}}
+\newcommand{\tableref}[1]{Table~\ref{#1}}
+\newcommand{\figureref}[1]{Figure~\ref{#1}}
+\newcommand{\algref}[1]{Algorithm~\ref{#1}}
+\newcommand{\propertyref}[1]{Property~\ref{#1}}
+\newcommand{\lemmaref}[1]{Lemma~\ref{#1}}
+\newcommand{\observationref}[1]{Observation~\ref{#1}}
+\newcommand{\propositionref}[1]{Proposition~\ref{#1}}
+\newcommand{\definitionref}[1]{Definition~\ref{#1}}
+
+\renewcommand\bibsection{\section*{References}}
+
+\lstloadlanguages{Pascal}
+\lstset{
+  language=Pascal,
+  escapechar=\#,
+  extendedchars,
+  morekeywords={fail, continue, require, break},
+  morecomment=[l]//,
+  texcl,
+  numbers=left,
+  basicstyle=\rmfamily,
+  keywordstyle=\ttfamily\bfseries,
+  commentstyle=\itshape,
+  stringstyle=\rmfamily,
+  identifierstyle=\ttfamily,
+  frame=htb
+}
+\renewcommand\lstlistingname{Algorithm}
+\newcommand\skiplstline{\global\advance\c@lstnumber\@ne}
+% To not count algorithms inside chapters even though \thechapter is defined by llncs:
+\catcode`\@=11 % Viz texbook naruby, str. 21
+\renewcommand\thelstlisting{\@arabic\c@lstlisting}
+\catcode`\@=12
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent {\bf Keywords:} \enspace\ignorespaces#1}
+
+
+\begin{document}
+\bibliographystyle{plainnat} 
+
+\title{Max Energy Filtering Algorithm for Discrete Cumulative Resources}
+\author{Petr Vil\'{\i}m}
+\institute{ILOG, an IBM Company; 9, rue de Verdun, BP 85\\
+           F-94253 Gentilly Cedex, France\\
+           \email{petr\_vilim@cz.ibm.com}
+           }
+
+\maketitle
+
+\begin{abstract}
+In scheduling using constraint programming we usually reason only about possible start times and end times of
+activities and remove those which are recognized as unfeasible. However often in practice there are more
+variables in play: variable durations of activities and variable resource capacity requirements. This paper
+presents a new algorithm for filtering maximum durations and maximum capacity requirements for discrete
+cumulative resources. It is also able to handle optional interval variables introduced in IBM ILOG CP Optimizer
+2.0. Time complexity of the algorithm is $\cplx(n \log n)$. The algorithm is based on never published
+algorithm by Wim Nuijten and a on slightly modified e-feasibility checking algorithm by Armin Wolf and Gunnar
+Schrader. The later algorithm is also described in the paper.
+\keywords{Constraint Programming, Scheduling, Discrete Cumulative Resource, Propagation}
+\end{abstract}
+
+\section{Introduction}
+
+Nowadays, constraint based scheduling engines like IBM ILOG CP Optimizer \cite{ILOG2008} allows to describe and
+solve very complex scheduling problems involving a variety of different constraints. This paper is focused
+on one of them -- discrete cumulative resource for the case when durations and/or individual capacity
+requirements are not fixed. Traditionally we reason only about minimum start times and maximum end times using
+algorithms like Edge Finding \cite{Mercier2005CumulativeEF}, Not-First/Not-Last
+\cite{Schutt2005CumulativeNFNL} or Energetic Reasoning \cite{CBS}. This paper provides an algorithm for
+filtering of maximum activity durations and maximum capacity requirements.
+
+The algorithm is not completely new. Although it was never published, Wim Nuijten implemented a similar
+algorithm for ILOG Scheduler several years ago. The old version of the algorithm has time complexity
+$\cplx(n^2)$, this paper presents a faster version with time complexity $\cplx(n \log n)$.
+
+\medskip
+
+To demonstrate the problem on a simple example, lets consider the following subproblem: there is a pool of
+$10$ workers (\ie a discrete capacity resource with maximum capacity $C=10$) who perform different tasks.
+Among these tasks there is a task to produce one particular product~$P$. How many units of the product $P$ is
+produced depends on how many workers are assigned to the tasks (\ie how much capacity of the resource is used)
+and for how long (\ie what is the duration of the task):
+\[
+  \text{nbP} = \text{workers} \times \text{duration}
+\]
+If we do not produce at least $500$ units of product~$P$ then we will have to buy the rest for the following
+cost (deduced from an initial budget):
+\[
+  \text{cost} = \max(0, 500 - \text{nbP}) \times 1\$
+\]
+
+In this example, the budget and production of product~$P$ are tightly connected:
+\begin{enumerate*}
+\item If we see that no more than $200$\$ can be invested into the purchase of product~$P$ (because the rest of
+the budget is needed for other things) then we need to allocate workers to produce at least $300$ units of
+product~$P$.
+\item On the other hand if we see that there is no way to produce more than $100$ units of product~$P$
+(because the workers are needed for other tasks) we can immediately allocate $400$\$ from the budget to
+buy remaining products~$P$. This is a critical propagation especially if the budget is short.
+\end{enumerate*}
+Both propagations above are very important for speeding up the search by better pruning the search tree.
+However for the propagation $2$ it is necessary to be able to compute the maximum possible production of
+product~$P$. And this is the topic of the paper.
+
+\medskip
+
+The algorithm presented in the paper is also useful if there are optional activities -- activities which may
+or may not be present in the solution (for example alternatives between several resources). In this case the
+algorithm can detect that there is no way to process an optional activity and therefore it cannot be present
+in the solution (and, in case of an alternative, another alternative must be chosen), see
+\cite{Laborie2008ConditionalTI, ILOG2008}.
+
+\section{Notation}
+
+Let us formalize the problem. There is a set~$T$ of $n=|T|$ non-preemptive non-optional activities. For the
+first part of the paper we assume that none of the activities in~$T$ is optional, that is, all activities in~$T$
+are necessarily present in the solution. After we present Max Energy algorithm for non-optional activities we
+will show how to use it for optional activities.
+
+Each activity $i \in T$ is described by the following attributes:
+\begin{itemize*}
+\item the earliest possible starting time $\est_i \in \mathbb N$,
+\item the latest possible completion time $\lct_i \in \mathbb N$,
+\item the minimum processing time (duration) $\dur_i \in \mathbb N$,
+\item the maximum processing time (duration) $\durmax_i \in \mathbb N$.
+\end{itemize*}
+Moreover, each activity $i \in T$ consumes during its processing some capacity of a resource. The capacity
+consumption during the whole processing of the activity is constant, however it may not be known in advance.
+In this case there is a range of possible capacity consumption:
+\begin{itemize*}
+\item the minimum required capacity $\capacity_i \in \mathbb N$,
+\item the maximum required capacity $\capmax_i \in \mathbb N$.
+\end{itemize*}
+The resource can process several activities at the same time, however at any time the total used capacity
+cannot exceed the maximum resource capacity~$C$. For an example see \figureref{fig:actexample}.
+
+\begin{figure}[htb]
+\centering
+\psset{unit=0.9cm, arrowsize=5pt}
+\begin{pspicture}(-5, -1.5)(6.3, 1.5)
+\psline[linewidth=1.3pt](-4.8, -0.7)(-5, -0.7)(-5, 0.7)(-4.8, 0.7)
+\rput[t](-5, -0.8){$\est_i = 0$}
+\psline[linewidth=1.3pt](4.8, -0.7)(5, -0.7)(5, 0.7)(4.8, 0.7)
+\rput[t](5, -0.8){$\lct_i = 20$}
+\psframe[fillstyle=vlines, hatchcolor=barva2](-2.5, -0.5)(2.5, 0.5)
+\psframe[fillstyle=solid, fillcolor=barva2](-1, -0.25)(1, 0.25)
+\rput(0,0){$i$}
+\psline{->}(2.5, 0)(5,0)
+\psline{->}(-2.5, 0)(-5, 0)
+\psline(-5.3, -1.5)(6.3, -1.5)
+\psline(-5.3,  1.5)(6.3,  1.5)
+\psset{linewidth=0.25pt, arrowsize=3pt}
+\psline{<->}(-1, -0.6)(1, -0.6)
+\rput[t](0, -0.7){$\dur_i = 4$}
+\psline{<->}(-2.5, 0.6)(2.5, 0.6)
+\rput[b](0, 0.7){$\durmax_i = 10$}
+\psline{<->}(-2.4, -0.5)(-2.4, 0.5)
+\rput[l](-2.3, 0){$\capmax_i = 2$}
+\psline{<->}(1.1, -0.25)(1.1, 0.25)
+\rput[l](1.2, 0){$\capacity_i = 1$}
+\psline{<->}(6, -1.5)(6, 1.5)
+\rput[l](6.1, 0){$C=6$}
+\psset{linewidth=0.15pt}
+\psline(-5, -1.35)(-5, -1.65)     \rput[t](-5, -1.8){\scriptsize $0$}
+\psline(-4.5, -1.4)(-4.5, -1.6)
+\psline(-4.0, -1.4)(-4.0, -1.6)
+\psline(-3.5, -1.4)(-3.5, -1.6)
+\psline(-3.0, -1.4)(-3.0, -1.6)
+\psline(-2.5, -1.35)(-2.5, -1.65) \rput[t](-2.5, -1.8){\scriptsize $5$}
+\psline(-2.0, -1.4)(-2.0, -1.6)
+\psline(-1.5, -1.4)(-1.5, -1.6)
+\psline(-1.0, -1.4)(-1.0, -1.6)
+\psline(-0.5, -1.4)(-0.5, -1.6)
+\psline( 0.0, -1.35)( 0.0, -1.65) \rput[t](-0, -1.8){\scriptsize $10$}
+\psline( 0.5, -1.4)( 0.5, -1.6)
+\psline( 1.0, -1.4)( 1.0, -1.6)
+\psline( 1.5, -1.4)( 1.5, -1.6)
+\psline( 2.0, -1.4)( 2.0, -1.6)
+\psline( 2.5, -1.35)( 2.5, -1.65) \rput[t](2.5, -1.8){\scriptsize $15$}
+\psline( 3.0, -1.4)( 3.0, -1.6)
+\psline( 3.5, -1.4)( 3.5, -1.6)
+\psline( 4.0, -1.4)( 4.0, -1.6)
+\psline( 4.5, -1.4)( 4.5, -1.6)
+\psline( 5.0, -1.35)( 5.0, -1.65) \rput[t](5, -1.8){\scriptsize $20$}
+\psline( 5.5, -1.4)( 5.5, -1.6)
+\end{pspicture}
+\caption{An example of an activity~$i$ on a resource with capacity $C=6$.}
+\label{fig:actexample}
+\end{figure}
+
+Another way to characterize an activity is its energy. Informally, energy of an activity is:
+\[
+\text{energy} = \text{processingTime} \times \text{capacity}
+\]
+Because processing time and/or required capacity may be unbound, we characterize the energy of a task~$i$
+by two numbers: minimum energy $\energy_i = \capacity_i \dur_i$ and maximum energy $\enermax_i = \capmax_i
+\durmax_i$. The presented algorithm modifies maximum energy $\enermax_i$ and this way also maximum capacity
+$\capmax_i$ and maximum processing time $\durmax_i$: 
+\begin{align}
+%  \energy_i    &:= \max\left\{\capacity_i \dur_i,\; \energy_i \right\}  \\
+%  \enermax_i   &:= \min\left\{\capmax_i \durmax_i,\; \enermax_i\right\} \\
+%  \capacity_i  &:= \max\left\{ \left\lceil  \energy_i  / \durmax_i \right\rceil,\; \capacity_i \right\} \\
+  \capmax_i    &:= \min\left\{ \left\lfloor \enermax_i / \dur_i \right\rfloor,\; \capmax_i \right\} 
+    \label{rule:capmax} \\
+%  \dur_i       &:= \max\left\{ \left\lceil \energy_i / \capmax_i \right\rceil,\; \dur_i \right\}  \\
+  \durmax_i    &:= \min\left\{ \left\lfloor \enermax_i / \capacity_i \right\rfloor,\; \durmax_i \right\}
+    \label{rule:durmax}
+\end{align}
+
+%\begin{tabular}{ll}
+%{\bf Symbol} & {\bf Description} \\
+%\hline
+%$T$            & Set of activities on the resource.\\
+%$n$            & Number of activities on the resource: $n = |T|$.\\
+%$C$            & Capacity of the resource.\\
+%%$\present_i$ & Domain of execution status, subset of $\{\true, \false\}$.\\
+%%$R$            & Set of regular activities on the resource: 
+%%                 $R = \left\{i,\; i \in T \azaroven \present_i=\left\{\true\right\}\right\}$ \\
+%%$O$            & Set of optional activities on the resource: 
+%%                 $O = \left\{i,\; i \in T \azaroven \present_i=\left\{\true,\false\right\}\right\}$ \\
+%$\est_i$       & Earliest starting time (startMin) of the activity~$i$.\\
+%$\lct_i$       & Latest completion time (endMax) of the activity~$i$. \\
+%$\dur_i$       & Minimum duration (processing time) of the activity~$i$. \\
+%$\capacity_i$  & Minimum capacity demanded by the activity~$i$ during the processing.\\
+%$\energy_i$    & Minimum energy demanded by the activity~$i$.\\
+%$\durmax_i$    & Maximum duration (processing time) of the activity~$i$.\\
+%$\capmax_i$    & Maximum capacity demand by the activity~$i$ during the processing.\\
+%$\enermax_i$   & Maximum energy demanded by the activity~$i$.\\
+%%$k$            & Number of distinct capacity demands: $k = \left|\left\{ c_i,\; i \in T\right\}\right|$.\\
+%\hline
+%\end{tabular}
+
+\subsection{Earliest Completion Time, Energy Envelope}
+
+For the following algorithms we need a way to quickly estimate the earliest completion time of any set of
+activities $\Theta \subseteq T$. If~$\Theta$ contains only one activity~$i$ then the computation of the
+earliest completion time is simple:
+\[
+\ect_i = \est_i + \dur_i
+\]
+However in the general case it is much more complicated. Therefore we are looking for a good lower bound,
+traditionally defined as:
+\[
+\preECT\left(\Theta\right) = \est_\Theta + \left\lceil \frac{\energy_\Theta}{C} \right\rceil
+\]
+where:
+\begin{align*}
+  \est_\Theta    &= \min_{i \in \Theta} \{\est_i\} \\
+  \energy_\Theta &= \sum_{i \in \Theta} \energy_i
+\end{align*}
+
+Note that $\preECT$ is only a lower bound. For example:
+\begin{enumerate}[(i)]
+  \item \label{ect:nosubset} If we closely inspect all subsets $\Omega \subseteq \Theta$ we can achieve
+    better estimation of earliest completion time of the set~$\Theta$. For an example
+    \figureref{fig:ectexample2}.
+  %\item \label{ect:start} We assume that all activities in~$\Omega$ can actually start at $\est_\Omega$. When
+  %  this assumption is wrong then the estimation of earliest completion time is too low. For an example see
+  %  \figureref{fig:ectexample3}.
+  \item \label{ect:elastic} Since we take into account only total energy of the set~$\Theta$, we assume that
+    all activities in~$\Theta$ are fully ``elastic''. For example for $\Theta=\{i\}$ from
+    \figureref{fig:actexample} $\preECT(\Theta) = 1$ even though activity~$i$ cannot end before $\ect_i=4$.
+    \footnote{ That is also the reason why earliest start time of an activity~$i$ is denoted by lower-case
+    letters $\ect_i$ but earliest completion time of a set of activities~$\Theta$ is denoted by
+    $\ECT(\Theta)$ with capital E.}
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\psset{unit=0.8cm, arrowsize=5pt}
+\begin{pspicture}(-5, -0.7)(8, 0.7)
+\psline[linewidth=1.3pt](-4.8, -0.7)(-5, -0.7)(-5, 0.7)(-4.8, 0.7)
+\rput[b](-5, 0.8){$\est_a = 0$}
+\psframe[fillstyle=solid, fillcolor=barva1](-3.5, -0.5)(-2.5, 0.5)
+\rput(-3,0){$a$}
+\psline[linewidth=1.3pt](-1.2, -0.7)(-1, -0.7)(-1, 0.7)(-1.2, 0.7)
+\rput[b](-1, 0.8){$\lct_a = 8$}
+\psline{->}(-2.5, 0)(-1, 0)
+\psline{<-}(-5, 0)(-3.5, 0)
+\psframe[fillstyle=solid, fillcolor=barva2](3, -0.5)(4, 0.5)
+\rput(3.5, 0){$b$}
+\psline{<-}(2, 0)(3, 0)
+\psline[linewidth=1.3pt](2.2, -0.7)(2, -0.7)(2, 0.7)(2.2, 0.7)
+\rput[b](2, 0.8){$\est_b = 14$}
+\psline{->}(4, 0)(5,0)
+\psline[linewidth=1.3pt](4.8, -0.7)(5, -0.7)(5, 0.7)(4.8, 0.7)
+\rput[b](5, 0.8){$\lct_b = 20$}
+\psline(-5.3, -0.5)(6.3, -0.5)
+\psline(-5.3,  0.5)(6.3,  0.5)
+\psset{linewidth=0.25pt, arrowsize=3pt}
+\psline{<->}(6, -0.5)(6, 0.5)
+\rput[l](6.1, 0){$C=c_a=c_b=2$}
+\psset{linewidth=0.15pt}
+\psline(-5, -0.35)(-5, -0.65)     \rput[t](-5, -0.8){\scriptsize $0$}
+\psline(-4.5, -0.4)(-4.5, -0.6)
+\psline(-4.0, -0.4)(-4.0, -0.6)
+\psline(-3.5, -0.4)(-3.5, -0.6)
+\psline(-3.0, -0.4)(-3.0, -0.6)
+\psline(-2.5, -0.35)(-2.5, -0.65) \rput[t](-2.5, -0.8){\scriptsize $5$}
+\psline(-2.0, -0.4)(-2.0, -0.6)
+\psline(-1.5, -0.4)(-1.5, -0.6)
+\psline(-1.0, -0.4)(-1.0, -0.6)
+\psline(-0.5, -0.4)(-0.5, -0.6)
+\psline( 0.0, -0.35)( 0.0, -0.65) \rput[t](-0, -0.8){\scriptsize $10$}
+\psline( 0.5, -0.4)( 0.5, -0.6)
+\psline( 1.0, -0.4)( 1.0, -0.6)
+\psline( 1.5, -0.4)( 1.5, -0.6)
+\psline( 2.0, -0.4)( 2.0, -0.6)
+\psline( 2.5, -0.35)( 2.5, -0.65) \rput[t](2.5, -0.8){\scriptsize $15$}
+\psline( 3.0, -0.4)( 3.0, -0.6)
+\psline( 3.5, -0.4)( 3.5, -0.6)
+\psline( 4.0, -0.4)( 4.0, -0.6)
+\psline( 4.5, -0.4)( 4.5, -0.6)
+\psline( 5.0, -0.35)( 5.0, -0.65) \rput[t](5, -0.8){\scriptsize $20$}
+\psline( 5.5, -0.4)( 5.5, -0.6)
+\end{pspicture}
+\caption{An example: $\preECT\left(\left\{a, b\right\}\right) = 4$ even though $\{a, b\}$ cannot end before $\ect_b=16$.}
+\label{fig:ectexample2}
+\end{figure}
+
+In this paper we will address only issue (\ref{ect:nosubset}) by defining better estimation of earliest
+completion time:
+\[
+\ECT(\Theta) = \max_{\Omega \subseteq \Theta} \left\{ \preECT\left(\Omega\right) \right\}
+\]
+What is algebraically equivalent to:
+\[
+\ECT(\Theta)
+= \max_{\Omega \subseteq \Theta} \left\{ \est_\Omega + \left\lceil \frac{\energy_\Omega}{C} \right\rceil \right\} \\
+= \left\lceil \frac{\max_{\Omega \subseteq \Theta} \{C\est_\Omega+\energy_\Omega\}}{C} \right\rceil
+\]
+Lets call the numerator of the last fraction {\em energy envelope} of the set~$\Theta$:
+\begin{gather}
+\envelope(\Theta) = \max_{\Omega \subseteq \Theta} \{C\est_\Omega+\energy_\Omega\} 
+\label{envdef}
+\end{gather}
+Hence:
+\[
+\ECT(\Theta) = \left\lceil \frac{\envelope(\Theta)}{C} \right\rceil
+\]
+For an example of $\ECT(\Theta)$ and $\envelope(\Theta)$ see \figureref{fig:theexample}.
+
+\begin{figure}[htb]
+\centering
+\psset{unit=0.75cm, arrowsize=5pt}
+\begin{pspicture}(0, -0.4)(15, 2.5)
+\psframe[fillstyle=solid, fillcolor=barva3](2, 0)(5, 1)
+\psframe[fillstyle=solid, fillcolor=barva3](2, 1)(5, 2)
+\psframe[fillstyle=solid, fillcolor=barva3](8, 0)(10, 2)
+\psframe[fillstyle=solid, fillcolor=barva3](10, 0)(12, 2)
+\psframe[fillstyle=hlines, hatchcolor=barva4](0, 0)(12,2)
+\rput(3.5, 1.5){$a$}
+\rput(3.5, 0.5){$b$}
+\rput(9, 1){$c$}
+\rput(11, 1){$d$}
+\psline[linewidth=1.3pt](2.2, -0.2)(2, -0.2)(2, 2.2)(2.2, 2.2)
+\rput[b](2, 2.3){\scriptsize $\est_a = \est_b = 2$}
+\psline[linewidth=1.3pt](4.8, -0.2)(5, -0.2)(5, 2.2)(4.8, 2.2)
+\rput[b](5, 2.3){\scriptsize $\lct_a = \lct_b = 5$}
+\psline[linewidth=1.3pt](8.2, -0.2)(8, -0.2)(8, 2.2)(8.2, 2.2)
+\rput[b](8, 2.3){\scriptsize $\est_c = \est_d = 8$}
+\psline[linewidth=1.3pt](12.8, -0.2)(13, -0.2)(13, 2.2)(12.8, 2.2)
+\rput[b](13, 2.3){\scriptsize $\lct_a = \lct_b = 13$}
+\psline{->}(12, 1)(13, 1)
+\psline(-0.5, 0)(15, 0)
+\psline(-0.5, 2)(15, 2)
+\psset{linewidth=0.25pt, arrowsize=3pt}
+\psline{<->}(14, 0)(14, 2)
+\rput[l](14.1, 1){\scriptsize $C = 2$}
+\rput(6.5, 1){\scriptsize $\envelope(\Theta) = 24$}
+\psset{linewidth=0.15pt}
+\psline(0, -0.15)(0, 0.15) \rput[t](0, -0.3){\scriptsize $0$}
+\psline(1, -0.1) (1, 0.1)
+\psline(2, -0.1) (2, 0.1)
+\psline(3, -0.1) (3, 0.1)
+\psline(4, -0.1) (4, 0.1)
+\psline(5, -0.15)(5, 0.15) \rput[t](5, -0.3){\scriptsize $5$}
+\psline(6, -0.1) (6, 0.1)
+\psline(7, -0.1) (7, 0.1)
+\psline(8, -0.1) (8, 0.1)
+\psline(9, -0.1) (9, 0.1)
+\psline(10, -0.15)(10, 0.15) \rput[t](10, -0.3){\scriptsize $10$}
+\psline(11, -0.1) (11, 0.1)
+\psline(12, -0.1) (12, 0.1)
+\psline(13, -0.1) (13, 0.1)
+\psline(14, -0.1) (14, 0.1)
+\end{pspicture}
+\caption{Example of a set $\Theta = \{a, b, c, d\}$ with earliest completion time $\ECT(\Theta) = 12$ and
+energy envelope $\envelope(\Theta)=24$. Maximum envelope is achieved by the set $\Omega = \{c, d\}$. Energy
+envelope is depicted by gray lines.} \label{fig:theexample}
+\end{figure}
+
+The reason we defined energy envelope is that it is simpler to use in the algorithms than the earliest
+completion time.
+%However it needs a little mental practice to switch from earliest completion time to energy
+%envelope.
+
+\section{Overload, E-Feasibility}
+
+This section provides a variation of the e-feasibility checking algorithm by Armin Wolf and Gunnar Schrader
+\cite{Wolf2005CumulativeOverload}. This algorithm is the basis of the Max Energy algorithm presented later in
+this paper.
+
+\smallskip
+
+Traditionally, we define an {\em overload} as a situation when a subset of activities $\Omega \subseteq T$
+requires more resource energy than what is available between earliest possible start and latest possible end
+time of the set~$\Omega$ (see for example \cite{CBS}). If there is overload then no solution exists:
+\begin{gather}
+\forall \Omega \subseteq T:\quad
+\left(
+\energy_\Omega > C(\lct_\Omega - \est_\Omega) \quad\Rightarrow\quad \fail
+\right)
+\tag{OL}\label{OL}
+\end{gather}
+where:
+\[
+\lct_\Omega = \max\left\{ \lct_i,\; i \in \Omega \right\}
+\]
+If there is no overload then we say that the problem is {\em e-feasible}.
+
+It would take too much time to check all subsets $\Omega \subseteq T$. Fortunately there is a faster way:
+
+\begin{proposition}
+\label{prop:feasible}
+The problem is e-feasible if and only if
+\[
+\forall j \in T:\quad
+\envelope\left(\LCut\left(T, j\right)\right) \le C\lct_j
+\]
+where $\LCut(T, j)$ is a {\em left cut of~$T$ by activity~$j$}:
+\[
+\LCut(T, j) = \left\{k,\; k \in T \azaroven \lct_k \le \lct_j \right\}
+\]
+\end{proposition}
+\begin{proof}
+We will prove the equivalence by proving both implications:
+\begin{enumerate*}
+\item If rule (\ref{OL}) detects overload then there is a set~$\Omega$ such that $C \lct_\Omega <
+C\est_\Omega + \energy_\Omega$. In this case we define $j \in \Omega$ to be activity from set~$\Omega$ such that $\lct_j =
+\lct_\Omega$ (if there are more activities with this property, we can choose arbitrarily). Thanks to the
+definition of~$j$ it holds that $\Omega \subseteq \LCut(T, j)$ and therefore:
+\[
+  C \lct_j = C \lct_\Omega < C \est_\Omega + \energy_\Omega
+    \stackrel{(\ref{envdef})}{\le} 
+  \envelope\left(\LCut\left(T, j\right)\right)
+\]
+Therefore the second rule also detects overload.
+\item If $\envelope\left(\LCut\left(T, j\right)\right) > C\lct_j$ then by (\ref{envdef}) there is a set
+$\Omega \subseteq \LCut(T, j)$ such that $C \est_\Omega + \energy_\Omega = \envelope\left(\LCut\left(T,
+j\right)\right)$. And for this set~$\Omega$:
+\[
+  C \lct_\Omega \le C \lct_j < \envelope\left(\LCut\left(T, j\right)\right) = C \est_\Omega + \energy_\Omega
+\]
+And therefore rule (\ref{OL}) also detects overload.
+\qed
+\end{enumerate*}
+\end{proof}
+
+The key idea of the algorithm is to organize set $\LCut(T, j) = \Theta$ in a balanced binary tree, which we
+call $\Theta$-tree (it is an extension of~$\Theta$-tree structure for unary resources described for example in
+\cite{Vilim2007PhD}). Activities are represented by leaf nodes\footnote{This is the main difference from the
+algorithm in \cite{Wolf2005CumulativeOverload}, that algorithm represents activities also in the internal
+nodes of the tree.} and sorted by $\est_i$ from left to right. Each node~$v$ of
+the tree holds the following values:
+\begin{align}
+  \energy_v    &= \energy_{\Leaves(v)} \\
+  \envelope_v  &= \envelope\left(\Leaves\left(v\right)\right) \label{ENVdef}
+\end{align}
+Where $\Leaves(v)$ is a set of all activities represented by leaves of the subtree rooted in~$v$.
+\figureref{fig:ttree} shows a $\Theta$-tree from an example from \figureref{fig:theexample}. Notice that the
+energy envelope of the represented set~$\Theta$ is equivalent to the value $\envelope$ of the root node.
+
+\newcommand{\lnode}[5]{
+  \rput(#1){\rnode{#2}{\psframebox[framearc=0.4]{\parbox{1.25cm}{
+    \vspace{-0.35cm}
+    \begin{align*}
+      \est_{#2} &= #3 \\
+      \energy_{#2} &= #4 \\
+      \envelope &= #5
+    \end{align*}
+    \vspace{-0.4cm}
+  }}}}
+}
+
+\newcommand{\inode}[4]{
+  \rput(#1){\rnode{#2}{\psframebox[framearc=0.4]{\parbox{1.25cm}{
+    \vspace{-0.35cm}
+    \begin{align*}
+      \energy &= #3 \\
+      \envelope &= #4
+    \end{align*}
+    \vspace{-0.4cm}
+  }}}}
+}
+
+\begin{figure}[htb]
+  \psset{xunit=1.6cm, yunit=2.2cm}
+  \centering
+  \begin{pspicture}(1, 0.7)(7, 3)
+    \inode{4, 2.6}{x}{14}{24}       % Koren
+    \inode{2, 1.9}{y}{6}{10}        % Prva vrstva vlevo
+    \inode{6, 1.9}{z}{8}{24}        % Druha vrstva vpravo
+    \lnode{1, 1}{a}{2}{3}{7}        % Prvy list
+    \lnode{3, 1}{b}{2}{3}{7}        % Druhy list
+    \lnode{5, 1}{c}{8}{4}{20}       % Treti list
+    \lnode{7, 1}{d}{8}{4}{20}       % Ctvrty list
+    \ncline{x}{y}
+    \ncline{x}{z}
+    \ncline{y}{a}
+    \ncline{y}{b}
+    \ncline{z}{c}
+    \ncline{z}{d}
+  \end{pspicture}
+  \caption{An example of a $\Theta$-tree for
+  $\Theta = \left\{a, b, c, d\right\}$ from \figureref{fig:theexample}.}
+  \label{fig:ttree}
+\end{figure}
+
+For a leaf node~$v$ representing an activity $i \in T$ the values in the tree are set to:
+\begin{align*}
+  \energy_v   &= \energy_i \\
+  \envelope_v &= \envelope\left(\left\{i\right\}\right) = C \est_i + \energy_i
+\end{align*}
+For internal nodes~$v$ these values can be computed recursively from their children nodes $\lson(v)$ and
+$\rson(v)$:
+
+\begin{proposition}
+For an internal node~$v$, values $\energy_v$ and $\envelope_v$ can be computed by the following recursive
+formula:
+\begin{align}
+  \energy_v   &= \energy_{\lson(v)} + \energy_{\rson(v)} \label{recurs:energy} \\
+  \envelope_v &= \max \left\{ \envelope_{\lson(v)} + \energy_{\rson(v)},\; \envelope_{\rson(v)} \right\}
+  \label{recurs:envelope}
+\end{align}
+\end{proposition}
+\begin{proof}
+Formula (\ref{recurs:energy}) is trivial, we will prove only formula (\ref{recurs:envelope}).
+From the definition (\ref{ENVdef}), the value $\envelope_v$ is:
+\[
+  \envelope_v    = \envelope\left(\Leaves\left(v\right)\right) = 
+               \max\left\{C\est_\Omega + \energy_\Omega,\; 
+                           \Omega \subseteq \Leaves(v) \right\}
+\]
+With respect to the node~$v$ we will split the sets~$\Omega$ into the
+following two categories:
+\begin{enumerate*}
+\item $\Left(v) \cap \Omega = \emptyset$, \ie $\Omega \subseteq
+\Right(v)$. Clearly:
+\[
+  \max\left\{C\est_\Omega + \energy_\Omega,\; \Omega \subseteq \Right(v)\right\} 
+  = \envelope\left(\Right(v)\right) = \envelope_{\rson(v)}
+\]
+\item $\Left(v) \cap \Omega \neq \emptyset$. Then $\est_{\Omega} =
+\est_{\Omega \cap \Left(v)}$ because leaf nodes are sorted by $\est_i$. Let
+$S$ be the set of all possible~$\Omega$ considered in this part of the
+proof:
+\[
+  S = \{\Omega,\; \Omega \subseteq \Theta \azaroven \Omega \cap
+  \Left(v) \neq \emptyset \}
+\]
+Then:
+\begin{align*}
+  &\hspace{-1cm}\max\left\{C\est_\Omega + \energy_\Omega,\; \Omega \in S\right\} = \\
+  &= \max\left\{C\est_{\Omega \cap \Left(v)} + \energy_{\Omega \cap \Left(v)} + \energy_{\Omega \cap \Right(v)},\; \Omega \in S\right\} = \\
+  &= \max\left\{C\est_{\Omega \cap \Left(v)} + \energy_{\Omega \cap \Left(v)},\; \Omega \in S\right\} + \energy_{\Right(v)} = \\
+  &= \envelope_{\lson(v)} + \energy_{\rson(v)}
+\end{align*}
+We used the fact that the maximum is achieved only by such a set $\Omega$ for which $\Right(v) \subsetneq
+\Omega$. We also used the fact that $\Omega \cap \Left(v)$ enumerates all possible subsets of $\Left(v)$ and
+therefore:
+\[
+\max\left\{C\est_{\Omega \cap \Left(v)} + \energy_{\Omega \cap \Left(v)},\; \Omega \in S\right\} =
+\envelope_{\lson(v)}
+\]
+\end{enumerate*}
+Combining the results of parts 1 and 2 together we see that formula (\ref{recurs:envelope}) is correct.\qed
+\end{proof}
+
+Thanks to formulas (\ref{recurs:energy}) and (\ref{recurs:envelope}), computation of values $\energy_v$ and
+$\envelope_v$ can be integrated within usual operations with balanced binary trees without changing their time
+complexity, see \tableref{tab:complex1}.
+
+\begin{table}[htb]
+\centering
+  \begin{tabular}{@{\hspace{5pt}}l@{\hspace{5pt}}@{\hspace{5pt}}l@{\hspace{5pt}}}
+  \hline
+  {\bf Operation} & {\bf Time Complexity} \\ \hline
+  $\Theta := \emptyset$ & $\cplx(1)$ \\ 
+  $\Theta := \Theta \cup \{i\}$ & $\cplx(\log n)$ \\ 
+  $\Theta := \Theta \setminus \{i\}$ & $\cplx(\log n)$ \\ 
+  $\envelope(\Theta)$ & $\cplx(1)$ \\ 
+  \hline
+\end{tabular}
+\caption{Worst-case time complexities of operations on $\Theta$-tree.}
+\label{tab:complex1}
+\end{table}
+
+\medskip
+
+The idea of the overload checking algorithm follows. We will iterate over all left cuts $\LCut(T, j)$ by
+non-decreasing $\lct_j$. The cuts will be represented by $\Theta$-tree what allows to quickly recompute
+$\envelope\left(\LCut\left(T, j\right)\right)$ each time when~$j$ is changed. For each set $\Theta = \LCut(T,
+j)$ we check e-feasibility using \propositionref{prop:feasible}. The resulting \algref{alg:overload} has
+worst-case time complexity $\cplx(n \log n)$. 
+
+\begin{lstlisting}[
+  float=htb,
+  caption={Overload Checking in $\cplx(n \log n)$},
+  label=alg:overload
+]
+#$\Theta$# := #$\emptyset$#;
+for #$j \in T$ in non-decreasing order of $\lct_j$# do begin
+  #$\Theta$# := #$\Theta \cup \{j\}$#;
+  if #$\envelope(\Theta) > C\lct_j$# then
+    fail; {#No solution exists#}
+end;
+\end{lstlisting}
+
+
+\section{Max Energy Propagation}
+
+In this section we will extend the algorithm for overload detection to compute maximum energy of each activity
+$i \in T$. The idea of the propagation is to protect possible overload caused by increase of some energy
+demand $\energy_i$.
+
+Consider for example situation on \figureref{fig:theexample}. In this example, minimum required energy of
+activity~$c$ is $\energy_c=4$. Maximum required energy $\enermax_c$ is not depicted on the figure, but lets
+say that $\enermax_c = 10$. However considering also activity~$d$ (which requires at least $\energy_d = 4$)
+the maximum feasible energy for activity~$c$ is $6$, otherwise there would be an overload for $\Omega=\{c,
+d\}$. Therefore we can update $\enermax_c := 6$, and according to formula (\ref{rule:durmax}) $\durmax_c :=
+3$. What we just described on the example is the goal of the presented algorithm: for each activity $i \in T$,
+compute maximum feasible energy $\enermax_i$ such that if $\energy_i$ is increased above $\enermax_i$ then
+there will be an overload.
+
+\medskip
+
+In \propositionref{prop:feasible} we have learned that the resource is e-feasible iff:
+\[
+\forall j \in T: \;\; \envelope\left(\LCut\left(T, j\right)\right) \le C\lct_j
+\]
+In other words we can assign to each set $\LCut\left(T, j\right)$ a maximum feasible envelope $\envmax$:
+\begin{gather}
+\envmax\left(\LCut\left(T,j\right)\right) := C \lct_j
+\label{rootmax}
+\end{gather}
+The idea is to propagate maximum feasible envelope from the set $\LCut(T, j)$ into all its members and this
+way find maximum feasible energy of all activities.
+
+Lets have have a look on the $\Theta$-tree representing a particular set $\Theta = \LCut(T,j)$. For overload
+checking we compute recursively in each node the following values by formulas (\ref{recurs:energy}) and
+(\ref{recurs:envelope}):
+\begin{align}
+  \energy_v   &= \energy_{\lson(v)} + \energy_{\rson(v)} \tag{\ref{recurs:energy}} \\
+  \envelope_v &= \max \left\{ \envelope_{\lson(v)} + \energy_{\rson(v)},\; \envelope_{\rson(v)} \right\}
+  \tag{\ref{recurs:envelope}}
+\end{align}
+The idea is to extend the tree by adding two more attributes into each node of the tree:
+\begin{itemize}
+  \item maximum feasible energy envelope $\envmax_v$ of the set $\Leaves(v)$,
+  \item and maximum feasible energy $\enermax_v$ for the set $\Leaves(v)$.
+\end{itemize}
+The additional attributes can be also computed recursively, this time from root down to the leaves. It starts at
+the root node~$r$ (see (\ref{rootmax})):
+\begin{align}
+  \envmax_r  &:= C \lct_j     \label{rootmaxenv} \\
+  \enermax_r &:= \infty       \label{rootmaxener}
+\end{align}
+The recursive rules to propagate these values down the tree are:
+\begin{align}
+  \envmax_{\rson(v)}  &:= \envmax_v
+    \label{recurs:renvmax} \\
+  \envmax_{\lson(v)}  &:= \envmax_v - \energy_{\rson(v)}
+    \label{recurs:lenvmax} \\
+  \enermax_{\rson(v)} &:= \min \left\{ \envmax_v - \envelope_{\lson(v)}, \enermax_v - \energy_{\lson(v)} \right\} 
+    \label{recurs:renermax} \\
+  \enermax_{\lson(v)} &:= \enermax_v - \energy_{\rson(v)}
+    \label{recurs:lenermax}
+\end{align}
+For an example of computation of $\enermax$ and $\envmax$ see \figureref{fig:maxtree}.
+
+\newcommand{\lmaxnode}[7]{
+  \rput(#1){\rnode{#2}{\psframebox[framearc=0.4]{\parbox{1.25cm}{
+    \vspace{-0.35cm}
+    \begin{align*}
+      \est_{#2} &= #3 \\
+      \energy_{#2} &= #4 \\
+      \envelope &= #5 \\
+      \enermax &= #6 \\
+      \envmax &= #7
+    \end{align*}
+    \vspace{-0.4cm}
+  }}}}
+}
+
+\newcommand{\imaxnode}[6]{
+  \rput(#1){\rnode{#2}{\psframebox[framearc=0.4]{\parbox{1.25cm}{
+    \vspace{-0.35cm}
+    \begin{align*}
+      \energy &= #3 \\
+      \envelope &= #4 \\
+      \enermax &= #5 \\
+      \envmax &= #6
+    \end{align*}
+    \vspace{-0.4cm}
+  }}}}
+}
+
+\begin{figure}[htb]
+  \psset{xunit=1.6cm, yunit=3.5cm}
+  \centering
+  \begin{pspicture}(1, 0.5)(7, 3)
+    \imaxnode{4, 2.6}{x}{14}{24}{\infty}{26}       % Koren
+    \imaxnode{2, 1.9}{y}{6}{10}{\infty}{18}        % Prva vrstva vlevo
+    \imaxnode{6, 1.9}{z}{8}{24}{16}{26}            % Druha vrstva vpravo
+    \lmaxnode{1, 1}{a}{2}{3}{7}{\infty}{15}        % Prvy list
+    \lmaxnode{3, 1}{b}{2}{3}{7}{11}{18}            % Druhy list
+    \lmaxnode{5, 1}{c}{8}{4}{20}{12}{22}           % Treti list
+    \lmaxnode{7, 1}{d}{8}{4}{20}{6}{26}            % Ctvrty list
+    \ncline{x}{y}
+    \ncline{x}{z}
+    \ncline{y}{a}
+    \ncline{y}{b}
+    \ncline{z}{c}
+    \ncline{z}{d}
+  \end{pspicture}
+  \caption{Computation of $\envmax$ and $\enermax$ for $\Theta=\{a, b, c, d\}$ from \figureref{fig:theexample}.
+  Notice that from the nodes representing activities~$c$ and~$d$ we can conclude that $\enermax_c \le 6$ and
+  $\enermax_d \le 6$. In case of activity~$d$ because of $\enermax$ in the node, in case of activity~$c$
+  because of $\envmax$ in the node as will be described by (\ref{prop:enermax}).}
+  \label{fig:maxtree}
+\end{figure}
+
+Formal proof of the recursive rules (\ref{recurs:renvmax}) -- (\ref{recurs:lenermax}) will follow. But let us
+first explain for example construction of formula~(\ref{recurs:renermax}). If $\energy_{\rson(v)}$ is
+increased then it will cause also an increase of $\energy_v$ by formula~(\ref{recurs:energy}). However maximum
+feasible value of $\energy_v$ is $\enermax_v$ and therefore the maximum feasible value of $\energy_{\rson(v)}$
+has to fulfill the following formula:
+\[
+\enermax_{\rson(v)} \le \enermax_v - \energy_{\lson(v)}
+\]
+Similarly, increase of $\energy_{\rson(v)}$ can lead to the increase of $\envelope_v$ by
+formula~(\ref{recurs:envelope}) but it cannot exceed the maximum feasible value $\envmax_v$. Therefore:
+\[
+\enermax_{\rson(v)} \le \envmax_v - \envelope_{\lson(v)}
+\]
+Combining the these two formulas we get rule~(\ref{recurs:renermax}). The remaining three rules
+(\ref{recurs:renvmax}), (\ref{recurs:lenvmax}) and (\ref{recurs:lenermax}) are constructed in a similar way.
+
+\medskip
+
+Let us formally proof correctness of the rules (\ref{recurs:renvmax}) -- (\ref{recurs:lenermax}). We start
+with the following lemma:
+
+\begin{lemma}
+For a node~$w$ and its parent node~$v$ in a $\Theta$-tree: if one of the values $\envmax_w$ and $\enermax_w$
+are not respected (that is $\envelope_w > \envmax_w$ or $\energy_w > \enermax_w$) then at least one of the
+values $\envmax_v$, $\enermax_v$ is not respected too.
+\end{lemma}
+\begin{proof}
+We will split the proof into two parts depending on whether~$w$ is left or right son of node~$v$:
+\begin{enumerate*}
+\item Case $w = \lson(v)$. If $\enermax_w$ is not respected then:
+\begin{align*}
+  \energy_w &> \enermax_w 
+    \stackrel{(\ref{recurs:lenermax})}{=} 
+  \enermax_v - \energy_{\rson(v)} \\
+  \energy_w + \energy_{\rson(v)} &> \enermax_v \\
+  \energy_v &> \enermax_v \quad\quad\text{by (\ref{recurs:energy})}
+\end{align*}
+Therefore if $\enermax_v$ is not respected then $\enermax_v$ is not respected too.
+
+Similarly if $\envmax_w$ is not respected then:
+\begin{align*}
+  \envelope_w &> \envmax_w
+    \stackrel{(\ref{recurs:lenvmax})}{=}
+  \envmax_v - \energy_{\rson(v)} \\
+  \envelope_w + \energy_{\rson(v)} &> \envmax_v \\
+  \max\{\envelope_w + \energy_{\rson(v)},\; \envelope_{\rson(v)}\} &> \envmax_v \\
+  \envelope_v &> \envmax_v \quad\quad\text{by (\ref{recurs:envelope})}
+\end{align*}
+So if $\envmax_w$ is not respected then $\envmax_v$ is not respected too.
+
+\item Case $w = \rson(v)$. If $\enermax_w$ is not respected then:
+\[
+  \energy_w > \enermax_w 
+    \stackrel{(\ref{recurs:renermax})}{=} 
+  \min\{ \envmax_v - \envelope_{\lson(v)},\; \enermax_v - \energy_{\lson(v)}\} \\
+\]
+Therefore 
+\begin{enumerate*}
+\item Either:
+  \begin{align*}
+    \energy_w &>  \envmax_v - \envelope_{\lson(v)} \\
+    \envelope_{\lson(v)} + \energy_w &> \envmax_v \\
+    \envelope_v &> \envmax_v \quad\quad\text{by (\ref{recurs:envelope})}
+  \end{align*}
+  And so $\envmax_v$ is not respected.
+\item Or:
+  \begin{align*}
+    \energy_w &> \enermax_v - \energy_{\lson(v)} \\
+    \energy_{\lson(v)} + \energy_w &> \enermax_v \\
+    \energy_v &> \enermax_v \quad\quad\text{by (\ref{recurs:energy})}
+  \end{align*}
+  And so $\enermax_v$ is not respected.
+\end{enumerate*}
+
+\medskip
+
+Finally if $\envmax_w$ is not respected then:
+\[
+\envelope_w > \envmax_w 
+    \stackrel{(\ref{recurs:renvmax})}{=} 
+    \envmax_v
+\]
+Therefore
+\[
+  \envelope_v 
+    \stackrel{(\ref{recurs:envelope})}{=}
+  \max\{\envelope_{\lson(v)} + \energy_w,\; \envelope_w\} \ge \envelope_w > \envmax_v
+\]
+And thus $\envmax_v$ is not respected.
+\qed
+\end{enumerate*}
+\end{proof}
+
+\medskip
+
+A consequence of this lemma is:
+
+\begin{proposition}
+Let $i \in \LCut(T, j)$ and let~$v$ be a leaf node representing activity~$i$ in $\Theta$-tree for
+$\LCut(T,j)$. If $\energy_i > \min \left\{ \enermax_v,\; \envmax_v - C\est_i \right\}$ then there is an
+overload and therefore the problem is unfeasible.
+\end{proposition}
+\begin{proof}
+If $\energy_i > \min \left\{ \enermax_v,\; \envmax_v - C\est_i \right\}$ then it means that either
+$\enermax_v$ or $\envmax_v$ in the node~$v$ is not respected. By the previous lemma it means that at least one
+of these values is not respected also in parent node of~$v$. And so we continue this way to the root node~$r$
+and prove that $\enermax_r$ or $\envmax_r$ is not respected.
+
+However for root node~$r$, $\enermax_r = \infty$ by (\ref{rootmaxener}) therefore $\enermax_r$ has to be
+respected. The conclusion is that $\envmax_r$ is not respected and therefore:
+\begin{align*}
+  \envelope_r &> \envmax_r
+    \stackrel{(\ref{rootmaxenv})}{=} C \lct_j \\
+  \envelope\left(\LCut\left(T, j\right)\right) &> C \lct_j
+\end{align*}
+So there is overload by \propositionref{prop:feasible}. \qed
+\end{proof}
+
+The proposition above gives as an upper bound for maximum energy available for each activity $i \in \LCut(T,j)$:
+\begin{gather}
+\enermax_i \le \min \left\{ \enermax_v,\; \envmax_v - C\est_i \right\}
+\label{prop:enermax}
+\end{gather}
+Notice that for example on Figures~\ref{fig:theexample}~and~\ref{fig:maxtree} the formula (\ref{prop:enermax}) gives
+$\enermax_c = 6$ and $\enermax_d = 6$ and therefore by (\ref{rule:durmax}) $\durmax_c = 3$ and $\durmax_d=3$.
+
+\medskip
+
+The basic idea of the algorithm follows: we iterate over all activities $j \in T$ and for each $j$ we build
+$\Theta$-tree representing $\LCut(T, j)$ by adding new nodes into the $\Theta$-tree from the previous
+iteration. In each $\Theta$-tree we propagate the maximum energy envelope $C \lct_j$ from the root to leave
+nodes and assign maximum energies to activities $i \in \LCut(T, j)$ according to formula (\ref{prop:enermax}).
+First version of the algorithm with time complexity $\cplx(n^2)$ is provided by \algref{alg:enermax1}. Note
+that this is not the $\cplx(n^2)$ algorithm by Wim Nuijten, for better understanding we start with
+$\cplx(n^2)$ algorithm and then speed it up to $\cplx(n \log n)$.
+
+The algorithm uses two procedures:
+\begin{itemize*}
+  \item {\tt push\_down($v$)} pushes the values $\envmax_v$ and $\enermax_v$ from the node~$v$ down the tree
+    using the rules~(\ref{recurs:renvmax})~--~(\ref{recurs:lenermax}). 
+  \item {\tt set\_energy\_max($i$)} sets maximum energy $\enermax_i$ of the activity~$i$ using
+    formula~(\ref{prop:enermax}).
+\end{itemize*}
+
+\begin{lstlisting}[
+  float=htb,
+  caption={Maximum energy propagation in $\cplx(n^2)$},
+  label=alg:enermax1
+]
+#$\Theta$# := #$\emptyset$#;
+for #$j \in T$ in non-decreasing order of $\lct_j$# do begin
+  #$\Theta$# := #$\Theta \cup \{j\}$#;
+  if #$\envelope(\Theta) > C\lct_j$# then
+    fail; {#No solution exists#}
+  #$\envmax_{\Theta}$# := #$C\lct_j$#;
+  for #nodes~$v$ in $\Theta$-tree in non-decreasing order of their depth# do
+    push_down(#$v$#);
+  for #$i \in \Theta$# do
+    set_energy_max(#$i$#);
+end;
+\end{lstlisting}
+
+Time complexity of this algorithm is $\cplx(n^2)$ because the inner cycles on lines 7 -- 8 and 9 -- 10 have
+time complexity $\cplx(n)$. In the following we will show how to improve the time complexity from $\cplx(n^2)$
+to $\cplx(n \log n)$. 
+
+\medskip
+
+The key observation is that it is not necessary to push values $\enermax_v$ and $\envmax_v$ down to leaves
+immediately. The values $\enermax_v$ and $\envmax_v$ stays valid until new node is inserted into the subtree
+of~$v$. Therefore it is possible to postpone {\tt push\_down($v$)} until new node is inserted somewhere under
+the node~$v$.
+
+Current procedure {\tt push\_down($v$)} simply overwrites values $\enermax$ and $\envmax$ in children nodes of
+$v$. However that is no longer possible in the new algorithm because children nodes may contain information
+which was not pushed down yet. Therefore it is necessary create new procedure {\tt push\_down2($v$)}
+which implements modified rules~(\ref{recurs:renvmax})~--~(\ref{recurs:lenermax}):
+\begin{align}
+  \envmax_{\rson(v)}  &:= \min \left\{ \envmax_v,\; \envmax_{\rson(v)} \right\} \\
+  \envmax_{\lson(v)}  &:= \min \left\{ \envmax_v - \energy_{\rson(v)},\; \envmax_{\lson(v)} \right\} \\
+  \enermax_{\rson(v)} &:= \min \left\{ \envmax_v - \envelope_{\lson(v)},\; 
+                                        \enermax_v - \energy_{\lson(v)},\;
+                                        \enermax_{\rson(v)}
+                               \right\} \\
+  \enermax_{\lson(v)} &:= \min \left\{ \enermax_v - \energy_{\rson(v)},\; \enermax_{\lson(v)} \right\}
+\end{align}
+The values $\enermax_v$ and $\envmax_v$ must be initialized to:
+\begin{align*}
+  \enermax_v &:= \infty\\
+  \envmax_v &:= \infty
+\end{align*}
+
+The postponed calls of {\tt push\_down2($v$)} must be executed just before new node is added into the tree. The
+most suitable place is to replace $\Theta := \Theta \cup \{j\}$ on line 3 by procedure {\tt add($\Theta,j$)}
+which will make necessary postponed calls.
+
+For simplicity, lets assume that the shape of the tree is fixed and no re-balancing occurs during the addition
+of new node into the tree\footnote{This can be achieved for example by computing perfectly balanced tree of
+all activities in advance.}. The procedure {\tt add($\Theta,j$)} has following steps:
+\begin{enumerate}
+  \item Find a node~$w$ under which new node will be inserted.
+  \item Call {\tt push\_down2($v$)} on all nodes~$v$ on the path from the root to~$w$, and then reset these
+    nodes to:
+    \begin{align*}
+      \enermax_v &:= \infty\\
+      \envmax_v &:= \infty
+    \end{align*}
+  \item Add new node in the tree, fill the leaf representing~$j$ by data about the activity~$j$.
+  \item Recompute values $\energy_v$ and $\envelope_v$ on the path from this leaf to the root.
+\end{enumerate}
+
+The resulting \algref{alg:enermax2} has worst case time complexity $\cplx(n \log n)$.
+
+\begin{lstlisting}[
+  float=htb,
+  caption={Maximum energy propagation in $\cplx(n \log n)$},
+  label=alg:enermax2
+]
+#$\Theta$# := #$\emptyset$#;
+for #$j \in T$ in non-decreasing order of $\lct_j$# do begin
+  add(#$\Theta$#, #$j$#);
+  if #$\envelope(\Theta) > C\lct_j$# then
+    fail; {#No solution exists#}
+  #$\envmax_{\Theta}$# := #$C\lct_j$#;
+end;
+for #nodes~$v$ in $\Theta$-tree in non-decreasing order of their depth# do
+  push_down2(#$v$#);
+for #$i \in T$# do
+  set_energy_max(#$i$#);
+\end{lstlisting}
+
+\section{Optional Activities}
+
+As mentioned in the introduction, IBM ILOG CP Optimizer 2.0 \cite{ILOG2008} introduce a new variable type designed
+for scheduling -- interval variable. The difference between activity (as we used this word in this paper) and
+an interval variable is that an interval variable by itself does not require any resource. An activity is
+created when an interval variable is constrained to require a resource. One interval variable may require more
+than one resource, in this case the interval variable is associated with several activities and all of them
+share their start times and end times.
+
+Interval variable in IBM ILOG CP Optimizer has very important aspect: it can be declared as optional, that is, it
+may or may not be present in the solution. In this case all its activities are also optional.
+
+Typical use of optional interval variables are alternative between two different actions. This can be easily
+modeled by two optional interval variables and a constraint that exactly one of them is present in the
+solution. Both optional intervals can require some discrete cumulative resource during their execution,
+however the interval which is not present in the solution does not affect any resource. For more details about
+optional interval variables see \cite{Laborie2008ConditionalTI, ILOG2008}.
+
+From the point of view of the resource, there are some optional activities which may or may not be executed on
+the resource, this is yet to be decided. During the search an optional activity may become:
+\vspace{-1mm}
+\begin{enumerate}[A)]
+\item preset if:
+\begin{enumerate}[1)]
+\item we decide to execute it as a search decision,
+\item or if we proved (by propagation) that no other alternative is possible,
+\end{enumerate}
+\item absent if:
+\begin{enumerate}[1)]
+\item we decided to not to execute it by a search decision,
+\item or if we proved (by propagation) that execution of this activity is not possible.
+\end{enumerate}
+\end{enumerate}
+\vspace{-1mm}
+The algorithm Max Energy presented in this paper can  do the propagation B2) above. This is very important
+propagation because usually any propagation on optionality status has a big impact on other variables.
+
+\smallskip
+
+How to use \algref{alg:enermax2} with optional activities? First observe that from the point of view of
+discrete cumulative resource, there is no difference between absent activity and activity with zero energy
+(that is, activity with zero duration or zero capacity requirement). Zero-energy activity can be processed
+anytime even though the resource is already full.
+
+The idea is to use \algref{alg:enermax2} directly without any modification, but on modified input data. If an
+activity is optional then (just for the algorithm) its minimum energy is set to zero. This way, optional activity
+cannot influence any other activity, however upper bound $\enermax_i$ for energy computed by the algorithm is
+valid also for optional activity~$i$. Furthermore if $\enermax_i < \energy_i$ we can deduce that the
+activity~$i$ cannot be present in the solution.
+
+\section{Conclusions and Further Work}
+
+This paper presents a new Max Energy propagation algorithm which updates maximum durations and maximum
+capacity requirements on discrete cumulative resource with optional activities. The algorithm has better time
+complexity ($\cplx(n \log n)$ versus $\cplx(n^2)$) than old never published algorithm by Wim Nuijten.
+Experiments show that the new algorithm begin to be faster than the old one for $n$ around $10$. The
+algorithm is used by IBM ILOG CP Optimizer \cite{ILOG2008} since version 2.0.
+
+%The cumulative $\Theta$-tree structure described in this paper can be also used by other filtering
+%algorithms for discrete cumulative resource. A paper describing Edge Finding algorithm for discrete cumulative
+%resource with time complexity $\cplx(kn \log n)$ is under preparation.
+
+\bibliography{citations}
+\end{document}
+
+% vim: textwidth=110

@@ -1,0 +1,51 @@
+NbWorkers = 3;
+
+NbHouses  = 5;
+
+TaskNames = { 
+  "masonry", 
+  "carpentry", 
+  "plumbing", 
+  "ceiling",
+  "roofing", 
+  "painting", 
+  "windows", 
+  "facade",
+  "garden", 
+  "moving" 
+};
+
+Duration =  [
+  35,
+  15,
+  40,
+  15,
+  05,
+  10,
+  05,
+  10,
+  05,
+  05
+];
+
+
+ReleaseDate = [ 31, 0, 90, 120, 90];
+
+Precedences = {
+  <"masonry",   "carpentry">,
+  <"masonry",   "plumbing">,
+  <"masonry",   "ceiling">,
+  <"carpentry", "roofing">,
+  <"ceiling",   "painting">,
+  <"roofing",   "windows">,
+  <"roofing",   "facade">,
+  <"plumbing",  "facade">,
+  <"roofing",   "garden">,
+  <"plumbing",  "garden">,
+  <"windows",   "moving">,
+  <"facade",    "moving">,
+  <"garden",    "moving">,
+  <"painting",  "moving">
+ };
+
+

@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Propagation on Optimization Criteria}
+(PhBap)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+SET UP TIMES/COSTS, NUMBER OF LATE JOBS, EARLY/TARDY, ... ????
+DO PAPER.
+
+Much more complex.... 
+
+In our model, a variable $\critvar$ represents the value taken by the
+objective function.
+\begin{equation} \label{OBJ-CT-BIS}
+\critvar =  F(\evar(A_1), \ldots, \evar(A_n))
+\end{equation}
+Considering the objective constraint and the resource constraints
+independently is not a problem when the objective function is a ``maximum'' manong sevral terms (\eg, 
+maximum completion time or the maximum tardiness). 
+Indeed, the upper
+bound on $\critvar$ is directly propagated on the completion time of
+each activity, \ie, deadlines are efficiently tightened. The situation
+is much more complex for sum functions such as weighted sum of completion times 
+$\sum w_i C_i$, weighted tardiness $\sum w_i
+T_i$ or weighted number of late jobs  $\sum w_i U_i$. For these functions, the constraint
+(\ref{OBJ-CT-BIS}) has to be taken into account at each step of the
+search tree. An efficient constraint propagation technique must
+consider the resource constraints and the objective constraint
+simultaneously. 
+
+We describe one example of what can be achieved on a simple the $\sum
+w_i U_i$ criterion. XXXX ??? ON A SINGLE MACHINE ::::
+
+
+%=====================================================================
+\subsection{A Lower Bound of the Number of Late Activities}
+%=====================================================================
+Obtaining a good lower bound of the weighted number of late activities is
+the first step of the constraint propagation process. This lower bound
+is also a lower bound for the domain of the variable
+$\critvar$. Relaxing non-preemption is a well-known technique to
+obtain good lower bounds. Unfortunately, the preemptive problems
+remain NP=-Hard. A ``relaxed
+preemptive lower bound'', \ie, a slightly stronger relaxation than the
+preemptive relaxation, can be used. As shown below, it can be computed
+in $O(n^2 \log n)$ and is valid for all type of resource constraints
+(either with one or several machines).
+
+Let us recall a well-known result for the One-Machine Problem. Its
+preemptive relaxation is polynomial and has some very interesting
+properties: There exists a feasible preemptive schedule if and only if over any
+interval $[t_1, t_2)$, the sum of the processing times of the
+activities in $\{A_i : [t_1 \le \estm_i] \wedge [\letm_i \le t_2]\}$ is lower
+than or equal to $t_2 - t_1$. It is well known that relevant values
+for $t_1$ and $t_2$ are respectively the release dates and the
+deadlines \cite{Carlier84}.
+
+We introduce a decision variable $x_i$ per activity that equals $1$
+when  the activity is on-time and 0 otherwise. Notice that if $\letm_i \le
+\delta_i$, $A_i$ is on-time in any solution, \ie, $x_i = 1$. In such a
+case we adjust the value of $\delta_i$ to $\letm_i$ (this has no
+impact on solutions) so that due dates are always smaller than or
+equal to deadlines. We also assume that there is a preemptive schedule
+that meets all deadlines (if not, the resource constraint does
+not hold and a backtrack occurs). The following Mixed Integer Program (MIP)
+computes the minimum weighted number of late activities in the
+preemptive case:
+\begin{equation} \label{P-EQ}
+\begin{array}{l}
+\begin{displaystyle} \min \sum_1^n w_i(1-x_i) \end{displaystyle} \\
+\text{u.c.~}
+\left\{
+\begin{array}{l}
+\begin{displaystyle}
+\forall t_1, \forall t_2 > t_1, \sum_{S(t_1,t_2)} p_i
++\sum_{P(t_1,t_2)} p_i x_i \le t_2 - t_1 \end{displaystyle} \\
+\forall i \in \{1, \ldots, n\}, x_i \in \{0,1\}
+\end{array}
+\right.
+\end{array}
+\end{equation}
+where $S(t_1, t_2)$ is the set of activities that are sure to execute
+between $t_1$ and $t_2$ and where $P(t_1, t_2)$ is the set of
+activities that are preferred to execute between $t_1$ and $t_2$.
+\begin{eqnarray*} \label{S-AND-P-DEF-EQ}
+S(t_1,t_2) &=& \{A_i: \estm_i \ge t_1 \wedge \letm_i \le t_2\} \\
+P(t_1,t_2) &=& \{A_i: \estm_i \ge t_1 \wedge \letm_i > t_2\ \wedge \delta_i \le t_2\}
+\end{eqnarray*}
+Actually, it easy to see that the relevant values of $t_1$ and $t_2$
+correspond respectively to 
+\begin{itemize}
+\item
+the release dates,
+\item
+the due dates and the deadlines.
+\end{itemize}
+Hence, there are $O(n^2)$ constraints in the MIP. In the following,
+the notation $(t_1, t_2)$ refers to the resource constraint over the
+interval $[t_1, t_2)$. We now focus on the {\bf continuous relaxation}
+of (\ref{P-EQ}) in which the following constraints are added : For any
+activity $A_i$ such that $\estm_i + p_i > \delta_i$, \ie, for any late
+activity, $x_i = 0$.
+\begin{equation} \label{CP-EQ}
+\begin{array}{l}
+\begin{displaystyle} \min \sum_1^n w_i(1-x_i) \end{displaystyle} \\
+\text{u.c.~}
+\left\{
+\begin{array}{l}
+\forall t_1 \in \{\estm_i\}, 
+\forall t_2 \in \{\letm_i\} \cup \{\delta_i\} \;\; (t_2 > t_1) \\
+\begin{displaystyle}
+\; \; \;  \sum_{S(t_1,t_2)} p_i +\sum_{P(t_1,t_2)} p_i x_i \le t_2 - t_1
+\end{displaystyle} \\
+\forall i, \estm_i + p_i > \delta_i \Rightarrow x_i=0 \\
+\forall i \in \{1, \ldots, n\}, x_i \in [0,1]
+\end{array}
+\right.
+\end{array}
+\end{equation}
+(\ref{CP-EQ}) can be solved in $O(n^2 \log n)$ steps. XXX
+
+
+%=====================================================================
+\subsection{Constraint Propagation} \label{CP-LATE-JOBS}
+%=====================================================================
+In this section, some deduction rules are presented. They determine
+that some activities can, must or cannot end before their due date. Consider an
+activity $A_u$ such that $\eetm_u \le \delta_u < \letm_u$; it can be
+either late or on-time. Our objective is to compute efficiently a
+lower bound of the weighted number of late activities if $A_u$ is
+on-time (conversely if $A_u$ is late). If this lower bound is greater
+than the maximal value in the domain of $\critvar$ then $A_u$ must be
+late (conversely on-time). Algorithm \ref{N2LOGN-VIOLATION-ALGO} could
+be used to compute such a lower bound. However, it would be called $n$
+times, leading to a high overall complexity of $O(n^3 \log n)$. We
+propose to use a slightly weaker lower bound that can be computed,
+after some preprocessing, in linear time, for each activity. We will
+see that the overall domain reduction scheme runs in $O(n^2)$.
+
+First, {\em deadlines are relaxed} to a very large value (except for
+the activities that have to be on-time), \ie, late activities can be scheduled
+arbitrarily late. Once this is done, we compute the optimum $X$ of the
+linear program obtained with the relaxed deadlines (the instance is
+well-structured and so we can use Algorithm
+\ref{N2LOGN-VIOLATION-ALGO}). It is easy to see that this program can
+be rewritten as follows:
+\begin{equation} \label{RCP-EQ}
+\begin{array}{l}
+\begin{displaystyle} \min \sum_1^n w_i(1-x_i) \end{displaystyle} \\
+\text{u.c.~}
+\left\{
+\begin{array}{l}
+\begin{displaystyle}
+\forall \estm_j, \forall \delta_k > \estm_j, 
+\sum_{A_i \in P(\estm_j, \delta_k)} p_i x_i \le \delta_k - \estm_j
+\end{displaystyle} \\
+\forall i, \estm_i + p_i > \delta_i \Rightarrow x_i=0 \\
+\forall i, \letm_i \le \delta_i \Rightarrow x_i=1 \\
+\forall i \in \{1, \ldots, n\}, x_i \in [0,1] \\
+\end{array}
+\right.
+\end{array}
+\end{equation}
+The second and the third constraint simply take into account the fact
+that some activities are known to be late (or on-time). Of course, the lower
+bound provided by (\ref{RCP-EQ}) is weaker than the one provided by 
+(\ref{CP-EQ}) (because deadlines have been relaxed). However, the
+computation of $X$ is the basis of our domain reduction scheme. 
+%'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+%'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+\subsubsection{Late Activity Detection}
+%'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+%'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Let (\ref{RCPo-EQ}) be the linear program (\ref{RCP-EQ}) to which the
+constraint $x_u = 1$ has been added. 
+\begin{equation} \label{RCPo-EQ}
+\begin{array}{l}
+\begin{displaystyle} \min \sum_1^n w_i(1-x_i) \end{displaystyle} \\
+\text{u.c.~}
+\left\{
+\begin{array}{l}
+\begin{displaystyle}
+\forall \estm_j, \forall \delta_k > \estm_j, 
+\sum_{A_i \in P(\estm_j, \delta_k)} p_i x_i \le \delta_k - \estm_j
+\end{displaystyle} \\
+\forall i, \estm_i + p_i > \delta_i \Rightarrow x_i=0 \\
+\forall i, \letm_i \le \delta_i \Rightarrow x_i=1 \\
+\forall i \in \{1, \ldots, n\}, x_i \in [0,1] \\
+x_u = 1
+\end{array}
+\right.
+\end{array}
+\end{equation}
+Assume that there is a feasible solution of (\ref{RCPo-EQ}) and let $\Xo$
+be the optimal vector of (\ref{RCPo-EQ}) obtained by Algorithm 
+\ref{N4-VIOLATION-ALGO}. Propositions \ref{SUMPIXOI-PROP} and
+\ref{XOI-PROP} exhibit two relations that $X$ and $\Xo$ 
+satisfy. These relations are used to compute a lower bound of the
+weighted number of late activities.  
+\begin{lemma} \label{SUMPIXOI-PROP}
+$\sum p_i \Xo_i  \le  \sum p_i X_i$
+\end{lemma}
+\begin{lemma} \label{XOI-PROP}
+$\forall i \neq  u, \Xo_i  \le  X_i$
+\end{lemma}
+
+\newpage
+Thanks to Lemmas \ref{SUMPIXOI-PROP} and \ref{XOI-PROP}, we can
+add constraints $\sum p_i \Xo_i  \le  \sum p_i X_i$ and $\forall i
+\neq  u, x_i  \le  X_i$ to the linear program (\ref{RCPo-EQ}). Since we
+are interested in a lower bound of (\ref{RCPo-EQ}), we can also relax
+the resource constraints. As a consequence, we seek to solve the
+following program (\ref{RRCPo-EQ}) that is solved in linear time by
+Algorithm \ref{LATE-JOB-DETECT-ALGO}.
+\begin{equation} \label{RRCPo-EQ}
+\begin{array}{l}
+\begin{displaystyle} \min \sum_1^n w_i(1-x_i) \end{displaystyle} \\
+\text{u.c.~}
+\left\{
+\begin{array}{l}
+\sum p_i x_i  \le  \sum p_i X_i \\
+\forall i \neq u, x_i \le X_i \\
+x_u = 1 \\
+\forall i \in \{1, \ldots, n\}, x_i \in [0,1] \\
+\end{array}
+\right.
+\end{array}
+\end{equation}
+\begin{center}
+
+\end{center}
+\begin{algorithm}
+\caption{A linear time algorithm for late activity detection
+\label{LATE-JOB-DETECT-ALGO}}
+\begin{algorithmic}[1]
+\FOR{$i \la 1$ to $n$}
+  \STATE{$\Xo_i \la 0.0$}
+\ENDFOR
+\STATE $\Xo_u \la 1$
+\STATE $\maxval \la \sum p_i X_i - p_u$
+\FOR{$i \la 1$ to $n$ and $i \neq u$}
+  \STATE{$\Xo_i \la \min(X_i, \maxval / p_i)$}
+  \STATE{$\maxval = \maxval - p_i * \Xo_i$}
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{On-Time Activity Detection}
+
+Let $A_u$ be an activity such that $\eetm_u \le \delta_u < \letm_u$.
+$A_u$ can be either late or on-time. We want to compute a lower bound of the
+number of late activities if it is late. Let $\Xl$ be the optimal vector
+of the linear program (\ref{RCP-EQ}) to which the constraint $x_u = 0$ has
+been added. We claim that $\sum  p_i \Xl_i  \le  \sum  p_i X_i$ and that
+$\forall  i \neq  u, \Xl_i \ge X_i$ (proofs are similar to the proofs of
+Lemmas \ref{SUMPIXOI-PROP} and \ref{XOI-PROP}). The same
+mechanism than for the late activity detection then applies: The new
+constraints are entered in the linear program while the resource
+constraints are removed. The resulting linear program can be also
+solved in linear time.
+
+\subsubsection{Example}
+
+Consider the instance of Figure
+\ref{N2LOGN-VIOLATION-ALGO-ILLUSTRATION}. Deadlines are relaxed. The
+optimal vector of (\ref{RCP-EQ}) is $X_1 = 1, X_2 = 5/7, X_3 = 3 /5, X_4 
+= 0$. The lower  bound is then $(0 * 10) / 2 + (2 * 30) / 7 + (2 * 20)
+/ 5 + (3 *  5) / 3 = 21.57$ Assume that the domain of $\critvar$ is
+$[22, 26]$. Let us try to put $A_4$ on-time. The optimum of (\ref{RRCPo-EQ})
+is $\Xo_1 = 1, \Xo_2 = 5/7, \Xo_3 = 0, \Xo_4 = 1$. Thus, the new lower
+bound is $(0 * 10) / 2 + (2 * 30) / 7 + (5 * 20) / 5 + (0 *  5) / 3 =
+28.57$. Given the domain of $\critvar$, we deduce that $A_4$ must be
+late. 
+

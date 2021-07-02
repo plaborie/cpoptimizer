@@ -1,0 +1,9 @@
+ILOG_CSV_FORMAT,1.1,,,,,,,,,,
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine,
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0,
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-search SchedulerLNS -result ResultAirTrafficFlowManagement.csv -numberOfRuns 5 -scenarii c:\ilog\scheduler-papers\mista-2007\scenarii\AirTrafficFlowManagement\scenario.csv,
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS,1,1,1,0,0,0,0,0,0,0,0
+RESULT, AirTrafficFlowManagement, atfm.dat, ,808.3324,7,0,0,18570,100,-1,2

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project description="Air Traffic Flow Management problem">
+
+    <configs>
+
+        <config name="Basic Configuration" category="opl" default="true">
+
+            <ref name="sched_atfm.mod"/>
+
+          <ref name="sched_atfm.dat"/>
+    </config>
+
+    </configs>
+
+    <model name="sched_atfm.mod"/>
+
+  <data name="sched_atfm.dat"/>
+</project>

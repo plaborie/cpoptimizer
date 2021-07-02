@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project description="Classical Resource-Constrained Project Scheduling problem">
+
+
+            <configs>
+
+
+                        <config name="sched_rcpspmm rcpspmm_j30_12_8" category="opl" default="true" closed="true">
+
+                                    <ref name="sched_rcpspmm.mod"/>
+
+                                    <ref name="sched_rcpspmm.ops"/>
+
+                                    <ref name="rcpspmm_j30_12_8.dat"/>
+
+                        </config>
+
+
+                        <config name="sched_rcpspmm rcpspmm_j30_17_7" category="opl" default="false" closed="true">
+
+                                    <ref name="sched_rcpspmm.mod"/>
+
+                                    <ref name="sched_rcpspmm.ops"/>
+
+                                    <ref name="rcpspmm_j30_17_7.dat"/>
+
+                        </config>
+
+
+                        <config name="sched_rcpspmm rcpspmm_j30_27_6" category="opl" default="false" closed="true">
+
+                                    <ref name="sched_rcpspmm.mod"/>
+
+                                    <ref name="sched_rcpspmm.ops"/>
+
+                                    <ref name="rcpspmm_j30_27_6.dat"/>
+
+                        </config>
+
+
+                        <config name="sched_rcpspmm rcpspmm_j30_46_1" category="opl" default="false" closed="true">
+
+                                    <ref name="sched_rcpspmm.mod"/>
+
+                                    <ref name="sched_rcpspmm.ops"/>
+
+                                    <ref name="rcpspmm_j30_46_1.dat"/>
+
+                        </config>
+
+
+                        <config name="sched_rcpspmm rcpspmm_j30_62_10" category="opl" default="false" closed="false">
+
+                                    <ref name="sched_rcpspmm.mod"/>
+
+                                    <ref name="sched_rcpspmm.ops"/>
+
+                                    <ref name="rcpspmm_j30_62_10.dat"/>
+
+                        </config>
+
+            </configs>
+
+
+            <model name="sched_rcpspmm.mod"/>
+
+            <setting name="sched_rcpspmm.ops"/>
+
+            <data name="rcpspmm_j30_12_8.dat"/>
+
+            <data name="rcpspmm_j30_17_7.dat"/>
+
+            <data name="rcpspmm_j30_27_6.dat"/>
+
+            <data name="rcpspmm_j30_46_1.dat"/>
+
+            <data name="rcpspmm_j30_62_10.dat"/>
+
+
+</project>

@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{OPLDevStudio2008}
+ILOG.
+\newblock {\em ILOG OPL Development Studio 6.1. Manual}, September 2008.
+\newblock Trial version: http://www.ilog.com/products/oplstudio/.
+
+\bibitem{Laborie2007}
+P.~Laborie and D.~Godard.
+\newblock Self-adapting large neighborhood search: Application to single-mode
+  scheduling problems.
+\newblock In {\em Proc. MISTA-07}, 2007.
+
+\bibitem{Laborie2008}
+Philippe Laborie and J´erˆome Rogerie.
+\newblock Reasoning with conditional time-intervals.
+\newblock In {\em Proc. FLAIRS-08}, 2008.
+
+\end{thebibliography}

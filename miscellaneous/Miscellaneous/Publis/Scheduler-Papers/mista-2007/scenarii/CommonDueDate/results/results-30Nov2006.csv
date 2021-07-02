@@ -1,0 +1,28 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result CommonDueDate.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\CommonDueDate\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, CommonDueDate, sch100-01, 0.8, 352.141, 402, 0, 0, 73564, 100, -1, 0
+RESULT, CommonDueDate, sch100-03, 0.2, 56.3594, 71, 0, 0, 144574, 100, -1, 0
+RESULT, CommonDueDate, sch100-03, 0.4, 588.641, 78, 0, 0, 100121, 100, -1, 0
+RESULT, CommonDueDate, sch100-03, 0.6, 527.297, 472, 0, 0, 70850, 100, -1, 0
+RESULT, CommonDueDate, sch100-04, 0.4, 62.2344, 44, 0, 0, 97935, 100, -1, 0
+RESULT, CommonDueDate, sch100-04, 0.6, 551.859, 324, 0, 0, 72356, 100, -1, 0
+RESULT, CommonDueDate, sch100-05, 0.2, 62.5156, 74, 0, 0, 140629, 100, -1, 0
+RESULT, CommonDueDate, sch100-08, 0.4, 201.125, 98, 0, 0, 114617, 100, -1, 0
+RESULT, CommonDueDate, sch100-09, 0.6, 227.719, 380, 0, 0, 62109, 100, -1, 0
+RESULT, CommonDueDate, sch100-10, 0.2, 38.7813, 81, 0, 0, 133138, 100, -1, 0
+RESULT, CommonDueDate, sch200-01, 0.6, 1197.58, 367, 0, 0, 291170, 100, -1, 0
+RESULT, CommonDueDate, sch200-05, 0.2, 1106.41, 201, 0, 0, 586624, 100, -1, 0
+RESULT, CommonDueDate, sch200-05, 0.8, 1196.48, 385, 0, 0, 306127, 100, -1, 0
+RESULT, CommonDueDate, sch200-07, 0.2, 1118.42, 196, 0, 0, 517358, 100, -1, 0
+RESULT, CommonDueDate, sch200-07, 0.8, 1199.14, 279, 0, 0, 293190, 100, -1, 0
+RESULT, CommonDueDate, sch200-08, 0.8, 1193.28, 315, 0, 0, 262155, 100, -1, 0
+RESULT, CommonDueDate, sch200-09, 0.4, 616.297, 149, 0, 0, 414714, 100, -1, 0
+RESULT, CommonDueDate, sch200-09, 0.8, 1198.5, 353, 0, 0, 307680, 100, -1, 0
+RESULT, CommonDueDate, sch200-10, 0.4, 1195.97, 513, 0, 0, 369412, 100, -1, 0
+RESULT, CommonDueDate, sch200-10, 0.6, 1200.13, 487, 0, 0, 295830, 100, -1, 0

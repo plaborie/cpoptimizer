@@ -1,0 +1,18 @@
+The figures given  in the article correspond  to the programs given in
+this directory executed on the following machine:
+
+     HP-UX B.11.00 A 9000/785 
+
+With the following compiler version:
+
+     HP aC++ B3910B A.03.15
+
+With the following compiler options:
+
+     +DA2.0 -O (PA8000 architecture, 32 bits word size)
+
+Using the following versions of ILOG products:
+      
+      ILOG Concert 1.2
+      ILOG Solver 5.2
+      ILOG Scheduler 5.2

@@ -1,0 +1,124 @@
+AVERAGE OVERALL RECOMMENDATION 	5.64 
+______________________________________________________________________________________________________
+REVIEWERID: 1423   	8 	8 	10 	8 	8 	8 	7 	8
+COMMENTS TO AUTHOR(S)
+GENERAL COMMENTS
+
+THE AUTHOR PRESENTS AN INTERESTING APPROACH TO FINDING A MINIMAL SUBSET OF A GIVEN SET THAT SATISFIES AN UPWARD-CLOSED PROPERTY P. THE AUTHOR SHOWS THAT THIS APPROACH OBTAINS A NOTICEABLE GAP WITH RESPECT TO THE CURRENT STATE-OF-THE-ART APPROACH. THE APPROACH IS BASED ON THE OBSERVATION THAT THE (J + 1)TH ELEMENT OF THE SELECTED MINIMAL SUBSET IS LIKELY TO BE CLOSE TO THE JTH ELEMENT, AND THE DISTANCE BETWEEN THESE TWO ELEMENTS DOES NOT DEPEND ON J IN PRACTICE.
+
+SPECIFIC COMMENTS
+(1) I THINK THE FOLLOWING BIT NEEDS MORE ELABORATION:
+
+"IT IS NOT NECESSARY TO STOP THE ALGORITHM AS SOON AS ONE HAS PROVED THE CURRENT SUBSET X SATISFIES THE PROPERTY: ONE CAN LET THE FUNCTION FINDNEXT SHOW THAT THE CURRENT SUBSET DOES NOT HAVE TO BE EXTENDED."
+
+I GUESS IN THIS CASE, FINDNEXT WILL BE CALLED WITH A SET THAT ALREADY SATISFIES P (I.E., P(X) HOLDS). WHAT VALUE SHOULD FINDNEXT RETURN IN THIS CASE? IN MY OPINION, IF P(X) HOLDS, FINDNEXT SHOULD RETURN 'NONE' (OR ANY OTHER VALUE THAT DENOTES THIS SPECIAL CASE). IF THE IDEA IS TO LET FINDNEXT SHOW THAT THE CURRENT SUBSET DOES NOT HAVE TO BE EXTENDED, SHOULD'T FINDMINIMALSUBSET TAKE CARE OF THE SPECIAL CASE WHEN FINDNEXT RETURN 'NONE'?
+
+(2) BOTH ALGORITHM 1 AND ALGORITHM 2 START BY SHUFFLING U TO ENSURE THAT MINIMAL SUBSETS ARE UNIFORMLY DISTRIBUTED IN U SO THAT THE MAIN CONCLUSIONS OF SECTION 3 CAN BE EXPLOITED. I WONDER WHETHER YOUR APPROACH COULD BE EASILY EXTENDED TO HANDLE PREFERENCES BETWEEN MINIMAL SUBSETS (AS IT IS THE CASE IN QUICKXPLAIN). WOULD THIS SHUFFLING STEP POSE ANY ISSUE? I UNDERSTAND THAT SKIPPING THE SHUFFLING STEP WOULD NOT COMPROMISE THE SOUNDNESS OF THE APPROACH. BUT IT IS NOT CLEAR WHAT THE IMPLICATION IS IN TERMS OF PERFORMANCE IF THE SHUFFLING STEP IS OMITTED. IN FACT, HAVE YOU EMPIRICALLY MEASURED THE IMPORTANCE OF LINE1 IN ALGORITHMS 1 AND 4.
+
+(3) YOU INTRODUCE SEVERAL PROPERTIES, BUT YOU DON'T ACTUALLY PROVE THEM. IT WOULD BE NICE TO REFER THE READER TO AN EXTENDED VERSION OF THIS PAPER WHERE THE PROOFS ARE INCLUDED.
+
+(4) LITTLE TYPO: IN
+
+"FOR 1 \LEQ I \LEQ N,U_{I->} DENOTES THE SUBSET {U_J | I \LEQ J \LEQ N} OF ALL U_J WITH INDEX GREATER THAN I."
+
+I ASSUME YOU MEAN GREATER THAN OR EQUAL TO I.
+
+
+SUMMARY OF REVIEW
+I FOUND THE PAPER INTERESTING. THE FACT THAT THE APPROACH IS ACTUALLY IN USED IN PRACTICE IN CP OPTIMISER IS REASSURING.
+
+
+
+Authors response by Philippe Laborie (2014-04-15 13:36:59) to review 	 
+In the authors opinion this is a good review with valuable input
+
+Indeed, in the version with lazy checks, FindNext should return a specific value when it does not find any candidate to be added to X because X already satisfies the property. We will fix the description of the algorithm in the final version. Thanks for noticing it.
+
+The approach can be easily extended to handle preferences (in fact, its implementation in CP Optimizer already allows it). The set is sorted by increasing preferences, ties are randomly broken (partial shuffling). This does not jeopardize the performances of the algorithm because ADEL also turns out to have a good complexity not only in average, but also in the worst case (we conjecture that ADEL always have a worst-case complexity better than the one of QuickXplain but still could not prove it, beside the trivial extreme cases of a MUC of size 1 and n).
+
+Proofs will be provided in a technical report.
+
+______________________________________________________________________________________________________
+REVIEWERID: 1502   	5 	6 	6 	7 	7 	6 	8 	5
+COMMENTS TO AUTHOR(S)
+
+THE PAPER PRESENTS A GENERAL ALGORITHM TO DEAL WITH MUC EXTRACTION, WITHOUT
+BEEN A DOMAIN SPECIFIC ALGORITHM.
+THE PAPER IS WELL WRITTEN AND IT IS CLEAR ENOUGH TO FOLLOW, BUT I HAVE SOME CONCERN ON IT:
+
+1) IN THE PAPER THERE IS NOT MENTION ABOUT THE QUALITY OF THE SOLUTION. I BELIEVE THAT A X* WITH A SMALLEST SIZE IS ALWAYS BETTER, BUT THIS IS NOT GUARANTEE BY THE ALGORITHM THAT IT IS BIASED BY THE ORDER OF THE U SET. CAN THE AUTHOR SPEND SOME MORE WORDS ABOUT THE "QUALITY" OF THE SOLUTION?
+
+2) THE EXPERIMENTAL ANALYSIS DOES NOT CONVINCE AT ALL. FIRST THE TWO ALGORITHMS ARE QUITE CLOSE IN TERMS OF NUMBER OF PROPERTY CHECKS. SECOND IT CONTAINS BENCHMARKS CONTAINING ONLY ONE MUC, WHAT HAPPENS IN CASE OF MORE MUC? IS THE QUALITY OF THE SOLUTION IMPORTANT (SMALLER MUC ARE ALWAYS BETTER OR NOT)?. THESE ARE THE QUESTIONS THAT THE AUTHOR SHOULD ANSWER.
+
+3) IT WOULD BE GREAT TO HAVE ALSO A COMPARISON WITH DOMAIN SPECIFIC MUC EXTRACTOR: IS THERE ANY ADVANTAGES TO PERFORM LESS TEST IF THE SPECIFIC DOMAIN CHECK HAS ZERO TIME COST?
+
+SUMMARY OF REVIEW
+THE PAPER PRESENTS SOME NICE RESULTS, BUT I BELIEVE THAT THE EXPERIMENTAL PART SHOULD BE INCREASED.
+
+
+
+Authors response by Philippe Laborie (2014-04-15 13:37:53) to review 	 
+In the authors opinion this is a good review with valuable input
+
+Small MUCs are indeed usually preferable. When there are many MUCs of different size, after shuffling the set, the selected MUC will tend to be a small one (section 3.3). But there is no guarantee indeed (finding a smallest MUC is NP-Complete). As far as solution quality is concerned, the algorithm can also be adapted to handle preferences (see answer to reviewer 1).
+
+Section 5.2 describes experiments with several MUCs. Note the logarithmic scale on the y-axis which may make the curves look closer than they are. In our experiments, ADEL consistently performed between 10% and 50% less checks than QuickXPlain, with optimal complexity guarantee in particular cases.
+
+Comparison with specific approaches would be interesting, indeed. But a fair comparison is difficult. Specific extractors will take advantage of a particular "pure" approach (LP, CP tree search, ...) whereas the proposed non-intrusive approach can exploit more complex and efficient hybrid solvers.
+
+______________________________________________________________________________________________________
+REVIEWERID: 1581   	4 	5 	7 	4 	6 	7 	7 	4
+
+COMMENTS TO AUTHOR(S)
+THIS PAPER PRESENTS AN ALGORITHM FOR COMPUTING A MINIMAL UNSATISFIABLE
+CORE (MUC), ASSUMING NO SPECIFIC KNOWLEDGE ABOUT THE INSTANCE THAT
+CONTAINS THE MUC AND THE KINDS OF CONSTRAINTS IT CONTAINS, HENCE A
+"BLACK BOX" NETWORK.
+
+GIVEN THE BLACK BOX RESTRICTION, THE ALGORITHM DOES NOT DRAMATICALLY
+IMPROVE THE STATE OF THE ART. THE IMPROVEMENTS ARE IN TWO AREAS:
+
+- WHEN THE MUC IS LARGE, IT ELIMINATES A SET OF CHECKS WHICH BASICALLY
+IMPROVE PERFORMANCE FOR SMALL MUCS ONLY (THE "LAZY CHECKS" SECTION).
+
+- IT ASSUMES THAT THE CONSTRAINTS THAT PARTICIPATE IN THE MUC ARE
+APPROXIMATELY UNIFORMLY DISTRIBUTED IN THE SEQUENCE OF ALL
+CONSTRAINTS.
+
+THE FIRST CONTRIBUTION IS RELATIVELY MINOR. THE SECOND IS PROBLEMATIC
+IN MY OPINION. THE THEORETICAL RESULTS ARE FOR EXTREMELY LIMITED CASES
+(UNIQUE MINIMAL MUC OR DISJOINT MINIMAL MUCS) AND THE EMPIRICAL STUDY
+HAS THE CRITICAL FLAW THAT IT USES A VERY SMALL NUMBER OF MINIMAL
+MUCS. THE EMPIRICAL EVALUATION HAS THE SAME PROBLEM (TESTS ARE ON
+INSTANCES WITH A SMALL NUMBER OF MUCS). AS THE AUTHOR POINTS OUT, THIS
+THE NUMBER OF MUCS CAN BE EXPONENTIAL IN THE NUMBER OF CONSTRAINTS, SO
+I DO NOT KNOW HOW REALISTIC THIS EVALUATION IS.
+
+ANOTHER ISSUE IS THAT THE EVALUATION IS BASED SIMPLY ON THE NUMBER OF
+CHECKS OF THE PROPERTY P (TESTS OF UNSATISFIABILITY). BUT ALL CHECKS
+DO NOT HAVE THE SAME COST. THIS COST IS NOT PREDICTABLE, BUT CANNOT BE
+IGNORED. BESIDES, THE IMPROVEMENT THAT IS ACHIEVED BY THIS ALGORITHM
+IS REALLY MARGINAL.
+
+
+SUMMARY OF REVIEW
+THE PAPER PRESENTS AN ALGORITHM FOR EXTRACTING MUCS. THE BASIC IDEAS
+USED ARE BASED ON A PROBABILISTIC STUDY OF SOME RESTRICTED
+CASES. HOWEVER, BOTH THE THEORETICAL AND EMPIRICAL STUDY IS TOO
+RESTRICTED, AND THE EXPERIMENTAL EVALUATION SHOWS ONLY MARGINAL
+IMPROVEMENTS.
+
+
+Authors response by Philippe Laborie (2014-04-15 13:38:35) to review 	 
+In the authors opinion this is a good review with valuable input
+
+Lazy checks work the other way round and improve performance for large MUCs (up to a factor 2), see section 5.1.
+
+When the number of MUCs gets large, once any particular structure has been ruled out by the shuffling step, the selected MUC tends to be a relatively small one at the end of the sequence. ADEL will quickly find it after the initial dichotomy. Experiments on Figure 10 suggest that the gain compared to QuickXplain slightly grows with the number of MUCs.
+
+Beside the gain in terms of number of checks and proofs of optimal complexity in particular cases, an interest of ADEL is to combine the simplicity of iterative algorithms (DC) with the efficiency and robustness of recursive ones (QuickXPlain).
+
+All checks indeed do not have the same cost. We think this is a reasonable price to pay for a generic algorithm that applies to many other domains.
+
+
+

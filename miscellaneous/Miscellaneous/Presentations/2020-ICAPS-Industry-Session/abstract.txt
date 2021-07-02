@@ -1,0 +1,38 @@
+Title: CP Optimizer: a generic optimization engine for solving industrial scheduling problems
+
+Abstract:
+
+Classical scheduling problems (like job-shop or RCPSP) are among the most difficult problems
+studied in combinatorial optimization. Still, they are far from accounting for all the complexity
+of industrial scheduling applications. Since more than 20 years, our team at ILOG (now IBM)
+develops and integrates a large panel of techniques from AI (constraint programing, temporal
+reasoning, learning, ...) and OR (mathematical programming, graph algorithms, local search, ...)
+to solve our customers most complex scheduling problems.
+These works have lead to the design of CP Optimizer, a generic solver based on a very expressive
+(but still, quite concise) mathematical modeling language to formulate complex scheduling problems.
+The models are solved with an automatic search algorithm that is exact, efficient, robust and
+continuously improving. This talk gives a short overview of CP Optimizer.
+
+
+
+
+
+
+
+15' talks followed by questions from the public to all speakers.
+
+P.S.: [commentaire personnel qui n'engage à rien] J'imagine que la
+plupart des présentations s'appuieront sur des applications pour mettre
+en avant des problématiques planning/scheduling, et présenter les
+solutions adoptées (s'il y en a).  Mais une présentation plus orientée
+"outils et méthodes" d'une entreprise expérimentée aurait du sens.
+
+Le 20/01/2020 à 09:35, Philippe Laborie a écrit :
+> Bonjour Olivier,
+> Desole pour ma reponse un peu tardive. Oui, nous serions interesse de
+> notre cote (s'il n'est pas trop tard).
+> Dans mon groupe,  nous sommes davantage fournisseurs d'algorithmes ou de
+> solutions plutot que de problemes.
+> Nous pourrions soit faire une courte presentation de nos outils pour les
+> problemes planning/scheduling, soit se focaliser davantage sur des
+> applications recentes.

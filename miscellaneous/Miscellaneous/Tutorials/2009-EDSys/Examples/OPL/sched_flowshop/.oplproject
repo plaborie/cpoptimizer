@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <version>1.0</version>
+  <description>Classical Flow-shop scheduling problem</description>  
+  <configs>
+    <config name="sched_flowshop flowshop_tail20_5_3" default="true" category="opl">
+      <ref name="flowshop_tail20_5_3.dat" type="data"/>
+      <ref name="sched_flowshop.mod" type="model"/>
+      <ref name="sched_flowshop.ops" type="setting"/>
+    </config>
+    <config name="sched_flowshop flowshop_tail20_10_2" default="false" category="opl">
+      <ref name="flowshop_tail20_10_2.dat" type="data"/>
+      <ref name="sched_flowshop.mod" type="model"/>
+      <ref name="sched_flowshop.ops" type="setting"/>
+    </config>
+    <config name="sched_flowshop flowshop_tail20_20_5" default="false" category="opl">
+      <ref name="flowshop_tail20_20_5.dat" type="data"/>
+      <ref name="sched_flowshop.mod" type="model"/>
+      <ref name="sched_flowshop.ops" type="setting"/>
+    </config>
+    <config name="sched_flowshop flowshop_tail50_5_9" default="false" category="opl">
+      <ref name="flowshop_tail50_5_9.dat" type="data"/>
+      <ref name="sched_flowshop.mod" type="model"/>
+      <ref name="sched_flowshop.ops" type="setting"/>
+    </config>
+    <config name="sched_flowshop flowshop_tail50_10_6" default="false" category="opl">
+      <ref name="flowshop_tail50_10_6.dat" type="data"/>
+      <ref name="sched_flowshop.mod" type="model"/>
+      <ref name="sched_flowshop.ops" type="setting"/>
+    </config>
+  </configs>
+</project>

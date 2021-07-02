@@ -1,0 +1,69 @@
+
+_______________________________________________________________________
+1- Install IBM CPLEX Optimization Studio on your computer
+
+CP Optimizer is one of the tools available in
+IBM CPLEX Optimization Studio.
+
+A free version of IBM CPLEX Optimization Studio is available
+thanks to the IBM Academic Initiative program.
+
+The ESIEE is part of this program so if you use your ESIEE email
+address to access it, you should be able to download
+IBM CPLEX Optimization Studio.
+
+Please do not forget tou use your ESIEE email address,
+not your personal one.
+
+Go to in order to create an account: https://www.ibm.com/academic
+
+You will probably also have to create an IBM ID (here also, please use
+your ESIEE email)
+
+Once you are connected to the Academic Initiative page,
+Select "Technology -> Data Science" from the top menu.
+
+Then "Software" and in "ILOG CPLEX Optimization Studio",
+select "Download v12.10"
+
+Then select the version depending on your Operating System
+(Windows, Linux, Mac):
+
+- IBM ILOG CPLEX Optimization Studio V12.10 for Windows x86-64 Multilingual
+- IBM ILOG CPLEX Optimization Studio V12.10 for Linux x86-64 Multilingual
+- IBM ILOG CPLEX Optimization Studio V12.10 for OSX Multiplatform Multilingual
+
+Then you can install the downloaded installer just by clicking on it and
+follow the instructions.
+
+_______________________________________________________________________
+2- Install Python (if not installed on your machine)
+
+_______________________________________________________________________
+3- Install the public Python API for IBM CPLEX Optimization Studio
+
+> pip install docplex
+
+_______________________________________________________________________
+4- Download the directory containing material for the workshop
+
+An archive is available here (Workshop-13-Oct-2020.zip): 
+https://home.thomas.baudel.name/nextcloud/index.php/s/mtcQ5KPsLTfXc7k
+
+_______________________________________________________________________
+5- Try Python
+
+> cd Workshop-13-Oct-2020/V0
+> python gift_production.py
+
+You should see something happening until a window that
+displays a schedule opens ...
+
+_______________________________________________________________________
+6- [Optional] Try Notebook
+
+> cd Workshop-13-Oct-2020/NoteBooks
+> jupyter notebook
+
+You can select one of the Notebooks in the browser
+(GiftProduction, SingleMachine, Sudoku) and try to execute it.

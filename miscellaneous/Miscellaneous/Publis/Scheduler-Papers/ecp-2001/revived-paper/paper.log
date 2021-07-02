@@ -1,0 +1,199 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=latex 2012.5.7)  22 APR 2013 10:39
+entering extended mode
+**C:/MyOffice/dev/scheduler-papers/ecp-2001/revived-paper/paper.tex
+(C:/MyOffice/dev/scheduler-papers/ecp-2001/revived-paper/paper.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, arabic, armenian, assamese, basque, bengali
+, bokmal, bulgarian, catalan, coptic, croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, galic
+ian, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, icelandic, indonesian, interlingua, irish, italian,
+ kannada, kurmanji, lao, latin, latvian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, ng
+erman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, romanian, russian, sanskrit, serbian, slovak, s
+lovenian, spanish, swedish, swissgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usenglishm
+ax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\aaai.sty
+Conference Style for AAAI for LaTeX 2e -- version of 2 February 2013
+\titlebox=\skip43
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\helvet.sty"
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\courier.sty"
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvips.def"
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+\epsfxsize=\dimen105
+\epsfysize=\dimen106
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def"
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\base\makeidx.sty"
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+pdfTeX warning (\pdfinfo): not allowed in DVI mode (\pdfoutput <= 0); ignoring it
+(C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\paper.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 18.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 28.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 28.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 29.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 98.
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--109
+\OT1/ptm/m/n/10 An ac-tiv-ity $\OML/cmm/m/it/10 A$ \OT1/ptm/m/n/10 cor-re-sponds to a time in-ter-val
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 98--109
+\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 start\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; end\OT1/cm
+r/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ))$ \OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 start\OT1/cmr/m/n/10 (\OML/cmm/m
+/it/10 A\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 end\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 )
+$ \OT1/ptm/m/n/10 are
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 98--109
+\OT1/ptm/m/n/10 the de-ci-sion vari-ables de-not-ing the start and end time
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 98--109
+\OT1/ptm/m/n/10 cur-rent ear-li-est start time, $\OML/cmm/m/it/10 start[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n
+/10 )$ \OT1/ptm/m/n/10 the lat-est start
+ []
+
+[1
+
+
+
+]
+Underfull \hbox (badness 1642) in paragraph at lines 135--142
+ \OT1/ptm/b/n/10 Re-source con-straints. \OT1/ptm/m/n/10 A \OT1/ptm/b/n/10 re-source con-straint \OT1/ptm/m/n/10 de-fine
+s
+ []
+
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+[2]
+Overfull \hbox (19.76413pt too wide) in alignment at lines 307--311
+ [][][] []
+ []
+
+
+Overfull \hbox (7.0369pt too wide) in alignment at lines 315--320
+ [][][] []
+ []
+
+[3] (C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\figure2.pstex_t
+File: figure2.pstex Graphic file (type eps)
+ <figure2.pstex>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 14.
+) [4]
+(C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\figure3.pstex_t
+File: figure3.pstex Graphic file (type eps)
+ <figure3.pstex>)
+Overfull \hbox (1.05809pt too wide) in alignment at lines 547--550
+ [][][] []
+ []
+
+
+Overfull \hbox (8.04965pt too wide) in alignment at lines 582--586
+ [][][] []
+ []
+
+[5]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 686.
+ [6] (C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\paper.bbl
+Underfull \hbox (badness 2762) in paragraph at lines 46--51
+\OT1/ptm/m/n/10 tem-porel sous con-traintes de ressources et probl[]emes
+ []
+
+) [7] (C:\MyOffice\dev\scheduler-papers\ecp-2001\revived-paper\paper.aux) ) 
+Here is how much of TeX's memory you used:
+ 920 strings out of 494046
+ 13057 string characters out of 3148333
+ 74783 words of memory out of 3000000
+ 4228 multiletter control sequences out of 15000+200000
+ 12703 words of font info for 34 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 32i,13n,21p,271b,313s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on paper.dvi (7 pages, 63500 bytes).

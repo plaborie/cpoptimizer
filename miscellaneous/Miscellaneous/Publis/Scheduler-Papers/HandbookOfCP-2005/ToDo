@@ -1,0 +1,125 @@
+a) Having ERP and APS in index?
+b) Having "default search" in index?
+
+-------------------------------------------------------------------------------------
+---- Corrected.
+-------------------------------------------------------------------------------------
+
+1) Do we keep the current title? Alternative titles: Constraint Programming for Scheduling and Planning. Constraint-Based Scheduling and Planning. Choose the latter.
+
+2) Reference for CSP.
+
+3) Do we talk about "alternative" (mode) cost?
+
+4) Which other products than Scheduler can handle breakable acts and calendars?
+
+5) Which other articles talk about breakable acts and calendars?
+
+6) In the obj fuction part: What about "mode cost", non-performance cost, storage cost? References?
+
+7) Solve the \tt stuff
+
+8) Solve the \sc stuff
+
+9) Solve the \text stuff
+
+10) Solve \leadsto
+
+11) Solve \svar etc. in subscript.
+
+12) Solve algorithm/algorithmic packages.
+
+13) Solve notations around the use of e and c in all kinds of forms.
+
+14) WN + PhilippeL: work on notation stuff around the balance constraint.
+
+15) Make things appear in the index.
+
+16) WN: write Conclusion.
+
+17) In Disj Ct Prop part: (TODO Commentaire de Philippe L. pas lisible ...)
+
+18) Add references to "Techniques similar to edge-finding have been proposed to propagate
+groups of mutex relations in planning."
+
+19) Add references on early/tardy propagation.
+
+20) Add references for examples of propagation on Optimization Criteria.
+
+21) Original reference of work on Weighted Number of Late Activities}
+
+22) Also talk about the ``on-time'' variable in the model part.(?)
+
+23) Add references for "SetTimes".
+
+24) Add reference for MIP.
+
+25) Examples (references) for hybrid CP+MIP algorithms.
+
+26) Do Cas+Lab indeed do what is described?
+
+27) Recent refs for edge-finding.
+
+28) I only missed a section called Propagation for Temporal Constraints and I think that such a section should be included. Section 1.2.3 on this topic is very short. In particular, there is no single word about temporal networks and no references in this area, but temporal networks are quite important in planning. At least the reference to work Dechter, R.; Meiri, I.; Pearl, J. (1991). Temporal Constraint Networks. Artificial Intelligence 49, 61-95. should be mentioned. There are also some recent works in this area by Kristen Venable.
+
+29) Sometimes, it seems to me that the flow of the text can be improved. In particular I mean the transition from first to second paragraph on page 4 and the same transition on page 14.
+
+30) It also seems to me that the content is not always balanced. I mean that some areas are described in much more details than others but it does not correspond to their significance. Namely, there is a detailed description of balanced constraint and constraint propagation on optimization criteria, while more widely used unary constraints are discussed less (I would also include not-first/not-last rules there).
+
+31) Also, the discussion on search strategies is related to particular problems (Sections 1.6.2, 1.6.3) while the rest of the chapter is general. I think that some generalisation of the part on search would better fit the rest of the chapter and the traditional branching schemes based on slack should also be mentioned.
+
+32) Concerning references, I am not sure whether English-written paper should contain so many references to non-English (in this particular case French) papers.
+
+33) Page 29: Paper 39 is not publicly available and hence should not be referred. There is a paper by Bartak and Cepek at PLANSIG 2005 describing a similar problem.
+
+34) Just the last comment, there already exists a survey in exactly the same area with a similar structure and contents ­ R. Bartak. Constraint Satisfaction for Planning and Scheduling. In Ionannis Vlahavas, Dimitris Vrakas (eds.): Intelligent Techniques for Planning, Idea Group, 2005, pp. 320-353.
+
+35) Page 6: I would prefer to use est and let rather than r and d. Release time and deadline are defined in the problem, while est and let are changing. Perhaps lct (latest completion time) is better then let (latest end time).
+
+36) Page 7: I did not understand fully the propagation rules using set variables. Perhaps, it would be better to use the tabular model with X variables or at least to explain the rules.
+
+37) Page 10: The problem with breakable activities, calendars, and leaving activities unperformed has already been described by Bartak at CP 2002 and Visopt ShopFloor system covers these features.
+
+38) Page 11, para. 2, r. 3: I did not understand the last sentence about non-standard precedence constraints.
+
+39) Page 12, Figure 1.2: Lateness is not mentioned in the text. It would be also useful to indicate due time in the graphs.
+
+40) Page 13, Section 1.3.1: The relation between conjunctive effect and delete-list and add-list is not explained. To make the chapter self-contained, I propose to explain it for readers that are not familiar with standard planning problems.
+
+41) Page 15. Figure 1.4 overlaps the text so there is probably something hidden behind the figure which I was not able to read. Persistence relation is not explained.
+
+42) Page 16, Table 1.3: I think that the constraints should be described in general and also explained. Otherwise, their meaning could be hidden to readers that are not familiar with this model.
+
+43) Page 16, r.9: You are writing about constraint-based planning there, but the principles are general for plan-space planning. Perhaps, you mean plan-space planning.
+
+44) Page 16, r. 11-: The sentence “The main difference with scheduling…” is not fully clear in this context. The paragraph starts with words on scheduling so it is not clear what difference you mean. Please be more explicit here.
+
+45) Page 18, last paragraph: You wrote that the propagation algorithms for planning problems are essentially the same as the algorithms for scheduling problems but I think that this is not true. Scheduling problems are static in the sense that all activities are known, which is not true in planning. Hence global constraints for scheduling are also static while global constraints for planning require more dynamic features, namely accepting other variables as the search evolves. As far as I know, this dynamicity has never been discussed in papers on global constraints and people should be aware that there is a difference (some global constraints cannot be made dynamic). The paper by Bartak at CP-AI-OR 2001 proposed the concept of dynamic global constraints.
+
+46) Page 23: There is a work where the original ideas behind the balance constraint are presented and hence should be referred:
+Cesta, A. and Stella, C. (1997). A Time and Resource Problem for Planning Architectures. Recent Advances in AI Planning (ECP’97), LNAI 1348, Springer Verlag, 117-129.
+
+47) Page 31, r. 11: What are dominance properties? This notion is not explained in the text.
+
+49) Solve overlap with rest of text of Figure 1.4.
+
+48) Get Le Pape references under "L".
+
+Roman's (unnumbered) remarks:
+- First two references are out of alphabetic order.
+Page 4, r. 1: on one hand
+Page 5, r. 7: to get improved
+Page 6,  r. 10: the latest end time
+Page 10, para. 3, r. 9: time variable
+Page 16, r. 3-: or a set
+Page 17, r. 9: from two hands (better than “from the two ones”)
+Page 20. There exist edge-finding algorithm with O(n.log n) time complexity that uses less complex data structures than the original Carlier, Pinson’s algorithm, can be easily implemented and outperforms the O(n2) algorithms. This algorithm has been proposed by Vilim at CP 2004.
+Page 20: There should be cap(R) in the formula for the timetable constraint.
+Page 23, r.10-: upper bound on the reservoir level at time x-epsilon just before x
+Page 24, r.14: B(x) has not been defined
+Page 24, r. 16: by q (instead of q(x))
+Page 24, r. 3-: by non-decreasing (instead of increasing ­ there could be identical times so increasing order does not always exist)
+Page 26, para. 5: Actually, it is easy
+Page 31, r. 3-: It is more important to be robust (word order)
+
+

@@ -1,0 +1,268 @@
+hugot.corentin 
+
+
+
+Désolé du retard voici le rendu demandé. A savoir qu'il y a eu une incompréhension et que j'ai pu prendre connaissance de la correction avant. J'ai essayé de rester le plus objectif malgré cela. 
+
+
+
+
+
+1: IA : Décrire la différence entre approche réaliste et approche utilitariste dans la démarche scientifique.
+
+
+Dans le processus scientifique, la méthode réaliste consiste à élargir le champ des connaissances tout en expliquant les connaissances. D'autre part, l'approche utilitariste consiste à extraire des informations utiles, au lieu d'élargir le champ de la connaissance elle pour répond à des besoins spécifiques.
+
+
+2: programmation logique/chaînage avant 
+
+Dans un langage à base de règles simple en chaînage avant (on appelle cela un système de production) on a le programme:
+
+
+var input[]=[], result[]=[], i=1, tmp=0;
+
+
+when input.length>0 and i >= input.length then result.append(input[tmp]), input.removeAt(tmp), i=1, tmp=0;
+
+when input[i] < input[tmp] then tmp=i, i=i+1;
+
+when input[i] >= input[tmp] then i=i+1;
+
+
+Lorsque l'instruction input=[2,0,5,4,9]; est exécutée, que contiendront les variables result et input en retour? Expliquer l'algorithme. Donner sa complexité.
+
+
+Au retour de l'algorithme, le résultat sera [0,2,4,5,9] et saisissez []. L'algorithme parcourt le tableau pour trouver la valeur minimale stockée dans la variable tmp. Une fois à la fin du tableau, il ajoutera la valeur stockée dans tmp au tableau de résultats et la supprimera du tableau d'entrée. C'est un algorithme de tri de complexité N².
+
+
+
+
+
+
+
+3: Smart City: Trouver sur internet 3 logiciels commerciaux professionnels destinés à remplir un rôle similaire à celui du projet SmartDeliveries. En vous basant sur la présentation commerciale, identifiez leurs principales caractéristiques démarquantes (quelles fonctionnalités mettent-ils particulièrement en avant par rapport à la concurrence). Fournir les références utilisées.
+
+
+
+
+Il existe de nombreuses entreprises qui offrent ce type de service, dont quelques-unes sont mentionnées dans ce cours. Nous garderons ce qui suit: Copilot https://copilotpro.com/fr/ est l'un des leaders du marché. Effectuez tout l'accompagnement de la visite, pas seulement l'itinéraire. Pas actuellement connecté aux données de la ville Mapotempo https://www.mapotempo.com/en/ Newcomer peut organiser des visites et fournir des conseils pour adapter ses solutions aux besoins des clients. TomTom: https://www.tomtom.com/fr_fr/ autrefois se focalisait sur le marché du GPS, mais maintenant il s'est tourné pour se positionner comme un service professionnel. Loxane / PTV: Un des pionniers de cette industrie, avec une forte notoriété en France https://www.ptvgroup.com/en/ Il n'y a actuellement aucun lien avec les données de la ville. Routific https://routific.com/ uniquement aux États-Unis, a directement inspiré les détails de la solution SmartDeliveries. La chose la plus proche de ce que nous voulons faire, mais il s'avère que c'est difficile à faire en Europe.
+
+
+
+
+
+
+
+
+4: trafic routier
+
+a- Quelles sont les principales variables mesurées par un détecteur de trafic?
+
+
+
+
+Les principales variables mesurées par un détecteur de trafic sont : (wikipédia)
+•l'heure de passage
+
+
+•la voie de circulation
+
+
+•le temps inter-véhiculaire
+
+
+•le temps de présence sur le capteur
+
+
+•la vitesse
+
+
+•la longueur
+
+
+•la distance inter-véhiculaire
+
+
+•la densité
+
+
+•la concentration
+
+
+•la vitesse de groupe
+
+
+•le temps de parcours
+
+
+
+
+
+
+b- Qu'est ce que le diagramme fondamental d'un détecteur de trafic, pourquoi est-il utile pour mesurer et prévoir la congestion?
+
+
+
+
+Ce diagramme de base illustre la relation entre la densité du débit et la date et l'heure. Ceci est très utile pour prédire la congestion car il peut montrer des modèles qui dépendent de différents moments de la journée.
+
+
+
+
+c- quel est le débit typique maximal d'un tronçon à une voie (wikipédia)
+•en zone urbaine : 5 000 véhicules / jour
+
+
+•sur voie rapide ou autoroute : 15 000 véhicules/jour
+
+
+•Pourquoi cette différence? Le débit d'une voie dépend du degré d'attention des conducteurs ainsi que de la vitesse des véhicules.
+
+
+
+
+
+
+5: temps de parcours
+
+a) Quelles sont les principales variables prédictives du temps de parcours d'un camion de livraison en ville, par ordre d'importance décroissante? (déterminées en cours)
+
+
+
+
+Les variables prédictives, par ordre d’importance décroissante sont : 
+•Distance
+
+
+•RoundID
+
+
+•Static travel time forecast
+
+
+•Occupancy
+
+
+•Angle
+
+
+
+
+
+b) Citer 2 facteurs potentiels affectant les temps de parcours et difficiles à mesurer avec les données fournies dans les fichiers fournis en TP.
+
+
+
+
+L’identifiant de livraison (expertise du chauffeur) et les accidents.
+
+
+
+
+6. Prescriptive Analytics : Les affirmations suivantes sont-elles vraies ou fausses:
+
+
+
+
+a- Un problème de décision est dans la classe de complexité NP si et seulement si il n'existe pas d'algorithme polynomial pour le résoudre. 
+
+→ FAUX
+
+
+
+
+b- Dans l'industrie, la majorité des problèmes d'ordonnancement sont résolus grâce à des heuristiques.
+
+→  VRAI
+
+
+
+
+c- Le problème suivant possède exactement trois solutions: 
+
+   u in {1,3}
+
+   v in {1,2}
+
+   w in {3,4}
+
+   x in {1,5}
+
+   y in {4,5}
+
+   allDifferent(u,v,w,x,y)
+
+→ FAUX
+
+
+
+
+d- L'algorithme de résolution de CP-Optimizer est un algorithme exact: si un problème d'optimisation est faisable, il garantit de trouver une solution optimale.
+
+→  VRAI
+
+
+
+
+7. optimisation (wikipédia)
+
+a- En cherchant sur internet, décrivez un problème d'optimisation combinatoire non vu dans le cours dont la version de décision est un problème NP-Complet.
+
+
+
+
+En algorithmique, le problème du sac à dos, parfois noté (KP) (de l'anglais Knapsack Problem)1 est un problème d'optimisation combinatoire. Il modélise une situation analogue au remplissage d'un sac à dos, ne pouvant supporter plus d'un certain poids, avec tout ou partie d'un ensemble donné d'objets ayant chacun un poids et une valeur. Les objets mis dans le sac à dos doivent maximiser la valeur totale, sans dépasser le poids maximum.
+
+
+
+
+
+b- Décrivez une petite instance particulière de ce problème d'optimisation (avec des valeurs pour chacune des données).
+
+
+
+
+...
+
+
+
+
+c- Donnez une solution faisable non-optimale et une solution optimale de cette petite instance.
+
+
+
+
+Le problème du sac à dos possède la propriété de sous-structure optimale, c'est-à-dire que l'on peut construire la solution optimale du problème à i variables à partir du problème à i-1 variables. Cette propriété permet d'utiliser une méthode de résolution par programmation dynamique.
+
+
+
+
+
+
+8. programmation par contraintes
+
+
+
+
+Deux principes fondamentaux de la Programmation par Contraintes sont (1) la recherche arborescente et (2) le filtrage du domaine des variables. Décrivez brièvement ces principes, leurs rôles et la façon dont ils sont mis en oeuvre durant la résolution.
+
+
+
+
+1. Recherche arborescente. Dans la programmation par contraintes, la recherche arborescente vous permet d'explorer l'espace de recherche sous la forme d'arbres de recherche. A chaque nœud de l'arbre, sélectionnez une variable de décision "x" qui n'a pas encore été instanciée, et créez un nœud enfant X du nœud courant pour chaque valeur {v1, ..., vn} dans le domaine courant de la variable . L'arbre de recherche permet une exploration exhaustive de toutes les solutions au problème.
+
+
+
+
+2. Filtrage des domaines variables: Lors de la navigation dans l'arborescence de recherche, des décisions seront prises (par exemple, affectez la valeur de v1 à la variable x dans la branche de l'arborescence). L'algorithme de filtrage est effectué pour supprimer un certain nombre de valeurs du domaine de la variable, ce qui peut prouver qu'elles ne peuvent être utilisées dans aucune solution réalisable pour le sous-arbre. Une fois le domaine variable réduit, filtrez le domaine variable au niveau de chaque nœud de l'arborescence de recherche (pas seulement au nœud racine). Le filtrage vous permet d'élaguer l'arbre de recherche.
+
+
+
+
+
+
+
+
+
+
+

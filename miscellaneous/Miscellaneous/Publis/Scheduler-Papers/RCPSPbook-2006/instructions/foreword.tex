@@ -1,0 +1,92 @@
+\chapter*{Foreword}
+\addtocontents{toc}{\protect\contentsline{chapter}{Foreword}{\thepage}}
+\addtocontents{toc}{\protect\TextInToc{0}{0pt}{%
+ Roger \Name{Rousseau}, Christian \Name{Scheen}}}
+\addtocontents{toc}{\protect\addvspace{5pt plus 1pt minus 1pt}}
+
+The aim of this document is to describe how to use \latex{} in order to
+typeset books (namely, monographs or edited collections; this terminology
+will be defined later on in this document) according to the
+\Hermes{}~(\HSP{}) guidelines and instructions to authors.
+The \oh{} package contains a \latex{} document class file, a \bibtex{}
+alphanumeric bibliography style file, and a \mkndx{} index style file.
+Index typesetting is made easier through a basic Bourne shell script and two
+associated \awk{} (or \gawk{}) filters.
+Of course, the use of this indexing mechanism is completely optional;
+everything is possible (but sometimes more involved) through the standard
+\mkndx{} program that comes with every \tex{} system distribution.
+Finally, the \oh{} package contains a \Makefile{} script for the \make{}
+utility; its use is also optional and makes it easy to keep the main target
+(namely, the final document in PostScript format) current, based on
+differences in the modification times of the \tex{} source files that the
+PostScript target is dependent on.
+
+Let us stress that users of the \oh{} package should definitely \emph{not}
+use the \latex{} source files of this user's guide as the starting point of
+the \latex{} source files of any actual book (this user's guide is a very
+special case that is laid out as an edited collection, but that also
+possesses some monograph features).
+The \oh{} package provides users with appropriate templates instead; see the
+\file{hsp-monograph.ltx} and \file{hsp-treatise.ltx} files in the
+\dir{Ouvrage-Hermes} top-level directory for details.
+
+\latex{} itself is Leslie Lamport's generic typesetting system~\cite{Lam94}
+that uses Donald E.\@~Knuth's \tex{} formatting system~\cite{Knu86} as its
+underlying engine.
+The main idea behind \latex{} is to let the user concentrate on the layout
+and the structure of the document rather than on formatting details.
+With this aim in mind, the \latex{} system adds an abstraction layer onto the
+plain \tex{} commands; the user is provided with high-level commands that
+make document typesetting easier.
+The \latex{} format contains a precompiled image of all these \latex{}
+commands, the \tex{} font metrics~(``.tfm'') information for preloaded fonts,
+and a set of word-breaking hyphenation patterns for each language that one
+might want to use.
+A number of excellent books on \latex{} and related tools and techniques are
+available.
+In addition to the books by Knuth~\cite{Knu86} and Lamport~\cite{Lam94}, let
+us refer to the introduction guide by \hbox{Helmut} Kopka and Patrick
+W.\@~Daly~\cite{KD04}, to the editions of the \latex{} ``companion'' by Frank
+Mittelbach \emph{et~al.\@}~\cite{GMS94, MGBCRDS04}, to the \latex{} graphics
+``companion'' by Michel Goossens \emph{et~al.\@}~\cite{GRM97}, and to the
+\latex{} Web ``companion'' by Michel Goossens \emph{et~al.\@}~\cite{GRGMS99}.
+French-speaking users are moreover referred to the introduction guides by
+Christian Rolland~\cite{Rol99} and Bernard Desgraupes~\cite{Des03}.
+
+\section*{Typographic conventions}
+\addtocontents{toc}{\protect\contentsline{section}{%
+ Typographic conventions}{\thepage}}
+\index{typographic convention}
+
+We use the standard typographic conventions throughout the document (see for
+instance~\cite[p.\@~\hbox{11-13}]{MGBCRDS04}):
+\begin{itemize}
+ \item programs (such as \mkndx{}, \xindy{}, \make{}, \awk{}, and \gawk{})
+ and drivers (such as \dvips{} and \pstopdf{}) are typeset in sans serif text
+ font;
+ \item scripts (such as \Makefile{} and \Makeindex{}) and so-called filters
+ (such as \preawk{} and \postawk{}) are typeset in monospaced typewriter text
+ font;
+ \item \LaTeX{}, \bibtex{}, and \mkndx{} classes and style files (such as
+ \class{book}, \style{chapterbib}, \bstyle{ouvrage-hermes}, and
+ \istyle{ouvrage-hermes}) are typeset in sans serif text font;
+ \item \LaTeX{} commands and environments (such as \cmd{makeindex} and
+ \env{flushright}) are typeset in monospaced typewriter text font.
+ Besides, environments are typeset in slanted shape font;
+ \item place-holders (also known as meta-variables) are typeset in italic
+ shape font between ``$\langle$''~and~``$\rangle$'' angle brackets (for
+ instance, \meta{text}).
+\end{itemize}
+
+
+\vspace{11pt}
+
+\begin{flushright}
+ Roger \Name{Rousseau}\\
+ Christian \Name{Scheen}
+\end{flushright}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "users-guide.ltx"
+%%% End: 

@@ -1,0 +1,188 @@
+/****************************************************
+ * IBM ILOG CPLEX CP Optimizer Training
+ *
+ * Project scheduling - Version 4
+ ****************************************************/
+
+using CP;
+ 
+/********
+ * Data *
+ ********/
+
+tuple Task {
+  key int id;
+  string  name;
+  int     ptMin; // minimum duration
+};
+
+{ Task } Tasks = ...;
+int TopLevelTask = ...;
+
+tuple ParentLink {
+  int taskId;
+  int parentId;
+};
+
+{ ParentLink } ParentLinks = ...;
+{ int } Parents = { p.parentId | p in ParentLinks };
+
+
+tuple Precedence {
+  int    beforeId;
+  int    afterId;
+  string type;
+  int    delay;
+};
+
+{ Precedence } Precedences = ...;
+
+tuple Worker {
+  key int id;
+  string  name;
+  float   fixedCost;
+  float   propCost;
+};
+
+{ Worker } Workers = ...;
+
+tuple Skill {
+  key int id;
+  string  name;
+};
+
+{ Skill } Skills = ...;
+
+tuple Proficiency {
+  int workerId;
+  int skillId;
+  int level;
+};
+  
+{ Proficiency } Proficiencies = ...;
+
+tuple Requirement {
+  key int id;
+  int     taskId;
+};
+
+{ Requirement } Requirements = ...;
+
+tuple RequiredSkill {
+  int reqId;
+  int skillId;
+  int levelMin;
+  int levelMax;
+};
+
+{ RequiredSkill } RequiredSkills = ...;
+
+{ int } PossibleWorkers[r in Requirements] = 
+   { p.workerId | p in Proficiencies, n in RequiredSkills : 
+     (n.reqId==r.id) && 
+     (p.skillId==n.skillId) && 
+     (n.levelMin <= p.level) && 
+     (p.level <= n.levelMax) };
+
+tuple Alloc {
+  int reqId;
+  int workerId;
+  int pt;
+};
+
+{ Alloc } Allocations = { <r.id, i, t.ptMin> | r in Requirements, t in Tasks, i in PossibleWorkers[r] : t.id==r.taskId };
+
+tuple WorkerBreak {
+  int workerId;
+  int start; 
+  int end;
+};
+
+{ WorkerBreak } WorkerBreaks = ...;
+
+tuple NonMandatoryTask {
+  int   taskId;
+  float nonExecCost;
+};
+
+{NonMandatoryTask} NonMandatoryTasks = ...;
+
+{ int } NonMandatoryTaskIds = { n.taskId | n in NonMandatoryTasks }; // set of non-mandatory task ids
+
+// KPIs
+float MakespanWeight     = ...;
+float FixedWeight        = ...;
+float ProportionalWeight = ...;
+float NonExecutionWeight = ...;
+
+int MaxInterval = (maxint div 2)-1;
+
+tuple Step {
+  int v;
+  key int x; // For sort
+};
+sorted {Step} Steps[w in Workers] = 
+   { <100, b.start> | b in WorkerBreaks : b.workerId==w.id } union 
+   { <0,   b.end>   | b in WorkerBreaks : b.workerId==w.id };
+   
+stepFunction calendar[w in Workers] = stepwise (s in Steps[w]) { s.v -> s.x; 100 };
+
+/**********************
+ * Decision variables *
+ **********************/
+ 
+dvar interval task[t in Tasks]       optional size t.ptMin..MaxInterval ;
+dvar interval alts[a in Allocations] optional size a.pt..MaxInterval intensity calendar[<a.workerId>];
+dvar interval workerSpan[w in Workers] optional;
+
+/************************
+ * Decision expressions *
+ ************************/
+
+dexpr int makespan = max(t in Tasks) endOf(task[t]);
+dexpr int workerPropCost[w in Workers] = sum(a in Allocations: a.workerId==w.id) sizeOf(alts[a],0);
+dexpr float workersFixedCost = sum(w in Workers) w.fixedCost * presenceOf(workerSpan[w]); 
+dexpr float workersPropCost = sum(w in Workers) w.propCost*workerPropCost[w];
+dexpr float nonExecCost = sum(n in NonMandatoryTasks) n.nonExecCost*(1-presenceOf(task[<n.taskId>]));
+
+/*************
+ * Objective *
+ *************/
+ 
+minimize MakespanWeight       * makespan 
+         + FixedWeight        * workersFixedCost 
+         + ProportionalWeight * workersPropCost
+         + NonExecutionWeight * nonExecCost;
+
+/***************
+ * Constraints *
+ ***************/
+ 
+subject to {   
+  // Work breakdown structure
+  forall (t in Tasks : t.id in Parents)
+       span(task[t], all(i in ParentLinks: i.parentId == t.id) task[<i.taskId>]); 
+  
+   // Precedence constraints
+  forall (p in Precedences : p.type == "StartsAfterStart") 
+      startBeforeStart(task[<p.beforeId>], task[<p.afterId>], p.delay);
+  forall (p in Precedences : p.type == "StartsAfterEnd") 
+      endBeforeStart(task[<p.beforeId>], task[<p.afterId>], p.delay);
+  
+  // Non-mandatory tasks in work breakdown structure
+  presenceOf(task[<TopLevelTask>]); // top level task must be present
+  forall(p in ParentLinks: !(p.taskId in NonMandatoryTaskIds)) // mandatory tasks forced to be present if their parent task is present
+    presenceOf(task[<p.parentId>]) => presenceOf(task[<p.taskId>]);
+
+    // Alternatives of workers who can fulfil task requirement (each requirement must be filled by one worker)
+  forall(r in Requirements)
+    alternative(task[<r.taskId>], all(a in Allocations: a.reqId==r.id) alts[a]);
+
+   // Calculate whether each worker is used in the project using span constraint
+  forall(w in Workers)
+    span(workerSpan[w], all(a in Allocations: a.workerId==w.id) alts[a]);
+    
+  // A worker can fill only one task requirement at any point in time
+  forall(w in Workers)
+    noOverlap(all(a in Allocations: a.workerId==w.id) alts[a]);
+};

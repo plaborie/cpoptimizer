@@ -1,0 +1,315 @@
+
+VILLETTE.Lauriane
+
+
+1: IA
+
+Décrire la différence entre approche réaliste et approche utilitariste dans la démarche scientifique.
+
+
+Au cours d’une démarche scientifique, une approche réaliste doit permettre d'expliquer comment les sciences parviennent avec succès à prédire les phénomènes. L'objectif est d’appréhender la complexité en  cherchant  à  comprendre ce qui fonctionne, pour qui, et dans quels contextes. Cette approche contient des fondements épistémologiques et énonce qu' “une théorie scientifique acceptée et consolidée décrit exactement comment les choses se passent dans le monde”. 
+
+Elle est donc plus objective qu’une approche utilitariste qui elle fait du biomimétisme (s'inspirer des solutions inventées par la nature, et sélectionnées au cours de milliards d'années d'évolution, pour répondre à une problématique qui se pose à notre société humaine) pour aborder des problèmes complexes. Cette métaphore du biomimétisme pour construire des modèles de la pensée humaine représente l’approche utilitariste: interprétations et généralités.
+
+
+2: programmation logique/chainage avant
+
+Dans un langage à base de règles simple en chaînage avant (on appelle cela un système de production) on a le programme:
+
+
+var input[]=[], result[]=[], i=1, tmp=0;
+
+
+when input.length>0 and i >= input.length then result.append(input[tmp]), input.removeAt(tmp), i=1, tmp=0;
+
+when input[i] < input[tmp] then tmp=i, i=i+1;
+
+when input[i] >= input[tmp] then i=i+1;
+
+
+Lorsque l'instruction input=[2,0,5,4,9]; est exécutée, que contiendront les variables result et input en retour? Expliquer l'algorithme. Donner sa complexité.
+
+
+Lorsque l’instruction est exécutée, en retour on a result=[0,2,4,5,9]  et input=[].
+
+C’est un algorithme qui permet de ranger une suite par ordre croissant, ici la suite [2,0,5,4,9].
+
+Le tri est effectué par insertion,il est  souvent utilisé naturellement pour trier des cartes à jouer : les valeurs sont insérées les unes après les autres dans une liste triée (initialement vide). C'est souvent le plus rapide et le plus utilisé pour trier des entrées de petite taille. Il est également efficace pour des entrées déjà presque triées.
+
+Sa complexité est de: 0(n^2) en moyenne et dans le pire des cas, 0(n) dans le meilleur des cas.
+
+
+3: Smart City: Trouver sur internet 3 logiciels commerciaux professionnels destinés à remplir un rôle similaire à celui du projet SmartDeliveries. En vous basant sur la présentation commerciale, identifiez leurs principales caractéristiques démarquantes (quelles fonctionnalités mettent-ils particulièrement en avant par rapport à la concurrence). Fournir les références utilisées.
+
+
+Le projet SmartDeliveries a pour objectif de combattre la saturation des routes en centre ville, la pollution et les coûts sans sacrifier l’activité économique.  
+
+35% du trafic correspond à des camions de transport et la mobilité professionnelle est le plus souvent prévisible, c'est-à-dire que le conducteur sait à l’avance qu’il va réaliser ce trajet. On a là un élément intéressant et facile à utiliser pour optimiser la mobilité. En prévoyant le trafic à l’avance, on peut prévoir les déplacements des véhicules et donc optimiser les chemins à emprunter.
+
+Un site sur lequel on pourrait renseigner tous les jours les déplacements (professionnels) qu’on va réaliser dans la journée, permettrait de proposer des itinéraires en évitant des zones qui sont encombrées et font perdre du temps. C’est donc de la gestion du flux des véhicules professionnel.
+
+
+Voici  3 logiciels commerciaux qui proposent des fonctions similaires:
+•AnyLogic  https://www.anylogic.fr/road-traffic/
+
+
+
+La modélisation de simulation AnyLogic fournit une Bibliothèque de trafic routier, qui offre la flexibilité et la puissance nécessaire pour parvenir à une ingénierie et à une conception du trafic routier plus efficace. Une visualisation claire est un moyen simple et rapide pour faciliter le développement de modèles d’infrastructures routières, avec des cartes de densité présentant la congestion et des animations montrant le flux du trafic et les goulets d’étranglement. La liberté de pouvoir faire des expériences et la capacité à optimiser des modèles précis sont le meilleur chemin vers la réussite
+•Citilog https://www.citilog.com/
+
+
+
+Citilog crée une mobilité plus intelligente grâce à l'analyse vidéo et à l'intelligence artificielle appliquées aux solutions de gestion du trafic. Maîtrisant les derniers développements en Deep Learning pour l'analyse vidéo, ils permettent un voyage plus fluide et plus sûr pour des millions de conducteurs à travers le monde. Leurs solutions intelligentes réduisent les coûts et les risques pour les opérateurs de trafic, en fournissant des outils plus intelligents et en fin de compte une route plus sûre pour les voyageurs qu'ils desservent.
+• C-The Difference https://www.neogls.com/innovation/c-the-difference/
+
+
+
+ Leur objectif est de combler le vide qui sépare les implémentations les plus avancées des STI-C dans un environnement urbain et les déploiements et opérations à plus grande échelle en ciblant les professionnels responsables des opérations et de la planification des transports urbains, les décideurs politiques et les décisionnaires finaux.
+
+
+4: trafic routier
+
+a- Quelles sont les principales variables mesurées par un détecteur de trafic?
+
+
+Un détecteur de trafic mesure les variables suivantes:
+•Débit: mesurable par des dispositifs de comptage fixes.
+
+
+•Vitesse:  représente la vitesse de déplacement du flot de véhicules
+
+
+•Le taux d’occupation: pourcentage de temps durant lequel un point de la route est « occupé » par un véhicule au-dessus de lui.
+
+
+
+
+b- Qu'est ce que le diagramme fondamental d'un détecteur de trafic, pourquoi est-il utile pour mesurer et prévoir la congestion?
+
+
+Pour comprendre le fonctionnement d’une section ou d’un réseau routier, une première approche consiste souvent à mesurer l’évolution de la vitesse du trafic en fonction du débit (relation « débit-vitesse » ou « diagramme fondamental »), puisque ce sont des données facilement mesurables sur le terrain. Et ensuite d’en déduire des paramètres de fonctionnement de la section, comme la vitesse libre ou la capacité.
+
+À partir de la reconstruction du diagramme fondamental (tracé d'occupation en fonction du débit), on peut calculer automatiquement un seuil d'encombrement pour chaque détecteur.
+
+Ainsi, ce diagramme est très utile pour mesurer ou prévoir la congestion. Il décrit les états de trafic fluide et congestionné qui peuvent exister sur une section.
+
+
+c- quel est le débit typique maximal d'un tronçon à une voie
+
+
+ L’unité UVP est l’unité de véhicule particulier définie comme suit :
+
+    un véhicule léger ou une camionnette = 1 UVP ;
+
+    un poids-lourds de 3,5 tonnes et plus = 2 UVP ;
+
+On a donc les débits typiques maximaux suivants:
+•en zone urbaine: 5 000 à 7 000 UVP/jour
+
+
+•sur voie rapide ou autoroute: 30 000 UVP/jour
+
+
+•Pourquoi cette différence?
+
+
+
+Sur les voies rapides ou autoroutes, les véhicules ne sont pas soumis aux effets des feux de signalisation, ou des croisements avec d’autres voies qui impliquent de ralentir. La route est souvent droite et le véhicule roulant dessus est souvent prioritaire aux véhicules qui entrent sur la voie.
+
+5: temps de parcours
+
+a) Quelles sont les principales variables prédictives du temps de parcours d'un camion de livraison en ville, par ordre d'importance décroissante? (déterminées en cours)
+
+
+Origine (x, y)
+
+Destination (x, y)
+
+Distance (vol d’oiseau)
+
+Catégories de routes, nb voies
+
+Durée
+
+Durée statique
+
+Durée estimée avec les règles
+
+Heure
+
+Jour de la semaine
+
+Id mission
+
+
+b) Citer 2 facteurs potentiels affectant les temps de parcours et difficiles à mesurer avec les données fournies dans les fichiers fournis en TP.
+
+
+Plusieurs facteurs peuvent affecter grandement le parcours, mais sont difficiles à mesurer. On peut citer, entre autres:
+•l’expérience et la motivation du conducteur au moment du parcours
+
+
+•les circonstances locales au moment du parcours
+
+
+
+
+6. Prescriptive Analytics
+
+Les affirmations suivantes sont-elles vraies ou fausses:
+
+
+a- Un problème de décision est dans la classe de complexité NP si et seulement si il n'existe pas d'algorithme polynomial pour le résoudre.
+
+
+FAUX
+
+Un problème NP est un problème de décision vérifiant les propriétés suivantes :
+•il est possible de vérifier une solution efficacement (en temps polynomial) ; la classe des problèmes vérifiant cette propriété est notée NP ;
+
+
+•Tous les problèmes de la classe NP se ramènent à celui-ci via une réduction polynomiale; cela signifie que le problème est au moins aussi difficile que tous les autres problèmes de la classe NP.
+
+
+
+De plus, une propriété de la définition implique que s'il existe un algorithme polynomial pour résoudre un quelconque des problèmes NP-complets, alors tous les problèmes de la classe NP peuvent être résolus en temps polynomial.
+
+
+b- Dans l'industrie, la majorité des problèmes d'ordonnancement sont résolus grâce à des heuristiques.
+
+
+c- Le problème suivant possède exactement trois solutions:
+
+   u in {1,3}
+
+   v in {1,2}
+
+   w in {3,4}
+
+   x in {1,5}
+
+   y in {4,5}
+
+   allDifferent(u,v,w,x,y)
+
+
+FAUX
+
+Le problème ne possède que deux solutions:
+
+u=3 v=2 w=4 x=1 y=5
+
+u=1 v=2 w=3 x=5 y=4.
+
+
+
+d- L'algorithme de résolution de CP-Optimizer est un algorithme exact: si un problème d'optimisation est faisable, il garantit de trouver une solution optimale.
+
+
+VRAI
+
+Le CP-Optimizer est un algorithme exact. Et la définition d’un algorithme exacte est : trouve une solution exacte et optimale pour un problème NP-difficile.
+
+
+7. optimisation
+
+
+a- En cherchant sur internet, décrivez un problème d'optimisation combinatoire non vu dans le cours dont la version de décision est un problème NP-Complet.
+
+
+ (source: https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_sac_%C3%A0_dos#Complexit%C3%A9_et_cryptographie)
+
+
+Problème du sac à dos: Il modélise une situation de remplissage d'un sac à dos, ne pouvant supporter plus d'un certain poids. Avec à disposition un ensemble donné d'objets ayant chacun un poids et une valeur. Les objets mis dans le sac à dos doivent maximiser la valeur totale, sans dépasser le poids maximum.
+
+Les données du problème peuvent être exprimées en termes mathématiques. Les objets sont numérotés par l'indice i variant de 1 à n. Les nombres wi et pi représentent respectivement le poids et la valeur de l'objet numéro i. La capacité du sac sera notée W.
+
+Il existe de multiples façons de remplir le sac à dos. Pour décrire l'une d'elles, il faut indiquer pour chaque élément s'il est pris ou non. On peut utiliser un codage binaire : l'état du i-ème élément vaudra xi = 1 si l'élément est mis dans le sac, ou xi = 0 s'il est laissé de côté.
+
+
+b- Décrivez une petite instance particulière de ce problème d'optimisation (avec des valeurs pour chacune des données).
+
+
+Si le sac ne peut pas supporter plus de 15 kg, quelles boîtes choisir afin de maximiser la somme emportée?
+
+Avec les boîtes suivantes:
+
+9kg - 10$
+
+12kg - 7$
+
+2kg -  1$
+
+7 kg - 3$
+
+5kg - 2$
+
+
+c- Donnez une solution faisable non-optimale et une solution optimale de cette petite instance.
+
+
+Solution non optimale:
+
+Avec l’algorithme glouton, on ajoute en priorité les objets les plus efficaces, jusqu'à saturation du sac. On se retrouve avec un total de 11$ pour 11 kg.
+
+
+Solution optimale: Total de 12 $ pour 14 kg. 
+
+Pour résoudre le problème, on peut utiliser une méthode de résolution par programmation dynamique ou également une procédure de séparation et d'évaluation.
+
+
+8. programmation par contraintes
+
+
+Deux principes fondamentaux de la Programmation par Contraintes sont (1) la recherche arborescente et (2) le filtrage du domaine des variables. Décrivez brièvement ces principes, leurs rôles et la façon dont ils sont mis en œuvre durant la résolution.
+
+
+(Source: https://wikimonde.com/article/Programmation_par_contraintes)
+
+
+Dans le cadre de la programmation par contraintes, les problèmes sont modélisés à l'aide de variables de décision et de contraintes, où une contrainte est une relation entre une ou plusieurs variables qui limite les valeurs que peuvent prendre simultanément chacune des variables liées par la contrainte.
+
+1.recherche arborescente:
+
+
+
+Dans le cas de la résolution sur domaines finis, on énumère toutes les possibilités et on  vérifie si elles violent ou non les contraintes. C’est la méthode Générer et Tester: on génère toutes les affectations possibles et on vérifie si elles correspondent à des solutions. Si une solution partielle ne vérifie pas toutes les contraintes, on revient à l’étape précédente.
+
+
+Cependant, cela s'avère impraticable pour des problèmes de taille moyenne en raison du grand nombre de combinaisons possibles. C’est pour cela qu’il existe le filtrage.
+
+2.Filtrage
+
+
+
+Il a pour but d'éviter l’énumération exhaustive de la recherche arborescente. Cela consiste à déduire à partir des contraintes les valeurs impossibles. 
+
+
+La propagation de contraintes (ou filtrage) consiste à supprimer d'un problème de programmation par contraintes (PPC) des valeurs de variables ne pouvant pas prendre part à une solution. 
+
+Étant donné que toutes les contraintes d'un problème de PPC doivent être satisfaites, le fait pour une valeur d'une variable de ne pas pouvoir satisfaire une seule contrainte du problème implique qu'elle ne pourra prendre part à aucune solution du problème. Il est donc possible de raisonner séparément sur chaque contrainte afin de pouvoir trouver des valeurs pour lesquelles cette contrainte ne peut être satisfaite, et donc les retirer du problème entier.
+
+
+Pour conclure, le but de la recherche arborescente est de parcourir cet arbre (en le construisant au fur et à mesure) jusqu'à trouver une solution au problème tandis que le filtrage consiste à « élaguer » cet arbre en supprimant toutes les parties n'aboutissant qu'à des contradictions.
+
+
+
+En vous souhaitant bonne réception,
+
+Cordialement,
+
+
+
+
+
+
+
+
+
+
+
+Lauriane Villette,
+
+Élève ingénieure de troisième année,
+
+à l'École Nationale Supérieure de Cognitique (ENSC)

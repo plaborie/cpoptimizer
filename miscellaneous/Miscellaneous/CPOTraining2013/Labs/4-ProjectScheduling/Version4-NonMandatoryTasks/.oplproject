@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project>
+	<version>1.0</version>
+	<description>Non-mandatory subprojects</description>
+	<configs>
+		<config category="opl" default="true" name="Solve with CP Optimizer">
+			<ref type="model" name="Model.mod">
+			</ref>
+			<ref type="setting" name="Model.ops">
+			</ref>
+			<ref type="data" name="Model.dat">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

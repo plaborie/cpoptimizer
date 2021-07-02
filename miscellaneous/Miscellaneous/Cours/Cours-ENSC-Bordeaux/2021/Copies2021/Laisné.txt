@@ -1,0 +1,167 @@
+Examen ' Conduite de projets en science des données et Predictive Analytics'
+
+<<Laisné, Gautier>>
+
+
+
+
+1: IA
+
+Décrire la différence entre approche réaliste et approche utilitariste dans la démarche scientifique.
+
+Avec une approche réaliste, la démarche scientifique est d’agrandir l’ensemble des connaissances. Avec une approche utilitariste, l’objectif est de pouvoir répondre à un besoin concret et spécifique.
+
+
+
+
+2: programmation logique/chainage avant
+
+Dans un langage à base de règles simple en chaînage avant (on appelle cela un système de production) on a le programme:
+
+
+
+
+var input[]=[], result[]=[], i=1, tmp=0;
+
+
+
+
+when input.length>0 and i >= input.length then result.append(input[tmp]), input.removeAt(tmp), i=1, tmp=0;
+
+when input[i] < input[tmp] then tmp=i, i=i+1;
+
+when input[i] >= input[tmp] then i=i+1;
+
+
+
+
+Lorsque l'instruction input=[2,0,5,4,9]; est exécutée, que contiendront les variables result et input en retour? Expliquer l'algorithme. Donner sa complexité.
+
+En retour, on a result=[0,2,4,5,9] et input=[]. La complexité de cette algorithme est d’ordre n^2, n étant le nombre d’élément du tableau input. L’algorithme tri les valeurs de input dans l’ordre croissant en faisant une comparaison terme à terme.
+
+
+
+
+3: Smart City: Trouver sur internet 3 logiciels commerciaux professionnels destinés à remplir un rôle similaire à celui du projet SmartDeliveries. En vous basant sur la présentation commerciale, identifiez leurs principales caractéristiques démarquantes (quelles fonctionnalités mettent-ils particulièrement en avant par rapport à la concurrence). Fournir les références utilisées.
+
+/
+
+
+
+
+4: trafic routier
+
+a- Quelles sont les principales variables mesurées par un détecteur de trafic?
+
+La densité du trafic (donc la quantité de voiture sur une distance) et la vitesse moyenne des voitures sur une certaine distance.
+
+
+
+
+b- Qu'est ce que le diagramme fondamental d'un détecteur de trafic, pourquoi est-il utile pour mesurer et prévoir la congestion?
+
+Ce diagramme permet d’observer la densité d’un trafic en fonction du jour et de l’horaire. Ca permet de voir s’il y a des « heures de pointes » par exemple, et donc faire de la prévision.
+
+
+
+
+c- quel est le débit typique maximal d'un tronçon à une voie
+•en zone urbaine : 
+•sur voie rapide ou autoroute : 30 véhicules par km à 60km/h
+•Pourquoi cette différence?
+
+
+
+
+5: temps de parcours
+a.Quelles sont les principales variables prédictives du temps de parcours d'un camion de livraison en ville, par ordre d'importance décroissante? (déterminées en cours)
+
+C’est la distance et l’identifiant de la livraison.
+
+
+
+
+b) Citer 2 facteurs potentiels affectant les temps de parcours et difficiles à mesurer avec les données fournies dans les fichiers fournis en TP.
+
+L’identifiant de livraison et les accidents.
+
+
+
+
+6. Prescriptive Analytics
+
+Les affirmations suivantes sont-elles vraies ou fausses :
+
+
+
+
+a- Un problème de décision est dans la classe de complexité NP si et seulement si il n'existe pas d'algorithme polynomial pour le résoudre.
+
+Faux
+
+
+
+
+b- Dans l'industrie, la majorité des problèmes d'ordonnancement sont résolus grâce à des heuristiques.
+
+Vraie
+
+
+
+
+c- Le problème suivant possède exactement trois solutions:
+
+   u in {1,3}
+
+   v in {1,2}
+
+   w in {3,4}
+
+   x in {1,5}
+
+   y in {4,5}
+
+   allDifferent(u,v,w,x,y)
+
+Vraie
+
+
+
+
+d- L'algorithme de résolution de CP-Optimizer est un algorithme exact: si un problème d'optimisation est faisable, il garantit de trouver une solution optimale.
+
+Vraie
+
+
+
+
+7. optimisation
+
+a- En cherchant sur internet, décrivez un problème d'optimisation combinatoire non vu dans le cours dont la version de décision est un problème NP-Complet.
+
+
+
+
+b- Décrivez une petite instance particulière de ce problème d'optimisation (avec des valeurs pour chacune des données).
+
+
+
+
+c- Donnez une solution faisable non-optimale et une solution optimale de cette petite instance.
+
+
+
+
+
+
+
+8. programmation par contraintes
+
+
+
+
+Deux principes fondamentaux de la Programmation par Contraintes sont (1) la recherche arborescente et (2) le filtrage du domaine des variables. Décrivez brièvement ces principes, leurs rôles et la façon dont ils sont mis en oeuvre durant la résolution.
+
+La recherche arborescente est utilisée pour la prise de décision. C’est un algorithme de recherche heuristique dans lequel il y a une sélection parmi plusieurs possibilités et ce qui a déjà été exploré est sauvegardé.
+
+Le filtrage du domaine des variables implique que les variables qu’on peut déterminer mathématiquement (suite à des contraintes diverses) sont supprimées.

@@ -1,0 +1,55 @@
+% A PASCAL LIKE ALGORITHMIC STYLE -- Released 18 MAR 2004
+%    for LaTeX version 2e
+%
+% Copyright Szasz Janos
+% E-mail szaszjanos@users.sourceforge.net
+%
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{algpascal}%
+\RequirePackage{ifthen}%
+\RequirePackage{algorithmicx}%
+\typeout{Document Style - pascal environments for the `algorithmicx' style}%
+%
+\def\ALG@setpascal{t}%
+\DeclareOption{noset}{\def\ALG@setpascal{}}%
+\DeclareOption{set}{\def\ALG@setpascal{t}}%
+\ProcessOptions%
+%
+%
+%      ***      DECLARATIONS      ***
+%
+%
+\ALG@deflanguage{pascal}{\ALG@setpascal}%
+{%
+%
+%      ***      KEYWORDS      ***
+%
+\newcommand\textkeyword{\textbf}%
+%
+%      ***      DECLARED BLOCKS AND LOOPS      ***
+%
+\algdef{SEi}{Begin}{End}{0cm}{\textkeyword{begin}}{\textkeyword{end}}%
+\algdef{Sei}{Asm}{End}{0cm}{\textkeyword{asm}}%
+%
+\algdef{lS}{For}[2]{\textkeyword{for} \(##1\) \textkeyword{to} \(##2\) \textkeyword{do}}%
+\algdef{lS}{While}[1]{\textkeyword{while} \(##1\) \textkeyword{do}}%
+\algdef{lS}{With}[1]{\textkeyword{with}\ \(##1\) \textkeyword{do}}%
+\algdef{SE}{Repeat}{Until}{\textkeyword{repeat}}[1]{\textkeyword{until}\ \(##1\)}%
+\algdef{lS}{If}[1]{\textkeyword{if}\ \(##1\) \textkeyword{then}}%
+\algdef{lC}{If}{Else}{\textkeyword{else}}%
+%
+%      ***      OTHER DECLARATIONS      ***
+%
+\def\Procedure{\State\textkeyword{procedure}\space}%
+\def\Function{\State\textkeyword{function}\space}%
+%
+\renewcommand\algorithmiccomment[1]{\hfill\{##1\}}%
+%
+%
+%
+}%
+%
+%
+%
+\let\ALG@setpascal\relax%
+%

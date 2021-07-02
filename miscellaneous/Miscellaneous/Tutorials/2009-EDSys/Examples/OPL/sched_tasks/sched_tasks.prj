@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project description="Basic Workforce Scheduling, End Earliness Cost">
+
+    <configs>
+
+        <config name="Basic Configuration" category="opl" default="true">
+
+            <ref name="sched_tasks.mod"/>
+
+          <ref name="sched_tasks.dat"/>
+    </config>
+
+    </configs>
+
+    <model name="sched_tasks.mod"/>
+
+  <data name="sched_tasks.dat"/>
+</project>

@@ -1,0 +1,24 @@
+A- Basic version of the problem
+
+1) There always exists an optimal solution where, for each order all activities are contiguous so we could solve it by aggregating all orders into a single activity
+
+Yes, this is true in the basic version.
+Suppose you have solution, the proof relies on the fact that from this solution you can always find a solution with the same cost or better cost (where the end time of each assemble task is the same or smaller) but all the letters of each assemble are contiguous to the assemble.
+
+How: sort the orders by increasing end date of the assemble task in the solution. Then schedule the tasks (both letters and assemble) according to this preference (the sequencing of the letters inside an order is not important). This soution cannot delay the assemble compare to their original date. 1st order will be at its earlier possible date, 2nd order was ending after 1st order in the original solution so all task of 1st and 2nd order were executed before the end of the 2nd assemble thus is cannot be delayed. etc...
+
+2) The problem is NP-Hard. 
+
+This is not a proof but even the same version with linear tardiness cost and only one activity per order  (1||sumTi) is NP-Hard. 
+
+See: Jianzhong Du, Joseph Y.-T. Leung, (1990) Minimizing Total Tardiness on One Machine is NP-Hard. Mathematics of Operations
+Research 15(3):483-495.
+
+3) As a counter example that a naive heuristic that sorts the orders by increasing due date and schedule them in this order does not work:
+
+two orders:
+#1: duration=10, duedate=0
+#2: duration=1, duedate=5
+
+Schedule by sorting according to duedates: #1->#2, cost = (10-0)^2+(11-5)^2 = 136
+But the other schedule #2->#1 turns out ot be better, cost = (11-0)^2+0^2 = 121

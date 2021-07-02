@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project description="Classical Flow-shop scheduling problem">
+          <configs>
+                    <config name="sched_flowshop flowshop_tail20_5_3" category="opl" default="true" closed="true">
+                              <ref name="sched_flowshop.mod"/>
+                              <ref name="sched_flowshop.ops"/>
+                              <ref name="flowshop_tail20_5_3.dat"/>
+                    </config>
+                    <config name="sched_flowshop flowshop_tail20_10_2" category="opl" default="false" closed="true">
+                              <ref name="sched_flowshop.mod"/>
+                              <ref name="sched_flowshop.ops"/>
+                              <ref name="flowshop_tail20_10_2.dat"/>
+                    </config>
+                    <config name="sched_flowshop flowshop_tail20_20_5" category="opl" default="false" closed="true">
+                              <ref name="sched_flowshop.mod"/>
+                              <ref name="sched_flowshop.ops"/>
+                              <ref name="flowshop_tail20_20_5.dat"/>
+                    </config>
+                    <config name="sched_flowshop flowshop_tail50_5_9" category="opl" default="false" closed="true">
+                              <ref name="sched_flowshop.mod"/>
+                              <ref name="sched_flowshop.ops"/>
+                              <ref name="flowshop_tail50_5_9.dat"/>
+                    </config>
+                    <config name="sched_flowshop flowshop_tail50_10_6" category="opl" default="false" closed="false">
+                              <ref name="sched_flowshop.mod"/>
+                              <ref name="sched_flowshop.ops"/>
+                              <ref name="flowshop_tail50_10_6.dat"/>
+                    </config>
+          </configs>
+          <model name="sched_flowshop.mod"/>
+          <setting name="sched_flowshop.ops"/>
+          <data name="flowshop_tail20_5_3.dat"/>
+          <data name="flowshop_tail20_10_2.dat"/>
+          <data name="flowshop_tail20_20_5.dat"/>
+          <data name="flowshop_tail50_5_9.dat"/>
+          <data name="flowshop_tail50_10_6.dat"/>
+</project>

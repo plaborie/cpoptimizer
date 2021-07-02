@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project>
+    <configs>
+        <config name="Basic Configuration" category="opl" default="true">
+          <ref name="sched_sequence.mod"/>
+          <ref name="sched_sequence.dat"/>
+    </config>
+    </configs>
+    <model name="sched_sequence.mod"/>
+  <data name="sched_sequence.dat"/>
+</project>

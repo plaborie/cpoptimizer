@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project>
+	<version>1.0</version>
+	<configs>
+		<config category="opl" default="true" name="100 Jobs">
+			<ref type="data" name="Data100.dat">
+			</ref>
+			<ref type="model" name="Main.mod">
+			</ref>
+		</config>
+		<config category="opl" default="false" name="10 Jobs">
+			<ref type="data" name="Data10.dat">
+			</ref>
+			<ref type="model" name="Main.mod">
+			</ref>
+		</config>
+		<config category="opl" default="false" name="200 Jobs">
+			<ref type="data" name="Data200.dat">
+			</ref>
+			<ref type="model" name="Main.mod">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

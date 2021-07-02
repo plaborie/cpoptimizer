@@ -1,0 +1,516 @@
+% !TEX spellcheck = en-US
+\def\year{2018}\relax
+\documentclass[letterpaper]{article} 
+\pdfinfo{
+/Title (Typesetting Conventions for Mathematical Formulations of CP Optimizer Models)
+/Author (Philippe Laborie)
+/Keywords (CP Optimizer, Scheduling, Modeling, Mathematics, Constraint Programming)}
+\setcounter{secnumdepth}{2}  
+
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{array}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%% CP OPTIMIZER OPERATORS
+\DeclareMathOperator{\minimize}{minimize}
+\DeclareMathOperator{\subjectto}{subject\ to:}
+\DeclareMathOperator{\cpoIn}                    {on}
+\DeclareMathOperator{\cpoTypes}                 {types}
+\DeclareMathOperator{\cpoWith}                  {with}
+%% Functions
+\DeclareMathOperator{\cpoPwlFunction}           {pwlFunction}
+\DeclareMathOperator{\cpoStepFunction}          {stepFunction}
+\DeclareMathOperator{\cpoCumulFunction}         {cumulFunction}
+\DeclareMathOperator{\cpoStateFunction}         {stateFunction}
+%% Expressions on integer variables
+\DeclareMathOperator{\cpoCount}                 {count}
+\DeclareMathOperator{\cpoCountDifferent}        {countDifferent}
+\DeclareMathOperator{\cpoStDev}                 {standardDeviation}
+%% Expressions on interval variables
+\DeclareMathOperator{\cpoStartOf}               {startOf}
+\DeclareMathOperator{\cpoEndOf}                 {endOf}
+\DeclareMathOperator{\cpoSizeOf}                {sizeOf}
+\DeclareMathOperator{\cpoLengthOf}              {lengthOf}
+\DeclareMathOperator{\cpoStartEval}             {startEval}
+\DeclareMathOperator{\cpoEndEval}               {endEval}
+\DeclareMathOperator{\cpoSizeEval}              {sizeEval}
+\DeclareMathOperator{\cpoLengthEval}            {lengthEval}
+\DeclareMathOperator{\cpoStartOfNext}           {startOfNext}
+\DeclareMathOperator{\cpoEndOfNext}             {endOfNext}
+\DeclareMathOperator{\cpoSizeOfNext}            {sizeOfNext}
+\DeclareMathOperator{\cpoLengthOfNext}          {lengthOfNext}
+\DeclareMathOperator{\cpoTypeOfNext}            {typeOfNext}
+\DeclareMathOperator{\cpoStartOfPrev}           {startOfPrev}
+\DeclareMathOperator{\cpoEndOfPrev}             {endOfPrev}
+\DeclareMathOperator{\cpoSizeOfPrev}            {sizeOfPrev}
+\DeclareMathOperator{\cpoLengthOfPrev}          {lengthOfPrev}
+\DeclareMathOperator{\cpoTypeOfPrev}            {typeOfPrev}
+\DeclareMathOperator{\cpoOverlapLength}         {overlapLength}
+%% Constraints on integer variables
+\DeclareMathOperator{\cpoAllDiff}               {allDifferent}
+\DeclareMathOperator{\cpoPack}                  {pack}
+\DeclareMathOperator{\cpoAllMinDistance}        {allMinDistance}
+\DeclareMathOperator{\cpoInverse}               {inverse}
+\DeclareMathOperator{\cpoAllowedAssignments}    {allowedAssignments}
+\DeclareMathOperator{\cpoForbiddenAssignments}  {forbiddenAssignments}
+\DeclareMathOperator{\cpoLexicographic}         {lexicographic}
+%% Constraints on interval variables
+\DeclareMathOperator{\cpoNoOverlap}             {noOverlap}
+\DeclareMathOperator{\cpoFirst}                 {first}
+\DeclareMathOperator{\cpoLast}                  {last}
+\DeclareMathOperator{\cpoBefore}                {before}
+\DeclareMathOperator{\cpoPrev}                  {prev}
+\DeclareMathOperator{\cpoSameSequence}          {sameSequence}
+\DeclareMathOperator{\cpoSameCommonSubsequence} {sameCommonSubsequence}
+\DeclareMathOperator{\cpoEndBeforeStart}        {endBeforeStart}
+\DeclareMathOperator{\cpoStartBeforeStart}      {startBeforeStart}
+\DeclareMathOperator{\cpoEndBeforeEnd}          {endBeforeEnd}
+\DeclareMathOperator{\cpoStartBeforeEnd}        {startBeforeEnd}
+\DeclareMathOperator{\cpoEndAtStart}            {endAtStart}
+\DeclareMathOperator{\cpoStartAtStart}          {startAtStart}
+\DeclareMathOperator{\cpoEndAtEnd}              {endAtEnd}
+\DeclareMathOperator{\cpoStartAtEnd}            {startAtEnd}
+\DeclareMathOperator{\cpoPresenceOf}            {presenceOf}
+\DeclareMathOperator{\cpoAlternative}           {alternative}
+\DeclareMathOperator{\cpoSpan}                  {span}
+\DeclareMathOperator{\cpoPulse}                 {pulse}
+\DeclareMathOperator{\cpoStep}                  {step}
+\DeclareMathOperator{\cpoStepAtStart}           {stepAtStart}
+\DeclareMathOperator{\cpoStepAtEnd}             {stepAtEnd}
+\DeclareMathOperator{\cpoAlwaysIn}              {alwaysIn}
+\DeclareMathOperator{\cpoAlwaysEqual}           {alwaysEqual}
+\DeclareMathOperator{\cpoAlwaysConstant}        {alwaysConstant}
+\DeclareMathOperator{\cpoAlwaysNoState}         {alwaysNoState}
+\DeclareMathOperator{\cpoInteger}               {integer}
+\DeclareMathOperator{\cpoInterval}              {interval}
+\DeclareMathOperator{\cpoSequence}              {sequence}
+\DeclareMathOperator{\cpoSize}                  {size}
+\DeclareMathOperator{\cpoIntensity}             {intensity}
+\DeclareMathOperator{\cpoOptional}              {optional}
+\DeclareMathOperator{\cpoForbidStart}           {forbidStart}
+\DeclareMathOperator{\cpoForbidEnd}             {forbidEnd}
+\DeclareMathOperator{\cpoForbidExtent}          {forbidExtent}
+\DeclareMathOperator{\cpoStaticLex}             {staticLex}
+%% Blackboxes
+\DeclareMathOperator{\cpoBlackbox}              {blackbox}
+\DeclareMathOperator{\cpoDim}                   {dim}
+
+
+\begin{document}
+\date{}
+\title{Typesetting Conventions for Mathematical Formulations of CP Optimizer Models}
+\author{Philippe Laborie\\
+        IBM, 9 rue de Verdun 94250 Gentilly, France\\
+        \texttt{laborie@fr.ibm.com}}
+
+\maketitle
+
+\section{Introduction}
+
+This document proposes some conventions for typesetting mathematical formulations of combinatorial optimization problems for CP Optimizer. It extends the common practice used for typesetting MIP models to the mathematical concepts and constraints introduced in CP Optimizer (interval, sequence variables, functions). Following these conventions ensures a non-ambiguous  description of the mathematical formulation of the problem with a one-to-one correspondence with the implementation of the model whatever API of CP Optimizer is used (C++, Python, Java, OPL, CPO file format).
+
+The formal semantics of the concepts of CP Optimizer models is defined in the CP Optimizer Reference Manual \cite{CPORefMan}. A summary of these concepts is available in \cite{Laborie2018}, Section 3.
+
+\section{General constructs}
+
+\subsection{Scopes}
+
+A scope is a set of tuples used for indexing. For describing a scope, we use the classical set notation. For instance if N and M are two integers:
+\begin{itemize}
+\item $i \in [1..N]$ is the set of all integers $(i) \in \{1,2,...,N\}$
+\item $i \in [1..N], j \in [1..M]$ is the cartesian product $(i,j) \in [1..N]\times[1..M]$ 
+\item $i,j \in [1..N] \mid i \neq j$ is the subset of the cartesian product $[1..N]\times[1..N]$  such that $i \neq j$
+\end{itemize}
+
+When the order of the elements in the scope is important (like for instance in the vectors or matrices below), the tuples are supposed to be generated by iterating on the indexes from left to right. For instance $i,j \in [1..3] \mid i \neq j$ will generate the ordered set of tuples $(1,2),(1,3),(2,1),(2,3),(3,1),(3,2)$.
+
+\subsection{Vectors}
+
+Vectors are denoted $[v_i]_{SCOPE(i)}$. For instance:
+
+\[ [x_{ij}]_{i,j \in [1..N] \mid i \neq j}\]
+
+\subsection{Matrices}
+
+Matrices are denoted $[v_{ij}]_{SCOPE(i);SCOPE(j)}$. Note the use of semicolon ";" instead of the comma "," between the scopes. This permits to differentiate:
+\begin{itemize}
+\item $[x_{ij}]_{i\in [1..2],\ j \in [1..2]}$ which is vector $\begin{bmatrix}x_{11} & x_{12} & x_{21} & x_{22}\end{bmatrix}$
+\item $[x_{ij}]_{i\in [1..2];\ j \in [1..2]}$ which is matrix $\begin{bmatrix}x_{11} & x_{12} \\ x_{21} & x_{22}\end{bmatrix}$
+\end{itemize}
+
+%\subsection{Constants}
+
+%\subsubsection{Constant scalars}
+
+%\subsubsection{Constant functions}
+
+%\subsubsection{Constant matrices}
+
+\subsection{Decision variables}
+
+CP Optimizer provides different types of decision variables (integer, interval, sequence, state function). The general syntax for defining a decision variable is:
+
+\begin{alignat}{2}
+&{\tt TYPE} \quad {\tt NAME} \quad {\tt DOMAIN} \quad \quad & \forall \ {\tt SCOPE} \nonumber 
+\end{alignat}
+
+As a rule of thumb, we denote decision variables with lower cases whereas constants of the problem (including known stepwise or piecewise linear functions) are denoted with upper cases.
+
+\subsubsection{Integer variables}
+
+The keyword for the type of an integer variable is "$\cpoInteger$". The domain is a set of integers. So for instance we can have:
+
+\begin{alignat}{2}
+&\cpoInteger \  x \in [1..N] & \nonumber \\
+&\cpoInteger \  y_i \in \{ 2k+1 \}_{k \in [0..M)}  & \forall i \in [1..N] \nonumber \\
+&\cpoInteger \  z_{ij} \in \{0, 1\} \quad & \forall i \in [1..N], j \in [1..N] \mid i \neq j \nonumber 
+\end{alignat}
+
+
+\subsubsection{Interval variables}
+
+The keyword for the type of an interval variable is "$\cpoInterval$". The domain is a subset of domain specifiers in the following order, separated by a comma:
+\begin{itemize}
+\item Minimal start (R) and maximal end (D) range: "$\subset [R..D]$" (default: $\subset [0..+\infty]$)
+\item Specification whether the interval is optional: "$\cpoOptional$" (default: not optional that is, interval is present)
+\item Value or range for the interval size: "$\cpoSize = S$" or "$\cpoSize \in [S1..S2]$" (default: $\cpoSize \in [0..+\infty]$)
+\item Intensity function (stepwise function F): "$\cpoIntensity = F$" (default: no intensity)
+\end{itemize}
+
+For instance:
+
+\begin{alignat}{2}
+&\cpoInterval \  x & \nonumber \\
+&\cpoInterval \  y_i \subset [-H..H] \quad & \forall i \in [1..N] \nonumber \\
+&\cpoInterval \  z_{ij} \subset [0..H],\ \cpoOptional,\ \cpoSize \in [A_{i}..B_{i}],\ \cpoIntensity=F_j \quad & \forall i \in [1..N], j \in [1..M]  \nonumber
+\end{alignat}
+
+
+\subsubsection{Sequence variables}
+
+
+The keyword for the type of a sequence variable is "$\cpoSequence$". The domain is a vector $X$ of interval variables (see section Vector above). Optionally, the domain can specify a vector of integer types $T$ ($T$ must have the same dimension as $X$). For instance:
+
+\begin{alignat}{2}
+&\cpoSequence \ s_i \ \cpoIn\ [x_{ij}]_{j \in [1..M]} \quad & \forall i \in [1..N] \nonumber \\
+&\cpoSequence \ s_i \ \cpoIn\ [x_{ij}]_{j \in [1..M]}, \ \cpoTypes\ [T_{ij}]_{j \in [1..M]} \quad & \forall i \in [1..N] \nonumber
+\end{alignat}
+
+
+\subsubsection{State functions}
+
+The keyword for the type of a state function is "$\cpoStateFunction$". The domain of a state function can specify a matrix of integers as transition distance between the states. For instance:
+
+\begin{alignat}{2}
+&\cpoStateFunction \ f_k \quad & \forall k \in [1..M] \nonumber \\
+&\cpoStateFunction \ g_k\ \cpoWith\ [D_{ij}]_{i \in [0..S);j \in [0..S)} \quad & \forall k \in [1..M] \nonumber
+\end{alignat}
+
+
+\subsection{Constraints}
+
+Constraints are defined as follows:
+
+\begin{alignat}{2}
+&{\tt CONSTRAINT} \quad \quad & \forall \ {\tt SCOPE} \nonumber 
+\end{alignat}
+
+The signature of the different constraints available in CP Optimizer is summarized in Appendix \ref{keywords}, Table \ref{keywords-constraints}. 
+
+For instance:
+
+\begin{alignat}{2}
+& v_i \leq v_j \quad \quad & \forall \ i,j \in [1..N] \mid i<j \nonumber \\
+& \cpoEndBeforeStart(x_i,x_j) \quad \quad & \forall \ i,j \in [1..N] \mid i<j \nonumber 
+\end{alignat}
+
+\subsection{Expressions}
+
+The signature of the different constraints available in CP Optimizer is summarized in Appendix \ref{keywords}, Table \ref{keywords-expressions}. Expressions can be defined directly in the constraints they are used in (case 1) or as separate definitions (case 2). The second case is particularly useful when a given expression is used in several constraints.
+
+Two examples of case 1:
+
+\begin{alignat}{2}
+& \sum \limits_{i \in [1..N]} R_i x_i \leq D \quad &  \nonumber \\
+& \sum \limits_{i \in [1..N]} \cpoPulse(y_i,Q_i) \leq C  \quad \quad & \nonumber 
+\end{alignat}
+
+
+Equivalent examples using case 2:
+\begin{alignat}{2}
+& u = \sum \limits_{i \in [1..n]} R_i x_i \quad &  \nonumber \\
+& f = \sum \limits_{i \in [1..n]} \cpoPulse(y_i,Q_i)  \quad \quad & \nonumber \\
+& u \leq D \quad &  \nonumber \\
+& f \leq C  \quad \quad & \nonumber
+\end{alignat}
+
+
+Blackbox functions are first declared as follow (by default, the dimension D, that is the size of the returned vector, is 1):
+
+\begin{alignat}{2}
+&\cpoBlackbox\   FUNCTION &  \nonumber \\
+&\cpoBlackbox\   FUNCTION\   \cpoDim\   D &  \nonumber 
+\end{alignat}
+
+
+For instanc, if $f(x)[0]$ is the average of $x$, $f(x)[1]$ is the standard deviation of vector of decision variables $x$:
+
+\begin{alignat}{2}
+&\cpoBlackbox\  f\ \cpoDim\  2       &   \nonumber \\
+&\cpoInteger\    x[i] & \forall i \in [1..N]  &  \nonumber \\
+& stats  = f(x) &  \nonumber \\
+&\max \quad stats[0] + stats[1] &  \nonumber 
+\end{alignat}
+
+\section{Examples}
+
+\subsection{Job-shop scheduling problem}
+
+Here is a CP Optimizer formulation of the classical job-shop scheduling problem with $N$ jobs and $M$ machines. The $j^{th}$ operation of the $i^{th}$ job, represented by interval variable $x_{ij}$, requires machine $M_{ij}$ and has a processing time of $P_{ij}$.
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad \max \limits_{i \in [1..N]} \cpoEndOf(x_{iM}) & \\
+&\cpoNoOverlap([x_{ij}]_{i,j \in [1..N] \times [1..M]: MC_{ij}=k}) & \forall k \in [1..M] \\
+&\cpoEndBeforeStart(x_{ij-1},x_{ij}) & \forall i \in [1..N], j \in [2..M]  \\
+&\cpoInterval \ x_{ij}, \ \cpoSize=PT_{ij} & \forall i \in [1..N], j \in [1..M] 
+\end{alignat}
+
+\subsection{Extended flexible job-shop scheduling problem}
+
+Here is a CP Optimizer formulation of the scheduling problem described in \cite{Birgin2014}. Let $V = \{ 1,2,...,o\}$ be the set of all operations. For each operation $i (i = 1,..., o)$, let $F_i \subseteq (1,2,...,m)$, where $F_i \neq \emptyset$, be the subset of machines that can process operation $i$ and let $P_{ik} (i=1,...,o, k\in F_i)$ be the corresponding processing times. Furthermore, let A be a set of pairs $(i, j)$ with $i, j \in \{1,..., o\}$ such that, if $(i, j)$ belongs to $A$, this means that operation $i$ precedes operation $j$, i.e. operation $j$ cannot start to be processed until operation $i$ ends to be processed. The problem consists in assigning each operation $i$ to a machine $k \in F_i$ and to determine a starting processing time $s_i$ such that precedences are satisfied. A machine can not process more than an operation at a time and preemption is not allowed. The objective is to minimize the makespan, i.e. the completion time of the last operation.
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad \max \limits_{i \in V} \cpoEndOf(x_{i}) & \\
+&\cpoNoOverlap([y_{ik}]_{i \in V \mid k \in F_i}) & \forall k \in [1..M] \\
+&\cpoAlternative(x_{i},[y_{ik}]_{k \in F_i}) & \forall i \in V \\
+&\cpoEndBeforeStart(x_{i},x_{j}) & \forall (i,j) \in A  \\
+&\cpoInterval \ x_{i} & \forall i \in V \nonumber \\
+&\cpoInterval \ y_{ik}, \ \cpoOptional, \ \cpoSize=P_{ik}  \quad & \forall i \in V, k \in F_i \nonumber 
+\end{alignat}
+
+
+\subsection{Resource-constrained project scheduling problem}
+
+Here is a CP Optimizer formulation of the classical RCPSP with $N$ tasks and $M$ resources. Task $i$ has a processing time of $PT_i$ and requires $Q_{ik}$ units of resource $k$. The capacity of resource $j$ is $C_j$. The precedence constraints are described as a set of pairs of tasks $P$.  
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad \max \limits_{i \in [1..N]} \cpoEndOf(x_{i}) & \\
+&\sum \limits_{i \in [1..N]} \cpoPulse(x_i,Q_{ik}) \leq C_k \quad & \forall k \in [1..M] \\
+&\cpoEndBeforeStart(x_{i},x_{j}) & \forall (i,j) \in P  \\
+&\cpoInterval \ x_{i}, \ \cpoSize=PT_{i}  & \forall i \in [1..N] 
+\end{alignat}
+
+\subsection{Multi-Mode Resource-constrained project scheduling problem}
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad \max \limits_{i \in [1..N]} \cpoEndOf(x_{i}) & \\
+&\cpoAlternative(x_{i},[y_{ij}]_{j \in M[i]}) & \forall i \in [1..N] \\
+&\sum \limits_{i \in [1..N], j \in M[i]} \cpoPulse(y_{ij},QR_{ijk}) \leq CR_k \quad & \forall k \in [1..R] \\
+&\sum \limits_{i \in [1..N], j \in M[i]} \cpoPresenceOf(y_{ij})\cdot QS_{ijk} \leq CS_k \quad & \forall k \in [1..S] \\
+&\cpoEndBeforeStart(x_{i},x_{j}) & \forall (i,j) \in P  \\
+&\cpoInterval \ x_{i}  & \forall i \in [1..N] \\
+&\cpoInterval \ y_{ij}, \ \cpoOptional, \ \cpoSize=PT_{ij}  & \forall i \in [1..N], j \in M[i] 
+\end{alignat}
+
+\subsection{Multi-Mode Resource-constrained project scheduling problem with discounted cash flows}
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\max \quad \sum \limits_{i \in [1..N]} CF[i] \cdot e^{-\alpha\cdot \cpoEndOf(x_{i})} & \\
+&\cpoAlternative(x_{i},[y_{ij}]_{j \in M[i]}) & \forall i \in [1..N] \\
+&\sum \limits_{i \in [1..N], j \in M[i]} \cpoPulse(y_{ij},QR_{ijk}) \leq CR_k \quad & \forall k \in [1..R] \\
+&\sum \limits_{i \in [1..N], j \in M[i]} \cpoPresenceOf(y_{ij})\cdot QS_{ijk} \leq CS_k \quad & \forall k \in [1..S] \\
+&\cpoEndBeforeStart(x_{i},x_{j}) & \forall (i,j) \in P  \\
+&\cpoInterval \ x_{i}  \subset [0,H) & \forall i \in [1..N] \\
+&\cpoInterval \ y_{ij}, \ \cpoOptional, \ \cpoSize=PT_{ij}  & \forall i \in [1..N], j \in M[i] 
+\end{alignat}
+
+
+
+
+\subsection{Resource allocation and scheduling problem}
+
+Here is a CP Optimizer formulation of the resource allocation and scheduling problem proposed in \cite{Hooker2004}. The problem is defined by a set of jobs $J$ and a set of facilities $I$. Each job $j \in J$ must be assigned to a facility $i \in I$ and scheduled to start after its release date $R_j$, end before its due date $D_j$, and execute for $P_{ij}$ consecutive time units. Each job $j$ has a facility assignment cost $F_{ij}$ and a resource requirement $Q_{ij}$ when allocated to facility $i$. Each facility $i \in I$ has a capacity $C_i$ and the constraint that the resource capacity must not be exceeded at any time. The problem is to minimize the total facility assignment cost.
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad \sum \limits_{i \in I, j \in J} F_{ij} \cpoPresenceOf(y_{ij}) & \\
+&\cpoAlternative(x_{j}, [y_{ij}]_{i \in I}) & \forall j \in J \\
+&\sum \limits_{j \in J} \cpoPulse(y_{ij},Q_{ij}) \leq C_i \quad & \forall i \in I\\
+&\cpoInterval \ x_{j}  \subset [R_j,D_j]  & \forall j \in J \nonumber \\
+&\cpoInterval \ y_{ij}, \ \cpoOptional, \ \cpoSize=P_{ij}  \quad & \forall i \in I, j \in J \nonumber 
+\end{alignat}
+
+\subsection{Simplified photo-lithography machine}
+
+Here is a CP Optimizer formulation to model a batching machine in the context of a photo-lithography scheduling problem. A set of $N$ operations is to be scheduled on the machine. Each operation $x_i$ consists in the treatment of a set of $W_i$ wafers on the machine. Each operation $i$ specifies a minimal ($A_i$) and a maximal ($B_i$) duration (Equation~\ref{intervals}). There are different families of operations, the family of an operation $x_i$ is denoted $F_i$. The machine can perform several operations at the same time (notion of batch) provided that (1) the duration of the operations is the same as that of the batch, (2) the operations are from the same family and (3) the total capacity $C$ of the machine in terms of number of wafers is not exceeded. Batches of operations are synchronized: that is, all operations in the same batch start (resp. end) at the same time. Furthermore, some family-dependent setup time given by a matrix $M$ is needed to configure the machine from a given batch family to the next batch family. The limited capacity is modeled as a cumul function (Constraint~\ref{capct}). A state function (Equation~\ref{statefunc}) describes the evolution over time of the operation family currently executing on the machine. Batching constraints are defined using {\tt alwaysEqual} constraints on a state function with start and end alignment (Constraint~\ref{batchct}).
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\cpoAlwaysEqual(s, x_{i}, F[i], 1,1) \quad   & \forall i \in [1..N] \label{batchct}\\
+&\sum \limits_{i \in [1..N]} \cpoPulse(x_{i},W_{i}) \leq C \quad &  \label{capct} \\
+&\cpoInterval \ x_{i}, \ \cpoSize \in [A_i,B_i]  \quad & \forall i \in [1..N] \label{intervals} \\
+&\cpoStateFunction \ s\ \cpoWith \ M \label{statefunc} 
+\end{alignat}
+
+
+\subsection{Satellite observation scheduling}
+
+Here is the CP Optimizer formulation of the GEO-CAPE Observation Scheduling Problem described in
+\cite{Laborie2017}. A piecewise linear function $V$ represents the gain for a given delay between consecutive observations. And a stepwise function $N_i$ represents the non-observation time slots of the $i^{th}$ spot to be observed. $SB$, $ST$, $TU$ are some constants of the problem.
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\max \quad \sum \limits_{i \in [1..N], j \in [1..M]} \cpoLengthEval(s_{ij},V) & \\
+&\cpoPresenceOf(a_{ij+1}) = \cpoPresenceOf(s_{ij}) & \forall i \in [1..N], j \in [1..M] \\
+&\cpoStartAtStart(a_{ij}, s_{ij})                  & \forall i \in [1..N], j \in [1..M] \\
+&\cpoEndAtStart(s_{ij}, a_{ij+1})                  & \forall i \in [1..N], j \in [1..M] \\
+&\cpoAlternative(s_{ij}, [sv_{ij}, so_{ij}])       & \forall i \in [1..N], j \in [1..M] \\
+&\cpoPresenceOf(a_{i2}) = \cpoPresenceOf(a_{i1})   & \forall i \in [1..N] \\
+&\cpoPresenceOf(so_{i1}) = 0                       & \forall i \in [1..N] \\
+&\cpoPresenceOf(a_{ij+1})  \leq \cpoPresenceOf(a_{ij})  & \forall i \in [1..N], j \in [2..M+1] \\
+&\cpoPresenceOf(so_{ij-1}) \leq \cpoPresenceOf(sv_{ij}) & \forall i \in [1..N], j \in [2..M+1] \\
+&\cpoForbidExtent(a_{ij}, N_i) & \forall i \in [1..N], j \in [1..M+1]\\
+&\cpoNoOverlap([a_{ij}]_{i \in [1..N], j \in [1..M+1]}) & \\
+&\cpoInterval a_{ij},\  \cpoOptional,\ \cpoSize=1 & \forall i \in [1..N], j \in [1..M+1] \nonumber \\
+&\cpoInterval s_{ij},\  \cpoOptional   & \forall i \in [1..N], j \in [1..M] \nonumber \\
+&\cpoInterval sv_{ij},\ \cpoOptional, \ \cpoSize \in [SB..ST] & \forall i \in [1..N], j \in [1..M] \nonumber \\
+&\cpoInterval so_{ij},\	\cpoOptional, \ \cpoSize \in [ST+1..TU] & \forall i \in [1..N], j \in [1..M] \nonumber
+\end{alignat}
+
+\subsection{Energy-aware multiple state machine scheduling problem}
+
+Here is a reformulation of the extension of the job-shop scheduling problem described in \cite{Oddi2018}. Set $O_k=\{(i,j) | i \in [1..N], j \in [1..M] \mid M_{ij}=k\}$ denotes the set of operations requiring machine $k \in [1..M]$. A sequence variable $s_k$ is created for each machine. For each operation $x_p$ on machine $k$ we define an additional interval variable $y_p$ that represents the gap between the end of operation $x_p$ and the start of the next operation. When $x_p$ is the last operation on the machine, interval $y_p$ ends at the horizon H of the schedule. The objective function is a lexicographical objective. The first criterion is to minimize the energy consumption which is a function of the duration of the gaps between operations on the machines.\\
+
+\setcounter{equation}{0}
+$\min \quad \cpoStaticLex(\sum \limits_{k \in [1..M],p \in O_k} \cpoLengthEval(y_{p},F_k), \max \limits_{i \in [1..N]} \cpoEndOf(x_{iM}))$
+
+\begin{alignat}{2}
+&\cpoNoOverlap(s_k) & \forall k \in [1..M]  \\
+&\cpoEndBeforeStart(x_{ij},x_{ij+1}) & \forall i \in [1..N], j \in [1..M-1]   \\
+&\cpoEndAtStart(x_p,y_p) & \forall k \in [1..M], p \in O_k  \\
+&\cpoEndOf(y_p)=\cpoStartOfNext(s_k,x_p,H) & \forall k \in [1..M], p \in O_k \\
+&\cpoInterval \ x_{ij} \subset [0..H], \ \cpoSize=P_{ij} & \forall i \in [1..N], j \in [1..M] \nonumber \\
+&\cpoInterval \ y_{ij} \subset [0..H] & \forall i \in [1..N], j \in [1..M] \nonumber \\
+&\cpoSequence \ s_k \cpoIn\ [x_p]_{p \in O_k} & \forall k \in [1..M] \nonumber
+\end{alignat}
+
+The following redundant constraints can also be added to strengthen the model. Interval variable $c_k$ is an interval that starts at the start time of machine $k$ and ends at $H$.
+
+\begin{alignat}{2}
+&\cpoSpan(c_k,[h] \cup [x_p]_{p \in O_k}) & \forall k \in [1..M] \\
+&\sum \limits_{p \in O_k} \cpoLengthOf(x_p) + \cpoLengthOf(y_p) = \cpoLengthOf(c_k) & \forall k \in [1..M] \\
+&\cpoAlwaysIn(\sum \limits_{p \in O_k} \cpoPulse(x_p,1)+\cpoPulse(y_p,1), c_k, 1, 1) \quad & \forall k \in [1..M] \\
+&\cpoInterval\ h \subset [H..H],\ \cpoSize=0 &  \nonumber \\
+&\cpoInterval\ c_{k} & \forall k \in [1..M] \nonumber
+\end{alignat}
+
+\appendix
+
+\section{Appendix: Keywords} \label{keywords}
+
+We use the following notations for the arguments of the operators:
+\begin{enumerate}
+\item[$a$,$b$,$c$,$d$] Integer or numerical constants
+\item[$\mathit{stp}$] Stepwise function
+\item[$\mathit{pwl}$] Piecewise linear function
+\item[$u$,$v$,$w$] Integer variables or expressions
+\item[$x$,$y$,$z$] Interval variables
+\item[$r,s$] Sequence variables
+\item[$\mathit{cf}$] Cumul function
+\item[$\mathit{sf}$] State function
+
+\end{enumerate}
+
+Upper cases denote vectors, for instance $Y$ denote a vector of interval variables, $A$ denotes a vector of integer constants. M denotes a matrix of integers. Optional arguments are denoted with square brackets "[]". Variants of a given keyword are denoted "$[$VARIANT1$|$VARIANT2$|$...$]$".
+
+\begin{table}[htp]
+\caption{Keywords for variable types}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+Keyword & Description \\ \hline
+$\cpoInteger$  & Integer variable  \\
+$\cpoInterval$ & Interval variable \\
+$\cpoSequence$ & Sequence variable on interval variables \\
+$\cpoStateFunction$ & State function \\\hline
+\end{tabular}
+\end{center}
+\label{keywords-variable-types}
+\end{table}%
+
+\begin{table}[htp]
+\caption{Keywords and arguments for expressions}
+\begin{center}
+\small
+\begin{tabular}{|l|L{6cm}|}\hline
+Keyword               & Short description \\ \hline
+$+$,$-$,$*$,$/$,$\sum_i$, $\prod_i$, $||$, $\min$, $\max$,  & Classical arithmetical expressions \\ 
+$\div$, $\mod$, $\log(u)$, $u^v$, $\lfloor u \rfloor$, $\lceil u \rceil$, ...  & \\ \hline
+$A[v],U[v]$             & Array expressions: $v$ is an integer index variable\\
+$\cpoCount(U,a)$        & Count variables with given value \\  
+$\cpoCountDifferent(U)$ & Count number of different values \\  
+$\cpoStDev(U,a,b)$      & Standard deviation               \\   \hline
+$[$start$|$end$|$size$|$length$]$Of$(x[,a])$                & Start (etc.) value of an interval variable \\
+$[$start$|$end$|$size$|$length$]$Eval$(\mathit{pwl},x[,a])$ & Piecewise linear function evaluated on the start (etc.) value \\
+$[$start$|$end$|$size$|$length$|$type$]$OfNext$(s,x,a[,b])$ & Start (etc.) value of next interval in a sequence \\
+$[$start$|$end$|$size$|$length$|$type$]$OfPrev$(s,x,a[,b])$ & Start (etc.) value of previous interval in a sequence \\
+heightAt$[$Start$|$End$](\mathit{cf},x)$                    & Contribution of $x$ to a cumul function at start (or end) \\
+$\cpoOverlapLength(x,y[,a])$     & Overlap length between interval variables\\ \hline
+$\cpoPulse(x,a[,b])$             & Cumul expression: pulse \\
+$\cpoStep(a,b)$                  & Cumul expression: step at constant value \\
+stepAt$[$Start$|$End$](x,a[,b])$ & Cumul expression: step at start (or end) of interval variable \\
+\hline
+\end{tabular}
+\end{center}
+\label{keywords-expressions}
+\end{table}%
+
+\begin{table}[htp]
+\caption{Keywords and arguments for constraints}
+\begin{center}
+\small
+\begin{tabular}{|l|l|}\hline
+Keyword                         & Short description                   \\ \hline
+$=$, $\neq$,                    & Classical arithmetical constraints  \\ 
+$\leq$, $\geq$, $<$, $>$        &                                     \\ \hline
+$\cpoAllDiff(V)$                & Global all different constraint     \\ 
+$\cpoPack(U,V,A,w)$             & Bin-packing constraint              \\ 
+$\cpoAllMinDistance(U,a)$       & Minimal distance between all values \\ 
+$\cpoInverse(U,V)$              & Inverse constraint                  \\ 
+$\cpoAllowedAssignments(U,M)$   & Allowed combinations of values      \\ 
+$\cpoForbiddenAssignments(U,M)$ & Forbidden combinations of values    \\ 
+$\cpoLexicographic(U,V)$        & Lexicographic ordering constraint   \\ \hline
+$\cpoPresenceOf(x)$             & Presence of an interval variable    \\
+$[$start$|$end$][$Before$|$At$][$Start$|$End$](x,y[,a])$ & Precedence constraints \\
+forbid$[$Start$|$End$|$Extent$](x,stp)$ & Forbidden values            \\
+$\cpoAlternative(x,Y[,u])$      & Alternative                         \\
+$\cpoSpan(x,Y)$                 & Span                                \\
+$\cpoNoOverlap(s[,M,bool])$     & No-overlap                          \\
+$\cpoFirst(s,x)$                & First on a sequence                 \\
+$\cpoLast(s,x)$                 & Last on a sequence                  \\
+$\cpoPrev(s,x,y)$               & Immediately before on a sequence    \\
+$\cpoBefore(s,x,y)$             & Before on a sequence                \\
+$\cpoSameSequence(r,s[,X,Y])$   & Same sequence                       \\
+$\cpoSameCommonSubsequence(r,s[,X,Y])$ & Same common subsequence      \\
+$\cpoAlwaysIn(f,x,a,b)$                         & Always-in constraint on cumul or state function  \\
+$\cpoAlwaysEqual(\mathit{sf},x,a[,bool,bool])$  & Always-equal constraint on state function  \\
+$\cpoAlwaysConstant(\mathit{sf},x[,bool,bool])$ & Always-constant constraint on state function \\
+$\cpoAlwaysNoState(\mathit{sf},x)$              & Always-no-state constraint on state function \\
+\hline
+\end{tabular}
+\end{center}
+\label{keywords-constraints}
+\end{table}%
+
+\bibliographystyle{plain}
+\bibliography{conventions}  
+
+\end{document}

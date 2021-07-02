@@ -1,0 +1,240 @@
+\begin{thebibliography}{10}
+
+\bibitem{Adams1988}
+J.~Adams, E.~Balas, and D.~Zawack.
+\newblock The shifting bottleneck procedure for job shop scheduling.
+\newblock {\em Management Science}, 34(3):391--401, 1988.
+
+\bibitem{Balas2005}
+E.~Balas, N.~Simonetti, and A.~Vazacopoulos.
+\newblock Job shop scheduling with setup-times, deadlines and precedence
+  constraints.
+\newblock In {\em Proc. MISTA-2005}, 2005.
+
+\bibitem{Baptiste2005}
+P.~Baptiste, M.~Flamini, and F.~Sourd.
+\newblock Lagrangean bounds and lagrangean heuristics for just in time job-shop
+  scheduling.
+\newblock Technical report, Universita degli Studi di Roma Tre, 2005.
+
+\bibitem{Baptiste2007}
+P.~Baptiste and R.~Sadykov.
+\newblock A new mip formulation for single machine scheduling.
+\newblock In {\em FRANCORO/ROADEF}, 2007.
+
+\bibitem{Beasley2000}
+J.E. Beasley, M.~Krishnamoorthy, Y.M. Sharaiha, and D.~Abramson.
+\newblock Scheduling aircraft landings - the static case.
+\newblock {\em Transportation Science}, 34:180--197, 2000.
+
+\bibitem{Biskup2001}
+D.~Biskup and M.~Feldmann.
+\newblock Benchmarks for scheduling on a single machine against restrictive and
+  unrestrictive common due dates.
+\newblock {\em Computers and Op. Research}, 28(8):787--801, 2001.
+
+\bibitem{Blum2005}
+C.~Blum.
+\newblock Beam-{A}{C}{O} - hybridizing ant colony optimization with beam
+  search: an application to open-shop scheduling.
+\newblock {\em Computers and Operations Research}, 32(6):1565--1591, 2005.
+
+\bibitem{Brucker2003}
+P.~Brucker, S.~Heitmann, and J.~L. Hurink.
+\newblock Flow-shop problems with intermediate buffers.
+\newblock {\em OR Spectrum}, 25(4):549--574, 2003.
+
+\bibitem{Brucker1997}
+P.~Brucker, J.~Hurink, B.~Jurisch, and B.~W\"{o}stmann.
+\newblock A branch \& bound algorithm for the open-shop problem.
+\newblock {\em Discrete Applied Mathematics}, 76:43--59, 1997.
+
+\bibitem{Brucker1996}
+P.~Brucker and O.~Thiele.
+\newblock A branch and bound method for the general shop problem with sequence
+  dependent setup-times.
+\newblock {\em OR Spektrum}, 18:145--161, 1996.
+
+\bibitem{Bulbul2001}
+K.~Bulbul, P.~Kaminsky, and C.~Yano.
+\newblock Preemption in single machine earliness/tardiness scheduling.
+\newblock Submitted for publication, 2001.
+
+\bibitem{Carchrae2005}
+T.~Carchrae and J.C. Beck.
+\newblock Applying machine learning to low knowledge control of optimization
+  algorithms.
+\newblock {\em Computational Intelligence}, 21(4):372--387, 2005.
+
+\bibitem{Crawford1996}
+J.~Crawford.
+\newblock An approach to resource constrained project scheduling.
+\newblock In {\em Proc. 1996 Artificial Intelligence and Manufacturing Research
+  Planning Workshop}, 1996.
+
+\bibitem{Danna2003}
+E.~Danna and L.~Perron.
+\newblock Structured vs. unstructured large neighborhood search.
+\newblock In {\em Proc. CP 2003}, pages 817--821, 2003.
+
+\bibitem{Dorndorf2001}
+U.~Dorndorf, E.~Pesch, and T.~Phan-Huy.
+\newblock Solving the open shop scheduling problem.
+\newblock {\em Journal of Scheduling}, 4:157--174, 2001.
+
+\bibitem{Fox1995a}
+B.~Fox and M.~Ringer.
+\newblock Planning \& scheduling benchmarks, 1995.
+\newblock URL: www.neosoft.com/\~{}benchmrx/.
+
+\bibitem{Godard2005}
+D.~Godard, P.~Laborie, and W.~Nuijten.
+\newblock Randomized {L}arge {N}eighborhood {S}earch for {C}umulative
+  {S}cheduling.
+\newblock In {\em Proc. ICAPS-05}, pages 81--89, 2005.
+
+\bibitem{Gueret1999}
+C.~Gu\'eret and C.~Prins.
+\newblock A new lower bound for the open-shop problem.
+\newblock {\em Annals of Operations Research}, 92:165--183, 1999.
+
+\bibitem{ILOG2003a}
+ILOG.
+\newblock {\em {ILOG} {OPL} {S}tudio 3.7 User's Manual and Reference Manual}.
+\newblock ILOG, S.A., 2003.
+
+\bibitem{Kara2002}
+B.~Kara.
+\newblock {SMTTP} problem library,
+  http://www.bilkent.edu.tr/\~{}bkara/start.html, 2002.
+
+\bibitem{Khatib2001}
+L.~Khatib, P.~Morris, R.~Morris, and F.~Rossi.
+\newblock Temporal constraint reasoning with preferences.
+\newblock In {\em Proceedings IJCAI}, pages 322--327, 2001.
+
+\bibitem{Kolisch2006}
+R.~Kolisch and S.~Hartmann.
+\newblock Experimental evaluation of state-of-the-art heuristics for the
+  resource-constrained project scheduling problem: An update.
+\newblock {\em European Journal of Operational Research}, 174:23--37, 2006.
+
+\bibitem{Kolisch1996}
+R.~Kolisch and A.~Sprecher.
+\newblock P{S}{P}{L}{I}{B} - {A} project scheduling problem library.
+\newblock {\em European Journal of Operational Research}, 96:205--216, 1996.
+
+\bibitem{Laborie2003a}
+P.~Laborie.
+\newblock Algorithms for {P}ropagating {R}esource {C}onstraints in {A}{I}
+  {P}lanning and {S}cheduling: {E}xisting {A}pproaches and {N}ew {R}esults.
+\newblock {\em Artificial Intelligence}, 143(2):151--188, 2003.
+
+\bibitem{Laborie2005}
+P.~Laborie.
+\newblock Complete {M}{C}{S}-{B}ased {S}earch: {A}pplication to {R}esource
+  {C}onstrained {P}roject {S}cheduling.
+\newblock In {\em Proceedings of the 19th International Joint Conference on
+  Artificial Intelligence (IJCAI-05)}, 2005.
+
+\bibitem{Le1994}
+C.~{Le Pape}.
+\newblock Implementation of resource constraints in {ILOG} {S}chedule.
+\newblock {\em Intelligent Systems Engineering}, 3(2):55--66, 1994.
+
+\bibitem{Morton1993}
+T.~Morton and D.~Pentico.
+\newblock {\em Heuristic Scheduling Systems}.
+\newblock Wiley, 1993.
+
+\bibitem{Nuijten1994}
+W.~Nuijten.
+\newblock {\em Time and Resource Constrained Scheduling: A Constraint
+  Satisfaction Approach}.
+\newblock PhD thesis, Eindhoven University of Technology, 1994.
+
+\bibitem{Nuijten2004}
+W.~Nuijten, T.~Bousonville, F.~Focacci, D.~Godard, and C.~Le Pape.
+\newblock Towards an industrial manufacturing scheduling problem and test bed.
+\newblock In {\em Proc. PMS}, 2004.
+
+\bibitem{Ovacik1996}
+I.~M Ovacik and R.~Uzsoy.
+\newblock Decomposition methods for scheduling semiconductor testing
+  facilities.
+\newblock {\em International Journal of Flexible Manufacturing Systems},
+  8:357--398, 1996.
+
+\bibitem{Pisinger2005}
+D.~Pisinger and S.~Ropke.
+\newblock A general heuristic for vehicle routing problems.
+\newblock Technical report, DIKU, University of Copenhagen, 2005.
+
+\bibitem{Policella2004}
+N.~Policella, A.~Cesta, A.~Oddi, and S.F. Smith.
+\newblock Generating robust schedules through temporal flexibility.
+\newblock In {\em Proceedings ICAPS-04}, Whistler, Canada, June 2004.
+
+\bibitem{Policella2005}
+N.~Policella, X.~Wang, S.F. Smith, and A.~Oddi.
+\newblock Exploiting temporal flexibility to obtain high quality schedules.
+\newblock In {\em Proc. AAAI-2005}, 2005.
+
+\bibitem{Shaw1998}
+P.~Shaw.
+\newblock Using constraint programming and local search methods to solve
+  vehicle routing problems.
+\newblock In {\em Proc.\ CP-98}, pages 417--431, 1998.
+
+\bibitem{Sivrikaya-Serifolu2004}
+F~Sivrikaya-Serifolu and G.~Ulusoy.
+\newblock Multiprocessor task scheduling in multistage hybrid flow-shops: a
+  genetic algorithm approach.
+\newblock {\em Journal of the OR Society}, 55(5):504--512, 2004.
+
+\bibitem{Sourd2006}
+F.~Sourd.
+\newblock A reinforced lagrangean relaxation for non-preemptive single machine
+  problem. application to the earliness-tardiness common due date criterion.
+\newblock In {\em Proc. PMS'06}, 2006.
+
+\bibitem{Sourd2003}
+F.~Sourd and S.~Kedad-Sidhoum.
+\newblock The one machine scheduling with earliness and tardiness penalties.
+\newblock {\em Journal of Scheduling}, 6:533--549, 2003.
+
+\bibitem{Sourd2005}
+F.~Sourd and S.~Kedad-Sidhoum.
+\newblock An efficient algorithm for the earliness-tardiness scheduling
+  problem.
+\newblock In {\em Optimization Online}, 2005.
+
+\bibitem{Storer1992}
+R.H. Storer, S.D. Wu, and R.~Vaccari.
+\newblock New search spaces for sequencing problems with application to job
+  shop scheduling.
+\newblock {\em Management Science}, 38(10):1495--1509, 1992.
+
+\bibitem{Taillard1993}
+E.~Taillard.
+\newblock Benchmarks for basic scheduling problems.
+\newblock {\em European Journal of Operations Research}, 64:278--285, 1993.
+
+\bibitem{Hentenryck1999}
+P.~van Hentenryck, L.~Michel, P.~Laborie, W.~Nuijten, and J.~Rogerie.
+\newblock Combinatorial optimization in {OPL} {S}tudio.
+\newblock In {\em Proc.\ EPIA 1999}, pages 1--15, 1999.
+
+\bibitem{Vanhoucke2001}
+M.~Vanhoucke, E.~Demeulemeester, and W.~Herroelen.
+\newblock An exact procedure for the resource-constrained weighted
+  earliness-tardiness project scheduling problem.
+\newblock {\em Annals of Operations Research}, 102(1-4):179--196, 2001.
+
+\bibitem{Yamada1992}
+T.~Yamada and R.~Nakano.
+\newblock A genetic algorithm applicable to large-scale job-shop problems.
+\newblock In {\em Proc. International Workshop on Parallel Problem Solving from
+  Nature}, pages 281--290, 1992.
+
+\end{thebibliography}

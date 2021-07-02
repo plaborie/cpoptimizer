@@ -1,0 +1,37 @@
+
+ The resource-constrained project scheduling problem with earliness tardiness
+ ============================================================================
+
+ Mario Vanhoucke
+ e-mail: mario.vanhoucke@UGent.be or mario.vanhoucke@vlerick.be
+ website: www.projectmanagement.ugent.be
+
+
+
+
+
+1st column: number of problem instance
+2nd column: number of created nodes
+3rd column: number of branched nodes
+4th column: solution
+5th column: total time spend (in seconds)
+6th column: optimal or heuristic?
+
+
+         1           12            1          110      0.00   optimal
+         2        10201         4103          293      0.20   optimal
+         3     12639667      5384758          261    256.04   optimal
+         4           40           18          256      0.00   optimal
+         5          248          110          535      0.00   optimal
+         6           52           23          255      0.00   optimal
+         7            4            0          171      0.00   optimal
+         8      7820110      2839999         2190    300.73   heuristic  (time limit!) 
+         9        26620        11156          255      0.99   optimal
+        10           12            4          177      0.00   optimal
+        11          240          118          203      0.00   optimal
+        12        56130        27349          453      3.31   optimal
+        13      9673129      4429999          585    300.16   heuristic  (time limit!) 
+        14     11738716      3309999         9999    300.16   heuristic  (time limit!) 
+        15        11182         4505          352      0.35   optimal
+        16      5906303      2837908          510    270.47   optimal
+        17        23441        10914          568      0.94   optimal

@@ -1,0 +1,20 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-search SchedulerLNS -result FlowShop.csv -scenarii c:\ilog\scheduler-papers\mista-2007\\scenarii\FlowShop\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, FlowShop, Taillard/tail20_5_3.dat, , 42.0905, 37, 0, 360, 1099, 100, -1, 0
+RESULT, FlowShop, Taillard/tail20_5_4.dat, , 411.442, 48, 0, 384, 1309, 100, -1, 0
+RESULT, FlowShop, Taillard/tail20_10_2.dat, , 929.827, 22, 0, 666, 1839, 100, -1, 0
+RESULT, FlowShop, Taillard/tail20_10_3.dat, , 358.736, 23, 0, 635, 1602, 100, -1, 0
+RESULT, FlowShop, Taillard/tail20_20_5.dat, , 1314.53, 45, 0, 1253, 2428, 100, -1, 0
+RESULT, FlowShop, Taillard/tail20_20_10.dat, , 558.253, 29, 0, 1131, 2383, 100, -1, 0
+RESULT, FlowShop, Taillard/tail50_5_7.dat, , 392.494, 45, 0, 395, 2836, 100, -1, 0
+RESULT, FlowShop, Taillard/tail50_5_9.dat, , 122.656, 7, 0, 386, 2639, 100, -1, 0
+RESULT, FlowShop, Taillard/tail50_10_1.dat, , 1783.85, 50, 0, 666, 3338, 100, -1, 0
+RESULT, FlowShop, Taillard/tail50_10_6.dat, , 1289.05, 97, 0, 688, 3246, 100, -1, 0
+RESULT, FlowShop, Taillard/tail100_5_3.dat, , 488.302, 9, 0, 387, 5315, 100, -1, 0
+RESULT, FlowShop, Taillard/tail100_5_9.dat, , 116.267, 4, 0, 381, 5655, 100, -1, 0

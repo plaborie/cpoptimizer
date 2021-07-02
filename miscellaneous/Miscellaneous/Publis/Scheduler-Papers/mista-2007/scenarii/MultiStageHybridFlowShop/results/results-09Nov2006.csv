@@ -1,0 +1,28 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result MultiStageHybridFlowShop.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\MultiStageHybridFlowShop\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HA1.dat, , 140.797, 31, 0, 624, 1437, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HA3.dat, , 157.719, 16, 0, 693, 1596, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HA4.dat, , 181.875, 17, 0, 670, 1584, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HA7.dat, , 259.219, 45, 0, 703, 1434, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HA10.dat, , 979.484, 29, 0, 702, 1394, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HB2.dat, , 108.266, 37, 0, 698, 1249, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HB4.dat, , 695.547, 62, 0, 672, 1390, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HB6.dat, , 876, 47, 0, 638, 1400, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HB8.dat, , 81.3125, 31, 0, 654, 1234, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 20-jobs/2010HB10.dat, , 41.7656, 32, 0, 598, 1331, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 50-jobs/5010HA4.dat, , 858.891, 59, 0, 691, 3163, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 50-jobs/5010HA5.dat, , 805.609, 74, 0, 698, 2811, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 50-jobs/5010HA9.dat, , 1169.16, 76, 0, 749, 2858, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 50-jobs/5010HB1.dat, , 1185.22, 144, 0, 773, 2532, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 50-jobs/5010HB5.dat, , 903.344, 96, 0, 804, 2599, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 100-jobs/H10HA1.dat, , 36.3281, 2, 0, 725, 5668, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 100-jobs/H10HA3.dat, , 1757.75, 29, 0, 709, 6024, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 100-jobs/H10HB5.dat, , 1758.34, 150, 0, 717, 4423, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 100-jobs/H10HB8.dat, , 1710.55, 135, 0, 748, 4413, 100, -1, 0
+RESULT, MultiStageHybridFlowShop, 100-jobs/H10HB9.dat, , 1431.63, 116, 0, 743, 4321, 100, -1, 0

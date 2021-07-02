@@ -1,0 +1,403 @@
+%%%% ijcai03-submit.tex
+
+\typeout{IJCAI-03 Submission Instructions for Authors}
+
+% This is the instructions for authors for IJCAI-03.
+\documentclass{article}
+% The file ijcai03.sty is the style file for IJCAI-03. 
+\usepackage{ijcai03}
+% Use the postscript times font!
+\usepackage{times}
+
+% Following comment is from ijcai97-submit.tex:
+% The preparation of these files was supported by Schlumberger Palo Alto
+% Research, AT\&T Bell Laboratories, and Morgan Kaufmann Publishers.
+% Shirley Jowell, of Morgan Kaufmann Publishers, and Peter F.
+% Patel-Schneider, of AT\&T Bell Laboratories collaborated on their
+% preparation. 
+
+% These instructions can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+% Neither Shirley Jowell nor Peter F. Patel-Schneider can be listed as
+% contacts for providing assistance without their prior permission.
+
+% To use for other conferences, change references to files and the
+% conference appropriate and use other authors, contacts, publishers, and
+% organizations.
+% Also change the deadline and address for returning papers and the length and
+% page charge instructions.
+% Put where the files are available in the appropriate places.
+
+\title{IJCAI-03 Format Instructions for Submissions}
+\author{Content Areas:  common sense reasoning, knowledge
+representation}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  The {\it IJCAI-03 Proceedings} will be printed from electronic
+  manuscripts submitted by the authors. We require submissions
+  in the final format, except in extenuating circumstances.  
+  This file includes the
+  style instructions for submissions.  Authors should also be sure to
+  consult the Call for Papers.
+\end{abstract}
+
+\section{Introduction}
+
+For the submission of papers to the reviewing process, we require both
+a hardcopy {\em and} the electronic version of the manuscript.
+The electronic version must be a PDF ({\em Portable Document Format})
+file formatted for 8-1/2" x 11" paper. No electronic submissions
+formatted for A4 paper will be accepted for review.
+
+The hardcopy should be printed at 300 dpi or better using a laser
+printer adhering to the formatting instructions specified below.  {\em
+  Submissions that deviate from these instructions will {\bf not} be
+  reviewed.}  However, authors from countries in which access to
+word-processing systems is limited may submit unformatted papers.  The
+body of their submissions must be at most 6200 words, including
+footnotes, figure captions, tables, appendices, and bibliography.
+Each half-page of figures will be counted as 500 words.
+
+\subsection{Submission Title Page}
+
+Each hardcopy of a submitted paper must have a title page, separate from the
+body of the paper, that includes the title of the paper, the names and
+addresses of all authors, a short abstract of less than 200 words, a list of
+content areas from those given on the Call for Papers, 
+and acknowledgments
+(if any).  In addition, it must contain the following declaration:
+\begin{quote}
+``This paper has not already been accepted by and is not currently
+under review for a journal or another conference, nor will it be
+submitted for such during IJCAI's review period.''
+\end{quote}
+Please do not staple the title page to the body of the paper.  Because
+this title page is only included on the submission, and not on final
+accepted papers, the \LaTeX{} package does not produce it; you must
+produce it separately. 
+
+\subsection{Word Processing Software}
+
+As detailed below, IJCAI has prepared and made available a
+set of \LaTeX{} macros  for use in formatting your
+paper. If you are using some other word processing software
+(such as Word, WordPerfect, etc.), please follow the format
+instructions given below and ensure that your final paper looks as much
+like this sample as possible.
+
+\section{Style and Format}
+
+
+\LaTeX{} and Bib\TeX{} style files that implement these instructions
+can be retrieved electronically.
+(See Appendix~\ref{latex} for instructions on how to obtain these files.)
+
+\subsection{Layout}
+
+Print manuscripts two columns to a page, in the manner in which these
+instructions are printed.  The exact dimensions for pages are:
+\begin{itemize}
+\item left and right margins: $.75''$
+\item column width: $3.375''$
+\item gap between columns: $.25''$
+\item top margin---first page: $1.375'''$
+\item top margin---other pages: $.75''$
+\item bottom margin: $1.25''$
+\item column height---first page: $6.625''$
+\item column height---other pages: $9''$
+\end{itemize}
+
+All measurements assume an {\bf $8$-$1/2 \times 11''$} page size.  For
+A4 hardcopies assume the $8$-$1/2 \times 11''$ paper size, i.e.,
+use the given top and left margins, column width, height, and gap and
+modify the bottom and right margins as necessary.
+
+
+\subsection{Format of Electronic Manuscript}
+
+For the production of the electronic manuscript you must use Adobe's
+{\em Portable Document Format} (PDF). This format can be generated, for
+instance, on Unix systems using {\tt ps2pdf} (in this case your 
+postscript file from which you generate PDF should be in {\tt letter} 
+format; where this is not a default, letter format can be obtained 
+from a dvi file by using {\tt dvips} with the option {\tt -t letter}).
+Under Windows, Adobe's
+{\tt Distiller} can be used.  For reasons of uniformity, Adobe's {\em Times
+Roman} font should be used (note that this font is about 10\% denser
+than \LaTeX's default {\em Computer Modern} font). In \LaTeX2e{} this is accomplished by putting
+\begin{quote} 
+\mbox{\tt $\backslash$usepackage\{times\}} \\
+\mbox{\tt $\backslash$usepackage\{latexsyms\}}
+\end{quote}
+in the preamble.
+
+Additionally, it is of utmost importance to specify the American {\bf
+  letter} format (corresponding to {\em $8$-$1/2 \times 11''$}) when
+formatting the paper.  Otherwise the paper is not printable on North
+American printers. When working with {\tt dvips}, for instance, one
+should specify {\tt -t letter}.
+
+
+\subsection{Title and Author Information}
+
+Center the title on the entire width of the page in a 14-point bold
+font.  Because IJCAI is using blind reviewing, authors should omit
+their names and affiliations from their submissions. 
+Below the title a  list of content
+areas for the paper should appear.  Similarly, credit to a sponsoring
+agency should appear only on the Submission Title Page; in their final
+form, accepted papers may include this information on the first page.
+
+
+\subsection{Abstract}
+
+Place the abstract at the beginning of the first column $3.0''$ from the
+top of the page, unless that does not leave enough room for the title and
+author information.  Use a slightly smaller width than in the body of the
+paper.  Head the abstract with ``Abstract'' centered above the body of the
+abstract in a 12-point bold font.  The body of the abstract should be in
+the same font as the body of the paper.
+
+The abstract should be a concise, one-paragraph summary
+describing the general thesis and conclusion of your
+paper. A reader should be able to learn the purpose of the
+paper and the reason for its importance from the abstract. The
+abstract should be no more than 200 words long.
+
+\subsection{Text}
+
+The main body of the text immediately follows the abstract.  Use
+10-point type in a clear, readable font with 1-point leading (10 on
+11). 
+
+Indent when starting a new paragraph, except after major headings.
+
+\subsection{Headings and Sections}
+
+When necessary, headings should be used to separate major sections of your
+paper.
+(These instructions use many headings to demonstrate their
+appearance---your paper should have fewer headings.)
+
+\subsubsection{Section Headings}
+
+Print section headings in 12-point bold type in the style shown in these
+instructions.  Leave a blank space of approximately 10 points above and 4
+points below section headings.  Number sections with arabic numerals.
+
+\subsubsection{Subsection Headings}
+
+Print subsection headings in 11-point bold type.  Leave a blank space of
+approximately 8 points above and 3 points below subsection headings.
+Number subsections with the section number and the subsection number (in
+arabic numerals) separated by a period.
+
+\subsubsection{Subsubsection Headings}
+
+Print subsubsection headings in 10-point bold type.  Leave a blank space of
+approximately 6 points above subsubsection headings.  Do not number
+subsubsections.
+
+\subsubsection{Special Sections}
+
+In the final version of your paper, you may include an
+acknowledgments section, including  acknowledgments of help from
+colleagues, financial support, and permission to publish.  However,
+please omit this from your submission in order to facilitate blind
+reviewing. 
+
+Any appendices directly follow the text and look like sections, except
+that they are numbered with capital letters instead of arabic
+numerals.
+
+The references section is headed ``References,'' printed in the same
+style as a section heading, but without a number.  A sample list of
+references is given at the end of these instructions.  Use a
+consistent format for references, such as provided by Bib\TeX{}.  The
+reference list should not include unpublished work.  Also, when
+referring to your own work in the text, use the third person, rather
+than the first person, again, to facilitate blind reviewing.  Say,
+``Previously, Gottlob has shown that . . .''
+rather than, ``In my previous work, I showed that. . ." 
+
+\subsection{Citations}
+
+Citations within the text should include the author's last name and
+the year of publication, for example \cite{cheeseman:probability}.
+Append lowercase letters to the year in cases of ambiguity.
+Treat multiple authors as in the following examples:
+\cite{abelson-et-al:scheme} (for more than two authors) and
+\cite{brachman-schmolze:kl-one} (for two authors).
+If the author portion of a citation is obvious, omit it,
+e.g., Levesque \shortcite{levesque:belief}.
+Collapse multiple citations as follows:
+\cite{levesque:functional-foundations,haugeland:mind-design}.%
+\nocite{abelson-et-al:scheme}%
+\nocite{brachman-schmolze:kl-one}%
+\nocite{cheeseman:probability}%
+\nocite{haugeland:mind-design}%
+\nocite{lenat:heuristics}%
+\nocite{levesque:functional-foundations}%
+\nocite{levesque:belief}
+
+\subsection{Footnotes}
+
+Place footnotes at the bottom of the page in a 9-point font.  Refer to them
+with superscript numbers.\footnote{This is how your footnotes should
+appear.} Separate them from the text by a short line.\footnote{Note the
+line separating these footnotes from the text.}
+Avoid footnotes as much as possible; they interrupt the
+flow of the text. 
+
+\section{Illustrations}
+
+\subsection{General Instructions}
+
+Place illustrations (figures, drawings, tables, and photographs) throughout
+the paper at the places where they are first discussed, rather than at the
+end of the paper.  If placed at the bottom or top of a page, illustrations
+may run across both columns.  
+
+Whenever possible, illustrations should be rendered electronically or
+scanned and placed directly in your document pages. All illustrations should
+be in black and white since color illustrations may cause problems. 
+If you cannot merge illustrations directly into your file, securely attach
+them to the master form with glue stick, spray adhesive, rubber cement, or
+white tape.
+%Do not use transparent tape as the printing process blurs
+%copy under transparent tape.
+
+Number illustrations sequentially.  Use references of the following form:
+Figure 1, Table 2, etc.  Place illustration numbers and captions under
+illustrations.  Leave a margin of 1/4-inch around the area covered by the
+illustration and caption.  Use 9-point type for captions, labels, and
+other text in illustrations.
+
+Do not use line-printer printouts or screen-dumps for
+figures---they will be illegible when printed.
+Avoid screens or pattern fills as they tend to reproduce poorly.
+
+\subsection{Photographs}
+
+As mentioned above, whenever possible, illustrations should be
+rendered electronically or scanned and placed directly in your
+document pages.  If you need to include photographs, use only
+glossy black and white photographs.  Color photographs do not
+reproduce well.  (Red will reproduce as black, for example.)
+Photographs incur extra expense, so please use them judiciously.  {\em
+  Do not attach photographs to the pages}---leave sufficient space for
+them and write figure numbers in the space.  Label photographs on the
+back with the figure number, and enclose them in a separate envelope.
+
+\section{Length of Papers}
+
+Submissions must not be more than {\em six\/} (6) pages.  All
+illustrations and references must be included in the 6-page allowance.
+{\em Papers that exceed this limit will not be reviewed.}\footnote{Each
+accepted paper will be allowed six pages in the proceedings; up to two
+additional pages may be purchased at a price of \$250 per page.}
+
+\section*{Acknowledgments}
+
+The preparation of these instructions and the \LaTeX{} and Bib\TeX{} files
+that implement them was supported by Schlumberger Palo Alto Research, AT\&T
+Bell Laboratories, and Morgan Kaufmann Publishers.
+
+\appendix
+
+\section{Using \LaTeX{}}\label{latex}
+
+A \LaTeX{} style file for version 2e of \LaTeX{} that implements these
+instructions has been prepared, as has a Bib\TeX{} style file for version
+0.99c of Bib\TeX{} ({\em not version 0.98i}) that implements the citation and
+reference styles here. 
+
+%The relevant files are available from the IJCAI server via the World-Wide Web,
+%anonymous ftp, and email.  As these files may be changed to fix bugs, you
+%should ensure that you are using the most recent versions.
+
+The relevant files are {\tt ijcai03.sty} and \\ {\tt ijcai03-submit.tex}
+and the bib-tex file {\tt named.bst} 
+wich are currently available at the \\
+{\tt www.ijcai-03.org} portal 
+at the ``Documents'' page.
+The  file {\tt ijcai03-submit.tex} 
+contains the \LaTeX{} source of the present document
+which
+may serve as a formatting sample. 
+
+Note that the ijcai03.sty file is the same as the ijcai01.sty file 
+used for IJCAI'01. Moreover, the required document layout is the same 
+as for IJCAI'01 except that this year tracking numbers will not 
+be used. 
+
+Further information on using these styles for the preparation of papers for
+IJCAI-03 can be obtained by contacting pcchair03@ijcai.org.
+
+%%%
+
+%% This section was initially prepared using BibTeX.  The .bbl file was
+%% placed here later
+%\bibliography{publications}
+%\bibliographystyle{named}
+%% The file named.bst is a bibliography style file for BibTeX 0.99c
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Abelson \bgroup \em et al.\egroup
+  }{1985}]{abelson-et-al:scheme}
+Harold Abelson, Gerald~Jay Sussman, and Julie Sussman.
+\newblock {\em Structure and Interpretation of Computer Programs}.
+\newblock MIT Press, Cambridge, Massachusetts, 1985.
+
+\bibitem[\protect\citeauthoryear{Brachman and
+  Schmolze}{1985}]{brachman-schmolze:kl-one}
+Ronald~J. Brachman and James~G. Schmolze.
+\newblock An overview of the {KL-ONE} knowledge representation system.
+\newblock {\em Cognitive Science}, 9(2):171--216, April--June 1985.
+
+\bibitem[\protect\citeauthoryear{Cheeseman}{1985}]{cheeseman:probability}
+Peter Cheeseman.
+\newblock In defense of probability.
+\newblock In {\em Proceedings of the Ninth International Joint Conference on
+  Artificial Intelligence}, pages 1002--1009, Los Angeles, California, August
+  1985. International Joint Committee on Artificial Intelligence.
+
+\bibitem[\protect\citeauthoryear{Haugeland}{1981}]{haugeland:mind-design}
+John Haugeland, editor.
+\newblock {\em Mind Design}.
+\newblock Bradford Books, Montgomery, Vermont, 1981.
+
+\bibitem[\protect\citeauthoryear{Lenat}{1981}]{lenat:heuristics}
+Douglas~B. Lenat.
+\newblock The nature of heuristics.
+\newblock Technical Report CIS-12 (SSL-81-1), Xerox Palo Alto Research Centers,
+  April 1981.
+
+\bibitem[\protect\citeauthoryear{Levesque}{1984a}]{levesque:functional-foundat%
+ions}
+Hector~J. Levesque.
+\newblock Foundations of a functional approach to knowledge representation.
+\newblock {\em Artificial Intelligence}, 23(2):155--212, July 1984.
+
+\bibitem[\protect\citeauthoryear{Levesque}{1984b}]{levesque:belief}
+Hector~J. Levesque.
+\newblock A logic of implicit and explicit belief.
+\newblock In {\em Proceedings of the Fourth National Conference on Artificial
+  Intelligence}, pages 198--202, Austin, Texas, August 1984. American
+  Association for Artificial Intelligence.
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+

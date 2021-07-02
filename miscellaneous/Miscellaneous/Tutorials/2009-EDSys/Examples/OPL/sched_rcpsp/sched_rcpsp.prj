@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project description="Classical Resource-Constrained Project Scheduling problem">
+
+          <configs>
+
+                    <config name="sched_rcpsp rcpsp_j120_1_2" category="opl" default="true" closed="true">
+                              <ref name="sched_rcpsp.mod"/>
+                              <ref name="sched_rcpsp.ops"/>
+                              <ref name="rcpsp_j120_1_2.dat"/>
+                    </config>
+
+                    <config name="sched_rcpsp rcpsp_j120_2_9" category="opl" default="false" closed="true">
+                              <ref name="sched_rcpsp.mod"/>
+                              <ref name="sched_rcpsp.ops"/>
+                              <ref name="rcpsp_j120_2_9.dat"/>
+                    </config>
+
+                    <config name="sched_rcpsp rcpsp_j120_22_6" category="opl" default="false" closed="true">
+                              <ref name="sched_rcpsp.mod"/>
+                              <ref name="sched_rcpsp.ops"/>
+                              <ref name="rcpsp_j120_22_6.dat"/>
+                    </config>
+
+                    <config name="sched_rcpsp rcpsp_j120_32_8" category="opl" default="false" closed="true">
+                              <ref name="sched_rcpsp.mod"/>
+                              <ref name="sched_rcpsp.ops"/>
+                              <ref name="rcpsp_j120_32_8.dat"/>
+                    </config>
+
+                    <config name="sched_rcpsp rcpsp_j120_41_5" category="opl" default="false" closed="false">
+                              <ref name="sched_rcpsp.mod"/>
+                              <ref name="sched_rcpsp.ops"/>
+                              <ref name="rcpsp_j120_41_5.dat"/>
+                    </config>
+          </configs>
+
+          <model name="sched_rcpsp.mod"/>
+          <setting name="sched_rcpsp.ops"/>
+          <data name="rcpsp_j120_1_2.dat"/>
+          <data name="rcpsp_j120_2_9.dat"/>
+          <data name="rcpsp_j120_22_6.dat"/>
+          <data name="rcpsp_j120_32_8.dat"/>
+          <data name="rcpsp_j120_41_5.dat"/>
+
+</project>

@@ -1,0 +1,317 @@
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{claim}[theorem]{Claim}
+
+\newcommand{\pmtn}{{\text{\it pmtn}}}
+\newcommand{\Qs}{\mathcal{Q}}
+\newcommand{\Ks}{\mathcal{K}}
+\newcommand{\Ls}{\mathcal{L}}
+\newcommand{\Rs}{\mathcal{R}}
+\newcommand{\Ws}{\mathcal{W}}
+
+\newcommand{\St}{\EuScript{S}}
+\newcommand{\Pt}{\EuScript{P}}
+
+\newcommand{\dN}{\mathbb{N}}
+\newcommand{\dR}{\mathbb{R}}
+\newcommand{\dZ}{\mathbb{Z}}
+
+\newcommand{\la}{:=}
+
+\newcommand{\rest}{{\mit r\!\!\;est}}
+\newcommand{\fes}{{\text{\it fes}}}
+\newcommand{\pes}{{\text{\it pes}}}
+\newcommand{\lgth}{{\text{\it length}}}
+\newcommand{\JPS}{JPS}
+\newcommand{\val}{{\text{\it v}}}
+\newcommand{\domain}{{\text{\it domain}}}
+\newcommand{\lb}{{\text{\it lb}}}
+\newcommand{\ub}{{\text{\it ub}}}
+\newcommand{\length}{{\text{length}}}
+\newcommand{\slope}{{\text{\it slope}}}
+\newcommand{\load}{{\text{\it load}}}
+\newcommand{\Violation}{{\text{\it Violation}}}
+\newcommand{\ViolationJPS}{{\text{\it ViolationJPS}}}
+\newcommand{\total}{{\text{\it total}}}
+\newcommand{\EndTimeJPS}{{\text{\it EndTimeJPS}}}
+\newcommand{\makespan}{{\text{\it makespan}}}
+
+\newcommand{\DAr}{{\text{\it D}}}
+\newcommand{\LstAr}{{\text{\it Lst}}}
+\newcommand{\EetAr}{{\text{\it Eet}}}
+\newcommand{\midAr}{{\text{\it Middle}}}
+\newcommand{\slk}{{\text{\it  SL}}}
+
+\newcommand{\Wsh}{W_{\text{\it Sh}}}
+\newcommand{\Wpe}{W_{\text{\it PE}}}
+\newcommand{\Ssh}{S_{\text{\it Sh}}}
+\newcommand{\Spe}{S_{\text{\it PE}}}
+
+
+
+
+\newcommand{\critvar}{{\text{\it criterion}}}
+\newcommand{\capvar}{{\text{\it cap}}}
+\newcommand{\setvar}{{\text{\it set}}}
+\newcommand{\svar}{{\text{\it start}}}
+\newcommand{\evar}{{\text{\it end}}}
+\newcommand{\pvar}{{\text{\it proc}}}
+\newcommand{\dvar}{{\text{\it dur}}}
+\newcommand{\altvar}{{\text{\it altern}}}
+\newcommand{\setupt}{{\text{\it setup}}}
+\newcommand{\setupc}{{\text{\it setupCost}}}
+\newcommand{\maxEst}{{\text{\it maxEst}}}
+\newcommand{\restW}{{\text{\it restW}}}
+\newcommand{\maxval}{{\text{\it MaxVal}}}
+
+
+\newcommand{\estm}{{\text{\it r}}}
+\newcommand{\lstm}{{\text{\it lst}}}
+\newcommand{\eetm}{{\text{\it eet}}}
+\newcommand{\letm}{{\text{\it d}}}
+
+\newcommand{\lstmset}{{\text{\it lstmax}}}
+\newcommand{\eetmset}{{\text{\it eetmin}}}
+
+
+
+\newcommand{\PathCst}{{\text{\it PathCst}}}
+\newcommand{\Path}{{\text{\it route}}}
+\newcommand{\Next}{{\text{\it next}}}
+\newcommand{\Prev}{{\text{\it prev}}}
+
+\newcommand{\Xo}{{\text{\it Xo}}}
+\newcommand{\Xl}{{\text{\it Xl}}}
+
+
+\newcommand{\calO}{{\cal O}}
+\newcommand{\calM}{{\cal M}}
+\newcommand{\calT}{{\cal T}}
+\newcommand{\calR}{{\cal R}}
+\newcommand{\calS}{{\cal S}}
+
+\newcommand{\vs}{{\it vs.~}}
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\etal}{{\it et al.~}}
+\newcommand{\eg}{{\it e.g.}}
+\newcommand{\cf}{{\it cf.}}
+\newcommand{\etc}{{\it etc.}}
+
+%% marek Tue Dec  7 13:03:37 PST 2004
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%\parskip=.080in     
+%
+%% \setlength{\evensidemargin}{0.0in}
+%% \setlength{\oddsidemargin}{0.0in}
+%% \setlength{\textwidth}{6.7in}
+%% \setlength{\topmargin}{0.0in}
+%% \setlength{\textheight}{8.9in}
+%
+%% \setlength{\headheight}{0in}
+%% \setlength{\headsep}{0in}
+%% \setlength{\topsep}{0in}
+%% \setlength{\itemsep}{0in}
+%% \renewcommand{\baselinestretch}{1.05}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% non-math stuff
+%
+%\newcommand{\myparagraph}[1]{{\medskip\noindent{\bf #1}}}
+%\newcommand{\etal}{{\em et al.} }
+%\newcommand{\myif}{{\mbox{\rm\ if \ }}}
+%\newcommand{\mycase}[1]{\mbox{{\underline{Case #1}}:\/}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% various leters
+%
+%\newcommand{\hatc}{{\hat c}}
+%\newcommand{\hatC}{{\hat C}}
+%\newcommand{\hatr}{{\hat r}}
+%\newcommand{\hatH}{{\widehat H}}
+%\newcommand{\hatW}{{\widehat W}}
+%\newcommand{\barW}{{\overline W}}
+%
+%\newcommand{\doubledone}{{\bar 1}}
+%\newcommand{\doubledtwo}{{\bar 2}}
+%\newcommand{\barc}{{\bar c}}
+%\newcommand{\bart}{{\bar t}}
+%
+%\newcommand{\barx}{{\bar x}}
+%\newcommand{\bary}{{\bar y}}
+%\newcommand{\barz}{{\bar z}}
+%\newcommand{\barr}{{\bar r}}
+%\newcommand{\barX}{{\bar X}}
+%\newcommand{\barY}{{\bar Y}}
+%\newcommand{\barZ}{{\bar Z}}
+%\newcommand{\bara}{{\bar a}}
+%\newcommand{\bard}{{\bar d}}
+%\newcommand{\bars}{{\bar s}}
+%\newcommand{\barm}{{\bar m}}
+%\newcommand{\barA}{{\bar A}}
+%\newcommand{\barC}{{\overline C}}
+%\newcommand{\barF}{{\overline F}}
+%
+%\newcommand{\bfr}{{\bf r}}
+%\newcommand{\bfv}{{\bf v}}
+%\newcommand{\bfx}{{\bf x}}
+%\newcommand{\bfy}{{\bf y}}
+%\newcommand{\bfz}{{\bf z}}
+%\newcommand{\bfQ}{{\bf Q}}
+%\newcommand{\bfR}{{\bf R}}
+%\newcommand{\bfS}{{\bf S}}
+%\newcommand{\bfT}{{\bf T}}
+%\newcommand{\bfV}{{\bf V}}
+%\newcommand{\bfone}{{\bf 1}}
+%
+%\newcommand{\calA}{{\cal A}}
+%\newcommand{\calB}{{\cal B}}
+%\newcommand{\calD}{{\cal D}}
+%\newcommand{\calF}{{\cal F}}
+%\newcommand{\barcalF}{{\overline{\calF}}}
+%\newcommand{\calG}{{\cal G}}
+%\newcommand{\calH}{{\cal H}}
+%\newcommand{\calI}{{\cal I}}
+%\newcommand{\calJ}{{\cal J}}
+%\newcommand{\calK}{{\cal K}}
+%\newcommand{\calL}{{\cal L}}
+%\newcommand{\calM}{{\cal M}}
+%\newcommand{\calN}{{\cal N}}
+%\newcommand{\calS}{{\cal S}}
+%\newcommand{\calU}{{\cal U}}
+%\newcommand{\calW}{{\cal W}}
+%\newcommand{\calX}{{\cal X}}
+%\newcommand{\calY}{{\cal Y}}
+%\newcommand{\calZ}{{\cal Z}}
+%\newcommand{\calT}{{\cal T}}
+%
+%\newcommand{\vecS}{{\bar S}}
+%\newcommand{\vecT}{{\bar T}}
+%\newcommand{\vecone}{{\bf 1}}
+%
+%\newcommand{\tildeD}{{\tilde D}}
+%\newcommand{\tildeC}{{\widetilde C}}
+%\newcommand{\tildec}{{\tilde c}}
+%
+%\newcommand{\dotc}{{\dot c}}
+%
+%\newcommand{\eps}{{\epsilon}}
+%
+%\newcommand{\pmtn}{{\mbox{\rm pmtn}}}
+%\newcommand{\cwork}[3]{{\calW_{#3}(#1,#2)}}
+%\newcommand{\job}{{\mbox{\it job}}}
+%\newcommand{\Jobs}{{\mbox{\it Jobs}}}
+%\newcommand{\work}{\mbox{\it work}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\newcommand{\half}{{\mbox{$\frac{1}{2}$}}}
+%\newcommand{\onehalf}{{\mbox{$\frac{1}{2}$}}}
+%\newcommand{\onethird}{{\mbox{$\frac{1}{3}$}}}
+%\newcommand{\threehalfs}{{\mbox{$3\over 2$}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% various delimiters
+%
+%\newcommand{\tbraced}[1]{{ \{ #1 \} }}
+%\newcommand{\braced}[1]{{ \left\{ #1 \right\} }}
+%\newcommand{\angled}[1]{{ \left\langle #1 \right\rangle }}
+%\newcommand{\brackd}[1]{{ \left[ #1 \right] }}
+%\newcommand{\parend}[1]{{ \left( #1 \right) }}
+%\newcommand{\barred}[1]{{ \left| #1 \right| }}
+%\newcommand{\dbarred}[1]{{ \left\| #1 \right\| }}
+%\newcommand{\floor}[1]{{ \left\lfloor #1 \right\rfloor }}
+%\newcommand{\ceiling}[1]{{ \left\lceil #1 \right\rceil }}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% some math symbols
+%
+%\newcommand{\set}{\,{\leftarrow}\,}
+%\newcommand{\cost}{{\it cost}}
+%\newcommand{\opt}{{\it opt}}
+%
+%\newcommand{\server}{\mbox{\it server}}
+%\newcommand{\rank}{{r}}
+%
+%\newcommand{\bfH}{{\bf H}}
+%\newcommand{\algA}{{\bf A}}
+%\newcommand{\LHS}{{\rm LHS}}
+%\newcommand{\RHS}{{\rm RHS}}
+%%\newcommand{\reals}{{\sf R\hspace*{-0.9ex}\rule{0.15ex}{1.5ex}\hspace*{0.9ex}}}
+%\DeclareMathSymbol{\reals}{\mathbin}{AMSb}{"52}
+%
+%\newcommand{\prmpt}{\mbox{\it prmpt}}
+%
+%\newcommand{\calXbef}[1]{\calX_{<#1}}
+%\newcommand{\calXaft}[1]{\calX_{>#1}}
+%
+%\newcommand{\invd}{{\bard}}
+%\newcommand{\absvalue}[1]{{\barred{#1}}}
+%
+%\newcommand{\nofjobs}{{\Delta}}
+%\newcommand{\earliestjob}{{\lambda}}
+%\newcommand{\nextjob}{{\lambda^+}}
+%
+%\newcommand{\weight}{{\mbox{\it w}}}
+%
+%\newcommand{\myeq}{{=}}
+%\newcommand{\edd}[1]{{\hat{#1}}}
+%\newcommand{\mybef}{{-}}
+%\newcommand{\myaft}{{+}}
+%
+%\newcommand{\DP}{{\mbox{\sc DP}}}
+%\newcommand{\Greedy}{{\mbox{\sc Greedy}}}
+%\newcommand{\undefined}{{\bot}}
+%\newcommand{\assign}{{\,\leftarrow\,}}
+%
+%\newcommand{\iinsert}{{\mbox{\it insert}}}
+%\newcommand{\ddelete}{{\mbox{\it delete}}}
+%\newcommand{\ssmin}{{\mbox{\it smin}}}
+%\newcommand{\ddmin}{{\mbox{\it dmin}}}
+%\newcommand{\barsigma}{{\bar\sigma}}
+%
+%\newcommand{\ttfor}{ {\mbox{\bf for}} }
+%\newcommand{\ttto}{ {\mbox{\bf to}} }
+%\newcommand{\ttdownto}{ {\mbox{\bf downto}} }
+%\newcommand{\ttdo}{ {\mbox{\bf do}} }
+%
+%\newcommand{\argmin}{{\mbox{\rm argmin}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% theorem and such
+%
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{fact}[theorem]{Fact}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{claim}[theorem]{Claim}
+%
+%\newenvironment{proof}{{\it Proof:\/}}{$\Box$\vskip 0.1in}
+%\newenvironment{proofidea}{{\it Proof idea:\/}}{$\Box$\vskip 0.1in}
+%\newenvironment{example}{{\smallskip\noindent\bf Example:\/}}%
+%                {$\spadesuit$\smallskip}
+%\newenvironment{bigeqn}{\large\begin{eqnarray}}{\end{eqnarray}}
+%\newenvironment{bigeqn*}{\large\begin{eqnarray*}}{\end{eqnarray*}}
+%
+%\newtheorem{step}{Step}
+%\renewcommand{\thestep}{\Alph{step}}
+%
+%\newcommand{\proofendmark}{{\hfill$\Box$}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%

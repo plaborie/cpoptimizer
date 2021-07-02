@@ -1,0 +1,22 @@
+/*********************************************
+ * OPL 6.1 Data
+ * Author: laborie
+ * Creation Date: Oct 13, 2008 at 10:59:25 AM
+ *********************************************/
+
+SheetConnection file ( "ProjectData.xls" ); 
+// Actor data
+Workers         from SheetRead (file, "Workers!A2:D16");
+Skills         from SheetRead (file, "Skills!A2:B8");
+Proficiencies  from SheetRead (file, "Proficiencies!A2:C18");
+// Project data
+Tasks          from SheetRead (file, "Tasks!A2:C130");
+TopLevelTask   from SheetRead (file, "Tasks!A2");
+ParentLinks    from SheetRead (file, "Hierarchy!A2:B129");
+Precedences    from SheetRead (file, "Precedences!A2:D243");
+Requirements   from SheetRead (file, "Requirements!A2:B182");
+RequiredSkills from SheetRead (file, "RequiredSkills!A2:D182");
+// KPIs
+MakespanWeight     from SheetRead (file, "KPIs!B2");
+FixedWeight        from SheetRead (file, "KPIs!B3");
+ProportionalWeight from SheetRead (file, "KPIs!B4");

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings version="2">
+  <category name="cp">
+    <setting name="timelimit" value="20.0"/>
+    <setting name="temporalrelaxation" value="false"/>
+  </category>
+</settings>

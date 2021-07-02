@@ -1,0 +1,56 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result JobShopEarliTardi.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\JobShopEarliTardi\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_15x2.txt, , 14.7344, 47, 0, 0, 3372.09, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_15x2.txt, , 26.25, 34, 0, 0, 1508.59, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_15x5.txt, , 54.9219, 66, 0, 0, 1684.17, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_15x5.txt, , 344.766, 100, 0, 0, 2919, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_15x10.txt, , 261.828, 136, 0, 0, 6848.97, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_15x10.txt, , 589.984, 87, 0, 0, 5199.82, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_15x2.txt, , 12.5938, 49, 0, 0, 1048.47, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_15x2.txt, , 44.9219, 26, 0, 0, 529.24, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_15x5.txt, , 292.219, 86, 0, 0, 3572.86, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_15x5.txt, , 426.766, 67, 0, 0, 3642.24, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_15x10.txt, , 582, 49, 0, 0, 1205.42, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_15x10.txt, , 727.016, 68, 0, 0, 1855.01, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_15x2.txt, , 21.2188, 57, 0, 0, 824.19, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_15x2.txt, , 49.4375, 45, 0, 0, 905.37, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_15x5.txt, , 100.453, 51, 0, 0, 1553.22, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_15x5.txt, , 192.875, 53, 0, 0, 761.25, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_15x10.txt, , 597.781, 46, 0, 0, 921.46, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_15x10.txt, , 432.172, 66, 0, 0, 1633.14, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_15x2.txt, , 12.9844, 58, 0, 0, 655.93, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_15x2.txt, , 9.95313, 21, 0, 0, 312.17, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_15x5.txt, , 140.156, 72, 0, 0, 1431.36, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_15x5.txt, , 430.875, 49, 0, 0, 386.25, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_15x10.txt, , 189.813, 36, 0, 0, 324.03, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_15x10.txt, , 601.313, 68, 0, 0, 781.8, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_20x2.txt, , 30.9688, 57, 0, 0, 1967.4, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_20x2.txt, , 130.219, 75, 0, 0, 993.43, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_20x5.txt, , 550.672, 77, 0, 0, 3266.35, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_20x5.txt, , 306.047, 127, 0, 0, 7456.91, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_1_20x10.txt, , 871.172, 177, 0, 0, 11929.2, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TE_2_20x10.txt, , 943.344, 78, 0, 0, 7763.34, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_20x2.txt, , 159.922, 90, 0, 0, 2750.21, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_20x2.txt, , 30.7031, 78, 0, 0, 3182.94, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_20x5.txt, , 585.766, 132, 0, 0, 8285.88, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_20x5.txt, , 599.375, 93, 0, 0, 8400.03, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_1_20x10.txt, , 990.281, 109, 0, 0, 6742.01, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LE_2_20x10.txt, , 594.188, 76, 0, 0, 2023.89, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_20x2.txt, , 28.8906, 72, 0, 0, 1761.69, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_20x2.txt, , 88.3281, 72, 0, 0, 1471.25, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_20x5.txt, , 224.313, 113, 0, 0, 3778.88, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_20x5.txt, , 591.203, 81, 0, 0, 2006.45, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_1_20x10.txt, , 788.719, 118, 0, 0, 5622.63, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/TT_2_20x10.txt, , 655.422, 77, 0, 0, 4382.08, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_20x2.txt, , 239.922, 85, 0, 0, 1256.02, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_20x2.txt, , 103.609, 72, 0, 0, 784.54, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_20x5.txt, , 562.859, 101, 0, 0, 3421.56, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_20x5.txt, , 522.266, 166, 0, 0, 3965.95, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_1_20x10.txt, , 671.563, 197, 0, 0, 6877.88, 100, -1, 0
+RESULT, JobShopEarliTardi, BFS/LT_2_20x10.txt, , 712.938, 50, 0, 0, 2046.53, 100, -1, 0

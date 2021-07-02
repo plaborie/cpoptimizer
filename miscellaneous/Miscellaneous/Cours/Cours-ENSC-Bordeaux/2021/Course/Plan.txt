@@ -1,0 +1,55 @@
+50 
+COURS 1 lun. 10/12/2018 13h00 15h00 2h00 1305 LABORIE P.
+COURS 1 mar. 11/12/2018 13h00 15h00 2h00 5301V++ LABORIE P.
+TPs   1 jeu. 13/12/2018 10h00 12h00 2h00 5401V++ LABORIE P.
+
+lundi 10 décembre: 13h-15h: Cours (optimisation, programmation par contraintes et ordonnancement)
+mardi 11 décembre: 13h-15h: Cours/TP (CP-Optimizer / résolution de problèmes d'ordonnancement)
+jeudi 13 décembre: 10h-12h: TP (CP-Optimizer / résolution de problèmes d'ordonnancement)
+
+
+I- Combinatorial Optimization Problems (Models)
+
+Combinatorial Optimization model = decision variables + objective function + constraints
+Example: TSP
+
+Complexity (P,NP,NP-Completness)
+Example: TSP
+! It is not because a problem has potentially an exponential number of solution that it is NP-Complete!
+Example: taks a simple polynomial scheduling problem
+
+Scheduling problems: alpha|beta|gamma notation
+
+Example of real-life scheduling problems: often more complex than the academical problems
+
+
+II- Some resolution techniques
+
+II.1 MIP (short summary)
+
+For which models? Linear objective + constraints
+
+II.2. Meta-heuristics
+
+For which models? For specific problems (no clear separation between model and resolution)
+
+Local search
+Genetic Algorithms
+...
+
+II.3 Constraint Programming
+
+For which models? Very general
+
+Sudoku example:
+- Search tree
+- Propagation
+
+
+III- CP Optimizer for scheduling
+
+III-1 Modeling
+
+III-2 Solving (under the hood)
+
+- Example of propagation

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project>
+	<version>1.0</version>
+	<configs>
+		<config category="opl" default="true" name="Solve with CP Optimizer">
+			<ref type="data" name="NewDataDay5Multiple2-2.2.1.dat">
+			</ref>
+			<ref type="model" name="Model.mod">
+			</ref>
+			<ref type="setting" name="Model.ops">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

@@ -1,0 +1,17 @@
+ILOG_CSV_FORMAT,1.1,,,,,,,,,,
+
+BESTSOFAR|NAMES,modeler,instance,modelParams,lb,lbMethod,lbDate,lbComment,ub,ubMethod,ubDate,ubComment
+BESTSOFAR|KEYS,1,1,1,0,0,0,0,0,0,0,0
+
+BESTSOFAR,FlowShopEarliTardi,jb1,,0.191,DannaPerron,2003,,0.191,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,jb2,,0.137,DannaPerron,2003,,0.137,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,jb4,,0.568,DannaPerron,2003,,0.568,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,jb9,,0.333,DannaPerron,2003,,0.333,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,jb11,,0.191,DannaPerron,2003,,0.213,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,jb12,,0.19,DannaPerron,2003,,0.19,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,ljb1,,0.215,DannaPerron,2003,,0.215,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,ljb2,,0.23,DannaPerron,2003,,0.508,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,ljb7,,0.058,DannaPerron,2003,,0.11,DannaPerron,2003,
+BESTSOFAR,FlowShopEarliTardi,ljb9,,0.739,DannaPerron,2003,,1.015,Vasquez,2000,
+BESTSOFAR,FlowShopEarliTardi,ljb10,,0.197,DannaPerron,2003,,0.525,Vasquez,2000,
+BESTSOFAR,FlowShopEarliTardi,ljb12,,0.053,DannaPerron,2003,,0.605,Vasquez,2000

@@ -1,0 +1,226 @@
+\documentclass[12pt,thmsa]{article}
+\usepackage{natbib}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\newcommand{\subjectto}{\mathrm{subject\ to:}}
+\newcommand{\minimize}{\mathrm{minimize}}
+\newcommand{\squishlist}{
+   \begin{list}{$\bullet$}
+    { \setlength{\itemsep}{0pt}      \setlength{\parsep}{3pt}
+      \setlength{\topsep}{3pt}       \setlength{\partopsep}{0pt}
+      \setlength{\leftmargin}{1.5em} \setlength{\labelwidth}{1em}
+      \setlength{\labelsep}{0.5em} } }
+\newcommand{\squishend}{
+    \end{list}  }
+    
+
+% For footnote in tables    
+\newcounter{notetab}
+\newcommand{\zero}{\setcounter{notetab}{0}}
+\newcommand{\ntm}{\footnotemark\addtocounter{notetab}{1}}
+\newcommand{\initnt}{\addtocounter{footnote}{-\value{notetab}}}
+\newcommand{\ntt}[1]{%
+   \addtocounter{footnote}{1}
+   \footnotetext{#1}}
+   
+\newtheorem{complexity}{Complexity}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\def\qed{\hfill \quad \vrule height4.17pt width4.17pt depth0pt} 
+\newenvironment{proof}[1][Proof]{\noindent \textbf{#1:} }{\qed}
+\newcommand{\maxflow}{\mathrm{maxflow(}n,m\mathrm{)}}
+\newcommand{\ixtet}{I{\scriptsize X}T{\scriptsize E}T\hspace*{1mm}}
+\def\subsetnoteq{\subsetneq}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center} 
+{\sc ILOG\ Technical report number 07-001}
+
+{\sc \copyright\ ILOG\ 2007 all rights reserved}
+\end{center} 
+
+\hrulefill
+\vspace{6cm}
+
+\begin{center}
+{\Large {\bf Self-Adapting Large Neighborhood Search: \\ Application to single-mode scheduling problems}} \\
+\vspace{1.5cm}
+{\large Philippe Laborie, Daniel Godard} \\
+\vspace{0.7cm}
+
+ILOG\ Gentilly \\
+9, rue de Verdun \\
+94253 Gentilly
+
+\end{center}
+\newpage
+
+\begin{abstract}
+\begin{quote}
+
+Providing robust scheduling algorithms that can solve a large variety of scheduling problems with good performance is one of the biggest challenge of practical schedulers today. In this technical report we present a robust scheduling algorithm based on Self-Adapting Large Neighborhood Search and apply it to a large panel of single-mode scheduling problems. The approach combines Large Neighborhood Search with a portfolio of neighborhoods and completion strategies together with Machine Learning techniques to converge on the most efficient neighborhoods and completion strategies for the problem being solved. The algorithm is evaluated on a set of 21 scheduling benchmarks, most of which are well established in the scheduling community. Despite the generality of the approach, for $17$ benchmarks out of $21$, its mean relative distance to state-of-the-art problem specific algorithms is less than $4\%$. It even outperforms state-of-the-art problem-specific algorithms on $7$ benchmarks clearly showing that our algorithm offers a valuable compromise between robustness and performance.
+
+\end{quote}
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+% Length: 0.5 page
+
+There exists a large variety of scheduling problems and scheduling applications each of them featuring different types of resources, different types of temporal network topology (jobs, precedence network, work breakdown structure), different objective functions, etc. Facing this variability, the scheduling literature is huge. Most of it is about identifying or providing theoretical or experimental results on a particular type of scheduling problem. For a given well identified problem, for instance the job-shop scheduling or resource-constrained project scheduling (RCPSP) problems, extremely efficient optimization algorithms are available. Experimental evaluations are usually based on a set of specific benchmarks for the problem being studied which also explains the large number of benchmarks available to the scheduling community. 
+
+Still, when one is faced with a practical scheduling application the gap between the problem to be solved and state-of-the-art problem specific algorithms is usually too large. It requires an advanced expertise in scheduling to assess their potential applicability and efficiency on the real problem and to adapt them when possible. It explains why actual scheduling applications tend to use in-house heuristics rather than very efficient but often too specific optimization algorithms. 
+
+Providing robust scheduling algorithms that can solve a large variety of scheduling problems with good performance is still a challenge. In this paper we present a robust scheduling algorithm based on Self-Adapting Large Neighborhood Search. Section \ref{model} describes the class of scheduling problem we focus on which covers a large panel of single-mode scheduling problems. The algorithm itself is presented in section \ref{salns}. Section \ref{experimental-study} reports an experimental study over 21 scheduling benchmarks most of which are well established in the scheduling community (e.g. job-shop, RCPSP). We show among other things that for $17$ benchmarks out of $21$, the mean relative distance to state-of-the-art problem-specific algorithms is less than $4\%$ and that our approach, despite its generality, outperforms the state-of-the-art on $7$ benchmarks. 
+
+\section{Model}
+\label{model}
+% Philippe
+% Length: 1 page
+
+Although the algorithm described in section \ref{salns} can easily be extended to handle complex scheduling problems involving, for instance, multiple modes, resource minimal capacities or calendars, we focus in this paper on its application to a more restricted but still expressive class of single-mode scheduling problems involving the following features:
+\squishlist 
+\item {\em Non-preemptive activities of fixed or variable duration}. ${\cal A}=\{A_1,...,A_n\}$  denotes the set of activities of the schedule. Each activity can be specified a release date (minimal start time) and a deadline (maximal end time).
+\item {\em General temporal network}. If $x_i$ and $x_j$ denote two time-points (start or end time of some activity), any temporal constraint $x_i - x_j \in [D^{min}_{ij},D^{max}_{ij}]$, $D^{min}_{ij}$, $D^{max}_{ij} \in \mathbb{Z}$ can be expressed.
+\item {\em Capacity resources (unary, discrete, discrete reservoir) with maximal profiles}. Discrete resources are renewable resources of limited capacity, discrete reservoirs are resources of limited capacity that can be produced and consumed by activities \cite{Laborie2003a}. Each capacity resource $R_k$ can be associated a function $C_k: \mathbb{Z} \rightarrow \mathbb{Z}^+$ that represents its maximal capacity over time.
+\item {\em State resources}. State resources are resources whose state can change over time. Two activities requiring a given state resource to be in a different state cannot overlap in time \cite{Le1994}.
+\item {\em Sequence-dependent setup times on unary resources}. A setup time on a unary resource $R_k$ is specified by a setup matrix $M_k$ with $M_k[i,j] \in \mathbb{Z}^+$ denoting the minimal time that must elapse between the end of $A_i$ and the start of $A_j$ when $A_j$ is executed next to $A_i$ on $R_k$.
+\item {\em Cost expressed as a sum/max aggregation of semi-convex piecewise linear (SCPL) functions on start, end and duration of activities}. A semi-convex function \cite{Khatib2001} is a function such that, if one draws a horizontal line anywhere in the Cartesian plane corresponding to the graph of the function, the set of $x$ such that $f(x)$ is below the line forms a single interval. Some examples of SCPL functions are depicted on Figure \ref{fig:scpl}.
+\squishend
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=14cm,keepaspectratio,clip]{figures/semiconvex.pdf}
+\caption{Example of semi-convex piecewise linear functions}
+\label{fig:scpl}
+\end{figure}
+
+Most of the classical single-mode scheduling problems (e.g. job-shop, RCPSP) and classical cost functions (e.g. makespan, earliness/tardiness costs, weighted number of late jobs, duration minimization or maximization, etc) can be represented using this model.
+
+Note also that in this paper we focus on optimization problems rather than on feasibility problems. We assume that finding an initial feasible solution (even of bad quality) is not hard.
+
+\section{Self-Adapting Large Neighborhood Search}
+\label{salns}
+% Length: 1.5 page
+
+\subsection{Overview}
+% Philippe
+
+Large Neighborhood Search (LNS) \cite{Shaw1998} is based upon a process of continual relaxation and re-optimization: a first solution is computed and iteratively improved. Each iteration consists of a relaxation step followed by a re-optimization of the relaxed solution. This process continues until some condition is satisfied, typically, when a time limit is reached. In this paper, we generalize the randomized LNS proposed in \cite{Godard2005} along two directions: (1) the scope of the approach is dramatically enlarged, now handling a wide variety of resource types and cost functions, and (2) the approach is robustified by using portfolios of large neighborhoods and completion strategies in combination with Machine Learning techniques to converge on the most efficient neighborhoods and completion strategies for the problem being solved. 
+
+The overall framework of Self-Adapting LNS (denoted SA-LNS) is illustrated on Figure \ref{fig:salns}. Each large neighborhood $LN_i$ and each completion strategy $CS_j$ in the portfolios are associated a vector of parameters. In a parameter vector $p=(p^1,...,p^n)$, each parameter $p^k$ takes its values in a finite set $V^k$. The learning algorithm maintains two probability distributions $prob(LN_i)$ and $prob(CS_j)$ on the sets of large neighborhoods and completion strategies and, for each parameter $p^k$, a probability distribution on its possible values in $V^k$. At each cycle of the LNS, one large neighborhood $LN_i$ together with a corresponding vector of parameter values $P_i$ and one completion strategy $CS_j$ with a corresponding vector of parameter values $Q_j$ are selected based on the current probability distributions. $LN_i[P_i]$ is applied to relax the current best solution then, completion strategy $CS_j[Q_j]$ is applied to re-optimize the relaxed solution. After this cycle, $LN_i$ and $CS_j$, together with their respective parameter values $P_i$ and $Q_j$ are rewarded according to the efficiency of the cycle defined by the ratio $r={\Delta c}/{\Delta t}$ where $\Delta c$ is the cost improvement if any ($0$ otherwise) and $\Delta t$ is the cycle CPU time. This type of reward tends to favor neighborhoods and strategies that quickly converge on good solutions. The reward increases the probability of the rewarded elements being chosen according to a classical re-enforcement scheme: $weight_{t+1}=(1-\alpha) \cdot weight_{t} + \alpha \cdot r$ with learning rate $\alpha \in (0,1]$ being a parameter of the global approach. 
+
+In \cite{Carchrae2005}, the authors present an algorithm switching strategy that iteratively runs the whole set of algorithms in the portfolio and adapts, at each cycle, their allocated running times depending on their past results. SA-LNS learns the algorithm selection rather than the algorithm running times which allows for a more fine-grain control of the search and avoids systematically running useless algorithms. The overall framework is actually closer to the one recently described in \cite{Pisinger2005} for Vehicle Routing problems, the main difference being that the our approach also learns the parameter values of each component of the LNS (neighborhoods, completion strategies). That way, it can be seen as a pure black-box search without any parameter. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=12cm,keepaspectratio,clip]{figures/salns.pdf}
+\caption{Self-Adapting LNS overview}
+\label{fig:salns}
+\end{figure}
+
+The sequel of this section describes the portfolios of large neighborhoods and completion strategies. Note that the first solution is built using the same search strategy as the completion strategy {\em SetJustInTime} described in section \ref{completion-strategies}.
+  
+\subsection{Large neighborhoods}
+% [Daniel]
+
+The portfolio of large neighborhoods currently consists of 3 neighborhoods. They are all based on the initial generation of a Partial Order Schedule (POS) \cite{Policella2004} constructed from a completely instantiated solution where activities have fixed start times and end times. A POS is a directed graph G($\cal A$, $\cal E$) where the edges in $\cal E$ are precedence constraints between activities with the property that any temporal solution to the graph is also a resource-feasible solution. Algorithms for transforming a fully instantiated solution into a POS are described in \cite{Policella2004,Godard2005}. We extend this approach to state resources and discrete reservoirs as sketched below.
+
+\squishlist
+\item {\em State resource}. The POS $P(R_k)$ of a state resource $R_k$ contains all the edges $A_i \rightarrow A_j$ such that activities $A_i$ and $A_j$ require incompatible states of $R_k$ and $A_i$ is executed before $A_j$ in the solution.
+\item {\em Discrete reservoirs}. The algorithm to generate a POS $P(R_k)$ for discrete reservoirs works in two steps: one that ensures that the reservoir does not underflow and the other that it does not overflow. In the first step, a simple pegging heuristic chronologically creates a directed graph of pegging arcs between producing activities and consuming activities: the first producer is pegged to the first consumer and the pegged quantity is the minimum  between the produced quantity and the consumed quantity. The process continues until all consuming activities are provided enough quantity. Let $P_u(R_k)$ be the graph of pegging arcs. In the second step, the pegging arcs are used to build a sub-model to ensure that the reservoir does not overflow: each pegging arc is represented by an activity that requires the pegged quantity of a discrete resource $R'_k$ whose capacity is the maximum capacity of the reservoir. The algorithm described in \cite{Godard2005} is applied on this discrete resource to build a POS $P_o(R'_k)$. The POS of the discrete reservoir $P(R_k)$ is then defined as: $P(R_k) = P_u(R_k) \cup P_o(R'_k)$.
+\squishend
+
+The global POS $P$ is defined as $P = \cup_{k} P(R_k)$. Redundant edges in $P$ are removed. The goal of the neighborhoods is to {\em select} a subset of activities that will be relaxed in the POS $P$. As described in \cite{Godard2005}, the relaxed POS $P'$ is obtained by removing from $P$ all the edges involving at least one selected activity and adding new edges to repair broken paths. The relaxed POS $P'$ is then used to enforce precedence constraints between activities before applying a completion strategy. The portfolio contains the 3 following neighborhoods:
+\squishlist
+\item {\em RandomizedNHood$[\alpha_R]$}. This is the neighborhood described in \cite{Godard2005}. It randomly selects activities with a probability $\alpha_R$, where $\alpha_R$ is a self-adapting parameter of the neighborhood.
+\item {\em TimeWindowNHood$[\alpha_W,\beta_W]$}. Activities are first sorted by increasing start times in an array. The selected activities are those whose index in the sorted array belongs to $[\beta_W \cdot n, (\beta_W+\alpha_W) \cdot n]$ where $n$ is the number of activities of the problem, and $\alpha_W$ and $\beta_W$ are two self-adapting parameters. 
+\item {\em TopologicalNHood$[\alpha_T,\beta_T]$}. This neighborhood is similar to the previous one. It only differs in the ordering of activities. The activities are sorted in the following lexicographic order: increasing connected component\footnote{Connected components and strongly connected components of the temporal network are computed from the initial set of temporal constraints in the problem. They convey important information about the temporal structuration of the problem (jobs, work breakdown structure, etc.).} (CC) indexes, increasing strongly connected component (SCC) indexes, increasing start times. $\alpha_T$ and $\beta_T$ are two self-adapting parameters.  This neighborhood tends to select activities belonging to the same CC (resp. SCC) of the problem.
+\squishend
+
+\subsection{Completion strategies}
+\label{completion-strategies}
+% [Philippe]
+
+% TODO:  Optimization step + constraint propagation
+
+Currently, only one completion strategy {\em SetJustInTime$[\gamma]$} is used. This completion strategy explores a search tree with a maximal number of failures equal to $\gamma \cdot n$ where $n$ is the number of activities of the problem and $\gamma$ is a self-adapting parameter. At the root node, this strategy solves a linear relaxation of the problem that only takes into account activity durations, temporal constraints and a convexification of the SCPL functions of the cost. The optimal solution of this relaxation gives indicative start and end times for each activity. The search is a generalization of the {\em SetTimes} strategy recapped in \cite{Godard2005}. It considers activities by increasing indicative start times and tries to schedule them as close as possible to their indicative times. When a failure occurs, in the right branch, the activity is marked "unselectable" and will remain so until constraint propagation removes from the current domain of the activity the start or end dates that were tried on the left branch. When the objective is regular, this strategy boils down to {\em SetTimes}. At each LNS step, the completion tries to find a solution that is not worse than the current best solution in term of cost value. If the maximal number of failures is reached before such a solution is found, a new move is tried.
+
+\section{Experimental study}
+\label{experimental-study}
+% Length: 3 page
+% [Philippe]
+
+SA-LNS has been implemented on top of ILOG CP 1.1 using ILOG CPLEX 10.1 for the linear relaxation of the {\em SetJustInTime} strategy. We report in this section a comparison of this implementation with state-of-the-art specialized algorithms on 21 scheduling benchmarks, most of which are well established in the scheduling community. It is to be noted that for this experimental study, we consider our method as a pure black-box: there is no tuning of the search for the different benchmarks. The results are summarized\footnote{The detailed experimental protocol and results are available on {\tt scheduler.ilog.fr}.} on Table \ref{table:results}. When possible, we compare with the upper-bounds (UB) found by the best specialized algorithm on each benchmark (column "Reference UB") and try to use comparable time limits, otherwise we compare with the best known upper-bounds (which may have been found by different algorithms) and use a time-limit which is a piecewise linear function of the number $n$ of activities, for instance $1800s$ on a $2$GHz laptop for a problem with $500$ activities. Note that due to the number of benchmarks, we often had to select a subset of instances. To ensure a fair comparison, these instances were randomly drawn. Column "MRD" measures the average relative distance to the reference upper-bound, a negative value means that in average SA-LNS outperforms the reference algorithm(s). The number of selected instances, together with the number of improved upper bounds compared to the reference algorithm(s) is given in the last column. 
+
+\begin{table}[tb]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|r|l|}\hline
+ Problem type           & Benchmark                    & Problem & Reference            & MRD       & \# Impr. / \\
+                        &                              & size    & UB                   &           & \# Instances \\ \hline		
+ Trolley                & \cite{Hentenryck1999}        & 230-460 & \cite{ILOG2003a}     & $-11.8\%$ & $15/15$ \\ \hline	
+ Hybrid flow-shop       & \cite{Sivrikaya-Serifolu2004}& 200-1000& \cite{Sivrikaya-Serifolu2004}& $-8.8\%$  & $19/20$   \\ \hline	
+ Job-shop w/ E/T        & \cite{Baptiste2005}          & 30-200  & \cite{Baptiste2005}  & $-5.6\%$  & $32/48$ \\ \hline	
+ Air traffic management & \cite{ILOG2003a}             & 2000    & \cite{ILOG2003a}     & $-4.0\%$  & $1/1$\\ \hline	
+ Flow-shop w/ E/T       & \cite{Morton1993}            & 30-400  & \cite{Danna2003}     & $-3.0\%$  & $4/12$    \\ \hline	
+ Max. quality RCPSP     & \cite{Policella2005}         & 30      & \cite{Policella2005} & $-2.3\%$  & $NA/3600$\\ \hline	
+ Cumulative job-shop    & \cite{Nuijten1994}           & 150-675 & \cite{Godard2005}    & $-0.3\%$  & $27/86$   \\ \hline	
+ Single proc. tardiness & \cite{Kara2002}              & 200-500 & \cite{Kara2002}      & $0.2\%$   & $0/20$\\ \hline	
+ Semiconductor testing  & \cite{Ovacik1996}            & 400     & \cite{Ovacik1996}    & $0.2\%$   & $7/18$   \\ \hline	
+ RCPSP w/ E/T           & \cite{Vanhoucke2001}         & 30-50   & \cite{Vanhoucke2001} & $0.4\%$   & $15/60$    \\ \hline	
+ Open-shop              & \cite{Brucker1997,Taillard1993,Gueret1999} & 64-400 &  \cite{Dorndorf2001,Blum2005,Laborie2005}& $0.9\%$   & $0/28$    \\ \hline	
+ RCPSP                  & \cite{Kolisch1996}           & 120     & PSPLIB          & $1.6\%$   & $0/600$\ntm   \\ \hline	
+ Shop w/ setup times    & \cite{Brucker1996}           & 50-200  & \cite{Balas2005}     & $2.3\%$   & $0/15$\\ \hline	
+ Parallel machine w/ E/T  & \cite{Nuijten2004}         & 8-200   & \cite{Baptiste2007}  & $2.6\%$   & $2/52$ \\ \hline	
+ Job-shop               & \cite{Adams1988,Storer1992,Yamada1992,Taillard1993} & 100-500 & OR-Lib & $2.8\%$  & $0/33$    \\ \hline	
+ Air land               & \cite{Beasley2000}           & 10-50   & \cite{Beasley2000}   & $3.4\%$   & $0/8$   \\ \hline	
+ Flow-shop w/ buffers   & \cite{Taillard1993}          & 100-500 & \cite{Brucker2003}   & $3.6\%$   & $12/30$\\ \hline	
+ Flow-shop              & \cite{Taillard1993}          & 100-500 & OR-Lib          & $5.9\%$   & $0/22$\\ \hline	
+ Aircraft assembly      & \cite{Fox1995a}              & 575     & \cite{Crawford1996}  & $8.7\%$   & $0/1$\\ \hline	
+ Single machine w/ E/T  & \cite{Bulbul2001,Sourd2003,Nuijten2004}& 8-500  & \cite{Sourd2005}     & $9.8\%$  & $1/100$ \\ \hline	
+ Common due-date        & \cite{Biskup2001}            & 100-200 & \cite{Sourd2006}    & $14.7\%$  & $0/20$ \\ \hline	
+ 
+ \end{tabular}
+\initnt
+\caption{Results of SA-LNS on 21 scheduling benchmarks}
+\label{table:results}
+\end{table}
+
+
+Over the 21 benchmarks, the worse average distance of SA-LNS is $14.7\%$ on single-machine problems with common due-date which can be considered as reasonable for a generic approach that do not exploit problem specificities. In fact, the two worse results are single machine problems without any precedence constraint and SA-LNS currently does not perform any special treatment for unary resources (except for the constraint propagation done in CP1.1). Except for those two very specific scheduling benchmarks, SA-LNS is always less than $9\%$ away from the best performing approaches and for $17$ benchmarks out of $21$, the mean relative distance is even less than $4\%$. This illustrates the exceptional robustness of the approach. Moreover SA-LNS outperforms the state-of-the-art on $7$ benchmarks which is remarkable given the generality of the approach. For $10$ benchmarks (all the ones for which the number of improved upper-bounds with respect to the reference is positive except {\em Flow-shop w/ E/T} for which we improve on the reference  but not on the best bounds of the literature) SA-LNS is able to improve some best known upper bounds ever reported.
+
+The present approach is a generalization of the randomized LNS described and experimented in \cite{Godard2005} on cumulative job-shop problems. An interesting fact is that, in spite of this generalization, SA-LNS outperforms the results reported in \cite{Godard2005}: 27 instances out of 86 have been improved, 9 have been worsen and the MRD to randomized LNS is $-0.3\%$. On this benchmark, 12 of the best known upper bounds have been improved. It illustrates the added value of online learning which allows automatically tuning the algorithm on the actual instance being solved.
+
+%\ntt{Detailed reference UBs for each instance are not available.}
+\ntt{The average deviation from the path-based lower bound is $32.4\%$. We estimate the average number of LNS cycles to be slightly less than $50000$ which would position SA-LNS in the top $7$ best approaches for RCPSP among the $37$ approaches reviewed in \cite{Kolisch2006}.}
+
+\section{Conclusion and future work}
+% Length: 0.5 page
+
+The Self-Adapting Large Neighborhood Search presented in this paper combines several ingredients which are fundamental to its efficiency and robustness:
+\squishlist 
+\item {\em Large Neighborhood Search}: by freezing some features of a solution and focusing on re-optimizing the unfrozen features the LNS framework provides a general and efficient traversal of the search space. Compared with Tree Search, it avoids being stuck with wrong early decisions. It is more flexible than Local Search for complex problems involving many types of constraints and resources. 
+\item {\em Partial Order Schedules}: in the context of LNS, POSs provide a very powerful way to inject flexibility into the schedule while keeping interesting features from one solution to the other. As shown, the concept can be extended to various types of resources. 
+\item {\em Neighborhoods}: taken individually, each of the neighborhoods described in the paper are fairly robust (see for instance \cite{Godard2005} for {\em RandomizedNHood}).
+\item {\em Completion strategy}: the {\em SetJustInTime} completion strategy uses a linear relaxation of the problem and, doing so, has a global vision of the ideal position of activities in time would there be no resource limitation. In the context of LNS where only a part of the POS is unfrozen, this relaxation tends to be very informative as most of the resource constraints are still captured by frozen precedence arcs of the POS. The branching scheme of the strategy allows to exploit constraint propagation and better explore the bottom of the search tree which clearly is a plus compared to more classical non-backtracking greedy algorithms.
+\item {\em Learning}: the re-enforcement learning scheme, although quite simple, ensures a quick convergence on the most effective neighborhoods, completion strategies and their associated parameter values. Learning is a key factor in the robustness of the approach.
+\squishend
+
+On-going and future work mainly consist in extending SA-LNS to multi-mode scheduling problems, that is, scheduling problems that have a "resource allocation" dimension (this also accounts for optional activities, alternative resources, alternative recipes or routes, etc.) and to other types of costs such as setup, resource usage or inventory costs.
+
+\bibliography{biblio}
+% Length: 1.5 page
+
+\bibliographystyle{plain}
+
+\end{document}

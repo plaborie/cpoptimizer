@@ -1,0 +1,99 @@
+\documentclass[fleqn,10pt]{memoir}
+
+\usepackage{FAI}
+% Use the package chapterbib if you find it useful
+\usepackage{chapterbib}
+% Declare your input encoding, if not US ASCII
+\usepackage[latin1]{inputenc}
+
+% Use amsthm if you require it
+\usepackage{amsthm}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{amsmath,pstricks,pst-node}
+\usepackage{xypic}
+\usepackage{bbm}
+\usepackage{subfigure}
+
+%\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+
+%\usepackage{algorithm,algorithmic}
+
+% An example environment for a special purpose
+\newenvironment{Problems}%
+   {\section*{Problems}%
+    \sectionmarknonum{Problems}%
+    \addcontentsline{toc}{section}{Problems}%
+    \small}%
+   {}
+
+% Enable index generation
+\makeindex
+
+% Work with one or more chapters only
+\includeonly{chapter11}
+
+\volumetitle{Handbook of Constraint Programming}
+\editors{Francesca Rossi, Peter van Beek, Toby Walsh}
+\pubyear{2006}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+% preface starts on page 5
+%\setcounter{page}{5}
+%\include{preface}
+
+%\cleardoublepage
+
+\tableofcontents
+
+%\cleardoublepage
+
+\mainmatter
+
+\part{First part}
+
+\include{chapter11}
+
+%\include{chapter2}
+
+%\include{chapter3}
+
+%\include{chapter4}
+
+%\clearpage
+
+%\appendix
+
+%\appendixpage
+
+%\include{appendixA}
+
+%\include{appendixB}
+
+%\backmatter
+
+%\cleardoublepage
+
+\printindex
+
+\end{document}

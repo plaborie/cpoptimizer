@@ -1,0 +1,46 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Piecewise Linear and Stepwise Functions}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Semantics}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{OPL Formulation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Examples}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Interval Variables}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Semantics}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{OPL Formulation}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Examples}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Unary Constraints on Intervals Variables}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Semantics}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{OPL Formulation}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Examples}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Precedence Constraints between Interval Variables}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Semantics}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{OPL Formulation}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{Examples}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Constraints on Groups of Intervals Variables}{}% 18
+\BOOKMARK [2][-]{subsection.6.1}{Semantics}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.2}{OPL Formulation}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.3}{Examples}{section.6}% 21
+\BOOKMARK [1][-]{section.7}{Logical Constraints between Interval Variables}{}% 22
+\BOOKMARK [2][-]{subsection.7.1}{Semantics}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.2}{OPL Formulation}{section.7}% 24
+\BOOKMARK [2][-]{subsection.7.3}{Examples}{section.7}% 25
+\BOOKMARK [1][-]{section.8}{Expressions over Interval Variables}{}% 26
+\BOOKMARK [2][-]{subsection.8.1}{Semantics}{section.8}% 27
+\BOOKMARK [2][-]{subsection.8.2}{OPL Formulation}{section.8}% 28
+\BOOKMARK [2][-]{subsection.8.3}{Examples}{section.8}% 29
+\BOOKMARK [1][-]{section.9}{Interval Variables Sequencing}{}% 30
+\BOOKMARK [2][-]{subsection.9.1}{Semantics}{section.9}% 31
+\BOOKMARK [2][-]{subsection.9.2}{OPL Formulation}{section.9}% 32
+\BOOKMARK [2][-]{subsection.9.3}{Examples}{section.9}% 33
+\BOOKMARK [1][-]{section.10}{Cumul Functions}{}% 34
+\BOOKMARK [2][-]{subsection.10.1}{Semantics}{section.10}% 35
+\BOOKMARK [2][-]{subsection.10.2}{OPL Formulation}{section.10}% 36
+\BOOKMARK [2][-]{subsection.10.3}{Examples}{section.10}% 37
+\BOOKMARK [1][-]{section.11}{State Functions}{}% 38
+\BOOKMARK [2][-]{subsection.11.1}{Semantics}{section.11}% 39
+\BOOKMARK [2][-]{subsection.11.2}{OPL Formulation}{section.11}% 40
+\BOOKMARK [2][-]{subsection.11.3}{Examples}{section.11}% 41
+\BOOKMARK [1][-]{section.12}{ILOG Script for OPL}{}% 42
+\BOOKMARK [2][-]{subsection.12.1}{CP Parameters for scheduling}{section.12}% 43
+\BOOKMARK [2][-]{subsection.12.2}{CP Search Phases for scheduling}{section.12}% 44
+\BOOKMARK [2][-]{subsection.12.3}{Accessing solutions in postprocessing }{section.12}% 45
+\BOOKMARK [1][-]{appendix.A}{Notations}{}% 46

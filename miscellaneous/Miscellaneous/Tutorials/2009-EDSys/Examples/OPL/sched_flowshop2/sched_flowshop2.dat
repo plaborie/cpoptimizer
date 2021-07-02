@@ -1,0 +1,50 @@
+ComputerTypes = { 
+   MultimediaBusiness, 
+   MultimediaHome, 
+   BasicHome 
+};
+
+ActivityTypes = { 
+   InstallCPU, 
+   InstallModem,	
+   InstallVideoCard, 
+   InstallSoundCard, 
+   InstallCDRW, 
+   Test, 
+   Pack 
+};
+
+ResourceTypes = { 
+   CPUInstaller, 
+   ModemInstaller, 
+   CardInstaller, 
+   CDInstaller, 
+   Tester, 
+   Packer 
+};
+
+requiredQuantities = [5,3,1];
+
+activities = #[
+   MultimediaBusiness:
+	{ <InstallCPU, 8, CPUInstaller, {}>, 
+	  <InstallModem, 5,ModemInstaller, {InstallCPU}>, 
+	  <InstallSoundCard, 4, CardInstaller, {InstallModem}>,
+	  <InstallVideoCard, 4, CardInstaller, {InstallSoundCard}>,
+	  <InstallCDRW, 5, CDInstaller, {InstallVideoCard}>,
+	  <Test, 10, Tester, {InstallCDRW}>,
+	  <Pack, 5, Packer, {Test}>},
+   MultimediaHome:
+	{<InstallCPU, 8, CPUInstaller, {}>, 
+	  <InstallModem, 5, ModemInstaller, {InstallSoundCard}>, 
+	  <InstallSoundCard, 4, CardInstaller, {InstallCPU}>,
+	  <InstallVideoCard, 4, CardInstaller, {InstallModem}>,
+	  <Test, 9, Tester, {InstallVideoCard}>,
+	  <Pack, 5, Packer, {Test}>},
+   BasicHome:	
+	{ <InstallCPU, 7, CPUInstaller, {InstallModem}>, 
+	  <InstallModem, 5, ModemInstaller, {}>, 
+	  <InstallVideoCard, 4, CardInstaller, {InstallCPU}>,
+	  <Test, 8, Tester, {InstallVideoCard}>,
+	  <Pack, 3, Packer, {Test}>}
+]#;

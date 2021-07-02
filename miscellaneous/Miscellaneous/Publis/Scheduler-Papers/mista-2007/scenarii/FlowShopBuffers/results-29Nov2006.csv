@@ -1,0 +1,38 @@
+ILOG_CSV_FORMAT,1.1
+
+GENERAL|NAMES,date,time,hostName,CPU,MHz,memory,search,comment,timeLimit,commandLine
+GENERAL|KEYS,0,0,0,0,0,0,0,0,0,0
+GENERAL,,,,,,,SchedulerLNS,,1.#INF,-result FlowShopBuffers.csv -search SchedulerLNS -scenarii X:\dev\scheduler-papers\mista-2007\scenarii\FlowShopBuffers\scenario.csv
+
+RESULT|NAMES, modeler, instance, modelParams, time, numberOfSolutions, acceptable, lb, ub, completion, objectiveSense, runId
+RESULT|KEYS, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0
+RESULT, FlowShopBuffers, taillard_b0/ta002b0.dat, 1, 19.625, 11, 0, 348, 1541, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta003b0.dat, 1, 13.0938, 12, 0, 360, 1480, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta015b0.dat, 1, 47.2656, 29, 0, 610, 1947, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta020b0.dat, 1, 30.1563, 14, 0, 707, 2060, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta037b0.dat, 1, 613.656, 45, 0, 395, 3301, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta039b0.dat, 1, 289.172, 49, 0, 386, 3128, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta021b0.dat, 1, 48.0469, 10, 0, 1237, 2998, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta026b0.dat, 1, 93.9688, 7, 0, 1256, 3019, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta043b0.dat, 1, 639.391, 27, 0, 711, 4263, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b0/ta049b0.dat, 1, 789.047, 28, 0, 712, 4316, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta001b1.dat, 1, 152.031, 42, 0, 353, 1290, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta010b1.dat, 1, 26.1094, 25, 0, 332, 1120, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta013b1.dat, 1, 873.328, 66, 0, 635, 1528, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta018b1.dat, 1, 506.594, 49, 0, 692, 1563, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta034b1.dat, 1, 1189.75, 95, 0, 401, 2813, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta038b1.dat, 1, 1070.42, 81, 0, 395, 2768, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta021b1.dat, 1, 1575.08, 58, 0, 1237, 2352, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta029b1.dat, 1, 1458.72, 50, 0, 1240, 2310, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta067b1.dat, 1, 1684.58, 78, 0, 373, 5716, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b1/ta068b1.dat, 1, 1709.48, 107, 0, 368, 5555, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta007b2.dat, 1, 19.25, 26, 0, 430, 1251, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta010b2.dat, 1, 20.7031, 12, 0, 332, 1108, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta017b2.dat, 1, 825.266, 75, 0, 671, 1454, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta020b2.dat, 1, 325.016, 57, 0, 707, 1596, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta034b2.dat, 1, 483.219, 49, 0, 401, 2777, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta038b2.dat, 1, 922.016, 92, 0, 395, 2683, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta024b2.dat, 1, 1301.95, 71, 0, 1238, 2265, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta028b2.dat, 1, 1485.8, 73, 0, 1227, 2217, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta047b2.dat, 1, 1687.02, 130, 0, 743, 3212, 100, -1, 0
+RESULT, FlowShopBuffers, taillard_b2/ta044b2.dat, 1, 1702.02, 102, 0, 816, 3183, 100, -1, 0

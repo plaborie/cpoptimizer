@@ -1,0 +1,523 @@
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\cp}{CP Optimizer}
+% Macros for math functions:
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\presenceOf}{presenceOf}
+\DeclareMathOperator{\EndBeforeStart}{endBeforeStart}   
+\DeclareMathOperator{\Span}{span}                       
+\DeclareMathOperator{\alternative}{alternative}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\alwaysIn}{alwaysIn}
+\DeclareMathOperator{\heightAtStart}{heightAtStart}
+\DeclareMathOperator{\stepAtStart}{stepAtStart}
+\DeclareMathOperator{\first}{first}
+\DeclareMathOperator{\last}{last}
+\DeclareMathOperator{\before}{before}
+\DeclareMathOperator{\prev}{prev}
+\DeclareMathOperator{\alwaysNoState}{alwaysNoState}
+\DeclareMathOperator{\alwaysEqual}{alwaysEqual}
+\DeclareMathOperator{\alwaysConstant}{alwaysConstant}
+\DeclareMathOperator{\noOverlap}{noOverlap}
+\DeclareMathOperator{\Start}{start}
+\DeclareMathOperator{\End}{end}
+\DeclareMathOperator{\state}{state}
+\DeclareMathOperator{\startOf}{startOf}
+\DeclareMathOperator{\sizeOf}{sizeOf}
+\DeclareMathOperator{\pulse}{pulse}
+\DeclareMathOperator{\EndAtStart}{endAtStart}
+\DeclareMathOperator{\forbidStart}{forbidStart}
+\DeclareMathOperator{\forbidEnd}{forbidEnd}
+\DeclareMathOperator{\forbidExtent}{forbidExtent}
+\DeclareMathOperator{\satisfaction}{satisfaction}
+
+% OPL Language in algorithm
+\floatname{algorithm}{Model}
+
+\newcommand{\OPLsorted}         {{\bf sorted} }
+\newcommand{\OPLusingcp}        {{\bf using CP};}
+\newcommand{\OPLtuple}          {{\bf tuple} }
+\newcommand{\OPLkey}            {{\bf key} }
+\newcommand{\OPLdvar}           {{\bf dvar} }
+\newcommand{\OPLdexpr}          {{\bf dexpr} }
+\newcommand{\OPLstring}         {{\bf string} }
+\newcommand{\OPLsstring}        {{\bf string}}
+\newcommand{\OPLint}            {{\bf int} }
+\newcommand{\OPLinterval}       {{\bf interval} }
+\newcommand{\OPLsequence}       {{\bf sequence} }
+\newcommand{\OPLfloat}          {{\bf float} }
+\newcommand{\OPLminimize}       {{\bf minimize} }
+\newcommand{\OPLmaximize}       {{\bf maximize} }
+\newcommand{\OPLin}             {{\bf in} }
+\newcommand{\OPLunion}          {{\bf union}}
+\newcommand{\OPLfirst}          {{\bf first}}
+\newcommand{\OPLlast}           {{\bf last}}
+\newcommand{\OPLprev}           {{\bf prev}}
+\newcommand{\OPLord}            {{\bf ord}}
+\newcommand{\OPLmax}            {{\bf max}}
+\newcommand{\OPLmin}            {{\bf min}}
+\newcommand{\OPLmaxl}           {{\bf maxl}}
+\newcommand{\OPLminl}           {{\bf minl}}
+\newcommand{\OPLdiv}            {{\bf div} }
+\newcommand{\OPLsum}            {{\bf sum}}
+\newcommand{\OPLcard}           {{\bf card}}
+\newcommand{\OPLabs}            {{\bf abs}}
+\newcommand{\OPLsize}           {{\bf size} }
+\newcommand{\OPLall}            {{\bf all}}
+\newcommand{\OPLoptional}       {{\bf optional}}
+\newcommand{\OPLstartOf}        {{\bf startOf}}
+\newcommand{\OPLendOf}          {{\bf endOf}}
+\newcommand{\OPLsizeOf}         {{\bf sizeOf}}
+\newcommand{\OPLlengthOf}       {{\bf lengthOf}}
+\newcommand{\OPLpresenceOf}     {{\bf presenceOf}}
+\newcommand{\OPLpulse}          {{\bf pulse}}
+\newcommand{\OPLendBeforeStart} {{\bf endBeforeStart}}
+\newcommand{\OPLnoOverlap}      {{\bf noOverlap}}
+\newcommand{\OPLalternative}    {{\bf alternative}}
+\newcommand{\OPLspan}           {{\bf span}}
+\newcommand{\OPLforbidExtent}   {{\bf forbidExtent}}
+\newcommand{\OPLstepFunction}   {{\bf stepFunction} }
+\newcommand{\OPLstepwise}       {{\bf stepwise}}
+\newcommand{\OPLtypes}          {{\bf types} }
+\newcommand{\CPOResult}[1]      {{\em #1}}
+
+\algblockdefx[CONSTRAINTS]{STARTCONSTRAINTS}{ENDCONSTRAINTS}%
+ {{\bf subject to} \{}
+ {\}}
+ 
+\algblockdefx[FORALL]{STARTFORALL}{ENDFORALL}%
+ [1]{{\bf forall}(#1) \{}
+ {\}}
+
+\algloopdefx{SFORALL}[1]{{\bf forall}(#1)}
+
+\algrenewcommand\algorithmicindent{1em}%
+
+\usepackage{url}
+\urldef{\mailsa}\path|laborie@fr.ibm.com|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+\linespread{0.957}
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+\title{IBM ILOG CP Optimizer\\for Detailed Scheduling\\Illustrated on Three Problems}
+\titlerunning{IBM ILOG CP Optimizer for Detailed Scheduling}
+\author{Philippe Laborie}
+\authorrunning{Philippe Laborie}
+\institute{ILOG an IBM company,\\ 9, rue de Verdun, 94253 Gentilly Cedex, France\\
+\mailsa}
+
+\maketitle
+
+\begin{abstract}
+Since version 2.0, IBM ILOG \cp\ provides a new scheduling language supported by a robust and efficient automatic search. This paper illustrates both the expressivity of the modelling language and the robustness of the automatic search on three problems recently studied in the scheduling literature. We show that all three problems can easily be modelled with \cp\ in only a few dozen lines (the complete models are provided) and that on average the automatic search outperforms existing problem specific approaches.
+\keywords{Constraint Programming, Scheduling}
+\end{abstract}
+
+\section{Introduction}
+
+Since version 2.0, IBM ILOG \cp\ provides a new scheduling language supported by a robust and efficient automatic search. This new-generation scheduling model is based on ILOG's experience in applying Constraint-Based Scheduling to industrial applications. It was designed with the following requirements in mind~\cite{Laborie2008,Laborie2009}:
+\begin{itemize}
+\item It should be accessible to software engineers and to people used to mathematical programming;
+\item It should be simple, non-redundant and use a minimal number of concepts so as to reduce the learning curve for new users;
+\item It should fit naturally into a CP paradigm with clearly identified variables, expressions and constraints;
+\item It should be expressive enough to handle complex industrial scheduling applications, which often are over-constrained, involve optional activities, alternative recipes, non-regular objective functions, {\em etc.}
+\item It should support a robust and efficient automatic search algorithm so that the user can focus on the declarative model without necessity to write any complex search algorithm (model-and-run development process).
+\end{itemize}
+
+The scheduling language is available in C++, Java, C\# as well as in the OPL Optimization Programming Language\footnote{A trial version of OPL supporting this language can be downloaded on \url{ilog.com/products/oplstudio/trial.cfm}.}. The automatic search is based on a Self-Adapting Large Neighbourhood Search that iteratively {\em unfreezes} and {\em re-optimizes} a selected fragment of the current solution. The search algorithm is out of the scope of this paper, the principles of the approach have been described in~\cite{Laborie2007} whereas more details about constraint propagation are available in~\cite{Laborie2008}.
+
+The present paper illustrates the new modelling language and the efficiency and robustness of the automatic search on three problems recently studied in the scheduling literature. These problems were selected for several reasons:
+\begin{itemize}
+\item They are quite different in nature, covering cumulative and disjunctive scheduling, non-preemptive and preemptive scheduling, alternative modes, structured and unstructured temporal networks, {\em etc.};
+\item All three problems are optimization problems with realistic non-regular objective functions (earliness/tardiness costs, number of executed tasks, complex temporal preference functions);
+\item They cover a range of different application domains (manufacturing, aerospace, project scheduling);
+\item Benchmarks and recent results are available to evaluate the efficiency of \cp's automatic search. 
+\end{itemize}
+
+Section \ref{model} recaps the modelling concepts of \cp\ used in the paper. Sections \ref{flowshopet} to \ref{selfplanner} are dedicated to the three scheduling problems: a flow-shop problem with earliness and tardiness costs~\cite{Danna2003}, the oversubscribed scheduling problem studied in~\cite{Kramer2007} and the personal task scheduling problem introduced in SelfPlanner~\cite{Refanidis2007}. Each of these sections starts with a description of the problem followed by a problem formulation in OPL. We show that all problems are easily modelled with \cp\ and that the resulting models are very concise (ranging from 15 to 42 lines of code). These models are then solved using the automatic search of \cp\ 2.1.1 with default parameter values on a 3GHz Linux desktop. We show that, in spite of its generality, the default search of \cp\ outperforms state-of-the-art approaches on all three problems.  
+
+\section{CP Optimizer Model for Detailed Scheduling}
+\label{model}
+
+This section recaps the conditional interval formalism introduced in~\cite{Laborie2008,Laborie2009}. It extends classical constraint programming by introducing with parsimony additional mathematical concepts (such as intervals, sequences or functions) as new variables or expressions to capture the temporal aspects of scheduling\footnote{In the present paper, a few concepts have been renamed so as to be consistent with their implementation in IBM ILOG CP Optimizer. In particular, we speak of {\em present}/{\em absent} rather than {\em executed}/{\em non-executed} interval variable and the notion of interval {\em duration} is replaced by the notion of interval {\em length}.}. In this section we focus on the modelling concepts that are sufficient to understand the three models detailed in sections \ref{flowshopet}-\ref{selfplanner}. A more formal and exhaustive description of the \cp\ concepts for detailed scheduling as well as several examples are provided in~\cite{Laborie2008a}.
+
+\subsection{Interval Variables}
+
+%% -----------------------------------------------------------------
+%% Interval variables
+
+An {\bf interval variable} $a$ is a decision variable whose domain $\dom(a)$ is a subset of $\{\bot\} \cup \{[s, e) | s,e \in \Z, s \leq e \}$. An interval variable is said to be {\bf fixed} if its domain is reduced to a singleton, i.e., if {\underline{a}} denotes a fixed interval variable then:
+\begin{itemize}
+  \item either interval is {\bf absent}: $\underline{a} = \bot$;
+  \item or interval is {\bf present}: $\underline{a} = [s,e)$. In this case, $s$ and $e$ are respectively the {\bf start} and {\bf end} of the interval and $l=e-s$ its {\bf length}.
+\end{itemize}
+
+Absent interval variables have special meaning. Informally speaking, an absent interval variable is not considered by any constraint or expression on interval variables it is involved in. For example, if an absent interval variable $a$ is used in a precedence constraint between interval variables $a$ and $b$ then, this constraint does not influence interval variable $b$. Each constraint and expression specifies how it handles absent interval variables.
+
+By default interval variables are supposed to be present but they can be specified as being {\bf optional} meaning that $\bot$ is part of the domain of the variable and thus, it is a decision of the problem to have the interval present or absent in the solution. Optional interval variables provide a powerful concept for efficiently reasoning with optional or alternative activities. The following constraints on interval variables are introduced to model the basic structure of scheduling problems. Let $a$, $a_i$ and $b$ denote interval variables and $z$ an integer variable:
+
+\begin{itemize}
+\item A {\bf presence constraint} $\presenceOf(a)$ states that interval $a$ is present, that is $a \neq \bot$. This constraint can be composed, for instance $\presenceOf(a) \Rightarrow \presenceOf(b)$ means that the presence of $a$ implies the presence of $b$.
+\item A {\bf precedence constraint} ({\em e.g.} $\EndBeforeStart(a,b,z)$) specifies a precedence between interval end-points with an integer or variable minimal distance $z$ provided both intervals $a$ and $b$ are present.
+\item A {\bf span constraint} $\Span\left(a,\left\{a_1,...,a_n\right\}\right)$ states that if $a$ is present, it starts together with the first present interval in $\{a_1,...,a_n\}$ and ends together with the last one. Interval $a$ is absent if and only if all the $a_i$ are absent.
+\item An {\bf alternative constraint} $\alternative\left(a,\left\{a_1,...,a_n\right\}\right)$ models an exclusive alternative between $\{a_1,...,a_n\}$: if interval $a$ is present then exactly one of intervals $\{a_1,...,a_n\}$ is present and $a$ starts and ends together with this chosen one. Interval $a$ is absent if and only if all the $a_i$ are absent.
+\end{itemize}
+
+These constraints make it easy to capture the structure of complex scheduling problems (hierarchical description of the work-breakdown structure of a project, representation of optional activities, alternative modes/recipes/processes, etc.) in a well-defined CP paradigm. 
+
+Sometimes the intensity of ``work'' is not the same during the whole interval. For example let's consider a worker who does not work during weekends (his work intensity during weekends is 0\%) and on Friday he works only for half a day (his intensity during Friday is 50\%). For this worker, 7 man-days work will last for longer than just 7 days. In this example 7 man-days represent what we call the {\em size} of the interval: that is, the length of the interval would be if the intensity function was always at $100\%$. In \cp, this notion is captured by an {\bf integer step function} that describes the instantaneous {\em intensity} - expressed as a percentage - of a work over time. An interval variable is associated with an {\bf intensity function} and a {\bf size}. The intensity function $F$ specifies the instantaneous ratio between size and length. If an interval variable $a$ is present, the intensity function enforces the following relation:
+
+\[ 100\times size(a) \leq \int_{start(a)}^{end(a)}{F(t).dt} < 100 \times(size(a)+1) \]
+
+By default, the intensity function of an interval variable is a flat function equal to 100\%. In this case, the concepts of {\em size} and {\em length} are identical.
+
+It may also be necessary to state that an interval cannot start, cannot end at or cannot overlap a set of fixed dates. \cp\ provides the following constraints for modelling it. Let $a$ denote an interval variable and $F$ an integer stepwise function. 
+\begin{itemize}
+  \item {\bf Forbidden start constraint}. Constraint $\forbidStart(a, F)$ states that whenever interval $a$ is present, it cannot start at a value $t$ where $F(t)=0$.
+  \item {\bf Forbidden end constraint}. Constraint $\forbidEnd(a, F)$ states that whenever interval $a$ is present, it cannot end at a value $t$ where $F(t-1)=0$. 
+  \item {\bf Forbidden extent constraint}. Constraint $\forbidExtent(a, F)$ states that whenever interval $a$ is present, it cannot overlap a point $t$ where $F(t)=0$. 
+\end{itemize}
+
+Integer expressions are provided to constrain the different components of an interval variable (start, end, length, size). For instance the expression \linebreak $\startOf(a,dv)$ returns the start of interval variable $a$ when $a$ is present and returns integer value $dv$ if $a$ is absent (by default if argument $dv$ is omitted it assumes $dv=0$). Those expressions make it possible to mix interval variables with more traditional integer constraints and expressions.
+
+\subsection{Sequence Variables}
+
+%% -----------------------------------------------------------------
+%% Interval sequencing
+
+Many problems involve scheduling a set of activities on a disjunctive resource that can only perform one activity at a time (typical examples are workers, machines or vehicles). From the point of view of the resource, a solution is a sequence of activities to be processed. Besides the fact that activities in the sequence do not overlap in time, additional constraints such as resource setup times or constraints on the relative position of activities in the sequence are common. To capture this idea we introduce the notion of {\em sequence variable}, a new type of decision variable whose value is a permutation of a set of interval variables. Constraints on sequence variables are provided for ruling out illegal permutations (sequencing constraints) or for stating a particular relation between the order of intervals in the permutation and the relative position of their start and end values (no-overlap constraint).
+
+A {\bf sequence variable} $p$ is defined on a set of interval variables $A$. A value of $p$ is a permutation of all present intervals of $A$. For instance, if $A=\{a,b\}$ is a set of two interval variables with $a$ being necessarily present and $b$ optional, the domain of the sequence $p$ defined on $A$ consists of 3 permutations: $\{(a),(a,b),(b,a)\}$.
+
+If $p$ denotes a sequence variable and $a,b$ two interval variables in the sequence, the {\bf sequencing constraints} $\first(p, a)$ and $\last(p, a)$ respectively mean that if interval $a$ is present, it is the first or last in sequence $p$. Sequencing constraints $\before(p, a, b)$ and $\prev(p, a, b)$ respectively mean that if both intervals $a$ and $b$ are present, then $a$ is before or immediately before $b$ in sequence $p$. 
+
+It is to be noted that the sequencing constraints above do not have any impact on the start and end values of intervals, they only constrain the possible values (permutations) of the sequence variable. The {\bf no-overlap constraint} $\noOverlap(p)$ on a sequence variable $p$ states that permutation $p$ defines a chain of non-overlapping intervals, any interval in the chain being constrained to end before the start of the next interval in the permutation.
+
+For modelling sequence dependent setup times, each interval variable $a$ in a sequence $p$ can be associated with a non-negative integer {\bf type} $T(p,a)$ and the no-overlap constraint can be associated with a transition distance. A {\bf transition distance} M is a function $M : [0,n)\times[0,n) \rightarrow \Z^+$. If $a$ and $b$ are two successive non-overlapping present intervals, the no-overlap constraint $\noOverlap(p,M)$ will express a minimal distance $M(T(p,a),T(p,b))$ between the end of $a$ and the start of $b$. 
+
+\subsection{Cumul Function Expressions}
+
+For cumulative resources, the cumulated usage of the resource by the activities is a function of time. An activity usually increases the cumulated resource usage function at its start time and decreases it when it releases the resource at its end time. For resources that can be produced and consumed by activities (for instance the content of an inventory or a tank), the resource level can also be described as a function of time: production activities will increase the resource level whereas consuming activities will decrease it. In these problem classes, constraints are imposed on the evolution of these functions of time, for instance a maximal capacity or a minimum safety level.
+
+\cp\ introduces the notion of a {\em cumul function expression} which is a constrained expression that represents the sum of individual contributions of intervals. A set of elementary cumul functions is available to describe the individual contribution of an interval variable (or a fixed interval of time or a fixed date). These elementary functions cover the use-cases mentioned above: {\em pulse} for usage of a cumulative resource, and {\em step} for resource production/consumption (see Figure \ref{fig:shapes}). It is important to note that the elementary cumul functions defined on an interval variable are equal to the zero function when the interval variable is absent.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=11.5cm,keepaspectratio,clip]{shapes.pdf}
+\caption{Elementary cumul function expressions}
+\label{fig:shapes}
+\end{figure}
+
+A {\bf cumul function expression} $f$ is defined as the sum of a set of elementary functions $f_i$ or their negations: $f = \sum_i \epsilon_i \cdot f_i$ where $\epsilon_i \in \{-1,+1\}$. When the elementary cumul functions $f_i$ that define a cumul function $f$ are fixed (and thus, so are their related intervals), the cumul function itself is fixed and its value is a stepwise integer function. Several constraints are provided over cumul functions. These constraints allow restricting the possible values of the function over the complete horizon or over some fixed or variable interval. Let $u,v \in \Z$, $h,h_{min},h_{max}\in\Z^+$ and $a$ denote an interval variable. The following constraints are available on a cumul function $f$ to restrict its possible values:
+\begin{itemize}
+\item $\alwaysIn(f,u,v,h_{min},h_{max})$ means that the values of function $f$ must remain in the range $[h_{min},h_{max}]$ everywhere on the fixed interval $[u,v)$.
+\item $\alwaysIn(f,a,h_{min},h_{max})$ means that if interval $a$ is present,
+the values of function $f$ must remain in the range $[h_{min},h_{max}]$ between the start and the end of interval variable $a$.
+\item $f \leq h$: function $f$ cannot take values greater than $h$. 
+\item $f \geq h$: function $f$ cannot take values lower than $h$. 
+\end{itemize}
+
+\section{Flow-Shop with Earliness and Tardiness Costs}
+\label{flowshopet}
+
+\subsection{Problem Description}
+ 
+The first problem studied in the paper is a flow-shop scheduling problem with earliness and tardiness costs on a set of instances provided by Morton and Pentico~\cite{Morton1993} that have been used in a number of studies including GAs~\cite{Vazquez2000} and Large Neighbourhood Search~\cite{Danna2003}. In this problem, a set of $n$ jobs is to be executed on a set of $m$ machines. Each job $i$ is a chain of exactly $m$ operations, one per machine. All jobs require the machines in the same order that is, the position of an operation in the job determines the machine it will be executed on. Each operation $j$ of a job $i$ is specified by an integer processing time $pt_{i,j}$. Operations cannot be interrupted and each machine can process only one operation at a time. The objective function is to minimize the total earliness/tardiness cost. Typically, this objective might arise in “just-in-time” inventory management: a late job has negative consequence on customer satisfaction and time to market, while an early job increases storage costs. Each job $i$ is characterized by its release date $rd_i$, its due date $dd_i$ and its weight $w_i$. The first operation of job $i$ cannot start before the release date $rd_i$. Let $C_i$ be the completion date of the last operation of job $i$. The earliness/tardiness cost incurred by job $i$ is $w_i \cdot abs(C_i-dd_i)$. In the instances of Morton and Pentico, the total earliness/tardiness cost is normalized by the sum of operation processing times so the global cost to minimize is:
+
+\[\frac{\sum_{i \in [1,n]} { \big( w_i \cdot abs(C_i-dd_i) \big) }}{W} \text{\ \ where\ } W=
+       \sum_{i \in [1,n]} { \big( w_i \cdot \sum_{j \in [1,m]}{pt_{i,j}\big)}} \]
+
+\subsection{Model}
+
+\small
+\begin{algorithm}
+\caption{- OPL Model for Flow-shop with Earliness and Tardiness Costs}\label{model1}
+\begin{algorithmic}[1]
+\State \OPLusingcp \label{usecp1}
+\State \OPLint n = ...;\label{ndata1}
+\State \OPLint m = ...;\label{mdata1}
+\State \OPLint rd[1..n] = ...; \label{rddata1}
+\State \OPLint dd[1..n] = ...; \label{dddata1}
+\State \OPLfloat w[1..n] = ...; \label{wdata1}
+\State \OPLint pt[1..n][1..m] = ...; \label{ptdata1}
+\State \OPLfloat W = \OPLsum(i \OPLin 1..n) (w[i] * \OPLsum(j in 1..m) pt[i][j]); \label{bigwdata1}
+\State \OPLdvar \OPLinterval op[i in 1..n][j in 1..m] \OPLsize pt[i][j]; \label{itvmodel1}
+\State \OPLdexpr \OPLint C[i in 1..n] = \OPLendOf(op[i][m]); \label{eexprmodel1}
+\State \OPLminimize \OPLsum(i in 1..n) w[i]*\OPLabs(C[i]-dd[i])/W; \label{objmodel1}
+\STARTCONSTRAINTS
+\STARTFORALL{i in 1..n}\label{startctmodel1}
+\State     rd[i] $<$= \OPLstartOf(op[i][1]); \label{rdctmodel1}
+\SFORALL{j \OPLin 1..m-1} \label{temp1ctmodel1}
+\State       \OPLendBeforeStart(op[i][j],op[i][j+1]); \label{temp2ctmodel1}
+\ENDFORALL
+\SFORALL{j \OPLin 1..m}\label{nov1ctmodel1}
+\State      \OPLnoOverlap(\OPLall(i in 1..n) op[i][j]);\label{nov2ctmodel1}
+\ENDCONSTRAINTS \label{endmodel1}
+\end{algorithmic}
+\end{algorithm}
+\normalsize
+
+A complete OPL model for this problem is shown in Model \ref{model1}. The instruction at {\em line \ref{usecp1}} tells the model is a CP model to be solved by \cp. The section between {\em line \ref{ndata1}} and {\em line \ref{bigwdata1}} is data reading and data manipulation. The number of jobs $n$ is read from the data file at {\em line \ref{ndata1}} and the number of machines $m$ at {\em line \ref{mdata1}}. A number of arrays are defined to store, for each on the $n$ jobs, the release date ({\em line \ref{rddata1}}), due date ({\em line \ref{dddata1}}), earliness/tardiness cost weight ({\em line \ref{wdata1}}) and, for each machine, the processing time of each operation on the machine ({\em line \ref{ptdata1}}). The normalization factor $W$ is computed at line {\em line \ref{bigwdata1}}. The model itself is declared between {\em line \ref{itvmodel1}} and {\em line \ref{endmodel1}}. {\em Line \ref{itvmodel1}} creates a 2-dimensional array of interval variables indexed by the job $i$ and the machine $j$. Each interval variable represents an operation and is specified with a size corresponding to the operation's processing time. {\em Line \ref{eexprmodel1}} creates one integer expression $C[i]$ for each job $i$ equal to the end of the $m^{th}$ (last) operation of the job. These expressions are used in {\em line \ref{objmodel1}} to state the objective function. The constraints are defined between {\em line \ref{startctmodel1}} and {\em line \ref{nov2ctmodel1}}. For each job, {\em line \ref{rdctmodel1}} specifies that the first operation of job $i$ cannot start before the job release date whereas precedence constraints between operations of job $i$ are defined at {\em lines \ref{temp1ctmodel1}-\ref{temp2ctmodel1}}. {\em Lines \ref{nov1ctmodel1}-\ref{nov2ctmodel1}} state that for each machine $j$, the set of operations requiring machine $j$ do not overlap.
+
+\subsection{Experimental Results}
+
+Table \ref{tab:Results1} compares the results obtained by the default automatic search of \cp\ using the above model (col. CPO) with the best results obtained by various genetic algorithms as reported in~\cite{Vazquez2000} (col. GA-best) and the results of the best Large Neighbourhood Search (S-LNS) studied in~\cite{Danna2003} (col. S-LNS-best). A time limit of one hour was used on a 3GHz processor for \cp\ similar to the two hours limit used in~\cite{Danna2003} on a 1.5GHz processor. The average improvement (using the geometric mean over the ratio $value_{CPO}/value_{Other}$) over the best GA is about 25\% whereas the average improvement over the best LNS is more modest (1.7\%). 
+
+\small
+\begin{table*}
+	\centering
+		\begin{tabular}{|l|r|r|r|r|l|r|r|r|}\hline
+		Problem & GA-best & S-LNS-best & \CPOResult{CPO} && Problem & GA-best & S-LNS-best & \CPOResult{CPO}\\ \hline
+		jb1     & 0.474   & 0.191 &  \CPOResult{0.191} && ljb1    & 0.279   & 0.215 & \CPOResult{0.215} \\ \hline
+		jb2     & 0.499   & 0.137 &  \CPOResult{0.137} && ljb2    & 0.598   & 0.508 & \CPOResult{0.509} \\ \hline
+		jb4     & 0.619   & 0.568 &  \CPOResult{0.568} && ljb7    & 0.246   & 0.110 & \CPOResult{0.137} \\ \hline
+		jb9     & 0.369   & 0.333 &  \CPOResult{0.334} && ljb9    & 0.739   & 1.015 & \CPOResult{0.744} \\ \hline
+		jb11    & 0.262   & 0.213 &  \CPOResult{0.213} && ljb10   & 0.512   & 0.525 & \CPOResult{0.549} \\ \hline
+		jb12    & 0.246   & 0.190 &  \CPOResult{0.190} && ljb12   & 0.399   & 0.605 & \CPOResult{0.518} \\ \hline
+		\end{tabular}
+  \vspace*{1mm}
+	\caption{Results for Flow-shop Scheduling with Earliness and Tardiness Costs}
+	\label{tab:Results1}
+\end{table*}
+\vspace*{-1mm}
+\normalsize
+
+\section{Satellite Scheduling}
+\label{satellite}
+
+\subsection{Problem Description}
+
+The second illustrative model is an oversubscribed scheduling problem described in~\cite{Kramer2007}. This model is a generalization of two real-world oversubscribed scheduling domains, the USAF Satellite Control Network (AFSCN) scheduling problem and the USAF Air Mobility Command (AMC) airlift scheduling problem. 
+These two domains share a common core problem structure:
+\begin{itemize}
+\item A problem instance consists of $n$ tasks. In AFSCN, the tasks are communication requests; in AMC they are mission requests.
+\item A set $Res$ of resources are available for assignment to tasks. Each resource $r \in Res$ has a finite capacity $cap_r \geq 1$. The resources are air wings for AMC and ground stations for AFSCN. The capacity in AMC corresponds to the number of aircraft for a wing; in AFSCN it represents the number of antennas available at the ground station.
+\item Each task $T_i$ has an associated set $Res_i$ of feasible resources, any of which can be assigned to carry out $T_i$. Any given task $T_i$ requires 1 unit of capacity (i.e., one aircraft in AMC or one antenna in AFSCN) of the resource $r_j \in Res_i$ that is assigned to perform it. The duration $Dur_{i,j}$ of task $T_i$ depends on the allocated resource $r_j$.
+\item Each of the feasible alternative resources $r_j \in Res_i$ specified for a task $T_i$ defines a time window within which the duration of the task needs to be allocated. This time window corresponds to satellite visibility in AFSCN and mission requirements for AMC.
+\item All tasks are optional; the objective is to minimize the number of unassigned tasks\footnote{A second type of model with task priorities is also described in~\cite{Kramer2007}. In the present paper, we focus on the version without task priorities.}.
+\end{itemize}
+
+\subsection{Model}
+
+\small
+\begin{algorithm}
+\caption{ - OPL Model for Satellite Scheduling}\label{model2}
+\begin{algorithmic}[1]
+\State \OPLusingcp
+\State \OPLtuple Station \{ \OPLstring name; \OPLkey \OPLint id; \OPLint cap; \} \label{sdata2}
+\State \OPLtuple Alternative \{ \OPLstring task; \OPLint station; \OPLint smin; \OPLint dur; \OPLint emax; \}\label{adata2}
+\State \{Station\} Stations = ...;\label{rsdata2}
+\State \{Alternative\} Alternatives = ...;\label{radata2}
+\State \{\OPLsstring\} Tasks = \{ a.task $|$ a \OPLin Alternatives \};\label{tdata2}
+\State \OPLdvar \OPLinterval task[t \OPLin Tasks] \OPLoptional; \label{titvmodel2}
+\State \OPLdvar \OPLinterval alt[a \OPLin Alternatives] \OPLoptional\ \OPLin a.smin..a.emax \OPLsize a.dur;\label{aitvmodel2}
+\State \OPLmaximize \OPLsum(t \OPLin Tasks) \OPLpresenceOf(task[t]);\label{objmodel2}
+\STARTCONSTRAINTS
+\SFORALL{t \OPLin Tasks}\label{alt1model2}
+\State \OPLalternative(task[t], \OPLall(a \OPLin Alternatives: a.task==t) alt[a]);\label{alt2model2}
+\SFORALL{s \OPLin Stations}\label{cap1model2}
+\State \OPLsum(a \OPLin Alternatives: a.station==s.id) \OPLpulse(alt[a],1) $<$= s.cap;\label{cap2model2}
+\ENDCONSTRAINTS \label{endmodel2}
+\end{algorithmic}
+\end{algorithm}
+\normalsize
+
+A complete OPL model for this problem is shown in Model \ref{model2} using the AFSCN semantics. The section between {\em line \ref{sdata2}} and {\em line \ref{tdata2}} is data reading and data manipulation. A tuple defining ground stations data (with a name, a unique integer identifier and a capacity) is defined at {\em line \ref{sdata2}} and read from the data file at {\em line \ref{rsdata2}}. A tuple defining a possible resource assignment for a task (specifying a task, a station, a task minimal start time, a task duration and a task maximal end time) is defined at {\em line \ref{adata2}} and read from the data file at {\em line \ref{radata2}}. The set of all tasks $Tasks$ is computed at {\em line \ref{tdata2}} as the set of  tasks used in at least one possible assignments. 
+
+Variables and constraints are defined between {\em line \ref{titvmodel2}} and {\em line \ref{endmodel2}}. {\em Line \ref{titvmodel2}} defines an array of interval variables indexed by the set of tasks $Tasks$. As tasks are optional and may be left unassigned, each of these interval variable is declared optional so that it can be ignored in the solution schedule. Each of the possible task assignments is defined as an optional interval variable in {\em line \ref{aitvmodel2}}. When present, these interval variables will be of size $dur$ and belong to the time window $[smin,emax]$ of the assignment. This is expressed by the {\tt size} and {\tt in} OPL keywords in the interval variable declaration. The objective function is to maximize the number of assigned tasks, that is, the number of present tasks in the schedule; this is specified by a sum of presence constraints at {\em line \ref{objmodel2}}. 
+
+The constraints {\em lines \ref{alt1model2}-\ref{alt2model2}} state that each task, if present, is the alternative among the set of possible assignments for this task, this is modelled by an alternative constraint: if interval $task[t]$ is present, then one and only one of the intervals $alt[a]$ representing a ground station assignment for $task[t]$ will be present and $task[t]$ will start and end together with this selected interval. As specified by the semantics of the alternative constraint, if the task is absent, then all the possible assignments related with this task are absent too. The limited capacity (number of antennas) of ground stations is modelled by {\em lines \ref{cap1model2}-\ref{cap2model2}}. For each ground station $s$, a cumul function is created that represents the time evolution of the number of antennas used by the present assignments on this station $s$. This is a sum of unit pulse functions $\pulse(alt[a],1)$. Note that when the assignment $alt[a]$ is absent, the resulting pulse function is the zero function so it does not impact the sum. The resulting sum is constrained to be lower than the maximal capacity $cap$ of the station. An interesting feature of the \cp\ model is that it handles optional tasks in a very transparent way: here, the fact that tasks are optional only impacts the declaration of task intervals at {\em line \ref{titvmodel2}}. The notion of optional interval variable and the handling of absent intervals by the constraints and expressions of the model (here the alternative constraint and the cumul function expressions) allows an elegant modelling of scheduling problems involving optional activities and, more generally, optional and/or alternative tasks, recipes or modes. 
+
+\subsection{Experimental Results}
+
+Table \ref{tab:Results3} compares the results obtained by the default automatic search of \cp\ using the above model (col. CPO) with the TaskSwap (TS) and Squeaky Wheel Optimization (SWO) approaches studied in~\cite{Kramer2007} (col. TS and SWO). Figures represent the average number of unscheduled tasks for each problem set of the benchmark. The time limit for each instance was fixed to 120s for problem sets $x.1$, 180s for problem sets $x.2$ and 360s for problem sets $x.3$. In average, compared to the best approach described in~\cite{Kramer2007} (SWO), the default automatic search of \cp\ assigns 5.3\% more tasks.  
+
+\small
+\begin{table*}
+	\centering
+		\begin{tabular}{|l|r|r|r|r|l|r|r|r|}\hline
+		Problem set   & TS     & SWO    & \CPOResult{CPO}   & & Problem set   & TS     & SWO    & \CPOResult{CPO}   \\ \hline
+	  1.1           &  30.44 &  26.60 & \CPOResult{27.50} & & 4.1           &   3.20 &   2.00 & \CPOResult{1.96}  \\ \hline
+	  1.2           & 114.02 & 104.72 & \CPOResult{98.10} & & 4.2           &  13.34 &   7.90 & \CPOResult{7.48}  \\ \hline
+	  1.3           &  87.92 &  84.52 & \CPOResult{86.04} & & 4.3           &  16.60 &  12.46 & \CPOResult{9.68}  \\ \hline
+	  2.1           &  11.46 &   7.80 & \CPOResult{7.84}  & & 5.1           &   3.90 &   3.80 & \CPOResult{3.76}  \\ \hline
+	  2.2           &  45.54 &  34.26 & \CPOResult{30.64} & & 5.2           &  32.98 &  31.98 & \CPOResult{31.72} \\ \hline
+	  2.3           &  33.96 &  31.18 & \CPOResult{32.14} & & 5.3           &  46.18 &  45.22 & \CPOResult{44.34} \\ \hline
+	  3.1           &   2.64 &   2.32 & \CPOResult{2.28}  & & 6.1           &   1.56 &   1.28 & \CPOResult{1.24}  \\ \hline
+	  3.2           &  15.50 &  12.82 & \CPOResult{11.82} & & 6.2           &  11.62 &   9.56 & \CPOResult{8.92}  \\ \hline
+	  3.3           &  32.10 &  28.58 & \CPOResult{24.00} & & 6.3           &  25.28 &  22.60 & \CPOResult{19.48} \\ \hline
+		\end{tabular}
+  \vspace*{1mm}
+	\caption{Results for Satellite Scheduling}
+	\label{tab:Results3}
+\end{table*}
+\vspace*{-1mm}
+\normalsize
+
+\section{Personal Task Scheduling}
+\label{selfplanner}
+
+\subsection{Problem Description}
+
+The third problem treated in this paper is the personal task scheduling problem introduced in~\cite{Refanidis2007} and available as an add-on to Google Calendar (\url{selfplanner.uom.gr/}). It consists of a set of $n$ tasks $\{T_1,...,T_n\}$. Each task $T_i$ has a duration denoted $dur_i$. All tasks are considered preemptive, i.e. they can be split into parts that can be scheduled separately. The decision variable $p_i$ denotes the number of parts in which the $i^{th}$ task has been split, where $p_i \geq 1$. $T_{ij}$ denotes the $j^{th}$ part of task $T_i$, $1 \leq j \leq p_i$. The sum of the durations of all parts of a task $T_i$ must equal its total duration $dur_i$. For each task $T_i$, a minimum and maximum  allowed duration for its parts, $smin_i$ and $smax_i$, as well as a minimum allowed temporal distance between every pair of its parts, $dmin_i$ are given. Depending on the values of $smax_i$ and $smin_i$ and the overall duration of the task $dur_i$, implicit constraints are imposed on $p_i$. For example, if $dur_i<2*smin_i$, then necessarily $p_i=1$ and task $T_i$ is non-preemptive. Each task $T_i$ is associated with a domain $D_i=[s_{i1},e_{i1}]\cup[s_{i2},e_{i2}]\cup\cdots\cup[s_{iF_i},e_{iF_i}]$, consisting of a set of $F_i$ time windows within which all of its parts have to be scheduled. We denote respectively $L_i=s_{i1}$ and $R_i=e_{iF_i}$ the leftmost and rightmost values of domain $D_i$. A set of $m$ locations is given, $Loc=\{l_1, l_2,\cdots, l_m\}$ as well as a 2-dimensional matrix $Dist$ with their temporal distances represented as non-negative integers. Each task $T_i$ has its own spatial reference, $loc_i \in Loc$, denoting the location where the user should be in order to execute each part of the task. A set of ordering constraints, denoted $\prec(T_i,T_j)$ between some pairs of tasks is also defined, meaning that no part of task $T_j$ can start its execution until all parts of task $T_i$ have finished their execution. Time preferences are expressed for each task $T_i$. Five types of preference functions are available; they are depicted on Figure \ref{fig:preferences}:
+\begin{itemize}
+\item[$f_{-2}$] Execute as much as possible of task $T_i$ after a date $d$.
+\item[$f_{-1}$] Execute as much as possible of task $T_i$ as late as possible.
+\item[$f_{0}$] No preference.
+\item[$f_{1}$] Execute as much as possible of task $T_i$ as early as possible.
+\item[$f_{2}$] Execute as much as possible of task $T_i$ before a date $d$.
+\end{itemize}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=8cm,keepaspectratio,clip]{preferences.pdf}
+\caption{Preference functions}
+\label{fig:preferences}
+\end{figure}
+
+For a given preference function $f_i$ associated with a task $T_i$ that is split into $p_i$ parts $P_{i,1},...,P_{i,p_i}$, the satisfaction related with the execution of task $T_i$ is computed as:
+\[\satisfaction(T_i) = \sum_{j=1}^{p_i} \sum_{t \in P_{i,j}} f_i(t) \]
+It is to be noted that functions $f_i$ are normalized in the interval [0,1] in such a way that an upper bound for the satisfaction for a task $T_i$ is $1$. 
+ 
+\subsection{Model}
+
+\small
+\begin{algorithm}
+\caption{ - OPL Model for Personal Task Scheduling}\label{model3}
+\begin{algorithmic}[1]
+\State \OPLusingcp
+
+\State \OPLtuple Task \{ \OPLkey \OPLint id; \OPLint loc; \OPLint dur; \OPLint smin; \OPLint smax; \OPLint dmin; \OPLint f; \OPLint date; \{{\bf int}\} ds; \{{\bf int}\} de; \} \label{tdata3}
+
+\State \{Task\} Tasks = ...;\label{rtdata3}
+
+\State \OPLtuple Distance \{ \OPLint loc1; \OPLint loc2; \OPLint dist; \};\label{tddata3}
+\State \{Distance\} Dist = ...;\label{rtddata3}
+
+\State \OPLtuple Ordering \{ \OPLint pred; \OPLint succ; \};\label{tpctdata3}
+\State \{Ordering\} Orderings = ...;\label{rtpctdata3}
+
+\State \OPLint L[t \OPLin Tasks] = \OPLmin(x \OPLin t.ds) x;\label{ldata3}
+\State \OPLint R[t \OPLin Tasks] = \OPLmax(x \OPLin t.de) x;\label{rdata3}
+\State \OPLint S[t \OPLin Tasks] = R[t]-L[t];\label{sdata3}
+
+\State \OPLtuple Part \{ Task task; \OPLint  id; \}\label{tpdata3}
+\State \{Part\} Parts = \{ $<$t,i$>$ $|$ t \OPLin Tasks, i \OPLin 1 .. t.dur \OPLdiv t.smin \};\label{partsdata3}
+
+\State \OPLtuple Step \{ \OPLint x; \OPLint y; \}\label{stfuncdata3}
+\State {\OPLsorted} \{Step\} Steps[t {\bf \OPLin} Tasks] = 
+\State $\ \ \ $\{$<$x,0$>|$ x \OPLin t.ds\} \OPLunion\ \{$<$x,1$>|$ x \OPLin t.de\};
+\State \OPLstepFunction holes[t \OPLin Tasks] = \OPLstepwise(s \OPLin Steps[t]) \{s.y -$>$ s.x; 0\};\label{sfuncdata3}
+
+\State \OPLdvar \OPLinterval tasks[t \OPLin Tasks] \OPLin 0..500;\label{tmodel3}
+\State \OPLdvar \OPLinterval a[p \OPLin Parts] \OPLoptional\ \OPLsize p.task.smin..p.task.smax;\label{pmodel3}
+\State \OPLdvar \OPLsequence seq \OPLin \OPLall(p \OPLin Parts) a[p] \OPLtypes \OPLall(p \OPLin Parts) p.task.loc;\label{smodel3}
+
+\State \OPLdexpr \OPLfloat satisfaction[t \OPLin Tasks] = (t.f==0)? 1 : \label{se0model3}
+\State $\ \ \ $(1/t.dur)* \OPLsum(p \OPLin Parts: p.task==t) 
+\State $\ \ \ \ \ \ $(t.f==-2)? \OPLmaxl(\OPLendOf(a[p]),t.date)-\OPLmaxl(\OPLstartOf(a[p]),t.date) :\label{sem2model3}
+\State $\ \ \ \ \ \ $(t.f==-1)? \OPLlengthOf(a[p])*(R[t]-(\OPLstartOf(a[p])+\OPLendOf(a[p])-1)/2)/S[t] :\label{sem1model3}
+\State $\ \ \ \ \ \ $(t.f== 1)? \OPLlengthOf(a[p])*((\OPLstartOf(a[p])+\OPLendOf(a[p])-1)/2-L[t])/S[t] :\label{sep1model3}
+\State $\ \ \ \ \ \ $(t.f== 2)? \OPLminl(\OPLendOf(a[p]),t.date)-\OPLminl(\OPLstartOf(a[p]),t.date) : 0;\label{sep2model3}
+       
+\State \OPLmaximize \OPLsum(t \OPLin Tasks) satisfaction[t];\label{objmodel3}
+\STARTCONSTRAINTS
+\STARTFORALL{p \OPLin Parts}
+\State     \OPLforbidExtent(a[p], holes[p.task]);\label{femodel3}
+\STARTFORALL{s \OPLin Parts: s.task==p.task \&\& s.id==p.id+1}
+\State       \OPLendBeforeStart(a[p], a[s], p.task.dmin);\label{och1model3}
+\State       \OPLpresenceOf(a[s]) =$>$ \OPLpresenceOf(a[p]);\label{och2model3}
+\ENDFORALL
+\ENDFORALL
+\STARTFORALL{t \OPLin Tasks}
+\State     t.dur == \OPLsum(p \OPLin Parts: p.task==t) \OPLsizeOf(a[p]);\label{durmodel3}
+\State     \OPLspan(tasks[t], \OPLall(p \OPLin Parts: p.task==t) a[p]);\label{spanmodel3}
+\ENDFORALL
+\SFORALL{o \OPLin Orderings}
+\State     \OPLendBeforeStart(tasks[$<$o.pred$>$], tasks[$<$o.succ$>$]);\label{ordmodel3}
+\State   \OPLnoOverlap(seq, Dist);\label{novmodel3}
+\ENDCONSTRAINTS \label{emodel3}
+
+\end{algorithmic}
+\end{algorithm}
+\normalsize
+
+A complete OPL model for the personal task scheduling problem is shown in Model \ref{model3}. The section between {\em line \ref{tdata3}} and {\em line \ref{sfuncdata3}} is data reading and data manipulation. A tuple representing a task description is declared at {\em line \ref{tdata3}}, it specifies a unique integer task identifier, the location of the task, the task duration, the minimal and maximal duration of task parts, the minimal delay between two consecutive task parts, an identifier of the type of preference function for the task in $\{-2,-1,0,1,2\}$, the threshold date in case preference function is of type $f_{-2}$ or $f_2$ and two sets of integers $ds$ and $de$ respectively representing the start and end dates of the intervals $[s_{i},e_{i}]$ of the task domain. The set of tasks is read from the data file at {\em line \ref{rtdata3}}. A triplet representing the temporal distance between two locations is declared at {\em line \ref{tddata3}} and the transition distance matrix represented as a set of such triplets is read from the data file at {\em line \ref{rtddata3}}. A tuple storing an ordering constraint is defined on {\em line \ref{tpctdata3}} and a set of such tuples is read from the data at {\em line \ref{rtpctdata3}}. {\em Lines \ref{ldata3}-\ref{sdata3}} respectively compute, for each task $t$ the leftmost value, rightmost value and diameter of the task domain. A tuple representing the $i^{th}$ part of a task is defined at {\em line \ref{tpdata3}} and the total set of possible parts is computed at {\em line \ref{partsdata3}} considering that for each task of duration $dur$ and minimal part duration $smin$, the maximal number of parts is $\lfloor dur/smin \rfloor$. {\em Lines \ref{stfuncdata3}-\ref{sfuncdata3}} define a step function $holes[t]$ for each task $t$ that is equal to $1$ in the domain of $t$ and to $0$ everywhere else. 
+
+Variables and constraints are defined between {\em lines \ref{tmodel3} and \ref{emodel3}}. An array of interval variables, one interval $task[t]$ for each task $t$, is declared at {\em line \ref{tmodel3}}; each task is constrained to end before the schedule horizon ($500$ in the benchmark). {\em Line \ref{pmodel3}} defines an optional interval variable for each possible task part with a minimal and a maximal size given by $smin$ and $smax$. A sequence variable is created at {\em line \ref{smodel3}} on the set of all parts $p$, each part being associated with an integer type in the sequence corresponding to the location of the part. The satisfaction expression for each task $t$ is modelled on {\em lines \ref{se0model3}-\ref{sep2model3}} depending on the preference function type; it uses the OPL conditional expression {\tt c?e1:e2} where $c$ is a boolean condition and $e1$ is the returned expression if $c$ is true and $e2$ the returned expression if $c$ is false. The normalization factors are the ones used in~\cite{Refanidis2007}\footnote{The objective expression being quite complex, we used the solution checker provided with the instances to check that the constraints and objective function of our model are equivalent to the ones used in~\cite{Refanidis2007}.}. The objective function, as defined on {\em line \ref{objmodel3}} is to maximize the sum of all tasks satisfaction. 
+
+The constraints on {\em line \ref{femodel3}} forbid any part of a task $t$ to overlap a point where the step function $holes[t]$ is zero; this will constrain each task part to be executed in its domain. Constraints on {\em lines \ref{och1model3}-\ref{och2model3}} state that the set of parts of a given task $t$ forms a chain of optional intervals with minimum separation time $dmin$ among which only the first ones will be executed, that is, each part $a[p]$ if present is constrained to be executed before its successor part $a[s]$ and the presence of part $a[s]$ implies the presence of part $a[p]$. Constraints on {\em line \ref{durmodel3}} state that the total duration of the part of a task must equal the specified task duration $dur$. Note that when part $a[p]$ is absent, by default the value of $\sizeOf(a[p])$ is $0$. {\em Line \ref{spanmodel3}} constrains each task $t$ to span its parts, that is to start at the start of first part and to end with the end of the last executed part. Ordering constraints are declared on {\em line \ref{ordmodel3}} whereas {\em line \ref{novmodel3}} states that task parts cannot overlap and that they must satisfy the minimal transition distance between task locations defined by the set of triplets $Dist$.
+
+\subsection{Experimental Results}
+
+Table \ref{tab:Results2} compares the results obtained by the default automatic search of \cp\ using the above model (col. CPO) and a time limit of 60s for each problem with the Squeaky Wheel Optimization (SWO) approach implemented in SelfPlanner~\cite{Refanidis2007} (col. SWO). \cp\ finds a solution to more problems than the approach described in~\cite{Refanidis2007}: the SWO could not find any solution for the problems with 55 tasks whereas the automatic search of \cp\ solves 70\% of them. Furthermore, SWO could not find any solution to 4 of the smaller problems with 50 tasks whereas \cp\ solves them all but for problem 50-2. On problems where SWO finds a solution, the average task satisfaction (average of the ratio between the total satisfaction and the number of tasks) is 78\% whereas it is 87.8\% with \cp. It represents an improvement of about 12.5\% in solution quality.
+
+\small
+\begin{table*}
+	\centering
+		\begin{tabular}{|l|r|r|r|l|r|r|r|l|r|r|r|l|r|r|}\hline
+		\#    & SWO   & \CPOResult{CPO}   && \#    & SWO   & \CPOResult{CPO}   && \#    & SWO   & \CPOResult{CPO}   && \#    & SWO   & \CPOResult{CPO} \\ \hline
+		15-1  & 12.95 & \CPOResult{14.66} && 30-6  & 28.09 & \CPOResult{29.28} && 40-1  & 24.72 & \CPOResult{28.95} && 45-6  & 32.70 & \CPOResult{37.35}   \\ \hline
+		15-2  & 12.25 & \CPOResult{13.16} && 30-7  & 23.80 & \CPOResult{24.20} && 40-2  & 23.48 & \CPOResult{32.07} && 45-7  & 32.40 & \CPOResult{35.77}   \\ \hline
+		15-3  & 13.71 & \CPOResult{13.90} && 30-8  & 24.06 & \CPOResult{26.89} && 40-3  & 33.57 & \CPOResult{37.74} && 45-8  & 31.79 & \CPOResult{35.23}   \\ \hline
+		15-4  & 11.57 & \CPOResult{12.55} && 30-9  & 23.42 & \CPOResult{24.86} && 40-4  & 31.46 & \CPOResult{35.45} && 45-9  & 35.79 & \CPOResult{38.86}   \\ \hline
+		15-5  & 12.64 & \CPOResult{14.67} && 30-10 & 22.04 & \CPOResult{27.18} && 40-5  & 28.05 & \CPOResult{34.21} && 45-10 & 32.78 & \CPOResult{40.68}   \\ \hline
+		15-6  & 14.30 & \CPOResult{14.63} && 35-1  & 28.80 & \CPOResult{31.56} && 40-6  & 29.46 & \CPOResult{34.01} && 50-1  & 42.04 & \CPOResult{43.53}   \\ \hline
+		15-7  & 13.08 & \CPOResult{14.46} && 35-2  & 29.17 & \CPOResult{32.33} && 40-7  & 33.13 & \CPOResult{37.51} && 50-2  & $\times$ & \CPOResult{$\times$}   \\ \hline
+		15-8  & 11.46 & \CPOResult{12.37} && 35-3  & 27.84 & \CPOResult{28.58} && 40-8  & 29.72 & \CPOResult{34.90} && 50-3  & $\times$ & \CPOResult{37.17}   \\ \hline
+		15-9  & 11.44 & \CPOResult{11.61} && 35-4  & 26.64 & \CPOResult{29.67} && 40-9  & 33.03 & \CPOResult{36.89} && 50-4  & $\times$ & \CPOResult{36.52}   \\ \hline
+		15-10 & 12.07 & \CPOResult{13.51} && 35-5  & 25.15 & \CPOResult{32.13} && 40-10 & 30.28 & \CPOResult{34.19} && 50-5  & 34.25 & \CPOResult{43.55}   \\ \hline
+		30-1  & 24.17 & \CPOResult{29.13} && 35-6  & 26.12 & \CPOResult{29.49} && 45-1  & 37.42 & \CPOResult{42.90} && 50-6  & 38.32 & \CPOResult{41.87}   \\ \hline
+		30-2  & 24.69 & \CPOResult{27.55} && 35-7  & 29.28 & \CPOResult{31.69} && 45-2  & 33.97 & \CPOResult{39.71} && 50-7  & 32.59 & \CPOResult{42.48}   \\ \hline
+		30-3  & 25.61 & \CPOResult{26.53} && 35-8  & 25.71 & \CPOResult{30.07} && 45-3  & 35.44 & \CPOResult{39.40} && 50-8  & 34.70 & \CPOResult{43.67}   \\ \hline
+		30-4  & 27.13 & \CPOResult{28.49} && 35-9  & 23.74 & \CPOResult{29.60} && 45-4  & 33.02 & \CPOResult{37.41} && 50-9  & $\times$ & \CPOResult{42.75}   \\ \hline
+		30-5  & 23.89 & \CPOResult{26.46} && 35-10 & 30.70 & \CPOResult{33.41} && 45-5  & 30.83 & \CPOResult{36.65} && 50-10 & 37.46 & \CPOResult{41.84}   \\ \hline \hline
+		55-1  & $\times$ & \CPOResult{36.84}    && 55-4  & $\times$ & \CPOResult{40.36} && 55-7  & $\times$ & \CPOResult{$\times$} && 55-10 & \CPOResult{$\times$} & \CPOResult{$\times$}   \\ \hline
+		55-2  & $\times$ & \CPOResult{38.56}    && 55-5  & $\times$ & \CPOResult{42.70} && 55-8  & $\times$ & \CPOResult{45.27} &&       &&    \\ \hline
+		55-3  & $\times$ & \CPOResult{$\times$} && 55-6  & $\times$ & \CPOResult{35.92} && 55-9  & $\times$ & \CPOResult{42.14} &&       &&    \\ \hline
+		\end{tabular}
+  \vspace*{1mm}
+	\caption{Results for Personal Task Scheduling}
+	\label{tab:Results2}
+\end{table*}
+\vspace*{-1mm}
+\normalsize
+
+\section{Conclusion}
+
+This paper illustrates the new scheduling support in IBM ILOG \cp. We selected three problems recently studied in the scheduling literature and provide a simple and concise \cp\ model for each of them. The size of the OPL models range from 15 to 42 lines of code. These models are then solved using the automatic search of \cp\ with default parameter values. We show that on average, \cp\ outperforms state-of-the-art problem specific approaches on all the problems which is quite a remarkable result given the generality of the search and the large spectrum of problem characteristics. These results are consistent with our experience of using \cp\ on industrial detailed scheduling applications. In spite of the relative simplicity of the new scheduling language based on optional interval variables, it was shown to be expressive and versatile enough to model a large range of complex problems for which the automatic search proved to be efficient and robust. The major part of the future development of \cp\ will be the continued improvement of the automatic search process.
+
+\bibliography{biblio}
+\bibliographystyle{splncs}
+
+\end{document}
