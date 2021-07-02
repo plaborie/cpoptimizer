@@ -1,0 +1,15 @@
+Manuscript Number: CONS213
+Title: Optimal Methods for Resource Allocation and Scheduling - A Cross-Disciplinary Survey
+Authors: Michele Lombardi and Michela Milano
+
+
+Recommendation: Accept as is.
+
+Reviewer Blind Comments to Author:
+
+I think the article really has been improved, including its structure, some necessary clarifications and a careful selection of the references. I'm satisfied with all the answers provided to my comments on the initial version so I have not much to add.
+
+This review will clearly be of interest for people interested in scheduling in the CP community. As another reviewer, I would suggest to also submit a version of the article to a more OR-oriented journal.
+
+Reviewer Confidential Comments to Editor:
+Summarize briefly the reasons for your recommendation:

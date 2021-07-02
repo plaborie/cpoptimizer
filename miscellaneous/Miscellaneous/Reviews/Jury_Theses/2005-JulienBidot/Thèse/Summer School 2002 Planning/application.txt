@@ -1,0 +1,60 @@
+
+
+	PLANET International Summer School on AI Planning 2002
+
+
+                           Application Form
+
+		   send by email to sam@essex.ac.uk
+
+		      before Friday July 19 2002
+
+
+The cost of the summer school, registration and accommodation, is 225 euros.  
+
+But do not send any money at this stage.
+
+
+Last name: Bidot
+
+First Name: Julien
+
+Organization: ILOG S.A.
+
+Position title: Ph.D. student
+
+Mailing Address: 9, rue de Verdun
+
+Post code: 94253 Gentilly Cedex
+
+Country: France
+
+Phone: +33 (0)1 49 08 36 70
+
+Fax: +33 (0)1 49 08 35 10
+
+
+Email: jbidot@ilog.fr
+
+
+
+Reasons for wishing to attend the school (max 100 words)
+
+In the frame of my Ph.D. thesis with ILOG (PLANET's member) and L.G.P./E.N.I.T.
+(Tarbes/France) I am investigating robust scheduling with uncertainty.
+
+During the plan execution some uncertain events, which are not always taken into
+account a priori, occur and can dramatically affect the plan quality and
+feasibility.
+
+My research consists in finding relevant models and algorithms for this problem,
+which is at the intersection of temporal planning, scheduling, and execution.
+
+I would like to attend this summer school in order to get a further knowledge in
+scheduling and execution, and acquire a strong basic knowledge in planning.
+
+
+   
+I would like to display a poster (yes/no) yes
+
+Title of poster: uncertainty models for robust scheduling

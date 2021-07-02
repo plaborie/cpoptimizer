@@ -1,0 +1,18 @@
+$(TMPDIR)iluactivity.$(O): $(INCDIR)$(SEP)ilsim$(SEP)iluactivity.h $(INCDIR)$(SEP)ilsim$(SEP)ilurandom.h 
+
+$(TMPDIR)iluevent.$(O): $(INCDIR)$(SEP)ilsim$(SEP)iluevent.h $(INCDIR)$(SEP)ilsim$(SEP)ilutimeeventmanager.h 
+
+$(TMPDIR)ilueventstack.$(O): $(INCDIR)$(SEP)ilsim$(SEP)ilueventstack.h 
+
+$(TMPDIR)ilumodel.$(O): $(INCDIR)$(SEP)ilsim$(SEP)iluactivity.h $(INCDIR)$(SEP)ilsim$(SEP)ilumodel.h 
+
+$(TMPDIR)ilupgsim.$(O): $(INCDIR)$(SEP)ilsim$(SEP)ilupgsim.h $(INCDIR)$(SEP)ilsim$(SEP)ilurandom.h 
+
+$(TMPDIR)ilurandom.$(O): $(INCDIR)$(SEP)ilsim$(SEP)ilurandom.h 
+
+$(TMPDIR)iluscheduler.$(O): $(INCDIR)$(SEP)ilsim$(SEP)iluscheduler.h 
+
+$(TMPDIR)ilusimulator.$(O): $(INCDIR)$(SEP)ilsim$(SEP)ilusimulator.h 
+
+$(TMPDIR)ilutimeeventmanager.$(O): $(INCDIR)$(SEP)ilsim$(SEP)ilutimeeventmanager.h 
+

@@ -1,0 +1,43 @@
+Title: Autonomous Target Search with Multiple Coordinated UAVs
+Author(s): Chiara Piacentini, Sara Bernardini, J. Christopher Beck
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject with resubmission encouraged
+[ ] Reject
+
+
+Comments and suggestions
+========================
+
+After defining the problem of Search and Tracking by means of UAVs and presenting the context of the work (focus on the Search step, notions of search patterns), the problem is formalized as a discrete optimization problem. Some useful properties of the objective function (independence from the ordering of the search patterns, sub-modularity) are presented in section 3. Then a heuristic greedy algorithm exploiting the sub-modularity of the objective function is provided. Two exact approaches are also introduced, one using CP and the other AI Planning. The 3 approaches are compared in an experimental study, together with some CP/Greedy and AIPlanning/Greedy hybrids.
+
+The article is well organized and fairly easy to read. The contribution is significant and very relevant to the field of AI Planning. My comments below are a few suggestions to improve the paper.
+
+In the problem definition section (2.1), beside citation (Bernardini et al. 2017), it would be useful to give a bit more details about how candidate search patterns (location, time windows) are selected. When I first read the manuscript, I was surprised that in Section 3 (about the properties of the objective function), the probabilities of finding the target at a particular location are not time-dependent. It is only when reading the paper again that one realizes that the dependency on time is "pre-computed" thanks to the notion of time-window attached with the candidate search patterns so that, because a pattern is located both in space and in time, the probabilities for the target position can be supposed to only depend on the search patterns executed so far (and not on the exact time the pattern is executed).
+
+The example of section 2.3 is very useful to illustrate the problem but I think it would be useful to explain how you compute the value 2/3 of the total probability of the solution S*.
+
+The properties of the objective function are formally proved in section 3. Maybe the paper could be improved by informally giving the main ideas behind these proofs. Actually, some of the properties are fairly intuitive like the fact P(\Sigma) is non-decreasing or even that it is sub-modular as one can understand that if \Phi is a subset of \Sigma, executing a new pattern s on top of \Phi will bring more information that on top of \Sigma. But I find it hard to get an intuition of why the total probability does not depend on the order of the patterns. It would be good if you could provide such an informal description.
+
+I did not quite understand the statement in section 4 that "Note that for all approaches, the sequence is calculated offline: the solver adds a new pattern to the plan under the assumption that the previous pattern has failed.". Do you mean that at execution time, the computed sequence of search patterns is executed until a pattern succeeds? Which of course makes sense. Or do you mean something different? My understanding is that an optimized plan of search patterns is computed and then, this plan is executed until eventually one of the patterns succeeds. But the end of your statement is a bit misleading as it is not very clear about what belongs to the computation of the plan and what belongs to the execution.
+
+The description of the greedy algorithm suggests another possible way to combine it with a CP model. Currently the greedy algorithm maintains a partial plan with a sequence of patterns for each observer and tries to insert the new patterns inside this plan; it cannot backtrack to bad scheduling decisions (bad allocation to observers, bad sequencing of the patterns performed by an observer). It could be interesting to solve a new CP scheduling model from scratch each time the greedy algorithm selects a new search pattern to be added to the plan. Although the resulting scheduling problem is NP-Complete (it involves resource allocation, time-windows and setup times), it is probably small enough to be solved fast. This approach would remove from CP the burden of handling the objective function (which really is the source of complexity and inefficiency of the CP model) and focus on what CP is good for: scheduling.
+
+Although I fundamentally agree with the discussion on Planning vs. Scheduling in general, with the scaling issue of CP scheduling for solving planning problems for which the envelope of possible actions typically grows exponentially with the size of the plan, I'm not sure that it directly applies to the problem being studied here. The main reason is that here, the envelope of possible actions is already supposed to be selected (it is the set C of candidate patterns, or more precisely the set C^~ with several possible occurrences of the pattern) so the problem looks more like a scheduling problem where you need to select a subset of patterns and allocate them to one or more observers. From a CP scheduling perspective, it seems that the main complexity of the problem is not due to the size of the resulting problem (CP scheduling can handle problems with several thousands or even hundred of thousands of interval variables) but to the complexity of the objective function (Eq. 26-28) and its very weak propagation (due to the recursive formulation). So a way to improve the CP model could be to work on the formulation of the objective function and see if some parts can be factorized and/or if some simpler surrogate (upper-bound, approximation, ...) could be provided. Also, in order to assess the importance of the scaling issue, if any, it would be useful to provide the typical size of the CP models in the experimental study: the first part of the study mentions 30 candidate search patterns x at most 5 observers which (except for the complexity of the objective function mentioned above) seems a tiny problem for CP; and what about the number of patterns in the second study (5.2) ?
+
+Some more detailed comments:
+
+- Instead of citation of the CP Optimizer User's Manual (IBM(2018)), you could cite this recent article that gives a detailed overview of the tool: P. Laborie, J. Rogerie, P. Shaw, P. Vilim. "IBM ILOG CP Optimizer for Scheduling". Constraints journal 23(2), 210-250, 2018.
+
+- on page 6, patterns are sometimes denoted '\sigma' and sometimes 's'. I'm not sure if this different notations are used on purpose (for instance to differentiate patterns in a set from patterns in an ordered sequence) or not but it is a bit disturbing. 
+
+- on page 16, figure 6: in (26), there is P_{\sigma_i,\gamma}: shouldn't it read P_{i,\gamma} instead
+
+- same figure 6: in (28), Pres(t_{\sigma_i,o}): which 'o' is it here? (there is no quantifier on 'o' in the equation)
+
+

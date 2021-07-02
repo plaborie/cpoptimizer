@@ -1,0 +1,136 @@
+====== REVIEW FORM (ROUND 1) ==========================================================
+
+Title: Improving Linear Search Algorithms with Model-based
+Approaches for MaxSAT Solving
+
+Authors: Martins, Manquinho, Lynce
+
+
+CONTENT
+Please, answer Yes or No.
+
+Is the paper technically sound? YES
+Is the work described original? YES
+Does it place new results in appropriate context with earlier work? YES
+Does anything need to be added or deleted? NO
+Is the result important enough to warrant publication? YES
+
+
+FORM
+Please, answer Yes or No.
+
+Does the abstract adequately reflect the contents? YES
+Are the summary and conclusions adequate? YES
+Does it contain adequate references to previous work? YES
+Does it explain clearly what was done that is new? YES
+Does it clearly indicate why this work is important? YES
+Is the English satisfactory? YES
+Is the presentation otherwise satisfactory? YES
+Are there an appropriate number of figures? YES
+Do the figures help clarify the concepts in the paper? YES
+
+
+YOUR CONFIDENCE in the paper's topics:
+(Please, delete all categories except one)
+
+- Some
+
+-----------------------------------------------------------------------------------------------
+Detailed comments to authors:
+
+
+The authors propose and analyze some new methods for partitioning the relaxation variables added to soft clauses for solving the MaxSAT problem.
+The paper is well-written and the results reported deserve to be published.
+The reasons of the difference of performances among the various methods are clearly discussed.
+The material and presentation is improved wrt the RCRA version.
+Some Lemma is really trivial and can be omitted.
+I have a general question on the applicability of a bisection scheme instead than a linear increasing one.
+Perhaps the authors can briefly comment on that.
+
+There are some minor issues reported below that should be addressed in the final version of the paper.
+
+Minor comments
+
+Page 2. After "solution or model." Add the notion of satisfiable/unsatisfiable formula.
+
+"can have weights" maybe "can have integer weights"
+
+"multiset of clauses." I would add "(i.e., we allow multiple occurrence of the same clause in a formula)"
+
+Page 3. Def. 2.3 Remove "(i.e., ... formula)" - see comment above.
+"the sum of n literals" Please clarify here that, i.e.,  true + true = 2
+
+"We refer to the literature for B&B [1] and unsatisfiability based [2] algorithms." ->
+"We refer to [1] for B&B algorithms and to [2] for unsatisfiability based [2] algorithms, respectively".
+
+Page 4. Algo 1, Output. "satisfying assignment" it is not defined. Rather, you have defined it as a solution or model.
+
+Why are you using "st" as variable name? "state"? Can you add a (minor of course) comment?
+
+Page 6. Algo 2. You can remove V_R from instruction 1. It is initialized in instruction 2.
+
+Page 7. The intensional set { omega_i \in phi_s : omega_i \cup {r_i} } should be:
+ {   omega_i \cup {r_i} : omega_i \in phi_s}  Btw, this is the unique place where you use
+":" (in the other sets you're using "|").
+
+Page 10. Algo 3. Same observation above on V_R.
+
+References. Missing editor in Lin and Su, missing LNCS Vol ... in Sinz.
+
+
+Typos
+
+Page 1. "bioinformatics" -> "Bioinformatics"
+
+Page 5. "the ones" maybe "those"
+
+Page 9. "As with previous" -> "As previous"
+
+Page 13. "active ." -> "active."
+
+Page 18. "variables [all] corresponds" -> "variables, respectively,  [all] corresponds"
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+Together with the paper, you received its workshop reviews as
+well as a letter from the authors explaining how they have dealt with these
+reviews in the current version.
+
+Did authors properly took into account the comments of the workshop reviewers (other than you)?
+(Please, delete all categories except one)
+
+- Yes, completely
+
+
+As a former reviewer of the workshop version of this paper,
+are you satisfied with how authors took into account your own comments?
+(Please, delete all categories except one)
+
+- Yes, I'm fully satisfied
+
+
+Overall judgement
+(Please, delete all categories except one)
+
+
+3 - Accept subject to minor revision
+This is a good paper, of the same or of better quality wrt. the usual quality of articles
+published in the major journals in the area.
+There are only minor issues that should be solved before publication, but they do not seem
+critical and appear easy to solve. Although I will take a final decision only after having quickly
+reviewed the new version of the paper, I'm reasonably confident that there will be no bad surprises.
+
+
+====== END ====================================================================================
+
+
+====== CONFIDENTIAL COMMENTS TO EDITORS =======================================================
+
+Please, write here any confidential comments to editors that you may have.
+
+
+
+====== END ====================================================================================

@@ -1,0 +1,159 @@
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines beginning with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines beginning with *** are used by EasyChair. Do not
+---     remove or modify these lines or the review will become
+---     unusable and will be rejected by EasyChair
+--------------------------------------------------------------
+*** REVIEW FORM ID: 321046::154985
+*** SUBMISSION NUMBER: 24
+*** TITLE: Scheduling Producers and Consumers of  Reservoirs in Finite-Domain Constraint Programming
+*** AUTHORS: Armin Wolf
+--- CATEGORY: Long Papers
+*** PC MEMBER: Paul Shaw
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+>> RELEVANCE TO CONFERENCE
+
+The paper builds on previous work on Resource Envelope (RE)
+computation (that aims at computing exact resource bounds for each
+date) and Balance Constraint (that aims at inferring new time bounds
+and precedence relations) in the context of discrete reservoir
+scheduling. It is clearly relevant to CP-AI-OR.
+
+The contribution of the paper is an extension of Kumar's incremental
+RE computation in order to perform constraint propagation.
+
+To the best of my knowledge and in fact, quite surprisingly, it is the
+first time REs are used for constraint propagation: they are usually
+used for detecting dead ends, reservoir safeness of for guiding the
+search heuristics. The proposed constraint propagation algorithm is
+original. It is tightly integrated with the incremental RE computation
+and allows detecting new time-bounds and new precedence relations,
+similarly to what is done in the Balance Constraint.
+
+The contribution of the paper is more on a practical point of view
+rather than on a purely theoretical one. It deals with how to use the
+information provided by the existing incremental max flow earlier so
+as to perform constraint propagation rather than just checks in order
+to improve efficiency. The theoretical concepts (conflicts sets, flow
+graph) are the same as earlier works. 
+
+In this context, one of the weakness of the paper is that it does not
+provide enough evidence of the practical interest of the additional
+constraint propagation: 
+- no algorithmic complexity study is provided (one can guess the
+  incremental flow dominates and it may have to be run many times before
+  a fixed point is reached ...)
+- the experimental study should include a part about how the
+  performance scales with the problem size. Only the small 20-tasks
+  instances of Neumann&Schwindt are used, what about the figures for the
+  larger problems with 50 or 100 tasks of this benchmark?
+
+The paper is technically correct. In fact most of the paper until the
+end of section 3.3 is a recap of the RE computation proposed in
+earlier works by Muscettola and Kumar. The contribution of this work
+is described at the end of section 3.3. I think it should be more
+highlighted and would deserve a specific section.
+
+It is not clear how temporal constraints are propagated. Is a
+Bellman-Ford (or a Floyd-Warshall) algorithm run from scratch at each
+node and each time a (set of) new time-bounds / precedence relations
+is inferred? Or do you have something more incremental? This point is
+important because even if for a problem with a single reservoir, the
+complexity is dominated by the max-flow algorithm (here, the max-flow
+and the Bellman-Ford work on networks of similar size), when the
+problem involves many reservoirs, the number of events on each
+reservoir may be reasonably small whereas the total number of
+time-points in the global temporal network will be very large. That's
+why, from a practical point of view, reducing the problem to the one
+on a single reservoir may hide some issues.
+
+In the section about future work, the idea of adapting the max flow
+approach to compute tighter levels than the ones of the Balance
+Constraint already has been explored. I think you should at least
+cite:
+
+Jeremy Frank. Bounding the Resource Availability of Partially Ordered
+Events with Constant Resource Impact. Proc. CP-2004.
+
+Some more detailed comments:
+
+- In Corollary 1 it is not evident that the difference with what is
+above is that here we speak of "MINIMAL" size-2 conflicts instead of
+"ANY" size-2 conflict. Maybe in "constitute a minimal size-2 conflict",
+"minimal" should appear in bold.
+
+- p3, "A consumption event c ... to aN production event
+
+- p4, after definition 3, I find the sentence "Further, it should be
+  noted that ..." a bit misleading. The section is about defining the
+  semantics of the reservoir constraint whereas this remark seems to be
+  more about how this constraint is propagated.
+
+- p13, in the description of the pruning on top f the page, I think
+  there is a typo, on should read g(t)-q_{max} instead of g(t)+q_{max}
+  for detecting new upper bounds for dates of x in P_g.
+
+- In the same paragraph, two lines below "... is possible: The
+  minimal".
+
+-------------------------------------------------------------- ***
+REMARKS FOR THE PROGRAMME COMMITTEE: --- If you wish to add any
+remarks for PC members, please write --- them below. These remarks
+will only be used during the PC --- meeting. They will not be sent to
+the authors. This field is --- optional.
+
+The constraint propagation presented in the paper is original. Even if
+the paper has several weaknesses, I (weakly) propose to accept it in
+order to encourage work in this direction.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- subreviewer different from the PC member in charge, add
+--- information about the subreviewer in the form below. Do not
+--- modify the lines beginning with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+Philippe
+*** REVIEWER'S LAST NAME: (write in the next line)
+Laborie
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+laborie@fr.ibm.com
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+---  2 (accept)
+1 (weak accept)
+---  0 (borderline paper)
+---  -1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+

@@ -1,0 +1,124 @@
+Mixed-Integer Programming Versus Constraint Programming for Scheduling Problems: New Results and Outlook
+______________________________________________________________________________________
+Accept
+> Minor Revision
+Major Revision
+Reject
+
+______________________________________________________________________________________
+Confidential Comments to the Associate Editor
+
+
+______________________________________________________________________________________
+Comments to the Author
+
+The article compares the efficiency of two generic exact approaches (MILP and CP-Optimizer) for solving a set of 11 different scheduling problems. Based on a very exhaustive set of experiments, the paper argues the idea that current CP engines like IBM CP Optimizer set new limits in the field of exact generic approaches for solving scheduling problems and that they should be the reference method instead of (or at least together with) MILP.
+
+The 11 scheduling problems discussed in the manuscript are the following ones:
+- FSP: Permutation flowshop
+- N-FSP: (Non-permutation) flowshop
+- TCT-FSP: Total completion time permutation flowshop
+- TT-FSP: Total Tardiness permutation flowshop
+- NW-FSP: No-wait (permutation) flowshop
+- SDST-FSP: Sequence-dependent setup permutation flowshop
+- H-FSP: Hybrid flow shop
+- D-FSP: Distributed permutation flow shop
+- JSSP: Job shop problem
+- OSP: Open shop problem
+- PMSP: parallel machine scheduling problem
+
+CP (and more specifically CP Optimizer) have been evaluated on scheduling problems in several papers before. For instance [1] describes the early version of the automatic search of CP Optimizer and evaluates it on 21 different scheduling benchmarks (including N-FSP, H-FSP, JSSP, OSP and a generalization of SDST-FSP) whereas [2] includes experiments with 7 classical scheduling benchmarks including JSSP, OSP and several of their extensions, including different variants of RCPSP. In these papers, CP Optimizer was compared against the current state-of-the-art problem specific approaches. The originality and the interest of the present paper is to focus on a direct comparison between a CP Optimizer and a MILP formulation; so, two generic exact approaches.
+
+While the scope of the study is impressive, I think that the title of the paper is maybe too generic. The article mostly focuses on disjunctive scheduling and not much on cumulative scheduling. For instance the RCPSP and its many variants is not studied here, whereas this type of problem would (I think) show an even stronger dominance of CP over MILP. Maybe the title should mention "shop scheduling" problems instead of "scheduling" problems in general ?
+
+An interesting problem not mentioned in the paper and that clearly mixes sequencing and allocation problems is the flexible jobshop problem (for which CP is also the state-of-the-art method). Is there a reason why this problem was not included in the study ? Of course, I understand that one has to limit the scope of the study at some point.
+
+I strongly agree with the statement of the article that CP approaches are not known enough by practitioners who systematically use MILP as exact approaches to compare with, whereas CP approaches are usually more efficient (even for providing optimality proofs or lower-bound as explained in the article) and scale much better. This is something well known in the CP community but, strangely, that has still not completely made its way in the more general O.R. community. So I'm very glad if this article could help spread this message.
+
+Here are some more detailed remarks and comments.
+
+p4, l17-27: on the difference between "classic" and "modern" formulations (maybe they should be rephrased as "integer" and "interval" based formulations ...): in fact, for all the problems studied in the article that do not have a "machine allocation" dimension, the two formulations are very similar and there is no real advantage of using an interval-based formulation. In particular, for the JSP problem, both formulations are basically equivalent. So for a problem like the JSP, what really makes the difference between CP solvers is the automatic search, not the formulation (and the CP Optimizer automatic search is known to be particularly efficient for scheduling problems). The additional advantage of the interval-based formulation is when the problem has an allocation dimension that can be efficiently formulated with optional interval variables and alternative constraints, like here for D-FSP (and H-FSP and PMSP but I'll have more comments about these two problems below).
+
+p9, l15: "As a result, we select the Manne-based modelling ..." Did you experiment with other MILP formulations when it makes sense ? For instance, for the JSP problem, how does your MILP formulation compare with the best MILP formulation studied in [Ku and Beck 2016]. It seems to be the same (Manne-based) so it could be interesting to mention it.
+
+p9, l42: "the global function PresenceOf(x)": it is not really a "global" function. And it is a constraint. Maybe you could just say the "constraint PresenceOf(x)" is satisfied if and only if interval variable x is present (not absent). Also "if an optional interval variable x exists": "exist" is ambiguous as the notion has not been defined. You should say "present" (or not "absent")
+
+p10, l8: "We can use the following global constraints over this common structure:'' Not sure we can speak of "global" constraint here. Especially for binary constraints like EndBeforeStart. Actually, CP Optimizer does not differentiate between global and "non-global" constraints. They are just constraints.
+
+p10, l22: typo: "EndBeforStart"
+
+p10, l29: typo: use "EndOf" for homogeneity
+
+p12, l9: I'm wondering whether for permutation flowshop, the position-based MILP formulation would not be better ... Did you try it ?
+
+p13, l42: in the CP Optimizer formulation for the N-FSP problem, you could just remove constraint 17 as well. NoOverlap([itv]) is just a syntactic sugar that internally creates the sequence variables (15). So just removing (17) would basically result in the same formulation with the same performance and it would be slightly easier to describe as you do not need to introduce the concept of NoOverlap on a set of interval variables.
+
+p16, l47: in the CP Optimizer formulation for the SDST-FSP problem, it seems that constraint (32) replaces constraint (16) so I think that (16) should be removed from the line above. 
+
+p17, l3: Typo: "that that"
+
+p17, l37: There is a much more efficient CP Optimizer formulation for the H-FSP problem in case, like here, the machines at stage i are the same. You do not need to explicitly handle the allocation of machines to the tasks (as they are similar) and do not need to create interval variables Task*_jik. You can just use a cumul function on the task intervals: at stage i: "sum(j in ...) pulse(Task_ji,1) <= card(K_i)". Which means : no more than card(K_i) tasks of stage i are executing in parallel. This is way more efficient than the formulation with NoOverlap as it completely rules out the allocation dimension of the problem. It is the formulation used in [1]. This is another interest of the CPO formulation : to easily mix disjunctive and cumulative scheduling, whereas this is something very painful to do with MILP. It would be really interesting to see how this alternative formulation impacts the performances.
+
+p18, l37: typo: IntveralVar
+
+p18, l39: Instead of an implication constraint <= between the presence status, I think that an equivalence PresenceOf(Task^*_j1f)==PresenceOf(Task^*_jif) would be stronger (though it is a redundant constraint because of the alternative constraints) and could permit to improve the performance of the formulation (to be checked)
+
+p19, l14: Consistency of notations: you introduced notation JSP and not JSSP for the jobshop problem 
+
+p20, l48: In fact the PMSP problem is not really a scheduling problem as there is no scheduling or even sequencing dimension in the problem. So using an interval-based formulation for this problem does not really make sense (though it could make sense of course as soon as you will have additional constraints like time-windows for jobs for example, that would completely invalidate the MILP formulation). So if to compare a MILP formulation with a CP Optimizer one for this problem, it could be interesting to use an integer formulation in CP Optimizer, for instance something like (matrix is the data: matrix[i][j] is the duration of task i if executed on machine j):
+
+model = CpoModel()
+machine  = [ integer_var(min=0, max=m-1)    for i in range(n) ]
+duration = [ element(matrix[i],machine[i])  for i in range(n) ] # duration[i] = matrix[i][machine[i]]
+makespan = max([ sum([ matrix[i][j]*(machine[i]==j) for i in range(n) ]) for j in range(m) ])
+model.add( sum([ duration[i] for i in range(n) ]) <= m*makespan ) # Mostly for strengthening lower bound
+model.add( minimize(makespan) )
+
+More generally, on the topic of solving a mix of scheduling and allocation problems with CP (and particularly CP Optimizer), [3] illustrates how a CP Optimizer formulation outperformed several MILP formulations (standalone MILP and logical Benders decompositions) and allowed to close all open instances of the benchmark.
+
+p 21, l3-7: In the experiments, did you explicitly specify how many parallel workers should use the 2 solvers ? (by typically setting Workers=4 in the search parameters). By default, the both engines automatically look at the number of cores of the machine and use all of them. It would be interesting to make sure that the solvers did not use all the 12 cores of the physical machines as in these case there would be a huge interaction between the resolution of the different instances in parallel (plus the fact that 12 parallel workers in general counter-productive both for CPLEX and CP-Optimizer). The number of workers effectively used in the experiment can be accessed by getting the value of the "EffectiveWorkers" information in CP Optimizer.
+
+p 21, l18-25: This is strange. Both solvers (CPLEX and CP Optimizer) are supposed to be deterministic: running twice the same model in the same conditions should produce the same result. But it is indeed not excluded that running with different parameters values (here time limit) could change the behavior. While it is true that the solvers use heuristics that are using stochastic processes, the random seed of the internal random generator is a parameter of the search (for instance parameter RandomSeed in CP Optimizer). So I think it would make more sense to also play on this parameter (setting them to different values for each time limit) to really make sure that the searches for different time-limits effectively use different search paths. 
+
+p21, l35-37: "The optimality gap captures the deviation of the best integer solution found by each model in relation to the best bound obtained from its LP relaxation (lower bound)." This is true for MILP. In the case of CP Optimizer, the lower bound is obtained in different ways, not only the LP relaxation. See for instance [2].
+
+p23, l9 and l32: NFSP is defined as being the Non-permutation flowshop and the nowait flowshop is NW-FSP. So it is not clear what is the non-permutation flowshop and what is the no-wait flowshop in this section 4.2.1.
+
+p24, l12 and p25, l27: there are no figures for CP Optimizer for RPD on the VFR instances. Why ?
+
+p25, l41: "The rate of solvability is also significantly worse for both models at 88% and 31% for the CP and MILP models, respectively". This is strange. I think that CP should not have any problem finding feasible solutions. And the figures on the table suggest that CP finds solutions to 476+64=540 that is 100% of the instances ... In general, CP should be able to find feasible solutions to 100% of the instances described in the paper actually because from the standpoint of CP, all these problems are trivially feasible.
+
+p25, l42: "When the amount of total tardiness is zero in any instance, the CP model can quickly find the optimal solution". This is a good remark. And I think it can be easily explained: CP relies on constraint propagation. And in general, propagation of sum expressions (like sum_i max(0, end_i - DD_i)) propagates weakly, except if the upper bound of the sum is 0 as in this case, it directly propagates end_i <= DD_i. When the upper bound is strictly larger than 0, the slack on the variables gets "diluted" in all the different terms "i" and propagation is weaker.
+
+p25, l46: "The large average optimality gap in both models causes the decision maker to believe that these models are not
+efficient for solving the TT-FSP; however ..." Indeed. And it is something usual in CP Optimizer: for some problems, the lower-bound can be very bad (especially on problems where the objective function has a weak propagation like in case of a "sum"") whereas usually, the feasible solutions are good.
+
+p25, l53: "As such, an average RPD of 25.37% is reasonable from a practical perspective ..." Indeed, it makes sense, especially when the best known solution has a total tardiness close to 0 (or 0) as the denominator for computing the RPD will be very small. 
+
+p27, l3-4: "The results for the JSP are somewhat expected as CP solvers have been finely tuned for the JSP problem". I would not say it this way. CP Optimizer has not been tuned toward particular problems (and certainly not the JSP) but in order to be robust on a large panel of problems. 
+
+p28, l21: "The MILP model fails to find feasible solutions for problem instances exceeding 100 jobs, but the CP model can find integer feasible solutions for instances of up to 500 jobs." As said before, I think that CP Optimizer should be able to easily find feasible solutions to all the instances of the benchmarks studied in this paper. In fact, from the standpoint of feasibility, these benchmarks are tiny and CP Optimizer was designed to scale to much larger problems involving up to 1.000.000 tasks or more. See for instance [4] for the case of job-shop problems (Note that this paper [4] was using V12.8 whereas the following version V12.9 was greatly improved for very large problems, like RCPSPs for problems with about 1.000.000 tasks, see [5]).
+
+p28, l22: "It is remarkable that the CP remains robust with respect to the increase in the number of jobs and achieves similar average optimality gaps for significantly different job sizes. Unlike the increase in the number of jobs, the CP model’s average optimality gap deteriorates as we increase the number of stages, whereas the average optimality gap of the MILP model ameliorates (see Figure 3(b))." I think that it would make sense to have similar figures for the average RPD which makes more sense from a practical perspective (customers in the industry are more interested in good feasible solutions than in optimality gaps ...). 
+
+p28, l43-44:  Here also I think it would be useful to show how the RPD evolves over time ...
+
+Additional references:
+
+[1] P. Laborie, D. Godard. "Self-Adapting Large Neighborhood Search: Application to Single-Mode Scheduling Problems". Proc. MISTA 2007. https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1084.1196&rep=rep1&type=pdf
+
+[2] P. Vilim, P. Laborie, P. Shaw . "Failure-directed Search for Constraint-based Scheduling". Proc. CPAIOR-2015.
+
+[3] P. Laborie. “An Update on the Comparison of MIP, CP and Hybrid Approaches for Mixed Resource Allocation and Scheduling”. Proc. CPAIOR 2018.
+
+[4] G. Da Col and E. Teppan. "Industrial Size Job Shop Scheduling Tackled by Present Day CP Solvers". Proc. CP-2019.
+
+[5] P. Laborie. "Recent advances on large scheduling problems in CP Optimizer". ROADEF-2019. https://www.researchgate.net/publication/332528212_Recent_advances_on_large_scheduling_problems_in_CP_Optimizer
+
+To summarize, I think that the article provides a significant amount of work (including problem formulations and extensive experiments) showing evidence that CP technology is, in its current state, superior to MILP for the shop scheduling problems studied in the paper. As such, I think the article should be accepted for publication in the INFORMS Journal of Computing with some minor revisions.
+
+In particular, the paper could be improved by experimenting with some variants of the CP models. By order of importance:
+- a model using cumul functions for H-FSP
+- an integer CP model for PMSP
+- a slightly stronger formulation for D-FSP using equivalence instead of implication constraints
+

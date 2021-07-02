@@ -1,0 +1,55 @@
+Number: 12
+Title: Hierarchical Constraint-Based Scheduling for Multi-Robot Observation Missions.
+Authors:	Adriana Pacheco, Cédric Pralet and Stephanie Roussel. 
+
+Review:
+1: weak accept
+
+The article describes an interesting 2-step hierarchical approach to solve a scheduling problem for multi-robots observation missions.
+
+The article is well written and clear, except for a few points mentioned at the end of this review.
+
+Given the complexity of the problem and the explosion of the search space (including the number of decision variables to represent the full problem), a two step really makes some sense here.
+
+It is also interesting that the authors make some effort to generalize from the particular multi-robots scheduling problem and propose a hierarchical framework for solving a full family of hierarchical scheduling problems.
+
+Each step is formulated as a hierarchical CP model using the modeling tools (span,alternative) provided in CP Optimizer for hierarchical scheduling problems. 
+
+I'm a bit doubtful about the statement that the proposed hierarchical model is simpler for the users than a plain formulation with interval variables. Maybe it is true for the models that will exactly fit into the proposed framework. But as soon as some extensions will be necessary you will have to resort to other modeling concepts: you mention cumulative resources, one could also mention resource unavailabilities, disjunctive time-windows, tasks requiring the allocation of resources of different nature (for instance: select a robot and select a frequency - unlike in the problem here where there is a unique given frequency for a given robot), state functions, generalized alternative (task requires k resources among a set of n resources) etc. And the hardcoded encoding of the proposed hierarchical model in CP Optimizer also introduces some inefficiencies (you mention the integer variables 'mth' for representing the decomposition method selection whereas, indeed, in general it is more efficient to directly work on the boolean presence of interval variables). This is not to say that the proposed hierarchical model is not interesting, but one has to be conscious about its limits.
+
+One of the most interesting aspect of the article is the feedback communication between the two models L2 and L1 that is used to update the transition distance matrix. I think the problem tackled in the article is ubiquitous in many robotic applications (and not only in robotics I think) where transitions between states (here the move of a robot from one observation to the next) is a complex process that can be relaxed or approximated in a first step (model L1) and the approximation can be refined by learning how the second level is solved.
+
+Detailed comments and questions:
+
+In the last section of section 2.1 "It is also assumed that given a task t consuming a resource with setup times r, its release date rd_t is greater than or equal to the setup duration required to put resource r in state st_t,r from the beginning of the schedule." This statement is not really clear. Do you allow the specification of some initial state for the resources? Even in this case, what is the problem if the release date does not permit to execute the task. It seems to me in this case the problem is just infeasible (like there maybe many other reasons for infeasibility). Or maybe you mean that the initial setup time, if any, should be modeled using rd_t ? I think I would just remove this sentence.
+
+In section 2.2, I think you should cite a paper that describe the semantics of interval variables and the other constraints you use (either [1] or [2]) because this is not something classically found in traditional CP.
+
+On page 5, footnotes 1 and 2: instead of the links, you could cite [2]. The work breakdown structure model is presented in this paper.
+
+Same page: "First, every operation has a fixed duration (5).". This is an example of assumption (fixed duration) that could be easily removed by permitting a variable duration.
+
+Note that in the description of the CP Optimizer encoding in equation 5, it would be better to use the term "length" of interval rather than "duration".
+
+Also, small detail, usually the engine is called "CP Optimizer", not "CpOptimizer".
+
+In section 2.2, you also mention "Also, the integer variable mth_c is introduced only to clearly illustrate the layers model, since in practice, constraints on the boolean variables pres(itv_m), are better exploited by CP tools". Could you elaborate a bit on how you formulated these constraints then?
+
+In section 3.2, something is not clear about the handling of frequency constraints in level 1. The description of level L1 suggests that in this model, frequencies are modeled as unary resources, and thus, in a solution two observations executed on robots using the same frequency are necessarily ordered. But the solution of L1 presented on Fig. 3 shows two observations (O2 and O3), respectively scheduled on robots r1 (frequency f1) and r2 (frequency f1) with the same frequency whereas the observations are not ordered. Is it a mistake or is there something missing?
+
+On the top of p12, in the description of the ShouldRestart method: "we restart whenever layer L1 produces a solution with a makespan bigger than the best one found so far." This is strange as the expected behavior of the makespan of L1 is to grow, given that the original transition values are lower bounds. So it is strange to restart as soon as this makespan grows. And the explanation of Fig. 5 seems to contradict the sentence. It seems that a restart occurs as soon as the makespan does not grow anymore, which makes more sense.
+
+In Fig. 6 and 7, could you explain how is computed the makespan lower bound. Is it the makespan of the first iteration of L1? Does the engine always prove optimality of this initial solution? In this case it is indeed an actual lower bound. But if not, you should really explain more in detail how this lower bound is computed.
+
+Is there a reason why you have been using version 12.5? This version is now more than 6 years old and there has been progress in the automatic search since then. 
+
+
+[1] P. Laborie, J. Rogerie. "Reasoning with Conditional Time-intervals". Proc. 21th International FLAIRS Conference (FLAIRS 2008). 
+
+[2] P. Laborie, J. Rogerie, P. Shaw, P. Vilim. "IBM ILOG CP Optimizer for Scheduling". Constraints journal,  Vol. 23(2), pp 210–250. 2018.
+
+
+
+Reviewer's confidence:	
+5: (expert)
+

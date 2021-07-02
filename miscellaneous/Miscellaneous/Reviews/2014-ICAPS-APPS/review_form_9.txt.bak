@@ -1,0 +1,152 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1598305::821530"
+        submission="9"
+        title="How to Enable Multiple Skill Learning in a SLA Constrained Service System"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="198232" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == -1 weak reject
+  == -2 reject
+  -->
+  
+</score>
+<score id="198233" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 (medium)
+  -->
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="203991" name="Significance of the application area being addressed">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very significant
+  == 3 moderately significant
+  -->
+  
+</score>
+<score id="203993" name="Importance of planning and scheduling technology to solution of the problem">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 marginally important - improves usability or capabilities
+  -->
+  
+</score>
+<score id="204009" name="Novelty of the application and technical approach to the application">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 marginally novel - parts of the application or approach are new
+  -->
+  
+</score>
+<score id="204010" name="Clarity of the descriptions of the application, techniques used, and results">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 mostly clear
+  -->
+  
+</score>
+<score id="204011" name="Evaluation of the approach or system">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 fair
+  -->
+  
+</score>
+<score id="204012" name="Level of Maturity">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 Early prototype system
+  -->
+  
+</score>
+<score id="205658" name="Suitable for a demo">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 maybe
+  -->
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="198235" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+The paper compares two scheduling policies in the context of assigning and scheduling service requests to workers while trying to balance two incompatible objectives: maximizing service quality (SLA success) and maximizing skill on-job acquisition by workers. 
+
+The application domain is quite original and interesting. 
+
+The main contribution of the paper is a study of how different (and relatively simple) greedy on-line scheduling policies behave with respect to the two performance indicators (SLA success and skill progression) for a given model. No advanced planning or scheduling technique is used in the paper and, even if the system is modeled as a Markov Decision Process, the MDP is not solved or optimized but is only used for a simulation purpose. That's why I find that the contribution is a bit weak for an ICAPS application paper. Maybe a better target for this type of paper would be for a conference more focused on simulation.
+
+More advanced planning and scheduling techniques can be used if the problem makes it possible to allocate more than one SR at a time; for instance by waiting that a batch of SR is available before actually allocating the workers. Another opportunity for using more advanced planning and scheduling techniques is if it is possible to change the worker allocation for past SRs that have still not been processed. But this does not seem to be in the scope of the present paper.
+
+The description of the model in section 2 seems to be quite incomplete. The model focuses on the time it takes to complete a SR depending on the skills but it says nothing about how the skill levels increase because of learning. Furthermore, the formula (1) is not homogeneous as it compares skill level gaps (dist) and durations (timeGap) and highly depends on the units. How is it handled in practice? Formula (2) seems to implicitly assume that \gamma is in [0,1] ...
+
+The Markov Decision Process also lacks some formalization, in particular the reward function is only sketched. But I take it that this is because the reward function is not really used in the approach as in fact the MDP is only used for simulation: there is not any optimization of the MDP in order to produce an optimal (or good) policy. This being said, it would be useful to formalize some key performance indicators in order to compare the different policies. The evolution of SLA success rate as illustrated on Figure 3 is sufficient but there is no formalized indicator for the other main objective functions which are the learning rate / skill progression / good repartition of skills.
+
+</text>
+<text id="198236" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

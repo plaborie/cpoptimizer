@@ -1,0 +1,663 @@
+Hi Chris,
+
+I'll start with the second one. Your light on the question will be useful too. 
+I may well be missing something, the description of the experiments around the 
+stochastic JSP being quite unclear.
+
+(b) Secondly, if there is a good reason to adapt our formulation to "average" 
+makespan, can you please let us know what exactly the "average" is about? Is it 
+the average over the makespan of all realizations of uncertainty (which is what 
+we have used in the paper) or makespan of a RCPSP/JSP where we consider mean 
+durations (without any uncertainty)? We assume it is the former, but just wanted 
+to get a clarification.
+
+Yes, it is the former: the average over the makespan of all realizations of 
+uncertainty. From my understanding, it was the evaluation criterion that is used 
+for the figures on Table 2. But now I'm even not sure of which criterion is used, 
+see below.
+
+(a) We could not compare against your solver directly (because you are optimizing 
+on lower bound and we are optimizing upper bound on probabilistic or robust 
+makespan). So, we compared the strategies obtained by both solvers using the same 
+metric (average makespan). Even if we adapt our approach to optimize average makespan, 
+we cannot still compare against your solver directly (given you are optimizing lower bound). 
+So, it would be of great help to us if you can clarify the motivation for this suggestion?
+
+In fact, re-reading both papers I'm even more troubled for understanding the results on 
+Table 2. 
+
+For me, both approaches aims at producing solutions (POS) that minimize the robust 
+makespan (value x for which the probability that a realization has a makespan greater 
+than x does not exceed a value epsilon). It does not matter which techniques are used 
+internally to produce these solutions (they can be based on lower bounds, on upper bounds 
+or even on approximations of this robust makespan), the objective is the same. A fair 
+comparison would consist in taking the POS produced by both approaches and use Monte-Carlo 
+simulation to estimate the actual value of the robust makespan. 
+
+Now, I do not really understand what mean the figures on Table 2. The paragraph reads: 
+"In this section, we compare the mean estimate of the probabilistic makespans 
+(Beck & Wilson, 2007) (denoted as CB) with the average actual realized makespans over 
+100 samples from the POS generated from GNLA-guided local search (denoted as G). It should 
+be noted that this (average makespan) is not the optimization criterion for CB solver or 
+our local search approach and hence the comparison may not be fair. However, for purposes 
+of providing a benchmark on the solution quality, we make this comparison." Does it mean 
+that the figures for CB on Table 2 are robust makespans whereas the ones for GNLA are average 
+makespan (over all realizations)? This seems to be suggested by the first part of the paragraph. 
+Or are they both average makespan, as seems to be suggested by the second sentence? 
+
+Because in the end, the objective is the same (minimize the robust makespan), why not simply 
+comparing the actual realized value of the objective function (the robust makespan) for both 
+approaches? For example using the upper approximation described in (Beck & Wilson, 2007), 
+section 4.3.3 (but it could be any other reasonable approximation).
+
+Philippe
+
+
+
+
+From:	Chris Beck <jcb@mie.utoronto.ca>
+To:	Philippe Laborie/France/IBM@IBMFR
+Date:	11/05/2011 10:16
+Subject:	Fwd: RE: Decision on JAIR Submission #3310
+
+
+
+Hi Philippe,
+
+The authors of the JAIR paper you reviewed have sent some requests for clarification 
+about one of your suggestions. Would you be willing to respond to their questions? 
+Please reply to me and I will forward to them.
+
+Chris
+
+PS - Congrats on the most influential paper award!
+
+-------- Original Message -------- Subject: 	RE: Decision on JAIR Submission #3310
+Date: 	Wed, 11 May 2011 08:08:00 +0000
+From: 	FU Na <na.fu.2007@phdis.smu.edu.sg>
+To: 	Chris Beck <jcb@mie.utoronto.ca>
+CC: 	LAU Hoong Chuin <hclau@smu.edu.sg>, Pradeep VARAKANTHAM <pradeepv@smu.edu.sg>
+
+
+Dear Dr. Chris Beck,
+
+We would like to seek your clarification regarding the suggestion on "Adapt the 
+formulation to minimize the average makespan in the JSSP". 
+
+There are two points that we are unsure about:
+
+(a) We could not compare against your solver directly (because you are optimizing 
+on lower bound and we are optimizing upper bound on probabilistic or robust makespan). 
+So, we compared the strategies obtained by both solvers using the same metric 
+(average makespan). Even if we adapt our approach to optimize average makespan, 
+we cannot still compare against your solver directly (given you are optimizing lower bound). 
+So, it would be of great help to us if you can clarify the motivation for this suggestion?
+
+(b) Secondly, if there is a good reason to adapt our formulation to "average" makespan, 
+can you please let us know what exactly the "average" is about? Is it the average over 
+the makespan of all realizations of uncertainty (which is what we have used in the paper) 
+or makespan of a RCPSP/JSP where we consider mean durations (without any uncertainty)? 
+We assume it is the former, but just wanted to get a clarification.
+
+Thank you so much!
+
+Regards,
+Fu na
+
+-----Original Message-----
+From: Chris Beck [mailto:jcb@mie.utoronto.ca] 
+Sent: 2011?5?4? 21:59
+To: FU Na
+Cc: jair-ed
+Subject: Decision on JAIR Submission #3310
+
+Dear Dr. Fu,
+
+We have received all the reviews for the paper you submitted to JAIR,
+entitled "Robust Local Search for Solving RCPSP/max with Durational
+Uncertainty". The reviewers agree that the paper is on an important
+topic relevant to AI and makes strong contributions. However, they
+also identify several difficulties, which preclude publication at this
+stage. Since JAIR's policy is to accept papers that only require minor
+revisions, we cannot currently accept the paper. However, we would be
+happy to see a revised paper on this subject--addressing the
+reviewers' concerns--published in JAIR. Thus, I strongly encourage you
+to resubmit the paper.
+
+Attached you will find the reviewers' comments and suggestions. In my
+reading of the comments, the following points are particularly salient
+and important for you to address in a revision.
+
+- Clarify the bound formulation and infeasibility computation
+   (Reviewer #2)
+
+- Provide more insight, analysis, and interpretation of results
+   (Reviewers #1 and #2)
+
+- Experimental evaluation. All reviewers identify the experiments as
+   an area that needs further thought and more work. I highlight their
+   comments not as requirements for the revision but to emphasize that
+   the reviewers have made a number of suggestions on how to improve
+   this aspect of the paper.
+
+   * Reviewer #1: While I agree with Reviewer #1's comments w.r.t. to
+     the problems with the current experiments, you should not feel
+     that you must follow the reviewer's suggestion that one of the
+     experiments should be removed - though you might consider it. I
+     suggest that some significant effort is spent in determining how
+     best to support your work with experimental evidence, guided by
+     the reviewers' comments and suggestions. You may want to perform
+     new experiments on different problems.
+
+   * Reviewer #2: Adapt the formulation to minimize the average
+     makespan in the JSSP.
+
+   * Reviewer #3: The suggestion to compare the quality of your
+     solutions against simple reactive rules with a simulation is a
+     very interesting one in my opinion. Such experiments will "close
+     the loop" with your theoretical contributions on approximating
+     makespan. They will also add something completely new compared to
+     the ICAPS version of the paper. You might consider doing such
+     experiments and then downplaying (or even removing) the JSSP
+     experiments. I would also suggest that including some indication
+     of CPU time of the algorithms is valuable in the experiments,
+     especially as the larger JSSP instances from (Beck & Wilson, 2007)
+     are not used.
+
+- Clarify the use of Start-to-Start constraints and in particular the
+   definition of feasibility (Reviewers #1 and #2)
+
+- Clarify the explanation of the local search algorithms (Reviewer #1)
+
+Even though I have highlighted the above points, you should, of course,
+read all the reviewers' comments in detail and address their concerns.
+
+Please note that papers can be resubmitted to JAIR only once. If you
+choose to revise the paper, please submit it through our standard web
+process, and include a cover letter describing the changes and
+responding to the reviewers' criticisms.
+
+Thank you for submitting your paper to JAIR.
+
+Regards,
+
+Chris Beck
+Associate Editor
+
+--- Review #1 ---
+
+This paper tackles the scheduling problem of robust makespan
+minimization for scheduling instances whose activity durations are
+modeled as random variables. Specifically, the problem is to find a
+partial order schedule (POS) that minimizes its makespan value (robust
+makespan), so that the probability that all makespan computed over all
+uncertainty realizations do not exceed the robust makespan is greater
+than a given threshold.
+
+The paper provides a number of results that are presented in the
+following logical order.
+
+First, two decision rule approximations are produced (Segregated
+linear Approximation [SLA], and General Non-Linear Approximation
+[GNLA]), that allow to estimate the dependence of activity start times
+on the durational uncertainty relative to the other activities, taking
+into account the schedule's graph structure. Both approximation rules
+are used to compute upper bounds on robust makespans.  Second, an
+operational definition of Robust Fitness Function is presented as a
+function of the expected value and variance of the adjustable fitness
+function, that can be directly used as objective function in the local
+search algorithm.  Third, the Local Search Algorithm is presented,
+where the SLA and GNLA rules are used within the robust fitness
+function to compute the POS with minimum robust makespan.  The authors
+proceed by introducing further enhancements for the robust local
+search, by (1) identifying the activity pairs that should preferably
+follow the same (more convenient) ordering in all activity lists, to
+help local search (Ordering Generation [OG]), and (2) providing an
+improved chaining procedure based on robustness (Robustness Feedback
+Chaining [RC]).  A thorough experimental evaluation is therefore
+performed, that provides two types of analyses: the first is executed
+on RCPSP/max instances, and is related to comparing the performances
+of both SLA and GNLA decision rules and of GNLA alone with all OG and
+RC enhancement combinations; the second is executed on JSSP instances,
+and is related to comparing the presented robust local search
+algorithm guided by GNLA with the results obtained by (Beck & Wilson,
+2007) on the same problem.
+
+The paper is generally interesting, and it is characterized by a good
+survey on related literature. It is clear that there is a considerable
+amount of work behind this paper, starting from the theoretical
+analysis resulting in the production of the new decision rules
+approximations, the Ordering Generation pre-processing step, the
+Robustness Feedback Chaining, and finally the experimental analysis.
+
+The main problem that the reviewer sees in this work is mainly related
+to its length, and to some extent of non-homogeneity in the treated
+topics.
+
+The strong impression that the reader receives is that the authors
+simply decided to talk about too many things in this work, while a
+better choice would have probably been to reduce the paper's scope and
+provide a more thorough explanation of a smaller number of
+subjects. While the reviewer understands the need to provide a larger
+basis for experimental evaluation and comparison than existing works
+allow, this choice forces the authors to the co-existence in the paper
+of two different scheduling problems (i.e., the RCPSP/max and the
+JSSP) that cannot be homogeneously treated in the experimental
+part. The RCPSP/max is merely used to perform "in house comparison"
+(pag. 3, line 17), while only the JSSP can be used for a true
+comparison with existing work. This circumstance is even more evident
+as the authors must admit at a certain point that the developed robust
+local search method is not too suitable for solving JSSPs instances
+with durational uncertainty, as it is not tailored for the less
+general structure of the JSSP. The authors themselves claim at a
+certain point that: "...the comparison may not be fair." (pag 33, line
+2 from the bottom).
+
+This might also explain why the authors decided not to include the (20
+x 20) FJSSP instances in the experimental part, which would have
+completed the comparison with the work in (Beck & Wilson, 2007).
+
+Moreover, the in house comparison concerns a great deal of preparatory
+material in the paper, and it is inevitable to notice a certain
+imbalance between the "weights" of the two experimental parts.
+
+For all the above reasons, the reviewer suggests to reduce the paper's
+length. One possible way would be to choose between (1) the in house
+performance analysis alone, or (2) (less viable, in the reviewer's
+opinion) a performance comparison with existing work. That said, the
+reviewer believes that this remains a rather valid work.
+
+More in detail, what follows is a list of issues that according to the
+reviewer should be clarified/modified/corrected in order to improve
+the readability of the paper.
+
+In Section 2.2 it seems a little dangerous to limit to Start-to-Start
+time lags (pag. 5, line 6), or maybe this choice should be elaborated
+more thoroughly by the authors. For instance, it should be given more
+emphasis to the fact that POS chains are computed by means of
+End-to-Start constraints, in order to keep the correspondence between
+temporal feasibility and resource feasibility which characterizes the
+POS, in case of duration variability. Alternatively, one might also
+use Start-to-Start constraints for chaining, but it should be made
+clearer that in order to correctly compute all uncertainty
+realizations from a solution extracted from the POS without
+reintroducing resource conflicts, the lower bound of the
+Start-to-Start chaining constraints should correspond to the
+antecedent activity's variable duration.
+
+Related to the previous point, on page 6, section 2.2.2, line 5: there
+is a delicate issue where it is stated that "...the definition of
+feasibility is not the same as for deterministic RCPSP/max...". In the
+reviewer's understanding, the fact that durational uncertainty may
+raise the probability of maximum time lag violations does not entail
+that the feasibility definition is overruled. From the temporal
+feasibility standpoint (the only feasibility we are interested at,
+since any POS guarantees that any resource feasible solution is also
+temporally feasible), the same definition provided at page 5 line 7
+still holds. If POSs are correctly synthesized, for any Ai -> Aj pair
+in each chain, an increase in Ai's duration beyond Tij^{max} indeed
+entails a violation of the Tij^{max} constraint between Ai's and Aj's
+start times, thus making the previous temporal feasibility definition
+still valid. The authors should clarify this point better.
+
+Analyzing the schedule infeasibility issue, the authors re-direct the
+reader to Section 4.1. Here, the right hand side of equation (51)
+probably requires a missing comma between the two elements of the
+"max" function. More importantly, it is a little hard to understand
+the real need to specify the probability of POS infeasibility (IPr) if
+such expression is apparently never used again in the paper. The
+reviewer tends to believe that the whole issue of probability of POS
+infeasibility is can be disregarded as not at all central w.r.t. to
+the paper's scope.
+
+The work [RasconiEtAl, 2010] (pages 8, 24 and 37) somehow seems
+unproperly cited. The alternative chaining methods the authors
+specifically refer to are actually proposed in [PolicellaEtAl, 2009:
+Solve-and-Robustify. Synthesizing Partial Order Schedules by Chaining
+- Journal of Scheduling, 12(3):299-314]. Nevertheless, the
+correspondence between the reviewed paper and [RasconiEtAl, 2010] lies
+in the strong similarity of the problem tackled in both works; in
+[RasconiEtAl, 2010] the authors analyze schedule robustness against
+various types of exogenous events (among which durational uncertainty)
+following a deterministic approach, while the authors tackle the
+makespan minimization problem under durational uncertainty conditions
+with a probabilistic approach.
+
+On page 5, there are more complete and exact formalizations than
+equation (5) to formalize the schedule's resource feasibility
+condition. For instance, the sum range for t [st(ai) <= t <= et(ai)]
+can be misleading. The authors are invited to modify the mathematical
+formalization.
+
+The Robust local search algorithm (Section 5, pag. 19) is not
+sufficiently explained. The auhors provide the algorithm pseudocode on
+pag. 21, yet, a more thorough description of the pseudocode lines
+(e.g., based on the algorithm line numbering) would provide great
+help; especially, a clearer explanation of the basic local search on
+the neighborhood set of activity lists would be necessary. The robust
+local search algorithm is only lightly commented on pag. 20, where
+there exist some unclear points. For instance, the authors say that
+the scheduling solutions are coded in terms of activity lists and that
+the maximum time lags are disregarded not to incur in unfeasible early
+start time schedules after the start time assignment process. But
+then, the authors claim that "... we will instead assign [each
+activity] starting time by randomly picking a time from its domain of
+feasible start times."; this last step sounds very puzzling, as
+picking up random values from the domain of feasible start times for
+each activity, does not guarantee at all to return a temporally
+feasible solution. Why this random choice should return a higher
+number of feasible schedules w.r.t. the earliest start time choice,
+should be better clarified, especially when the maximum time lags are
+ignored.
+
+Moreover: since maximum time lags are disregarded, is there a point in
+the procedure where they are reconsidered? In the positive case,
+where?
+
+The Improved Chaining based on Robustness Feedback is also not
+sufficiently explained. The reader is mainly left with a brief verbal
+description of the new chaining procedure and a pseudocode algorithm
+in Figure 5, where the latter is not commented at all. Moreover,
+algorithm 1 on pag. 21 and the pseudocode presented on pag. 24 are
+outlined in different fonts and styles. While this is of secondary
+importance, tidiness of exposition would impose style uniformity.
+
+The results from the experimental analysis are clearly explained and
+do not necessitate further explanation. Only, it certainly would have
+been interesting to know more about the reasons of the performance
+drop exhibited in the comparison between SLA and GNLA for epsilon =
+0.01 (Section 7.2, pag. 27).
+
+One last remark about the experimental analysis concerns the data
+reported in Table 2. By observing the data, it seems that the CB's
+tendency to outperform G's performances is realized according to the
+following schema:
+1) the bigger the problem's size, the more G is outperformed by GB;
+2) the greater the uncertainty level, the smaller the gap between G's 
+and CB's performances.
+
+Do the authors agree? In the positive case, do they have a possible
+explanation for the apparent regularity of this behavior?
+
+
+For all the reasons explained above, the reviewer thinks that this
+paper requires some rework to reach the JAIR quality standards. The
+suggested major revision is related to a reduction of the paper's
+overall scope and length by means of a careful selection among the
+current topics, and a re-organization aiming at providing an overall
+clearer description on some relevant aspects of the paper
+contributions, e.g., the algorithms.
+
+
+Minor issues:
+
+On pag. 3, line 9: "Segregated Linear Approximation (SLR)" ->
+"Segregated Linear Approximation (SLA)"
+
+On pag. 7, line 7 from the bottom: "...based the number..." ->
+"...based on the number..."
+
+On pag. 8, line 5: "additivity" -> "activity"
+
+On pag. 8, Example 3, line 4 from the bottom: "...that belongs..." ->
+"...that belong..."
+
+On pag. 8, Example 4, line 2: "When allocate..." -> "When
+allocating..."
+
+On pag. 9, Section 2.3, line 5 from the bottom: "min_{s}make(s)": is
+it correct?
+
+On page 12, Section 3.1: formulas (16), (17) and (18) are a repetition
+of (6), (7) and (8) on page 10.
+
+On page 18, Section 4, line 8: Maybe "adjustable fitness function"
+should be here used instead of "robust fitness function"?
+
+On pag. 19, Definition 3: F(x, z) should become S(x, z)
+
+On page 20, point 3.: the coefficient v_{k}(x) has always been
+represented as c_{k}(x) throughout the paper. Why this change?
+
+On pag. 19, section 5, line 4: "Steps i, ii, v..." should be replaced
+with "Steps 1., 2., 5., ..."
+
+On pag. 22, last line: "Now, we describe the three steps..." -> "Now,
+we describe the two steps..."
+
+On pag. 25, Section 6.2: "Figure 1 shows..." should become "Figure 5
+shows..."
+
+On pag. 27, Section 7.2, line 27: "This difference..." -> It is not
+clear to which difference the authors are referring to.
+
+On pag. 33, Section 7.3, line 5: "Figure 7.3, ..." should be referring
+to Figure 9 (a), (b), and (c), respectively.
+
+English Language issues:
+
+Pag. 10, first line: "...in which resource has..." -> "...in which
+resources have..."
+
+Pag. 11, Section 3, 2nd paragraph: "Any activity will either start
+after end time of any activity ... or after end of multiple..." ->
+"Any activity will either start after the end time of any activity
+... or after the end of multiple..." ("the" articles are missing)
+
+Pag. 20, line 15 from the bottom: "...possible start time based on the
+its order..." -> "...possible start time based on the order..."
+
+Pag. 22, line 1: "Define..." -> "We define..."
+
+Pag. 23, line 7 from the bottom: "...the order a_{k} proceeds a_{l}
+that wins..." -> "...the order a_{k} preceeds a_{l} wins..." (?)
+
+Pag. 27, Section 7.2, line 17: "On the hand..." -> "On the other hand..."
+
+--- Review #2 ---
+
+Title: Robust Local Search for Solving RCPSP/max with Durational Uncertainty
+Authors: Fu Na, Lau Hoong Chuin, Pradeep Varakantham and Xiao Fei
+
+Overall evaluation:
+===================
+
+  [ ] Accept as is
+  [ ] Accept with minor revisions
+  [X] Reject with encouragement to resubmit
+  [ ] Reject
+
+Comments and suggestions for the authors:
+=========================================
+
+The article addresses a challenging topic: producing robust schedules
+with some robustness guarantee for a quite complex scheduling problem
+(RCPSP/max). This topic is very relevant to AI.
+
+The structure of the article is fine, it starts with a good
+introduction to the problem (both deterministic and stochastic
+aspects) and of some of the tools that will be used (POS). Then
+sections 3 and 4 present the estimation of the objective
+function. Sections 5 and 6 describe the global meta-heuristic to solve
+the problem and an experimental evaluation is provided in the end.
+
+Some technical points should be clarified and there are also some
+flaws that should be addressed (see below). I think the experimental
+evaluation should be made stronger too. For these reason, I would
+recommend the paper to be rejected but with a strong encouragement to
+resubmit.
+
+Technical soundness
+-------------------
+
+In description of GNLA, some parts of the reasoning to provide
+upper-bounds on the expected value and variance of two general
+distributions are not clear. So the technical soundness of this upper
+bound formulation could be jeopardized. In particular:
+
+* On page 15, given that E|z1-z2| <= sqrt( E (z1-z2)^2 ) it is not
+   clear how one derives from that the next inequality E|z1-z2| <=
+   sqrt( Var[z1] + Var[z2] + E (z1)^2 + E (z2)^2 ). And the argument
+   that "Since expected values for data perturbation can never be
+   negative during computation of robust fitness value" is also not
+   clear. Especially as here, proposition 1 is about general
+   distributions z1 and z2.
+
+* On the top of page 16, it is not clear why: 1/4 Var[z1+z2+|z1-z2|]
+<= 1/2 (Var[z1+z2] + Var|z1-z2|).
+
+The two points above could probably be improved by providing some 
+additional explanations.
+
+I have serious doubts about the fact the probability that a POS is
+infeasible can be computed in a simple way as described in section
+4.1.  Indeed, in the context of an RCPSP/max the feasibility of a POS
+subsumes the feasibility of a POS within a given makespan value M as
+one can always add a max delay arc of value M between the dummy
+initial and final nodes. The resulting temporal network will be
+feasible if and only if a there exists a feasible schedule with
+makespan lower than M. Thus the problem of infeasibility of a POS has
+the same complexity as the main problem addressed in the paper. This
+point should be clarified.
+
+Some other issues (less important I think):
+
+- On page 15, eq 34: I think that in case of normally and identically
+   distributed distributions, the value of E[max{z1,z2,z3}] is
+   (3*sigma)/(2*sqrt(pi)) instead of (3*sigma)/(sqrt(2*pi))
+
+- On page 17, there is a mistake in the computation of the number of
+   possible ways to group k parallel activities into a set of activity
+   pairs. It is much larger than k(k-1)/2, and grows exponentially with
+   k. For instance if k=2p, I think it is (2p)! / (p! * 2^p). In the
+   context of the article, anyway, this flaw has no impact because the
+   approach does not enumerate all these sets.
+
+Experimental evaluation
+-----------------------
+
+The experiments on RCPSP/max problems show that in general GNLA
+behaves better than SLA. That's an interesting piece of information
+but the reason for that is not really analyzed. A precious additional
+information would be to analyze how "tight" are the upper bounds
+provided by both methods. For instance you could compare on the J30
+problems like on figure 8, the gap between the actual epsilon-robust
+makespan (measured by simulation on the POS) to the upper bound
+computed by both GNLA and SLA. That would give an idea of the quality
+*in absolute* of the two upper bounds.
+
+Concerning the experiments on job-shop problems, as underlined in the
+article, it is difficult to compare with CB because the objective
+function is different. But it seems to me the approach could be
+adapted quite easily to the minimization of the average makespan as
+the estimation of the average makespan is already available so it
+changes only the evaluation of the robust fitness function. It would
+be interesting to have these results too.
+
+Miscellaneous
+-------------
+
+It would be help to add a small section in the end of section 3 or in
+section 4 that recaps the results and describes the algorithm for
+computing the upper-bounds on expected value and variance of the
+makespan (especially for GNLA) together with its complexity. It seems
+that these values as well as the upper-bound on the epsilon-robust
+makespan can be computed in linear time with the size of the POS, is
+that true?
+
+Detailed remarks
+----------------
+
+- Page 5: It is mentioned that relations start-to-end, end-to-end,
+   etc. can easily be transformed into relation start-to-start. That's
+   true in the deterministic case but in the stochastic case, I do not
+   see how to transform, let say and end-to-start relation into a
+   start-to-start one except for using stochastic time lags in the
+   constraints.
+
+- Page 6: robustmakespan
+
+- Page 13: Max of random variables: "Thus the adjustable variable Sk
+   has a mean": this is not the mean but an upper bound on the mean.
+
+- Page 16: The transformation of formula 37 into formula 38 is true
+   only if E(z1) and E(z2) are non-negative. This is the case for
+   perturbations but here, the proposition 2 is supposed to hold for
+   any general distribution.
+
+- Page 17: "Instead we are trying to provide a good grouping technique
+   ...": you should explain a little bit more in detail why the
+   proposed grouping is expected to be a good one.
+
+- Page 23, section 6.1.1: "... has all the activity lists that are
+   _there_ T, except ..."
+
+- Page 26, section 7.1.1: As the durations need to be non-negative,
+   the perturbation zi = N(0,sigma) cannot be lower than -d0 so it is
+   somehow truncated. How this truncation is handled? is it just
+   neglected in the computation of the fitness function?
+
+- Page 33: There is a problem with the figure labels (Figure 7.3)
+
+
+
+
+
+--- Review #3 ---
+
+Recommendation: Accept with minor revisions
+
+This paper presents a local search algorithm for solving RCPSP/max
+problems with durational uncertainty, where the uncertainty can be
+characterized by a normal or uniform distribution. The approach
+formulates an objective function for the local search algorithm based
+on the notion of robust makespan. Two decision rule approximations of
+activity start times are presented and compared experimentally.
+
+The paper appears to be technically sound and the problem studied is
+an important one. I have a couple of minor concerns about the paper
+which I would like to see addressed before publication in a journal.
+
+1. It is stated in the paper that the goal of the research is
+    "concerned with robust scheduling which focusses on obtaining
+    proactive schedules that maintain a high level of performance
+    against uncertainty". The most commonly used technique for dealing
+    with uncertainty in practice is to generate an initial optimal
+    schedule (e.g. for makespan) then reschedule locally as various
+    types of uncertainty disrupt the schedule. There are a number of
+    simple rules for scheduling given the makespan objective e.g. right
+    shift, or some form of local reoptimization. Given the additional
+    data requirements of the proposed approach, I think it needs to be
+    demonstrated that it can outperform existing reactive techniques in
+    some way if it is going to be adopted in a real system.
+
+2. The abstract states that the goal of the research is to develop
+    scalable techniques for scheduling with durational
+    uncertainty. This is not demonstrated in the experimental
+    section. The problems studied are quite small and no CPU timings
+    are given.
+
+Some minor comments:
+
+Page 5, eqn. 5, only defined for one resource, shouldn't this be over
+all resources?
+
+Page 10, meaning of sigma_p, sigma_m not explained, although can be
+deduced.
+
+Figure 7, axes not labelled.
+
+
+-- 
+J. Christopher Beck            
+Toronto Intelligent Decision Engineering Lab   
+Mechanical&  Industrial Engineering      
+University of Toronto            
+5 King's College Rd
+Toronto, ON CANADA M5S 3G8
+ph:  (416) 946-8854
+fax: (416) 978-7753
+
+
+
+

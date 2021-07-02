@@ -1,0 +1,7 @@
+Recommendation: Reject?
+
+There are several issues with the paper:
+- the positioning with respect to the state of the art on the ridesharing family of problems is not clear
+- the contribution of the paper is not clearly stated, in particular does it solve a new variant of the problem or a previously known one
+- the justification for the definition of the quality of service measurement is weak
+- the experimental section does not clearly show the added value of the approach

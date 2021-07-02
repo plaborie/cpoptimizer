@@ -1,0 +1,15 @@
+Léa Sombé (P. Besnard, M.O. Cordier, D. Dubois, L. Farinas del Cerro, C. 
+Froidevaux, Y. Moinard, H. Prade, C. Schwind et P. Siegel)
+Raisonnement sur des Informations Incomplètes en Intelligence 
+Artificielle - Comparaison de Formalismes à Partir d'un Exemple.
+Teknea, Toulouse.
+
+
+Artificial Intelligence: A Modern Approach
+by Stuart J. Russell, Peter Norvig
+
+
+Probabilistic Reasoning in Intelligent Systems: Networks of Plausible 
+Inference
+by J. Pearl (revised second printing)
+Morgan Kaufmann, San Francisco, 1988

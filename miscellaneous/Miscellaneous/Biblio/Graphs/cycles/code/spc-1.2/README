@@ -1,0 +1,45 @@
+This software has been used in the negative cycle detection study
+by B. V. Cherkassky and A. V. Goldberg, described in 
+"Negative-Cycle Detection Algorithms," Technical Report 96-029,
+NEC Research Institute, Princeton, NJ, available via URL
+http://www.neci.nj.nec.com/homepages/avg/ by following appropriate links.
+
+These programs are designed to run under UNIX (most flavors).
+
+Installation
+------------
+
+To compile programs and generators:
+
+1) Edit ./Makefile and ./src/Makefile if needed.
+
+2) from this directory type
+
+	make install
+
+The binaries will then all be found in the bin subdirectory.  
+The programs all expect to receive input from standard input
+and write output to standard output. There are scripts in the
+scripts directory which run the implementations on the generators
+provided in this distribution.
+
+
+Other information
+-----------------
+
+If for any reason you need to rebuild all binaries, just type
+
+   make clean
+
+in the src directory before the command "make install".
+
+Index
+-----
+
+ src/		Contains source code for programs and generators
+ Makefile	Recursively calls makefiles in each subdirectory
+ README		
+ bin/		make install creates binaries in this directory
+ result/	put output in this directory by default
+ scripts/	contains scripts to perform automated runs
+ input/		contains small test problem(s)

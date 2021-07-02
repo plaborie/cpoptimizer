@@ -1,0 +1,73 @@
+Title: Robust Local Search for Solving RCPSP/max with Durational Uncertainty
+Authors: Fu Na, Lau Hoong Chuin, Pradeep Varakantham and Xiao Fei
+
+Overall evaluation:
+===================
+
+ [X] Accept
+ [ ] Reject
+ 
+Comments and suggestions for the authors:
+=========================================
+
+The authors have improved many aspects of the paper, especially section 3 which 
+is now much clearer and give enough explanations to ensure the technical 
+soundness of the upper bound. Furthermore, the tightness of the proposed 
+upper-bound is now considered in the experimental section and seems to show 
+that this bound is indeed reasonably tight which justifies its use.
+
+The study of schedule infeasibility could still be improved. In particular, the 
+notion of a POS being "infeasible at an activity ai" seems to be ill-defined 
+because it relies on its definition for a node aj with a temporal dependency 
+with ai but the temporal dependencies may have cycles. The general RCPSP/max is 
+defined with a set of temporal constraints Si + lij <= Sj with lij possibly 
+negative so there is no natural order or topological sort of the activities. 
+The article assumes that all temporal constraints are of the form Sj-Si in 
+[TijMin, TijMax] with TijMin, TijMax non-negative but this is in fact less 
+general than a set of relations Si + lij <= Sj. Example: S2-S1 in [-5,5] is 
+allowed in a RCPSP/max (S1+(-5)<=S2 and S2+(-5)<=S1) but cannot be represented 
+as Sj-Si in [TijMin, TijMax] with TijMin, TijMax *both* non-negative. My 
+feeling is that the formulation of the upper-bound on schedule infeasibility 
+(and, to a certain point, the local search based on list scheduling) rely on 
+the fact temporal constraints are of the form [TijMin, TijMax] with TijMin, 
+TijMax non-negative. That should be clarified.
+
+The algorithm for finding a randomized start time schedule according to a given 
+activity list in the presence of max delays should be explained more in detail. 
+In particular, I do not see how a single run of a Floyd-Warshall algorithm 
+(c.f. complexity analysis) could be sufficient. The Floyd-Warshall algorithm 
+will only handle temporal constraints. How resource constraints are handled?
+
+I recommend acceptance of the article but strongly encourage the authors to clarify the 
+two points above for the final version of the article.
+
+A few minor remarks: 
+- Abstract: "However all existing methods assume that durations of activities 
+  are known with certainty". The sentence may be misleading, I would precise 
+  "However all existing methods for solving RCPSP/max assume ...".
+- Section 4, p20: "make span" => "makespan"
+- p22, "based on the its order"
+- Section 7.4, p37: "the the Mean Normalized Makespan"
+
+Comments to the Editor
+=========================================
+
+I recommend acceptance because the main contributions of the paper (the formulation of the 
+upper bound on the robust makespan and the fact this upper bound is reasonably tight) are 
+now established in some more solid basis in this revised version. 
+
+I think the paper can be improved by clarifying:
+ 1. Some assumption that seems to be made about the fact not all negative time lags can be 
+ handled (so it is a restriction to the general RCPSP/max). This restriction is not critical
+ but it should be made explicit.
+ 2. The description of the algorithm for finding a randomized start time schedule according 
+ to a given activity list.
+
+Clarifying those two points is important but does not require any fundamental change in the 
+paper. Furthermore, I find the authors have done a serious job at improving the paper following 
+the reviewers comments (at least mines) and I'm quite confident they will handle the two points
+I mentioned for the final version.
+
+
+
+

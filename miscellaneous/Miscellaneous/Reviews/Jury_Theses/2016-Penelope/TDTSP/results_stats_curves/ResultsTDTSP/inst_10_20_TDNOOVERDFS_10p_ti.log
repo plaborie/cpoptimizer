@@ -1,0 +1,90 @@
+# INSTANCE: DATA_TDTSP_randomd/10/bench_10_selected/ALL/inst_10_20.txt DATA_TDTSP/tdtsp_bench_255_6h00_12h30_10p_ti_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 10
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 7200
+ ! ----------------------------------------------------------------------------
+ ! Minimization problem - 13 variables, 5 constraints, 1 phase
+ ! Presolve      : 1 extractable eliminated
+ ! SearchType           = DepthFirst
+ ! Workers              = 1
+ ! RelativeOptimalityTolerance = 1e-009
+ ! Initial process time : 0.10s (0.10s extraction + 0.00s propagation)
+ # Extraction breakdown : 0.10s concert translation + 0.00s presolve
+ !  . Log search space  : 34.6 (before), 34.6 (after)
+ !  . Memory usage      : 545.5 kB (before), 545.5 kB (after)
+ ! Using sequential search.
+ # Presolve memory usage: 35.4 kB
+ #  . Model: 9.8 kB (original) + 0 bytes (presolved)
+ #  . Master: 9.2 kB (extractor) + 8.2 kB (converter) + 8.2 kB (other)
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed            Branch decision
+ *          9237       18 0.10s                 on 10
+* 0.104 9237
+ *          9192       56 0.10s                 on 10
+* 0.104 9192
+ *          9146      112 0.10s                 on 10
+* 0.105 9146
+ *          9140      150 0.10s                 on 10
+* 0.105 9140
+ *          9073      196 0.10s                 on 10
+* 0.105 9073
+ *          9005      492 0.10s                 on 10
+* 0.108 9005
+ *          8930      514 0.10s                 on 10
+* 0.108 8930
+ *          8873      535 0.10s                 on 10
+* 0.108 8873
+ *          8839      557 0.10s                 on 10
+* 0.109 8839
+ *          8766      579 0.10s                 on 10
+* 0.109 8766
+ *          8617      604 0.10s                 on 10
+* 0.109 8617
+ *          8608      629 0.10s                 on 10
+* 0.109 8608
+            8608     1000         11            on 9
+ *          8481     1772 0.12s                 on 10
+* 0.121 8481
+ *          8462     1793 0.12s                 on 10
+* 0.121 8462
+            8462     2000         11        F   on 2
+            8462     3000         11        F   on 2
+ *          8453     3780 0.14s                 on 10
+* 0.141 8453
+ *          8343     3804 0.14s                 on 10
+* 0.142 8343
+ *          8147     3836 0.14s                 on 10
+ ! Time = 0.14s, Average fail depth = 6, Memory usage = 609.6 kB
+ !          Best Branches  Non-fixed            Branch decision
+* 0.142 8147
+ *          8137     3861 0.14s                 on 10
+* 0.142 8137
+ ! ----------------------------------------------------------------------------
+ ! Search terminated normally, 18 solutions found.
+ ! Best objective         : 8137 (optimal - effective tol. is 0)
+ ! Number of branches     : 3952
+ ! Number of fails        : 1978
+ ! Total memory usage     : 7.9 MB (0.6 MB CP Optimizer + 7.2 MB Concert)
+ ! Time spent in solve    : 0.14s (0.04s engine + 0.10s extraction)
+ # Extraction breakdown   : 0.10s concert translation + 0.00s presolve
+ ! Search speed (br. / s) : 98800.0
+ ! ----------------------------------------------------------------------------
+# SOLUTION FOUND
+# OPTIMALITY PROVED
+# BEST SOLUTION: 8137
+# NUMBER OF BRANCHES: 3952
+# END TIME: 0.144
+## Solution: 
+10
+7 0
+94 1476
+248 2490
+144 3927
+192 4347
+154 4717
+208 5192
+53 5727
+203 6610
+241 7176
+# BEST TD SOLUTION: 8137

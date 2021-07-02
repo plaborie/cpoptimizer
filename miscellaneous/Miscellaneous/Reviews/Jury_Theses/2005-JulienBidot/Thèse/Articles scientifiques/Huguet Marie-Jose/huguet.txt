@@ -1,0 +1,135 @@
+***************************************************************
+
+AIPS-2002 Workshop 
+on On-Line Planning and Scheduling
+
+Review Form
+
+To be returned to verfaillie@cert.fr
+by Friday, March 8, 2002
+
+***************************************************************
+
+Title: Dynamic task sequencing in temporal problems with uncertainty 
+
+Authors: M.-J. Huguet, P. Lopez, T.Vidal
+
+***************************************************************
+This section of the review will be sent to the authors.
+
+1. Merits of the paper:
+
+     Relevance with regard to the workshop topics: (mark one box)
+     [ ]Very relevant  [X]Moderately relevant  [ ]Not relevant
+
+     Significance:
+     [X]Very significant  [ ]Moderately significant  [ ]Not significant
+
+     Originality:
+     [X]Very original  [ ]Moderately original  [ ]Not original
+
+     Technical soundness:
+     [X]Sound  [ ]Minor errors  [ ]Not sound
+
+     Quality of the presentation:
+     [ ]High  [X]Medium  [ ]Low 
+
+2. Recommendation:
+
+     Accept[ ]  Undecided[X]  Reject[ ]
+
+3. Nature of the presentation you recommend:
+
+     Short presentation (10mn)[ ]  Long presentation (30mn)[X]
+
+4. Comments, explanations, and advice to the authors:
+
+The main issue I have with this paper is deciding whether it is really
+relevant to the workshop.  It does not directly address on-line
+scheduling. Rather it addresses off-line techniques that reason about
+temporal uncertainty and establish guarantees about on-line
+schedulability. In terms of the quality of the work, this paper is a
+clear "accept", I remain undecided only because of the relevance for
+which I have two conflicting arguments:
+
+1) Reject as irrelevant: there is nothing in the paper that actually
+   addresses "doing" on-line scheduling. It is about (partial)
+   off-line scheduling.
+2) Accept as related and strong: the work is clearly well-done and the
+   topic is related. It is clearly useful if given the task of on-line
+   scheduling to be able to do some off-line work and come up with
+   guarantees (if they exist).
+
+
+The paper is heavy going in places. Keeping track of all the notations
+is not easy and it is not always clear what the figures mean (for
+example, what do the dotted arrows indicate?). Perhaps, the actual
+mathematical expressions of the classical (non-uncertain) rules can be
+left out. That is, introduce the classical rule with an example, and
+then simply show (with an example and math) how this is applied to the
+uncertain case.  It is a bit discouraging to wade through a set of
+equations and understand the rule, only to realize at the end that
+this is not the "real" point of the paper, only background.
+
+In a related point, some of the classical rules are traditionally
+formulated for task interval algebra rather than STPs. As a
+consequence to apply them to STNU, the authors first apply it to
+STN. More explanatory text is needed so that the reader understands
+what you are doing. You need to say: "This has not been extended to
+the STN, we need to do this first before extending to the STNU. Here
+is the STN extension."
+
+In the conclusion: it is stated that the STN formulation results in
+"more deductions made". I do not dispute this, but it is unclear where
+this is shown in the paper. If you are claiming that a STN version of
+a classical rule is stronger, it should be made clearer (with an
+example?) in the text. (Note that this also relates to the relevance
+of the paper: the extension to STN is interesting in its own right,
+but not relevant to on-line scheduling).
+
+Minor comments:
+
+Abstract: "most flexibility" -> "much flexibility"
+
+p1: "wheather" -> "whether"
+
+p2: "implicitely" -> "implicitly"
+
+p2: "put in short" -> "in short"
+
+p3: "work made up to now" -> "existing work"
+
+p3: "mentionned" -> "mentioned"
+
+p3: no space before ":"
+
+p4: "only if a lower bound ... is found positive" -> "is positive".
+
+p4: "fordids" -> "forbids"
+
+p8: "stronly" -> "strongly"
+
+
+
+
+***************************************************************
+This section of the review is for the program committee only.
+
+5.  Additional comments:
+
+Acceptance here depends on number of papers and how wide we want to
+make the workshop. If we want to go toward "scheduling with
+uncertainty" this is clearly an acceptable paper.  If we really want
+to focus on techniques for doing on-line scheduling, then this paper
+doesn't fit: it is not doing on-line scheduling, it is doing off-line
+scheduling. 
+
+It is a high quality paper, otherwise.
+
+6. Your confidence in your judgment:
+     [X]High  [ ]Medium  [ ]Low 
+
+9.  Your name: Chris Beck
+
+***************************************************************
+

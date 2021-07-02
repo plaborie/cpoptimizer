@@ -1,0 +1,109 @@
+--------------------------------------------------------------
+*** SUBMISSION NUMBER:
+*** TITLE:
+*** AUTHORS: (anonymous)
+--- CATEGORY:
+*** PC MEMBER:
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+Relevance -  Is the work relevant to the call for papers?
+
+Significance - To what extent are the ideas and contributions of the  
+paper novel and important to planning and scheduling theory or practice?
+
+Technical quality - Is the work technically sound? Are the analyses,  
+algorithms, theorems and proofs correct? Are the paper's claims argued/ 
+supported convincingly? Is the empirical evaluation convincing?
+
+Quality of presentation - Is the paper clearly written? Is it well- 
+organized? Is the motivation for the research or the innovation of the  
+application well explained?
+
+Suitability to AIJ - Should an extended version of this paper be  
+solicited for submission to Artificial Intelligence Journal?
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, XX the line with your
+--- evaluation or confidence.
+*** OVERALL EVALUATION:
+
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline)
+---  -1 (weak reject)
+---  -2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO PLANNING & SCHEDULING: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+---  4 (high)
+---  3 (medium)
+---  2 (low)
+---  1 (very low)
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+---  4 (good enough)
+---  3 (borderline)
+---  2 (low)
+---  1 (very low)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+---  3 (appears to be sound)
+---  2 (not fully satisfactory)
+---  1 (unsatisfactory)
+
+*** QUALITY OF PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+---  3 (fair)
+---  2 (poor)
+---  1 (very poor)
+
+*** BEST PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+---  1 (No)
+
+*** SUITABILITY TO AIJ: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+---  1 (No)
+
+--------------------------------------------------------------

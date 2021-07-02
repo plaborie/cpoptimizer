@@ -1,0 +1,30 @@
+
+CC = g++
+LD = g++
+RAN = @touch
+IPATH = -I/usr/local/LEDA-4.2-sparc-solaris-g++-2.95/incl
+LPATH = -L/usr/local/LEDA-4.2-sparc-solaris-g++-2.95
+LIB = $(SLIB)
+
+SLIB    = ../../lib$L.a
+ARFLAGS = cr
+
+o      = .o
+
+.c.o:
+	$(CC) $(CFLAGS) $(FLAGS) -I../../incl $(IPATH) $(DFLAGS) -c $*.c
+
+.s.o:
+	$(CC) -c $*.s
+ 
+all: $(LIB)
+ 
+include Make.lst
+ 
+$(SLIB): $(OBJECTS)
+	$(AR) $(ARFLAGS) $(SLIB) $?
+	$(RAN) $(SLIB) > /dev/null
+ 
+clean:
+	@ $(RM) $(OBJECTS)
+ 

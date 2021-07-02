@@ -1,0 +1,81 @@
+#-----------------------------------------------------------
+# 
+# makefile.site
+#
+# This makefile is intended to be locally modified for personnal
+# installation. Note that normally these modifications should not 
+# be commited in the CVS base
+#
+# This makefile is included in makefile.unix, makefile.msv, makefile.bc.
+#
+#------------------------------------------------------------
+
+#------------------------------------------------------------
+# Define tools directory for Unix and PC
+# Do not write a separator at the end of the path
+
+TOOLSDIRUNIX=/nfs/solver/tools
+TOOLSDIRPC=w:\tools
+
+#------------------------------------------------------------
+# Define Ilm directory for Unix and PC
+# ILMDIRUNIX will be used in makefile.unix
+# ILMDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+ILMDIRUNIX=/nfs/ilm/2.6/include
+ILMDIRPC=i:\2.6\include
+
+#------------------------------------------------------------
+# Define Scheduler for Unix and PC
+# SCHEDDIRUNIX will be used in makefile.unix
+# SCHEDDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+SCHEDDIRUNIX=/nfs/schedule/cplus/sched53
+SCHEDDIRPC=d:\ilog\sched53
+
+#------------------------------------------------------------
+# Define Solver directory for Unix and PC
+# SOLVERDIRUNIX will be used in makefile.unix
+# SOLVERDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+SOLVERDIRUNIX=/nfs/solver/cplus/solver53
+SOLVERDIRPC=d:\ilog\solver53
+
+#------------------------------------------------------------
+# Define Solver directory for Unix and PC
+# CONCERTDIRUNIX will be used in makefile.unix
+# CONCERTDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+CONCERTDIRUNIX=/nfs/solver/concert/concert13
+CONCERTDIRPC=d:\ilog\concert13
+
+#------------------------------------------------------------
+# Define Dispatcher directory for Unix and PC
+# DISPDIRUNIX will be used in makefile.unix
+# DISPDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+DISPDIRUNIX=/nfs/optim/dispatch/dispat33
+DISPDIRPC=d:\ilog\dispat32
+
+#------------------------------------------------------------
+# Define Sim directory for Unix and PC
+# SIMDIRUNIX will be used in makefile.unix
+# SIMDIRPC will be used in makefile.msv and makefile.bc
+# Do not write a separator at the end of the path
+
+SIMDIRUNIX=../../..
+SIMDIRPC=..\..\..
+
+#------------------------------------------------------------
+# For PC users define eventually:
+
+MSVC5ROOTDIR=c:\progra~1\devstudio\vc
+MSVC6ROOTDIR=c:\progra~1\micros~3\vc98
+IA64MSVCROOTDIR=c:\progra~1\micros~1
+BC5ROOTDIR=c:\bc5
+BCB30ROOTDIR=d:\Borland\CBuilder32

@@ -1,0 +1,76 @@
+# INSTANCE: DATA_TDTSP_randomd/10/bench_10_selected/ALL/inst_10_12.txt DATA_TDTSP/tdtsp_bench_255_6h00_12h30_10p_ti_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 10
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 7200
+ ! ----------------------------------------------------------------------------
+ ! Minimization problem - 13 variables, 5 constraints, 1 phase
+ ! Presolve      : 1 extractable eliminated
+ ! SearchType           = DepthFirst
+ ! Workers              = 1
+ ! RelativeOptimalityTolerance = 1e-009
+ ! Initial process time : 0.09s (0.09s extraction + 0.00s propagation)
+ # Extraction breakdown : 0.09s concert translation + 0.00s presolve
+ !  . Log search space  : 34.6 (before), 34.6 (after)
+ !  . Memory usage      : 545.5 kB (before), 545.5 kB (after)
+ ! Using sequential search.
+ # Presolve memory usage: 35.4 kB
+ #  . Model: 9.8 kB (original) + 0 bytes (presolved)
+ #  . Master: 9.2 kB (extractor) + 8.2 kB (converter) + 8.2 kB (other)
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed            Branch decision
+ *          9331       18 0.09s                 on 10
+* 0.099 9331
+ *          9292       68 0.10s                 on 10
+* 0.1 9292
+ *          9231       96 0.10s                 on 10
+* 0.1 9231
+ *          9146      131 0.10s                 on 10
+* 0.1 9146
+ *          9013      156 0.10s                 on 10
+* 0.101 9013
+ *          8971      376 0.10s                 on 10
+* 0.103 8971
+ *          8968      397 0.10s                 on 10
+* 0.103 8968
+ *          8822      444 0.10s                 on 10
+* 0.104 8822
+ *          8711      465 0.10s                 on 10
+* 0.104 8711
+ *          8614      521 0.10s                 on 10
+* 0.105 8614
+ *          8544      788 0.10s                 on 10
+* 0.108 8544
+ *          8453      888 0.10s                 on 10
+* 0.109 8453
+ *          8340      925 0.10s                 on 10
+* 0.109 8340
+            8340     1000         11        F   on 9
+ ! ----------------------------------------------------------------------------
+ ! Search terminated normally, 13 solutions found.
+ ! Best objective         : 8340 (optimal - effective tol. is 0)
+ ! Number of branches     : 1894
+ ! Number of fails        : 949
+ ! Total memory usage     : 7.6 MB (0.6 MB CP Optimizer + 7.0 MB Concert)
+ ! Time spent in solve    : 0.12s (0.02s engine + 0.09s extraction)
+ # Extraction breakdown   : 0.09s concert translation + 0.00s presolve
+ ! Search speed (br. / s) : 82347.8
+ ! ----------------------------------------------------------------------------
+# SOLUTION FOUND
+# OPTIMALITY PROVED
+# BEST SOLUTION: 8340
+# NUMBER OF BRANCHES: 1894
+# END TIME: 0.122
+## Solution: 
+10
+35 0
+120 1046
+112 2131
+68 3131
+70 3957
+210 4363
+208 4886
+149 5290
+147 5922
+150 6457
+# BEST TD SOLUTION: 8340

@@ -1,0 +1,95 @@
+Title: Model-based Partitioning for MaxSAT Solving
+Authors: Ruben Martins, Vasco Manquinho and Inês Lynce
+
+
+Workshop paper category: Original full paper
+
+
+
+======= Reviewer 1 ===================================================
+
+Overall evaluation:	2: (good)
+Reviewer's confidence:	3: (medium)
+Relevance to the CfP:	2: (fair)
+Originality:	3: (good)
+Significance:	3: (good)
+Technical Quality:	3: (good)
+Clarity:	4: (excellent)
+
+Review:	The paper proposes a set of algorithms for solving MaxSAT problems and compares them on a few benchmarks. 
+Three algorithms are proposed:
+- LinearMS which is a well known algorithm
+- ModelMS which is an adaptation of an existing algorithm originally proposed for solving MinSAT problems
+- PartMS which is an original algorithm introduced in the present paper
+
+The idea underlying PartMS is very interesting. It builds on both LinearMS (idea of an iterative solve of a SAT problem with a cardinality constraint) and ModelMS (idea to use less variables in the cardinality constraint as large cardinality constraints result in loose inference in the SAT engines) by trying to keep, as much as possible, the enforcement of satisfied clauses from the previous iteration. This results in a much tighter SAT problem. And when this tighter problem becomes unsatisfiable, PartMS relies on the production of certificate of unsatisfiability to move clauses in the cardinality constraint (from inactive to active relaxation variables).
+
+In the experimental section, the 3 algorithms are compared together and against QMaxSAT a solver that entered the Max-SAT 2012 Evaluation and behaved well on the partial MaxSAT industrial instances. Experiments show that ModelMS and PartMS are complementary and can be competitive with QMaxSAT.
+
+The paper is fairly relevant to the call for paper as it is about comparing algorithms from an experimental viewpoint although the focus seems to be more on the description of the algorithm than on the evaluation itself. The paper is well written and very clear. The reason is probably that the idea proposed in PartMS is in fact very simple and this is what makes it quite elegant.
+
+In the context of an extended journal version of the paper, I think two aspects should be extended:
+- the idea to hybridize ModelMS and PartMS to better exploit their complementarity
+- an extension of the experimental study in particular on other types of MaxSAT instances and other state-of-the-art MaxSAT solvers (indeed, except for the partial MaxSAT industrial instances, QMaxSAT does not seem to behave that well on other benchmarks).
+
+
+
+
+====== Reviewer 2 ===================================
+
+Overall evaluation:	2: (good)
+Reviewer's confidence:	3: (medium)
+Relevance to the CfP:	4: (excellent)
+Originality:	3: (good)
+Significance:	3: (good)
+Technical Quality:	3: (good)
+Clarity:	3: (good)
+
+Review:	This paper presents two methods to partition the relaxation variables in a linear search based max-sat solver. They do that over a model based algorithm developed for min-sat. The authors explain the procedure quite in detail and providing nice examples. Results show the effectiveness of the methods proposed and that they are complementary.
+
+The paper is in general well written, only few typos occur.
+What I find the authors should improve is some more detailed description of the related work, i.e. which other techniques have been developed to improve linear search based solvers, and just tell a bit more about the 3rd party solver they used as reference. About this, since these techniques are complementary, a comparison with further solvers would be appreciated.
+Another point that should be clarified is how incremental SAT solving is used.
+For a journal publication, it may be very interesting to see how good a hybrid solver can affect the results.
+
+minor:
+
+Example 1, first sentence out of the example
+p9 rebuild -> rebuilt
+p13 worst -> worse
+Sort citations according to reference number
+
+
+
+
+======== Reviewer 3 ===================
+
+Overall evaluation:	1: (fair)
+Reviewer's confidence:	4: (high)
+Relevance to the CfP:	4: (excellent)
+Originality:	2: (fair)
+Significance:	2: (fair)
+Technical Quality:	2: (fair)
+Clarity:	3: (good)
+
+Review:	The authors introduce a search strategy for solving the MaxSAT problem. In particular, they focus on the partial MaxSAT problem, where a set of (hard) clauses MUST be satisfied, and the maximization is done on the other (soft) clauses. Typically, relaxation variables on soft clauses are introduced and a cardinality constraint on them is introduced and updated during the computation. The authors basically propose a local search strategy that, starting from a feasible solution, select a proper subset of the relation variables that allows to explore a subset of the search space, reaching a local minimum (in a sense, they move in the space of the same solution of the hard part, but the maximum can be based on another solution). The paper is very well-written. However, reading the paper, it is not evident whether their approach is complete or not. This can be added in the presentation. Instances chosen in experiments are without hard clauses; these ismstances do not allow to clarify my doubt.
+
+
+
+====== Reviewer 4 ================================
+
+Overall evaluation:	3: (excellent)
+Reviewer's confidence:	4: (high)
+Relevance to the CfP:	3: (good)
+Originality:	3: (good)
+Significance:	3: (good)
+Technical Quality:	3: (good)
+Clarity:	3: (good)
+
+Review:	This original full paper describes a new technique for solving MaxSAT
+problems, which refines the standard linear search approach by
+exploiting SAT solutions. Results are mixed but promising, and point
+the way to hybrid approaches in future work. The paper is interesting
+and well-written, and should be of interest to anyone working on
+MaxSAT. I found no errors and have little doubt that a journal
+publication will follow.

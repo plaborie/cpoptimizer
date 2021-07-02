@@ -1,0 +1,420 @@
+#include <ilsched/iloscheduler.h>
+
+#if defined(ILOUSESTL)
+#include <fstream>
+#else
+#include <fstream.h>
+#endif
+#if defined(ILO_WIN32)
+#include <strstrea.h>
+#else
+#include <strstream.h>
+#endif
+
+
+#include <ilsim/ilutimeeventmanager.h>
+#include <ilsim/ilumodel.h>
+#include <ilsim/iluscheduler.h>
+#include <ilsched/ilsched.h>
+#include <ilsim/ilupgsim.h>
+#include <ilsim/iluactivity.h>
+
+
+ILCSTLBEGIN
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF SOLUTIONS PrintSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintSolution(const IlcScheduler& scheduler)
+{
+  
+	IlcInt makespan = 0;
+// iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]" << endl;
+	if (activity.getEndMin() > makespan)
+		makespan = activity.getEndMin();
+  }
+	cout << endl << "The makespan is equal to " << makespan << endl;
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF UNCERTAIN SOLUTIONS PrintUncSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintUncSolution(const IlcScheduler& scheduler)
+{
+ // iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]";
+	if (activity.getObject() != 0)
+	{
+		IluActivityI* uncAct = (IluActivityI*)activity.getObject();
+		IluNormalVariableI* randVar= (IluNormalVariableI*)uncAct->getRandomVar();
+		IloNum min, max, std;
+		min = randVar->getMin();
+		max = randVar->getMax();
+	//	ave = randVar->getAverage();
+		std = randVar->getStandardDev();
+
+		cout << " : proc. time between " << min << " and " << max << " and stand. dev. of " << std;
+	}
+	cout << endl;
+  }
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// EXECUTION LOOP MainLoop
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+MainLoop(IloEnv env,
+		 IloRandom randGen,
+		 IluSchedulerI* uncScheduler,
+		 IloNum sigma,
+		 IluHistogramI* nbRescheduling,
+		 IluHistogramI* estimatedMakespan,
+		 ofstream out,
+		 IloInt precision)
+{
+	
+	IlcInt nbResched = 0;
+//	const char* filename = "makespan.dat";
+//	const char* filename2 = "endtimes.dat";
+//	const char* filename3 = "resched.dat";
+//	ofstream out(filename);
+//	ofstream out3(filename2);
+//	ofstream out4(filename3);
+	
+	IloNum now = 0.0;
+	IlcScheduler sched = uncScheduler->solve(now, precision); // sched is our current indicative schedule.
+	
+	// simulator creation
+	IluSimulatorI* simP = new (env) IluSimulatorI(env, sched, randGen, sigma);
+
+	simP->initPG(env, sched, randGen, now, precision);
+
+//	out << now/precision << "\t" <<  simP->getHist()->getAverage()/precision << "\t";
+//	out << simP->getHist()->getStandardDev()/precision << endl;
+//	out2 << simP->getHist()->getAverage();
+
+// time event manager creation + controllable and contingent lists creation
+//	cout << "Time event manager creation" << endl << endl;
+	IluTimeEventManagerI* tEMgrP = new (env) IluTimeEventManagerI(simP, (IlcInt)now);
+
+	IloNum increment, nextExecutionTime;
+	increment = IloIntMax;
+
+	do {
+// schedule execution starts
+
+// Is their at least one activity that can be executed now?
+
+		nextExecutionTime = tEMgrP->executeNext((IlcInt)now);
+		for (IlcActivityIterator actite3(sched); actite3.ok(); ++actite3) {
+			IlcActivity act = *actite3;
+			if (simP->getPrecGraph()->isExecutable(((IluActivityI*)act.getObject())->getIndex())) {
+				//cout << "Activity " << (*actite3).getName() << " is executable at " << now << "." << endl;
+				IluActStartEventI* eventP = new (env) IluActStartEventI((IlcInt)now, ((IluActivityI*)act.getObject()));
+				tEMgrP->addCtrlEvent(eventP);
+			}
+		}
+		nextExecutionTime = tEMgrP->executeNext((IlcInt)now);
+//		out3 << nextExecutionTime-1 << "\t" << 0 << endl;
+//		out3 << nextExecutionTime << "\t" << 1350000 << endl;
+//		out3 << nextExecutionTime+1 << "\t" << 0 << endl;
+		nextExecutionTime = IloMax(0, nextExecutionTime); // Generation of the end time events.
+	
+		simP->getHist()->clean();
+		for (IlcActivityIterator actite4(sched); actite4.ok(); ++actite4) {
+			IluHistogramI* histP = ((IluActivityI*)(*actite4).getObject())->getHist();
+			histP->clean();
+		}
+
+// We generate a sample for getting the probability distribution of the makespan.
+		simP->getPrecGraph()->simulate(now, 1000);
+//		simP->getHist()->display("curve.dat", 250);
+		cout << "Time " << now/precision;
+		cout << "\t... avg=" << simP->getHist()->getAverage()/precision;
+		cout << ";\t dev=" << simP->getHist()->getStandardDev()/precision << endl;
+	
+		if (simP->reschedule(sched, precision)) { // We re-schedule.
+			nbResched++;
+			sched = uncScheduler->solve(now, precision); // sched is our current indicative schedule.
+//			out4 << now-1 << "\t" << 0 << endl;
+//			out4 << now << "\t" << 1350000 << endl;
+//			out4 << now+1 << "\t" << 0 << endl;
+		
+// The execution policy is to execute the activities as early as possible.
+
+// We start simulating this current indicative schedule.
+
+// Uncertain activities caracteristics printing
+//			PrintSolution(sched);
+
+//			env.out() << endl << " Precedence graph creation + execution as soon as possible " << endl << endl;
+		//	delete simP->getPrecGraph();
+			simP->initPG(env, sched, randGen, now, precision);
+	
+//			out << now/precision << "\t" <<  simP->getHist()->getAverage()/precision << "\t";
+//			out << simP->getHist()->getStandardDev()/precision << endl;
+		}
+//		else {
+//			out << now/precision << "\t" <<  simP->getHist()->getAverage()/precision << "\t";
+//			out <<simP->getHist()->getStandardDev()/precision << endl;
+//		}
+		now += increment;
+		now = IloMin(now, nextExecutionTime);
+	}
+	while (tEMgrP->executableEvents());
+
+//	out << nbResched << endl;
+
+//	out << "\t" <<  simP->getHist()->getAverage() << endl;
+
+	nbRescheduling->setValue((IloNum)nbResched);
+	estimatedMakespan->setValue(simP->getHist()->getAverage());
+
+
+//	out.close();
+
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// MAIN FUNCTION
+//
+///////////////////////////////////////////////////////////////////////////////
+
+int main(int argc, char** argv)
+{
+try {
+		IluNormalVariableI::Init(); // Only one normal probability distribution is initialized and it is then transformed.
+
+		char* filename = argv[1];
+
+		IloNum alpha = 0.2;
+		if (argc > 2)
+			alpha = atof(argv[2]);
+		cout << "The alpha value is " << alpha << "."<< endl;
+
+		IloInt seed = 9;
+		if (argc > 3)
+			seed = atoi(argv[3]);
+		cout << "The number generator seed is " << seed << "." << endl;
+
+		IloInt precision = 1000;
+		if (argc > 4)
+			precision = atoi(argv[4]);
+		cout << "The precision used is " << precision << "." << endl;
+		
+		const char* filename2 = "graph.dat";
+		ofstream out(filename2);
+
+		IluHistogramI* nbRescheduling;
+		IluHistogramI* estimatedMakespan;
+
+		//IloNum sigma = 1.0; // sigma is the sensitivity factor.
+		for(IloNum sigma = 35.0 ; sigma < 70.0 ; sigma += 5.0) {
+			IloEnv env2;
+
+			nbRescheduling = new (env2) IluHistogramI(env2);
+			estimatedMakespan = new (env2) IluHistogramI(env2);
+
+			for(IloInt seed2 = 0 ; seed2 < 100 ; seed2++) {
+				cout << "Execution with a seed of " << seed2 << " and a sigma of " << sigma << "." << endl;
+
+				IloEnv env;  // Environment creation
+
+// Random generator creation
+				IloRandom randomGenerator(env);
+
+//				env.setDeleter(IloSafeDeleterMode); // This mode is used to delete extractables.
+
+				randomGenerator.reSeed(seed2);
+
+// Initial uncertain model creation
+				IluModelI* uncModel = new (env) IluModelI(env, filename, randomGenerator, alpha, precision);
+				uncModel->getModel().add(IloMinimize(env,uncModel->getMakespan()));
+		
+
+				IloGoal rankGoal =  IloRankForward(env,
+									uncModel->getMakespan(),
+									IloSelResMinGlobalSlack,
+									IloSelFirstRCMinStartMax); // This goal picks a resource with minimum global slack
+															   // and then, from that resource, picks a resource constraint
+															   // with minimum start min that can execute first among the
+															   // non-ranked resource constraints.
+		
+				IloGoal goal = IloLimitSearch(env, rankGoal, IloTimeLimit(env, 1)); // The search lasts 1 second.
+
+// Uncertain schedule creation
+				IluSchedulerI* uncScheduler = new (env) IluSchedulerI(env, uncModel, goal);
+
+		
+		
+// The execution policy is to execute the activities as early as possible.
+
+// We start simulating this current indicative schedule.
+
+// Uncertain activities caracteristics printing
+//				PrintSolution(sched);
+
+//				env.out() << endl << " Precedence graph creation + execution as soon as possible " << endl << endl;
+
+				MainLoop(env, randomGenerator, uncScheduler, sigma, nbRescheduling, estimatedMakespan, out, precision);
+
+				env.out() << endl;
+
+				env.end();
+			}
+			out << sigma << "\t" << nbRescheduling->getAverage() << "\t" << nbRescheduling->getStandardDev();
+			out << "\t" << estimatedMakespan->getAverage()/precision << "\t";
+			out << estimatedMakespan->getStandardDev()/precision << endl;
+
+			env2.end();
+		}
+		
+
+
+
+		for(IloNum sigma2 = 0.1 ; sigma2 < 5.0 ; sigma2 += 0.1) {
+			IloEnv env2;
+
+			nbRescheduling = new (env2) IluHistogramI(env2);
+			estimatedMakespan = new (env2) IluHistogramI(env2);
+
+			for(IloInt seed2 = 0 ; seed2 < 100 ; seed2++) {
+				cout << "Execution with a seed of " << seed2 << " and a sigma of " << sigma << "." << endl;
+
+				IloEnv env;  // Environment creation
+
+// Random generator creation
+				IloRandom randomGenerator(env);
+
+//				env.setDeleter(IloSafeDeleterMode); // This mode is used to delete extractables.
+
+				randomGenerator.reSeed(seed2);
+
+// Initial uncertain model creation
+				IluModelI* uncModel = new (env) IluModelI(env, filename, randomGenerator, alpha, precision);
+				uncModel->getModel().add(IloMinimize(env,uncModel->getMakespan()));
+		
+
+				IloGoal rankGoal =  IloRankForward(env,
+									uncModel->getMakespan(),
+									IloSelResMinGlobalSlack,
+									IloSelFirstRCMinStartMax); // This goal picks a resource with minimum global slack
+															   // and then, from that resource, picks a resource constraint
+															   // with minimum start min that can execute first among the
+															   // non-ranked resource constraints.
+		
+				IloGoal goal = IloLimitSearch(env, rankGoal, IloTimeLimit(env, 1)); // The search lasts 1 second.
+
+// Uncertain schedule creation
+				IluSchedulerI* uncScheduler = new (env) IluSchedulerI(env, uncModel, goal);
+
+		
+		
+// The execution policy is to execute the activities as early as possible.
+
+// We start simulating this current indicative schedule.
+
+// Uncertain activities caracteristics printing
+//				PrintSolution(sched);
+
+//				env.out() << endl << " Precedence graph creation + execution as soon as possible " << endl << endl;
+
+				MainLoop(env, randomGenerator, uncScheduler, sigma2, nbRescheduling, estimatedMakespan, out, precision);
+
+				env.out() << endl;
+
+				env.end();
+			}
+			out << sigma2 << "\t" << nbRescheduling->getAverage() << "\t" << nbRescheduling->getStandardDev();
+			out << "\t" << estimatedMakespan->getAverage()/precision << "\t";
+			out << estimatedMakespan->getStandardDev()/precision << endl;
+
+			env2.end();
+		}
+
+
+
+		out.close();
+
+		IluNormalVariableI::End(); // The normal distribution is here erased.
+
+		
+ 	} catch(IloException& exc) {
+ 		cout << exc << endl;
+ 	}
+
+	return 0;
+}

@@ -1,0 +1,118 @@
+Title: The End of Rush Hours: A Schedule-Driven Approach to Demand Shifting 
+Authors:  (anonymous)
+PC member:  Philippe Laborie
+
+Evaluation
+  Overall evaluation
+    3: strong accept
+    2: accept
+    1: weak accept
+    0: borderline paper
+    -1: weak reject
+    -2: reject  <<<
+    -3: strong reject
+    
+  Reviewer's confidence
+    5: (expert)
+    4: (high) <<<
+    3: (medium)
+    2: (low)
+    1: (none)
+    
+Additional scores
+  (Applications track ONLY): Importance (economic, societal, etc) of the application problem being addressed.
+    5: N/A (not an Applications track paper)
+    4: very important
+    3: moderate <<<
+    2: marginal
+    1: unimportant
+  
+  (Applications track ONLY): Novelty of the application and technical approach to the application.
+    5: N/A (not an Applications track paper)
+    4: very novel - approach and/or application are new
+    3: moderate - application or approach is significantly different
+    2: marginal - parts of the application or approach are new <<<
+    1: none - similar approach to the same application has been used before
+  
+  (Applications track ONLY): Importance of planning/scheduling technology to the solution of the problem.
+    5: N/A (not an Applications track paper)
+    4: very important - essential to solving the problem
+    3: moderately important - adds significant capabilities <<<
+    2: marginally important - improves usability, capabilities or performance
+    1: not important - could be done without it
+  
+  (Applications track ONLY) Maturity.
+    6: N/A (not an Applications track paper)
+    5: study of the success, acceptance, impact and/or deficiencies of a fielded system
+    4: fielded system
+    3: mature system with testing on realistic problems
+    2: early prototype system <<<
+    1: challenge problem
+  
+  (Robotics track ONLY): Balance of Robotics and Automated Planning and Scheduling
+    6: N/A (not a Robotics track paper) <<<
+    5: Excellent mix between the two fields
+    4: Good mix between the two fields
+    3: Fair mix between the two fields
+    2: Nothing Robotics specific, pure "classical" AIPS paper
+    1: Nothing on Automated Planning, pure Robotics paper
+  
+  (Robotics Track ONLY): Evaluation on physical platforms/simulators
+    6: N/A (not a Robotics track paper) <<<
+    5: Runs on real robots
+    4: Runs in a standard robot simulator (Gazebo, Morse etc.)
+    3: Could be used with a simulator or robot
+    2: Still some work to have it running on robots
+    1: Unlikely to be ever running on a robot
+  
+  (Robotics Track ONLY): Significance of the contribution
+    6: N/A (not a Robotics track paper) <<<
+    5: Significant in both Robotics and Planning
+    4: Significant in Planning (i.e. planning researchers would care about this paper)
+    3: Significant in Robotics (i.e. robotics researchers would care about this paper)
+    2: Marginally significant in one Robotics and/or Planning
+    1: Not significant
+  
+  (Applications and Robotics tracks ONLY): Suitable for a demo?
+    4: N/A (not an Applications or Robotics track paper)
+    3: yes
+    2: maybe
+    1: no <<<
+    
+  Nominate for Best Paper Award
+    2: yes
+    1: no <<<
+  
+  Nominate for Best Student Paper Award (if eligible)
+    2: yes
+    1: no <<<
+  
+Review
+
+  The paper proposes an approach to limit traffic congestion through some congestion bottleneck by allowing to shift the times the vehicles arrive at the congestion point. 
+  
+  The paper is well structured and in general clearly written (except section on Pittsburgh Traffic Problem in the experiments, see below).  
+  
+  The question of the penetration rate is an important issue in the proposed approach. This question is discussed in the experimental section but I think that it would deserve a more detailed study. In particular, from my understanding, the current approach assumes that the arrival time of the "non-scheduled" vehicles at the bottleneck is completely known in advance (and then their value e(v) is used as arrival time), but this is not realistic as in fact nothing precise is known about the "non-scheduled" vehicles. So when the penetration rate gets smaller, there is a huge non-deterministic component to be handled by the approach and this is not discussed in the paper.
+  
+  But my main issue with the paper is the optimization model itself and the approaches that are used to solve it. There is no complexity analysis of the problem being solved. The problem described in section "The Demand Shifting Traffic Scheduling Problem" seems to boil down to a scheduling problem on c parallel machines with unit-duration tasks and integer release dates and deadlines. This is a well-known non-combinatorial scheduling problem. It can be solved in polynomial time in O(n log(n)) if n is the number of tasks and even in O(n) with slightly more complex data structures [1]. One can argue that the problem treated in the paper consists in minimizing the capacity c but then a binary search on c only adds a log(n) complexity factor. So I think that all in all, the optimization problem of the paper can be solved *to optimality* in O(n log(n)). What is the interest of using meta-heuristics for solving this problem? Of course, the provided model is only a simplification of the real problem and in the future, some extensions of the problem may turn it into a real combinatorial problem but these extensions are not discussed and I don't think it is acceptable that the article ignores the low polynomiality results on the basic problem. In particular, the polynomial algorithms solve the problem to optimality by using the "earliest deadline" rule, which is even not mentioned in the article and would probably be a key ingredient even if the model is complexified. 
+  
+  [1] Gabow, H. & Tarjan, R. "A linear-time algorithm for a special case of disjoint set union". Journal of Computer and System Sciences, 1985, 30, 209-221.
+  
+  In the experiments, section "Pittsburgh Traffic Problem" is not clear. It first gives a formula to compute the value for c that is used for initial value of the iterative algorithms. Then there is a paragraph describing how to compute the expected window size (formula 6). But what this average window size is used for? To randomly generate some data for the problem instances? Or is it used in some way to compute the travel times? Given some value for a number of vehicles k arriving at the bottleneck at a given time t, I cannot find any formula that gives the travel time through the bottleneck.
+  
+  More detailed comments and typos:
+  
+  - In the description of the constraints: "driver input data": formula (3) mentions v(v), what is that? I suppose you mean e(v) ? The same typo occurs in formulas (5) and (6). 
+  
+  - In general, the notations l(v) and e(v) for the constant dates and s(v) for the variable are too similar. For readability, I would suggest for instance to use upper cases for the constants. 
+  
+
+Confidential remarks for the program committee
+  
+  I don't think the paper should be accepted. I'm very surprised the authors did not study the algorithmic complexity of their problem as it is a very classical scheduling problem, and it can be solved in O(n log(n)) ...
+  
+  I hope other reviewers can correct me if I got something wrong in the description of the problem.
+  
+
+  

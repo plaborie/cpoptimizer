@@ -1,0 +1,56 @@
+#
+limit cputime 1200
+
+echo $1.$0 >../result/$1.$0
+echo '   nodes     arcs             sum    cycle     scans        time' >>../result/$1.$0
+
+echo -1 512 16>> ../result/$1.$0
+../bin/tor 512 16 171 -cc -nn1 -nl8192 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 512 16 173 -cc -nn1 -nl8192 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 512 16 175 -cc -nn1 -nl8192 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 512 16 177 -cc -nn1 -nl8192 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 512 16 179 -cc -nn1 -nl8192 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 1024 16>> ../result/$1.$0
+../bin/tor 1024 16 171 -cc -nn1 -nl16384 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 1024 16 173 -cc -nn1 -nl16384 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 1024 16 175 -cc -nn1 -nl16384 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 1024 16 177 -cc -nn1 -nl16384 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 1024 16 179 -cc -nn1 -nl16384 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 2048 16>> ../result/$1.$0
+../bin/tor 2048 16 171 -cc -nn1 -nl32768 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 2048 16 173 -cc -nn1 -nl32768 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 2048 16 175 -cc -nn1 -nl32768 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 2048 16 177 -cc -nn1 -nl32768 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 2048 16 179 -cc -nn1 -nl32768 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 4096 16>> ../result/$1.$0
+../bin/tor 4096 16 171 -cc -nn1 -nl65536 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 4096 16 173 -cc -nn1 -nl65536 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 4096 16 175 -cc -nn1 -nl65536 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 4096 16 177 -cc -nn1 -nl65536 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 4096 16 179 -cc -nn1 -nl65536 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 8192 16>> ../result/$1.$0
+../bin/tor 8192 16 171 -cc -nn1 -nl131072 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 8192 16 173 -cc -nn1 -nl131072 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 8192 16 175 -cc -nn1 -nl131072 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 8192 16 177 -cc -nn1 -nl131072 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 8192 16 179 -cc -nn1 -nl131072 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 16384 16>> ../result/$1.$0
+../bin/tor 16384 16 171 -cc -nn1 -nl262144 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 16384 16 173 -cc -nn1 -nl262144 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 16384 16 175 -cc -nn1 -nl262144 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 16384 16 177 -cc -nn1 -nl262144 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 16384 16 179 -cc -nn1 -nl262144 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 32768 16>> ../result/$1.$0
+../bin/tor 32768 16 171 -cc -nn1 -nl524288 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 32768 16 173 -cc -nn1 -nl524288 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 32768 16 175 -cc -nn1 -nl524288 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 32768 16 177 -cc -nn1 -nl524288 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 32768 16 179 -cc -nn1 -nl524288 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+

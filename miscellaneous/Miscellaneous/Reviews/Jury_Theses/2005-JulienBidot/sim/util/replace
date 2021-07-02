@@ -1,0 +1,16 @@
+#!/bin/sh
+#########################################################################
+
+FILE=
+OLDFILE=
+
+for i in include/ilsim/*.h src/ilc/*.cpp examples/*/*.cpp
+do
+        echo "Change $i"
+        FILE=$i
+        OLDFILE=$i.old
+        chmod 664 $FILE
+        mv $FILE $OLDFILE
+        sed -e s/$1/$2/g $OLDFILE > $FILE
+        /bin/rm -f $OLDFILE
+done

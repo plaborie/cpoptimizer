@@ -1,0 +1,68 @@
+PAPER  : #60
+TITLE  : A generalized Tool Switching Scheduling Problem for Embedded Vision Systems
+AUTHORS: Khadija HADJ SALEM, Luc LIBRALESSO, Vincent JOST, Yann KIEFFER, and Stephane MANCINI
+
+SCORE:
+    ==  3 strong accept
+    ==  2 accept
+    ==  1 weak accept
+    ==  0 borderline paper
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+-2
+
+
+REVIEWER'S CONFIDENCE
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+4
+
+
+REVIEW
+
+> Please provide a detailed review, including a justification for your scores. 
+> Both the score and the review text are required.
+
+The paper studies an interesting and challenging problem involving both machine scheduling (with activity durations) and tool switching.
+
+One of the main issue with the paper is its lack of clarity. Sections 1 an 2 introduce a large number of different problems and different problem versions (3-PSDPP, PSP, DPP, MCT-PSDPP, B-C-MCTP, 2-PSDPP, ToSP) but the difference between all these problems is not detailed clearly enough. 
+
+In particular, the difference between the 2 problem variants that are the focus of this paper (MCT-PSDPP and B-C-MCTP) is not clear: both problems involve makespan minimization and a limit number of buffers Z. You say "Given a set of Z buffers (Limited buffers), the MCT-PSDPP reduces to a simpler [...] B-C-MCTP". It is not clear to me how limiting the number of buffers makes the problem simpler. Furthermore, you say that you proved that B-C-MCTP is NP-Complete but that you have no idea of the complexity of the more general MCT-PSDPP problem; this seems strange as just this statement should easily show that MCT-PSDPP is NP-Complete. Later on, when looking at the models MCT-1 (which is for MCT-PSDPP) and MCT-2 (which is for B-C-MCTP), it seems that the main difference between the two problems is that in fact, in MCT-PSDPP there seems to be an infinite number of buffers. Is it really the case? Also, Remark 1 is misleading. The two main introductory sentences of each paragraph ("For the sake of simplicity, we assume that an infinite number of prefetches N are available" and "Similarly, we assume that an infinite number of buffers Z are available" are in contradiction with the rest of the remark).
+
+The difference between the problems studied in this paper (MCT-PSDPP and B-C-MCTP) and the classical ToSP could be explained a little bit more in detail. It seems that, unlike ToSP that only deal with sequencing of activities/steps, the MCT-PSDPP and B-C-MCTP also need to deal with scheduling because activities have some duration. Could it be that it is because ToSP only deals with the minimisation of the number of prefetch steps that the duration of activities can be ignored?
+
+No proof is given in the paper for the correctness of the dominance rule described in Property 1. This proof is not clear to me. Also, the condition of the rule (if R_y1 subset R_y2 forall (y1,y2)) is wrong I think, as it would imply that all R_y are the same. I suppose the rule should say something like "if exists (y1,y2) such that R_y1 subset R_y2 then ...". Also, for all 3 properties, I think you should replace the "must be ... in an optimal schedule" by "can be ... in an optimal schedule" as some solutions may be optimal without satisfying the conditions of the dominance rules.
+
+In general, the ILP models are only moderately original. And, as far as the CP models are concerned, you should mention how these problems were solved; Minizinc is mostly a modeling framework around CP solvers and different CP solvers may have very different performance, especially for solving scheduling-like models. So given the level of detail provided in the paper, the comparison between ILP and CP models is not really informative. Furthermore, it is a bit disapointing that all models studied in the paper are worse than existing heuristics (that are not presented in the article).
+
+More detailed comments:
+- p2: at the moment when Fig. 3 is introduced, it is very difficult to figure out what the schedule illustrated on the figure means. It is only when reading the example in section 2.3 on p6 that one can understand. Maybe you should consider moving this figure later in the paper.
+- p3: for clarity considerations, you should avoid giving two different names for the same problem (PSP==DPP, MCT-PSDPP==B-C-MCTP). There are already enough versions of the problems...
+- p4: section 2.1 promises a formal description of the MCT-PSDPP. But unfortunately, many details are missing from the description. In particular, from this section, it is not clear at all what are the different decision variables and constraints of the problem. In particula the fact that prefetch operations do not overlap, task do not overlap, that you do not need to do special activities to "remove" an input tile from its buffer, what about buffer capacities ... also, when the sets M and N are used, they have not been defined before.
+- p4: "As mentioned the MCT-PSDPP ... machine M2 foe computations"
+- p4, just below: Why do you use \Delta instead of C_max if C_max is the classical notation for makespan?
+- p9, section 4.2: 
+  * if and only if the computation of the output tile y [is finished at instant t]: I would rather say [finishes at instant t]
+  * if the prefetch of the input tile x [is finished at instant t]: I would rather say [finishes at instant t]
+  * if the [the] whole treatment
+  * in equation (14), I do not understand why the second term (sum_x sum_s q_xs) is needed
+- p10: In remark 3 the formulation is not evident and the sense of the remark is not clear
+- p10, section 4.3, property 1: Tiles computa[t]ion
+- p11, equation 23: I do not undertsnad the notation T_x_x = 0[\alpha]
+- p11, section 5.2: 
+  * let V_x be the prefetched input tile ...: what is the type of variable V_x: an integer variable, a boolean variable. There maybe several tiles prefetched at a given time x. Maybe a figure would be useful to explain the model?
+  * The equation (27) of the model is really difficult to parse. It would at least require some parenthesis and better explanation in the text.
+
+  
+CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE 
+
+> If you wish to add any remarks intended only for PC members please
+> write them below. These remarks will only be seen by the PC members
+> having access to reviews for this submission. They will not be sent
+> to the authors. This field is optional.
+
+

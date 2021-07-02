@@ -1,0 +1,141 @@
+PAPER TITLE: Airspace Sectorization with Constraints
+
+AUTHOR(S): Huy Trandac, Philippe Baptiste and Vu Duong
+
+RELEVANCE AND CLASSIFICATION
+
+Does the paper well fit into RAIRO Operations Research Journal
+
+ (X) yes
+
+ ( ) only of limited interest
+
+ ( ) no
+
+ORIGINALITY
+
+Does the paper present original results ?
+
+ (X) yes, the paper presents an original application of existing methods
+ 
+ ( ) interesting improvement of existing approaches
+ 
+ ( ) minor improvement of existing approaches
+
+ ( ) not original 
+
+SIGNIFICANCE
+
+Are the problems, approaches, and results of the paper significant ?
+
+ ( ) very significant
+
+ (X) significant
+
+ ( ) only of minor significance
+
+ ( ) not significant
+
+TECHNICAL QUALITY
+
+Is the considered problem well-defined and the approach well-developed?
+Are the results of the paper correctly validated? (Are proofs of theorems correct?
+Are algorithms implemented? Are benchmarks for implemented systems reported?)
+
+ ( ) technical quality is very good
+
+ (X) some minor technical issues need to be clarified
+
+ ( ) some major technical issues need to be improved
+
+ ( ) technical quality is insufficient
+
+PRESENTATION
+
+Is the paper well-presented, well-organized and self-contained? Is the length of 
+the paper appropriate to the results presented?
+
+ (X) the paper reads fine for a large readership
+
+ ( ) the paper reads fine for a specialist, but could be improved
+     in order to address a larger readership
+
+ ( ) readability can be improved by minor revisions 
+
+ ( ) major revisions are needed to make the paper comprehensible
+
+ ( ) the paper is not comprehensible 
+
+MOTIVATION 
+
+Does it well motivate the considered approach ? 
+
+ (X) yes
+
+ ( ) the given motivation can be improved 
+
+ ( ) no sufficient motivation is given
+
+OVERALL RECOMMENDATION
+
+ (X) Accept with minor revisions
+
+ ( ) Accept with major revisions
+
+ ( ) Reject 
+
+DETAILED COMMENTS AND RECOMMENDATIONS FOR THE AUTHORS
+
+Overall, I find the paper describes a very interesting and challenging
+application, motivates the approach well and is nicely written. The
+main idea is to use a combination of Graph Partitioning techniques,
+Constraint Programming, Large Neighborhood and Local Search to solve a
+problem of airspace sectorization with complex constraints.
+
+Here are some more detailed comments:
+
+It is said in section 2 that determining the "best" (or even a good)
+triangulation is out of the scope of this paper, which I
+understand very well. But were some experiments made to see how the
+final result is sensitive to the initial triangulation ?
+
+In section 4.1 about finding an initial solution, something should be
+said about recursive bisection in the context of Graph Partitioning
+(for instance a reference to [1]). Furthermore, it is not clear how
+one handles number of sectors k that are not a power of 2.
+
+In the same section, in the description of procedure KLPass, it should
+be said somewhere that the pair of vertices (u^i,v^i) is effectively
+exchanged as it seems to be the case in order that this is taken into
+account when recomputing the gain of the other vertices.
+
+In the end of section 4.1, it would be interesting to know if CP is
+used to check valid moves (for instance for the balance constraint) or
+if all the constraints are checked "by hand".
+
+In the section on experimental results, does there exist some good
+lower bound that could give an idea of how far from the optimum is the
+best solution found ?
+
+Looking at the average % of reduction, one can notice that the gain of
+the re-optimization phase seems to decrease with the size of problems
+(34% for 60 vertices, 17% for 500 vertices). Is there an explanation
+for this phenomenon ?
+
+What is the size of the group of sectors that are re-optimized in the
+re-optimization phase ? In average, how many re-optimization
+iterations are necessary before to reach a fix point and what was the
+value for N (number of consecutive iterations without improvement
+before to stop) ?
+
+
+A typo:
+
+In section 5, "the values of paparmeters ..."
+
+
+[1] Horst D. Simon and Shang-Hua Teng, How Good is Recursive Bisection?,
+SIAM Journal on Scientific Computing,18:5, pp1436--1445, 1997.
+
+
+

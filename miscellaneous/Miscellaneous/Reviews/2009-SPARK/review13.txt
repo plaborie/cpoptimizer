@@ -1,0 +1,199 @@
+=============================================================================
+SPARK'09
+
+ICAPS'09 Scheduling and Planning Applications workshop
+http://decsai.ugr.es/~lcv/SPARK/09/index.htm
+
+**please return reviews by Thursday 20 July at the latest to L.Castillo@decsai.ugr.es
+
+Paper ID: 13
+
+Paper title: Planning & Scheduling of Crude Oil Distribution in a Petroleum Plant
+
+Paper author(s): Tiago Stegun Vaquero, Fernando Sette, Jose Reinaldo Silva and J. Christopher Beck
+
+Committee member: Philippe Laborie
+
+Additional reviewer:
+
+
+
+-----------------------------------------------------------------------------
+
+1 - What is your overall judgement of this paper?
+
+
+
+[ ]  I will champion this paper for acceptance
+
+[X]  I would accept this paper, but I will not strongly advocate it
+
+[ ]  I would reject this paper, but I will not fight strongly against it
+
+[ ]  I will argue to reject this paper
+
+
+
+2 - What is your overall expertise concerning the subject areas?
+
+[X]  I am an expert
+
+[ ]  I am knowledgeable in the area, though not an expert
+
+[ ]  I am not an expert; my evaluation is that of an informed outsider
+
+
+
+3 - What are the main contributions of this paper (check all that apply)?
+
+[ ]  Research/theoretical
+
+[X]  Experience/practice
+
+[ ]  Position/opinion
+
+
+
+4 - How do you rate the paper in the following aspects?
+
+
+Relevance:                 weak [ ]  fair [ ]  strong [X]
+
+Originality:               weak [ ]  fair [X]  strong [ ]
+
+Clarity and presentation:  weak [ ]  fair [X]  strong [ ]
+
+Technical strength:        weak [ ]  fair [X]  strong [ ]  N/A [ ]
+
+
+
+5 - What presentation format do you suggest?
+
+
+[ ]  Full plenary presentation
+
+[X]  Brief plenary presentation
+
+[ ]  Poster/demo session
+
+[ ]  None
+
+
+-----------------------------------------------------------------------------
+
+PUBLIC COMMENTS AND QUESTIONS
+(will be sent to authors and distributed amongst attendees)
+
+The proposed model uses an object-oriented representation with a
+description of the possible evolution of state variables over
+time. This seems to be quite close to the approach used in time-line
+based modeling frameworks such as OMPS. How does it compare?
+
+
+-----------------------------------------------------------------------------
+
+GENERAL COMMENTS
+(will be sent to authors)
+
+The topic of the paper is a very complex planning and scheduling
+application in the context of crude-oil distribution. Research on this
+type of problem is quite active and the problem is known to be a good
+challenge for the different optimization approaches and their
+hybridization, see for instance [1].
+
+[1] Mouret, S., Grossmann, I., and Pestiaux, P. "Tightening the Linear
+Relaxation of a Mixed Integer Nonlinear Program Using Constraint
+Programming". Proc. CP-AI-OR'09. 2009.
+
+The paper presents a very interesting knowledge engineering approach
+for the modelization of the problem. The model uses an object-oriented
+representation with a description of the possible evolution of state
+variables over time. From this perspective, a comparison with
+time-line based modeling frameworks such as OMPS [2] would be
+informative.
+
+[2] Cesta, A., Fratini, S., and Pecora, F. "Planning with
+Multiple-Components in OMPS". IEA/AIE 2008, Lecture Notes in
+Artificial Intelligence (LNAI), 2008
+
+If the modeling aspect is interesting and, as far as I know, quite
+original (I think it is the central point of the paper), the part on
+problem resolution is weaker. It is advocated that current MILP and
+MINLP methods do not satisfactorily solve the problem, which is true,
+but the planning approach described here seems to over simplify it due
+to the limitations of current planners (no continuous variables,
+limited management of time). For instance, one important aspect of the
+problem that is hard for MILP (and justify the use of MINLP) is the
+non-linear nature of oil mixing. In the paper, it is not described
+how, in the proposed model, different oils can be mixed and what is
+the impact on quality. Another example is the minimization of total
+time (and, more generally, the maximization of the oil flaw) that is
+approximated by a minimization of the number of temporized actions.
+
+The problem statement is sometimes unclear:
+
+- Tank requirements: can a given tank be loaded several times before
+it is unloaded. In this case, when is the settling period initiated?
+At the last moment it was loaded?
+
+- Pipeline requirements: it is said that pipelines can transport
+simultaneously more than one crude oil type but, later on, that a
+pipeline must not be used to unload distinct tanks
+simultaneously. Could you clarify? How are oil interfaces defined? A
+more formal definition would help.
+
+- The objective 2 (value of oil sent: low or high quality) is not
+clear. It is said that there is a cost related with sending low
+quality oil to the refineries. This notion of quality seem to be
+related with the mixing of oil but it is not clear how.
+
+In the experimental section, you mention that MIPS-XXL produced
+invalid sequences of actions. Why? Is it because of a bug in the
+planner or because the model given to the planner is not correct?
+
+The charts on figure 11 and 16 depict some continuous variables
+whereas it is explicitly said that the model does not handle them. Is
+it just to have a more realistic display?
+
+In the experimental section and in the conclusion, it is mentioned
+that the solution has shown to be efficient on non-considered cost
+functions (e.g docking related costs). If those costs were not
+modeled, I guess it cannot be related to a merit of the approach
+itself and it is probably due to the interaction with other (modeled)
+costs. For instance here, one can expect that minimizing the total
+time of the plan will implicitly try to finishing to unload the
+tankers as soon as possible thus helping minimizing the docking
+related costs.
+
+Most of the figures are not readable. This should be improved for the
+final version.
+
+Some typos:
+
+p1, col1: "researches and experts": researchers?
+
+p1, col2: "the modeling process, performed the KE tool": with/by the KE tool ?
+
+p5, col1: "In this application the planners must selected based on":
+          are/were selected?
+
+p5, col2: "The available tanks are available to receive the crude oil"
+
+p6, col1: "XY chats": charts
+-----------------------------------------------------------------------------
+
+CONFIDENTIAL COMMENTS
+(for committee only)
+
+
+Do you think that this paper may represent a seed for a journal paper?
+
+YES [ ]    NO [X]
+
+Additional Comments:
+
+
+
+
+
+=============================================================================

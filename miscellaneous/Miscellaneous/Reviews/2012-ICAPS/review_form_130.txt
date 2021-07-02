@@ -1,0 +1,130 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines beginning with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines beginning with *** are used by EasyChair. Do not
+---     remove or modify these lines or the review will become
+---     unusable and will be rejected by EasyChair
+--------------------------------------------------------------
+*** REVIEW FORM ID: 899274::442579
+*** SUBMISSION NUMBER: 130
+*** TITLE: GIVP: A New Algorithm For Solving The Unrelated Parallel Machine Scheduling Problem With Sequence Dependent Setup Times
+*** AUTHORS: (anonymous)
+--- CATEGORY: full technical paper
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper proposes a meta-heuristic based on Local Search and Path Relinking for the 
+Unrelated Parallel Machine Scheduling Problem With Sequence Dependent Setup Times. 
+
+The problem can be considered as a variant of Vehicle Routing Problem (VRP) with 
+vehicles=machines and visits=jobs. The difference with classical VRP is that duration of 
+visits and travel times depend on the vehicle (but those are classical extensions of VRP) 
+and that the objective is makespan rather than travel time minimization. 
+
+Most of what is described in the paper is classically used in meta-heuristics for VRPs:
+- local search with moves like relocation of visits in vehicle routes which are extensively 
+used in the VRP literature. The incremental computation of cost as described in the paper 
+is one of the foundation of the effectiveness of quick move evaluation in VRP local search. 
+I think that other neihborhoods like 2-opt or cross-exchange that exhange longer part of 
+the routes would also make sense in the current scheduling problem.
+- variable neighborhood search is successful for this type of problem because the different 
+nature of neighborhoods increase the connectivity of the search space. See Hansen2003 for a 
+review of these techniques in the context of VRP.
+- path relinking is also quite usual in this context. See for instance Ho2006.
+
+So it is not really surprising that the proposed meta-heuristics works well on this type of 
+problem. I think it would be necessary to link the scheduling problem studied in this paper 
+and the proposed approach to the work on VRPs. 
+
+Some parts of the paper are very difficult to understand because the formulation is not 
+clear. This is especially true for the section "Initial Solution". It is mentioned there 
+that the jobs are sorted in "increasing order of processing times": what does this means 
+given that a job is associated with several processing times (one per machine)? The next 
+sentence reads "For other jobs": which ones? The procedure for building an initial solution 
+seems quite simple but the description is really not clear.
+
+@INBOOK{Hansen2003,
+  chapter = {Variable Neighborhood Search},
+  pages = {145-184},
+  title = {Handbook of metaheuristics},
+  publisher = {Fred Glover, Gary A. Kochenberger},
+  year = {2003},
+  editor = {Springer},
+  author = {Pierre Hansen and Nenad Mladenovic}
+}
+
+@ARTICLE{Ho2006,
+  author = {Sin C. Ho and Michel Gendreau},
+  title = {Path relinking for the vehicle routing problem},
+  journal = {Journal of Heuristics},
+  year = {2006},
+  volume = {12},
+  pages = {55-72}
+}
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- subreviewer different from the PC member in charge, add
+--- information about the subreviewer in the form below. Do not
+--- modify the lines beginning with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+-1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** I WANT TO RECOMMEND THIS PAPER FOR THE BEST PAPER AWARD,: from 1 (lowest) to 2 (highest)
+
+---  2 (yes)
+1 (no)
+
+*** I WANT TO RECOMMEND THIS PAPER FOR THE BEST STUDENT PAPER AWARD (IF APPLICABLE): from 1 (lowest) to 2 (highest)
+
+---  2 (yes)
+1 (no)
+
+*** END
+--------------------------------------------------------------

@@ -1,0 +1,113 @@
+***************************************************************
+
+AIPS-2002 Workshop 
+on On-Line Planning and Scheduling
+
+Review Form
+
+To be returned to verfaillie@cert.fr
+by Friday, March 8, 2002
+
+***************************************************************
+
+Title: A new method for dynamic scheduling problems using tabu search
+
+Authors: A. Madureira, C. Ramos, S. do Carmo Silva
+
+***************************************************************
+This section of the review will be sent to the authors.
+
+1. Merits of the paper:
+
+     Relevance with regard to the workshop topics: (mark one box)
+     [ ]Very relevant  [ ]Moderately relevant  [X]Not relevant
+
+     Significance:
+     [ ]Very significant  [ ]Moderately significant  [X]Not significant
+
+     Originality:
+     [ ]Very original  [X]Moderately original  [ ]Not original
+
+     Technical soundness:
+     [X]Sound  [ ]Minor errors  [ ]Not sound
+
+     Quality of the presentation:
+     [ ]High  [ ]Medium  [X]Low 
+
+2. Recommendation:
+
+     Accept[ ]  Undecided[ ]  Reject[X]
+
+3. Nature of the presentation you recommend:
+
+     Short presentation (10mn)[ ]  Long presentation (30mn)[ ]
+
+4. Comments, explanations, and advice to the authors:
+
+The main reason for rejecting this paper is that it is not relevant to
+on-line scheduling.  The paper goes into detail about a tabu search
+mechanism for scheduling for 6 pages and then on one page talks about
+on-line scheduling without providing new information: simply that a
+new static problem can be defined and the previous framework can be
+used to solve it.  Furthermore, it is not clear that the on-line
+scheduling is the same framework as the static framework: in the
+on-line part, the authors suddenly begin talking about chromosomes and
+genes as if the solution technique is a genetic algorithm. No mention
+(much less a definition) of GAs, chromosomes, or genes are given.
+
+To comment on the framework, I have strong doubts as to the quality of
+the scheduling solutions that it would produce. It is based on
+decomposition to single machine problems, independent tabu search on
+the single machine problems, and then a very straightforward
+"coordination" mechanism that combines the individual machine
+schedules. I am very skeptical about this approach and would need to
+see some strong empirical evidence that it is able to solve problems
+with any degree of performance.  I strongly believe that existing,
+simple approaches such as tabu over the whole problem (without
+decomposition), constraint programming, and even simple dispatch rules
+(shortest processing time first) would result in better scheduling.
+Of course, I could be very wrong, so I encourage the authors to take
+an empirical approach and demonstrate the strengths of their
+framework.
+
+Minor comments:
+
+There are a number of English mistakes and typographical errors:
+"unfeasible" -> "infeasible", "addings" -> "additions"
+
+p1: "due to their dynamic nature, real scheduling problems have an
+additional complexity in relation to static ones".  Is this a
+mathematical use of the word "complexity"? It seems to me that the
+authors may be claiming that dynamic problems have a higher
+computational complexity that static ones. If so, it should be
+justified. If not, perhaps, "real scheduling problems are more
+complicated than static ones" is a better phrasing.
+
+p3: What is "RNDLS"? It is not defined.
+
+p3: "50 e 60 jobs" 
+
+p4: "MetaHeuristics such as ... Neural Networks". I don't believe that
+neural nets are commonly considered metaheuristics.
+
+p4: It seems to indicate that the tabu list length is size 2. Is this
+true? There are only two moves on the tabu list? This is a very short
+list from the perspective of most tabu search algorithms for
+scheduling. 10 or 15 is much more common. Why so small?
+
+
+***************************************************************
+This section of the review is for the program committee only.
+
+5.  Additional comments:
+
+This is not very strong work and is not relevant to on-line
+scheduling.
+
+6. Your confidence in your judgment:
+     [X]High  [ ]Medium  [ ]Low 
+
+9.  Your name: Chris Beck
+
+***************************************************************
+

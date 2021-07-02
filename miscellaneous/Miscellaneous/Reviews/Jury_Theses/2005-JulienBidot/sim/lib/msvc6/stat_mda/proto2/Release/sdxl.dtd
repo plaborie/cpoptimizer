@@ -1,0 +1,72 @@
+<!--
+    This is the DTD for ILOG JViews Schedule Data Exchange Language.
+
+    Version 5.5
+-->
+
+<!-- ISO date format -->
+<!ENTITY % Datetime "CDATA">
+
+<!ENTITY % Text "CDATA">
+
+<!-- Must be an activity ID in the document -->
+<!ENTITY % ActivityID "CDATA">
+
+<!-- Must be an resource ID in the document -->
+<!ENTITY % ResourceID "CDATA">
+
+<!ENTITY % ConstraintType "(Start-Start|Start-End|End-Start|End-End)">
+
+<!ELEMENT activity (activity|property)*>
+<!ATTLIST activity
+	id    ID         #REQUIRED
+	name  %Text;     #REQUIRED
+	start %Datetime; #REQUIRED
+	end   %Datetime; #REQUIRED 
+	info  %Text;     #IMPLIED >
+
+<!ELEMENT activities (activity)+>
+<!ATTLIST activities
+	dateFormat %Text; #IMPLIED >
+
+<!ELEMENT resource (resource|property)*>
+<!ATTLIST resource
+	id       ID     #REQUIRED
+	name     %Text; #REQUIRED
+	quantity %Text; #IMPLIED 
+	info     %Text; #IMPLIED >
+
+<!ELEMENT resources (resource)+>
+<!ATTLIST resources>
+
+<!ELEMENT reservation (property)*>
+<!ATTLIST reservation
+	activity %ActivityID; #REQUIRED
+	resource %ResourceID; #REQUIRED 
+	info     %Text;       #IMPLIED >
+
+<!ELEMENT reservations (reservation)+>
+<!ATTLIST reservations >
+
+<!ELEMENT constraint (property)*>
+<!ATTLIST constraint
+	from %ActivityID;     #REQUIRED
+	to   %ActivityID;     #REQUIRED 
+	type %ConstraintType; #REQUIRED 
+	info %Text;           #IMPLIED >
+
+<!ELEMENT constraints (constraint)+>
+<!ATTLIST constraints >
+
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+
+<!ELEMENT schedule (title?, desc?, resources?, activities?,
+    constraints?, reservations?) >
+<!ATTLIST schedule 
+        version %Text; #REQUIRED >
+
+<!ELEMENT property (#PCDATA)>
+<!ATTLIST property
+	name       %Text;     #REQUIRED 
+        javaClass  %Text;     #IMPLIED >

@@ -1,0 +1,57 @@
+Significance. Does the paper contribute a major breakthrough or an incremental advance? (Text is optional.)
+ 3: substantial contribution or strong impact
+*2: modest contribution or average impact
+ 1: minimal contribution or weak impact
+
+Soundness. Is the technical development accurate? (Text is optional.)
+ 3: correct
+*2: minor inconsistencies or small fixable errors
+ 1: major errors
+ 
+Scholarship. Is related work cited and discussed? (Text is optional.)
+ 3: excellent coverage of related work
+*2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+Clarity. Is the paper clearly organized and clearly written? (Text is optional.)
+ 3: well organized and well written
+*2: mostly readable with some room for improvement
+ 1: hard to follow
+ 
+Reproducibility. Can the work be reproduced or verified based on the paper and any supporting information or data? (Text is optional.)
+ 5: code and domains (whichever apply) are already publicly available
+ 4: authors promise to release code and domains (whichever apply)
+ 3: authors describe the implementation and domains in sufficient detail
+*2: some details missing but still appears to be replicable with some effort
+ 1: difficult to reproduce because of missing detail
+ 
+
+Overall evaluation.* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+ 1: weak accept
+ 0: borderline paper
+*-1: weak reject
+ -2: reject
+ -3: strong reject
+
+Review.
+
+The article is about solving large instances of the job-shop scheduling problem using some combination of different dispatching rules.
+
+First of all, I think it is a very good idea to look at large job-shop scheduling problems. Indeed, the classical instances, created several decades ago do not reflect the current size of scheduling problems addressed nowadays in the industry. So I really encourage the authors working in this direction.
+
+This being said, the contribution of the present paper is weak:
+
+- as mentioned by the authors, the job-shop problem is a big simplification of the actual scheduling problem, in particular in the mentioned semi-conductor industry where there are many parallel machines, where machines are complex (setup-times, parallel batches) and processes are also complex (maximum delays between operations), complex objective (weighted tardiness with some hot lots, etc). The idea that the real problem (its decision version) being NP-Complete like the job-shop problem, it is sufficient to work only on the job-shop restriction of the problem, is of course very naive.
+
+- the approach is not very involved and just consists in iteratively trying a randomly weighted version of some classical dispatching rules
+
+- there is no analysis of why the proposed approach works well for certain instances of the problem (for instance, it is able to find the optimal solution of 600000 for one long-job instance with 1000 machines and 100000 operations but produces a solution with a gap larger than 50% for another instance of the same problem, generated in similar conditions). It would be interesting to see which dispatching rules are the most important to produce the best solutions, if some rules can be eliminated without worsening the solution, if the generation of the instances (see below) do not introduce some bias that artificially helps some particular dispatching rules, etc.
+
+- the generation of the instances would deserve a more detailed (and clearer) description, maybe with an illustration on an example. It seems that the instances are generated in such a way that there exist an optimal solution without idle time on the machines. I'm wondering if this type of generation does not introduce some bias that can be exploited by the resolution approaches. It is also not clear if the way the precedence relations are generated does not also introduce some bias. 
+
+
+Confidential remarks for the program committee:	
+
+

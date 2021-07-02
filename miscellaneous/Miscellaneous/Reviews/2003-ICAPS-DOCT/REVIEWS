@@ -1,0 +1,132 @@
+I have rated the papers according to a scale [1 - 10] ([1-5]: reject,
+[6-10]: accept) which at least allows to compare the four papers I
+reviewed.
+
+-------------------------------------------------------------------------
+Probabilistic Planning with Constraint Satisfaction techniques
+Nathanael Hyafil
+
+The idea of using CSPs for (Conformant) Probabilistic Planning is
+interesting and, as far as I know, original. The author claims that
+the search tree of the CSP allows for a parsimonious exploration of
+the plan space (non-reachable states are pruned) which may
+counterbalance the combinatorial explosion of the number of explored
+possible plans.
+
+In the section "The CSP variables", I was first surprised to see that
+random variables are represented as (decision) variables in the
+CSP. Modeling random variables as decision variables only makes sense
+for checking reachability (that is, there exists a value of the random
+variables such that ...). This is, of course, the case in the paper,
+but it should be made more clear in this section.
+
+The section about the CfPplan algorithm could be improved by giving
+some more detail about the caching mechanisms and how belief states are
+represented in the CSP framework.
+
+The comparison with POMDPs seems to show that CfPplan works better
+only for small plans which is not really satisfying, especially if we
+consider the fact that POMDP is a very generic tool whereas CfPplan if
+dedicated to conformant planning problems. So I think that the
+advantages of the CfPplan approach should be more explicitely
+described.
+
+A very similar paper seems to have been accepted at the technical
+program, so if this paper is accepted at the doctoral consortium, I
+would suggest that the presentation at the technical program is enough
+(unless the paper accepted at the technical program is really
+different).
+
+Globally, I would recommand the acceptance of this work at the
+doctoral consortium.
+
+Rating: 6
+
+Possible mentors :
+- Sylvie Thiébaux (Sylvie.Thiebaux@anu.edu.au)
+- Enrico Giunchiglia (enrico@dist.unige.it)
+- Alessandro Cimatti (cimatti@irst.itc.it)
+
+
+-------------------------------------------------------------------------
+Simple Temporal Problems with Preferences and Uncertainty
+Kristen Brent Venable and Neil Yorke-Smith
+
+The authors combine two existing extensions of Simple Temporal
+Problems (namely: STP with Preferences and STP with Uncertainties)
+into a framework that handle both preferences and uncertainty.  The
+resulting formalism is very expressive and its computational
+complexity is shown to be similar to the one of the individual
+extensions (at least as far as strong and weak controllability is
+concerned) that is, there is not an explosion of complexity due to
+combining the two features. Extending this work to dynamic
+controllability is part of the future work and would be of high
+practical interest.  The study is really promising and I think this
+work completly deserves to be presented at the doctoral consortium.
+
+Rating: 8
+
+Possible mentors :
+- Thierry Vidal (thierry@enit.fr)
+- Paul Morris (pmorris@ptolemy.arc.nasa.gov)
+
+-------------------------------------------------------------------------
+How to planning in presence of uncertain resources
+Valentina Poggioni
+
+The paper describes the "fuzzification" of DPPlan with respect to
+resource conditions and effects.
+
+Although the proposed model may be of interest (modeling each resource
+quantity or interval by a trapezoidal fuzzy interval), the
+corresponding extension of the notions of solution plans, action
+executability and action simultaneity are fairly straightforward. I
+have the feeling that most of the existing planners that handle
+resources could easily and naturally be extended toward fuzzy
+intervals (at least the ones based on UCPOP, Graphplan, HTN and
+heuristic) as long as their "deterministic" version can be expressed
+in terms of operators = (assignement), + and inclusion over classical
+sets which only need to be replaced by the corresponding operators on
+fuzzy sets.
+
+In Proposition 1: I could not find where the variables alpha_j_i are
+defined
+
+
+Some typos:
+
+Title of the paper: "How to planning..." <-> "How to plan..." ??
+Introduction: ". The types..."
+After Definition 1: "and in (Rintanen&Jungholt 1999) as..." <-> "has"
+Same page, Col2: "A case not yet covered ... say A1 whose assigns..." <-> "who assigns"
+References: Chien, S.e.
+References: In Zadeh's article title: "Fuzy" <-> "Fuzzy"
+
+Rating: 5
+
+Possible mentors:
+- Jana Koehler (koe@zurich.ibm.com)
+- Jörg Hoffmann (hoffmann@informatik.uni-freiburg.de)
+
+
+-------------------------------------------------------------------------
+Using a Resource-Based Framework to Integrate Planning and Replanning
+Roman van der Krogt
+
+The form of the paper is very loose: the main ideas being that both
+planning and replanning can be seen as the transformation of a
+pre-existing plan and that under some intuitive conditions on the
+completeness of the plan library, addition and deletion operators on
+plans are sufficient to ensure the completeness of the search for a
+solution. The problem is that the discussion is at such a general and
+informal level that it is hard to assess the real contribution of this
+paper. It is a pity because, as suggested by the experiments to
+implement existing planning algorithms on top of the proposed
+architecture, there seem to be some solid work under this paper.
+
+Rating: 3
+
+Possible mentors:
+- Manuela Veloso (veloso@cs.cmu.edu)
+- Kristian Hammond (hammond@infolab.nwu.edu)
+

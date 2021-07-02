@@ -1,0 +1,151 @@
+--------------------------------------------------------------
+*** SUBMISSION NUMBER: 138
+*** TITLE: Request-Driven Scheduling for NASA's Deep Space Network
+*** AUTHORS: (anonymous)
+--- CATEGORY:
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+Relevance -  Is the work relevant to the call for papers?
+
+The paper presents a very interesting application for NASA's Deep
+Space Network scheduling. As a description of a scheduling
+application, this work is relevant to the call for papers. But because
+the paper covers all the aspects of the application (modeling language
+based on requests, description of the complex objective function,
+scheduling algorithms, application architecture, user interface) it is
+really missing important technical details on the underlying automated
+planning and scheduling technologies that would make it interesting
+for the ICAPS general track. For instance, the request language and
+the link between requests and the generated activities should be more
+detailed and formalized. Same thing for the scheduling algorithms (the
+paper only mentions that they are based on some relaxations and repair
+methods). There probably is material for a couple of more focused
+technical papers that would better fit the ICAPS general track. In the
+current format, I encourage the authors to submit the paper to the
+ICAPS workshop on "Scheduling and Planning Applications woRKshop"
+(SPARK) that would be more adequate for the current version of the
+paper.
+
+Significance - To what extent are the ideas and contributions of the  
+paper novel and important to planning and scheduling theory or practice?
+
+The main contribution of the paper, besides the presentation of the
+application itself is the shift from activity-oriented scheduling to a
+request-based approach. This shift is significant and can be
+considered as a move from pure scheduling to a mix of planning and
+scheduling as the activities need to be generated from the
+requests. Unfortunately, there is too few technical details and
+formalization in the paper to really understand how activities are
+generated.
+
+
+Technical quality - Is the work technically sound? Are the analyses,  
+algorithms, theorems and proofs correct? Are the paper's claims argued/ 
+supported convincingly? Is the empirical evaluation convincing?
+
+There is not enough technical details in the paper to assess the
+technical soundness of the approach. Nevertheless, the switch from
+activity-oriented to a request-driven approach is well motivated.
+
+Quality of presentation - Is the paper clearly written? Is it well- 
+organized? Is the motivation for the research or the innovation of the  
+application well explained?
+
+The paper is clearly written and the work is well motivated. The
+description of the algorithms is so high-level that I think the 3
+algorithms on page 5 do not bring additional information; they could
+be omitted and that would leave some space for aditional details.
+
+Suitability to AIJ - Should an extended version of this paper be  
+solicited for submission to Artificial Intelligence Journal?
+
+I don't think, in the current state of the work this paper can be
+extended to an AIJ submission. More work should probably be necessary
+to formalize the request language and the description of the
+scheduling algorithms.
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, XX the line with your
+--- evaluation or confidence.
+*** OVERALL EVALUATION:
+
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline)
+---  -1 (weak reject)
+---  -2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO PLANNING & SCHEDULING: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+---  4 (high)
+---  3 (medium)
+---  2 (low)
+---  1 (very low)
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+---  4 (good enough)
+---  3 (borderline)
+---  2 (low)
+---  1 (very low)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+---  3 (appears to be sound)
+---  2 (not fully satisfactory)
+---  1 (unsatisfactory)
+
+*** QUALITY OF PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+---  3 (fair)
+---  2 (poor)
+---  1 (very poor)
+
+*** BEST PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+---  1 (No)
+
+*** SUITABILITY TO AIJ: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+---  1 (No)
+
+--------------------------------------------------------------

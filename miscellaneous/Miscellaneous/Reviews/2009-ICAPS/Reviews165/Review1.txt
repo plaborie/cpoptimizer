@@ -1,0 +1,157 @@
+--------------------------------------------------------------
+*** SUBMISSION NUMBER:	165
+*** TITLE:     		Solving Resource-Constrained Project 
+                        Scheduling Problems with Time-Windows 
+                        Using Iterative Improvement Algorithms
+*** AUTHORS:            (anonymous) 
+--- CATEGORY:           Short Paper
+*** PC MEMBER:		Andrew Davenport
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+Relevance -  Is the work relevant to the call for papers?
+
+Yes - highly relevant
+
+Significance - To what extent are the ideas and contributions of the  
+paper novel and important to planning and scheduling theory or practice?
+
+The paper presents results of an experimental study of an existing
+algorithm, Iterative Flattening Search (IFS) , on the Resource
+Constrained Project Scheduling Problems (RCPSP) with maximal time
+lags(RCPSP/max). A number of previous papers have discussed the IFS
+algorithm on the pure RCPSP (without maximum time lags). Since the
+algorithm has been modified very little (if at all), the paper
+presents an incremental contribution.  It is interesting to see that
+IFS can work well on problems where finding even a feasible solution
+is not always trivial.
+
+The experimental results look interesting and significant. Some of the
+PSPLIB problems used in the study can be quite difficult to solve
+using pure CP methods.
+
+Technical quality - Is the work technically sound? Are the analyses,  
+algorithms, theorems and proofs correct? Are the paper's claims argued/ 
+supported convincingly? Is the empirical evaluation convincing?
+
+Some details are missing from the paper, and there is not sufficient
+information given to reproduce the exact IFS algorithm that is
+used. 
+
+It is stated that in the flattening phase of IFS precedence
+constraints are posted between activities in a minimal conflict
+set. However there is no reference to or description of how these
+constraints are identified (there are at least 2 ways of doing this in
+the research literature). It is also stated that resource constraint
+propagation is used in the flattening phase. I would like to know
+which resource constraint filtering algorithms are being used.
+
+With maximal lags I believe the IFS algorithm can reach states in the
+search which are infeasible i.e. no more precedence constraints can be
+posted to resolve a minimal critical set.  It is not clear what the
+IFS algorithm does in this case - is the search restarted from the
+beginning or is the usual IFS relaxation step applied?
+
+It is not stated how the initial solution is generated. Since the
+authors state that the feasibility version of the RCPSP/max problem is
+is NP-hard (shouldn't this be NP-complete), it would be good to know
+this.
+
+Quality of presentation - Is the paper clearly written? Is it well-
+organized? Is the motivation for the research or the innovation of the
+application well explained?
+
+The paper is quite clearly written, although missing some details.
+Given that this is a short paper submission this may be OK, but I
+would prefer to see more detail on the algorithmic approach used.
+
+There are some minor typos.
+
+Suitability to AIJ - Should an extended version of this paper be  
+solicited for submission to Artificial Intelligence Journal?
+
+No.
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, XX the line with your
+--- evaluation or confidence.
+*** OVERALL EVALUATION:
+
+---  2 (accept)
+     1 (weak accept)
+---  0 (borderline)
+---  -1 (weak reject)
+---  -2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+     3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO PLANNING & SCHEDULING: from 1 (lowest) to 5 (highest)
+
+     5 (very high)
+---  4 (high)
+---  3 (medium)
+---  2 (low)
+---  1 (very low)
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+     4 (good enough)
+---  3 (borderline)
+---  2 (low)
+---  1 (very low)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+     3 (appears to be sound)
+---  2 (not fully satisfactory)
+---  1 (unsatisfactory)
+
+*** QUALITY OF PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+     3 (fair)
+---  2 (poor)
+---  1 (very poor)
+
+*** BEST PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+     1 (No)
+
+*** SUITABILITY TO AIJ: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+     1 (No)
+
+--------------------------------------------------------------

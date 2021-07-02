@@ -1,0 +1,3 @@
+
+CC = cxx -YPOSIX
+LD = cxx -YPOSIX

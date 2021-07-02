@@ -1,0 +1,148 @@
+Title:	Robust cyclic flow shop scheduling problem in an uncertain environment
+Authors:	(anonymous)
+PC member:	Philippe Laborie
+
+Evaluation
+Significance / Importance.
+* Does the paper contribute a major breakthrough or an incremental advance? If the paper describes an application, is the application important?
+ 3: substantial contribution or strong impact
+ 2: modest contribution or average impact
+>1: minimal contribution or weak impact
+
+Soundness.
+* Is the technical development accurate? Does the paper present convincing evidence that supports their claims?
+ 3: correct
+>2: minor inconsistencies or small fixable errors
+ 1: major errors
+
+Novelty.
+* Is the research approach described novel? For an application paper, is the application novel?
+ 3: novel - approach and/or application are new and only a few other similar approaches and/or applications exist
+ 2: moderate - approach and/or application have been developed before, but significant improvements are presented
+>1: marginal - only parts of the application and/or approach are new
+
+Scholarship.
+* Is related work cited and discussed?
+ 3: excellent coverage of related work
+>2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+Clarity.
+* Is the paper clearly organized and clearly written? Does the submission make explicit claims about the capabilities or behavior of the approach?
+ 3: well organized and well written
+>2: mostly readable with some room for improvement
+ 1: hard to follow
+
+Technology Readiness Level.
+* How would you characterize the Technology Readiness Level of the contribution
+ 9: Actual system proven through successful mission operations
+ 8: Actual system completed and qualified through test and demonstration
+ 7: System prototype demonstration in an operational environment
+ 6: System/subsystem model or prototype demonstration in a relevant environment
+ 5: Component and/or breadboard validation in relevant environment
+ 4: Component and/or breadboard validation in laboratory environment
+>3: Analytical and experimental critical function and/or characteristic proof of concept
+ 2: Technology concept and/or application formulated
+ 1: Basic principles observed and reported
+ 0: N/A - not applicable
+
+Reproducibility.
+* Can the work be reproduced or verified based on the paper and any supporting information or data?
+ 5: code and data (whichever apply) are already publicly available
+ 4: authors promise to release code and data (whichever apply)
+ 3: authors describe the implementation and data in sufficient detail
+ 2: some details missing but still appears to be replicable with some effort
+>1: difficult to reproduce because of missing detail
+ 0: N/A - nothing to reproduce
+
+Suitability for Special Track.
+* Is the paper suitable to the track it was submitted to
+ 8: Special Track on Planning and Learning - Almost all focus is on learning
+ 7: Special Track on Planning and Learning - Almost all focus is on planning
+ 6: Special Track on Planning and Learning - Good balance between planning and learning
+ 5: Special Track on Robotics - Almost all focus is on robotics
+ 4: Special Track on Robotics - Almost all focus is on planning
+ 3: Special Track on Robotics - Good balance between planning and robotics
+ 2: Novel Applications - Planning & Scheduling are not Important for the Application
+ 1: Novel Applications - Planning & Scheduling are Important for the Application
+>0: N/A - submitted to the main track
+
+Overall evaluation.
+* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+ 1: weak accept
+ 0: borderline paper
+ -1: weak reject
+>-2: reject
+ -3: strong reject
+
+Review.* Detailed review. (Required)
+
+The paper studies some stochastic versions of the classical flow-shop scheduling problem. Two objective function are considered: the average weighted number of tardy jobs and the average total weighted tardiness. Two sources of uncertainty are considered: uncertain operation processing time and uncertain job due dates. 
+
+Given a permutation of the jobs on the machine (that is, a feasible solution to the problem), the paper uses some known results to evaluate the objective function (Theorems 1 and 2 from (Bo˙zejko, Rajba, and Wodecki 2017)). This evaluation is used to adapt an existing tabu search algorithm (Bo˙zejko,
+Grabowski, and Wodecki 2006). The actual adaptation of the method is not really described in the present paper. The method should, at minimum, be sketched and it should be explained how the evaluation function is injected in the method.
+
+An experimental evaluation is provided but many important details are missing. You say "Then for all examples we have generated 100 instances of disturbed data (in total 12000 instances) and the description of the method for disturbed data generation can be found in (Bo˙zejko, Rajba, and Wodecki 2018).". I think that these details should be described in the present paper. In particular you need to explain if you compute the parameters of the distributions of the random variables (mean, standard deviation) from the disturbed data (in these case, the distributions are some approximation of the actual uncertainties), or if you generate the disturbed data from these distributions.
+
+In summary, it seems to me the paper mostly uses some known results on the computation of the objective function of the non-deterministic problem (Theorems 1 and 2) and injects these value as the evaluation function of an already known tabu search algorithm. So the contribution is very incremental and the experimental study is really not very detailed and only shows the (expected) fact that taking into account the actual stochastic criterion is better than using a deterministic version of the problem. 
+
+More detailed comments and typos:
+
+- Abstract: "We present a set [of?] properties"
+
+- Introduction: "For these kind of problems which be long to the NP-hard problem class a lot of effective approximation algorithms has been designed and solutions established by those algorithms are very often close to the optimal ones": Not only approximation algorithms, but also (meta-)heuristics and exact approaches ...
+
+- Introduction: "in Bartel and Billau (Bertel and Billaut 2004)": wrong spelling of the authors name
+
+- Introduction: "oraz[?] Ucar and Tasgetiren"
+
+- In section "Deterministic cyclic flowshop problem", machine setup times are introduced but not really described
+
+- In section "Problem in the uncertain environment", before equation 2: "what finally gives us the following criteria to be applied the the modified tabu search implementation:
+  * to be applied "to" the
+  * this is the first time you speak of a tabu search implementation (except in the abstract). I think you should mention the resolution approach earlier
+  
+- Subsection "Random processing times", first line of the equation : I think one should read \sum_{k=1}^i { p_{k,j} } rather than { p_{i,j}}
+
+- After "Theorem 1": "The formula obtained in Theorem 1 can be inserted into (3) and the comparison criteria can be applied to the modified tabu search implementation.": You should give more detailed about the insertion of this formula in the tabu search implementation. Same for Theorem 2.
+
+- After "Theorem 2": "The formula obtained in Theorem 1 can be inserted into ..." I suppose you mean Theorem 2 here.
+
+- In Computational experiments: "The base data come from (Ruiz and St¨utzle 2008) where we can [??] four instance data sets."
+
+- In Computational experiments: "(Fig. 4) we can observe something surprising." It would be informative to analyse and explain this surprise. Only observing this surprise is not really useful.
+
+
+Questions:
+----------
+
+Q1: Could you explain how the evaluation of the solution quality computed thaks to Theorems 1 and 2 is used in the existing tabu search algorithm ?
+
+Q2: Could you detail the experimental section and better explain how the parameters of the distributions of the random variables (mean, standard deviation) are related to the disturbed data ?
+
+
+Reviewer's confidence.
+* Reviewer's confidence
+ 4: (expert)
+>3: (high)
+ 2: (medium)
+ 1: (low)
+ 
+Suitable for a demo?.
+* Suitable for a demo?
+ 3: yes
+ 2: maybe
+>1: no
+ 
+Nominate for Best Paper Award?. 
+ yes
+
+Nominate for Best Student Paper Award (assuming it is eligible) ?. 
+ yes
+ 
+Confidential remarks for the program committee. 
+If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+

@@ -1,0 +1,45 @@
+Relevance to AI (is the paper appropriate for ECAI?)
+7
+
+Originality (does the work contain new ideas?)
+5
+
+Significance (will the results have any impact on the field?)
+5
+
+Technical Soundness
+6
+
+Presentation (is the paper readable and well-organized?)
+7
+
+Scholarship (is relevant literature cited and is the scientific context discussed?)
+7
+
+Reviewer Competence/Confidence
+6
+
+Overall Recommendation
+5
+
+
+Comments to author(s)
+
+The approach interesting but I find the added value quite small compared with reference [8]. Is it only the proof that H2 verifies the connectivity property? The property is important but quite intuitive as the approach boils down to 3 parallel "deterministic" problems.
+
+I think the fact the proposed 'maximum' operator between TFN is only an approximation should be better motivated. What do we really loose using such an approximation ?
+
+It seems to be possible to generalize the approach to more complex fuzzy numbers with more than 3 points. For instance would it make sense to use more general concave continuous piecewise linear function with null value at the two extremities of their definition domain ? As long as the sum and max operations can be defined as respectively the sum and max of the set of n points defining the function most of the ingredients of the approach could be valid (definition of critical arcs using n parallel disjunctive graphs, connectivity property, etc.).
+
+A few more detailed comments:
+
+- section 3, in job-shop problems one more often see the term "operation" than "task" to define the components of a job.
+
+- section 3.1: in the first paragraph, the notion of "task processing order" \sigma is never formally defined.
+
+- Figure 2: it would help to also have the earliest start values on the nodes as a triplet of integers.
+
+-p5: simmulated -> simulated
+
+Confidential comments to PC members
+

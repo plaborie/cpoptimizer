@@ -1,0 +1,66 @@
+Title: A Practical, Integer-Linear Programming Model for Delete-Free Planning
+Author(s): Tatsuya Imai, Alex Fukunaga
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject with resubmission encouraged
+[ ] Reject
+
+
+Comments and suggestions
+========================
+
+The article is about the use of Integer Linear Programming models (and their LP relaxations) in Planning, in particular for solving Delete-Free relaxations in Planning problems. 
+
+The bibliographical section reviews previous work on (1) the use of Delete-Free relaxations and (2) the use of Integer/Linear Programming in Planning. This section does a good job of describing the context of the article's contribution.
+
+The paper is well written and relatively easy to read. Its structure is logical and works by increments. It starts with the description of the basic version of the IP model for Delete-Free relaxation (section 3) followed by some improvements (section 4). A first experimental evaluation (section 5) compares these "exact" models together and against the state of the art on Delete-free planning problems. As these exact models are still too complex to solve when the Delete-Free planning is used as a heuristic in a general Planning problem, the LP relaxation of the proposed IP models is considered and its tightness is evaluated (section 6). Then it's time to compare both the IP and the LP relaxations as integrated into a cost-based planner (section 7). The main interest of working with a generic framework like IP or LP for this type of relaxations is that it is flexible enough to be complemented with various types of constraints, beside Delete-Free relaxations (as shown by recent work by other authors on this topic). Section 8 describes the integration of counting constraints in the relaxation. Finally, given the number of different relaxations proposed in the article, section 9 proposes a naive way to select the most promising heuristic at the root node of the resolution which turns out to be quite effective.
+
+The experiments clearly show that this type of IP/LP relaxations based on Delete-Free Planning has potentials and that, as mentioned in the conclusion, the integration of the approach with the framework of (Pommerening et al 2014) is very attractive.  
+
+
+Some more detailed comments
+----------------------------
+
+I think that you could recap, right in the first paragraph of the introduction that computing h^+ is NP-Complete. Currently it is first mentioned in section 2.2.
+
+You mention some problems that can be formulated as delete-free planning problems (in biology and in databases). Are there some instances available for these problems? Ideally, it would be useful to compare the different approaches on these problems in addition to the somewhat artificial problems extracted from the IPC instances by removing delete lists.
+
+In section 3, I think you could consider simplifying the model description by removing the redundant variables I(p). I understand you need them to ensure some "incrementality" of the model when solving the relaxation at each node but it is more a programming trick (very useful, I do not doubt) rather than something that is really important to understand the IP model.
+
+I think that in section 4.1, you should elaborate a little more the basic quadratic algorithm that could be used to compute all landmarks, in particular give a reference of the intuition behind the linear time algorithm for checking existence of a solution. In general, considering landmarks, you could add in the IP model binary constraints U(p)<=U(q) for all q in L(p). Why don't you add them? Because they are already subsumed by other constraints? Because you could have too many of them?
+
+On Table 5, it could be good to give the computation times for the different relaxations.
+
+In MIP solvers, a very successful technique to better exploit the LP relaxation is the notion of "dynamic cut", that is when the incumbent LP solution is fractional, add some constraint that "locally" invalidate this solution. Dynamic cuts can be problem dependent and I'm wondering if in the case of delete-free planning you could not come up with efficient cuts to tighten the relaxation (at least for the problems where the gap in Table 5 is still quite large). 
+
+
+Typos:
+------
+
+Section 4.4: "On a delete-free task T^+, [applying] some actions can be immediately applied ..."
+
+Section 5: "First, Table 1 shows the results ... and HST/CPLEX". Table 1 does not show the results of HST/CPLEX
+
+Section 7: second item: missing ^e: "the enhanced delete-free IP model IP^e(T^+)"
+
+Section 7: close to the end of the section, you mention a coverage of 706 for A^*/LP^e_tr(T^+) whereas it is 705 on Table 6.
+
+Section 7: just after the above: "until between 10^5 [and] 10^6 node evaluations, ..."
+
+Section 8.1: "..., we compare A^*/LP^e(T) with A^*/LP^e(T) and  A^*/LP^e_tr(T^+)", the second term should be A^*/LP^e(T^+) I guess
+
+Section 10: "The results of embedd<e>ing ..."
+
+Section 10: last but one paragraph: "We showed ... (i.e. ...)can": missing space before "can"
+
+
+Summary:
+--------
+
+The IP and LP models presented in the article are original and convincing. It is an important step before working on an integration with the other recent LP relaxations in planning. 
+

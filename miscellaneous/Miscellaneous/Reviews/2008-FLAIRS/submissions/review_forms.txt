@@ -1,0 +1,344 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 62819::27888
+*** SUBMISSION NUMBER: 131
+*** TITLE: Automated Web Service Composition Using Classical Represenation of Planning Domain
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper is barely readable because of the following problems:
+- there are plenty of typos (much too many for me to list them in this
+  review), please use a spell checker
+- references do not mention the source of the document (which journal,
+  conference proceedings, etc ?)
+- notations  are  inconsistent  (for instance  'mergepdf' is sometimes
+  called 'fusionpdf', fr2an/fr2en, set of predicates sometimes denoted
+  F, sometimes P, etc.)
+- sections are not numbered but  they are referred  to as if they were
+  numbered (see for instance in the end of the introduction)
+- some citations appear in a strange way (e.g. (Peer March 22 2005))
+- the paper is missing the appendix section whereas such a section is
+  mentioned in the paper
+
+The paper exceeds the size limit of 6 pages.
+
+The tree-search approach described  in the paper  is very naive. A key
+issue when  developping such a tree-search  approach is the heuristics
+that is used to chose which node to visit next.  Nothing is said about
+the heuristics that is used.  If one restricts to  the type of problem
+used as example,   the  planning problem   seems  to be  solvable   in
+polynomial time by finding a translation path from the original to the
+target language, a  formatting path from  the  original format to  the
+target format and a final merge.
+
+In the   empirical results sections,  it  is mentioned   that the tree
+search  approach with depth-first  strategy  outperforms the GraphPlan
+approach. It would  be interesting to  have more information about the
+benchmark.  Is    the  benchmark about   the  same  type   of  problem
+(translation, changing  format and merging  files) with different size
+or  is it also  about other types  of problems in   the context of web
+service composition ? Without any knowledge on the variety of problems
+in the benchmark,   it  is hard   to  draw relevant conclusions    for
+comparing algorithms. By the way, on Figure 2 and 3,  it is strange to
+use the same scale for the number of nodes and for the plan length as,
+in general,  if the problem  is difficult and  cannot be solved  in an
+almost greedy manner, the number of nodes will be much larger.
+
+The principal contribution of the paper is the  extension of the model
+of  actions to handle   the creation of  new  parameters (objects)  as
+effect of the  action. This seems  to be an  interesting idea. But  it
+would  require a  more  formal  description of   the  semantics and  a
+positioning  with  respect to the   state of the  art  in classical AI
+planning. 
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+-2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+2 (medium)
+
+*** RELEVANCE TO CONFERENCE/SPECIAL TRACK: from 1 (lowest) to 5 (highest)
+
+3 (Somewhat relevant)
+
+*** ORIGINALITY & SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+1 (Not original or significant)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+2 (Paper has significant issues to resolve)
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+2 (Barely readable - significant editing is required.)
+
+*** END
+--------------------------------------------------------------
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 62843::27888
+*** SUBMISSION NUMBER: 139
+*** TITLE: Combining Heuristic Search with Hierarchical Task-Network Planning: A Preliminary Report
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+---  -1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO CONFERENCE/SPECIAL TRACK: from 1 (lowest) to 5 (highest)
+
+---  1 (Not relevant)
+---  2 (Marginally relevant)
+---  3 (Somewhat relevant)
+---  4 (Mostly relevant)
+---  5 (Very relevant)
+
+*** ORIGINALITY & SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  1 (Not original or significant)
+---  2 (Slightly original and significant)
+---  3 (Somewhat original and significant)
+---  4 (Mostly original and significant)
+---  5 (Highly original and significant)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  1 (Paper has major flaws)
+---  2 (Paper has significant issues to resolve)
+---  3 (Paper has some non-trivial issues, but generally sound.)
+---  4 (Paper has only minor technical flaws, mostly sound.)
+---  5 (Paper has no technical issues of concern.)
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  1 (Unreadable.)
+---  2 (Barely readable - significant editing is required.)
+---  3 (Generally readable but some editing is required.)
+---  4 (Easy to read and understand with only minor changes needed.)
+---  5 (Very well written and understandable.)
+
+*** END
+--------------------------------------------------------------
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 62965::27888
+*** SUBMISSION NUMBER: 186
+*** TITLE: Spider Search: an Efficient and Non-Frontier-Based Real-Time Search Algorithm
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper describes the Boat/Torpedo problem and a way to solve it using a new real-time search method called Spider Search.
+
+
+A reference paper for LRTA should be added as this algorithm is thoroughly referred to in the paper.
+
+Some formulation are quite awkward, for instance when saying that "algorithms BFS, DFS and A* have some use [...] but are not practically usable when the search space grows big". Their limitation depends on the capacity to efficiently compute good heuristics that will prune (or not) a big part of the search space, not on the size of the search space itself. This is the same in section about "A* Search" where it is mentioned that A* will leave a lot of the search space unexplored: if the heuristics is admissible, nodes that are not explored by A* are suboptimal nodes so they do not need to be explored and it should be seen as a good new. If the idea is to show that frontier-based searches do not work well on the Boat/Torpedo problem one should rather focus at showing why it is hard to find heuristics that are both tight and computationally cheap.
+
+The strategy used to sample the search space described in section "Randomness and Controlled Probabilities" seems to be tuned for the special case of the Boat/Torpedo problem as in this case, because of the spatial semantics on the decisions (turn left/right) and on other characteristics of the problem (boat has a tigher turning radius that torpedoes), some sequences of decisions LLL... or RRR... involving a quick rotation of the boat may be good sequences in some contexts to escape the torpedoes. It is not clear why this type of sampling would help in other types of problems. 
+
+In the experimental study, there is no real argument to support the claim that the approach performs "very well". For that, the Spider Search should be compared with another approach or with some theoretical result on the different instances. Maybe another study should be done, reducing if necessary the size of the problem, to compare the quality of Spider Search with the optimal solutions provided by a complete method.
+
+If in the experimental study the best depth was 30, I do not understand why it is not this value that is used in the first part of the study. I guess that would improve the results on Table 1 (there seem to be a discrepency between the two tables as for 8 torpedoes and a depth of 75, table 1 mentions a success rate of 40% whereas it is 41% on table 2). 
+
+Typos: 
+- the "'" (for instance "don't") character appears as an accent everywhere in the text.
+- p4, col 1: "that that"
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+The paper is very naive. 
+
+Both claims of the paper (efficiency and genericity of the approach) are not supported enough.
+
+As the genericity of the approach is questionable and the application domain is quite far from planning and scheduling, the relevance of the paper to the special track is also an issue.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+---  -1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO CONFERENCE/SPECIAL TRACK: from 1 (lowest) to 5 (highest)
+
+---  1 (Not relevant)
+---  2 (Marginally relevant)
+---  3 (Somewhat relevant)
+---  4 (Mostly relevant)
+---  5 (Very relevant)
+
+*** ORIGINALITY & SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  1 (Not original or significant)
+---  2 (Slightly original and significant)
+---  3 (Somewhat original and significant)
+---  4 (Mostly original and significant)
+---  5 (Highly original and significant)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  1 (Paper has major flaws)
+---  2 (Paper has significant issues to resolve)
+---  3 (Paper has some non-trivial issues, but generally sound.)
+---  4 (Paper has only minor technical flaws, mostly sound.)
+---  5 (Paper has no technical issues of concern.)
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  1 (Unreadable.)
+---  2 (Barely readable - significant editing is required.)
+---  3 (Generally readable but some editing is required.)
+---  4 (Easy to read and understand with only minor changes needed.)
+---  5 (Very well written and understandable.)
+
+*** END
+--------------------------------------------------------------

@@ -1,0 +1,119 @@
+Number : 85
+Title  : Incremental Sequence Variables: Application to the Patient Transportation Problem
+
+
+Relevance.* Is this paper suitable for the track topics?
+*2: Just fine
+ 1: Partial fit
+ 0: Not suitable
+
+Significance.* How important is the contribution of the paper?
+ 5: Very strong contribution
+ 4: Strong contribution
+ 3: Fair contribution
+*2: Minor contribution
+ 1: Very minor contribution
+
+Originality.* How original are the ideas presented in the paper?
+  2: Paves the way to new territories
+  1: Original
+  0: Fairly new
+*-1: Incremental
+ -2: Already known
+
+Technical quality.* Are the claims supported by solid empirical or theoretical proofs?
+  2: Excellent technical quality
+  1: Good technical quality
+ *0: Fair paper
+ -1: Poor paper
+ -2: Very poor paper
+
+Clarity.* Is the paper clearly written?
+  1: Very clear paper
+  0: Reasonably clear paper
+*-1: Writing could be improved
+ -2: Poor writing
+
+Scholarship.* Does the paper miss really important references?
+ *1: Cannot see any missing relevant reference
+  0: Some loosely relevant references are missing
+ -1: Some relevant references are missing
+ -2: Very relevant references are missing
+
+Overall evaluation.* Please provide a detailed review, including a justification for your scores. The best reviews identify strong and weak points and give associated evidence. Both the score and the review text are required.
+  3: Strong accept
+  2: Accept
+  1: Weak accept
+*-1: Weak reject
+ -2: Reject
+ -3: Strong reject
+
+Review
+
+The paper describes a structure and some propagation algorithms for sequence variables. The work is applied to the Patient Transportation Problem and shown to be competitive with the CP approach described in Liu&al-2018, which is not really surprising as Liu&al-2018 uses CP Optimizer's (CPO) sequence variables and the present paper is largely inspired from this structure (as acknowledged by the authors).
+
+While it is true that the CPO propagation on sequence variables has never been published, there is a quite detailed description of the structure in the public documentation. See for instance: https://www.ibm.com/support/knowledgecenter/SSSA5P_12.9.0/ilog.odms.cpo.help/refcppcpoptimizer/html/sched_search_api.html, last section on "Interval sequence variables".
+
+I think the main originality of the proposed approach is the propagation of the transition times by the feasiblePath procedure (Algorithm 1) that tries to check 'd' steps ahead to see if the sequence is still feasible. But this comes at a high computing cost as the filtering is then exponential with 'd'. In the experimental study, you say that you take 'd=3'. It would have been interesting to analyze the impact of this parameter value on the performance.
+
+More generally, I find the experimental study (the comparison with the approach of Liu&al-2018) not very informative because it compares too many different things:
+- the formulation of the problem (beside the sequence variables on the vehicles) is not necessarily the same (see below)
+- the search is different (in particular the LNS) as the paper selects particular relaxation methods, particular completion strategies with specific parameter values (relaxation sizes, failure limits, the selected value for these parameters is not explained).
+It would be interesting to have a part of the experimental study dedicated to the proposed propagation only, for instance (1) study the impact of the selection of the 'd' value on the propagation strength (number of nodes) and speed using a simple Depth-First search, then (2) compare this with a similar CPO formulation also using a simple DFS.
+
+In the experimental section, the use of the greedy algorithm as a starting point for the compared methods is not justified well enough. Why do you need such a starting point? (experiments in Liu&al-2018 seem to suggest that this heuristic input solution has no effect on the CPO model).
+
+It seems to me there could be a difference in the formulation of the vehicle capacity constraints between the CPO model of Liu&al-2018 and your model. Your model formulates this constraint using a cumulative constraint (which is I think a good idea) whereas the formulation of Liu&al-2018 (at least as described in their paper) uses some stepAtStart(pickup,q) followed by -stepAtStart(dropoff,q). It would seem better in the Liu&al-2018 to have a similar formulation as yours with an additional interval variable representing the full trip (pickup,dropoff) that would contribute with a pulse(trip,q) to a cumul function. This way the two formulations of the problem would be closer.
+
+Some more detailed comments and typos
+
+- Introduction: "assumed to satisfy triangle inequality.". Is there a technical reason for this assumption? I agree that for the PTP problem, the triangle inequality assumption is not very restrictive but in some other problems, transition matrices that do not satisfy this condition may be useful.
+
+- p4: "The notation e \in Sq ... indicates that element e is required": It would be better not to denote such an element by 'e' as set 'E' denotes the set of excluded elements.
+
+- p7: when introducing parameter 'd' in last paragraph of the page, you should say here that d is a parameter of the filtering algorithm. Otherwise, it is not clear how this d is fixed.
+
+- p10: in Example 2, table (b), I do not understand why the start time of 'a' is propagated to singleton '0'. Also, maybe you should highlight that the tree on (d) is the one trying to show that c must be excluded (at least, this is how I understand it). In general, I think that the example should be clarified.
+
+- p12,13: the 'visits' are sometimes called 'stops', you should try to homogenise the terminology
+
+Comments after author's rebuttal
+================================
+
+Given that parameter 'd' represents the exponent of the complexity of the propagation algorithm,
+it seems very surprising that the values you tried for this parameter were 0, 3, 6 and 12.
+Do you really think a propagation algorithm in O(n^12) can make it? Of course, I understand
+that this complexity is in the worst case, but still, I wonder why you did not at least try values like 1 and 2.
+
+Furthermore, as mentioned in your answer, you tuned this value only on small instances in DFS.
+I think it would be useful to have an idea of the cost of this propagation in the case of larger problems.
+
+
+
+> Is the contribution enough then? Have the answers from the authors convince you to change your scores one way or the other?
+> As it stands, we have a 2, 1 and -1. The main thing for me is: will the ISV have impact for the community? (by being added to modelling languages and solvers).
+
+For me, the answer did not convince me to change my score. The contribution on the ISV is quite incremental 
+(the "idea" of this type of variable is not new, as it is already implemented and documented in CP Optimizer and also in Google OR-Tools [*])
+and the propagation algorithms proposed in the article are not very well evaluated I think.
+
+[*] https://developers.google.com/optimization/reference/constraint_solver/constraint_solver/SequenceVar/
+
+This being said, I'll not fight for rejection if other reviewers think the paper worth acceptance.
+
+Reviewer's confidence.* Do you have all the background knowledge and information to properly assess the paper contribution?
+*4: I'm an expert in the topic and fully understand the technical details of the paper
+ 3: I know the topic very well and understand the technical details of the paper
+ 2: I have a reasonable knowledge of the topic and understand the technical details of the paper
+ 1: Parts of the paper falls outside of my area of knowledge
+ 0: The paper falls outside of my area of knowledge
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+
+
+Best paper award. Do you want to nominate the paper for the best paper award?
+ [ ] Nominate for "Best Paper Award"
+
+Best student paper award. Do you want to nominate the paper for the "Best Student Paper Award"?
+ [ ] Nominate for "Best Student Paper Award"

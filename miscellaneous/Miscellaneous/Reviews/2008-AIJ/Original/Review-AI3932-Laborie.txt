@@ -1,0 +1,159 @@
+Reviewer: P. LABORIE
+
+A. Coles, M. Fox, K. Halsey, D. Long, A. Smith
+
+Managing Coordination in Temporal Planning using Planner-Scheduler
+Interaction
+
+AI 3932
+-------------------------------------------------------------------------------
+       
+CONTENT
+						Yes     No
+Is the paper technically sound?  Yes
+
+Is the work described original?  Yes
+
+Does it show sufficient applicability to AI? Yes
+
+Does it place new results in appropriate context with earlier work? No
+
+  I think some references are missing to other temporal
+  planning approaches that addresses the same problem of soundness and
+  completeness when temporal concurrency is involved (see below).
+
+Does anything need to be added or deleted? No
+
+Is the result important enough to warrant publication? Yes
+
+  I think the article should be accepted for publication with some
+  minor changes.
+
+FORM
+						Yes     No
+
+Does the abstract adequately reflect the contents? Yes
+
+Are the summary and conclusions adequate? Yes
+
+  Still, the conclusion is quite long and the section 12.1 (Critique
+  of Crikey) would deserve to be presented in a separate section
+  before the conclusion.
+
+Does it contain adequate references to previous work?  No
+
+Does it explain clearly what was done that is new? 
+
+Does it clearly indicate why this work is important? 
+
+Is the English satisfactory? Yes
+
+Is the presentation otherwise satisfactory? 
+
+Are there an appropriate number of figures? Yes
+Do the figures help clarify the concepts in the paper? Yes
+
+  I really appreciate the figures, they help a lot.
+
+RECOMMENDATION - 
+
+Publish with minor revision
+
+------------------------------------------------------------------------------
+Comments to editor:
+
+------------------------------------------------------------------------------
+Comments to author(s):
+
+The article addresses an important problem in AI Planning: how to
+efficiently handle time and durative actions in complex domains where
+temporal concurrency is important (and sometimes needed) without
+sacrificing the completeness of the search.
+
+As far as completeness is concerned, it would be good to state early in
+the paper (in the introduction?) that Crikey, although 'more' complete
+than the planning systems mentioned in the paper, is not
+complete. This is only mentioned at the end of the conclusion although
+it is an important fact and the beginning of the paper seems to
+indicate that Crikey is complete. On this question of completeness, 
+
+The claim that there is no implemented solution to the problem of
+temporal planning in the domains considered in the paper should be
+softened. For instance, the IxTeT system [1] is able to tackle this
+type of problem where temporal concurrency is needed and the algorithm
+is complete. The system would have no problem solving the Match
+domain.
+
+Section 4 introduces the <max and <min relationships but these
+relationships are not used later in the paper. One sees the link with
+the definition of envelopes in section 6 but these relationships are
+never explicitly mentioned there. Furthermore, although it is quite
+intuitive, there is no proof that these constraints cannot be properly
+handled with action compression so maybe the first sentence in the
+beginning of section 5 should be rephrased.
+
+Is there a risk of explosion of the number of open envelopes in Crikey
+? It would be good, if possible, to give an idea of the maximum number
+of open envelopes: is it quadratic with the number of actions
+currently in the schedule or more? what are the 'pathological' cases,
+etc.
+
+In the scheduling part, did you investigate an approach that also do
+some partial order lifting on the resource fluents, starting from the
+total order to build a partial order by removing some
+precedences. Something like the POS generation approached used in
+[2]. I think that could be interesting and could speed up the
+scheduling part.
+
+The explanation why Floyd-Warshall algorithm is needed to compute the
+earliest possible start time for each action is not clear. Why a
+single-source shortest path starting from X0 is not enough ? Why would
+you need to run it from each action ?
+
+When printed, it is really difficult to distinguish between the
+different curves in the section about performance analysis. That may be
+an issue for the final print.
+
+[1] M. Ghallab and H. Laruelle, "Representation and Control in IxTeT,
+a Temporal Planner", In Proc. AIPS-94, pp61-67, Chicago, 1994
+
+[2] P. Laborie and D. Godard, "Self-adapting large neighborhood
+search: Application to single-mode scheduling problems". In
+Proc. MISTA-07, 2007.
+
+Some more detailed comments:
+
+p2: "planning with real rather than relative time". The term 'real'
+sounds strange (relative time is also real). Maybe you should use
+"quantitative" v.s. "qualitative" as in the temporal reasoning
+community.
+
+end of p5- beginning of 6: the explanation is not clear at this point
+of the paper why the type of the problem changes depending on the
+language it is modeled in.
+
+p7: the fact conditional effects are not considered is stated twice in
+the first paragraph.
+ 
+p7: def2: "an STRIPS action" 
+
+p9: in the end of the page, maybe it would be useful to give an
+example of the use of dummy propositional effect to ensure the
+precedence.
+
+p12: it is not said what P-inv means. It should be said that it is a a
+dummy propositional effect to ensure the precedence. Furthermore, I do
+not understand why P-inv needs to be in the add list of P<->. Is it a
+typo ?
+
+p32: def16: in the formula I guess one should read an intersection
+instead of an inclusion.
+
+p33: figure 13 is quite ugly with text being intersected by the
+shapes.
+
+p39: the caption of table 2 is strange.
+
+p55: I think it should be mentioned in section 12.1 that because of
+the loose coupling between planning and scheduling, optimality cannot
+be proved.

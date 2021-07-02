@@ -1,0 +1,10 @@
+#!/bin/sh
+#########################################################################
+
+FILE=
+OLDFILE=
+
+for i in include/ilsim/*.h src/ilc/*.cpp examples/*/*.cpp
+do
+        grep $1 $i
+done

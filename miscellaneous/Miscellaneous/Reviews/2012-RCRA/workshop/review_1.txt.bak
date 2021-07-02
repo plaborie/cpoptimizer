@@ -1,0 +1,109 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines beginning with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines beginning with *** are used by EasyChair. Do not
+---     remove or modify these lines or the review will become
+---     unusable and will be rejected by EasyChair
+--------------------------------------------------------------
+*** REVIEW FORM ID: 1003359::564656
+*** SUBMISSION NUMBER: 1
+*** TITLE: Genetic Algorithms for Scheduling Devices Operation in a Water Distribution System in Response to Contamination Events
+*** AUTHORS: Marco Gavanelli, Maddalena Nonato, Andrea Peano, Stefano Alvisi and Marco Franchini
+--- CATEGORY: Already published paper
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper proposes a GA approach to solve a scheduling problem in the domain of water distribution systems subject to contamination events. The fitness function being very complex to evaluate and approximate is computed by an existing simulator which is the bottleneck resource of the approach. The problem can be considered as a TSP except for the fitness function that heavily depends on the actual dates of the visits.
+
+The paper compares some classical GA encoding for TSPs (sequence-based) with a new encoding based on visit time-values. As this new encoding has difficulties for ensuring feasibility of the offsprings, a MILP model is being solved to reconciliate those time-values with the TSP constraints of the problem. This approach may appear very costly (1 or 2 MILP models to be solved after each genetic operator) but this is counterbalanced by the fact the TSP problems are small (13 visits/devices in the experiments) and the fitness evaluation function very costly in any case.
+
+The paper also introduces an extension of classical GA encoding for TSPs that aims at better taking into account the fact that actual time-values are important and that it can be better to wait before visiting the next device. The extension consists of an additional vector of visits waiting time. 
+
+The experimental section suggests that the new encoding based on absolute time-values outperforms the extension sequence-based extension with waiting times (denoted 2P^VS). There is no real explanation of that except that the new encoding "works in the same solution space as the simulator". One explanation could be that 2P^VS works on relative time (delays between visits) whereas the new encoding works on absolute time values. If the evaluation function depends on absolute time-values (like some time-varying estimated water consumption profile during the day) that could indeed explain the behavior but other aspects could favor the 2P^VS encoding for instance if the spreading of the contaminated area depends on the delay between the operation of two given devices. It would be interesting to have more insights on the computation of the evaluation function to have a better undertanding of the situation. Also, the fact that the version with relative delays (2P^VS) seems to actually perform worse than the ones with constant speed would deserve a more in-depth analysis as this is quite counter intuitive. 
+
+I did not find a description of how the initial population is created, especially in the case of the new encoding based on activation times. This can be an important issue as far as diversity is concerned because the mutation operators do not seem to introduce new values (it is a swapping of existing time values) so new values can come in only because of the solutions of the MILP for offpring computation. In general, it would be nice in the experimental evaluation to have an idea of the quality of the initial solutions and how the quality improves during the search as starting from more or less good solutions may be a reason for the difference of performance of the different methods in the end. 
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- subreviewer different from the PC member in charge, add
+--- information about the subreviewer in the form below. Do not
+--- modify the lines beginning with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (excellent)
+---  2 (good)
+1 (fair)
+---  0 (not acceptable)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO THE CFP: from 1 (lowest) to 4 (highest)
+
+---  4 (excellent)
+3 (good)
+---  2 (fair)
+---  1 (poor)
+
+*** ORIGINALITY: from 1 (lowest) to 4 (highest)
+
+---  4 (excellent)
+3 (good)
+---  2 (fair)
+---  1 (poor)
+
+*** SIGNIFICANCE: from 1 (lowest) to 4 (highest)
+
+---  4 (excellent)
+---  3 (good)
+2 (fair)
+---  1 (poor)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 4 (highest)
+
+---  4 (excellent)
+---  3 (good)
+2 (fair)
+---  1 (poor)
+
+*** CLARITY: from 1 (lowest) to 4 (highest)
+
+---  4 (excellent)
+---  3 (good)
+2 (fair)
+---  1 (poor)

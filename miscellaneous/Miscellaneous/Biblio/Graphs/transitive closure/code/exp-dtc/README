@@ -1,0 +1,21 @@
+
+       Software of Dynamic Algorithms for Transitive Closure
+       -----------------------------------------------------
+
+This is the main directory of the software package that contains the
+Makefile for compiling the package, the configuration file (lconfig), 
+and the following subdirectories:
+
+Subdirectory
+------------
+
+confdir/        a directory with information for automatic configuration
+
+demo/           contains a demo program for visualizing the algorithms
+
+incl/           contains the header files of the implementations
+
+src/            contains the source code files of the implementations
+
+test/           contains the source code files of the experimental platform
+

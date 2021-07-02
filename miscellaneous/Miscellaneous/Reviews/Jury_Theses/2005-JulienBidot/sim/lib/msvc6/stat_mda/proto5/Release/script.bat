@@ -1,0 +1,54 @@
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed1.dat Realization20PP10Act3Res10TResSeed1.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed2.dat Realization20PP10Act3Res10TResSeed2.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed3.dat Realization20PP10Act3Res10TResSeed3.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed4.dat Realization20PP10Act3Res10TResSeed4.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed5.dat Realization20PP10Act3Res10TResSeed5.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed6.dat Realization20PP10Act3Res10TResSeed6.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed7.dat Realization20PP10Act3Res10TResSeed7.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed8.dat Realization20PP10Act3Res10TResSeed8.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed9.dat Realization20PP10Act3Res10TResSeed9.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed10.dat Realization20PP10Act3Res10TResSeed10.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 4000000
+
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed1.dat Realization20PP10Act3Res10TResSeed1.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed2.dat Realization20PP10Act3Res10TResSeed2.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed3.dat Realization20PP10Act3Res10TResSeed3.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed4.dat Realization20PP10Act3Res10TResSeed4.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed5.dat Realization20PP10Act3Res10TResSeed5.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed6.dat Realization20PP10Act3Res10TResSeed6.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed7.dat Realization20PP10Act3Res10TResSeed7.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed8.dat Realization20PP10Act3Res10TResSeed8.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed9.dat Realization20PP10Act3Res10TResSeed9.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed10.dat Realization20PP10Act3Res10TResSeed10.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 300000
+
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed1.dat Realization20PP10Act3Res10TResSeed1.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed2.dat Realization20PP10Act3Res10TResSeed2.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed3.dat Realization20PP10Act3Res10TResSeed3.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed4.dat Realization20PP10Act3Res10TResSeed4.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed5.dat Realization20PP10Act3Res10TResSeed5.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed6.dat Realization20PP10Act3Res10TResSeed6.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed7.dat Realization20PP10Act3Res10TResSeed7.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed8.dat Realization20PP10Act3Res10TResSeed8.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed9.dat Realization20PP10Act3Res10TResSeed9.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed10.dat Realization20PP10Act3Res10TResSeed10.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 10 -deltaTMaxProgress 200000
+
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed1.dat Realization20PP10Act3Res10TResSeed1.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed2.dat Realization20PP10Act3Res10TResSeed2.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed3.dat Realization20PP10Act3Res10TResSeed3.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed4.dat Realization20PP10Act3Res10TResSeed4.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed5.dat Realization20PP10Act3Res10TResSeed5.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed6.dat Realization20PP10Act3Res10TResSeed6.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed7.dat Realization20PP10Act3Res10TResSeed7.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed8.dat Realization20PP10Act3Res10TResSeed8.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed9.dat Realization20PP10Act3Res10TResSeed9.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed10.dat Realization20PP10Act3Res10TResSeed10.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 30000 -deltaTMaxProgress 150000
+
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed1.dat Realization20PP10Act3Res10TResSeed1.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed2.dat Realization20PP10Act3Res10TResSeed2.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed3.dat Realization20PP10Act3Res10TResSeed3.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed4.dat Realization20PP10Act3Res10TResSeed4.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed5.dat Realization20PP10Act3Res10TResSeed5.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed6.dat Realization20PP10Act3Res10TResSeed6.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed7.dat Realization20PP10Act3Res10TResSeed7.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed8.dat Realization20PP10Act3Res10TResSeed8.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed9.dat Realization20PP10Act3Res10TResSeed9.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000
+proto5 Instance20PP10Act3Res10TResMinUnc0.0MaxUnc0.0Seed10.dat Realization20PP10Act3Res10TResSeed10.dat -sigmaTMinProgress -1.0 -sigmaTMaxProgress 0.0 -deltaTMinProgress 50000 -deltaTMaxProgress 130000

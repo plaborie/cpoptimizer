@@ -1,0 +1,146 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1599888::821530"
+        submission="28"
+        title="Planning meets Data Cleansing"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="198232" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 accept
+  -->
+  
+</score>
+<score id="198233" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 (medium)
+  -->
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="203991" name="Significance of the application area being addressed">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very significant
+  -->
+  
+</score>
+<score id="203993" name="Importance of planning and scheduling technology to solution of the problem">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very important - adds essential capabilities
+  -->
+  
+</score>
+<score id="204009" name="Novelty of the application and technical approach to the application">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very novel - approach and/or application are new
+  -->
+  
+</score>
+<score id="204010" name="Clarity of the descriptions of the application, techniques used, and results">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 mostly clear
+  -->
+  
+</score>
+<score id="204011" name="Evaluation of the approach or system">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 good
+  -->
+  
+</score>
+<score id="204012" name="Level of Maturity">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 Early prototype system
+  -->
+  
+</score>
+<score id="205658" name="Suitable for a demo">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 maybe
+  -->
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="198235" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+This short paper describes a very original application that consists in using AI Planning techniques (1) to identify inconsistency in the data and (2) to propose some alternative recourse actions to reconciliate inconsistent data.
+
+The paper is clearly written. One thing that could be improved would be to explicitly describe (or at least give an idea) of the types of fluents that are used to describe a state in the planning problem of the application. For instance I suppose that there is some fluent to count the number of part-time contracts, in order to ensure that constraint c2 is respected, etc. That would help to understand what sorts of states are in the set G of "inconsistent" states.
+
+In section 3 (p3, end of col 1), maybe the term "feasible event sequence" is a bit misleading as it could be interpreted as "consistent event sequence". Maybe you could just remove "feasible".
+
+
+
+</text>
+<text id="198236" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

@@ -1,0 +1,97 @@
+
+           Software of Dynamic Algorithms for Transitive Closure
+           -----------------------------------------------------
+
+                      Installation Instructions
+
+
+This version of the software package is to be installed on a SUN Solaris
+or Linux machine, with g++ compiler (2.95), and LEDA-4.2.
+
+
+1. Uncompress and untar the file Zaro-expdtc-software-leda-4.2.tar.gz: 
+
+     prompt> gunzip Zaro-expdtc-software-leda-4.2.tar.gz
+     prompt> tar xvf Zaro-expdtc-software-leda-4.2.tar
+
+   The following files and directories should have been created
+
+   Experiments/                       Contains a link to the experimentation platform 
+                                      (dtc_test) which has to be invoked from this directory 
+                                      and may also contain some data used in the experiments
+                                      (subdirectory Data). See also the included README file
+                                      in that directory.
+ 
+   INSTALL                            (a copy of) this file
+
+   README                             A general introduction to the software.
+
+   exp-dtc/                           Contains the source and header files of the
+                                      software package.
+
+
+2. Download file LEDA-4.2-sparc-solaris-g++-2.95.tar.gz (for Solaris) or 
+   the file LEDA-4.2-i386-linux-g++-2.95.tar.gz (for Linux) from 
+   http://www.ceid.upatras.gr/faculty/zaro/software/. 
+   These files contain the required LEDA-4.2 object code and are the latest free 
+   distributions of LEDA. These files are provided under the understanding that they 
+   are necessary for the current software and should not be used for commercial purposes.
+
+   Uncompress and untar the file LEDA-4.2-sparc-solaris-g++-2.95.tar.gz or the
+   file LEDA-4.2-i386-linux-g++-2.95.tar.gz. After that, follow the instructions 
+   in the file
+   
+     LEDA-4.2-sparc-solaris-g++-2.95/INSTALL or LEDA-4.2-i386-linux-g++-2.95/INSTALL 
+   
+   to install the LEDA-4.2 object package.
+
+
+3. Go to the directory exp-dtc which was created in step 1,
+   and list its contents.
+
+     prompt> cd exp-dtc
+     prompt> ls
+
+   It should contain (at least) the following files and subdirectories.
+
+     Makefile        a makefile for compiling the package
+     README          a general description of the directory exp-dtc
+     lconfig         shell script used for configuration
+                     (should be executable)
+     confdir/        a directory with information for automatic
+                     configuration
+     demo/           demo program
+     incl/           include files (follow the subdirectories)
+     src/            source code of the implementations 
+     test/           tools for performance measurements
+
+
+4. Type 'make configure'.
+
+     prompt> make configure
+
+   to start the automatic configuration procedure. You will be prompted for the C++ compiler 
+   you want to use (e.g., g++), for the path to the LEDA include files (if necessary), e.g., 
+   /usr/local/LEDA-4.2-sparc-solaris-g++-2.95/incl, and for the path to the LEDA libraries,
+   e.g., /usr/local/LEDA-4.2-sparc-solaris-g++-2.95. 
+
+
+5. Type 'make'
+
+     prompt> make
+
+   to compile the software package. Then the library libLEP_dynamic_graphs.a
+   is assembled, and the demo and test programs are made in the
+   subdirectories demo and test, respectively. There are some options, e.g., 
+   making the library with debugging support enabled. See the Makefile for these options.
+   If you want to recompile, you don't need to repeat step 4; simply type 'make'. 
+   During recompilation the old configuration files are used.
+
+
+6. If you want to reconfigure (e.g., to give new paths for LEDA include files 
+   and directories), use the following commands.
+
+     prompt> make configure
+     prompt> make
+
+

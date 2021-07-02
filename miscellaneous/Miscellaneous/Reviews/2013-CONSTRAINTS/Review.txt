@@ -1,0 +1,70 @@
+Manuscript Number: CONS-D-13-00027
+Title: Scheduling Scientific Experiments for Comet Exploration
+Authors: G. Simonin, C. Artigues, E. Hebrard, and P. Lopez
+
+[ ] Accept as is
+[X] Accept subject to minor revisions
+[ ] Major Revision Necessary
+[ ] Reject
+
+Recommendation: Accept subject to minor revisions
+
+------------------------------------------------------------------------------------------------------------------------
+Reviewer Blind Comments to Author:
+
+The paper describes a very interesting global constraint on the start/end times of data producing tasks 
+subject to some limits on data transfer rate and available memory. The paper starts from a description of 
+the real constraint that deals with individual memory blocks. This constraint is too costly to handle as 
+it requires individual handling of memory blocks. An approximation of the real constraint is proposed and 
+an upper-bound (reasonably low in practice) on the error is provided. A checking and some filtering algorithms 
+are then proposed for the approximate constraint. The proposed constraint is then compared with the existing 
+approach (based on reservoir propagation) and shown to outperform it, both in terms of pruning power 
+and propagation time.
+
+This is a very interesting paper, grounded on a real application and showing the interest of CP in the context.
+
+The paper is well structured and clearly written, with useful illustrations when needed.
+
+I think the paper could be improved by giving more details on two aspects:
+
+1- Is it possible to provide some characterization of the propagation that is performed. 
+For instance, is there some guarantee (considering the constraint alone, of course) that the 
+proposed propagation computes the tighter start/end bounds of tasks ? And if not, what about the complexity of 
+computing the tightest bounds? is it NP-Complete (that's my feeling but I may be wrong) ? If the propagation 
+is not complete, do you have some idea why all the instances in the experimental section are solved 
+backtrack free with your constraint?
+
+2- Especially in the context of the CONSTRAINT journal, it would be useful to see if the proposed constraint 
+could be somehow generalized/abstracted to a more general class of problems. For instance constraints between 
+producing/consuming activities subject to limited transfer rate and limited stock capacities are frequent in 
+refinery scheduling. There may be some common patterns.
+
+Some more detailed comments:
+
+- Section 3.1, around line 21: Is there no possibility of a direct transfer from the experiments to 
+  the orbiter in case of visibility and if there is nothing else to transfer (mass memory is empty)?
+
+- Section 3.1, around line 30: "More precisely we need ..." You should precise here that the unit of 
+\pi is blk/s and the unit of p is s. 
+
+- Section 3.1, second page, line 19: I'm not sure the fact the DataTransfer constraint is 
+NP-complete to satisfy is a good justification for the fact you will need an approximated constraint 
+(which is by the way also probably NP-complete to satisfy). The good justification really is the large 
+number of individual blocks to consider (as you mention after).
+ 
+- Section 5.1. Could you give a little bit more details on the way the search works/worked? What type of decisions, 
+variables and value selection, etc. The problem is a satisfiability problem, not an optimization one, right? 
+Also, it would be good to have an idea of the size of the problems (number of data-producing tasks)
+
+- You say that only the first filtering rule was used in the experiments. Do you plan to rerun the experiments 
+with the other filtering rules too. It would be very valuable to see their impact (domain reduction, propagation time).
+
+
+------------------------------------------------------------------------------------------------------------------------
+Reviewer Confidential Comments to Editor:
+
+Summarize briefly the reasons for your recommendation:
+
+Very interesting paper, grounded on a real application and showing the interest of CP in the context.
+The paper could be improved by (1) characterizing more precisely the type of propagation that is performed and 
+(2) providing some hints if and how this type of constraint can be generalized to other problems.

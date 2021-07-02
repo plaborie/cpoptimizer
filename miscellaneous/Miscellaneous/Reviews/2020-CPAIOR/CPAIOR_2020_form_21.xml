@@ -1,0 +1,180 @@
+<review id=":4745607::2299627"
+        submission="21"
+        title="CP and Hybrid Models for Two-Stage Batching and Scheduling"
+        authors="Tanya Tang,
+                 J. Christopher Beck"
+        pc_member="Philippe Laborie">
+<field id="564862" name="Relevance">
+  <!--
+    == Whether the topic of the paper is relevant to the audience of CPAIOR
+    -->
+  <score>
+  <!--
+    == 1 On topic
+    == 0 Somewhat relevant
+    == -1 Out of scope
+    -->
+    1
+  </score>
+</field>
+<field id="564863" name="Significance">
+  <!--
+    == The significance of the contributions
+    -->
+  <score>
+  <!--
+    == 1 Major contribution
+    == 0 Minor contribution
+    == -1 Insufficient contribution
+    -->
+    0
+  </score>
+</field>
+<field id="564864" name="Originality">
+  <!--
+    == The degree of novelty of the contributions
+    -->
+  <score>
+  <!--
+    == 1 Novel
+    == 0 Incremental
+    == -1 Not original
+    -->
+    1
+  </score>
+</field>
+<field id="564865" name="Technical quality">
+  <!--
+    == Correctness of the proofs and/or soundness of the experimental
+    == evaluation
+    -->
+  <score>
+  <!--
+    == 1 No errors
+    == 0 Minor errors
+    == -1 Major errors
+    -->
+    1
+  </score>
+</field>
+<field id="564879" name="Clarity">
+  <!--
+    == Quality of the writing and of the notations
+    -->
+  <score>
+  <!--
+    == 1 Excellent writing
+    == 0 Writing could be improved
+    == -1 Difficult to read
+    -->
+    1
+  </score>
+</field>
+<field id="564880" name="Scholarship">
+  <!--
+    == Whether the contributions are adequately put into context with
+    == respect to related work
+    -->
+  <score>
+  <!--
+    == 1 No missing relevant references
+    == 0 Some references are missing or misrepresented
+    == -1 Highly relevant references are missing
+    -->
+    1
+  </score>
+</field>
+<field id="553953" name="Overall evaluation">
+  <!--
+    == Please provide a detailed review, including a justification for your
+    == scores. Both the score and the review text are required.
+    -->
+  <text required="required">
+
+The paper is on the resolution of an original two-stage batching and scheduling problem that consists of the construction and the scheduling of a set of horizontal batches followed by vertical batches.
+
+Several approaches are proposed, implemented and compared: a plain CP model, an LBBD decomposition, a simple heuristic and a combination of this heuristic with the first two approaches.
+
+In general, the problem is very challenging and I think that the different approaches proposed in the paper really make sense.
+
+I'm wondering if alternative formulations were considered for the CP model, as the number of introduced decision variables (interval variables) seems to be very large in the proposed formulation and with fairly week constraint propagation.
+
+It is clear that there does not seem to be any straightforward formulation in CP but the concept of "state function" in CP Optimizer may be useful in this context. State functions were introduced for scheduling problems with a batching component, they allow the synchronization of the start and end times of interval variables representing jobs (or tools) scheduled in the same batch thanks to the notion of start/end alignment, without the need to explicitly create "batch" interval variables. There also exist some modeling techniques to explicitly represent the "batch" interval variables on top of a state-function based formulation, by creating one candidate "batch" optional interval variable for each job and post constraints to enforce that one and only one of these optional "batch" intervals are present for each batch. It would be interesting if this type of model could be useful for this two-stage batching and scheduling problem.
+
+
+
+  </text>
+  <score>
+  <!--
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == 0 borderline paper
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+    -->
+    2
+  </score>
+</field>
+<field id="553954" name="Reviewer's confidence">
+  <score>
+  <!--
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+    -->
+    5
+  </score>
+</field>
+<field id="553955" name="Confidential remarks for the program committee">
+  <!--
+    == If you wish to add any remarks intended only for PC members please
+    == write them below. These remarks will only be seen by the PC members
+    == having access to reviews for this submission. They will not be sent
+    == to the authors. This field is optional.
+    -->
+  <text optional="optional">
+
+
+
+
+
+
+  </text>
+</field>
+<field id="563684" name="Journal publication">
+  <!--
+    == Please check the box below, if you think that this paper should be
+    == considered for the ‘fast track’ process in the journal
+    == Constraints.
+    -->
+  <score>
+  <!--
+    == 1 yes
+    == 0 no
+    -->
+
+  </score>
+</field>
+<field id="563691" name="Distinguished paper award/student paper award">
+  <!--
+    == Please check the box below, if you think that the paper should be
+    == considered for the distinguished paper award/student paper award.
+    -->
+  <score>
+  <!--
+    == 1 yes
+    == 0 no
+    -->
+
+  </score>
+</field>
+<reviewer>
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

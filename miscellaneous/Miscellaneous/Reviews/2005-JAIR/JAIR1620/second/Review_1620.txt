@@ -1,0 +1,206 @@
+
+1. confidential comments to the editor
+--------------------------------------
+
+The paper represents an original contribution to understand why a
+given set of optimisation techniques work (or do not work) for a
+particular problem (here, an oversubscribed scheduling problem).
+ 
+The architecture of the paper is good. 
+
+One of the main problem with the paper is that all the experiments
+were made using the same schedule builder algorithm which is very
+naive and no evidence is given that the conclusions of the article
+remain valid if another schedule builder algorithm is used.
+
+Another problem is due to the fact that the experimental protocols to
+validate some hypothesis are sometimes really not well adapted so that
+they actually validate a different hypothesis than the original
+one. This is in particular the case when validating the hypotheses
+that the GA approach learns some patterns of the solutions. In this
+case, the experimental protocol mainly validates the existence of such
+patterns rather than the fact the GA learns them.
+
+
+2. overall evaluation of the paper
+--------------------------------------
+
+Reject.
+
+I think the paper still has some important merits if correctly
+improved and the approach followed by the authors should be
+encouraged. They could resubmit the paper after modifications.
+
+
+3. comments to the authors. 
+--------------------------------------
+
+Overall comments
+-------------------------------
+
+The paper represents an original contribution to understand why a
+given set of optimisation techniques work (or do not work) for a
+particular problem (here, an oversubscribed scheduling problem).
+ 
+As mentioned in the paper, understanding "why" an algorithm works or
+doesn't work well on a given problem is of the highest interest as it
+helps to map problem features with suitable algorithms, and it is true
+that this issue has been underestimated in the scheduling literature.
+
+The architecture of the paper is good. After a short introduction, it
+describes the scheduling problem (AFSCN application) and then analyses
+related work on this problem. A set of algorithms for solving the
+problem are then described and their performance is given. The main
+section of the paper then successively formulate several hypothesis
+about how some problem features influences the algorithms and check
+them on the basis of some experiments.
+
+All the algorithms studied in the article rely on the same schedule
+builder which is extremely simple (this is a good property in itself)
+but seem to introduce some bias in the results. Indeed, the schedule
+builder (described in section "4. Solution Representation") is
+allocating resources using a static order that do not depend on the
+context of the schedule that is being built. This certainly increases
+the redundancy of the search space and thus, the importance of
+plateaus which is a major issue when comparing the algorithms. Were
+some trials made using different approaches for the schedule builder
+that would reduce this redundancy, for instance choosing to allocate
+the resource that would allow the task to start as early as possible
+or choosing the resource that is the less used over the time window of
+the task given the tasks already scheduled, etc. ? The study seems to
+heavily depend on which greedy algorithm is used in the schedule
+builder and this is never even mentioned in the paper. Some additional
+experiments should be performed to see which conclusions of the paper
+are still valid when another schedule builder is used.
+
+Experiments in section 6.3 to check that the GA is learning some
+patterns are not really convincing: first, the GA is used to find very
+good solutions. Then, an analyse of those very good solutions is
+performed to detect some common features. The existence of such common
+features only tells that there exists common features shared by very
+good or optimal solutions, it doesn't say anything on the fact the GA
+actually learned them (for instance the very good solutions found by
+the GA may be due to a last-minute very successful cross-over), it
+only shows that there is potentially something to learn. I think it
+would be much more convincing to study how patterns corresponding to
+good solution tend to become more and more present in the population
+when evolution advances.
+
+
+Detailed comments
+-------------------------------
+
+In section 2, page 4, it is said that "each task request T_i specifies
+j>=0 pairs of the form (R_i,T_i^Win)". There seem to be some index j
+missing in "(R_i,T_i^Win)".
+
+In section 2.1, end of page 7, it is mentioned that "The aggregate
+demand for a resource is then obtained by summing the individual
+demands for all the tasks that can be scheduled on that
+resource". Shouldn't the individual demands be first divided by the
+number of possible resources to account for the probability that the
+task will be assigned another resource than the one that is being
+considered?
+
+It would be interesting to see how all the approaches experimented in
+the article globally compare with the results described in section 3
+in terms of percentage of scheduled tasks requests on the problems of
+type "A".
+
+In the end of section 3, the last paragraph uses the notions of
+"moves" and "neighbourhood size" whereas the actual local search
+approach that is used has still not been defined. In particular, it
+makes it hard to understand why the neighbourhood size is in O(N^2).
+
+In section 4.1, it is not clear at all why the greedy algorithm used
+to schedule low altitude requests instead of the first phase of
+Gooley's original algorithm results in an optimal schedule. Something
+should be added to better define what is meant by "optimal" in this
+context.
+
+The description of the HBSS method in section 4.5 is really not
+clear. In particular the notion of "rank of a move" does not seem to
+be defined anywhere.
+
+As noted above, section 6.1 mentions the fact that plateaus are partly
+due to the way the schedule builder operates. This really seems to be
+a critical issue and alternative approaches to build a schedule should
+be studied. One really has the feeling that the article studies
+different approaches to work-around the deficiencies of the greedy
+algorithm used to build the schedule completely leaving aside the
+possibility to use a different heuristics for the schedule builder.
+
+In section 6.1.1, the explanation of the decrease of the number of
+non-interacting pairs when minimising overlaps makes sense but it does
+not seem to be very much supported by the experiments. Indeed in
+average, for example on optimal permutations, it only decreases from
+41.73% when minimising conflicts to 40.95% when minimising overlaps
+which only represents a relative decrease of less than 2%!
+
+In table 6 (as well in fact as in table 15), it would be very nice to
+recap the results of the original version of the algorithm to make the
+comparison easier.
+
+A small figure to illustrate the example in the end of section 6.1.2
+would be useful. Furthermore, as mentioned, this example is an example
+of "bad" schedule that indeed, can't be reached with the restricted
+shift operator. It would certainly be more informative to exhibit an
+example where a good schedule can be reached using the general shift
+operator but not with the restricted one.
+
+In section 6.1.3, it is mentioned but not explained why when
+minimising overlaps, best known solutions have slightly more
+same-value neighbours than do random solutions.
+
+Why is the total number of neighbours in table 7 different from the
+total pairs in table 5?
+
+As noted above, the proof that Genitor is learning some patterns
+(split heuristics, precedences) would be much more convincing with an
+analyse of how such patterns tend to become more and more present in
+the population when evolution advances. For instance in the case of
+learning the split heuristics in section 6.3.1, it would be
+interesting to define how much a given individual in the population
+follows the split heuristics (e.g. by measuring the minimal number of
+task request permutations in \pi so that \pi follows the split
+heuristics, of course other measures are possible), and then to
+average this measure over all the population and to look at how this
+average evolves with the population (it should increase). A similar
+study could be done in section 6.3.2 given a set of "common orderings"
+in very good solutions computed beforehand.
+
+In section 6.3.2, the study of the existence of common request
+ordering in good solutions is very biased by the number of solutions
+that are considered. If there wouldn't be any preference ordering
+between tasks in good solutions (so no patterns to learn), taking s
+solutions to a problem with n tasks would give an average number of
+common ordering of the order of (n^2)/(2^s) as for each n^2
+precedences, there is a probability of (1/2)^s that it will be present
+in all s solutions. For the A problems and for R5, where s>700, this
+number of expected common precedences would no pattern be present is
+negligible so the number of actually detected common orderings (around
+100 low/high pairs, 10 other pairs) really seems to be due to actual
+patterns. For the other R problems this also seems to be the
+case. This bias should be at least mentioned in this section.
+
+In section 6.4, I do not find it surprising that the study of section
+6.3.2 applied to SeededGenitor shows much more common orderings than
+the one of Genitor. SeededGenitor simply produces better solutions
+than Genitor and it is normal that the variability of a set of very
+good solutions is smaller than the one of a set of less good ones.
+
+The main result after section 6.4 is that (> means is better than);
+SeededGenitor > (Seeded)SWO > RandomSWO > (Random)Genitor. Is there an
+explanation to the fact that starting from greedy permutations instead
+of random ones has more effect on Genitor (RandomGenitor was the worse
+approach, SeededGenitor become the best one) than on SWO?
+
+In section 6.6, I suppose the reason why SWO and SeededGenitor start
+from a much better solution than RandomNeigh LS and Genitor is because
+they are initialised from greedy permutations. Were some experiments
+performed using Local Search starting from some solution computed with
+the greedy initial permutations of SWO?
+
+Do the curves on figures 7 and 8 correspond to an average over all R
+problems or a particular R, this doesn't seem to be explicitly
+mentioned.

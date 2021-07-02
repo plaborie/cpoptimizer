@@ -1,0 +1,97 @@
+Relevance to AI (is the paper appropriate for ECAI?)
+7
+
+Originality (does the work contain new ideas?)
+5
+
+Significance (will the results have any impact on the field?)
+5
+
+Technical Soundness
+6
+
+Presentation (is the paper readable and well-organized?)
+4
+
+Scholarship (is relevant literature cited and is the scientific context discussed?)
+6
+
+Reviewer Competence/Confidence
+5
+
+Overall Recommendation
+5
+
+
+Comments to author(s)
+
+The paper proposes a new objective function for meeting scheduling
+that combines global utility function, individual agent preferences
+and fairness between agents. The paper is difficult to read because of
+some typos, missing definitions and, in some parts, lack of
+formalization (see detailed comments below). 
+
+The structure of the paper could be improved by presenting once and
+for all the complete model (currently described in sections 2 and then
+complemented in section 3). Then the example could be used also to
+illustrate how the fairness between agent is taken into account in the
+objective.
+
+The Individual Rationality principle seems to be a very strong
+assumption in the context of meeting scheduling. It says that the
+agent must agree to any given schedule of a meeting on which they
+decide to participate. That's quite far from the reality where agents
+may be interested in attending a meeting but may finally decide not to
+attend it because of the date it is scheduled. Another related
+assumption is the fact that if a meeting is scheduled, it means that
+all the agents involved in the meeting will attend it. When the agents
+calendars are quite full, it is usually necessary to make a compromise
+between who will effectively attend the meeting and the date when the
+meeting will be scheduled.
+
+The approach involves many parameters that are combined in the
+objective function. An important issue for the usability of the
+approach is how these parameters values can be acquired. Because they
+are combined together, they somehow need to be homogeneous. For
+instance, for a user of the system how to relate the cost for a
+meeting to be 1 day late compared with the individual priorities of
+agents for this meeting? 
+
+Detailed comments:
+
+- Definition 5: in the definition, it seems clear that the function
+DCF is independent from the agents but then, I do not understand why
+it is summed up in the computation of the MU for each agent.
+
+- After Definition 7 in the example: the fact the DCF is 0 is a
+consequence of the item just above, it is not necessary to precise it
+as a new item
+
+- After Definition 8: it is probably a typo: on should read MUs
+instead of MFs.
+
+- Definition 11: FF is not mentioned in the input tuple. Furthermore,
+it is said that f returns a "global utility" whereas in the formula
+for the output one reads: G = global utility - f(quality).
+
+- Beginning of section 4: the notion of moving cost factor has never
+been introduced. Is it a multiplicative factor on the moving cost
+value ? Or is it the moving cost value itself ?
+
+- It would be interesting to give a little bit more information about
+the B&B approach used to solve the problem. The problem involving 20
+agents, 30 meetings and 12 time-slots does not seem very large for a
+state-of-the-art COP solver. 
+
+- The explanation for the second experiment is really not clear. Does
+the paragraph introducing the QualityAcceptablePoint defines a
+particular function f of definition 11 ? In this case, it would be
+good to formally define the values of f in this experiment.
+
+- Last page, column 1: schedulling
+
+- In conclusion: the problem then previous papers => ... than ...
+
+
+Confidential comments to PC members
+

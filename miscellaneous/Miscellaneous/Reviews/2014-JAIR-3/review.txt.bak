@@ -1,0 +1,68 @@
+Title: Reasoning about Topological and Cardinal Direction Relations Between 2-Dimensional Spatial Objects
+Author(s): Anthony G. Cohn, Sanjiang Li, Weiming Liu and Jochen Renz
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject
+
+
+Comments and suggestions
+========================
+
+The article describes a thorough complexity study of reasoning jointly about topological and cardinal direction relations between 2-dimensional spatial objects. 
+
+Being more a specialist of temporal reasoning, I must admit that the only concept I was familiar with in this article was the one of Interval Algebra. So I particularly appreciates section 2 that describes in a very pedagogical way the 3 different families of qualitative calculus considered in the article (Region Connection, Rectangle Algebra, Cardinal Direction) together with some complexity results and the related notions of canonical solutions. This section provides, in itself, an excellent review of existing frameworks. 
+
+Building on this review, the structure of the rest of the article is very logical. Section 3 presents a formal definition of the notion of joint calculus. Sections 4 and 5 combines two versions of the Region Connection calculus (namely weak and strong RCC8) with the Rectangle Algebra while section 6 combines those two versions of the Region Connection calculus with two variants of the Cardinal Direction calculus (namely: CDC and OIM). Each study of joint calculus provides complexity results (polynomiality, NP hardness) together with some resolution algorithms (the provided algorithms do not seem to have been particularly optimized in terms of their complexity but one perfectly understands that this is not the main objective of the article).
+
+It is a difficult intellectual exercise to reason on the interaction of 3 different frameworks, each with their specific concepts and notations, so it is not surprising that the article is sometimes heavy to read, especially to someone who is not familiar with the concepts. But I must admit that as each concept has been carefully described (and often, well illustrated) before it is used, this is not really an obstacle. I append to the review a set of more detailed comments/questions that should help clarifying some points. I think that addressing these points will improve the readability of the paper. These are minor revisions, they only have a very local impact on the article.
+
+This work on spatial reasoning is clearly relevant to the AI community. It describes an extension of previous work by the authors ([28]). The overall contribution described in the article is very significant and, as far as I can tell, original. For these reasons I think this work deserve a publication in JAIR.
+
+
+Detailed comments
+-----------------
+
+p1, Abstract: "This can be achieved by combining existing calculi in a way that we can express spatial information using relations from both calculi" -> "both": which ones ? No specific pair of calculi was introduced so far ...
+
+p7, Table 2: Some figures could help to illustrate the different relations (even if the definitions here are quite clear)
+
+p7, Lemma 2: This lemma gives some properties of Q8, H8, C8 but, as far as I understand it (it is a Lemma), it does not define these notions. Could you give the formal definition of Q8, H8 and C8 ? Only looking at the Lemma and without real definition of these subclasses, one does not understand, in Theorem 3 how it can be that {DC} subset R whereas according to Lemma 2 (if the lemma is interpreted as some form of definition of the subclasses), R does not seem to contain any of the basic relations DC, EC or PO.
+
+p10, Definition 6: "We say \alpha is a 0-meet relation if r \intersection r' is a singleton set for any two minimum bounding rectangles r,r' with (r,r') in \alpha". Maybe you could insist on the fact the intersection "r \intersection r'" is the "spatial" intersection of the rectangles and thus that the mentioned "singleton" is a point in the plane. In fact it seems to be evident now I re-read it but at the first read it was not.
+
+p10, "As a consequence ..., but a larger tractable subclass of RA has been identified [2]. // By corollary 5 we have: ...". I think some transition is missing here, otherwise one expect that corollary 5 has something to do with describing the larger tractable subclass mentioned in the sentence before whereas, it is about something different.
+
+p10, Lemma 8: 
+First item: "Rij* is a 0-meet relation iff Rij is a 0-meet relation" -> I suppose it implies Rij is a basic relation
+Second item: "Rij* is a corner relation iff Rij consists of corner relations" -> I suppose it means Rij is a composite (or basic) relation that consists "only" of corner relations
+
+p10, Definition 9: "Let E(m) be the set of end-points of intervals in m." It rather seems to be that E(m) is the set of the "values" of the end-points, right? An interval always has 2 end-points so according to the definition the cardinality of E(m) should always be 2n. But in fact E(m) can be smaller because two end-points may have the same value.
+
+p12, after Definition 12. "Furthermore a solution of {v1 \delta v2, v2 \gamma v1} is always a solution of i(\delta,\gamma)." I guess the converse is not true in general, maybe it would be useful to mention it.
+
+p13, before Definition 15: It would help to give an informal definition of bi-closed. Something like (if I get it well): a joint constraint network is bi-closed if each basic relation of a given relation in one of the calculi is consistent with the corresponding relation in the other calculus.
+
+p13, beginning of section 3.1: I do not understand why the fact a CDC relation have more than one converse then this implies that CDC is not closed under converse. Clearly, it implies that the converse of a basic CDC relation is not a basic CDC relation but it could still be a disjunction of such basic relations and thus, in CDC. Could you clarify?
+
+p14, lines 2-3: The "On the other hand ..." seems to introduce a case where CDC is finer than OIM whereas it introduces another case where OIM is finer than CDC
+
+p16, line 3: What is the meaning of Q here? Q was introduced in Definition 21 but that was in a different context.
+
+p16, Definition 24: this definition is very hard to follow because it is missing some logical connectors (AND or OR) at least between the two items.
+
+p20, "Note that in (20) we have RA({TPP})=RA({NTPP})". It would be nice to give the value of these relation RA({NTPP}) here (in terms of its basic RA relations), just to fix the ideas
+
+p22, Definition 35: I do not understand why in the definition \Delta is defined as being a basic RA network whereas it seems to me it should be a basic CDC or OIM network if one follows the logic of the section 6.1 and the notations introduced at the beginning of this section. Same thing in Lemmas 36 and 37. I'm probably missing something here. If \Delta really is a basic RA network then that would deserve a more detailed explanation.
+
+
+
+
+
+
+
+

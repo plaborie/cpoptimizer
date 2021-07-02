@@ -1,0 +1,116 @@
+------------------------------------------------------------------
+Paper's title: Efficient Grid Scheduling through the Incremental Schedule-based Approach
+
+Authors: Dalibor Klusacek and Hana Rudova
+
+------------------------------------------------------------------
+Summary of review:
+
+The paper proposes two new scheduling algorithms for on-line grid
+scheduling. Unlike most of the existing queue-based methods for grid
+scheduling, the proposed schedule-based algorithms perform some sort
+of look-ahead by analyzing the impact on the objective function and on
+other jobs of scheduling a job at a given position. Although requiring
+slightly more computational effort, these algorithms are shown to
+produce better solutions in an experimental study. I agree with the
+authors idea to push more computationally intensive methods in the
+grid scheduling domain and more generally in on-line scheduling that's
+why, I think, the paper should be accepted for publication. As the
+time performances of the algorithms is a critical issue in these
+domains, I think the paper should be improved by providing more
+insights in the algorithmic complexity of the proposed methods and on
+how they can be efficiently implemented.
+
+------------------------------------------------------------------
+Body of review:
+
+The paper proposes two new scheduling algorithms for on-line grid
+scheduling. Unlike most of the existing queue-based methods for grid
+scheduling, the proposed schedule-based algorithms perform some sort
+of look-ahead by analyzing the impact on the objective function of
+scheduling a job at a given position. Although requiring slightly more
+computational effort, these algorithms are shown to produce better
+solutions in an experimental study.
+
+In the description of the proposed approaches, it is not clear what
+happens with the already executed jobs when a new job arrives at a
+given date t. Are those executed jobs removed from the current
+schedule or are they kept? Does it have an impact on the complexity of
+the algorithm? 
+
+The representation of the schedule (beginning of section 3) would
+deserve more formalization. In particular, it is not clear how gaps
+are represented: is a gap only an interval or an interval associated
+with a number of available processors? Are contiguous gaps with same
+number of available processors merged?
+
+Is there a reason why the EDF policy is applied only if the EG policy
+failed to improve on the current solution (the 'else' at line 9,
+algorithm 1). As a consequence, it seems the fact to use or not the
+EDF policy on a given machine depends on the current best schedule,
+that is, on the results of scheduling the job on other machines; this
+seems strange. Wouldn't it make sense to try this policy even if the
+EG managed to improve? A similar situation occurs in the MoveJob
+function of the Tabu search: is there a good reason to stop at the
+first machine that allows improving the schedule (line 7)? Did you try
+scanning all the machines to find the one that allows improving the
+schedule the most?
+
+The Tabu search starts by the last jobs in the schedule although the
+last jobs are not necessarily the most delayed. Is there a reason for
+that? The argument that is given that "[...] once such job is removed
+from its position, remaining jobs in the schedule may often start
+their execution earlier" would even be stronger if jobs scheduled
+early but with large tardiness were removed as the number of remaining
+jobs that could be executed earlier would be larger.
+
+In general, I think the algorithmic complexity of the implemented
+algorithms should be analyzed more in detail so as to have some
+theoretical basis to compare the approaches rather than just the
+experimental study as the actual efficiency may depend a lot on the
+implementation details. For instance, I'm pretty sure one can use some
+efficient representations of gaps in the schedule so that finding the
+earliest possible gap for a pair job/number of required processors can
+be performed in sub-linear time. One can also probably speed-up the
+acceptance criterion computation (compared with a naive linear
+scanning of the jobs) using some incrementally considerations. One can
+also probably identify with a very quick check that trying to schedule
+a job on a particular machine can't improve on the best schedule.  I
+don't know if these types of algorithm optimizations were used but
+they could change the figures about the running times a lot and maybe
+allow for more computationally intensive techniques.
+
+In the experimental study, the distinction between sequential and
+parallel jobs is not clear and you should explain how they are mapped
+to your model. I guess parallel jobs can be represented by a single
+job requiring several CPUs but for sequential jobs, it is less clear
+as the model does not seem to easily allow the representation of
+precedence constraints.
+
+In the figures, it would also be very interesting to have an idea of
+the average number of "active" jobs in the schedule each time a new
+job arrives; "active" job meaning a job that arrived previously but
+that was still didn't start its execution. This would give an idea of
+the size of the average size of the scheduling problem to be solved
+when a new job arrives as all the jobs that have been already executed
+or that are currently executing are no more decision variables of the
+problem. 
+
+A few more detailed comments:
+
+- p4, last line: "recompute from from scratch"
+
+- in section 4.1, the term "frequency" is quite misleading as when the
+frequency increases, one would expect that the TS is used more often
+but it is the contrary. What you describe here is more a "period" than
+a "frequency".
+
+------------------------------------------------------------------
+Final recommendation: Accept with minor revision
+
+ (Accept as is, Accept with minor revision, Accept with major revision, Reject)
+
+
+------------------------------------------------------------------
+Confidential comments to editors:
+

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# little script useful for converting *.curr bench coming from DOS ports
+for i in *.curr
+do
+dos2unix -ascii $i $i
+done

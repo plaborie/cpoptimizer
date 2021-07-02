@@ -1,0 +1,65 @@
+Submission: 97
+Title: Pareto based Soft Local Arc Consistency for Multi-Objective Valued Constraint Satisfaction Problems
+
+_______________________________________________________________________
+Overall evaluation
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+--> -2
+
+_______________________________________________________________________
+Review:
+
+
+The article extends mono-objectives valued constraint satisfaction problem (VCSP) to the multi-objective case with the idea to prune Pareto dominated solutions.
+
+The paper is written with a sufficient level of detail; sometimes maybe too much details are provided for simple / trivial things. And in fact (unless I'm really missing something), the only contribution is to extent the VCSP framework in order to use vectors of costs instead of simple scalars: the extension of the operations on cost to perform soft arc-consistency seems straightforward as it consists of the same operations as for mono-objectives VCSP on each of the cost components. If the contribution of the paper goes beyond this very simple extension, I think it should be more carefully explained why.
+
+It is probably related with the comments above but the form of the paper is a bit unusual as it is mainly a list of definitions (22 definitions in all) but there are no real results (lemmas, theorems) exploiting all these definitions.
+
+Although the paper is in general easy to read, some part are not completly clear for a reader not familiar with VCSP. In particular, in section 3.2 it is not evident why the upper-bounds T (maximum acceptable cost) are needed. Furthermore, several of the formulas using them (typically the definition of u+v) seem to be tautological: for instance
+u^j +^j v^j = T^j if (u^j +^j v^j = T^j) otherwise: u^j +^j v^j = u^j +^j v^j !
+
+Some more detailed comments and typos:
+
+- In general, all along the article, there are space characters missing before the references ("Time-cost trade-off problem[11] ...")
+
+- p2, toward end of page: "Section 3 shows [who->how] to formalize ..."
+
+- in next sentence: "[+In] Section 4 we introduce ..."
+
+- The first time one reads the description of Fig 1 in Example 1, it is not clear what are the small circles describing the unary costs (the value of the unary costs are not in small circles). It is only later on, when you describe the operations on the costs, that one can infer how the unary costs are represented on the figure.
+
+- p5: why do you restrict to binary VCSPs? Would it really make the problem much more complex to work with n-ary constraints?
+
+- p5: "VCSPs are a pragmatic extension of the CSP dedicated to optimization which authorize an important efficiency gains with regard to the usual approach in constraint programming consist on encapsulate the objective function into a variable." Could you explain what is this efficiency gain or cite some reference?
+
+- p8: "Let \vector{u}, \vector{v}" The arrow notation is not used later on.
+
+- p13: Missing reference: P-EAC∗ inspired by the work of [?]
+
+- p13, last line: "Res[s]ource Allocation Problem"
+
+- References: several references ([11,12,21,22,23]) do not show the last name of the authors
+
+
+
+_______________________________________________________________________
+Reviewer's confidence
+    == 4 (expert)
+    == 3 (high)
+    == 2 (medium)
+    == 1 (low)
+--> 2
+
+_______________________________________________________________________
+Confidential remarks for the program committee
+
+I'm not very familiar with VCSPs so I may have missed something in this paper but as far as I see, there is nothing really new here. The only idea is that in the multi-objective case you need to perform the same operations as in the mono-objective one for all the components of the cost and prune the well-known Pareto dominance relations ...
+
+
+

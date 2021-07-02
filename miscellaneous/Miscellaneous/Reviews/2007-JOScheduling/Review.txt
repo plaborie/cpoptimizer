@@ -1,0 +1,80 @@
+Reviewer Blind Comments to Author
+------------------------------------------
+
+The article describes an approach for solving job-shop scheduling
+problems with sequence-dependent setup times. It is an extended
+version of a paper presented at MISTA 2005. It consists in a Shifting
+Bottleneck Procedure where the one-machine problem is solved using a
+Dynamic Programming algorithm already proposed by the authors in [5].
+
+The approach is experimented on several benchmarks where it is shown
+to improve on the state-of-the-art. Despite the fact the dynamic
+programming algorithm to solve TSP with time-windows have already been
+published by the authors elsewhere, its application to solve
+scheduling problems with sequence-dependent setup times is original
+and, given the experimental study, promising. I think the paper should
+be accepted for publication in the Journal of Scheduling.
+
+Some more detailed remarks follow.
+
+In section 3, for space reasons I guess and also because it already
+has been published in [5], the dynamic programming algorithm is only
+sketched. However, I think it would be good to give a little bit more
+details about it in particular to explain its algorithmic
+complexity. The complexity in O(k^2 2^{k-2} |I|) should be explicitly
+mentioned. The claim of a "linear-time heuristic that examines an
+exponential-sized neighborhood" is misleading: the heuristics is
+linear for a fixed k but the combinatorial explosion is hidden in the
+constant factor.
+
+Section 3 is in fact rather heavy. It would help to organize it in 3
+sub-sections: (3.1) TSPTW formulation, (3.2) TSP with specific
+precedence constraints and dynamic programming algorithm to solve it
+and (3.3) formulation of TSPTW as TSP with specific precedence
+constraints.
+
+In the experimental results, it is surprising that results obtained
+with k=10/15 are not much better than the ones obtained with 10/12. It
+seems to suggest that running times could be improved by using even
+smaller values for k. I guess it can be because for small problems
+(typically with a number of jobs of the same order as k), the
+heuristics is almost optimal. It would be interesting to have figures
+for smaller values of k in order to have an idea of where the limits
+are in terms of trade-of between running time and solution quality.
+
+For the comparison on the benchmarks of Brucker and Thiele, it would
+be interesting to say which values for k were used. The explanation of
+the fact the proposed approach seems to scale better than previous
+approaches is not really convincing:
+1.  not all previous approaches need an exponential exploration of the
+TSPTW: some of them use polynomial relaxations of the problem to guide
+the search.
+2. when the size of the problem grows (and specifically when the
+number of jobs becomes much larger than k), one can expect the
+linear time heuristic to become less and less informative.
+
+Maybe part of the explanation is in the fact that even the biggest
+instances of Brucker and Thiele are not that big in terms of number of
+jobs (at most 20).
+
+Note also the following very recent results on the same benchmark:
+C. Artigues and D. Feillet. A Branch and bound method for the job-shop
+problem with sequence dependent setup times. 
+
+
+Reviewer Confidential Comments to Editor
+------------------------------------------
+
+The article describes an approach for solving job-shop scheduling
+problems with sequence-dependent setup times. It is an extended
+version of a paper presented at MISTA 2005. It consists in a Shifting
+Bottleneck Procedure where the one-machine problem is solved using a
+Dynamic Programming algorithm already proposed by the authors in [5].
+
+The approach is experimented on several benchmarks where it is shown
+to improve on the state-of-the-art. Despite the fact the dynamic
+programming algorithm to solve TSP with time-windows have already been
+published by the authors elsewhere, its application to solve
+scheduling problems with sequence-dependent setup times is original
+and, given the experimental study, promising. I think the paper should
+be accepted for publication in the Journal of Scheduling.

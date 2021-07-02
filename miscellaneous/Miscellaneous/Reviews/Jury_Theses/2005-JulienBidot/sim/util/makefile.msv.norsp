@@ -1,0 +1,217 @@
+#------------------------------------------------------------
+#
+# makefile.msv.norsp
+#
+#
+# You can do modifications on this makefile but it should not 
+# be commited.
+#
+# To customize your installation, ie change change value for 
+# ILMDIR, SOLVERDIR, etc change macros in makefile.site
+#
+#------------------------------------------------------------
+
+################################################################
+#
+# Windows (or MSVC) specific commands
+# Defined before including makefile.site so that users
+# can override them in makefile.site
+#
+################################################################
+
+
+# suffixes
+C=cpp
+O=obj
+E=.exe
+
+CLEANMAKE=cleanpc
+REALCLEANMAKE=realcleanpc
+KEEPLIB=keeplibpc
+HTMLDOC=htmldocpc
+CHECK=checkpc
+
+DUMMY=
+SEP=\$(DUMMY)
+DEF=/D
+INC=-I
+
+TOUCH=..\..\..\util\touch.bat
+DEL=-del
+COPY=copy
+MORE=more
+DIFF=-diff
+MOVE=-move
+CAT=type
+
+PURIFYPC = purify
+PURECOVPC = purecov
+QUANTIFYPC = quantify
+
+!include ..\..\..\util\makefile.site
+
+PURIFY = $(PURIFYPC)
+PURECOV = $(PURECOVPC)
+QUANTIFY = $(QUANTIFYPC)
+
+################################################################
+#
+# Names and Directories
+#
+################################################################
+
+# Other products directories
+ILMDIR=$(ILMDIRPC)
+SOLVERDIR=$(SOLVERDIRPC)
+SIMDIR=$(SIMDIRPC)
+BREFDIR=$(SIMDIR)\refbench
+CONCERTDIR=$(CONCERTDIRPC)
+
+# Compiler directory
+!if "$(SYSTEM)" == "msvc5"
+MSVCROOTDIR=$(MSVC5ROOTDIR)
+!endif
+!if "$(SYSTEM)" == "msvc6"
+MSVCROOTDIR=$(MSVC6ROOTDIR)
+!endif
+
+# System libs directory
+MSVCLIBDIR=$(MSVCROOTDIR)\lib
+
+LIBS=$(TMPDIR)sim.lib
+SIMLIB=$(LIBS)
+SOLVERLIB=$(SOLVERDIR)\lib\$(SYSTEM)\$(LIBFORMAT)\solver.lib
+CONCERTLIB=$(CONCERTDIR)\lib\$(SYSTEM)\$(LIBFORMAT)\concert.lib
+
+
+################################################################
+#
+# Flags for compilation and linking
+#
+################################################################
+
+#
+# General flags for all versions and all ports
+#
+CLFLAGS=/nologo -I$(MSVCROOTDIR)\include
+
+# command for output
+OUTPUT=/Fo$(TMPDIR)
+EXEOUTPUT=/Fe$(TMPDIR)
+OBJOUTPUT=/Fo$(TMPDIR)
+
+# Flags for linking
+LDSYSFLAGS=/link /LIBPATH:$(MSVCLIBDIR) /INCREMENTAL:NO /PDB:NONE wsock32.lib user32.lib advapi32.lib
+
+################################################################
+#
+# Definitions for the macros used in makefile.shr
+#
+################################################################
+
+#
+# If you just want to have the asserts, but not a full
+# debug mode, use 'nmake NDEBUG='
+#
+!ifndef DEBUG
+!ifndef NDEBUG
+NDEBUG=$(DEF)NDEBUG
+!endif
+!endif
+
+#
+# Doing 'nmake DEBUG=' switches to the default debug mode.
+#
+# If you want to specify your own debug/optim related options, either
+# use 'nmake DEBUG=MyOwnDebugOption' to *add* something to the default 
+# debug mode, or use 'nmake DEBUG= NDEBUG=MyOwnDebugOption' to *replace*
+# the default debug mode.
+#
+# For example, 'nmake DEBUG= NDEBUG=' turns off optimizations but does
+# not turn on debug mode
+#
+!ifndef DEBUG
+DEBUG=/O2
+!if "$(SYSTEM)" == "msvc6"
+DEBUG=$(DEBUG) /Op
+!endif
+!else
+# It is not possible to redefine DEBUG (as it was defined on
+# the command line), so we define NDEBUG instead, supposing 
+# it is not on the command line, to get the default debug options. 
+# If NDEBUG was defined on the command line, then next line won't 
+# work, thus the user is on his own...
+NDEBUG=/Od /Z7
+!endif
+
+LDOPTFLAGS=$(LDSYSFLAGS) $(OPTLIB) /LIBPATH:$(TMPDIR). /LIBPATH:$(SIMLIBDIR) /LIBPATH:$(SOLVERLIBDIR) /LIBPATH:$(CONCERTLIBDIR) sim.lib solver.lib concert.lib
+LDOPTFLAGSMT=$(LDOPTFLAGS) $(LDMTFLAGS)
+
+
+################################################################
+#
+# Precompiled Headers
+#
+################################################################
+
+!ifdef USEPCH
+CREATE_LIB_PCH=/Yc"libpch.h" /Fp"libpch.pch" /DILO_USE_PCH 
+USE_LIB_PCH=/Yu"libpch.h" /Fp"libpch.pch" /DILO_USE_PCH 
+CREATE_BENCH_PCH=/Yc"benchpch.h" /Fp"benchpch.pch" /DILO_USE_PCH 
+USE_BENCH_PCH=/Yu"benchpch.h" /Fp"benchpch.pch" /DILO_USE_PCH 
+!endif
+
+
+################################################################
+#
+# Command definitions
+#
+################################################################
+
+CCC=$(MSVCROOTDIR)\bin\cl $(CLFLAGS)
+RANLIB=$(MSVCROOTDIR)\bin\lib /nologo
+ 
+
+################################################################
+#
+# Generic makefile and dependency file
+#
+################################################################
+
+!include $(SIMDIR)\util\makefile.shr
+!include $(SIMDIR)\util\makefile.depend
+
+
+################################################################
+#
+# Other stuff
+#
+################################################################
+
+$(TMPDIR)sim.lib: $(LIBOBJS)
+	$(RANLIB) $(LIBOBJS) /OUT:$(LIBS)
+
+ilc: $(LIBILCOBJS)
+	$(RANLIB) $(LIBILCOBJS) /OUT:$(LIBS)
+
+ilo: $(LIBILOOBJS)
+	$(RANLIB) $(LIBILOOBJS) /OUT:$(LIBS)
+
+
+!ifdef USEPCH
+BENCHPCH_PCH=benchpch.pch
+benchpch.pch: benchpch.$(O) $(EXINC)$(SEP)benchpch.h
+!else
+BENCHPCH_PCH=
+benchpch.pch: 
+	touch benchpch.pch
+!endif
+
+!ifdef USEPCH
+LIBPCH_PCH=libpch.pch
+libpch.pch: libpch.$(O)
+!else
+LIBPCH_PCH=libpch.pch
+libpch.pch: 
+	touch libpch.pch
+!endif

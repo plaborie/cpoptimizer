@@ -1,0 +1,55 @@
+=========================================================================
+
+ PlanSIG REFEREE'S REVIEW FORM
+=========================================================================
+
+
+
+**************************************************************************
+Reviewer: Philippe Laborie
+Paper Authors: Andras Kovacs and J. Christopher Beck
+Paper Title: Single-machine Scheduling with Tool Changes: A Constraint-based Approach
+
+***************** Section to be passed back to Author(s):*******************
+
+1. Overall Score from 0 to 10: 8
+   (0 = definite rejection, 5 = neutral, 10=definite acceptance)
+
+2. How Relevant is this paper to the PlanSIG Workshop?
+   [X] Very relevant     [  ] Moderately relevant      [  ] Not relevant
+
+3. How SIGNIFICANT is this paper?
+   [ ] Very significant [X] Moderately significant  [ ] Not significant
+
+4. How ORIGINAL is this paper?
+   [ ] Very original      [X] Moderately original        [  ] Not original
+
+5. How technically THOROUGH is this paper?
+   [X] Very thorough    [ ] Moderately thorough      [ ] Not thorough
+
+6. How well is the paper PRESENTED?
+                                          Good       Average    Poor
+   Overall organization                   [X]        [ ]        [ ]
+   English                                [X]        [ ]        [ ]
+   Readability                            [X]        [ ]        [ ]
+
+
+Further comments (good and bad) to be passed back to the author(s) of
+the paper, including advice or explanations. Please be as specific and
+constructive as possible. Use as much space as you need.
+
+The modeling trick to squeeze tool change activities is elegant. It
+allows decoupling the delays introduced by tool changes and the
+disjunctive aspects of the machine itself and in particular to re-use
+efficient algorithms for propagating the sum of completion times. 
+
+This modeling trick together with the problem specific dominance rules
+explain the good results reported in the section about experimental
+results.
+
+The model is probably hard to extend to more complex problems where
+for instance the exact position of tool change activities in time is
+important (for instance if there are several machines and if tool
+change activities require some common resources).
+
+

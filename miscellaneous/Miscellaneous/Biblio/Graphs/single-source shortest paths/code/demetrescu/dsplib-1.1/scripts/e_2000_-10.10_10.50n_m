@@ -1,0 +1,101 @@
+#!/bin/tcsh
+
+# Change log: CD000502
+
+# Arguments
+# 1: number of nodes
+# 2: number of arcs
+# 3: min weight
+# 4: max weight
+# 5: number of operations
+# 6: rnd generator seed
+# 7: options m=modifying sequence generation
+#            z=initial graph has all zero-length cycles (=> sequences with all increases)
+#            d=deep solution structure tree
+#            s=shallow solution structure tree
+#            a=alternate sequence
+
+
+# Environment variable RS contains the results table name for this experiment
+setenv RS e_2000_-10.10_10.50n_m
+
+# Environment variable A contains the names of codes run in this experiment
+setenv A  dfmn+rr+df
+
+# Delete previous results table for this experiment
+reset_results $RS
+
+
+# m=20000
+
+gen_problem_nnc  2000  20000  -10 10  2000  983          m
+gen_problem_nnc  2000  20000  -10 10  2000  877          m
+gen_problem_nnc  2000  20000  -10 10  2000  763          m
+gen_problem_nnc  2000  20000  -10 10  2000  653          m
+gen_problem_nnc  2000  20000  -10 10  2000  547          m
+
+drive_alg        2000  20000  -10 10  2000  983  $RS nnc m $A
+drive_alg        2000  20000  -10 10  2000  877  $RS nnc m $A
+drive_alg        2000  20000  -10 10  2000  763  $RS nnc m $A
+drive_alg        2000  20000  -10 10  2000  653  $RS nnc m $A
+drive_alg        2000  20000  -10 10  2000  547  $RS nnc m $A
+
+
+# m=40000
+
+gen_problem_nnc  2000  40000  -10 10  2000  983          m
+gen_problem_nnc  2000  40000  -10 10  2000  877          m
+gen_problem_nnc  2000  40000  -10 10  2000  763          m
+gen_problem_nnc  2000  40000  -10 10  2000  653          m
+gen_problem_nnc  2000  40000  -10 10  2000  547          m
+
+drive_alg        2000  40000  -10 10  2000  983  $RS nnc m $A
+drive_alg        2000  40000  -10 10  2000  877  $RS nnc m $A
+drive_alg        2000  40000  -10 10  2000  763  $RS nnc m $A
+drive_alg        2000  40000  -10 10  2000  653  $RS nnc m $A
+drive_alg        2000  40000  -10 10  2000  547  $RS nnc m $A
+
+
+# m=60000
+
+gen_problem_nnc  2000  60000  -10 10  2000  983          m
+gen_problem_nnc  2000  60000  -10 10  2000  877          m
+gen_problem_nnc  2000  60000  -10 10  2000  763          m
+gen_problem_nnc  2000  60000  -10 10  2000  653          m
+gen_problem_nnc  2000  60000  -10 10  2000  547          m
+
+drive_alg        2000  60000  -10 10  2000  983  $RS nnc m $A
+drive_alg        2000  60000  -10 10  2000  877  $RS nnc m $A
+drive_alg        2000  60000  -10 10  2000  763  $RS nnc m $A
+drive_alg        2000  60000  -10 10  2000  653  $RS nnc m $A
+drive_alg        2000  60000  -10 10  2000  547  $RS nnc m $A
+
+
+# m=80000
+
+gen_problem_nnc  2000  80000  -10 10  2000  983          m
+gen_problem_nnc  2000  80000  -10 10  2000  877          m
+gen_problem_nnc  2000  80000  -10 10  2000  763          m
+gen_problem_nnc  2000  80000  -10 10  2000  653          m
+gen_problem_nnc  2000  80000  -10 10  2000  547          m
+
+drive_alg        2000  80000  -10 10  2000  983  $RS nnc m $A
+drive_alg        2000  80000  -10 10  2000  877  $RS nnc m $A
+drive_alg        2000  80000  -10 10  2000  763  $RS nnc m $A
+drive_alg        2000  80000  -10 10  2000  653  $RS nnc m $A
+drive_alg        2000  80000  -10 10  2000  547  $RS nnc m $A
+
+
+# m=100000
+
+gen_problem_nnc  2000 100000  -10 10  2000  983          m
+gen_problem_nnc  2000 100000  -10 10  2000  877          m
+gen_problem_nnc  2000 100000  -10 10  2000  763          m
+gen_problem_nnc  2000 100000  -10 10  2000  653          m
+gen_problem_nnc  2000 100000  -10 10  2000  547          m
+
+drive_alg        2000 100000  -10 10  2000  983  $RS nnc m $A
+drive_alg        2000 100000  -10 10  2000  877  $RS nnc m $A
+drive_alg        2000 100000  -10 10  2000  763  $RS nnc m $A
+drive_alg        2000 100000  -10 10  2000  653  $RS nnc m $A
+drive_alg        2000 100000  -10 10  2000  547  $RS nnc m $A

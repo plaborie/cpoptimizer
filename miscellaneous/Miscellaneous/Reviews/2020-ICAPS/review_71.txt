@@ -1,0 +1,214 @@
+Title:	Efficient Constrained Planning for Deploying Additional Route on Existing Mass Transportation System with Neural-Network-Based Passenger Flow Inference
+Number: #71
+
+Evaluation
+
+Significance / Importance.
+* Does the paper contribute a major breakthrough or an incremental advance? If the paper describes an application, is the application important?
+ 3: substantial contribution or strong impact
+ 2: modest contribution or average impact
+ 1: minimal contribution or weak impact
+
+2
+
+Soundness.
+* Is the technical development accurate? Does the paper present convincing evidence that supports their claims?
+ 3: correct
+ 2: minor inconsistencies or small fixable errors
+ 1: major errors
+
+2
+
+Novelty.
+* Is the research approach described novel? For an application paper, is the application novel?
+ 3: novel - approach and/or application are new and only a few other similar approaches and/or applications exist
+ 2: moderate - approach and/or application have been developed before, but significant improvements are presented
+ 1: marginal - only parts of the application and/or approach are new
+
+3
+
+Scholarship.
+* Is related work cited and discussed?
+ 3: excellent coverage of related work
+ 2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+2
+
+Clarity.
+* Is the paper clearly organized and clearly written? Does the submission make explicit claims about the capabilities or behavior of the approach?
+ 3: well organized and well written
+ 2: mostly readable with some room for improvement
+ 1: hard to follow
+
+1
+
+Technology Readiness Level.
+* How would you characterize the Technology Readiness Level of the contribution
+ 9: Actual system proven through successful mission operations
+ 8: Actual system completed and qualified through test and demonstration
+ 7: System prototype demonstration in an operational environment
+ 6: System/subsystem model or prototype demonstration in a relevant environment
+ 5: Component and/or breadboard validation in relevant environment
+ 4: Component and/or breadboard validation in laboratory environment
+ 3: Analytical and experimental critical function and/or characteristic proof of concept
+ 2: Technology concept and/or application formulated
+ 1: Basic principles observed and reported
+ 0: N/A - not applicable
+
+5
+
+Reproducibility.
+* Can the work be reproduced or verified based on the paper and any supporting information or data?
+ 5: code and domains (whichever apply) are already publicly available
+ 4: authors promise to release code and domains (whichever apply)
+ 3: authors describe the implementation and domains in sufficient detail
+ 2: some details missing but still appears to be replicable with some effort
+ 1: difficult to reproduce because of missing detail
+ 0: N/A - nothing to reproduce
+
+1
+
+Suitability for Special Track.
+* Is the paper suitable to the track it was submitted to
+ 12: Special Track on Humans and Robotics - Almost all focus is on humans
+ 11: Special Track on Humans and Robotics - Almost all focus is on robotics
+ 10: Special Track on Humans and Robotics - Almost all focus is on planning
+ 9: Special Track on Humans and Robotics - Good balance between planning and robotics
+ 8: Special Track on Planning and Learning - Almost all focus is on learning
+ 7: Special Track on Planning and Learning - Almost all focus is on planning
+ 6: Special Track on Planning and Learning - Good balance between planning and learning
+ 5: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Does not describe a knowledge engineering approach or system architecture.
+ 4: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes an innovative knowledge engineering approach/aspect
+ 3: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes a general system architecture that incorporates both planning and plan execution
+ 2: Novel Applications - Planning & Scheduling are not Important for the Application
+ 1: Novel Applications - Planning & Scheduling are Important for the Application
+ 0: N/A - submitted to the main track
+
+0
+
+Overall evaluation.
+* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+ 1: weak accept
+ 0: borderline paper
+ -1: weak reject
+ -2: reject
+ -3: strong reject
+
+-2
+
+Review.
+* Detailed review. (Required)
+
+The paper is about two problems in the context of deploying additional routes on existing mass
+transportation systems: (1) route-based passenger flow estimation on future potential routes
+and (2) route planning.
+
+The topic is important and relevant to ICAPS conference, especially the second problem
+(that unfortunately is the less clear among the two).
+
+The contribution described in the paper seems to represent a large amount of work by the authors.
+
+The paper is very hard to follow because it lacks some crisp and formal description of the two different
+problems and many concepts and acronyms are introduced without being clearly explained (in spite of
+the dedicated section about preliminaries). I will try to list some of them in the more detailed section below.
+
+I think the first problem (passenger flow estimation on potential routes proposed by the user) is
+more or less well described. The use of machine-learning techniques for solving this problem (even
+if it seems a priori reasonable) should be better motivated (why is it expected to work well) and
+if possible compared to other methods (even if on simpler use-cases as the other existing methods seem
+to be able to handle less features).
+
+I must say that I did not fully understand the definition of the second problem.
+What is the data and what are we looking for? Furthermore in the evaluation of route recommendation,
+it is not clear how the proposed method is compared against the six other methods. In fact what is
+not clear is from which data the comparative method start, for instance if you run a Dijkstra algorithm,
+what does the distance/cost represent? Is the data still computed using the same method proposed in the paper
+(Grid-based graph, PF precomputation and GMM?)
+
+To summarize, I think the topic is important and relevant, I have the feeling that the contribution
+is important but there is a real issue with the presentation of the work.
+
+Detailed comments and typos
+---------------------------
+
+- p1, col1: "For residents, they care about whether transportation construction can bring convenience."
+  Like this one, many sentences are hard to parse in the article.
+
+- p1,col1, last lines: "former researches have focused on, one is the route-based passenger flow
+  (PF) inference". The problem here (and there are also many other occurrences all along the paper) is that
+  there is some forward looking reference that has not been explained before (what exactly is the PF inference is not clear at all at this point). As a results, the
+  reader accumulates a large amount of fuzziness and uncertainty about the meaning
+
+- p2, on Table 1: there is an accent on "Surrounding"
+-
+- p2,col1: starting on this page and all along the paper, there is a notion of "non-monotonicity" that is never clearly explained
+
+- p2, col1: the acronym GMM is not explained when first mentioned here
+
+- p3 & 4, section Preliminaries. The idea to dedicate a section to the explanation of some terms is appreciable.
+  But here, as you describe these terms quite independently from the way they are used in the paper
+  (for instance 'monotonicity'), this section is much less informative that it could be. And I think
+  some of these descriptions should be formalized in mathematical terms, for instance the notion of
+  a 'trajectory'. The current description ("Trajectory is the path that certain mass transit
+  regularly takes between two stations...") is really very vague.
+
+- p4, Problem definition: there is a missing comma ',' between the two arguments of PF(l_i t_j)
+
+- p4, you should explain formally (with maths) what is the form of the result you are producing
+  (the PF functions, as illustrated on Figure 1). Does it consist of stepwise functions with a
+  certain time-step for time ?
+
+- p4, col2: you introduce the RAR acronym without clearly saying it means "Route affecting region"
+
+- p5, col1: the definition of the High PF route recommendation problem is really not clear.
+  Are the stations and the routes existing ones? I suppose must-visit stations are existing ones.
+  What about the recommended stations? I really think all these notions of stations, trajectories,
+  routes should be formalized mathematically and you should clearly distinguish between what is
+  known and what is to be computed as part of the solution.
+
+- p5,p6: gird <-> grid !
+
+- p6, col1: "Before route construction, we first preinfer the PF value for each grid in the map area,
+  and PF values of grids are then stored in a lookup table". I thought that PF functions were inferred
+  from a given "route", not from a "grid".
+
+- p6, col1: the GMM should also be formalized. Otherwise, the description is far too general and many ambiguities remain.
+
+- p7, col1: "Then we compare the inference value with the ground-truth." Given that the inference value PF is a function.
+  How do you exactly compare the two functions?
+
+- p7, col1: "We identified that feature set I and VI show better results than the others".
+  This conclusion is really not clear when looking at the figures 4 and 5 !
+
+Reviewer's confidence.
+* Reviewer's confidence
+ 4: (expert)
+ 3: (high)
+ 2: (medium)
+ 1: (low)
+
+2
+
+Suitable for a demo?.
+* Suitable for a demo?
+ 3: yes
+ 2: maybe
+ 1: no
+
+2
+
+Nominate for Best Paper Award?.
+* Nominate for Best Paper Award?
+ [ ] yes
+
+Nominate for Best Student Paper Award (assuming it is eligible) ?.
+* Nominate for Best Student Paper Award (assuming it is eligible)?
+ [ ] yes
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+The paper is really hard to follow in details. It seems the authors did an interesting work on an important problem.
+But the paper is really too verbose and lacks some mathematical formalism to remove the numerous imprecisions and ambiguities.

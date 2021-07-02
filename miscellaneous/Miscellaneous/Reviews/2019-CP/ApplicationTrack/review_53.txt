@@ -1,0 +1,135 @@
+Number : 53
+Title  : Scheduling of Mobile Robots using Constraint Programming
+
+
+Relevance.* Is this paper suitable for the track topics?
+*2: Just fine
+ 1: Partial fit
+ 0: Not suitable
+
+Significance.* How important is the contribution of the paper?
+ 5: Very strong contribution
+ 4: Strong contribution
+*3: Fair contribution
+ 2: Minor contribution
+ 1: Very minor contribution
+
+Originality.* How original are the ideas presented in the paper?
+  2: Paves the way to new territories
+  1: Original
+  0: Fairly new
+*-1: Incremental
+ -2: Already known
+
+Technical quality.* Are the claims supported by solid empirical or theoretical proofs?
+  2: Excellent technical quality
+  1: Good technical quality
+* 0: Fair paper
+ -1: Poor paper
+ -2: Very poor paper
+
+Clarity.* Is the paper clearly written?
+  1: Very clear paper
+* 0: Reasonably clear paper
+ -1: Writing could be improved
+ -2: Poor writing
+
+Scholarship.* Does the paper miss really important references?
+  1: Cannot see any missing relevant reference
+* 0: Some loosely relevant references are missing
+ -1: Some relevant references are missing
+ -2: Very relevant references are missing
+
+Overall evaluation.* Please provide a detailed review, including a justification for your scores. The best reviews identify strong and weak points and give associated evidence. Both the score and the review text are required.
+  3: Strong accept
+  2: Accept
+  1: Weak accept
+*-1: Weak reject
+ -2: Reject
+ -3: Strong reject
+
+Review
+
+The paper solves an interesting extension of the job-shop scheduling problem with transportation time by robots that can also perform tasks on the machines.
+
+While the formulation of the problem in CP is not very challenging (several industrial applications using CP Optimizer on similar problems have been implemented), to the best of my knowledge, this is the first time this type of model is published.
+
+A number of points should be clarified during the rebuttal:
+
+1- You mention in footnote 1 that arrays of variable size are not supported in CP Optimizer. This is surprising. I think that you mean that OPL (and not CP Optimizer in general as other APIs are available like Python, Java or C++) does not support arrays of arrays of different size, that is: 2D arrays are rectangular. While this is true, the usual way is to index the array by tuple-sets instead, this provides a much more elegant way to handle this type of model. Here, you should index the array of interval variables 'activity' first by a tuple set with pairs <j,o> representing an operation o of a job j. Then you can have jobs with a different number of operations without creating any useless decision variable (these useless decision variables complexify the formulation and even, to a much lesser extent, the resolution). And you will access the activities using activity[<j,o>][s].
+
+2- For modeling the transportation times between locations (last paragraph before Example 4), the O(m^4) matrix is indeed one option if the number of machines is small. When this number gets larger, another option is to use a similar model as the one in 3.6. But I thing the big problem in the formulation in 3.6 is that the propagation on the robot sequence is quite weak. The formulation could be strengthened by adding similar interval variables as the rbtActivity of 3.5 (with known duration covering the full transportation) and a no-overlap constraint (without transition distance) on these interval variables.
+
+3- The redundant constraints and their impact on the performance is sometimes very surprising:
+
+3.1- I do not see why the Earlier Starting Time has any impact at all. It seems that the basic formulation should do this type of propagation at the root node. It is only a matter of propagating a set of precedence constraints between interval variables with known duration. Could you elaborate on this? Maybe by looking at the domain of the variables after the initial propagation ...
+
+3.2- The cumulative constraint on the machine cannot help here because the allocation of machines to the operations is known, so the cumul function cannot propagate more than the individual no-overlap. This cumulative constraint would be useful if the underlying problem on machines was a flexible JSSP allowing for machine allocation, which would be a very interesting extension of the current problem by the way.
+
+3.3- I think the cumulative constraint on the robots usage, as formulated here also cannot help at all. You should post this constraint using the activity[j][o][1] interval variables (the masters of the alternative, not the members). The interest of the cumulative constraints is to account for the usage of 1 resource no matter what is the allocated resource.
+
+3.4- The fact that this cumulative constraint on the robots usage, as formulated here, has a very negative impact on the performance is also very strange (if this constraint cannot help, I do not see how it could hurt, beside slowing down the search speed a little bit) and would deserve a detailed investigation.
+
+4- The experiments are performed only with relatively small problems (at most 8 jobs x 21 operations with 4 machines and 2 robots). I think the advantages of CP (and CP Optimizer) against MIP will become even more evident when scaling to larger (and more realistic) problems. Of course in this case, you should better compare the quality of the solutions after a certain time limit rather than the time to optimality proofs as even CP will probably not be able to proof optimality in reasonable time.
+
+Reviewer's confidence.* Do you have all the background knowledge and information to properly assess the paper contribution?
+*4: I'm an expert in the topic and fully understand the technical details of the paper
+ 3: I know the topic very well and understand the technical details of the paper
+ 2: I have a reasonable knowledge of the topic and understand the technical details of the paper
+ 1: Parts of the paper falls outside of my area of knowledge
+ 0: The paper falls outside of my area of knowledge
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+The paper is borderline. I may increase my rating after the rebuttal depending on the authors answer.
+
+
+Best paper award. Do you want to nominate the paper for the best paper award?
+ [ ] Nominate for "Best Paper Award"
+
+Best student paper award. Do you want to nominate the paper for the "Best Student Paper Award"?
+ [ ] Nominate for "Best Student Paper Award"
+
+
+Comments after author's rebuttal
+================================
+
+The positive impact of the so called "Earliest Start Time" redundant constraint is still not explained. I think that you could for example easily export your OPL formulation of the problem as a .cpo file and then use the interactive executable [1] to read this problem file, call propagation and inspect the domain of the variables. You can use the user's forum (http://ibm.biz/ConstraintProgForums) to get help, whatever you want to do with CP Optimizer.
+
+[1] https://www.ibm.com/support/knowledgecenter/SSSA5P_12.9.0/ilog.odms.cpo.help/CP_Optimizer/Interactive/topics/interactiveCPOptimizer.html
+
+Also, as a possible improvement (at least for the readability of the OPL formulation in the paper) I would really suggest to use tuple sets as indexes for the arrays of variables, this would avoid the creation of many useless interval variables (for the "unused operations" of the jobs, for the "unused" processing activities by the robots when the processing do not need a robot) that are constrained to be absent in the model. And also to use different names for the processing and for the transportation interval variables.
+
+
+
+
+
+Pierre Schaus
+Comment:	Dear Reviewers,
+
+We need to discuss.
+Philippe you asked for clarifications in the rebuttal on very precise points
+Are you happy with the answers ?
+
+What do other reviewers think after having read the other reviews and and the authors answer ?
+
+Discussion
+==========
+I must admit that I expected more from the author's answer. In particular about the positive impact of the so called "Earliest Start Time" redundant constraint that sounds a bit silly to me as it it just a matter of 'manually' propagating temporal constraints which is something trivially done by CP. Even if one cannot just propagate the constraint network in OPL, they could easily export the problem as a .cpo text file and use the interactive executable to read this problem file, call propagation and inspect the domain of the variables. And, if they did not know that this is possible, they could just have asked on the user's forums. My feeling is that they may have a problem in their formulation, in any case, there is something weird going on here.
+
+Also, because they use OPL in a very limited way (they represent everything using n-dimensional arrays instead of tuple sets), it results in a formulation of the problem that is artificially complex:
+- Only one big array of variables for the activities that do not distinguish between transportation and processing (distinction is only by using a 0/1 index)
+- Creation of many useless interval variables (for the "unused operations" of the jobs, for the "unused" processing activities by the robots when the processing do not need a robot) that are constrained to be absent in the model
+In the end, and as mentioned by other reviewers, the formulation is not easy to follow whereas it could be made much readable (even if it would result in the same model in the end).
+
+And the general tone of the answer is that they won't really change anything.
+
+So, this is the negative side.
+
+From the other hand, it is true that the problem is interesting and that, in the end, even if its readability could be improved, their formulation in CPO really makes sense and seems to be efficient.
+
+In fact, it could be a really good paper, and that is why I'm a bit disappointed.
+
+So, unlike Mark, my expectations may be higher than they should be! And indeed, it is a student paper.
+
+In any case, for sure I will not fight for rejection of the paper if you all think it should be accepted.

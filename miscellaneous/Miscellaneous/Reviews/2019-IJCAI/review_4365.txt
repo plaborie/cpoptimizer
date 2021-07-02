@@ -1,0 +1,90 @@
+Title: Constraint-Based Scheduling With Complex Setup Operations: An Iterative Two-Layer Approach
+
+Review
+Relevance [1-10] 6
+Is the paper fully within the scope of the conference? Will the questions and results of the paper be of interest to researchers in the field?
+
+Significance [1-10] 6
+Is this a significant advance in the state of the art? Is this a paper that people are likely to read and cite? Does the paper address an important problem? Does it open new research directions? Is it a paper that is likely to have a lasting impact?
+
+Originality [1-10] 6
+Reviewers should recognise and reward papers that propose genuinely new ideas. As a reviewer you should try to assess whether the ideas are truly new. Novel combinations, adaptations or extensions of existing ideas are also valuable.
+
+Technical Quality [1-10] 6 
+Are the results technically sound? Are there obvious flaws in the conceptual approach? Are claims well-supported by theoretical analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach?
+
+Clarity and quality of writing [1-10] 6
+Is the paper clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? It may be better to advise the authors to revise a paper and submit to a later conference, than to accept and publish a poorly-written version. However, if the paper is likely to be accepted, please make suggestions to improve the clarity of the paper, and provide details of typos.
+
+Scholarship [1-10] 5
+Does the paper situate the work with respect to the state of the art? Are relevant papers cited, discussed, and compared to the presented work?
+
+Overall Score [1-10] 6
+10- This is best-paper material. 
+9- An excellent paper, a very strong accept. 
+8-A very good paper, a strong accept 
+7-A good paper, accept. 
+6-A good paper overall. I vote for acceptance, although would not be upset if it were rejected because of the low acceptance rate. 
+5-Decent paper, but may be below the IJCAI threshold. I tend to vote for rejecting it, although would not be upset if it were accepted. 
+4-I vote for rejecting it, but could be persuaded otherwise. 
+3-A weak paper, just not good enough. 
+2-A clear rejection. I vote and argue for rejection. Clearly below the standards of the conference. 
+1-A very strong rejection. I will actively fight for rejection.
+
+Confidence on your assessment [1-10] 8
+10-My own current research is on the topic of the paper, 
+9-I have undertaken research on the topic of the paper, 
+8-I am an expert in this area, 
+7-I have up-to-date knowledge in the area, 
+6-I don't have complete knowledge of the area, but can assess the value of the work, 
+5-I have a general understanding of the area, 
+4-My assessment is an informed guess, 
+3-My knowledge in the area is limited, 
+2-My knowledge in the area is very limited, 
+1-My assessment can be wrong
+
+Comments to Authors.
+Make sure you substantiate all the scores for the different criteria above. Give informative content. Be constructive. Write your comments in the same way you would like to receive comments on your own papers.
+
+The article is on solving scheduling problems for which setup operations (like typically moving from one operation to the next operation the resource) involve complex interactions between the resources. The paper proposes a two-layers hierarchical approach where the first level (L1) simplifies the formulation of the setup operations by considering classical sequence-dependent setup times whereas the second level (L2) considers the sequence of operations produced by level 1 to produce a detailed schedule satisfying the complex constraints of the setup. The resolution iterates between L1 and L2 and the feedback loop from L2 to L1 is ensured by updating the setup time matrix of L1. Though the approach does not provide any optimality guarantee, it is shown to work well in practice on a multi-robot scheduling problem (it outperforms a single-model approach and the optimality gap is small compared to the lower-bounds produced by a specific "optimistic" version of L1).
+
+The paper is clearly written. The type of problem studied in the article is relevant in planning and scheduling and the proposed approach is original.
+
+Even if I think that the proposed approach is very interesting to solve this type of problem in practice, the article falls a bit short on two aspects:
+
+First, I think that the CP formulations could (probably) be made more compact. For instance, if you have two observations O1 and O2 that can be performed by a two different robots among a set of n robots, you do not need to explode the problem into n*(n-1) alternatives (as Figure 2 would suggest): you can just use two interval variables (one for O1, one for O2) and 2n optional interval variables Oij for the possible allocation of observation i (i in {1,2}) to robot j. Also, for the formulation of the detailed routing of robots on the connection graph in L2, instead of using alternative paths (the number of path between two locations is potentially exponential), you could use one optional interval variable per edge of the graph (even if, I admit, this type of model may require some thinking in order that it achieves good constraint propagation). This may result in more compact models for L1 and L2, and could make the full model more reasonable. But I have to admit I have doubts that such a more compact global model would achieve better performance than the proposed approach.
+
+The second weakness is that if the provided comparison with Logical-based Bender's decomposition (LBBD) is correct (LBBD are exact approaches, yours is not), you do not really explain why an LBBD approach would not work here (by the way, in LBBD, the master problem can be formulated in CP it does not have to be a MIP). My feeling is that for this type of problem it may be hard for the sub-problems to produce efficient cuts for the master problem but you do not give any evidence of it or even mention it in the article.
+
+The comparison with blackbox optimization really makes sense. 
+
+More detailed comments:
+
+p1, col2: I'm not sure that at this point in the paper, the formula for the number of tasks in RO^2PL is really understandable for the user. I would just remove it or simplify it.
+
+p2, col1, section 2: "we use constrained-based scheduling models that associate with each task t in T three basic decision variables, namely a start time variable start_t [...], an end time variable end_t [...] and a presence variable pres_t [...] expressing whether the task is present in the solution schedule." This is not really correct because in reality, there is only one decision variable (the interval variable 't') and the presence/absence value is just an additional possible value in the domain of the interval variable. In modeling frameworks like CP Optimizer, interval variable are atomic variables.
+
+p2, col2: "Layer L2 takes as constraints the values of the presence variables and sequence variables obtained in solution \sigma_1." This seems to contradict the example in 5.4 (on Fig. 3) as on the figure it seems that the sequence on the resources without transition times (here, the frequencies) are not imported in level L2 (otherwise, as all the operations O1,...,O5 require the same frequency f1, they should all be ordered in the definition of problem L2.
+
+p3, col1, Algorithm 1: what is the interest of obj^{UP} given as input to the algorithm? Why not using +infty ?
+
+p3, col2: in description of "shouldRestart": the interest of restarting whenever L1 produces a solution whose makespan is worse than the best makespan so far (by whom? by L1 or by L2?) is not clear. Could you elaborate?
+
+p3, col2: in description of "perturbL1": could you give a little bit more information about how the perturbed part of the matrix is reinitialized? Do you reset them to the value used in the initial iteration?
+
+p3, col2: in description of "updateL1": it seems that, for the problem you are considering, an implicit property of the transition matrix is that it satisfies the triangle inequality: for a given robot, going from A to B following the "shortest" path (even if here, the path with "shortest" duration depends on the context) should in general be faster that going from A to C and then from C to B. Could you exploit this when updating the matrix? Clearly, if you decrease in L1 the distance between A and C so that, after this update on L1, going through C (AC+CB) is now faster than directly doing AB (on matrix of L1), then it could make sense to also decrease distance AB. 
+
+p5, col2, section 5.5: version 12.5 for CP Optimizer is a very old version. It would be interesting to use a more recent one.
+
+
+Confidential Comments (Not visible to the authors)
+
+
+
+Metareview
+
+Summary of the strong and weak points of the paper. This text should justify your recommendation to the Area Chair about acceptance or rejection of the paper but do not mention anything about acceptance or rejection in the metareview as this text will be read by authors and the final decision on acceptance and rejection will be taken later in the process. Explain the impact of the rebuttal and the discussions and preserve the anonymity of the process.
+
+Recommendation
+Suggest Accept, Borderline or Reject to the Area Chair. 
+You may select Undecided if the discussion is still going on, and Special Case if this is a special case that needs attention of the area chair, such as an inconclusive discussion.

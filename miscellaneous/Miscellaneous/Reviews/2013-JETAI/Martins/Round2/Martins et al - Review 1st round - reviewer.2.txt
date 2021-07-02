@@ -1,0 +1,332 @@
+====== REVIEW FORM (ROUND 1) ==========================================================
+
+Title: Improving Linear Search Algorithms with Model-based Approaches for MaxSAT Solving
+Authors: Ruben Martins, Vasco Manquinho, Ines Lynce
+
+
+CONTENT
+Please, answer Yes or No.
+
+Is the paper technically sound?
+Yes, mostly, but some formal details need to be fixed.
+
+Is the work described original?
+Yes, although quite incremental and not very deep.
+
+Does it place new results in appropriate context with earlier work?
+No, in terms of the empirical evaluation. 
+Also, the connections to related work should be 
+more clearly discussed already in the introduction section. 
+Yes, apart for these.
+
+Does anything need to be added or deleted?
+Yes, as detailed below.
+
+Is the result important enough to warrant publication?
+Yes, although due to the incremental nature of the work 
+I would be more sceptical if this would have been
+submitted to a more high-quality journal.
+Further analysis should be provided for justifying some of 
+the strong claims made.
+
+FORM
+Please, answer Yes or No.
+
+Does the abstract adequately reflect the contents?
+Yes, apart from the fact that I am not 100% convinced about the 
+claim on "improving the current state-of-the-art in MaxSAT solving".
+
+Are the summary and conclusions adequate?
+Yes, apart from the similar claim as in the abstract.
+
+Does it contain adequate references to previous work?
+Yes, mostly.
+
+Does it explain clearly what was done that is new?
+Yes, mostly.
+
+Does it clearly indicate why this work is important?
+Yes, to the extent possible, due to the incremental nature of the work.
+
+Is the English satisfactory?
+Yes, although some proof reading is necessary.
+
+Is the presentation otherwise satisfactory?
+No, especially the more formal parts need to be revised (esp. related to
+the proofs of correctness.)
+
+Are there an appropriate number of figures?
+Do the figures help clarify the concepts in the paper?
+Yes, yes.
+
+YOUR CONFIDENCE in the paper's topics:
+(Please, delete all categories except one)
+
+- Good
+
+-----------------------------------------------------------------------------------------------
+Detailed comments to authors:
+
+I recomment accepting the manuscript for publication subject to 
+a major revision, taking into account all of the following comments.
+
+The most critical issue needing revision:
+
+I am not 100% convinced about the claim that the (best-performing variant of)
+the algorithms proposed improves on the state-of-the-art in MaxSAT solving.
+This is due to two things:
+
+(1) Austin appears to improve the best current MaxSAT solvers (esp. MSU-BIN-C-D)
+only on a *single* problem domain, namely, "close solutions". 
+The authors should provide arguments why this is especially interesting,
+or better, include more problem domain and provide more fine-grained views
+to the results on the individual MaxSAT Evaluation problem domains.
+A more "standard" way would be to evaluate the algorithms only on the MaxSAT Evaluation
+instances, in which case Austin would not improve over the state of the art.
+The more benchmarks, the better, of course, but the benchmark selection should
+be somewhat balanced: Now there is a clear imbalance in the benchmark selection 
+in view of Figure 3, since the number of problem instances from the "close solutions" domain 
+is high compared to the *total* number of miscellaneous MaxSAT Evaluation instances.
+Hence the claim "The results are clear: Austin outperforms all other MaxSAT solvers ..."
+is quite misleading.
+Is "close solutions" more interesting as a problem domain than the
+individual problem domains constituting the MaxSAT Evaluation instance sets?
+How does Austin compare to the other solvers on the individual problem domains? 
+Is MaxSAT the best approach to solving "close solutions"?
+How is the problem encoded in MaxSAT?
+What are the underlying SAT instances from which the "close solutions" MaxSAT
+instances have been based on, and how was the "first solution" obtained?
+
+(2) The evaluation is critically missing the recently proposed MaxSAT solver
+MaxHS, http://www.cs.toronto.edu/~jdavies/daviesCP13.pdf
+(and earlier papers at SAT'13, CP'11). This is based on a different type of a
+hybrid algorithm, and I look forward to seeing how it performs in comparison
+on each of the benchmark sets. This evaluation needs to be added.
+
+
+More detailed comments in chronological order:
+
+Section 1:
+
+-"A preliminary version of this work was published ... . In previous work".
+Please revise these sentences. It is unclear to me to what "In previous work"
+refers to. Was the RCRA paper formally published somewhere?
+
+-The introduction should be extended with a thorough discussion on "previous work"
+with references, so as to make the sentence "This paper extends previous work ..."
+more explicit.
+
+Section 2:
+
+-"... as being a multiset of clauses". This is a strange sentence.
+My guess is that you are trying to say that (integer) weighted MaxSAT can be viewed
+like this by dublicating clauses according to the weights?
+
+-Instead of \varphi = \varphi_h \cup \varphi_s, why not view \varphi as a pair
+(\varphi_h,\varphi_s) ?
+
+-Definitions 2.1-2.3 are repeating to an extent what was already defined.
+Please compact.
+
+-"An optimal solution ... would be". 
+would be -> is.
+
+-"unsatisfied" is not defined. Should be "not satisfied". (repeatedly in the paper)
+
+-\sum_i=1^k x_i. Replace x_i with l_i, and explicate that *l_i* is a literal.
+
+-"Although cardinality constraints do not occur in MaxSAT
+formulations" is a strange sentence. Definitely there are underlying cardinality constraints
+is various problem that have been encoded as MaxSAT. Please revise.
+
+Section 2.1:
+
+-include MaxHS as a reference.
+
+-"Since this paper focus*es* on".
+Please provide justifications for *why* this is the focus. Are they competitive?
+
+-"linear search *over*" (not "on")
+
+-"Algorithm 1 shows"  -> "...is presented as Algorithm 1".
+
+-"problem variables" not defined.
+
+-"no satisfiable call" revise. This base case should be explain
+as one of the first things.
+
+-Example 2.5 (and the later examples): the sentence flip back of forth
+between the active "we" and the passive. Please revise by removing "we".
+It is the algorithm, not we.
+
+Section 3:
+
+-"in contrast *to*"
+
+2nd sentence:
+"In contrast with traditional linear search algorithms, model-based
+algorithms use models given by the SAT solver to iteratively increase the set of relaxation
+variables that are used in the cardinality constraint."
+One sentence after that:
+"The first algorithm uses the models given by the SAT solver to iteratively
+increase the set of relaxation variables that are used in the cardinality constraint."
+Please revise. Right now it looks like the first algorithm is exactly
+what "model-based algorithms" are as you define them.
+
+-"a partial partition *of*"
+
+-Section 3.1. title "Model-based Algorithms" is repetitive.
+
+-"Even t*h*ough"
+
+-"Algorithm 2 shows our adaptation" what did you adapt, and how?
+
+-For Defs 3.1-3.2, I suggest defining a "stage" of the algorithm, 
+and the referring to "at any stage", so that the definitions are more
+explicitly tied with the execution.
+"the algorithm" should be "Algorithm 1".
+"did not found" -> at this stage the SAT solver calls have not produced
+a model that assigns r to 1?
+"did not found" would be "did not find" or better "has not yet returned".
+
+-"Alg 2 may require additional SAT calls" how many in the worst case?
+What happens in practice?
+
+-"Proof sketch" is not ok for a full-length journal article. please revise.
+
+-"As a result, we have  ..." the following set definition seems to be 
+"the wrong way", what is after ":" should be before, and vice versa?
+
+-Lemma 3.4: should be "\varphi_R is satisfiable iff \varphi_h is satisfiable".
+
+-"can easily define" remove "easily".
+
+-Lemma 3.5: "The converse" is too implicit and informal. Please be more specific.
+split the lemma into two parts.
+
+-"is minimum" over what? please revise.
+
+-Lemma 3.6: here you will also benefit from defining a "stage" of the algorithm.
+However, you want to say that after a rel. variable becomes active, it never 
+becomes inactive (will remain active).
+
+-Lemma 3.6. should be explicitly connected to Alg 2.
+
+-Lemma 3.7: "the algorithm" -> Algorithm 2.
+
+-Thm 3.8: remove "model-based".
+"*the* correct solution" is incorrect. Should be *a*.
+
+Section 3.2:
+
+-"latter use" -> later use.
+
+-Algorithm 3, line 22: \cap should be \wedge?
+Same problem in alg 4, line 25.
+
+-"the these" remove "the.
+
+-Lemma 3.13: "improved on" not defined?
+
+-Lemma 3.15: "Otherwise, ... " sentence appears redundant here?
+In any case, revise.
+
+-Thm 3.17: remove "model-based".
+
+Section 3.3:
+
+-"active ." remove space (two occurrences)
+
+-"we are reducing" is too definitive. Please revise.
+Also, should be "we reduce".
+
+-"truth value 1," remove ",".
+
+-Theorem on the correctness of Algorithm 4 is missing, and must be provided.
+
+Section 4:
+
+-Def 4.1 is extremely vague, and not really a definition at all.
+"the dependencies between assignments" should be revised.
+Either crisply define what you want to define, or use the somewhat standard 
+terminology along with appropriate references and pointers.
+
+-The paragraph on (non-)incremental SAT solving is vague and badly worded.
+Please revise.
+"is denoted by" should revised to "we call" or similar. (other occurrences too)
+You should explicate that the underlying idea is to keep learned clauses
+and *still maintain correctness*. 
+
+Section 5: 
+
+-"in a selection" please revise for more clarity.
+
+-How robust/dependent is Austin wrt the choice of the SAT solver and cardinality 
+encoding? Please add explicit data or at least discussion.
+Why did you make these choices, and based on what?
+
+-Please include explicit details on the close solution (see the main comments above for more).
+
+-"the problem that was observed" what does this refer to? please revise.
+
+-Section 5.4, solver listing:
+The various solvers used both different SAT solvers and different cardinality constraints.
+Has the effects of these choices been evaluated somewhere?
+Please provide appropriate references.
+Also, include explicit discussion pointing out these differences.
+Based on the relatively small differences in the performance of the solvers,
+I would like to know how large part of the differences is due to 
+the choice of the SAT solver/encoding.
+
+-"the most robust solver this outperforming" I don't see this causal relation.
+Please revise. As already mentioned, as far as I can see, Austin is better than
+MSU-BIN-C-D only in a single problem domain.
+
+-"The results are clear". Not really. Please revise.
+
+Section 6:
+
+-"Linear search algorithms for MaxSAT have shown to be particularly effective when the
+number of soft clauses is small. However, if the number of soft clauses increases, then
+the performance of linear search algorithms tends to deteriorate."
+I would have liked to have seen more detailed experimental data supporting this claim.
+Can you show (based on the actual data that you already have)
+an actual correlation between the number of soft clauses and
+the performance, as a plot?
+
+-"outperforms state-of-the-art". This should be toned down, and revised to better reflect
+the results, including a comparison with MaxHS.
+
+-----------------------------------------------------------------------------------------------
+Together with the paper, you received its workshop reviews as
+well as a letter from the authors explaining how they have dealt with these 
+reviews in the current version.
+
+Did authors properly took into account the comments of the workshop reviewers (other than you)? 
+(Please, delete all categories except one)
+
+- Yes, completely (either by improving the paper or by giving convincing evidence 
+  in the accompanying letter that addressing such comments would be out of the scope 
+  of the paper or could/should not be done).
+
+
+Overall judgement
+(Please, delete all categories except one)
+
+2 - Resubmit after major revision
+The paper is not yet mature, or of not sufficient quality for publication in a journal 
+as JETAI. There are critical issues that must be solved. 
+I ask for resubmission and another review.
+
+
+====== END ====================================================================================
+
+
+
+====== CONFIDENTIAL COMMENTS TO EDITORS =======================================================
+
+Please, write here any confidential comments to editors that you may have. 
+
+
+
+====== END ====================================================================================

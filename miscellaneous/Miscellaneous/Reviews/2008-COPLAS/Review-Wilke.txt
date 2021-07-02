@@ -1,0 +1,74 @@
+------------------------------------------------------------------------
+COPLAS 2008: CP/ICAPS 2008 Workshop on Constraint Satisfaction Techniques for Planning and Scheduling Problems
+
+REFEREE'S REVIEW FORM
+
+Paper number: COPLAS08-Wilke
+
+Paper title: Optimization of constraint computing in Automatic Time Tabling
+
+Reviewer's name:  Philippe Laborie
+Reviewer's email: plaborie@ilog.fr
+
+
+Comments to be passed back to Author(s):
+
+Overall Score from 0 to 10:  (0 = definite rejection, 5 = neutral, 10 = definite acceptance)
+0
+
+Overall recommendation?
+[ ]  Accept
+[ ]  Leaning to Accept (i.e. minor amendments required)
+[ ]  Leaning to Reject (i.e. major amendments required)
+[X]  Reject
+
+How RELEVANT is this paper to the this workshop?
+[ ]  Very relevant
+[X]  Moderately relevant
+[ ]  Not relevant
+
+How technically SIGNIFICANT is this paper?
+[ ]  Very significant
+[ ]  Moderately significant
+[X]  Not significant
+
+How technically THOROUGH is this paper?
+[ ]  Very thorough
+[ ]  Moderately thorough
+[X]  Not thorough
+
+How well is the paper PRESENTED?
+[ ]  Excellently presented
+[ ]  Moderately presented
+[X]  Unreadable
+
+Comments or advice to be passed back to the author(s) of the paper:
+
+  First, it is extremely difficult to understand the paper because of
+  the English. But from what I understand, it seems to me there is
+  nothing really new in the paper:
+
+  - modeling time-tabling problems in CP has been thoroughly studied
+  (just search "timetabling constraint programming" on the web) and it
+  is not clear what the proposed model brings compared with previous
+  approaches (there is no comparison with previous work and no
+  references)
+
+  - the resolution approach mentioned in the paper seems to
+  "rediscover" some classical concepts used for long in CP such as
+  locality (only trigger propagation of constraints on variable whose
+  domain changed) and incrementality of constraint propagation (use
+  only the variation of the domain of variable to propagate
+  incremental changes).
+
+
+Any specific points that must be addressed before the paper is accepted:
+
+
+
+Comments to Programme Committee (not to be passed to author(s) of the paper):
+
+Please let me know if you want me to be a little softer in the
+formulation of my comments. But there is really nothing in this paper.
+
+--------------------------------------------------------------------

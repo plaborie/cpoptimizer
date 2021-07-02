@@ -1,0 +1,158 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 
+*** SUBMISSION NUMBER: 
+*** TITLE: Solving Resource-Constrained Project Scheduling Problems with Time-Windows using Iterative Improvement Algorithms
+*** AUTHORS: (anonymous)
+--- CATEGORY: Short paper
+*** PC MEMBER: Francis Sourd
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+
+This paper presents experimental results corresponding to the implementation of a method called IFS - that comes from the AI research community - run on one of the most generic - and difficult - scheduling problem called RCPSP-max.
+The authors briefly present the original global algorithm of this specific method and then focus mainly on its parametrization on "small" benchmark instances, in order to have interesting results on very large-sized ones. This latter contribution is to my mind sufficient for this submission to be published as a short paper in the proceedings of ICAPS'09.
+Nevertheless, the structure of the article should be slightly reconsidered. Instead of insisting on the global algorithm (a specific paragraph AND the algorithm in Figure 2), the two strategies of the relaxation procedures could be at least more detailed. This would help the appropriation of the methodology and the understanding of specific comments in the analysis of the experiments at the end of the paper.
+Similarly, I would recommend not to put very precisely into words the data presented in Tables 1 and 2, but to focus on an acute analysis of these data.
+Furthermore, the progression from an analysis of parameters on small instances to the application of the best parameters on large-sized instances should be argued - especially for parameter $n_r$.
+The literature references are relevant and sufficient.
+
+Please find below some minor remarks. My final advice would be this article to be read by a native english speaker, in order to remove all bad english constructions, spelling mistakes or unclear formulations.
+
+Abstract: 
+	l9 "solving" vs "flattening"?
+Intro: 
+	c1 l-2 "to effectively solve"
+	c2 l5 "extension"
+	c2 sentence "This circumstance ... NP-hard." unclear
+Reference Problem and its Representation:
+	l8 "temporal separation constraints"?
+	please mention the non preemption of the activities, the renewability of the resources, and define the notions of time- and resource-feasibility
+	In the note, $T_{ij}$ could be replaced by $d_i$?
+	p2 l8 "solve" unclear
+Experimental Analysis:
+	general: "efficiency" more appropriate than "efficacy"
+	p3c1 please define MCJSSP	
+	p3c1 symbol $\approx$ not appropriate in a sentence
+	p3c1 sentence "The previous ... procedure." unclear 
+Conclusion and Future Work:
+	c2 "a hard", "a higher"
+	l-1 "from"
+	
+
+Relevance -  Is the work relevant to the call for papers?
+	Relevant according to the point "Analytic and empirical studies of planning and scheduling problems and algorithms for solving them" in the CfP
+Significance - To what extent are the ideas and contributions of the paper novel and important to planning and scheduling theory or practice?
+	Closure of several large-sized instances of the literature
+Technical quality - Is the work technically sound? Are the analyses, algorithms, theorems and proofs correct? Are the paper's claims argued/supported convincingly? Is the empirical evaluation convincing?
+	The empirical analysis is convincing.
+Quality of presentation - Is the paper clearly written? Is it well-organized? Is the motivation for the research or the innovation of the application well explained?
+	Could be reorganized as mentioned above.
+Suitability to AIJ - Should an extended version of this paper be solicited for submission to Artificial Intelligence Journal?
+	No sufficient theoretical contribution, no tuning of the existing method
+
+
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+Plesae check other possible submission at http://rcra.aixia.it/workshops/ricerca-2008/programma/iterative-improvement-heuristics-for-resource-constrained-scheduling-with-time-windows
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+Jean
+*** REVIEWER'S LAST NAME: (write in the next line)
+Damay
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+jean.damay@gmail.com
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  2 (accept)
+1 (weak accept)
+---  0 (borderline)
+---  -1 (weak reject)
+---  -2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+---  3 (high)
+2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO PLANNING & SCHEDULING: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+4 (high)
+---  3 (medium)
+---  2 (low)
+---  1 (very low)
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+---  4 (good enough)
+3 (borderline)
+---  2 (low)
+---  1 (very low)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+3 (appears to be sound)
+---  2 (not fully satisfactory)
+---  1 (unsatisfactory)
+
+*** QUALITY OF PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+3 (fair)
+---  2 (poor)
+---  1 (very poor)
+
+*** BEST PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+1 (No)
+
+*** BEST STUDENT PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+1 (No)
+
+*** SUITABILITY TO AIJ: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+1 (No)
+
+*** END

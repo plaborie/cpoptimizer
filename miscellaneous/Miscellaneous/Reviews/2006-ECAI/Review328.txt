@@ -1,0 +1,68 @@
+Relevance to AI (is the paper appropriate for ECAI?) *					8
+Originality (does the work contain new ideas?) *					6
+Significance (will the results have any impact on the field?) *				5
+Technical Soundness *									5
+Presentation (is the paper readable and well-organized?) *				6
+Scholarship (is relevant literature cited and is the scientific context discussed?) *	5
+Reviewer Competence/Confidence *							3
+Overall Recommendation *								5	
+	
+
+Comments to author(s) * 	
+
+The paper is appropriate for ECAI as it describes an automated
+recommender system that combines off-line data mining techniques with
+on-line user cooperation. 
+
+Not being a specialist in data mining and recommender systems, I found
+the paper fairly easy to read and well organised. A few points could be
+made more clear:
+
+- in section 2, some filtering algorithms (user-based, item-based,
+OC1, C4.5) are mentioned, maybe some words should be said or at least
+a reference given about each of them.
+
+- in section 5.1.4, it is not clear why the value of the accuracy is
+globally lower in the case two followed courses are given (even for
+low support values). Intuitively, I expected the accuracy to be
+greater as the system has more information to take its recommending
+decisions. 
+
+- in the algorithm to update the rules on the second column of p4, the
+'else' reads "S did not find the recommended courses
+interesting". Shouldn't one read something like "S did not follow the
+recommended courses" as it is not an evaluation of the courses
+themselves but of the recommendation (the courses were not followed).
+
+It is mentioned in the last section that prerequisites are not handled
+by the current system. But if course B is a prerequisite for course A,
+is it not the case that the rule A=>B is systematically selected with
+a confidence equal to 1 and a fairly high support (depending on the
+selection rate of the course)? So, if a user selects a course A, the
+prerequisited course B will be recommended, right?
+
+Would it be useful in the approach to generate rules that are more
+complex than just A=>B ? For instance A=>(B or C), etc.
+
+In the modelling subsection (5.1.3) and in the experimental evaluation,
+there is not a clear comparison of the different approaches for
+learning rules. Why C4.5 and the Apriori algorithm were selected? It
+would be very useful to compare the selected algorithms against other
+techniques (bayes nets, case-based reasoning, etc.).
+
+There is no evaluation of the on-line phase. 
+
+Confidential comments to PC members 	
+
+As said in the comments to author(s), really not an expert in the field.
+
+Summary of review (to author(s) and PC members) * 	
+
+The paper is appropriate for ECAI, easy to read and well organized.
+
+Not being a specialist in data mining and recommender systems, I
+cannot really asses the originality of the paper. The lack of
+experimental comparison with other systems makes it hard to evaluate
+the interest of the presented approach.
+
+Nominate for best paper: NO

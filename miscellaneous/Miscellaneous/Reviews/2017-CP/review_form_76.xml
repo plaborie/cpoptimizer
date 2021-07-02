@@ -1,0 +1,275 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="3280772::1582699"
+        submission="76"
+        title="A Constraint Programming Approach for Solving Multiple Traveling Salesman Problem"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<field id="434156" name="Relevance">
+  <!--
+    == How relevant is the submission to the scope of the conference (all
+    == aspects of computing with constraints)?
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Relevance
+    == below. This field is required.
+    -->
+The paper presents an approach to solve the multiple-TSP problem with CP. It is relevant to the scope of the conference.
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 4
+    
+  </score>
+</field>
+<field id="434157" name="Significance">
+  <!--
+    == How significant are the contributions of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 3
+    
+  </score>
+</field>
+<field id="434158" name="Originality">
+  <!--
+    == What is the level of originality of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434159" name="Technical Quality">
+  <!--
+    == What is the level of technical quality of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434160" name="Presentation">
+  <!--
+    == What is the level of presentation of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="409476" name="Overall evaluation">
+  <!--
+    == Please provide a detailed review, including a justification for your
+    == scores. Both the score and the review text are required.
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Overall evaluation
+    == below. This field is required.
+    -->
+
+The article describes a CP model for the multiple-TSP problem. This CP model is based on interval and sequence variables available in CP Optimizer. The model is quite straightforward but its performance looks good when compared to other approaches on some classical instances.
+
+One of the main problem with the paper is that the format really looks messy. Here are some example that should be improved:
+* Some notations should be homegeneized: sometimes j denotes a city, in other circunstances, a salesman
+* Sometimes, there are unclear sentences, for instance on top of page 6: "x_ij [...] represents the ith city visited by the jth salesman": one may understand that x_ij is the ith city in the route of the salesman, in the sense that it is the city at position i. You should better say that interval variable x_ij represents the possibility for the salesman j to visit city i. You should also say somewhere that the size of these intervals is 0 (null duration visits allow formulating the objective function as the sum of the end time of the routes).
+* Some citations are really weird, for instance [36], I really do not see the point of this citation
+* The CP model is described only part by part, it would be good to present the full CP model in a figure/table. In particular, the paper introduces the expressions typeOfNext but I do not think these expressions are used in the model
+* The results in the experimental section are really difficult to read. One of the reasons is that the numbers are often splitted on several lines (e.g. tables 3, 7). These tables should be improved so as to look better and be more readable. Also, I'm not sure that tables 1 and 2 are useful as their main result is recapped on the tables of section 5.
+* There probably is a typo in the CP model as I find it strange that the same interval variable x_1j is at the same time 'first' and 'last' in the sequence. I suppose the 'last' interval is an interval variable different of x_1j that represents the return of the salesman to the depot.
+
+In the description of the ILP model in section 2, it would be good to mention that the introduction of the position variables u_i make it possible to avoid the classical subtour elimination constraints. 
+
+The general description of CP in section 3 is a bit too general and I find it does not fully reflect the current state of CP. In particular, it may make the reader believe that CP is only constraint propagation techniques and tree search. In fact many other techniques are used in addition to these, and it is these additional techniques that are probably responsible for the good results because, I guess, a plain tree search would not give any good results. So, in the case of CP Optimizer, I suppose that optimality proofs are provided by the Failure-Directed search [1] whereas good quality solutions are produced by the Large Neighborhood Search [2], these 2 techniques are combined in the CP Optimizer automatic search. 
+
+[1] P. Vilím, P. Laborie and P. Shaw. Failure-Directed Search for Constraint-Based Scheduling. In proceedings CPAIOR 2015.
+
+[2] P. Laborie and D. Godard. Self-Adapting Large Neighborhood Search: Application to Single-Mode Scheduling Problems. In proceedings MISTA 2007. pages 276-284, 2007.
+
+
+A few more detailed comments:
+
+- p3, section 2: "For any traveler ..." I think you should speak of "salesman" instead of "traveler" here, not to confuse the reader
+
+- p3, section 2: just below: "In addition let K be the minimum number of nodes ..., if x_ij=1 then K <= u_i <= L must be satisfied". I think that this statement is wrong: K <= u_i is of course too strong. May be you mean if x_i1=1 ?
+
+- p4, section 3: "CP ... utilize heuristics, such as consistency techniques, constraint propagation and branch and prune" I would not call them 'heuristics' but 'techniques'
+
+- p5, section 3: "If all variables are instantiated and a constraint is not satisfied, then a search phase continues". I do not understand this sentence.
+
+- p5, section 3.1: citation 36 is really weird and has nothing to do with interval variables
+
+- p5, section 3.1: just below: probably a missing "." after "one can decide not to consider them in the solution schedule" 
+
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+    --> -1
+    
+  </score>
+</field>
+<field id="409477" name="Reviewer's confidence">
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+    --> 5
+    
+  </score>
+</field>
+<field id="434161" name="Best Student Paper">
+  <!--
+    == Consideration for best student paper
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434162" name="Best Paper Award">
+  <!--
+    == Consideration for best paper award
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434163" name="Journal-First Track">
+  <!--
+    == Consideration for Journal-First Track
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="409478" name="Confidential remarks for the program committee">
+  <!--
+    == If you wish to add any remarks intended only for PC members please
+    == write them below. These remarks will only be seen by the PC members
+    == having access to reviews for this submission. They will not be sent
+    == to the authors. This field is optional.
+    -->
+  <text optional="optional">
+  <!--
+    == Enter the text for the field
+    ==   Confidential remarks for the program committee
+    == below. This field is optional.
+    -->
+
+
+
+
+
+
+  </text>
+</field>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

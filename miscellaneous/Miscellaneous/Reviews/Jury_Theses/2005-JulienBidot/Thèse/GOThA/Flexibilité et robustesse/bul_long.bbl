@@ -1,0 +1,207 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BBMN91}
+
+\bibitem[AMR02]{artigues02}
+C.~Artigues, P.~Michelon, and S.~Reusser.
+\newblock Insertion techniques for static and dynamic resource constrained
+  project scheduling.
+\newblock {\em European Journal of Operational Research}, 2002.
+\newblock to appear.
+
+\bibitem[AP01]{aloulou01}
+M.A. Aloulou and M.C. Portmann.
+\newblock Incorporating flexibility in job sequencing for the single machine
+  total weighted tardiness problem with release dates.
+\newblock In {\em 10th Annual Industrial Engineering Research Conference}. IIE,
+  May 2001.
+
+\bibitem[AP02]{aloulourairo}
+M.A. Aloulou and M.C. Portmann.
+\newblock A genetic algorithm to achieve scheduling flexibility for a single
+  machine problem.
+\newblock {\em RAIRO-Operations Research}, 2002.
+\newblock soumis, disponible sur
+  http://www.loria.fr/$\sim$aloulou/papiers/rairo.ps.gz.
+
+\bibitem[ARB99]{artigues99}
+C.~Artigues, F.~Roubellat, and J.-C. Billaut.
+\newblock Characterization of a set of schedules in a resource constrained
+  multi-project scheduling problem with multiple modes.
+\newblock {\em International Journal of Industrial Engineering, Applications
+  and Practice}, 6:112--122, 1999.
+
+\bibitem[BBMN91]{bean}
+J.C. Bean, J.R. Birge, J.~Mittenthal, and C.E. Noon.
+\newblock Match-up scheduling with multiple ressources, release dates and
+  disruptions.
+\newblock {\em Operations Research}, pages 470--483, 1991.
+
+\bibitem[BR96]{billaut96}
+J.C. Billaut and F.~Roubellat.
+\newblock A new method for workshop real-time scheduling.
+\newblock {\em International Journal of Production Research}, 34(6):1555--1579,
+  june 1996.
+
+\bibitem[CKS{\etalchar{+}}00]{chien00}
+S.~Chien, R.~Knight, A.~Stechert, R.~Sherwood, and G.~Rapideau.
+\newblock Using iterative repair to improve the responsiveness of planning and
+  scheduling.
+\newblock In {\em AIPS, Breckenridge, CO, USA}, 2000.
+
+\bibitem[DB00]{davenport}
+A.J. Davenport and J.C. Beck.
+\newblock A survey of techniques for scheduling with uncertainty.
+\newblock {\bf Une grosse revue de la flexibilit\'e en ordonnancement},
+  disponible sur http://www.eil.utoronto.ca/profiles/chris/chris.papers.html,
+  2000.
+
+\bibitem[EFP99]{espinouse}
+M.L. Espinouse, P.~Formanowicz, and B.~Penz.
+\newblock Minimizing the makespan in the two-machine no-wait flow-shop with
+  limited machine availability.
+\newblock rapport de recherche GILCO-RR-99-3, INPG, 1999.
+
+\bibitem[GMS02]{guinand}
+F.~Guinand, A.~Moukrim, and E.~Sanlaville.
+\newblock Sensitivity analysis of tree scheduling on two machines with
+  communication delays.
+\newblock In {\em 8th International Workshop on Project Management and
+  Scheduling, PMS'2002}, pages 179--182, Valencia, Spain, april 2002.
+\newblock ISBN 84-921190-5-5.
+
+\bibitem[GN99]{guo}
+B.~Guo and Y.~Nonaka.
+\newblock Rescheduling and optimization of schedules considering machine
+  failures.
+\newblock {\em IJPE}, 60-61:503--513, 1999.
+
+\bibitem[HP01]{hall}
+N.G. Hall and M.E. Posner.
+\newblock Sensitivity analysis for scheduling problems.
+\newblock {\bf Revue sur la sensibilit\'e en ordonnancement}, disponible sur
+  http://www-iwse.eng.ohio-state.edu/ISECourses/ise824, scheduling class
+  papers, 2001.
+
+\bibitem[Iid00]{Iida}
+T.~Iida.
+\newblock Computing bounds on project duration distributions for stochastic
+  pert networks.
+\newblock {\em Naval Research Logistics}, 47:559--580, 2000.
+
+\bibitem[KDV00]{kouvFlow}
+P.~Kouvelis, R.L. Daniels, and G.~Vairaktarakis.
+\newblock Robust scheduling of a two-machine flow shop with uncertain
+  processing times.
+\newblock {\em IIE Transactions}, 32:421--432, 2000.
+
+\bibitem[KHB02]{kacem1}
+I.~Kacem, S.~Hammadi, and P.~Borne.
+\newblock Approach by localization and multi-objective evolutionary
+  optimization for flexible job-shop scheduling problems.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics, PART C}, 32,
+  2002.
+
+\bibitem[KY97]{kouvBook}
+P.~Kouvelis and G.~Yu.
+\newblock {\em Robust Discrete Optimisation and its Applications}.
+\newblock Kluwer Academic Publisher, 1997.
+\newblock {\bf Livre traitant de la flexibilit\'e en recherche opérationnelle}.
+
+\bibitem[LLP97]{lee97}
+C.Y. Lee, L.~Lei, and M.~Pinedo.
+\newblock Current trends in deterministic scheduling.
+\newblock {\em Ann Oper Res}, 70:1--42, 1997.
+
+\bibitem[LWS94]{leon}
+V.J. Leon, S.D. Wu, and R.H. Storer.
+\newblock Robustness measures and robust scheduling for job-shops.
+\newblock {\em IIE Transactions}, 26(5):32--43, 1994.
+
+\bibitem[MPR98]{mahadev}
+N.V.R. Mahadev, A.~Pekec, and F.S. Roberts.
+\newblock On the meaningfulness of optimal solutions to scheduling problems:
+  can an optimal solution be nonoptimal?
+\newblock {\em Operations Research}, 46(sup 3), 1998.
+
+\bibitem[MSG99]{moukrim}
+A.~Moukrim, E.~Sanlaville, and R.~Guinand.
+\newblock Scheduling with communication delays and on-line disturbances.
+\newblock In P.~Amestoy, editor, {\em Euro-Par'99, Toulouse, France}, volume
+  LNCS 1685, pages 350--357, 1999.
+
+\bibitem[MU99]{mehtaTbar}
+S.V. Mehta and R.~Uzsoy.
+\newblock Predictable scheduling of a single machine subject to breakdowns.
+\newblock {\em International Journal of Computer Integrated Manufacturing},
+  12:15--38, 1999.
+
+\bibitem[Pic00]{Picouleau}
+C.~Picouleau.
+\newblock Small perturbations on some np-complete scheduling problems.
+\newblock CEDRIC Research report 09, CNAM Paris, 2000.
+
+\bibitem[RJ01a]{rossi01}
+A.~Rossi and M.~Jacomino.
+\newblock Performance guarantee for static and dynamic approaches of scheduling
+  problems in uncertain contexts.
+\newblock In {\em CIRP, Michigan University}, May 2001.
+
+\bibitem[RJ01b]{rossi02}
+A.~Rossi and M.~Jacomino.
+\newblock Robustness and flexibility as performance guarantee for scheduling
+  problems in uncertain contexts.
+\newblock In {\em 3rd World Manufacturing Congress, Rochester}, September 2001.
+
+\bibitem[S\"01]{inp-sorensen-01}
+K.~S\"orensen.
+\newblock Tabu searching for robust solutions.
+\newblock In {\em 4th Metaheuristics International Conference}, pages 707--712,
+  Porto, Portugal, July 16-20 2001.
+
+\bibitem[SG00]{cSchmidt}
+C.~W. Schmidt and I.~E. Grossmann.
+\newblock The exact overall time distribution of a project with uncertain task
+  durations.
+\newblock {\em EJOR}, 126:614--636, 2000.
+
+\bibitem[SS98]{sanlaville98}
+E.~Sanlaville and G.~Schmidt.
+\newblock Machine scheduling with availability constraints.
+\newblock {\em Acta Informatica}, 35:795--811, 1998.
+
+\bibitem[SS02]{inp-sevaux-02}
+M.~Sevaux and K.~S\"orensen.
+\newblock Genetic algorithm for robust schedules.
+\newblock In {\em 8th International Workshop on Project Management and
+  Scheduling, PMS'2002}, pages 330--333, Valencia, Spain, April, 3-5 2002.
+\newblock ISBN 84-921190-5-5.
+
+\bibitem[SSNB95]{stankovic}
+J.A. Stankovic, M.~Spuri, M.~Di Natale, and G.C. Buttazzo.
+\newblock Implications of classical scheduling results for real-time systems.
+\newblock {\em Computer}, 28(6):16--25, 1995.
+
+\bibitem[SSW97]{sotskov97}
+Y.N. Sotskov, N.Y. Sotskova, and F.~Werner.
+\newblock Stability of an optimal schedule in a job-shop.
+\newblock {\em IJMS}, 25(4):397--414, 1997.
+
+\bibitem[SWW98]{sotskov98}
+Y.N. Sotskov, A.P.M. Wagelmans, and F.~Werner.
+\newblock On the calculation of the stability radius of an optimal or an
+  approximate schedule.
+\newblock {\em Annals of Operational Research}, 83:213--225, 1998.
+
+\bibitem[Vin99]{vincke1}
+P.~Vincke.
+\newblock Robust and neutral methods for aggregating preferences into an
+  outranking relation.
+\newblock {\em European Journal of Operational Research}, 122:405--412, 1999.
+
+\bibitem[WBS99]{wugraph}
+S.D. Wu, E.S. Byeon, and R.H. Storer.
+\newblock A graph-theoretic decomposition of the job-shop scheduling problem to
+  achieve scheduling robustness.
+\newblock {\em Operations Research}, 47(1):113--124, 1999.
+
+\end{thebibliography}

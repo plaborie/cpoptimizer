@@ -1,0 +1,138 @@
+Number : 92
+Title  : An SMT Approach to Sample Analysis MachineScheduling
+
+
+Relevance.* Is this paper suitable for the track topics?
+ 2: Just fine
+*1: Partial fit
+ 0: Not suitable
+
+Significance.* How important is the contribution of the paper?
+ 5: Very strong contribution
+ 4: Strong contribution
+*3: Fair contribution
+ 2: Minor contribution
+ 1: Very minor contribution
+
+Originality.* How original are the ideas presented in the paper?
+  2: Paves the way to new territories
+  1: Original
+  0: Fairly new
+*-1: Incremental
+ -2: Already known
+
+Technical quality.* Are the claims supported by solid empirical or theoretical proofs?
+  2: Excellent technical quality
+  1: Good technical quality
+*0: Fair paper
+ -1: Poor paper
+ -2: Very poor paper
+
+Clarity.* Is the paper clearly written?
+  1: Very clear paper
+*0: Reasonably clear paper
+ -1: Writing could be improved
+ -2: Poor writing
+
+Scholarship.* Does the paper miss really important references?
+  1: Cannot see any missing relevant reference
+*0: Some loosely relevant references are missing
+ -1: Some relevant references are missing
+ -2: Very relevant references are missing
+
+Overall evaluation.* Please provide a detailed review, including a justification for your scores. The best reviews identify strong and weak points and give associated evidence. Both the score and the review text are required.
+  3: Strong accept
+  2: Accept
+  1: Weak accept
+*-1: Weak reject
+ -2: Reject
+ -3: Strong reject
+
+Review
+
+The article describes an interesting scheduling application
+(Sample Analysis Machine Scheduling Problem, SAMSP) that is a particular case of RCPSP with
+maximal delays and cumulative resources (reservoirs).
+
+The paper is reasonably well written.
+
+One of the main weaknesses of the paper is that it is submitted at CP conference but the proposed
+resolution approach does not really use CP (it uses Sat Modulo Theories).
+
+The second issue is that the proposed approach is not compared against other approaches (like MILP or CP, both approaches are mentioned in the introduction).
+This would have been particularly interesting and not very difficult to do:
+- a time-indexed MILP formulation is very close to the SMT formulation proposed in the article
+- a CP model can be formulated in a few lines (see below)
+
+A simple CP formulation of the RCPSP-Cu (that generalizes the SAMSP) in CP Optimizer (OPL):
+
+The classical RCPSP is (trying to use the notations of the paper):
+
+dvar interval a[i in 1..n] size D[i];
+minimize max(i in 1..n) endOf(a[i]);
+subject to {
+  forall(<i,j> in Prec) { endBeforeStart(a[i],a[j]); }
+  forall(r in 1..m)     { sum(i in 1..n) pulse(a[i],B[i][r]) <= R[r]; }
+}
+
+The minimal/maximal gaps can be represented by constraints:
+  forall(<i,j,l> in Prec) { startBeforeStart(a[i],a[j],l); }
+
+And the cumulative resources by cumul functions:
+  forall(s in ...) {
+    sum(i in 1..n : C[s][i]>0) stepAtStart(a[i],C[s][i])  -
+    sum(i in 1..n : C[s][i]<0) stepAtEnd(a[i],-C[s][i]) <= P[s];
+  }
+
+Of course, an advantage of this type of CP model is that, unlike the proposed SMT formulation,
+and unlike simple MIP models, it does not depend on the time granularity.
+
+In the particular case of the SAMSP, it seems that cumulative resources could be reformulated as
+renewable resources as each time a storage resource is used for a test (like by activity 1 on Fig.3
+that uses 1 unit of 'Cold' area), then there is a corresponding activity in the test
+that is constrained to occur later and will free the storage resource (in the example,
+the unit of 'Cold' area used by activity 1 is freed by activity 9). So one could add additional
+activities (like here, one additional activity that starts at the start time of activity 1 and finishes
+at the end time of activity 9) that use a renewable resource representing the storage capacity.
+I'm wondering this type of consideration could be exploited in the SMT formulation.
+This could improve the formulation as the correlation between the consumers and the producers of free space is known.
+For sure, it could be  exploited in the CP formulation by creating additional interval variables
+and using only 'pulse' statements for modeling the storage usage.
+
+In the absence of comparison with alternative approaches, it is difficult to qualify the proposed
+approach as 'efficient' or not; in particular as the approach does not solve all the studied problems.
+Is it not a problem for the company to compare the different configurations (like on Table 2)
+in a context where the approach fails to solve some of the instances? For instance you say that
+configuration <6,6,6,4> does not provide any benefit regarding the makespan ...
+but given that there are 3 instances for which this configuration is not solved, how can we
+really compare the impact on the makespan? Even if the company is interested in optimal solutions,
+would it not make sense to also compare best found solutions (not necessary optimal) when optimality
+cannot be proved?
+
+It would be interesting to have an idea of the size of the different problems solved.
+In particular if you could give the total number of activities for each instance.
+
+Detailed comments and typos:
+p4, footnote 1: l_{i,j} instead of d_{i,j}
+p5, preprocessing:
+  * You say \Epsilon consists only of positive lags, but then that it contains all triplets where l_{i,j} is *negative* ...
+  * Also, I'm not sure to understand why the computation of LB and UB with the temporal constraints
+  only involves the positive lags. Why do you not consider the negative lags too
+  (and for instance compute the time windows for start by running a Floyd-Warshall algorithm,
+  or some more efficient algorithm to compute the maximum path lengths)?
+
+Reviewer's confidence.* Do you have all the background knowledge and information to properly assess the paper contribution?
+ 4: I'm an expert in the topic and fully understand the technical details of the paper
+*3: I know the topic very well and understand the technical details of the paper
+ 2: I have a reasonable knowledge of the topic and understand the technical details of the paper
+ 1: Parts of the paper falls outside of my area of knowledge
+ 0: The paper falls outside of my area of knowledge
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+
+Best paper award. Do you want to nominate the paper for the best paper award?
+ [ ] Nominate for "Best Paper Award"
+
+Best student paper award. Do you want to nominate the paper for the "Best Student Paper Award"?
+ [ ] Nominate for "Best Student Paper Award"

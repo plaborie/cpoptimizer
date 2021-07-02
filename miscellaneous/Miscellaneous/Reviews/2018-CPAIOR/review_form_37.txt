@@ -1,0 +1,57 @@
+PAPER  : #37
+TITLE  : Energy-Aware Production Scheduling with Power-Saving Modes
+AUTHORS: Ondrej Benedikt, Premysl Sucha, Istvan Modos, Marek Vlk, and Zdenek Hanzalek
+
+SCORE:
+    ==  3 strong accept
+    ==  2 accept
+    ==  1 weak accept
+    ==  0 borderline paper
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+-1
+
+
+REVIEWER'S CONFIDENCE
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+4
+
+
+REVIEW
+
+> Please provide a detailed review, including a justification for your scores. 
+> Both the score and the review text are required.
+
+The problem studied in the paper is *very* interesting and challenging, it is also quite original even if slightly similar (but less general in the sense of the energy-cost formulation) problems have been studied before, for instance [1]. So, sections 1 and 2 are really interesting.
+
+The proposed approach for solving the problem is a Column Generation approach where is column is a particular machine allocation to jobs. The sub-problems correspond to a set of one-machine version of the general problem. 
+
+I think that the proposed decomposition of the problem should be better justified. I have the feeling that the main complexity of the problem is the complexity of the energy-cost formulation on each machine rather than the machine allocation aspect. But, I agree that given the complexity of the problem, one needs to try to separate the different source of complexities and the proposed approach is one possibility.
+
+Then, when it comes to solving the one-machine sub-problems, the approach works by enumerating all the technologically feasible profiles (set \Pi). But this set can be extremelly large. If you have a set of k modes (size of set \Omega) and only consider a sequence of u different modes, this gives k^u different profiles (sure that particular constraints will rule out some of them, but in general the set can be very large). I think this is a serious limitation to the proposed approach. And, from this perspective, the experimental section is a bit disappointing because it only deals with 2 technologically feasible profiles {(OFF,ON,OFF),(OFF,ON,IDLE,ON,OFF)}.
+
+The CP model should be described with more details because it is not clear which formulation was used (there may be different possible formulations leading to very different performance): are you using some alternative constraints to state that a given job on the machine must be scheduled in one (and only one) of the different mode interval I^mode_k it can fit in? Are you using some span constraint to state that a given mode interval I^mode_k exactely spans the present jobs in this mode? Did you use the automatic search without any change or did you parameter the search (for instance using some search phases), etc. Furthermore, given this CP model for a subproblem, using optional variables for the jobs and alternative constraints to select the different possibilities), it should be quite easy to extend it for modeling the global problem with the selection of the different technologically feasible profiles and machine allocation. I'm not sure this would work well, but it could at least provide some arguments for decomposing the problem as you propose.
+
+Note that I think that you can also model the global problem in CP Optimizer without expliciting all the technologically feasible profiles by using the original formulation with transition costs between modes and mode length. And you probably can do this model without using any "mode" intervals. The idea would be to only have interval variables for the job/machine/mode so I_j_i_o optional interval corresponding to the execution of task j on machine i in mode o. The machine i would be modeled by a sequence variable mach_i and a noOverlap on all the intervals all(j,o) I_j_i_o where I_j_i_o has a type o. You can easily model transition times between modes on the machine as a transition matrix. The cost related to mode change can be modeled as a classical transition cost (using expressions MATRIX[o][typeOfNext(mach_i,I_j_i_o)]). The only difficulty is for the duration of the mode interval, that is, the sum of the chains of consecutive jobs with the same mode o. For that you could use expressions startOfNext(mach_i,I_j_i_o) to get the start time of the job that is next to I_j_i_o. The total duration of intervals of a given mode o should be something like: sum_j lengthOf(I_j_i_o) + sum_j ( (typeOfNext(mach_i,I_j_i_o)==o)*(startOfNext(mach_i,I_j_i_o)-endOf(I_j_i_o)) ), that is, the sum of the length of the job using mode o plus the sum in between consecutive jobs of mode o.
+
+In general, I think you should make your instances available or at least give enough information to reproduce them. In the paper, it is in particular not mentioned how the energy cost is computed (what is the transition cost, what is operating cost).
+
+Also, given that the paper is very challenging and that the studied instances are not very big, I think it would be interesting to consider larger (probably more realistic) instances and, instead of focusing on optimality proofs, to focus on the quality of the solution produced after a certain amount of computation time.
+
+[1] M. Gonzalez, A. Oddi and R. Rasconi. Multi-Objective Optimization in a Job Shop with Energy Costs through Hybrid Evolutionary Techniques. Proc. ICAPS 2-17.
+
+To summarize, I think this is a very interesting problem and an interesting starting point. The size limitation for a short paper makes it difficult to go into the necessary details for such a complex problem. So my main recommandation would be to extend the paper by providing more details (particularly on the CP model and the generated instances) and maybe investigate different variants of the approaches (as suggested above) and on larger instances with also a focus on solution quality. Not all of these aspects should necessarily be treated but, in its current state, the paper falls a bit short. 
+
+CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE 
+
+> If you wish to add any remarks intended only for PC members please
+> write them below. These remarks will only be seen by the PC members
+> having access to reviews for this submission. They will not be sent
+> to the authors. This field is optional.
+
+

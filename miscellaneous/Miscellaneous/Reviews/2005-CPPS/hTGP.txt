@@ -1,0 +1,103 @@
+
+TITLE: Stratified Heuristic POCL Temporal Planning based on Planning Graphs and Constraint Programming
+AUTHOR(S): Ioannis Refanidis
+
+1) SUMMARY (please provide brief answers)
+
+- What is/are the main contribution(s) of the paper?
+
+The main contributions of the paper are some new usage of a temporal
+planning graph to improve the constraint propagation and guide the
+search of a POCL planner.
+
+More precisely:
+ * Eternal mutex and conditional mutex are extracted as disjunctions
+   of temporal constraints in the partial plan.
+ * Some dominance relations are proposed to prune the search based on
+   the notion of subgoal chains.
+ * A new heuristics is mentioned that takes into account the cost of
+   clusters of mutex goals (although the description of this
+   heuristics should be more detailed)
+
+
+2) TYPE OF THE PAPER
+
+The paper reports on:
+ [X] Preliminary research
+ [ ] Mature research, but work still in progress
+ [ ] Completed research
+
+
+3) GENERAL RATINGS
+
+Please rate the 6 following criteria by, each time, using only one of the
+five following words: BAD, WEAK, FAIR, GOOD, EXCELLENT 
+
+3a) Relevance:			EXCELLENT
+3b) Originality:		GOOD
+3c) Significance, Usefulness:   FAIR
+3d) Technical soundness:        FAIR
+3e) References:                 GOOD
+3f) Presentation:               FAIR
+
+
+4) SUGGESTED/REQUIRED MODIFICATIONS;
+
+The main ideas developed in the paper are, to the best of my
+knowledge, original. Although there is no real evidence of the impact
+they can have on the efficiency of a temporal planner, they seem very
+interesting and a workshop like CPPS-05 is really the good place to
+discuss them given the current state of the reported research.
+
+The end of section "Temporal Planning Graphs" is particularly hard to
+follow in details, especially as one goes deeper and deeper in the
+hierarchy of functions. An example illustrating the construction of
+the planning graph should be given.
+
+In the same way, but to a lesser extent, the 4 functions in the end of
+section on plan extraction should be informally described before the
+more formal description.
+
+The description of the heuristics should be more detailed. In
+particular it is not clear how exactly clusters of mutex goals are
+defined. Does a cluster correspond to a clique on the mutex graph ? It
+is also not clear why, because mutex goals usually needs to be
+achieved in sequence, the cost of a cluster is the maximum cost over
+each individual goal.
+
+I understand that, given the early stage of this work, no extensive
+tests have been performed but it would be interesting to show some
+results on other benchmark than the satellite examples which, I
+assume, have all more or less the same structure and building blocks.
+
+Some typos:
+p3, l1: achieced
+p3, l9: cmuxex
+p6, l3: (although it may be less costly than on "of SWITCH OFF") 
+p7, l11: I assume one should read "notP in Eff(B)" instead of "notP in Prec(B)"
+
+5) GENERAL RECOMMENDATION
+
+5SA) [ ] recommended for acceptance as it is (full paper)
+5WA) [X] recommended for acceptance after necessary modifications
+5PA) [ ] recommended for acceptance as a short paper
+5SR) [ ] not recommended for acceptance
+
+
+6) REVIEWER'S CONFIDENCE IN THE SUBJECT AREA OF THE PAPER
+
+  [ ] High
+  [X] Medium
+  [ ] Low
+
+
+
+----- INFORMATION FOR PROGRAMME COMMITTEE ------------------------
+
+Name of the reviewer: Philippe Laborie
+
+Comments for the Program Committee only (use this slot only if
+necessary):
+
+
+

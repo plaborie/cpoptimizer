@@ -1,0 +1,27 @@
+Dear members of the ICAPS Awards Committee,
+
+I am happy to write in support of the nomination of Sascha Van Cauwelaert’s thesis on “Engineering Scalable Propagation in Constraint Programming” for this year's ICAPS Best Dissertation Award. Sascha completed his dissertation at the Université catholique de Louvain and successfully defended it this past December.
+
+Sascha's thesis is in the field of Constraint Programming (CP), with a particular focus on scheduling problems. Constraint propagation is at the heart of CP and designing fast and powerful propagators for constraints is a central problem. 
+
+Clearly, these two objectives of speed and inference power are incompatible and finding the right balance between them, in order to globally accelerate the resolution, is a kind of art or black magic. Or at least it was so, before Sascha's thesis. One of the most original contribution of the thesis is a framework for rationalizing the decision on where to place the cursor between speed and inference power of propagators. The framework allows doing some simulation and what-if analyses by using some 'fictional propagators' so as, typically, to evaluate if reducing the algorithmic complexity of a propagator would really pay off or not. For instance, Sascha showed that improving the algorithmic complexity of the Energetic Reasoning (a famous propagator in scheduling) from O(n^3) to O(n^2) would not lead to very significant improvements in terms of overall performance on some classical benchmarks. This contribution permits to focus the research effort on the most promising directions. I think Sascha's great idea can be generalized to the optimization of the performance of complex composite algorithms in general.
+
+Beside this experimental framework, Sascha contributed with two important new propagation algorithms for scheduling problems: one for unary resources with transition times and the other that applies in problems with time-varying costs for resources. These two features are essential in many real-world scheduling problems and what I particularly appreciate is the focus on reasonably low complexity algorithms that can scale to large realistic problems. Both algorithms were implemented in the open-source OscaR solver and evaluated using Sascha's experimental framework.
+
+All the contributions have been published in journals (2 articles in the Constraints journal) and top level international conferences (2 articles at CP-AI-OR, 2 articles at CP).
+
+Sascha also created a web tool for the scientific community for building performance profiles that are a well known instrument to compare solving techniques.
+
+Taken individually, all these contributions are very significant. They are also very diverse as it is a mix of methodological and algorithmic contributions. But "mix" is definitively not the right word here: the most remarkable when reading Sascha's manuscrit is an impression of homogeneity and equilibrium. The performance profile tool is used in the proposed evaluation framework. The evaluation framework is used for evaluating the two proposed propagation algorithms, which, in turn, are used to illustrate the evaluation framework ... Each contribution has its place in this solid piece of work. The thesis is very well written, easily accessible to non-experts with many relevant illustrations. It is a must-read, a jewel, and definitively, a fantastic candidate for the ICAPS Best Dissertation Award.
+
+If you have further questions regarding my recommendation, please do not hesitate to contact me.
+Best regards.
+
+
+Philippe Laborie, PhD
+Principal Scientist - IBM CPLEX Optimization Studio
+IBM France Lab, Gentilly, France
+Phone: +33 (0)1 4908 3567
+Email: laborie@fr.ibm.com
+http://researcher.watson.ibm.com/researcher/view.php?person=fr-laborie
+

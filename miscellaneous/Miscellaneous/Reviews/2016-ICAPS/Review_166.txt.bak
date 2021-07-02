@@ -1,0 +1,136 @@
+Title: Job Shop Scheduling Solver based on Quantum Annealing
+Authors:	(anonymous)
+PC member: 	Philippe Laborie
+
+Evaluation
+  Overall evaluation
+    3: strong accept
+    2: accept
+    1: weak accept
+    0: borderline paper
+    -1: weak reject <<<<
+    -2: reject
+    -3: strong reject
+    
+  Reviewer's confidence
+    5: (expert)
+    4: (high)
+    3: (medium) <<<<
+    2: (low)  
+    1: (none)
+    
+Additional scores
+  (Applications track ONLY): Importance (economic, societal, etc) of the application problem being addressed.
+    5: N/A (not an Applications track paper)
+    4: very important
+    3: moderate <<<
+    2: marginal
+    1: unimportant
+  
+  (Applications track ONLY): Novelty of the application and technical approach to the application.
+    5: N/A (not an Applications track paper)
+    4: very novel - approach and/or application are new
+    3: moderate - application or approach is significantly different <<<
+    2: marginal - parts of the application or approach are new
+    1: none - similar approach to the same application has been used before
+  
+  (Applications track ONLY): Importance of planning/scheduling technology to the solution of the problem.
+    5: N/A (not an Applications track paper)
+    4: very important - essential to solving the problem
+    3: moderately important - adds significant capabilities <<<
+    2: marginally important - improves usability, capabilities or performance
+    1: not important - could be done without it
+  
+  (Applications track ONLY) Maturity.
+    6: N/A (not an Applications track paper)
+    5: study of the success, acceptance, impact and/or deficiencies of a fielded system
+    4: fielded system
+    3: mature system with testing on realistic problems
+    2: early prototype system <<<
+    1: challenge problem
+  
+  (Robotics track ONLY): Balance of Robotics and Automated Planning and Scheduling
+    6: N/A (not a Robotics track paper) <<<
+    5: Excellent mix between the two fields
+    4: Good mix between the two fields
+    3: Fair mix between the two fields
+    2: Nothing Robotics specific, pure "classical" AIPS paper
+    1: Nothing on Automated Planning, pure Robotics paper
+  
+  (Robotics Track ONLY): Evaluation on physical platforms/simulators
+    6: N/A (not a Robotics track paper) <<<
+    5: Runs on real robots
+    4: Runs in a standard robot simulator (Gazebo, Morse etc.)
+    3: Could be used with a simulator or robot
+    2: Still some work to have it running on robots
+    1: Unlikely to be ever running on a robot
+  
+  (Robotics Track ONLY): Significance of the contribution
+    6: N/A (not a Robotics track paper) <<<
+    5: Significant in both Robotics and Planning
+    4: Significant in Planning (i.e. planning researchers would care about this paper)
+    3: Significant in Robotics (i.e. robotics researchers would care about this paper)
+    2: Marginally significant in one Robotics and/or Planning
+    1: Not significant
+  
+  (Applications and Robotics tracks ONLY): Suitable for a demo?
+    4: N/A (not an Applications or Robotics track paper)
+    3: yes
+    2: maybe
+    1: no <<<
+    
+  Nominate for Best Paper Award
+    2: yes
+    1: no <<<
+  
+  Nominate for Best Student Paper Award (if eligible)
+    2: yes
+    1: no <<<
+  
+Review
+
+The paper is original in the sense that, as far as I know, this is the first time a quantum computing approach is applied to a scheduling problem.
+ I appreciate the authors took on such a challenging problem.
+ 
+The paper is in general clearly written, even for someone who is not very knowledgeable in quantum computing.
+
+This being said I have 3 types of reserves concerning this work (and it would be good if the authors could comment on them during the rebuttal phase)
+
+1- The formulation of the job-shop problem as an Ising formulation clearly leaves aside a lot of the original problem structure. It is well known that MIP formulations are rather weak for solving scheduling problems in general and job-shop problems in particular. And furthermore, the Ising formulation implemented in this paper that relies on a time-indexed formulation is known not to be the best MIP formulation of job-shop problems: in general, representations based on disjunctions (boolean variables if operation a is executed before operation b on a machine) generally works better. Of course what is true for MIPs may not be true for quantum annealing, but still it may give an indication. Did you try disjunctive formulations in the Ising model? If not, is it because they would result in too many variables? 
+
+2- While it mostly relies on a very general QUBO formulation, the approach then, re-injects a lot of domain knowledge during solve, in particular:
+  * specific (classical) constraint propagation at the "root" node (variable pruning, windows shaving), and 
+  * knowledge about the probability distribution of the makespan
+It is difficult to see how this use of domain knowledge impacts the performance of the approach. In particular I don't think it is reasonable to rely on the fact the problem instances should be a-priori partitioned into different families and that for each family a distribution of the makespan should be known in advance. Maybe this is not so critical for the proposed approach but this is far from being clear.
+
+3- I think the problems are really too small to draw any conclusion. As an experiment, I just took a couple of instance of the largest problems handled in the paper (so 6x6). Among them the 6x6 ft6 instance of Fisher&Thompson whose optimal makespan is 54. Using a state-of-the-art CP solver which implements among others the constraint propagation of Carlier and Pinson mentioned in the paper and a very basic search tree exploration. For a given upper-bound on the makespan, the solver always either find a feasible solution or prove unfeasibility in at most 1 backtrack. This means that for such small instances there is no real combinatorial complexity: either the propagation finds infeasibility at the root node or it trivially finds a feasible solution almost greedily. 
+
+As a side note, I think the "state-of-the-art" classical algorithms for the JSSP are not very up to date, they are about 20 years old and the state-of-the-art in solving the job-shop problem has advanced since then, for instance 20x20 instances are now not completely intractable as some of those classical instances have been solved (see http://optimizizer.com/TA.php for up-to-date results).
+
+In the end because of this mix of the injection of so much domain knowledge in the approach and the so small size of addressed problems, I find it difficult to draw any conclusion from the paper. The only clear contribution is the formulation of the job-shop problem as a QUBO problem but it is only one reformulation of an NP-Complete problem among others, see for instance [1]. 
+
+[1] A. Lucas. "Ising formulations of many NP problems". Frontiers in Physics, 2014
+
+I'm also wondering why the paper was submitted to the application track. It is clearly not because of the scheduling problem that is being solved (the jobshop problem really is just a toy problem quite far from any reasonable scheduling application) so I suppose it is because the solving approach was implemented on a quantum annealer, right?
+
+Some more detailed comments:
+
+- Introduction: missing reference about 10x10 problems being hard to solve for MIPs (which I think is not really true nowadays)
+
+- In section IV, subsection "Makespan Estimation", the estimation of the makespan assumes the problems have a uniform distribution of operation durations and machine allocation. This is not really realistic if you were to consider "real" problems which are in general much more structured.
+
+- On Figure 2, it is not said what the two distributions represent, you only mention one distribution (distribution of optimal makespan value).
+
+- In subsection "Compilation": "one should expect a quadratic overhead in the number of binary variables on the order of aN^2". Not clear what this quadratic overhead is; is it the ratio between the number of qubits and the number of logical binary variables in the formulation?
+
+- "We deem a JSP instance embeddable when the respective H_{T=\T} is embeddable". You do not say in the paper how this \T is selected for a given instance of jobshop. I think it is described in the subsection "Search Strategy" of the supplemental material but it would be good to say something about it in the paper itself because it is an important topic.
+
+- "J_F" is introduced in the paper but not really described. That's an important parameter that would deserve a more detailed description here. One of the issues of the paper is that it is not clear how important it is to compute a "good" value for this parameter.
+
+- I'm not sure what figure 3c additionally brings compared to the makespan distributions on figures 2a
+
+- "It will, however, be interesting to compare B to a quantum annealing solver for sizes considered B-intractable due to increasing memory and time requirements when larger chips become available". I don't know approach B well enough to comment on these memory requirements but recent exact approaches for job-shop problems do not really have serious memory limits.
+
+Confidential remarks for the program committee
+ 
+  

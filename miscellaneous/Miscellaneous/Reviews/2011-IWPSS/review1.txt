@@ -1,0 +1,89 @@
+Title: Designing Noise-Minimal Rotorcraft Trajectories
+Author(s): Robert A. Morris, K. Brent Venable, Jim Lindsey
+
+Recommendation: Reject
+
+Relevance
+
+The paper is about generating noise-minimal trajectories for
+rotorcrafts. Although this is a very relevant problem in general, it
+is quite far from the focus of the workshop on space-based
+applications.
+
+Significance 
+
+The work is at an early stage and at that point, it is still difficult
+to assess its significance. The general approach using local search on
+top of a simulation program clearly makes sense but its current
+implementation is still quite limited and many questions are left open.
+
+- For instance in the current settings, the search space seems to be
+tiny. If the 6 nodes of the box pattern are fixed, there are 6!  ways
+to rearrange the decreases in speed and 6!  ways to rearrange the
+decreases in altitude.  Thus the consistent trajectory space is around
+500000 consistent trajectories out of which, I guess, many are
+trivially not flyable because of either deceleration or angle of
+descent constraints. It would be interesting to see the size of the
+flyable trajectory space (it can be computed by brute force).
+
+- Also, I would naively tend to think, given the fixed nodes and
+limited number of possible decrease speed/altitude values that the
+noise minimization tends to be achieved when the rotorcraft
+decelerates as early as possible and descends as late as possible
+(while of course respecting the deceleration and angle of descent
+constraints). In general, it could be interesting to evaluate some
+heuristics (or some approximation or maybe even some sorts of lower
+bound on the solution score) that could help the LS to traverse
+promising solutions and avoid the (expensive) scoring of clearly bad
+trajectories.
+
+- As I understand, the computational cost of the approach is mainly on
+the simulation side for computing the score of a trajectory. Then, on
+the algorithm on Figure 5, I do not understand why even some unflyable
+trajectories are scored. If as I imagine, it is because the space of
+flyable trajectories is quite unconnected with respect to the
+neighborhood, then given the small size of the space of flyable
+trajectories, one could compute other neighborhoods/distance function
+directly on explicit flyable trajectories and have the LS traverse
+this topology. Following on this idea, even if the search space of
+flyable trajectories would be large, did you try neighborhoods that
+directly traverse this space, even if it is not defined in extension?
+
+Technical soundness
+
+The paper is technically sound. 
+
+Theorem 1 is quite straightforward and the proof could be omitted. 
+
+Novelty
+
+The use of LS with simulation techniques to score solutions is not new
+but its application in the context of noise-minimal trajectory is
+original and certainly a good idea.
+
+Quality of Evaluation
+
+The evaluation is not very informative. One sees that the search
+quickly converges to a local optimum but it is difficult to see how
+far it is from the global one. Also, the choice of the significant
+improvement objective function should be better motivated because it
+does not make any difference between an improvement of 1.5dB and a
+much larger improvement.
+
+Clarity
+
+The paper is clearly written and well organized. 
+
+Note that at first reading, I confound the notions of consistency and
+flyability for a trajectory in Theorem 1 and could not understand how
+the move ensures the resulting trajectory is flyable (it does not of
+course). These two notions are clearly defined in the previous section
+but maybe you could just underline around Theorem 1 that the move does
+not ensure flyability.
+
+Overall
+
+This paper treats an interesting topic and approaches it with relevant
+techniques. But it is very early work. If the paper would better fit
+the conference topic I would recommend it for a poster but the fit
+with IWPSS is not clear.

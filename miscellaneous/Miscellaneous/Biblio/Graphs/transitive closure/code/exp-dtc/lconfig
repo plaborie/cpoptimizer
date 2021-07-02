@@ -1,0 +1,234 @@
+#!/bin/sh -f
+
+echo " "
+echo "Configuring the LEDA Extension Package Dynamic Graph Algorithms"
+echo "==============================================================="
+echo " "
+
+lib=static
+
+
+# get System Information
+
+uname -s > tmp.out
+read sys < tmp.out
+uname -r > tmp.out
+read ver < tmp.out
+rm -f tmp.out
+       
+if [ $sys = SunOS ]
+then           
+   case $ver in          
+   4*) sys=SunOS4;;
+   5*) sys=SunOS5;;
+   esac
+fi
+
+
+# configure C++ compiler
+
+echo " "
+echo "==> Please, enter your C++ compiler command (e.g., g++)."
+read comp
+
+echo " "
+echo "...Configuring makefiles for $comp and $lib libraries under $sys $ver."
+
+if [ "$comp" = "CC" ]
+then
+echo Searching for compiler \"CC\" ... 
+cp confdir/unix/cctest.c .
+if CC -o cctest cctest.c
+then
+   ./cctest > tmp.out
+   read comp < tmp.out
+   rm -f tmp.out
+   echo "ok, $comp"
+else
+   echo "Sorry, no \"CC\" not found."
+   exit
+fi
+fi
+
+rm -f cctest.c
+rm -f cctest
+rm -f src/Make.src
+rm -f demo/Make.demo
+rm -f test/Make.test
+
+
+if [ -f confdir/unix/cc/$lib/$comp ]
+then 
+  cp confdir/unix/cc/$lib/$comp src/Make.src
+  cp confdir/unix/cc/$lib/$comp demo/Make.demo
+  cp confdir/unix/cc/$lib/$comp test/Make.test
+else 
+  echo " "
+  echo "WARNING: $comp not found in the list of known compilers,"
+  echo "         you might have to edit the Makefile."
+  echo "         (lconfig without arguments prints the list)"
+  echo " "
+  echo "CC = $comp" >> src/Make.src
+  echo "LD = $comp" >> src/Make.src
+  echo "CC = $comp" >> test/Make.test
+  echo "LD = $comp" >> test/Make.test
+  echo "CC = $comp" >> demo/Make.demo
+  echo "LD = $comp" >> demo/Make.demo
+fi
+
+
+# check for ranlib
+
+if [ -x /bin/ranlib -o -x /usr/bin/ranlib ]
+then 
+  echo "RAN = ranlib" >> src/Make.src
+  echo "...use ranlib"
+else 
+  echo "RAN = @touch" >> src/Make.src
+  echo "...no ranlib"
+fi
+
+
+
+
+# locate X11 directories
+
+if [ -d /usr/X11 ]
+then
+   x11dir=/usr/X11
+elif [ -d /usr/X11R5 ]
+then
+   x11dir=/usr/X11R5
+elif [ -d /usr/X11R6 ]
+then
+   x11dir=/usr/X11R6
+elif [ -d /usr/openwin ]
+then
+   x11dir=/usr/openwin
+fi
+
+if [ "$x11dir" = "" ]
+then
+   echo "...Assuming X11 headers in /usr/include/X11 and libraries in /usr/lib."
+else
+   echo "...Using X11 from $x11dir."
+   echo "XLIB_PATH = -L$x11dir/lib"  >> demo/Make.demo
+   echo ""                           >> demo/Make.demo
+   echo "XLIB_PATH = -L$x11dir/lib"  >> test/Make.test
+   echo ""                           >> test/Make.test
+fi
+
+
+# locate LEDA include files
+
+echo " "
+echo "Do you want to enter the path for LEDA include files? This is"
+echo "only necessary, if your compiler does not find the LEDA include"
+echo "files by default and the LEDAROOT environment variable is not"
+echo "set (or it is set incorrectly)."
+echo " "
+echo "==> Enter LEDA include path [y/n] "
+
+read leda_a
+
+if [ "$leda_a" = "y" -o "$leda_a" = "yes" -o "$leda_a" = "YES" -o "$leda_a" = "Yes" ]
+then
+  echo " "
+  echo "==> Please, enter the path to the directory containing the LEDA"
+  echo "header files without the final ..../LEDA (e.g., /usr/local/LEDA/incl)."
+  read ip
+  echo "IPATH = -I$ip" >> src/Make.src
+  echo "IPATH = -I$ip" >> demo/Make.demo
+  echo "IPATH = -I$ip" >> test/Make.test
+  echo " "
+  echo "...adding $ip to include path"
+  echo " "
+else
+  if [ "$LEDAROOT" = "" ]
+  then
+    echo "IPATH =" >> src/Make.src
+    echo "IPATH =" >> demo/Make.demo
+    echo "IPATH =" >> test/Make.test
+    echo " "
+    echo "...using default include path"
+    echo " "
+  else
+    ip="IPATH = -I$LEDAROOT/incl"
+    echo "$ip" >> src/Make.src
+    echo "$ip" >> demo/Make.demo
+    echo "$ip" >> test/Make.test
+    echo " "
+    echo "...adding $LEDAROOT/incl to include path"
+    echo " "
+  fi
+fi
+
+
+# locate LEDA libraries
+
+echo " "
+echo "Do you want enter the path for LEDA libraries? This is"
+echo "only necessary, if your linker does not find the LEDA"
+echo "libraries by default and the LEDA libraries are not in"
+echo "the directory LEDAROOT."
+echo " "
+echo "==> Enter LEDA library path [y/n] "
+
+read a
+
+if [ "$a" = "y" -o "$a" = "yes" -o "$a" = "YES" -o "$a" = "Yes" ]
+then
+  echo " "
+  echo "==> Please, enter the path to the directory containing the LEDA"
+  echo "libraries (e.g. /usr/local/LEDA)."
+  read l
+  echo "LPATH = -L$l" >> src/Make.src
+  echo "LPATH = -L$l" >> demo/Make.demo
+  echo "LPATH = -L$l" >> test/Make.test
+  echo " "
+  echo "...adding $l to library path"
+  echo " "
+else
+  if [ "$LEDAROOT" = "" ]
+  then
+    echo "LPATH =" >> src/Make.src
+    echo "LPATH =" >> demo/Make.demo
+    echo "LPATH =" >> test/Make.test
+    echo " "
+    echo "...using default library path"
+    echo " "
+  else
+    lp="LPATH = -L$LEDAROOT"
+    echo "$lp" >> src/Make.src
+    echo "$lp" >> demo/Make.demo
+    echo "$lp" >> test/Make.test
+    echo " "
+    echo "...adding $LEDAROOT to library path"
+    echo " "
+  fi
+fi
+
+
+
+# static or dynamic library (static only at the moment)
+
+echo 'LIB = $(SLIB)' >> src/Make.src
+
+
+# SunOS5 needs additional libraries for X11 programs...
+
+if [ $sys = SunOS5 ]
+then
+   echo "SOL = -lsocket -lthread" >> demo/Make.demo
+   echo "SOL = -lsocket -lthread" >> test/Make.test
+fi
+
+cat confdir/unix/Make.src >> src/Make.src
+cat confdir/unix/Make.demo >> demo/Make.demo
+cat confdir/unix/Make.test >> test/Make.test
+
+touch .configured
+
+echo " "
+echo "...configuration done"
+echo " "

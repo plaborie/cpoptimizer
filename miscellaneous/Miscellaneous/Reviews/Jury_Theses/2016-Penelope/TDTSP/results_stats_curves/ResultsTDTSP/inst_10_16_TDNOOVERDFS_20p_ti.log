@@ -1,0 +1,63 @@
+# INSTANCE: DATA_TDTSP_randomd/10/bench_10_selected/ALL/inst_10_16.txt DATA_TDTSP/tdtsp_bench_255_6h00_12h30_20p_ti_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 10
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 7200
+ ! ----------------------------------------------------------------------------
+ ! Minimization problem - 13 variables, 5 constraints, 1 phase
+ ! Presolve      : 1 extractable eliminated
+ ! SearchType           = DepthFirst
+ ! Workers              = 1
+ ! RelativeOptimalityTolerance = 1e-009
+ ! Initial process time : 0.11s (0.11s extraction + 0.00s propagation)
+ # Extraction breakdown : 0.11s concert translation + 0.00s presolve
+ !  . Log search space  : 34.6 (before), 34.6 (after)
+ !  . Memory usage      : 545.5 kB (before), 545.5 kB (after)
+ ! Using sequential search.
+ # Presolve memory usage: 35.4 kB
+ #  . Model: 9.8 kB (original) + 0 bytes (presolved)
+ #  . Master: 9.2 kB (extractor) + 8.2 kB (converter) + 8.2 kB (other)
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed            Branch decision
+ *         10734       18 0.11s                 on 10
+* 0.114 10734
+ *          9507       43 0.11s                 on 10
+* 0.114 9507
+ *          9415       67 0.11s                 on 10
+* 0.114 9415
+ *          9311       88 0.11s                 on 10
+* 0.114 9311
+ *          9308      164 0.11s                 on 10
+* 0.115 9308
+ *          8879      205 0.11s                 on 10
+* 0.115 8879
+ *          8245      226 0.11s                 on 10
+* 0.115 8245
+ ! ----------------------------------------------------------------------------
+ ! Search terminated normally, 7 solutions found.
+ ! Best objective         : 8245 (optimal - effective tol. is 0)
+ ! Number of branches     : 424
+ ! Number of fails        : 214
+ ! Total memory usage     : 7.7 MB (0.6 MB CP Optimizer + 7.1 MB Concert)
+ ! Time spent in solve    : 0.11s (0.00s engine + 0.11s extraction)
+ # Extraction breakdown   : 0.11s concert translation + 0.00s presolve
+ ! Search speed (br. / s) : 42400.0
+ ! ----------------------------------------------------------------------------
+# SOLUTION FOUND
+# OPTIMALITY PROVED
+# BEST SOLUTION: 8245
+# NUMBER OF BRANCHES: 424
+# END TIME: 0.118
+## Solution: 
+10
+228 0
+51 471
+50 785
+111 2219
+145 4009
+155 4404
+150 5050
+127 5735
+120 6616
+23 7254
+# BEST TD SOLUTION: 8245

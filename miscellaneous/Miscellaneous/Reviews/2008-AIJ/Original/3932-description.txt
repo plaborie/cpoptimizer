@@ -1,0 +1,74 @@
+Title: Managing Coordination in Temporal Planning using Planner-Scheduler Interaction
+
+Authors: Andrew Coles, Maria Fox, Keith Halsey and Derek Long
+
+Corr. author: Derek Long, Derek.Long@cis.strath.ac.uk
+
+Addresses (including mail addresses): Dept. Computer and Information Sciences, University of Strathclyde, Glasgow, UK.
+{andrew.coles,maria.fox,amanda.smith,derek.long}@cis.strath.ac.uk
+
+Abstract:
+
+Temporal planning contains aspects of both planning and
+scheduling. Many temporal planners assume a loose coupling between
+these two sub-problems in the form of ``blackbox'' durative actions,
+where the state of the world is not known during the action's
+execution. This simplifies the temporal planning problem and restricts
+what can be modelled. In particular, the simplification makes it
+impossible to model coordination, where actions {\em must} be executed
+concurrently to achieve a desired effect.
+
+Coordination results from logical and temporal constraints that must
+both be met, and for this reason, the planner and scheduler
+\emph{must} communicate in order to find a valid temporal plan. This
+work examines where coordination arises in temporal domains, and then
+uses this information to minimise communication between a planner and
+scheduler in a temporal planner called \crikey. Results presented show
+\crikey\ to be a competitive planner, whilst not making the same
+simplifying assumptions. The investigation of the interaction between
+planning and scheduling has revealed a class of problems, which can be
+modelled using {\sc pddl2.1}, that cannot be solved by
+state-of-the-art planners.  \crikey\ is able to solve temporal
+problems involving coordination that other planners are unable to
+solve.
+
+
+1 What is the original contribution of this work?
+
+The original contribution of this work is that it describes a temporal
+planner that is the first and, currently, only planner capable of
+solving a class of planning problems that require exploitation of
+concurrency in the structure of their plans.
+
+2 Why should this contribution be considered important?
+
+Temporal planning is a very lively research area in AI Planning,
+currently, with particular interest being expressed in the question of
+what kinds of domains require precisely this kind of temporal
+coordination of plans.
+
+3 What is the most closely-related work by others and how does this
+ work differ?
+
+Closely related work includes other work on temporal planners, such as
+Minh Binh Do's work on Sapa, Edelkamp's work on MIPS and Gerevini's
+work, with colleagues, on LPG. There is also a relationship to recent
+analysis of temporal domains, including work by Cushing et al. None of
+this work describes an implemented solution to the problem of temporal
+planning in the domains we consider.
+
+4 How can other researchers make use of the results of this work?
+
+The work can be used by researchers to extend the capabilities of
+existing planners. Furthermore, the implemented planner is available
+for download and experimentation.
+
+5 If any part of this work has been submitted elsewhere, please state
+ where it has been submitted and how it differs from this paper.
+
+The work is original. It is based on work submitted by Keith Halsey
+for his PhD, but is significantly rewritten for this manuscript.
+
+6 Keywords: Planning, Temporal planning, Planning and scheduling interface
+
+

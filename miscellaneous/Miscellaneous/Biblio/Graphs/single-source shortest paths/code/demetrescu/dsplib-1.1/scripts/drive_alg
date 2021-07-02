@@ -1,0 +1,164 @@
+#!/bin/tcsh
+
+# script: drive_alg
+# log:    000505
+
+# $1: number of nodes
+# $2: number of arcs
+# $3: min weight
+# $4: max weight
+# $5: number of operations
+# $6: rnd generator seed
+# $7: results filename postfix
+# $8: generator type
+# $9: options m=modifying sequence generation
+#             z=initial graph has all zero-length cycles (=> sequences with all increases)
+#             d=deep solution structure tree
+#             s=shallow solution structure tree
+# $10: algos  bfm
+#             bfmk=bfm with keep distance heuristics
+#             bfmp=bfm with parent checking heuristics
+#             bfmpk=bfm with both keep distance and parent checking heuristics
+#             dfmn
+#             rr
+#             df
+#             dfh=df with priority init heuristics
+
+setenv G_PATH ../inputs/G.$8.$1.$2.$3.$4.$6.$9
+setenv S_PATH ../inputs/S.$8.$1.$2.$3.$4.$5.$6.$9
+
+setenv R_BFM_PATH     ../results/$7_bfm
+setenv R_BFMK_PATH    ../results/$7_bfmk
+setenv R_BFMP_PATH    ../results/$7_bfmp
+setenv R_BFMPK_PATH   ../results/$7_bfmpk
+setenv R_DFMN_PATH    ../results/$7_dfmn
+setenv R_RR_PATH      ../results/$7_rr
+setenv R_CD_PATH      ../results/$7_cd
+setenv R_CDH_PATH     ../results/$7_cdh
+
+setenv R_BFM_PATH_A   ../results/$7_bfm_a
+setenv R_BFMK_PATH_A  ../results/$7_bfmk_a
+setenv R_BFMP_PATH_A  ../results/$7_bfmp_a
+setenv R_BFMPK_PATH_A ../results/$7_bfmpk_a
+setenv R_DFMN_PATH_A  ../results/$7_dfmn_a
+setenv R_RR_PATH_A    ../results/$7_rr_a
+setenv R_CD_PATH_A    ../results/$7_cd_a
+setenv R_CDH_PATH_A   ../results/$7_cdh_a
+
+
+echo " "
+echo "=================================================="
+echo "Running algorithms on problem instance:"
+echo "    Nodes:      $1"
+echo "    Arcs:       $2"
+echo "    Min Weight: $3"
+echo "    Max Weight: $4"
+echo "    Num Ops:    $5"
+echo "    Seed:       $6"
+echo "    Options:    $9"
+echo "    Algorithms: $10"
+
+
+if (`echo $10 | grep -c "bfm"` == 1) then
+echo "---------------"
+echo "running bfm ..."
+../bin/run_bfm 0 $G_PATH $S_PATH $R_BFM_PATH $3 $4 $6 $9
+../bin/run_bfm 0 $G_PATH $S_PATH $R_BFM_PATH $3 $4 $6 $9
+../bin/run_bfm 0 $G_PATH $S_PATH $R_BFM_PATH $3 $4 $6 $9
+cat $R_BFM_PATH   | ../bin/average_data > $R_BFM_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "bfmk"` == 1) then
+echo "---------------"
+echo "running bfmk ..."
+../bin/run_bfmk 0 $G_PATH $S_PATH $R_BFMK_PATH $3 $4 $6 $9
+../bin/run_bfmk 0 $G_PATH $S_PATH $R_BFMK_PATH $3 $4 $6 $9
+../bin/run_bfmk 0 $G_PATH $S_PATH $R_BFMK_PATH $3 $4 $6 $9
+cat $R_BFMK_PATH  | ../bin/average_data > $R_BFMK_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "bfmp"` == 1) then
+echo "---------------"
+echo "running bfmp ..."
+../bin/run_bfmp 0 $G_PATH $S_PATH $R_BFMP_PATH $3 $4 $6 $9
+../bin/run_bfmp 0 $G_PATH $S_PATH $R_BFMP_PATH $3 $4 $6 $9
+../bin/run_bfmp 0 $G_PATH $S_PATH $R_BFMP_PATH $3 $4 $6 $9
+cat $R_BFMP_PATH  | ../bin/average_data > $R_BFMP_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "bfmpk"` == 1) then
+echo "---------------"
+echo "running bfmpk ..."
+../bin/run_bfmpk 0 $G_PATH $S_PATH $R_BFMPK_PATH $3 $4 $6 $9
+../bin/run_bfmpk 0 $G_PATH $S_PATH $R_BFMPK_PATH $3 $4 $6 $9
+../bin/run_bfmpk 0 $G_PATH $S_PATH $R_BFMPK_PATH $3 $4 $6 $9
+cat $R_BFMPK_PATH | ../bin/average_data > $R_BFMPK_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "dfmn"` == 1) then
+
+# uncomment to force initial dfmn correctness check
+#echo "-----------------------------"
+#echo "Checking dfmn correctness ..."
+#../bin/check_dfmn 0 $G_PATH $S_PATH
+
+echo "----------------"
+echo "running dfmn ..."
+../bin/run_dfmn 0 $G_PATH $S_PATH $R_DFMN_PATH $3 $4 $6
+../bin/run_dfmn 0 $G_PATH $S_PATH $R_DFMN_PATH $3 $4 $6
+../bin/run_dfmn 0 $G_PATH $S_PATH $R_DFMN_PATH $3 $4 $6
+cat $R_DFMN_PATH  | ../bin/average_data > $R_DFMN_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "rr"` == 1) then
+
+# uncomment to force initial rr correctness check
+#echo "---------------------------"
+#echo "Checking rr correctness ..."
+#../bin/check_rr 0 $G_PATH $S_PATH
+
+echo "--------------"
+echo "running rr ..."
+../bin/run_rr 0 $G_PATH $S_PATH $R_RR_PATH $3 $4 $6
+../bin/run_rr 0 $G_PATH $S_PATH $R_RR_PATH $3 $4 $6
+../bin/run_rr 0 $G_PATH $S_PATH $R_RR_PATH $3 $4 $6
+cat $R_RR_PATH    | ../bin/average_data > $R_RR_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "df"` == 1) then
+
+# uncomment to force initial df correctness check
+#echo "---------------------------"
+#echo "Checking df correctness ..."
+#../bin/check_cd 0 $G_PATH $S_PATH
+
+echo "--------------"
+echo "running df ..."
+../bin/run_cd 0 $G_PATH $S_PATH $R_CD_PATH $3 $4 $6
+../bin/run_cd 0 $G_PATH $S_PATH $R_CD_PATH $3 $4 $6
+../bin/run_cd 0 $G_PATH $S_PATH $R_CD_PATH $3 $4 $6
+cat $R_CD_PATH    | ../bin/average_data > $R_CD_PATH_A
+endif
+
+
+if (`echo $10 | grep -c "dfh"` == 1) then
+
+# uncomment to force initial cdh correctness check
+#echo "---------------------------"
+#echo "Checking cdh correctness ..."
+#../bin/check_cdh 0 $G_PATH $S_PATH
+
+echo "--------------"
+echo "running dfh ..."
+../bin/run_cdh 0 $G_PATH $S_PATH $R_CDH_PATH $3 $4 $6
+../bin/run_cdh 0 $G_PATH $S_PATH $R_CDH_PATH $3 $4 $6
+../bin/run_cdh 0 $G_PATH $S_PATH $R_CDH_PATH $3 $4 $6
+cat $R_CDH_PATH   | ../bin/average_data > $R_CDH_PATH_A
+endif
+

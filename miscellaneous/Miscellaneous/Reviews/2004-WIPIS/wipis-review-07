@@ -1,0 +1,65 @@
+===========================================================
+------------------ WIPIS 04 Review Form -------------------
+===========================================================
+Paper number: 07
+
+Author(s):  W. Ruml and M. Fromherz
+
+Paper Title: On-line Planning and Scheduling in a High-speed Manufacturing Domain
+
+ 
+					bad 		middle 		good 
+  					1 	2 	3 	4 	5
+Evaluation of work and contribution: 			3
+Originality or novelty: 					4
+Relevance to the workshop: 					4
+Readability and organization: 			2	
+Overall recommendation:					3	
+
+Should the author(s) be invited to present this at the workshop?
+Yes
+
+Why or why not?
+
+The application discribed in the paper is very representative of the
+manufacturing domain. It is traditionaly handled by a pure scheduling
+approach where the different ways to satisfy a job request are made
+explicit and modeled using alternative modes. The authors use a
+restriction of the PDDL2.1 language to model the different ways a job
+request can be satisfied and use planning techniques to explore those
+alternatives. The approach is original and very relevant to the
+workshop.
+
+Comments to author(s):
+
+The weak point of the paper is its lack of formalization. The main
+concepts of job request, configuration, batches, machines (resources)
+and their attached constraints, the temporal data-base and resource
+constraints used when planning individual jobs are never formally
+defined.
+
+In this application, it seems like there is an asumption that makes
+the approach working: the only dependency between jobs is due to
+resource constraints and not to predicates involved in pre-
+post-conditions of actions. Because of it and because of the
+incrementality of the problem, each job can be planned separately,
+only taking into account the resource synchronization. Doing so, of
+course, the global optimality of the set of unsent plans is not
+ensured. Were some attempts made to (re)plan all the unsent plans
+together in order to improve the overall objective. Do you think the
+method (state-space regression + resource ordering) would scale ?
+
+The empirical evaluation is not very informative because, as said in
+the paper, the problem is not really a feasibility problem (one can
+always find a solution, even if it is a very bad one), and in the
+experiments, nothing is mentioned about the quality of the computed
+solution. Given the characteristics of the application, I'm pretty
+sure one could compute some relevant lower bounds on the objective
+function and it would really be interesting to compare them with the
+solution found.
+
+
+Confidential comments to PC members:
+
+=============================================================
+

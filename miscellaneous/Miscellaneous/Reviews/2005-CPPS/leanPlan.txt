@@ -1,0 +1,84 @@
+
+TITLE: Towards Presentation Planning by Constructive Constraint Programming
+AUTHOR(S): Ulrich Scholz
+
+1) SUMMARY (please provide brief answers)
+
+- What is/are the main contribution(s) of the paper?
+
+This paper presents the principles of CoCoP a constructive constraint
+programming system and describe leanCoP, a theorem prover that is used
+as a first implementation of CoCoP.
+
+2) TYPE OF THE PAPER
+
+The paper reports on:
+ [X] Preliminary research
+ [ ] Mature research, but work still in progress
+ [ ] Completed research
+
+
+3) GENERAL RATINGS
+
+Please rate the 6 following criteria by, each time, using only one of the
+five following words: BAD, WEAK, FAIR, GOOD, EXCELLENT 
+
+3a) Relevance:			FAIR
+3b) Originality:		FAIR
+3c) Significance, Usefulness:   FAIR
+3d) Technical soundness:        FAIR
+3e) References:			FAIR
+3f) Presentation:		WEAK
+
+
+4) SUGGESTED/REQUIRED MODIFICATIONS;
+
+The work described in this paper really seems to be in a very early
+stage which surely explains why no real evidence of the interest of
+using a planner based on theorem proving is given. Furthermore,
+although the title of the paper mentions the application of the
+approach to Presentation Planning, this problem is not described at
+all and it really makes it hard to understand the choice of the
+proposed techniques to solve this planning problem. I think the
+Presentation Planning problem should be described or - at least - the
+title should be changed.
+
+The second part of the paper starting with section "The Mechanics of
+CoCoP" is hard to follow. The link with leanCoP and with constructive
+CP is not trivial. It is difficult to understand how CoCoP avoids the
+limitations related with sitation calculus.
+
+However, not being an expert in the field I cannot properly assess the
+contibution of the paper.
+
+Typos:
+
+p4, paragraph starting with "Besided the similarities ...": this
+ability will probably "be" used
+
+5) GENERAL RECOMMENDATION
+
+5SA) [ ] recommended for acceptance as it is (full paper)
+5WA) [ ] recommended for acceptance after necessary modifications
+5PA) [X] recommended for acceptance as a short paper
+5SR) [ ] not recommended for acceptance
+
+
+6) REVIEWER'S CONFIDENCE IN THE SUBJECT AREA OF THE PAPER
+
+  [ ] High
+  [ ] Medium
+  [X] Low
+
+
+
+----- INFORMATION FOR PROGRAMME COMMITTEE ------------------------
+
+Name of the reviewer: Philippe Laborie
+
+Comments for the Program Committee only (use this slot only if
+necessary):
+
+I really hesitate between recommending this paper as a short paper or
+rejecting it. My decision to accept is due to my low confidence in the
+subject area but I see no problem with rejecting this paper.

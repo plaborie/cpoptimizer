@@ -1,0 +1,15 @@
+c a small example
+c
+p sp     5    9
+c
+n     5
+c
+a	0	1	-10
+a	1	2	-2
+a	1	3	-8
+a	2	0	15
+a	2	1	7
+a	2	4	-2
+a	3	2	3
+a	4	0	20
+a	4	2	9

@@ -1,0 +1,1 @@
+sensitivity degree	first mean makespan	first standard deviation of the makespan	mean effective makespan		standard deviation of the effective makespan	mean number of reschedulings	standard deviation of the number of reschedulings	mean computation time	standard deviation of the computation time	mean relative error	standard deviation of the relative error

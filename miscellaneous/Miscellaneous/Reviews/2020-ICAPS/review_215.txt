@@ -1,0 +1,119 @@
+Title:	Enabling Limited Resource-Bounded Disjunction in Scheduling
+Number: #215
+
+Evaluation
+
+Significance / Importance.
+* Does the paper contribute a major breakthrough or an incremental advance? If the paper describes an application, is the application important?
+ 3: substantial contribution or strong impact
+ 2: modest contribution or average impact
+ 1: minimal contribution or weak impact
+
+Soundness.
+* Is the technical development accurate? Does the paper present convincing evidence that supports their claims?
+ 3: correct
+ 2: minor inconsistencies or small fixable errors
+ 1: major errors
+
+Novelty.
+* Is the research approach described novel? For an application paper, is the application novel?
+ 3: novel - approach and/or application are new and only a few other similar approaches and/or applications exist
+ 2: moderate - approach and/or application have been developed before, but significant improvements are presented
+ 1: marginal - only parts of the application and/or approach are new
+
+Scholarship.
+* Is related work cited and discussed?
+ 3: excellent coverage of related work
+ 2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+Clarity.
+* Is the paper clearly organized and clearly written? Does the submission make explicit claims about the capabilities or behavior of the approach?
+ 3: well organized and well written
+ 2: mostly readable with some room for improvement
+ 1: hard to follow
+
+Technology Readiness Level.
+* How would you characterize the Technology Readiness Level of the contribution
+ 9: Actual system proven through successful mission operations
+ 8: Actual system completed and qualified through test and demonstration
+ 7: System prototype demonstration in an operational environment
+ 6: System/subsystem model or prototype demonstration in a relevant environment
+ 5: Component and/or breadboard validation in relevant environment
+ 4: Component and/or breadboard validation in laboratory environment
+ 3: Analytical and experimental critical function and/or characteristic proof of concept
+ 2: Technology concept and/or application formulated
+ 1: Basic principles observed and reported
+ 0: N/A - not applicable
+
+Reproducibility.
+* Can the work be reproduced or verified based on the paper and any supporting information or data?
+ 5: code and domains (whichever apply) are already publicly available
+ 4: authors promise to release code and domains (whichever apply)
+ 3: authors describe the implementation and domains in sufficient detail
+ 2: some details missing but still appears to be replicable with some effort
+ 1: difficult to reproduce because of missing detail
+ 0: N/A - nothing to reproduce
+
+Suitability for Special Track.
+* Is the paper suitable to the track it was submitted to
+ 12: Special Track on Humans and Robotics - Almost all focus is on humans
+ 11: Special Track on Humans and Robotics - Almost all focus is on robotics
+ 10: Special Track on Humans and Robotics - Almost all focus is on planning
+ 9: Special Track on Humans and Robotics - Good balance between planning and robotics
+ 8: Special Track on Planning and Learning - Almost all focus is on learning
+ 7: Special Track on Planning and Learning - Almost all focus is on planning
+ 6: Special Track on Planning and Learning - Good balance between planning and learning
+ 5: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Does not describe a knowledge engineering approach or system architecture.
+ 4: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes an innovative knowledge engineering approach/aspect
+ 3: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes a general system architecture that incorporates both planning and plan execution
+ 2: Novel Applications - Planning & Scheduling are not Important for the Application
+ 1: Novel Applications - Planning & Scheduling are Important for the Application
+ 0: N/A - submitted to the main track
+
+Overall evaluation.
+* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+ 1: weak accept
+ 0: borderline paper
+ -1: weak reject
+ -2: reject
+ -3: strong reject
+
+Review.
+
+* Detailed review. (Required)
+
+
+
+
+
+
+
+
+Reviewer's confidence.
+* Reviewer's confidence
+ 4: (expert)
+ 3: (high)
+ 2: (medium)
+ 1: (low)
+
+Suitable for a demo?.
+* Suitable for a demo?
+ 3: yes
+ 2: maybe
+ 1: no
+
+Nominate for Best Paper Award?. 
+* Nominate for Best Paper Award?
+ [ ] yes
+
+Nominate for Best Student Paper Award (assuming it is eligible) ?. 
+* Nominate for Best Student Paper Award (assuming it is eligible)?
+ [ ] yes
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+
+

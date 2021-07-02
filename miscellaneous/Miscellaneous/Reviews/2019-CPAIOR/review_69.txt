@@ -1,0 +1,34 @@
+Number: 69
+Title: A new CP-approach for a parallel machine scheduling problem with time constraints on machine qualifications.
+Authors:	Margaux Nattaf and Arnaud Malapert.  
+
+Review:
+ 2: accept
+
+The article describes an important and challenging extension of a scheduling problem arising in the semiconductor industry related to machine qualification. It proposes a new CP model for this problem.
+
+The motivation and description of the extension is clear and well illustrated with an example. In general, the paper is well written.
+
+The paper describes and compares 3 formulations for the problem. An ILP and a CP formulation described in previous work and a new CP formulation using interval variables. The proposed new formulation adequately exploits the concepts introduced in CP Optimizer (in particular: optional interval variables and cumul functions) resulting in a model that is at the same time compact, elegant and efficient. The new model is shown to outperform the previous ones, especially when the objective term related with machine qualification is the most important.
+
+Here are some minor comments/questions:
+
+* Given the disqualification constraints, it may be that some instances are infeasible. Do you think some of the instances you generated could be infeasible? 
+
+* In relation with the point above: in practice, I suppose that these disqualification constraints are somehow soft (you mention it in the introduction: it requires som additional time to execute some qualification runs). Do you plan to study this aspect in the future? I think that your CP Optimizer model would be easy to extend in this (more realistic) direction. 
+
+* In the paper, the qualification intervals qual_{j,m} are constrained to start at the end time of the jobs (see:"the second assumption made in the model is that it is equivalent to consider the threshold ...") . Would it not be slightly easier to have them start at the start time of the jobs (startAtStart constraint) ?
+
+* All along in the description of the model, precedence constraints are formulated using relations between start and end values (like: et(altJ_im) <= st(altJ_jm) in (31)). This formulation is unclear when intervals are optional (and potentially inefficient if you formulate them this way in the engine). For clarity, I think you should use the terminology of CP Optimizer (endBeforeStart(altJ_im,altJ_jm)) that has a precise semantics when some of the interval variables are absent.
+
+* In the experiments, I think that at some point you should explicitly mention that you are using the CP Optimizer engine to solve the problem, because "IBM ILOG Optimization Studio" includes both the CPLEX engine and CP Optimizer.
+
+* In section 5.3, I did not find where you explicitly say that CP_O is the previous CP model and CP_N is the model proposed in the present article.
+
+* For the new model, given the nature of the interval variables endQ_fm, did you try some search phases that fix them after all other variables have been fixed (or before) ? I'm curious to see if that could help.
+
+* p14, typo: "Minimmizing the flow time". 
+
+
+Reviewer's confidence:	
+5: (expert)

@@ -1,0 +1,52 @@
+
+Originality of ideas                       7
+Correctness                                7
+Significance of results                    7
+Clarity and quality of presentation        7
+Confidence                                 6
+Overall recommendation                     7
+
+
+Comments to author(s) 
+---------------------
+
+Summary of the paper:
+
+This paper presents a novel algorithm to computing MCSs (Minimal Correction Subset) of an unsatisfiable propositional formula, based on the relationship between backbone literals and MCSs. The new approach is shown to outperform state-of-the-art MCS extractors in an experimental study. The proposed algorithm is also used in a second series of experiments to approximate MaxSAT.
+
+Summary of the reviews:
+
+All reviewers acknowledge that the paper is clear and well-written and that the proposed approach is original. 
+
+The section about related work misses a few references that the authors plan to add in the final version.
+
+The main issues with the paper are raised by Reviewer 2 who questions the added value of the experiments with MaxSAT and the size of the extracted MCSs.
+
+Personal opinion about the paper:
+
+I understand the issues raised by Reviewer 2 and in particular, an explicit comparison of the approaches for MCSs extraction in terms of MCS size would clearly strengthen the paper.
+
+This being said, I tend to favor the originality of the proposed approach and would recommend to accept the paper.
+
+
+Confidential comments to AC, SPC and PC members
+-----------------------------------------------
+
+
+Summary of review
+-----------------
+
+The paper is clear and well-written and the proposed approach that exploits backbone literals to compute MCSs is original. 
+
+
+========================================================================================================================
+
+Comments:
+
+Hello,
+
+It seems that you all agree that the paper introduces an original approach for MCS extraction and that the interest of this new approach is validated by the experimental study (and so do I). The paper is well written and the few typos and ambiguities you mention in your reviews seem to be addressed by the authors response. 
+
+What about the other questions you raised, do you consider they were satisfactorily answered in the rebuttal phase ?
+
+There seem to be a consensus for accepting the paper, right? 

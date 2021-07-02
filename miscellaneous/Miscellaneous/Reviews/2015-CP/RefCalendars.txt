@@ -1,0 +1,14 @@
+Ilie-Zudor, E., Monostori, L., Kuzmina, E., 2003,
+Constraint programming based support for
+production networks management, Preprints of the
+7th IFAC Workshop on Intelligent Manufacturing
+Systems, April 6-8, Budapest, Hungary: 13-18.
+
+
++ Handbook of CP, chapter Constraint-Based Scheduling and Planning
+
+section "Breakable activities and calendars" p 768
+
+Schwindt, C. Resource Allocation in Project Management
+Chapter 
+Section 5.1 Break calendars

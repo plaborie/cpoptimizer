@@ -1,0 +1,49 @@
+PAPER: 1136
+TITLE: An Emotion Model of Virtual Human In Emergent Events
+
+1 (bad) - 10 (excellent)
+Relevance                     4 										
+Originality                   5 										
+Significance                  2 										
+Technical quality             2 										
+Readability and organization  3 										
+Overall recommendation        3 										
+Confidence                    4 										
+	
+
+Comments to author(s)
+---------------------
+
+The paper describes a model for virtual humans in critical situations with a focus on the emotional aspects (fear, hope). Most of the paper presents the model itself. The last section describes some simulation using this model. 
+
+This work is relevant to AI in the sense that it aims at providing individual models for virtual humans in order to study emerging behaviors. But the objectives are not clearly stated in the paper. 
+
+This work is original in the sense that it makes the link between individual emotional models and crowd behaviors. 
+
+Unfortunately, the model described here is, I think, really too extensive and pretends to take too many dimensions into account. As a result, there is a huge number of parameters and variables (it is not always easy to distinguish between the two) and most of the time there is no justification for the different aggregation formulas that are introduced. For instance:
+- Is there a reason why emotion received from the others should be additive as in formula EI_i = sum_j DEI_ji (on p2, col2) ?
+- Why is the "influence" of a leader exponentially decreasing with distance (p3, col1) ?
+- Why is the fear emotion aggregated as a max in formula (8) whereas it is sometimes additive (see first point above) ?
+- What is the point of these trigonometrical functions in the formulas of fear and hope?
+- Why fear depends on the earthquake magnitude whereas hope does not? 
+
+There is no real evaluation of the model in the last section. The model indeed has been used in several scenarios but most of the conclusions that are drawn (like on Fig 5, fear decreases once the human has gone outside of the building) are a direct consequence of the direction of variation of the formulas (indeed, fear decreases in this case as described in equation 8). This does not say much about the accuracy of the model.
+
+The paper is difficult to read for at least two reasons. 
+- There are some issues with the English. For instance in the introduction "The casualties' quantity of whole world in natural calamities ...". 
+- There are also many typos that could have been fixed by just running a spell checker. 
+
+
+Confidential comments to AC, SPC and PC members 	
+---------------------
+
+
+
+Summary of review
+-----------------
+
+Although the overall approach seems original, the model described in this paper is really lacking some justifications for the many parameters and formulas. The experimental section is not really convincing. The readability of the paper should be improved too.
+
+Nominate for best paper 	        [ ]
+Nominate for best student paper 	[ ]
+Recommend for oral presentation   Y/N

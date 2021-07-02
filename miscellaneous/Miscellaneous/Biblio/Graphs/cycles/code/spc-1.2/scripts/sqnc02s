@@ -1,0 +1,41 @@
+#
+limit cputime 1200
+
+echo $1.$0 >../result/$1.$0
+echo '   nodes     arcs             sum    cycle     scans        time' >>../result/$1.$0
+
+echo -1 64 64>> ../result/$1.$0
+../bin/tor 64 64 171 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 173 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 175 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 177 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 179 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 172 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 174 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 176 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 178 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 64 64 170 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 128 128>> ../result/$1.$0
+../bin/tor 128 128 271 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 273 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 275 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 277 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 279 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 272 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 274 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 276 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 278 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 128 128 270 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+
+echo -1 256 256>> ../result/$1.$0
+../bin/tor 256 256 671 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 673 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 675 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 677 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 679 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 672 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 674 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 676 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 678 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0
+../bin/tor 256 256 670 -cc -nn1 -nl3 -na-1 -p | ../bin/$1 >> ../result/$1.$0

@@ -1,0 +1,112 @@
+
+====== COMMENTS TO AUTHORS =========================
+
+CONTENT
+Please, answer Yes or No.
+
+Is the paper technically sound? Yes
+Is the work described original? Yes
+Does it place new results in appropriate context with earlier work? Yes
+Does anything need to be added or deleted? No
+Is the result important enough to warrant publication? Yes
+Are the results properly supported by experiments? Yes
+Is the experimental analysis significant and correct? Yes
+
+
+FORM
+Please, answer Yes or No.
+
+Does the abstract adequately reflect the contents? Yes
+Are the summary and conclusions adequate? Yes
+Does it contain adequate references to previous work? Yes
+Does it explain clearly what was done that is new? Yes
+Does it clearly indicate why this work is important? Yes
+Is the English satisfactory? Yes
+Is the presentation otherwise satisfactory? Yes
+Are there an appropriate number of figures? Yes
+Do the figures help clarify the concepts in the paper? Yes
+
+
+YOUR CONFIDENCE in the paper's topics:
+(Please, delete all categories except one)
+
+- Good
+
+
+-------------------------------------------
+Detailed comments to authors:
+
+I reviewed the initial version of the paper (reviewer 2) and had, at that time, several suggestions to improve/clarify the paper. All those suggestions are thoroughly addressed in the present version so I have not much to add. The article tackles a significant problem in scheduling, proposes a meta-heuristic approach that is carefully motivated in light of the problem being solved and of the literature. The approach is clearly described and the experimental study is convincing. I recommend to accept the article.
+
+A typo:
+- p5, col2: we have opted to create "an" structure
+
+
+-------------------------------------------
+Together with the paper, you received its workshop reviews as well as a
+letter from the authors explaining how they have dealt with these
+reviews in the current version.
+
+If you already reviewed this paper at the workshop: did authors
+properly take into account your previous comments?
+(Please, delete all categories except one)
+
+- Yes, completely (either by improving the paper or by giving
+convincing evidence in the accompanying letter that addressing such comments would be out
+of the scope of the paper or could/should not be done).
+
+
+Did authors properly take into account the comments of the reviewers
+(other than you)?
+(Please, delete all categories except one)
+
+- Yes, completely (either by improving the paper or by giving
+convincing evidence in the accompanying letter that addressing such comments would be out
+of the scope of the paper or could/should not be done).
+
+If you are not fully satisfied about how authors addressed reviewers'
+comments,
+please explain why:
+
+====== END ==========================
+
+
+
+
+
+Paper: An advanced scatter search algorithm for solving job shops with sequence dependent and non-anticipatory setups
+Author(s): Miguel A. Gonzalez, Camino R. Vela, Ramiro Varela and Ines Gonzalez-Rodriguez
+
+RATINGS
+(low/poor) 	1 	2 	3 	4 	5 	(high/excellent) 	N/A
+
+Significance to Field 	
+	4
+  
+Relevance to Journal 	
+	4
+  
+Methodology 	
+	4
+  
+Data Analysis 	
+	4
+  
+Literature Review 	
+	4
+  
+Writing Style/Clarity 	
+	4
+	
+	
+Recommendation: (choose the option that most closely summarizes your recommendation)
+  X Accept as is
+  O Accept Pending Minor Revisions
+  O Revise and Resubmit After Major Revisions
+  O Reject Outright
+
+  
+Narrative: (sent to corresponding author and other reviewers)
+
+
+Comments for the Editor ONLY:

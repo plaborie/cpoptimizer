@@ -1,0 +1,245 @@
+class IluActivityI : public IloActivity {
+private:
+	IluRandomVariableI* _randVarP;	// _randVarP represents the probability distribution of the activity duration
+	IloInt				_index;		// _index is the index of the activity (_index equals 1 to the total number of activities)
+	IloBool				_executed;		// _executed is true when the activity has finished execution.
+	IloNum				_indicativeProcessingTime, _expIndicativeEndTime; // REACTIVE APPROACH
+	//_indicativeProcessingTime = indicative duration REACTIVE APPROACH
+	//_expIndicativeEndTime = expected indicative end time (simulated indicative schedule) REACTIVE APPROACH
+	IlcInt				_effectiveStartTime, _effectiveEndTime, _effectiveProcessingTime, _indicativeStartTime;
+	IluHistogramI*		_histP;	// _histP permits us to store the realizations of the end times
+};
+
+This class allows us to build activities whose processing times are imprecise.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+class IluDynamicSchedulerI {
+private:
+	IluSimulatorI* _simulatorP;
+};
+
+This class allows us to build a dynamic scheduler that sets activitiy start times. It is used to simulate schedule execution in a
+non-deterministic environment.
+
+
+
+
+class IluProgressiveSchedulerI: public IluDynamicSchedulerI {
+private:
+	IloSchedulerSolution _solution;					// _solution contains a partial schedule solution
+	IloInt _deltaTProgressMin, _deltaTProgressMax;
+	IloNum _sigmaTProgressMin, _sigmaTProgressMax;
+};
+
+This class allows us to build a progressive scheduler that sets activity start times. It is used to simulate schedule execution in a
+non-deterministic environment. The parameters "deltaTProgressMin" and "sigmaTProgressMin" permit us to determine when we try to
+select a subset of pending activities (the selection process starts). The parameters "deltaTProgressMax" and "sigmaTProgressMin" permit us to determine when we stop
+the selection process. There might possibly be several selection processes during a schedule execution.
+
+
+
+class IluReactiveSchedulerI: public IluDynamicSchedulerI {
+private:
+	IlcScheduler _sched;					// _sched is a complete solution found by using a tree search.
+	IluHistogramI* _histP;					// _hist stores realizations of the makespan random variable.
+	IluNormalVariableI* _normVarP;				// _normVarP is associated to the makespan.
+	IloNum _threshold, _sensitivity, _processingTimeMean;	// _threshold = makespan mean of the indicative schedule
+													// _sensitivity is the sensitivity factor.
+													// _processingTimeMean is the mean of all the processing times of
+													// the activities of the deterministic problem.
+	IlcInt _nbActivities;							// _nbActivities is the number of activities that have been executing
+													// since the last rescheduling and are going to execute.
+	IloInt _criterion;								// criterion number,	0: no reschedulings occur
+													//						1: makespan monitoring
+													//						2: absolute makespan monitoring
+													//						3: monitoring of the estimated activity end times
+													//						4: monitoring of the effective activity end times
+													//						5: monitoring of the estimated activity end times with standard deviations
+};
+
+This class allows us to build a progressive scheduler that sets activity start times. It is used to simulate schedule execution in a
+non-deterministic environment. The parameter "sensitivity" sets the re-scheduling threshold "threshold".
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluEventI {
+private:
+	IlcInt _time;		// _time is the date at which the event occurs.
+	IluEventI* _next;
+};
+
+This root class allows us to build events that correspond to activity start and end times, resource breakdown start and end times. It contains a pure virtual member function.
+
+
+
+class IluActEventI:  public IluEventI { // We cannot instantiate this class.
+private:
+	IluActivityI* _uncActivityP;
+};
+
+
+class IluResourceEventI:	public IluEventI{// We cannot instantiate this class.
+private:
+	IluUnaryResourceI* _uncResourceP;
+};
+
+
+class IluActStartEventI:  public IluActEventI {};
+
+
+class IluActEndEventI:    public IluActEventI {};
+
+
+class IluResourceStartEventI:  public IluResourceEventI {};
+
+
+class IluResourceEndEventI:  public IluResourceEventI {};
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluEventStackI {
+	friend class EventStackIteratorI; // The class EventStackIteratorI can access to private attributes of the IluEventStackI class.
+private:
+	IluEventI* _first, * _last, * _previous, * _current;
+};
+
+This class premits us to manage a linked list of events that is chronologically ordered.
+
+
+
+class IluEventStackIteratorI {
+private:
+	IluEventStackI* _stackP;
+	IluEventI* _currentEventP;
+}
+
+This class allows us to iterate through a linked list of event.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluExtendedModelI {
+private:
+	IloModel  _model;		// _model contains all elements of the problem.
+	IloSchedulerSolution _solution;	// _solution represents a partial solution of the scheduling problem.
+	IloNumVar _allocCost, _tardCost;	// _allocCost represents the total allocation cost and _tardCost is the total weighted tardiness cost of
+						// the scheduling problem.
+};
+
+This class permits us to model a non-deterministic problem with activities whose processing times are imprecise and resources may break down.
+It stores all cost data structures.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+class IluRandomVariableI {
+ protected:
+	IloEnv	 	_env;
+	IloNum  	_min;
+	IloNum       	_max;
+	IluRandomEnv 	_rand;
+};
+
+This class permits us to build random variables whose domains are finite and bounded by "min" and "max".
+
+class IluUniformVariableI :public IluRandomVariableI {};
+
+class IluNormalVariableI :public IluRandomVariableI {};
+
+class IluFunctionVariableI :public IluRandomVariableI {};
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluHistogramI {
+public:
+	class ItemI {
+	private:
+		IloNum _val;
+		ItemI* _next;
+	};
+private:
+	IloEnv _env;
+	IloInt _nb;
+	IloInt _nbMax;
+	ItemI* _first;
+	ItemI* _last;
+	ItemI* _recycle;
+	IloNum _x1;
+	IloNum _x2;
+};
+
+This class permits us to record the last "nbMax" realizations of a random variable and incrementally maintains the average and standard deviation.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluSimulatorI {
+ public:
+	class ArcI {
+	private:
+		IloInt _target;		// _target is an index.
+		ArcI*  _next;
+	};
+	class NodeI {
+	private:
+		IloInt              _id;		// _id is the index.
+		IloNum              _start;
+		IloNum              _end;
+		IloNum              _val;
+		IluRandomVariableI* _dur;
+		IluHistogramI*      _hist;
+		ArcI*               _out;
+		IloInt              _indeg;
+		IloInt              _curindeg;
+	};
+	class ItemI {
+	private:
+		IloInt _id;
+		ItemI* _next;
+	};
+	IloInt  _nbNodes;
+	NodeI** _nodes;
+	ItemI*  _work;
+	ItemI*  _sortfirst;
+	ItemI*  _sortlast;
+};
+
+This class allows us to build a precedence graph on activities with random processing times and to use this graph to compute the probabillity
+distributions of the end times of all activities usong simulation techniques. One step of simulation is performed in O(n+m).
+Each node of the digraph is associated with an activity duration (random variable).
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class IluTimeEventManagerI {
+private:
+	IluEventStackI* _controlEStackP, * _contingEStackP;
+	// _controlEStackP is a stack of controllable events (typically start times) and
+	// _contingEStackP is a stack of contingent events (typically breakdown start times).
+	IlcInt _currTime;					// _currTime is the current time.
+	IluDynamicSchedulerI* _dynamicSchedP;
+	IlcInt* _effectDurations;				// An array containing all effective activity durations
+};
+
+This class permits to manage the controllable and contingent event stacks. It indicates the dynamic scheduler what events occur at currTime.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+class IluUnaryResourceI : public IloUnaryResource {
+private:
+	IluRandomVariableI* _interBreaksVarP, * _breaksDurationVarP;
+		// _ interBreaksVarP represents the probability distribution of the duration between two consecutive breakdowns.
+		// _ breaksDurationVarP represents the probability distribution of the breakdown duration.
+
+	IloNum				_meanTimeBreak, _sigmaTimeBreak, _meanBreakDur, _sigmaBreakDur;
+		// _meanTimeBreak is the mean time between 2 consecutive breakdowns.
+		// _meanBreakDur is the mean duration of a breakdown.
+		// _sigmaTimeBreak is the standard deviation of the time between 2 consecutive breakdowns.
+		// _sigmaBreakDur is the standard deviation of the duration of a breakdown.
+	IloInt				_index, _breakdownStartTime;	// _index is the index of the uncertain unary resource.
+									// _breakdownStartTime is the date at which the resource broke down.
+	IloBool				_brokenDown;			// _brokenDown indicates whether the resource is currently broken down.
+};
+
+This class allows us to build unary resources that may break down.

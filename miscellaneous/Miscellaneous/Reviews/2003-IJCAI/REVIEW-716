@@ -1,0 +1,81 @@
+The  paper shows how results from  discrete nonlinear optimization can
+be used to improve the convergence of a planner like ASPEN.  This idea
+is clearly interesting but the present paper does not improve a lot on
+a recent   paper [1] accepted  at ICAPS-03.  The   main advance is the
+ability to deal   with multi-objective problems  by  reformulating the
+problem  of finding  a pareto  optimal solution  as a single-objective
+min-max optimization problem.
+
+
+I do not agree with all the claims about present  planners made in the
+introduction.  First,  ASPEN  is  not the  only  planner to  deal with
+multi-objective criterion. See for instance  MO-GRT [2]. Secondly, the
+idea of dynamically pruning the search is at the heart of all planners
+based  on constraint-propagation [3,4].    And here also,  the pruning
+helps a lot reducing the base of the exponential.
+
+
+The description of the experiments with ASPEN should deserve much more
+space in the paper. Nothing is said about what kind of constraints and
+objectives  are    used for   modeling  the  problem.   Furthermore, a
+limitation of the  proposed approach is clearly   the total number  of
+steps N and the bucketization of time. Usually, bucketizations of time
+lead to a relaxation of the original problem as  it is not possible to
+associate  a state to each possible  date (this why linear programming
+and mixed  integer programming are not  very good at solving classical
+scheduling problems).
+
+
+[1] Y. Chen, B. Wah, "Automated Planning and Scheduling using Calculus
+of Variations in Discrete Space". Proc. ICAPS-03.
+
+
+[2] I.  Refanidis, I. Vlahavas, "The MO-GRT System: Heuristic Planning
+with Multiple Criteria",  AIPS-02 Workshop on Planning and  Scheduling
+with Multiple Criteria, Toulouse, France, 2002.
+
+
+[3] P. van  Beek, X. Chen.  "CPlan:  A constraint programming approach
+to   planning".   Proceedings  of the   16th    National Conference on
+Artificial Intelligence, Orlando, Florida, 585-590, July, 1999.
+
+[4] M.   Do, S.   Kambhampati.  "Planning as  Constraint Satisfaction:
+Solving  the  planning graph  by compiling it   into CSP".  Artificial
+Intelligence. Artificial Intelligence, 132 (2) (2001) pp. 151-182.
+
+Some additional minor remarks:
+- What does DCV stand for in DCV-CSA ?
+- In beginning of section 3, it seems to me that an inequality constrain 
+g(x) <=0 should be modeled by H(g(x))=0 where H(y)=0 for g<=0 (and 
+not g(x)=0 as metioned) 
+
+
+
+
+This  paper seems to  be a small  improvement over a recently accepted
+paper at ICAPS'03  [1]. I  don't   think that these improvements   can
+justify an acceptation at IJCAI-03. Furthermore, all the weaknesses of
+the ICAPS paper are still present  here, specially with respect to the
+empirical study on ASPEN.
+
+[1] Y. Chen, B. Wah, "Automated Planning and Scheduling using Calculus
+of Variations in Discrete Space". Proc. ICAPS-03.
+
+
+
+The paper studies the application  of non-linear discrete optimization
+to solve multi-objective temporal planning problems.
+
+The  introduction describes the notion of  pareto optimal solution and
+how  multi-objective  problems can be   formulated as single-objective
+dynamic  optimization problem by  using  a  minimax  approach. In  the
+second  section,  the  authors  introduce   the notion   of  dominance
+relations (path- and   node-dominance) that helps pruning  the  search
+space by   eliminating dominated solutions.  A specific node-dominance
+relation is described in  section 3 where  it is shown that a dominant
+state must  correspond to a  saddle  point of a  particular lagrangian
+sub-function.   This   node-dominance  relation   is  exploited by   a
+constrained    simulated   annealing   algorithm     (DCV+CSA)    that
+asymptotically  converges to  a  pareto  optimal solution.   The  last
+section presents  an empirical study of how  the DCV+CSA algorithm can
+help ASPEN to quickly converge to a pareto optimal solution.

@@ -1,0 +1,20 @@
+Dicsussion:
+
+Discuss with reviewer 1 who did not really understand the paper
+
+
+Recommendation: Reject?
+
+After rebuttal, all reviewers agree on the theoretical contribution of the paper for understanding
+the complexity of several fragments of the (M)RCPSP global framework.
+While these theoretical results do not seem directly usable for the practical resolution of the
+problems (the polynomial degree of the algorithm complexity is in general huge), these are clearly
+non-trivial results. But I'm really not sure AAAI conference is the right place for publishing these
+results, for two reasons:
+- given the particular focus of the paper at the intersection of
+  pure scheduling (for a generic but very particular scheduling problem: the MRCPSP with
+  makespan minimization) and theoretical complexity analysis.
+- for the quantity of material that would be required for a full description of the contribution
+  (as done in the provided full version of the paper) as mentioned by reviewer #2
+For these reasons, I would advice the authors to better submit the paper at a more focused conference
+on theoretical scheduling (like MISTA, PMS) or a scheduling journal.

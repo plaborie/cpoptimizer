@@ -1,0 +1,98 @@
+Title:	  
+Authors:	(anonymous)
+PC member: 	Philippe Laborie
+
+Evaluation
+  Overall evaluation
+    3: strong accept
+    2: accept
+    1: weak accept
+    0: borderline paper
+    -1: weak reject
+    -2: reject
+    -3: strong reject
+    
+  Reviewer's confidence
+    5: (expert)
+    4: (high)
+    3: (medium)
+    2: (low)
+    1: (none)
+    
+Additional scores
+  (Applications track ONLY): Importance (economic, societal, etc) of the application problem being addressed.
+    5: N/A (not an Applications track paper)
+    4: very important
+    3: moderate
+    2: marginal
+    1: unimportant
+  
+  (Applications track ONLY): Novelty of the application and technical approach to the application.
+    5: N/A (not an Applications track paper)
+    4: very novel - approach and/or application are new
+    3: moderate - application or approach is significantly different
+    2: marginal - parts of the application or approach are new
+    1: none - similar approach to the same application has been used before
+  
+  (Applications track ONLY): Importance of planning/scheduling technology to the solution of the problem.
+    5: N/A (not an Applications track paper)
+    4: very important - essential to solving the problem
+    3: moderately important - adds significant capabilities
+    2: marginally important - improves usability, capabilities or performance
+    1: not important - could be done without it
+  
+  (Applications track ONLY) Maturity.
+    6: N/A (not an Applications track paper)
+    5: study of the success, acceptance, impact and/or deficiencies of a fielded system
+    4: fielded system
+    3: mature system with testing on realistic problems
+    2: early prototype system
+    1: challenge problem
+  
+  (Robotics track ONLY): Balance of Robotics and Automated Planning and Scheduling
+    6: N/A (not a Robotics track paper)
+    5: Excellent mix between the two fields
+    4: Good mix between the two fields
+    3: Fair mix between the two fields
+    2: Nothing Robotics specific, pure "classical" AIPS paper
+    1: Nothing on Automated Planning, pure Robotics paper
+  
+  (Robotics Track ONLY): Evaluation on physical platforms/simulators
+    6: N/A (not a Robotics track paper)
+    5: Runs on real robots
+    4: Runs in a standard robot simulator (Gazebo, Morse etc.)
+    3: Could be used with a simulator or robot
+    2: Still some work to have it running on robots
+    1: Unlikely to be ever running on a robot
+  
+  (Robotics Track ONLY): Significance of the contribution
+    6: N/A (not a Robotics track paper)
+    5: Significant in both Robotics and Planning
+    4: Significant in Planning (i.e. planning researchers would care about this paper)
+    3: Significant in Robotics (i.e. robotics researchers would care about this paper)
+    2: Marginally significant in one Robotics and/or Planning
+    1: Not significant
+  
+  (Applications and Robotics tracks ONLY): Suitable for a demo?
+    4: N/A (not an Applications or Robotics track paper)
+    3: yes
+    2: maybe
+    1: no
+    
+  Nominate for Best Paper Award
+    2: yes
+    1: no
+  
+  Nominate for Best Student Paper Award (if eligible)
+    2: yes
+    1: no
+  
+Review
+
+Review (*)
+  Please provide a detailed review, including justification for your scores. This review will be sent to the authors unless the PC chairs decide not to do so. This field is required unless you have an attachment.
+
+Confidential remarks for the program committee
+  If you wish to add any remarks intended only for PC members, please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They <b>will not be sent to the authors</b>. This field is optional.
+
+  

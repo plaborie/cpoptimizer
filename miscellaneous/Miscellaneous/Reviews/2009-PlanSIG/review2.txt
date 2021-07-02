@@ -1,0 +1,190 @@
+--------------------------------------------------------------
+*** TITLE: Exploiting plans, ontologies and constraints in a matchmaker model
+*** AUTHORS: Odetunji ODEJOBI and Richard Wallace
+--- CATEGORY: Long Paper
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+
+=========================================================================
+		PlanSIG 2008 REFEREE'S REVIEW FORM
+=========================================================================
+
+**************************************************************************
+
+Paper Title: Exploiting plans, ontologies and constraints in a matchmaker model
+
+
+****************************PRIVATE COMMENTS******************************
+
+1. Overall recommendation? (mark one box)
+  [  ] Accept as full paper (25 mins)
+  [  ] Accept as short paper (15 mins)
+  [XX] Leaning to Reject (major corrections) 
+  [  ] Reject
+Any comments:
+
+2. How confident are you in your appropriateness as a referee for this paper?
+
+  [  ] Very confident - I am an expert in this area.
+  [  ] Confident - I have a reasonable knowledge of this area.
+  [XX] Fairly confident - I have some knowledge of this area.
+  [  ] Not confident - I have no significant knowledge of this area.
+Any comments:
+
+Reviewer: Philippe Laborie
+
+
+***************** Section to be passed back to Author(s): *******************
+
+1. Overall Score from 0 to 10: 4
+    (0 = definite rejection, 5 = neutral, 10=definite acceptance)
+
+2. How Relevant is this paper to the PlanSIG Workshop? (ie. Tackles space topic)
+	 [  ] Very relevant 	[XX] Moderately relevant 	[  ] Not relevant 
+
+3. How SIGNIFICANT is this paper? (ie. Can provoke discussion)
+ 	[  ] Very significant [XX] Moderately significant 	[  ] Not significant
+
+4. How ORIGINAL is this paper?
+ 	[  ] Very original   	[XX] Moderately original   	[  ] Not original
+
+5. How technically THOROUGH is this paper?
+ 	[  ] Very thorough 	[  ] Moderately thorough 	[XX] Not thorough
+
+6. How well is the paper PRESENTED?
+                           	Good      	Average    Poor
+    Overall organization    	[ ]		[ ]  		[X]
+    English                  	[ ]       	[X]         	[ ]
+    Readability               	[ ]      	[ ]         	[X]
+
+
+The paper tackles a very relevant topic, the one of planning and
+scheduling for human/computer interactions. Unfortunately, the paper is
+very hard to understand because it manipulate concepts that are not
+clearly defined in the context of the work (UI event, actions,
+etc.). More formalization and more examples would really help.
+
+The role of the CSP in an iteration process that is used for
+discovering new constraints is quite clear but the introduction of
+planning and scheduling is not. 
+
+Planning.
+
+The definition of the planning problem seems quite far from the
+classical models: usually, a goal is a subset of states whereas here,
+it seems to represent a sequence of states.
+
+As far as I understand, the actions in the plan are knowledge
+acquisition actions, so their effect is highly non-deterministic. What
+kind of planning algorithm is used for computing a plan ? (The
+description of the algorithm on Figure 6 is really too high level to
+have a real understanding).
+
+Scheduling.
+
+I do not see the interest of using constraint-based scheduling
+here. Constraint-based scheduling deals with durative actions and
+scarce resources. In the context of the application, do actions really
+have a duration? What does this duration represent? What are the
+resources in this context? 
+
+As a conclusion, I think this paper describes a work that is at a
+very early stage. This work really seems interesting but it would
+deserve more maturation to be presented in a paper (more details,
+more formalization and/or more examples).
+
+More detailed comments: 
+
+p1, col1: "Our ongoing matchmaker project": it could be interesting to
+say a bit more about this project.
+
+p1, col2: the second item introduces the notion of 'action', it would
+be good to give a hint about what an action is.
+
+p2, col1: the HCI acronym is introduced but only decoded in the next
+column
+
+p2, col2: constant-based approach
+
+p2, col2: nothing is said about the role of the planner and scheduler
+in the "System architecture" section.
+
+p2, col2: the notion of UI event is introduced but not explained. It
+would be good to give an example. 
+
+p3, col1, Figure 2: Interation
+
+p3, col2, Figure 3: operartion
+
+p3, col2, Figure 3: it would be good to add some labels on the arcs
+(like "isA", etc.)
+
+p3, col2, Figure 4: some terms do not seem consistent with the
+description in the text (Supports <=> Enables?).
+
+p4, col2: the definition of a plan as a tuple <A,I,G> rather looks
+like the definition of a planning problem, not a plan.
+
+p5, col2: CSB <=> CBS, schedular
+
+**************************  END ************************
+
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+-1 (weak reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+2 (medium)
+
+*** RELEVANCE: from 1 (lowest) to 5 (highest)
+
+3
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+2
+
+*** ORIGINALITY: from 1 (lowest) to 5 (highest)
+
+3
+
+*** TECHNICAL THOROUGHNESS: from 1 (lowest) to 5 (highest)
+
+2
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+2
+
+*** CONFIDENCE: from 1 (lowest) to 5 (highest)
+
+3
+
+*** END
+--------------------------------------------------------------

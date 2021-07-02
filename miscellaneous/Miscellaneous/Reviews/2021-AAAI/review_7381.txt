@@ -1,0 +1,142 @@
+Paper ID:      7381
+Paper Title:   A Multivariate Complexity Analysis of the Material Consumption Scheduling Problem
+
+REVIEW QUESTIONS
+
+1. [Summary] Please summarize the main claims/contributions of the paper in your own words. (Do not provide any review in this box)
+*   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+The paper provides a fairly complete parameterized complexity analysis of a particular
+single-machine scheduling problem with material consumption.
+
+The first two theorems establish the hardness of some of the most general problems
+in this framework, whereas parameterized tractability of some other fragments is analyzed
+in the sequel of the paper.
+
+2. [Novelty] How novel is the paper?
+*   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [ ] Main ideas of the paper are known or incremental advances over past work
+ [X] Paper contributes some new ideas
+ [ ] Paper makes non-trivial advances over past work
+ [ ] Main ideas of the paper are creative and distinctive
+
+
+3. [Soundness] Is the paper technically sound?
+*   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [ ] The paper has major technical flaws, necessitating another review after corrections
+ [ ] The paper has minor technical flaws that are easily fixable
+ [X] I have not checked all details, but the paper appears to be technically sound
+ [ ] I have carefully checked all details and did not find any technical flaw
+
+4. [Impact] How important is the paper likely to be, considering both methodological contributions and impact on application areas? *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [ ] The paper is not relevant to the AAAI community
+ [X] The paper will have low overall impact
+ [ ] The paper will impact a moderate number of researchers
+ [ ] The paper will have a broad and significant impact
+
+5. [Clarity] Is the paper well-organized and clearly written? *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [ ] Poor: paper is unclear and very hard to understand
+ [X] Fair: paper is somewhat clear, but important details are missing or confusing, which hurts readability
+ [ ] Good: paper is well organized but language can be improved
+ [ ] Excellent: paper is well organized and clearly written
+
+6. [Evaluation] Are claims well supported by experimental results? *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [X] Not applicable: This paper does not have experiments
+ [ ] Poor: The experimental design is flawed and unconvincing
+ [ ] Moderate: Experimental results are weak: important baselines are missing, or improvements are not significant
+ [ ] Good: Experimental results are sufficient, though more analysis would significantly add support to the claims
+ [ ] Excellent: Experimental results are comprehensive and strongly support the claims
+
+7. [Resources] How impactful will this work be via sharing datasets, code and/or other resources? (It may help to consult the paper’s reproducibility checklist.) *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [X] Not applicable: no shared resources
+ [ ] Poor: shared resources are not likely to be useful in future work
+ [ ] Fair: some may find shared resources useful in future work
+ [ ] Good: shared resources are likely to significantly impact future work
+
+8. [Reproducibility] Would the experiments in the paper be easy to reproduce? (It may help to consult the paper’s reproducibility checklist.) *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [X] Not applicable: this research has no experimental component
+ [ ] Poor: e.g., experimental setup details are incomplete/unclear, and code/data are not available to aid reproducibility
+ [ ] Meets Minimum Standard: e.g., code/data unavailable, but paper is clear enough that an expert could confidently reproduce
+ [ ] Good: e.g., code/data available, but some details of experimental settings are missing/unclear
+ [ ] Excellent: e.g., code/data available and paper comprehensively describes experimental settings
+
+9. [Reasons to Accept] Please describe the paper’s key strengths. *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+- The problem is interesting, even if very specific
+
+- The paper appears to be technically sound
+
+
+10. [Reasons to Reject] Please describe the paper’s key weaknesses. *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+- Due to the specificity of the problem, I'm wondering if AAAI a good conference for it.
+  I think the paper would better fit conferences that are more specialized in scheduling (INFORMS,MAPSP).
+
+- I find that the complexity analysis do not really help solving this problem in practice:
+  * Some results with reasonable complexity only apply in very specific cases (e.g. weak order of the dominance relation)
+  * Some approaches are probably really too complex to be used in practice (e.g. the one of Theorem 4)
+
+11. [Detailed Comments] Please provide other detailed comments and constructive feedback. *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+While the paper is in general clearly written, I think that a figure would help in Theorem 1 to illustrate the
+Material Consumption Scheduling Problem built from the Unary Bin Packing instance.
+If some space needs to be freed, it seems to me the sections about "Indentifying Structured Solutions"
+and "Applying Structured Solutions" could be made shorter because these things are pretty intuitive.
+
+In the section about related work, the acronyms PTAS and FPTAS should be explained when first introduced.
+
+On lines 208-209: f(p) is mentioned but not used, I suppose one should read O(f(p)).
+
+
+12. [QUESTIONS FOR THE AUTHORS] Please provide questions for authors to address during the author feedback period. (Please number them) *   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+Q1: Given your understanding of the different sources of complexity for the MCS problem,
+if you were to solve a particular instance of the general problem (with a single resource), what type of
+practical algorithm would you propose ?
+
+
+13. [Ethical Considerations] Please highlight any ethical considerations that must be considered before a final decision (it may help to consult the paper’s ethics statement, if provided)   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+
+
+
+14. [OVERALL SCORE]
+*   (visible to authors during feedback, visible to authors after notification, visible to other reviewers, visible to meta-reviewers)
+ [ ] 1 - Trivial, wrong, or known
+ [ ] 2 - Strong reject: will fight to get it rejected
+ [ ] 3 - Clear reject
+ [ ] 4 - Reject
+ [ ] 5 - Below threshold of acceptance
+ [X] 6 - Above threshold of acceptance
+ [ ] 7 - Accept
+ [ ] 8 - Clear Accept (Top 50% accepted papers (est.))
+ [ ] 9 - Accept: will fight to get it accepted
+ [ ] 10 - Accept (Top 5%)
+
+15. [CONFIDENCE] *   (visible to other reviewers, visible to meta-reviewers)
+ [ ] Reviewer made an educated guess
+ [ ] Reviewer is broadly knowledgeable, but not an expert in the area
+ [X] Reviewer is knowledgeable in the area of the paper
+ [ ] Reviewer is an expert in the specific topic of the paper
+
+16. How many years have you worked in Artificial Intelligence research? *   (visible to other reviewers, visible to meta-reviewers)
+ [ ] Less than 2 years
+ [ ] 2 year
+ [ ] 3 year
+ [ ] 4 year
+ [ ] 5 year
+ [ ] 6-10 year
+ [ ] 11-15 year
+ [X] More than 15 years
+
+17. [Award] Should this paper be considered for an outstanding paper award?   (visible to other reviewers, visible to meta-reviewers)
+ [ ] Yes
+ [X] No
+
+18. Confidential comments to SPC, AC, and Program Chairs   (visible to meta-reviewers)
+
+
+
+
+
+
+19. Please acknowledge that you have read the author rebuttal. If your opinion has changed, please summarize the main reasons below.   (visible to authors after notification, visible to other reviewers, visible to meta-reviewers)

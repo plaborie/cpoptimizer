@@ -1,0 +1,145 @@
+Reviewing Details
+Paper ID5731
+Paper Title
+Track Name
+META-REVIEWS
+REVIEWS
+DISCUSSIONS
+Reviewer #2 (Angelo Oddi) ( Reply To: Reviewer #1 (Andrea Orlandini) from 2018-10-19 14:58:23 ) Date: 2018-10-20 16:55:33
+Topic:Post-Rebuttal Discussions
+Hi All, I have read the authors rebuttal and the other reviews. I agree with the "weak reject" assessment.
+Reviewer #1 (Andrea Orlandini) ( Reply To: Philippe Laborie from 2018-10-19 14:33:21 ) Date: 2018-10-19 14:58:23
+Topic:Post-Rebuttal Discussions
+we're fine with a weak reject decisio
+Reviewer #3 (Riccardo Rasconi) ( Reply To: Philippe Laborie from 2018-10-19 14:33:21 ) Date: 2018-10-19 14:48:44
+Topic:Post-Rebuttal Discussions
+I fully agree with the "weak reject" assessment.
+Philippe Laborie Date: 2018-10-19 14:33:21
+Topic:Post-Rebuttal Discussions
+I agree with your reviews and your comments that the paper is very borderline. Even if there are good ideas in the paper (in particular this idea to do some basic reinforcement learning for the feedback from level 2), it is really missing some comparison (with lower-bounds or with alternative approaches) to assess the quality of the solutions. I'll propose a "Weak Reject" in the draft of my meta-review. But if you do not agree, it is still time to discuss.
+Reviewer #3 (Riccardo Rasconi) ( Reply To: Philippe Laborie from 2018-10-17 14:50:5 ) Date: 2018-10-19 11:35:52
+Topic:Post-Rebuttal Discussions
+Hi All,
+
+I feel moderately satisfied by the authors' rebuttal. Despite not all my issues have been answered, and given the other reviewers' assessments, I also feel that my overall score of this paper might raise from "marginally below" to "marginally above threshold". That said, considered my and the other reviewers' concerns, I still believe that the overall technical advancement proposed by this work truly remains borderline w.r.t. AAAI's acceptance standards. 
+Philippe Laborie Date: 2018-10-17 14:50:5
+Topic:Post-Rebuttal Discussions
+Hello,
+Did the authors rebuttal help you decide which side of the accept/reject border the paper falls? I think it is important to discuss it as the paper is really borderline.
+
+Important: An extra question has been added to the review form that asks you to acknowledge that you have read the authors feedback. When you refresh your review considering the authors response (which I strongly encourage you to do), please do not forget to answer this question.
+Philippe Laborie Date: 2018-10-10 9:7:42
+Topic:Discussion before author rebuttal
+Hello,
+You all seem to agree that the paper is borderline. After having read the reviews of each other, do not hesitate to ask the authors additional questions for the rebuttal. Beside the fact the proposed hierarchical scheduling structure seems to be a bit “constraining” for the problem (which is something you noticed in your reviews; I think that the CP formulation could be made more compact by not sticking to this rigid hierarchical structure), I was also surprised that they use a very old (6-years old) version of CP Optimizer (12.5): since then CP Optimizer has made a lot of progress, especially for solving large problems ...
+AUTHOR FEEDBACK
+AUTHOR FEEDBACK QUESTIONS
+1. Rebuttal
+* Related works: iterative flaw resolution techniques
+
+The reviewers mention several related works from the constraint-based planning and scheduling literature. Many of these works use hybrid domain knowledge mixing symbolic, temporal and resource reasoning, all these ingredients being integrated in an iterative flaw resolution search technique that tries to repair at each step some flaws in the plan such as resource over-consumptions. This is the case for CHIMP, Meta-CSP, ASPEN, Iterative flattening approaches [Oddi et al. 2011], EUROPA, PLATINUm, RCPSP with time windows [Cesta 2002] and the framework extending TFPOP [Nilsson et al. 2018]. Apart from the fact that some of these frameworks do not consider hierarchical task decomposition, three main comments can be made:
+
+(1) In these works, the different views of the model are interleaved and used at each step of the search process. This differs from our approach, in which we first compute a full high-level solution from a surrogate model and then detail this high-level solution using a fine-grain model. Also, the iterations involved in our search scheme are not used to solve flaws but to try and improve the quality of the surrogate model used by the high-level decision layer. In the end, we employ a master-slave approach which is closer to decomposition techniques used in MIP than to iterative flaw resolution.
+
+(2) In works based on iterative flaw resolution, resource reasoning allows to detect resource usage conflicts given the current possible time windows for tasks. These possible time windows are computed by the temporal reasoner (most of the time based on a Simple Temporal Network), and conflicts are resolved by an explicit search step which adds new precedence constraints between tasks (or events). In our case, we use a constraint-based scheduling approach where resource constraints already available in CpOptimizer can be directly used to automatically prune the possible time windows of tasks (use of constraint propagation techniques known as edge-finding, timed-indexed time-tabling... integrated in several existing CP solvers; on this point, EUROPA2 could reproduce such a propagation scheme thanks to its generic nature). 
+
+(3) The model we consider is closer to scheduling with optional tasks than to planning with complex preconditions and effects on a system state, and one of our goals was to push further the applicability of standard powerful CP solvers to hierarchical scheduling problems.
+
+In the related work sections, we have already detailed several connected techniques, but in case of acceptance, such additional comments will be explicitly added.
+
+Small note concerning FAPE: in the GitHub development platform of FAPE, it is explicitly stated that "Resources are not supported yet. An initial implementation is currently in the source repository but is not stable enough for daily usage".
+
+
+* Related works: Incomplete Search
+
+Some reviewers point to iterative incomplete search techniques such as Iterated Greedy Search and Large Neighborhood Search. At each step, these approaches change *some decisions* involved in the current solution, based on greedy search or more complete search. This differs from our surrogate model approach, which primarily changes *the input data* of the high-level decision model (in our robotic application, it changes the estimated durations of transfers between waypoints). Hence, instead of destroying a solution, we update the parameters of the problem following each L1-L2 iteration.
+
+
+* Related works: SDST-JSSP
+
+The Sequence Dependent Setup Time Job Shop Scheduling Problem presented in [Oddi et al. 2018] is exactly the problem solved in layer L1. The complete problem we address is more complex as we decide which waypoints to visit between successive operations. This latter part is done in layer L2, that does more than temporal constraint propagation and verification.
+
+
+* Features of the Full Model
+
+The Full Model is complete and can be used by CpOptimizer to find an optimal solution. However, the combinatorial aspect of the problem makes it hard for CpO to compute an optimal solution. On small benchmarks (less than 3 requests), optimality was however proven. Also, note that for scheduling problems with resource usages, CpO is usually considered a quite strong competitor both in terms of expressiveness and efficiency. But as said by reviewer 3, the huge number of optional intervals in the Full Model has dramatic consequences on the computational effort.
+
+
+* Optimality gap
+
+Optimality is a key property for scheduling algorithms. But in many multi-robot exploration missions, a more crucial aspect is the time required to compute a good quality solution. The multi-layer L1-L2 approach is not optimal but can quickly produce first solution plans and progressively improve the best known plan. To evaluate the maximum possible gap between the best plan produced and an optimal one, it is possible to use the model of layer L1. Indeed, if the surrogate model of L1 uses lower bounds on the transfer durations, then the makespan of an optimal solution produced by L1 is a lower bound of the optimal makespan for the Full Model.
+
+
+* Implementation of createPbL2
+
+This procedure takes the problem initial description and the solution computed by layer L1 as inputs and automatically creates the associated problem based on the transformation rules described in Section 3.2.
+
+
+* Redundancy
+
+We refer to redundancy as the requirement to use different robots to observe a certain area (from 1 to 3 robots in our instances). The solution robustness depends on this (predefined) model parameter.
+
+
+* Decomposition constraints
+
+Formally, a decomposition constraint can be any constraint that holds over decomposition variables mth(c) of compound tasks c. In the multi-robot application, such constraints ensure that observations associated with a request are realized by distinct robots, which is represented by an allDiff constraint.
+
+
+
+
+META-REVIEW
+
+1. Overall Rating
+Weak Reject
+2. Detailed Comments
+The paper deals with a relevant and challenging problem and it contains some interesting contributions, in particular the form of the feedback from level 2 to master problem at level 1 (through some basic reinforcement learning). It looks a promising work.
+
+Still, there are a number of things that should be improved. In particular:
+- The added value of the hierarchical scheduling model is not clear. From one hand, it can indeed be simpler to understand than the full CP Optimizer (CPO) framework. But from the other hand, it put some constraints on what can be efficiently represented. For instance :
+- In CPO you can say that the same interval variable is master of an alternative on the robots (say r1 or r2) and of an alternative on the frequencies (say f1 or f2). in the proposed model it seems that you need to explicitly work on the cartesian product (r1,f1) (r1,f2) (r2,f1)(f2,f2). This may result in an artificial explosion of the size of the model.
+- The introduction of integer variables for methods selection (mth) is not necessarily a good thing for CPO that would better exploit constraints directly posted on the boolean variables pres(itv)
+- It is difficult to assess the quality of the solutions of the proposed approach. You should:
+- provide optimality gap (as indeed layer L1 is a lower-bound it would be useful at least to show this gap if it is not too bad)
+- and/or compare the proposed approach to alternative ones (a better analysis of the related work on constraint-based and time-line based planning systems would help too)
+
+On a side note, I’m wondering why you use a very old version of CPO (12.5, which is about 6 years old). The performance of the tool has been improved since then.
+
+
+DISCUSSIONS
+
+
+
+Reviewer #2 (Angelo Oddi)  ( Reply To: Reviewer #1 (Andrea Orlandini) from 2018-10-19 05:58:23 ) Date: 2018-10-20 07:55:33
+Topic:Post-Rebuttal Discussions
+Hi All, I have read the authors rebuttal and the other reviews. I agree with the "weak reject" assessment.
+ Reply
+Reviewer #1 (Andrea Orlandini)  ( Reply To: Philippe Laborie from 2018-10-19 05:33:21 ) Date: 2018-10-19 05:58:23
+Topic:Post-Rebuttal Discussions
+we're fine with a weak reject decisio
+ Reply
+Reviewer #3 (Riccardo Rasconi)  ( Reply To: Philippe Laborie from 2018-10-19 05:33:21 ) Date: 2018-10-19 05:48:44
+Topic:Post-Rebuttal Discussions
+I fully agree with the "weak reject" assessment.
+ Reply
+Philippe Laborie Date: 2018-10-19 05:33:21
+Topic:Post-Rebuttal Discussions
+I agree with your reviews and your comments that the paper is very borderline. Even if there are good ideas in the paper (in particular this idea to do some basic reinforcement learning for the feedback from level 2), it is really missing some comparison (with lower-bounds or with alternative approaches) to assess the quality of the solutions. I'll propose a "Weak Reject" in the draft of my meta-review. But if you do not agree, it is still time to discuss.
+ Reply
+Reviewer #3 (Riccardo Rasconi)  ( Reply To: Philippe Laborie from 2018-10-17 05:50:05 ) Date: 2018-10-19 02:35:52
+Topic:Post-Rebuttal Discussions
+Hi All,
+
+I feel moderately satisfied by the authors' rebuttal. Despite not all my issues have been answered, and given the other reviewers' assessments, I also feel that my overall score of this paper might raise from "marginally below" to "marginally above threshold". That said, considered my and the other reviewers' concerns, I still believe that the overall technical advancement proposed by this work truly remains borderline w.r.t. AAAI's acceptance standards. 
+ Reply
+Philippe Laborie Date: 2018-10-17 05:50:05
+Topic:Post-Rebuttal Discussions
+Hello,
+Did the authors rebuttal help you decide which side of the accept/reject border the paper falls? I think it is important to discuss it as the paper is really borderline.
+
+Important: An extra question has been added to the review form that asks you to acknowledge that you have read the authors feedback. When you refresh your review considering the authors response (which I strongly encourage you to do), please do not forget to answer this question.
+ Reply
+Philippe Laborie Date: 2018-10-10 00:07:42
+Topic:Discussion before author rebuttal
+Hello,
+You all seem to agree that the paper is borderline. After having read the reviews of each other, do not hesitate to ask the authors additional questions for the rebuttal. Beside the fact the proposed hierarchical scheduling structure seems to be a bit “constraining” for the problem (which is something you noticed in your reviews; I think that the CP formulation could be made more compact by not sticking to this rigid hierarchical structure), I was also surprised that they use a very old (6-years old) version of CP Optimizer (12.5): since then CP Optimizer has made a lot of progress, especially for solving large problems ...
+ Reply

@@ -1,0 +1,25 @@
+
+Type your metareview in the text area below.
+Metareview (*):
+
+
+The reviewers read author responses, discussed them and adjusted their comments and scores when needed.
+
+While the approach introduces some interesting ideas, the reviewers agree that the paper falls short for acceptance at IJCAI on points like:
+- Importance of the MWSC problem in practice
+- No evaluation of the solution quality (for instance compared to exact approaches or lower bounds, even on simpler graphs)
+- Lack of self-containedness of the paper
+- Lack of algorithmic complexity analysis
+
+
+
+
+If you want to add any comments intended for the program committee only, type them in the area below.
+They will be visible to the PC members having access to this metareview but will not be sent to the authors.
+Confidential part (*):
+
+
+Recommendation (*)
+   accept
+   (no recommendation)
+*  reject

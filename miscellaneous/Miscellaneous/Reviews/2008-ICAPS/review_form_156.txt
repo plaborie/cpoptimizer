@@ -1,0 +1,112 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 97758::46681
+*** SUBMISSION NUMBER: 156
+*** TITLE: CircuitTSAT: A Solver for Large Instances of the Disjunctive Temporal Problem
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper proposes a direct encoding of the Disjunctive Temporal
+Problem (DTP) in SAT by representing integer time-variables as a
+bitset of log2(Q) boolean variables (if Q is the largest value of
+time-variables). Temporal constraints y-x<=z are directly encoded as
+SAT clauses on the boolean variables. The approach has been
+implemented and shown to be efficient for large feasible DTPs.
+
+To the best of my knowledge, this approach is original, even if some
+attempts have already been made in CSPs to use dichotomical search for
+variables with large domains like time-variables. Here, the
+originality (and maybe also one of the limitation because this is
+difficult to generalize to other constraints) of the approach is that
+the constraints on time-variables are directly encoded on the boolean
+variables.
+
+The paper is clearly written and well organized.  
+
+A few detailed remarks: 
+
+- in section "Representing STCs using Circuits", in the first
+paragraph it should be clearly stated that q must be at least equal to
+log2(Q) where Q is the max domain value in order the representation to
+be exact.
+
+- in the same section, it is surprising one focus on Y-X<=0 whereas
+the general form of temporal constraints are Y-X<=z. This is only
+explained in the section "Concerting STCs to CNF Efficiently". It
+would be good to say something about it at this point.
+
+- in the section about experimental results, the series of figure 2
+are really difficult to read because there are so many curves. Maybe
+some values for problem size could be avoided.
+
+- All the large problems in the generated set are feasible (as
+CircuitTSAT finds a solution for 100% of them). It would be
+interesting to see if how the approach compares with TSAT++ and Yices
+on large problems that are infeasible or where the density of
+solutions is smaller. Did you try some more structured instances ?
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+2
+
+---  3 (strong accept)
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+---  -1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+3
+
+---  4 (expert)
+---  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** END
+--------------------------------------------------------------

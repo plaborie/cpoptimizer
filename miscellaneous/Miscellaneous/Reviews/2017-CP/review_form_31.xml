@@ -1,0 +1,311 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="3279103::1582699"
+        submission="31"
+        title="How to Combine Profit and Cooling Costs in the Scheduler for HPC Machines with Constraint Programming"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<field id="434156" name="Relevance">
+  <!--
+    == How relevant is the submission to the scope of the conference (all
+    == aspects of computing with constraints)?
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Relevance
+    == below. This field is required.
+    -->
+
+The submission describes some heuristic search strategies on top of Constraint Programming to solve an interesting scheduling application. As such, the topic is relevant to the scope of the conference.
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 4
+    
+  </score>
+</field>
+<field id="434157" name="Significance">
+  <!--
+    == How significant are the contributions of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 3
+    
+  </score>
+</field>
+<field id="434158" name="Originality">
+  <!--
+    == What is the level of originality of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 3
+    
+  </score>
+</field>
+<field id="434159" name="Technical Quality">
+  <!--
+    == What is the level of technical quality of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434160" name="Presentation">
+  <!--
+    == What is the level of presentation of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="409476" name="Overall evaluation">
+  <!--
+    == Please provide a detailed review, including a justification for your
+    == scores. Both the score and the review text are required.
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Overall evaluation
+    == below. This field is required.
+    --> 
+
+The article describes a scheduling application in the context of High Performance Computer where the gain function to maximise depends on the position of jobs in time because of cooling costs. These problems are pretty large (more than 30000 jobs to be scheduled on about 300 nodes). 
+
+The proposed approach uses CP, and is build on top of CP Optimizer. It consists of a set of problem specific heuristics to find an initial solution, followed by 2 different strategies:
+- Relaxation-Based strategy freezes some constraints from the initial solution and runs a regular CP Optimizer automatic search on this over-constrained problem
+- Delay strategy consists in iteratively delaying some jobs to avoid their selection
+
+Experiments claim that the proposed strategies perform better than both the existing dispatching rules and the CP Optimizer automatic search executed on the original problem.
+
+I think the application is very interesting and the approach followed by the authors really makes sense but some details are missing to fully assess the contribution.
+
+First, the description of the problem, although in general quite clear, is missing some details concerning the objective function. In particular it would be necessary to give more information about the PUE table, maybe by giving an example. Given that in equation (5) P's is an integer expression and s.t is a fixed value (as far as I understand, see below), then LUT(W_s,s) just seems to be an "element" expression, something like PUE_s[P's], right?
+
+It would be necessary to clearly say what is a variable and what is fixed in the problem. For instance it seems that each of the segments s in S are completly fixed (start, end time and temperature is known) but it is never explicitely said. Same thing for power_i and resourceCost(ju_i,res_i), I suppose they are fixed (for a given i, ju_i, res_i of course).
+
+Then nothing is said about how the objective expression is formulated in CP Optimizer, although this is important because different formulation may lead to more or less efficient expressions in terms of propagation. In particular, in CP it is important to factorize the expressions as much as possible and, when available, to use predefined expressions/constraints. Looking at the objective expression, it seems a bad idea to just formulate it directly using formulas (3) (4) and (5). First, formula (4) just express the overlap length between job interval a_i and the fixed segment [s.st,s.et], for that in CP Optimizer one can use expression overlapLength(a_i,s.st,s.et). Then, I suppose that sum_s execTime(a_i,s) = a_i.d (the total duration of the job). So the objective can be rewritten as follows:
+
+      sum_s { K1 * G_s - K2 * (W_s + J_s) }
+=     sum_s { K1 * G_s - K2 * W_s } - sum_s { K2 * W_s * LUT(W_s) }
+
+The left term does not seem to require the execTime expressions because you have:
+
+      sum_s { K1 * G_s - K2 * W_s }
+=     sum_s { K1 * sum_i { execTime(a_i,s) * resCost(ju_i, res_i) } - K2 * sum_i { execTime(a_i,s) * power_i } 
+=     K1 * sum_i {  resCost(ju_i, res_i) * sum_s {execTime(a_i,s) } } - K2 * sum_i { sum_s { execTime(a_i,s) } * power_i } 
+=     K1 * sum_i { resCost(ju_i, res_i) *  a_i.d } - K2 * sum_i { a_i.d * power_i } 
+Which boils down to a constant or maybe some weighted sum of presenceOf as resCost(ju_i, res_i) probably depends on which nodes are selected for the job.
+
+The right term can also probably have W_s factorized inside:
+
+      sum_s { K2 * W_s * LUT(W_s) }
+=     K2 * sum_s { W_s * PUE_s[ round( W_s / (s.et - s.st), 500) ]
+For a given s, I suppose that W_s * PUE_s[ round( W_s / (s.et - s.st), 500) is a piecewise linear function of W_s, so you could use a piecewise linear expression instead of using twice W_s. See expression IloPiecewiseLinear. 
+
+I think these type of reformulations could improve the resolution (both for the plain CP Optimizer automatic search and for the heuristics/strategies using it).
+
+It is surprising that in the heuristics (Algorithm 1), the minimal start time of the jobs can be infeasible. Unless there is a lower bound on the gain, it seems to me that the minimal start time of the jobs should always be feasible by propagation of the generalized alternative constraint (with cardinality). Indeed, the optional intervals representing the execution of the job on a particular node should individually have a feasible start min (by propagation of the cumul functions) and the generalized alternative should combine these minimal start times to find a minimal start time for the job that allows for the execution of k nodes simultaneously.  Did you really find cases where the minimal start time of a job after propagation is infeasible? 
+
+One thing that could be done to strengthen the model could be to add a global redundant cumul function representing the number of nodes being used. Each job requiring k nodes would contribute with a pulse of height k to this cumul function.
+
+The description of the delay search is missing some important details like:
+- which jobs are selected to be delayed
+- what are the typical values for the delay
+- what is the termination condition
+- what are the condition to accept a ew solution: do you replace the current solution as soon as you get an improving one?
+
+Concerning the experimental section, the makespan is not explicitely part of the objective function so it is strange to discuss the efficiency of the different methods in terms of makespan. Furthermore, at first sigth, the optimization should consist in positionnig the jobs in segments where their gain is maximal (cost minimal), so one can easily imagine cases where it is beneficial to delay some jobs: the objective function is not regular and this can play against the makespan minimization. In short, the proposed objective function seems quite contradictory with makespan minimization.
+
+Also, it seems that all experiments were performed on a few instances only and the 4 plots (Fig 1 to 4) looks very similar even in terms of gain value. Given that there are probably many parameters in the different heuristics and strategies, there may be some risk of overtuning them for just a few quite similar instance. It would be useful to perform a more solid experimental protocol based on more instances with more diverse characteristics. 
+
+Some more detailed comments/typos:
+p1, Abstract: "recogized"
+p1, Abstract: you mention a 15% profit improvement in the abstract but then something like 10% in the experimental section and in the conclusion.
+p2, Section 2: "make it possible to to"
+p4, Section 4: "Since all nodes ... they are ranked in lexicographical order." This sentence is not clear. What does "homogeneous" means in this context, what are the crtieria used for the lexicographical order, and what this order is used for?
+p8, Algorithm 3: "terminatio"
+p8, Section 7.3: "It key intuition"
+p9, end of page: ". and the rule-based schedulers."
+
+
+Additional comments after rebuttal
+----------------------------------
+
+The answer about the possible infeasibility of minimal start times when chronologically building the schedule partially clarifies the problem: two units of the same job i can be assigned to the same node n. So you indeed have one optional interval ju_i_w_n per tuple job i/unit w/node n. What is still not clear is if the different nodes of a given job i uses the same quantity of the different resources. Your notation req_i_k_w seems to suggest that for a resource k, the quantity depends on the unit w. But then I'm not sure you can use the generalized alternative constraint (with cardinality) as you use it in your model. Because the alternative will select |UNi| intervals among the ju_i-?-? ones but there is no guarantee that it will select the ones corresponding to |UNi| different units, and it makes a difference if the req_i_k_w depend on the unit w. Suppose a variant of the example you mentioned with 2 nodes of capacity 4 and a job (like your job 1) with 3 units but such that unit 1 and 2 require 1 unit of resource whereas unit 3 requires 2 units. If I get it well, you will have 6 optional intervals: ju_1_1_1 (unit 1, node 1: req=1), ju_1_1_2 (unit 1, node 2: req=1), ju_1_2_1 (unit 2, node 1: req=1), ju_1_2_2 (unit 2, node 2: req=1), ju_1_3_1 (unit 3, node 1: req=2), ju_1_3_2 (unit 3, node 2: req=2). If you have an alternative of cardinality 3 between this 6 variables, nothing prevent to select ju_1_1_1 (unit 1, node 1: req=1), ju_1_1_2 (unit 1, node 2: req=1), and ju_1_2_1 (unit 2, node 1: req=1) for instance. Although this is not possible as you cannot have all units using req=1 only. 
+
+So I suppose there is some assumption that the resource requirements of the different units of a given job are the same (otherwise I think there is a flaw in the model or the description of some constraints are missing in the paper). In this case, you can strengthen your model because, for a given job i and a given node n you have evident symmetries between the ju_i_?_n variables on the node n. All that matters is the number of units of job i that are executed on a node n. So you could have a first level of alternative that selects which nodes will be used by the job i. Say optional interval jnode_i_n is present iff at least 1 unit of job i is executed on node n. Of course you do not know hown many nodes will be used (except that it is between 1 and M=min(|UNi|,NbNodes)). So you can post alternative(ai,jnode_i_?,[1,M]). Then at the level of each node n, jnode_i_n is an alternative (of cardinality 1 this time) between the different possible cardinalities of units on this node (at most |UNi| of course). In your example with a node of capacity 4 and units requiring 2, you can have at most 2 units on the node so you would have an alternative with an interval variable jnode_i_n_1 representing the execution of 1 unit (and pulsing with 2 on the cumul function) and an interval variable jnode_i_n_2 representing the execution of 2 units (and pulsing with 4 on the cumul function). The only thing that is missing is, at the level of the job i, to says that exactly |UNi| units must be executed. For that, it may be a little heavy but maybe not so much, you can create one additional (small) cumul function per job nbUnits_i, and say that each interval variable jnode_i_n_c pulses with a value c (number of units) on this cumul function and add the constraint alwaysIn(a_i, nbUnits_i,|UNi|) that means that during a_i, exactly |UNi| units are executing. I think that with this model, you should be able to get the missing propagation and this may have a good impact on the performance.
+
+The paper is on a really nice application with an inetersting approach. I think it should be improved by removing some remaining ambiguities in the problem description and by trying to strengthen the formulation (like with the overlapLength expressions, as you mentioned that it provides nice improvements, or what I mention above or something in the same line if it works). 
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+    --> -1
+    
+  </score>
+</field>
+<field id="409477" name="Reviewer's confidence">
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+    --> 5
+    
+  </score>
+</field>
+<field id="434161" name="Best Student Paper">
+  <!--
+    == Consideration for best student paper
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434162" name="Best Paper Award">
+  <!--
+    == Consideration for best paper award
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434163" name="Journal-First Track">
+  <!--
+    == Consideration for Journal-First Track
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="409478" name="Confidential remarks for the program committee">
+  <!--
+    == If you wish to add any remarks intended only for PC members please
+    == write them below. These remarks will only be seen by the PC members
+    == having access to reviews for this submission. They will not be sent
+    == to the authors. This field is optional.
+    -->
+    
+  <text optional="optional">
+  <!--
+    == Enter the text for the field
+    ==   Confidential remarks for the program committee
+    == below. This field is optional.
+    -->
+
+
+
+
+
+
+  </text>
+</field>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

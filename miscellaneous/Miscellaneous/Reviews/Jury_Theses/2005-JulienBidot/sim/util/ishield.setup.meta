@@ -1,0 +1,1090 @@
+#
+# The makeport.pl script, with its '-install msvc' option, will read
+# this meta-file, process it to produce ishield.setup, and launch the
+# IBOIS script with the resulting setup file.
+#
+# Processing that makeport.pl does include:
+#
+# - Replacing of some variables (values are read in PRODUCT.CONFIG):
+#    ${PRODUCT_NAME}          ->  Sim
+#    ${PRODUCT_NAME_SHORT}    ->  sim
+#    ${PRODUCT_VERSION}       ->  0.1
+#    ${PRODUCT_VERSION_SHORT} ->  01
+#    ${DATE}                  ->  Current date in the format awaited by the IBOIS script
+#
+# - Including or not (depending on the definition of 'msvc' group
+#   in PORTS.CONFIG) all the lines between
+#    #metaBegin: portName+
+#   and
+#    #metaEnd
+#
+#   WARNING: do not nest metaBegin..metaEnd pairs !!
+#
+{
+  product_name=>"ILOG ${PRODUCT_NAME}",
+  product_ver=>"${PRODUCT_VERSION}",
+  product_files_time=>"00:00:00",
+  product_files_date=>"${DATE}",
+  product_is_alphant=>0,
+  defaultInstallDir=>"C:\\ilog\\${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}",
+#metaBegin: stat_st5 stat_sta5 stat_mt5 stat_mta5 stat_md5 stat_mda5 stat_st6 stat_sta6 stat_mt6 stat_mta6 stat_md6 stat_mda6
+  finalExeName=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}wintel.exe",
+#metaEnd
+#metaBegin: ia64_stat_sta6 ia64_stat_mta6 ia64_stat_mda6
+  finalExeName=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}wintel.ia64.exe",
+#metaEnd
+  finalExeLocation=>"\\\\cluny\\schedule\\cplus\\${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\TarZ",
+  showOnlyCustomSetup=>1,
+  imageSet=>"${PRODUCT_NAME}",
+  dontSaveThisBuild=>1,
+  warningRegistry=>{
+		Warn1=>{
+				key=>[
+                      "Software\\\\ILOG\\\\ILOG Solver\\\\${PRODUCT_VERSION}",
+                     ],#key
+                            message=>"You did not install ILOG Solver ${PRODUCT_VERSION}. Do you want to continue?",
+               },#Warn1
+  },#warningRegistry
+  iniChanges=>{},
+  registryKeys=>{
+ 	key1=>{
+		root=>'HKEY_LOCAL_MACHINE',
+        	keyName=>"Software\\ILOG\\ILOG ${PRODUCT_NAME}\\${PRODUCT_VERSION}",
+        	valueName=>'${PRODUCT_VERSION}',
+        	valueType=>'REGDB_NUMBER',
+        	valueValue=>'1',
+          },#key1
+  },#registryKeys
+  groups=>{
+          examples=> {                    
+                    description=>"Example files",
+                    title=>"examples",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>1,
+                    required=>[
+                              ],#required
+                    targetDir=>"\\examples\\src",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\examples",
+                    directories=>[
+                                "src",
+                                ],#directories
+                    fulldirectories=>[],
+
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                           ],#files
+                    shortcuts=>{
+                               },#shortcuts
+                    final=>{
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+                               },#subgroups
+                   },#examples
+           include=> {                    
+                    description=>"Include files",
+                    title=>"include",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>1,
+                    required=>[
+                              ],#required
+                    targetDir=>"\\include\\il${PRODUCT_NAME_SHORT}",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\INCLUDE",
+                    directories=>[
+                                "il${PRODUCT_NAME_SHORT}",
+                                ],#directories
+                    fulldirectories=>[],
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                           ],#files
+                    shortcuts=>{
+                               },#shortcuts
+                    final=>{
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+                               },#subgroups
+                   },#include
+#metaBegin: stat_st5 stat_sta5 stat_mt5 stat_mta5 stat_md5 stat_mda5
+           MSVC5=>{
+                    description=>"Microsoft Visual C++ 5.0 installation.",
+                    title=>"Microsoft Visual C++ 5.0",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>0,
+                    required=>[
+                               "readme",
+                               "include",
+                               "examples",
+                              ],#required
+                    targetDir=>"",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}",
+                    directories=>[
+                                ],#directories
+                    fulldirectories=>[],
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                            "msvc5.txt"
+                           ],#files
+                    shortcuts=>{
+                               },#shortcuts
+                    final=>{
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+#metaEnd
+#metaBegin: stat_sta5
+                        stat_st=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 single-threaded library (stat_st).",
+                             title=>"Single-threaded library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_st",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_st"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_st
+#metaEnd
+#metaBegin: stat_sta5
+                        stat_sta=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 single-threaded STL library (stat_sta).",
+                             title=>"Single-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_sta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta
+#metaEnd
+#metaBegin: stat_mt5
+                        stat_mt=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 multi-threaded library (stat_mt).",
+                             title=>"Multi-threaded library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_mt",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_mt"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mt
+#metaEnd
+#metaBegin: stat_mta5
+                        stat_mta=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 multi-threaded STL library (stat_mta).",
+                             title=>"Multi-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_mta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mta
+#metaEnd
+#metaBegin: stat_md5
+                        stat_md=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 multi-threaded DLL library (stat_md).",
+                             title=>"Multi-threaded DLL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_md",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_md"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_md
+#metaEnd
+#metaBegin: stat_mda5
+                        stat_mda=>{
+                             description=>"Installs Microsoft Visual C++ 5.0 multi-threaded DLL STL library (stat_mda).",
+                             title=>"Multi-threaded DLL STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc5\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC5",
+                             directories=>[
+                                          "stat_mda"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mda
+#metaEnd
+#metaBegin: stat_st5
+                        stat_st_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 single-threaded port.",
+                             title=>"Single-threaded examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_st",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_st",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_st",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta_examples
+#metaEnd
+#metaBegin: stat_sta5
+                        stat_sta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 single-threaded STL port.",
+                             title=>"Single-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_sta",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_sta",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta_examples
+#metaEnd
+#metaBegin: stat_mt5
+                        stat_mt_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 multi-threaded port.",
+                             title=>"Multi-threaded examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_mt",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_mt",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_mt",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mt_examples
+#metaEnd
+#metaBegin: stat_mta5
+                        stat_mta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 multi-threaded STL port.",
+                             title=>"Multi-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_mta",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_mta",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mta_examples
+#metaEnd
+#metaBegin: stat_md5
+                        stat_md_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 multi-threaded DLL port.",
+                             title=>"Multi-threaded DLL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_md",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_md",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_md",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             fileReplaces=>{},
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_md_examples
+#metaEnd
+#metaBegin: stat_mda5
+                        stat_mda_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 5.0 multi-threaded DLL STL port.",
+                             title=>"Multi-threaded DLL STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC5\\stat_mda",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc5\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC5",
+                             directories=>[
+                                          "stat_mda",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mda_examples
+#metaEnd
+#metaBegin: stat_st5 stat_sta5 stat_mt5 stat_mta5 stat_md5 stat_mda5
+                              },#subgroups
+                   },#MSVC5
+#metaEnd
+#metaBegin: stat_st6 stat_mt6 stat_md6 stat_sta6 stat_mta6 stat_mda6
+           MSVC6=>{
+                    description=>"Microsoft Visual C++ 6.0 installation.",
+                    title=>"Microsoft Visual C++ 6.0",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>0,
+                    required=>[
+                               "readme",
+                               "include",
+                               "examples",
+                              ],#required
+                    targetDir=>"",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}",
+                    directories=>[
+                                ],#directories
+                    fulldirectories=>[],
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                            "msvc6.txt"
+                           ],#files
+                    shortcuts=>{
+                               },#shortcuts
+                    final=>{
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+#metaEnd
+#metaBegin: stat_st6
+                        stat_st=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 single-threaded library (stat_st).",
+                             title=>"Single-threaded library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_st",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_st"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_st
+#metaEnd
+#metaBegin: stat_sta6
+                        stat_sta=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 single-threaded STL library (stat_sta).",
+                             title=>"Single-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_sta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta
+#metaEnd
+#metaBegin: stat_mt6
+                        stat_mt=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 multi-threaded library (stat_mt).",
+                             title=>"Multi-threaded library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_mt",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_mt"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mt
+#metaEnd
+#metaBegin: stat_mta6
+                        stat_mta=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 multi-threaded STL library (stat_mta).",
+                             title=>"Multi-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_mta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mta
+#metaEnd
+#metaBegin: stat_md6
+                        stat_md=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 multi-threaded DLL library (stat_md).",
+                             title=>"Multi-threaded DLL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_md",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_md"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_md
+#metaEnd
+#metaBegin: stat_mda6
+                        stat_mda=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 multi-threaded DLL STL library (stat_mda).",
+                             title=>"Multi-threaded DLL STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\msvc6\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\MSVC6",
+                             directories=>[
+                                          "stat_mda"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mda
+#metaEnd
+#metaBegin: stat_st6
+                        stat_st_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 single-threaded port.",
+                             title=>"Single-threaded examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_st",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_st",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_st",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_st_examples
+#metaEnd
+#metaBegin: stat_sta6
+                        stat_sta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 single-threaded STL port.",
+                             title=>"Single-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_sta",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_sta",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta_examples
+#metaEnd
+#metaBegin: stat_mt6
+                        stat_mt_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 multi-threaded port.",
+                             title=>"Multi-threaded examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_mt",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_mt",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_mt",
+                                          ],#directories
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             fulldirectories=>[],
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mt_examples
+#metaEnd
+#metaBegin: stat_mta6
+                        stat_mta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 multi-threaded STL port.",
+                             title=>"Multi-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_mta",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_mta",
+                                          ],#directories
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             fulldirectories=>[],
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mta_examples
+#metaEnd
+#metaBegin: stat_md6
+                        stat_md_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 multi-threaded DLL port.",
+                             title=>"Multi-threaded DLL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_md",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_md",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_md",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_md_examples
+#metaEnd
+#metaBegin: stat_mda6
+                        stat_mda_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 multi-threaded DLL STL port.",
+                             title=>"Multi-threaded DLL STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "MSVC6\\stat_mda",
+                                       ],#required
+                             targetDir=>"\\examples\\msvc6\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\MSVC6",
+                             directories=>[
+                                          "stat_mda",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mda_examples
+#metaEnd
+#metaBegin: stat_st6 stat_mt6 stat_md6 stat_sta6 stat_mta6 stat_mda6
+                              },#subgroups
+                   },#MSVC6
+#metaEnd
+#metaBegin: ia64_stat_sta6 ia_64_stat_mta6 ia64_stat_mda6
+           IA64=>{
+                    description=>"Microsoft Visual C++ 6.0 (IA64) installation.",
+                    title=>"Microsoft Visual C++ 6.0",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>0,
+                    required=>[
+                               "readme",
+                               "include",
+                               "examples",
+                              ],#required
+                    targetDir=>"",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}",
+                    directories=>[
+                                ],#directories
+                    fulldirectories=>[],
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                            "ia64.txt"
+                           ],#files
+                    shortcuts=>{
+                               },#shortcuts
+                    final=>{
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+#metaEnd
+#metaBegin: ia64_stat_sta6
+                        stat_sta=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 (IA64) single-threaded STL library (stat_sta).",
+                             title=>"Single-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\ia64_win64_vc6\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_sta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta
+                        stat_sta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 (IA64) single-threaded STL port.",
+                             title=>"Single-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "IA64\\stat_sta",
+                                       ],#required
+                             targetDir=>"\\examples\\ia64_win64_vc6\\stat_sta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_sta",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_sta_examples
+#metaEnd
+#metaBegin: ia64_stat_mta6
+                        stat_mta=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 (IA64) multi-threaded STL library (stat_mta).",
+                             title=>"Multi-threaded STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\ia64_win64_vc6\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_mta"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },
+                        stat_mta_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 (IA64) multi-threaded STL port.",
+                             title=>"Multi-threaded STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "IA64\\stat_mta",
+                                       ],#required
+                             targetDir=>"\\examples\\ia64_win64_vc6\\stat_mta",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_mta",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mta_examples
+#metaEnd
+#metaBegin: ia64_stat_mda6
+                        stat_mda=>{
+                             description=>"Installs Microsoft Visual C++ 6.0 (IA64) multi-threaded DLL STL library (stat_mda).",
+                             title=>"Multi-threaded DLL STL library",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       ],#required
+                             targetDir=>"\\lib\\ia64_win64_vc6\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\LIB\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_mda"
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             fileReplaces=>{},
+                             subgroups=>{
+                                        },#subgroups
+                                  },
+                        stat_mda_examples=>{
+                             description=>"Installs project files for Microsoft Visual C++ 6.0 (IA64) multi-threaded DLL STL port.",
+                             title=>"Multi-threaded DLL STL examples",
+                             typical=>1,
+                             compact=>1,
+                             hidden=>0,
+                             required=>[
+                                       "IA64\\stat_mda",
+                                       ],#required
+                             targetDir=>"\\examples\\ia64_win64_vc6\\stat_mda",
+                             filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}\\EXAMPLES\\ia64_win64_vc6",
+                             directories=>[
+                                          "stat_mda",
+                                          ],#directories
+                             fulldirectories=>[],
+                             fulldirectories_noname=>[
+                                                     ],#fulldirectories_noname
+                             files=>[
+                                    ],#files
+                             fileReplaces=>{},
+                             shortcuts=>{
+                                        },#shortcuts
+                             final=>{
+                                    },#final
+                             subgroups=>{
+                                        },#subgroups
+                                  },#stat_mda_examples
+#metaEnd
+#metaBegin: ia64_stat_sta6 ia64_stat_mta6 ia64_stat_mda6
+                              },#subgroups
+                   },#IA64
+#metaEnd
+           readme=>{
+                    description=>"Readme File",
+                    title=>"readme",
+                    typical=>1,
+                    compact=>1,
+                    hidden=>1,
+                    required=>[
+                              ],#required
+                    targetDir=>"",
+                    filesRoot=>"${PRODUCT_NAME_SHORT}${PRODUCT_VERSION_SHORT}",
+                    directories=>[
+                                 ],#directories
+                    fulldirectories=>[],
+                    fulldirectories_noname=>[
+                                            ],#fulldirectories_noname
+                    files=>[
+                            "readme.txt",
+                           ],#files
+                    shortcuts=>{
+                                'ReadMe'=>"readme.txt",
+                               },#shortcuts
+                    final=>{
+                            "I want to view latest product information"=>"readme.txt",
+                           },#final
+                    fileReplaces=>{},
+                    subgroups=>{
+                               },#subgroups
+                   },#readme
+          },#groups
+}
+#############################################################

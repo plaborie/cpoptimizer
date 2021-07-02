@@ -1,0 +1,113 @@
+
+------------------------------------------------------------------------
+COPLAS 2008: CP/ICAPS 2008 Workshop on Constraint Satisfaction  
+Techniques for Planning
+and Scheduling Problems
+
+REFEREE'S REVIEW FORM
+
+Paper number: 3
+
+Paper title: Constraint Programming Approach to a Bilevel Scheduling Problem
+
+Reviewer's name:  Philippe Laborie
+Reviewer's email: laborie@fr.ibm.com
+
+
+Comments to be passed back to Author(s):
+
+Overall Score from 0 to 10: 6
+(0 = definite rejection, 5 = neutral, 10 = definite acceptance)
+
+Overall recommendation?
+[ ]  Accept
+[X]  Leaning to Accept (i.e. minor amendments required)
+[ ]  Leaning to Reject (i.e. major amendments required)
+[ ]  Reject
+
+How RELEVANT is this paper to the this workshop?
+[X]  Very relevant
+[ ]  Moderately relevant
+[ ]  Not relevant
+
+How technically SIGNIFICANT is this paper?
+[ ]  Very significant
+[X]  Moderately significant
+[ ]  Not significant
+
+How technically THOROUGH is this paper?
+[X]  Very thorough
+[ ]  Moderately thorough
+[ ]  Not thorough
+
+How well is the paper PRESENTED?
+[ ]  Excellently presented
+[X]  Moderately presented
+[ ]  Unreadable
+
+Comments or advice to be passed back to the author(s) of the paper:
+
+The paper studies a bilevel scheduling problem. Bilevel optimization
+is an important topic in mathematical programming but, to the best of
+my knowledge, its application to scheduling problems has not received
+a lot of attention so far. From this perspective, the paper is
+original and, because this scheduling problem is solved using
+constraint programming techniques, it is very relevant to the
+workshop.
+
+The bilevel scheduling problem that is described as a sample problem
+seems very unrealistic. Does it comes from a real use-case? It is
+clear that organizational relations within a company can lead to
+different constraints and objective functions among different
+departments but it is strange that deadline constraints are not taken
+into account at all (at least as tardiness costs) in the scheduling
+problem of the follower. I guess a consequence can be that, when the
+deadlines are a bit tight (as they often are!), most of the good
+solutions of the leader are ruled out by the follower. It would be
+interesting to add figures in the experimental section showing, for
+each class of instance what is the average optimal solution value for
+the single level relaxation compared with the average optimal solution
+value for the bilevel problem.
+
+The paper is well structured but sometimes, some additional
+explanations would be useful. In particular, it is not clear at first
+sight why, when comparing the follower's lower and upper bound we can
+have g^{Fmax}<g^{Lmin} given their definition. I think a paragraph
+should be dedicated to informally explain why it can happen.
+
+The LB computation in internal search nodes seems very time consuming
+with its pseudo-polynomial complexity in O(VP). It is not really
+surprising that it does not help solving the problem in terms of CPU
+time. If some space must be saved in the paper (for instance for
+better justifying the interest of the sample problem or for explaining
+why we can have g^{Fmax}<g^{Lmin}), I would suggest to remove this
+subsection.
+
+
+
+Any specific points that must be addressed before the paper is accepted:
+
+The first sentence of section "Modeling and solving bilevel problems
+by CP" reads: "... we first present a generic approach to encode
+discrete bilevel optimization problems as constraint programs". This
+is misleading because the last sentence of previous section says that
+no trivial encoding of bilevel problems into CP can be expected (which
+is true). In the previous section I would rather say that no "direct
+encoding" into CP can be expected and, in the section I would avoid
+the term "encoding" which implies just a simple "model&run" approach
+and say somehting like: "we present a generic approach to solve
+bilevel optimization problems using CP techniques".
+
+A typo:
+p2, col2: "we present analyze ..."
+
+
+
+
+Comments to Programme Committee (not to be passed to author(s) of the paper):
+
+
+
+
+--------------------------------------------------------------------
+

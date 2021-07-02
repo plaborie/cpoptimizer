@@ -1,0 +1,158 @@
+--------------------------------------------------------------
+*** SUBMISSION NUMBER:
+*** TITLE:
+*** AUTHORS: (anonymous)
+--- CATEGORY:
+*** PC MEMBER: Laura Barbulescu
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+Relevance -  Is the work relevant to the call for papers?
+
+The work is relevant to the call for papers; it presents an iterative improvement
+approach based on Iterative Flattening Search for solving the RCPSP/max problem.
+
+Significance - To what extent are the ideas and contributions of the  
+paper novel and important to planning and scheduling theory or practice?
+
+The main contribution of the paper is that by applying an existing algorithm (IFS)
+to benchmark RCPSP/max problems, new best known values (upper bounds) are produced, and even three
+optimal valued solutions (makespan equal to the lower bound) are found. 
+The paper also studies the impact of the parameter values
+for the relaxation step in IFS on the algorithm performance; based on the analysis as performed
+for a set of smaller (30 task) benchmark problems, the best values are selected and used to solve
+another set of bigger (200 task) benchmark problems.
+
+Technical quality - Is the work technically sound? Are the analyses,  
+algorithms, theorems and proofs correct? Are the paper's claims argued/ 
+supported convincingly? Is the empirical evaluation convincing?
+
+For a short paper, the paper seems technically sound, even though certain details
+are omitted (see below).
+The empirical evaluation shows that the proposed approach performs well for the RCPSP/max
+instances: it found three new optimal
+solutions for the UBO200 set and improved over 27 currently best known results.
+
+Quality of presentation - Is the paper clearly written? Is it well- 
+organized? Is the motivation for the research or the innovation of the  
+application well explained?
+
+The paper is clearly written, with some exceptions. Some details are omitted.  
+
+IFS should be at least described
+
+It is  not clear to me what the number n_r represents (IFS-CP):
+what are the individual relaxation attempts, in particular what does
+"individual" refer to?
+
+In Table 1, the best n_r parameter value is said to be approx. 6 or 7.
+It is rather difficult to see this, maybe a little bit more should be said
+about the metrics that are most important when deciding which n_r value
+is better. For example, for n_r of value 5, the average CPU time and the
+average IFS cycles are much smaller and pretty close to the ones for
+n_r 7 respectively, the number of improved makespans is the same 
+and the difference between the deltas for makespan is pretty small
+(but possibly significantly smaller for 7).
+
+It is also not clear what is the delta makespan 8.91 "for the currently published
+best solutions". Are the mk_i^0 values lower bounds as opposed to the current best known values
+(upper bounds)?
+
+It should be clearly stated how many times each algorithms was run for each instance,
+and what is 9.88 for IFS-CP (the average delta makespan for a certain n_r? which n_r?).
+It is not clear to me how the values in the Best rows (Table 1) were computed.
+
+The performance of IFS-CH(100) is not shown in Table 1. The hypothesis 
+that there always exists a value of p_r that improves over the full iterative sampling
+procedure sounds plausible, but it is difficult to see that this is the case
+based on just the results in Table 1.
+
+Suitability to AIJ - Should an extended version of this paper be  
+solicited for submission to Artificial Intelligence Journal?
+
+This is a short paper, there is not enough material in it to decide if an extended version should be solicited for submission to AIJ.
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- reviewer different from the PC member in charge, add
+--- information about the reviewer in the form below. Do not
+--- modify the lines starting with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, XX the line with your
+--- evaluation or confidence.
+*** OVERALL EVALUATION:
+
+---  2 (accept)
+  1 (weak accept)
+---  0 (borderline)
+---  -1 (weak reject)
+---  -2 (reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+  3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** RELEVANCE TO PLANNING & SCHEDULING: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+  4 (high)
+---  3 (medium)
+---  2 (low)
+---  1 (very low)
+
+*** SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+---  5 (very high)
+  4 (good enough)
+---  3 (borderline)
+---  2 (low)
+---  1 (very low)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+---  4 (good)
+  3 (appears to be sound)
+---  2 (not fully satisfactory)
+---  1 (unsatisfactory)
+
+*** QUALITY OF PRESENTATION: from 1 (lowest) to 5 (highest)
+
+---  5 (excellent)
+  4 (good)
+---  3 (fair)
+---  2 (poor)
+---  1 (very poor)
+
+*** BEST PAPER AWARD?: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+  1 (No)
+
+*** SUITABILITY TO AIJ: from 1 (lowest) to 2 (highest)
+
+---  2 (Yes)
+  1 (No)
+
+--------------------------------------------------------------

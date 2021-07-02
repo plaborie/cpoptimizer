@@ -1,0 +1,72 @@
+____________________________________________________________________
+Would you be willing to review a revision of this manuscript?
+
+* Yes
+No
+
+____________________________________________________________________
+Recommendation
+
+Accept
+* Minor Revision
+Major Revision
+Reject & Resubmit
+Reject
+
+____________________________________________________________________
+Confidential Comments to the Editors
+
+I'm hesitating between Minor and Major revision. The content of the paper is strong and the results are good. But the form should be improved.
+
+____________________________________________________________________
+Comments to the Author
+
+The paper describes a very interesting extension of the classical job-shop scheduling problem (JSSP) where operations consume some energy whose price vary over time. Beside the classical makespan minimization objective function, a secondary objective is to minimize the total energy consumption of the schedule.
+
+In the context of time-of-use (TOU) pricing, the energy price is given as an input function that specifies, for each hour,
+the current energy price. Each operations consume a certain (operation-dependent) quantity of energy while they are executed. When machine are idle between operations, they also consume some (machine-dependent) quantity of energy. Additionally, a certain amount of energy is used on the complete horizon of the schedule until the last operation is executed (makespan).
+
+As Constraint-Programming (CP) is a flexible optimization framework that represents the state-of-the-art generic methods for solving the classical JSSP, the paper proposes to use CP for solving this energy-aware scheduling problem.
+
+The problem is well justified and the proposed resolution techniques are very relevant.
+
+The proposed CP formulation using IBM CP Optimizer is, to the best of my knowledge, the best that can be done on this problem. It is compared to 2 MILP formulations. Very good results are reported in the experimental study. All the experiments are reproducible as both the instances and the formulations are provided.
+
+_______________________________
+Formatting of the paper
+
+I think the form of the paper should be improved. The equations should probably be formatted using LaTeX and the notations should be improved:
+- Denoting o the index of operations may seem natural but, especially when used in indexing, it is a bit confusing as it is quite similar to 0. Operations could be denoted i,j (operation j of job i).
+- If possible, it could be good to distinguish between parameters and decision variables for instance by using upper cases for parameters and lower cases for variables (using upper-cases for variables, like here, is not very common)
+- "𝑍𝑜,𝑜,𝑘 : 1 if 𝑜 ∈ 𝑂 proceeds 𝑜 ∈ 𝑂 on machine k and 0 otherwise": I suppose you mean "precedes"
+- It would be more readable if all the coefficients representing the consumed electric power where prefixed with the same letter (here we have: S, D_k, P_o), maybe WC, WI_k, WP_o, that would also be homogeneous with the expressions eC, eI, eP ?
+- Please check that you have no "free" variables in the equations, for instance in (B2), variable q is not defined
+- For the CP model, using T_o as interval variable is also a bit misleading as T denotes the set of all times. Given that x,y,z are already used in the MIP models, if 'o' is not used anymore for indexing the operations, you could use something like o_ij to denote the interval variable representing the jth operation of of job i.
+
+The description of the CP model could be slightly simplified by not mentioning the concept of sequence variable. You can directly use the "noOverlap" constraint on a set of interval variables.
+
+_______________________________
+On Lower and Upper bounds
+
+In general, the value of the total energy consumption obtained by only minimizing the makespan could be artificially good or bad as its value is mostly a matter of chance given that it is not handled in the optimization criterion. That's why, I think the improvement of this energy consumption when optimizing it should be handled with care. For instance on Fig. 4, the solution of the second step minimizing the energy consumption is -2.3% (45124 v.s. 46202) but this solution at 45124 could also have been found (at least in theory) by chance in the first step when minimizing the makespan. When showing the interest of doing an energy minimization, it would probably be also interesting to measure the gap between the worse and the best solution found (from the energy point of view) with the same makespan. For instance I tried on the instance of Fig. 4, and the worst solution that can be found with a makespan of 60 is 47893. This means that minimizing energy can save up to (47893-45124)/47893 = 5.8% on this instance.
+
+Concerning the gaps, specially for the largest problems, these instances (swv) are very difficult even for minimizing the makespan. See for instance the current best results on [1]. To the best of my knowledge, several of these problems are still open (swv06-swv11) so it is not surprising that you get non-negligible gaps on these problems and as the global energy consumption seems to globally decrease with the makespan it is also not surprising that you get similar gaps for energy minimization. My intuition would say that the energy gaps are directly related with the makespan gaps. So if, as stated in the conclusion, you want to work on heuristics to reduce this gaps, I think that it should be heuristics that aims at better solving the classical makespan minimization aspect of the problem and it will be very challenging ...
+
+[1] J. van Hoorn. “The Current state of bounds on benchmark instances of the job-shop scheduling problem.” Journal of Scheduling, volume 21, pages 127–128 (2018). https://static-content.springer.com/esm/art%3A10.1007%2Fs10951-017-0547-8/MediaObjects/10951_2017_547_MOESM_ESM.pdf
+
+
+In general, for the larger problems (SWV) do you also use a time limit of 60s ? What if you leave more time to the engine ? As said, even the makespan minimisation of some of these problems is open so no doubt that they need more than 60s to be solved to a good solution quality level.
+
+
+_______________________________
+Other comments and typos
+
+- Fig 3: ref (Laborie et al. 2009) is not given in the reference list
+
+- "CPO utilizes a temporal relaxation technique in a similar way that mathematical programming employs linear relaxation (Laborie and Rogerie, 2016)." While CPO indeed uses a linear relaxation which I guess is very useful for energy minimization, it does not really use it in a similar way as the MILP solver. The relaxation is used in CPO in a much less intensive way as described in the cited paper. It mostly uses it to guide the search at the root node of each move of the Large Neighborhood Search.
+
+- In general, for an overview of CPO you could also cite the CONSTRAINTS journal article that provides an overview [2]
+
+- In the two-phases approach, you should make it clear that the second phase (energy minimization) is not allowed to make the makespan worse, that is, in the second phase, you add a constraint limiting the ending time of all the operations to the previously computed makespan. 
+
+[2] P. Laborie, J. Rogerie, P. Shaw, P. Vilím. "IBM ILOG CP Optimizer for Scheduling". Constraints Journal. Vol 23, pages 210–250 (2018)

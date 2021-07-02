@@ -1,0 +1,5 @@
+Recommendation: Reject?
+
+All reviewers agree that the contribution of the paper is interesting but its novelty is not clear
+because a large part of the AI literature on algorithm selection and configuration is not considered.
+And given the context where algorithm selection is used here, it seems that any generic approach could be applied.

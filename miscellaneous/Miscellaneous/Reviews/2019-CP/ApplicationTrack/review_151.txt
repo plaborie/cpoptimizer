@@ -1,0 +1,88 @@
+Number : 151
+Title  : Bilevel modeling and solving Flexible Job Shop Scheduling Problem
+
+
+Relevance.* Is this paper suitable for the track topics?
+ 2: Just fine
+ 1: Partial fit
+*0: Not suitable
+
+Significance.* How important is the contribution of the paper?
+ 5: Very strong contribution
+ 4: Strong contribution
+ 3: Fair contribution
+ 2: Minor contribution
+*1: Very minor contribution
+
+Originality.* How original are the ideas presented in the paper?
+  2: Paves the way to new territories
+  1: Original
+  0: Fairly new
+ -1: Incremental
+*-2: Already known
+
+Technical quality.* Are the claims supported by solid empirical or theoretical proofs?
+  2: Excellent technical quality
+  1: Good technical quality
+  0: Fair paper
+*-1: Poor paper
+ -2: Very poor paper
+
+Clarity.* Is the paper clearly written?
+  1: Very clear paper
+  0: Reasonably clear paper
+*-1: Writing could be improved
+ -2: Poor writing
+
+Scholarship.* Does the paper miss really important references?
+  1: Cannot see any missing relevant reference
+  0: Some loosely relevant references are missing
+*-1: Some relevant references are missing
+ -2: Very relevant references are missing
+
+Overall evaluation.* Please provide a detailed review, including a justification for your scores. The best reviews identify strong and weak points and give associated evidence. Both the score and the review text are required.
+  3: Strong accept
+  2: Accept
+  1: Weak accept
+ -1: Weak reject
+ -2: Reject
+*-3: Strong reject
+
+Review
+
+The article presents an approach based on bilevel optimization to solve the flexible job shop scheduling problem (FJSSP).
+
+There are many issues with the paper.
+
+1- The article does not really match the topics of the conference: there is nothing about CP in the paper. CP is even not mentioned in the state-of-the-art in the introduction whereas the best results on the FJSSP so far (on the classical instances used in the paper) have been obtained with CP. 
+
+2- The proposed bilevel method is far from being clear. First, it is very uncommon that a classical (monolevel) combinatorial problem like the FJSSP is reformulated as a bilevel optimization problem which is a far more complex framework. I do not see the interest of this reformulation as here, both the leader and the follower share the very same objective function (the makespan). And in general solving a bilevel optimization problem is much more difficult that solving a mono-level one. In the paper, it is not said how the bilevel problem is solved. In particular, you write "In fact, the leader searches for the best operation assignment and communicates it to the follower. According to the leader’s choice, the follower makes its decision and returns an optimal solution which is an optimal scheduling of the fixed assignment as a response to the leader’s selection. Both leader and follower attempt to minimize the total completion time objective function (Cmax)." How does the leader exploit the optimal solutions produced by the follower? This is not said in the paper. In fact the described approach seems close to a Logic-Based Benders Decomposition for which the follower would provide some cut to the leader/master problem. But this is not mentioned.
+
+3- The results are not compared against the state-of-the-art methods, in particular the best CP ones on this problem like [1] or [2,3]. Some more or less up-to-date results on the classical FJSSP benchmarks are available here: https://www.quintiq.com/optimization/flexible-job-shop-scheduling-problem-results.html. In particular, all the instances studied in the paper are closed (except for Brandimarte MK10)
+
+4- I think that there are some mistakes in the experimental results. On tables 1 and 2, the makespans found by the proposed bilevel approach are sometime lower than the known optimal value reported on the page mentioned above (MK01: 36<40*, MK02: 24<26*, MK05: 171<172*, la11: 1078<1103). Also, note a similar problem with reported result of MAS-GATS for MK01 (39<40*). There is really something weird going on here.
+
+[1] A. Schutt, T. Feydy, and P. Stuckey. “Scheduling Optional Tasks with Explanation". In: Principles and Practice of Constraint Programming. Springer. 2013, pp. 628-644. url: http://ww2.cs.mu.oz.au/~pjs/papers/cp2013c.pdf.
+
+[2] IBM. Solving Flexible Job Shop Scheduling Problems (CP Optimizer 12.6): https://www.ibm.com/developerworks/community/blogs/jfp/entry/solving_flexible_job_shop_scheduling_problems?lang=en.
+
+[3] P. Vilim, P. Laborie and P. Shaw . "Failure-directed Search for Constraint-based Scheduling". Integration of AI and OR Techniques in Contraint Programming for Combinatorial Optimzation Problems, 12th International Conference, CPAIOR 2015.
+
+
+
+
+Reviewer's confidence.* Do you have all the background knowledge and information to properly assess the paper contribution?
+ 4: I'm an expert in the topic and fully understand the technical details of the paper
+*3: I know the topic very well and understand the technical details of the paper
+ 2: I have a reasonable knowledge of the topic and understand the technical details of the paper
+ 1: Parts of the paper falls outside of my area of knowledge
+ 0: The paper falls outside of my area of knowledge
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+
+Best paper award. Do you want to nominate the paper for the best paper award?
+ [ ] Nominate for "Best Paper Award"
+
+Best student paper award. Do you want to nominate the paper for the "Best Student Paper Award"?
+ [ ] Nominate for "Best Student Paper Award"

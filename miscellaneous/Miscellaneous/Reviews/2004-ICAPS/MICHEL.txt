@@ -1,0 +1,33 @@
+
+The paper is an improvement on the iterative flattening algorithm
+IFlat of Cesta,Oddi&Smith. Starting from an analyze of some limits of
+IFlat, the authors propose a very simple change in the algorithm
+(namely, allow more than one iteration of the relaxation step) and
+show that this change improves the solution quality and the robustness
+without affecting the time performances.
+
+The explanation of the limitations of iterative flattening is very
+hard to follow. One of the reason (but not the only one) is that the
+explanation relies on the use of colors on Figure 6 which is very tiny
+... and will certainly appear in blackI and white in the
+proceedings. The assertion that the pathological behavior
+(under-utilization of resource in the earliest part of the schedule)
+often appears in IFlat and is really "pathological" should be better
+justified. Indeed, it is after all normal that, for instance a machine
+cannot be used at all before the earlier start time of the set of
+activities that requires it, and that, just after this date, because
+there is not much demand on the resource, it is more difficult to fill
+the resource until its maximal capacity. It would be interesting to
+provide some indicator of the under-usage of resources in the early
+stages of the schedule and to compare the values of this indicator
+with IFlat and with IFlatTRelax on the set of instances to show that
+the gain in makespan is effectively due to a better usage of resources
+in the early stages.
+
+
+
+The paper improves on an existing algorithm by analyzing some of its
+limitations. The explanation of what is wrong with the original
+algorithm should be improved. The proposed improvements are really
+simple and the experimental section shows that this change really
+improves the results.

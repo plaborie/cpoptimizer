@@ -1,0 +1,78 @@
+Evaluation
+
+Significance
+Does the paper contribute a major breakthrough or an incremental advance?
+ 3: high (substantial contribution or strong impact)
+* 2: medium (modest contribution or average impact)
+ 1: low (minimal contribution or weak impact)
+ 
+Soundness
+Is the technical development correct or does the paper exhibit inaccuracies?
+* 3: correct
+ 2: minor inconsistencies or small fixable errors
+ 1: major errors
+ 
+Scholarship
+Is the work well positioned with respect to the existing literature? If relevant references are missing, please provide examples in your comments to the authors.
+ 3: excellent coverage of related work
+ 2: relevant literature cited but could expand
+* 1: important related work missing or mischaracterizes prior research
+
+Clarity
+Assess the clarity of the presentation and reproducibility of the results.
+ 3: well written
+* 2: mostly readable with some scope of improvement
+ 1: hard to follow
+ 
+Breadth of Interest
+Would the paper attract broad interest or is it targeted to a narrow audience?
+ 4: broad interest across AI audience
+ 3: some interest beyond specialty area
+* 2: limited to specialty area
+ 1: out of scope for an AI audience
+ 
+Summary Rating
+ 5: +++++ (strong accept)
+ 4: ++++
+ 3: +++
+ 2: ++
+ 1: + (weak accept)
+ -1: - (weak reject)
+* -2: --
+ -3: ---
+ -4: ----
+ -5: ----- (strong reject)
+ 
+Confidence
+ 3: highly confident
+* 2: reasonably confident
+ 1: educated guess
+ 
+ 
+Summarize the Main Contribution of the Paper (*)
+What are the main claims/contributions of the paper?
+
+The paper addresses the problem of computing a Minimum Vertex Cover (MinVC) on large graphs. The proposed approach is a Local Search that starts with the computation of an initial solution (Init) followed by local improvement steps. 
+
+The initial step is quite classical for solving MinVC problems: it mixes the approach of an existing method (FastVC) with some existing reduction rules for MinVC (for instance [1]).
+
+[1] Jianer Chen, Iyad A. Kanj and Weijia Jia. Vertex cover: Further observations and further improvements. Journal of Algorithms, Vol 41(2), p280–301. 2001.
+
+The Local Search used for improvement relies on a smart structure that permit to select with a low algorithmic complexity the best vertex to remove (minimal loss). 
+
+The approach is compared to the state-of-the-art Local Search approach for solving large MinVC problems (FastVC) and some improvements are reported.
+
+Comments for the Authors (*)
+Explain the basis for your ratings while providing constructive feedback to the authors.
+
+My main issue with the paper is that it is difficult to assess how much the proposed approach improves over FastVC and what is the quality of the solutions it finds. Beside the fact most of the improvement seem to be due to the initial solution algorithm, the reported improved seem to be small in terms of relative improvement (less than 0.4% if to include initial solution, much less on the instances where initial solution was not already better than MinVC results). Maybe the solutions are already close to the optimal values and then, even small improvements are very valuable, but as there is no way to have an idea how close we are to optimal solutions or to lower bounds, it is not possible to see if the reported improvements are significant or not.
+
+I do not agree with statements like: "Actually finding a k-sized cover is much more difficult than finding a (k+1)-sized cover [Cai et al., 2013], so finding covers with 26 less vertices on average is really difficult". It really depends how far k is from the optimal solution. Decreasing the vertex cover size by 1 is probably very hard in the phase transition when k is close to the optimal value but much easier for larger values of k.
+
+So I think the method should be compared against exact or lower-bounding methods. There is some paper reporting exact methods that scale reasonably well [2]. And if those exact methods are not able to scale to all instances reported in the present paper, then some comparison should be made against exact method with "easier" graphs where they can produce optimal solutions or lower-bounds.
+
+[2] Takuya Akibaa and Yoichi Iwata. Branch-and-reduce exponential/FPT algorithms in practice: A case study of vertex cover. Theoretical Computer Science, Vol 609, Part 1 (Jan. 2016). Initial version appeared in Proc. ALENEX 2015 (Jan. 2015). http://arxiv.org/pdf/1411.2680v1.pdf
+
+There is also a very recent interesting alternative approach to handle large graphs in [3]. But I can understand that this publication appeared to late to be integrated in the present paper. 
+
+[3] Sebastian Lamm, Peter Sanders, Christian Schulz, Darren Strash and Renato F. Werneck. Finding Near Optimal Independent Sets at Scale. Proc. ALENEX 2016 (Jan. 2016). Submitted in CoRR in Computing Research Repository in Sept. 2015. http://arxiv.org/pdf/1509.00764.pdf

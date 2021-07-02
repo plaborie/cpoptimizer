@@ -1,0 +1,166 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines beginning with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines beginning with *** are used by EasyChair. Do not
+---     remove or modify these lines or the review will become
+---     unusable and will be rejected by EasyChair
+--------------------------------------------------------------
+*** REVIEW FORM ID: 501827::241758
+*** SUBMISSION NUMBER: 16
+*** TITLE: Using Tornado Graphs to Illustrate and Improve Schedule Robustness
+*** AUTHORS: Lisa Swenson, James Little, Joseph Manning and Roman van der Krogt
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper describes tornado graphs and how they can be used both (1)
+to illustrate and (2) to generate robust schedules. I find this
+dichotomy somehow misleading. As stated in the section about tornado
+graphs, this type of display may indeed be useful to visualize the
+results of a sensitivity analysis performed on a limited number of
+parameters and parameter changes that have been selected by an
+expert. But I do not understand the claim that the approach for
+improving schedule robustness described in the last section uses
+tornado graphs. The approach uses classical sensitivity analysis (not
+tornado graphs) and you use tornado graphs to justify and explain the
+approach. That's why if the paper is about tornado graphs and their
+application in scheduling I think most of the case study in last
+section is off topic whereas if the paper is about the proposed
+approach to generate robust schedules the notion of tornado graph is
+not necessary. I'll separate the two topics in this review.
+
+Tornado graphs
+
+At reading the section about tornado graphs, one gets the impression
+that they are well suited if one can identify a relatively small set
+of homogeneous parameter changes. 
+
+In scheduling, there are usually several sources of uncertainty like
+release dates, activity durations, machine breakdowns, available
+quantity of resources, etc. Are tornado graphs still relevant for
+analyzing the impact of a set of non homogeneous parameters (say, the
+release dates of some activities and the available quantity of some
+resources) ? In this case, the "unit" of change on the left bars is
+not well defined (unless if one uses one tornado graph per uncertainty
+source type).
+
+Another issue is how to select (1) the parameters and (2) their change
+value displayed on the tornado graph. Real life scheduling problems
+tend to be large (several hundreds or thousands of activities) and the
+possible changes for a given parameter (for instance the possible
+delay values for a release date or for an activity duration) may take
+many possible values. And usually the impact on the cost of a
+parameter change is not linear so selecting one or a couple of values
+for the change can be insufficient to evaluate the impact. For
+instance it could be that in the example, selecting a slightly larger
+value for the duration increase of task 5 (say, value 5 instead of
+value 3) leads to a much larger cost increase and that could even change
+the comparison between the two schedules on Figures 1 and 2.
+
+On those figures, the lefts bars are called "Duration
+Uncertainty". This is misleading, this scale is about "Increase of
+duration" and displays the impact of a given increase of duration for
+a given task. This has nothing to do with the uncertainty on the
+duration. If the actual duration is modeled as a random variable with
+a probability distribution, the uncertainty would rather be related
+with the standard deviation of the distribution. Maybe the change
+value is selected according to the uncertainty but then, I think that
+should be made more clear and probably more formal.
+
+A detail: it is mentioned that the robustness measure (a non-negative
+number) of the perfectly robust schedule is 0. That's a bit counter
+intuitive as when the value of this "robustness" measure increases,
+the schedule is less robust.
+
+Generating robust schedules - Case Study
+
+At the beginning of the section I think it would help for clarification
+to state the problem in more formal terms.
+
+The idea of the approach is interesting and I encourage the authors
+pursuing in this direction but I find the paper does not bring enough
+evidence that it works well:
+
+- It is shown to work on a single instance of the problem. It would be
+good to see how it behaves on other instances and to which extent it
+depends on the selection of values for the task delays (here 5mn and
+10mn).
+
+- Is the rescheduling problem solved to optimality by the scheduling
+algorithm? If not, the scheduling algorithm introduces some
+uncertainties in the process (for some reason, it may be able to find
+a solution very close to the optimal for some task change and a worse
+solution for another one). This will bias the results, especially as
+far as only one instance is used.
+
+- What is the size of the problem? If the problem has n tasks and
+there are k selected change values per task, do you solve one
+rescheduling problem for each of the k*n tasks/changes combinations ?
+Until an optimal solution is found (see item above) ? 
+
+Other comments:
+
+The citation (Hall and Posner 2004) is missing in the References.
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+I find this work is in a too early stage for presentation at
+PlanSIG. My rating -1 takes into account the fact planSIG is a
+workshop that encourages presentation of work in progress otherwise, I
+would have rated the paper lower.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- subreviewer different from the PC member in charge, add
+--- information about the subreviewer in the form below. Do not
+--- modify the lines beginning with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+Philippe
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+Laborie
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+laborie@fr.ibm.com
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+---  2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+-1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---  4 (expert)
+3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** END
+--------------------------------------------------------------

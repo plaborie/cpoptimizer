@@ -1,0 +1,63 @@
+Title: Knowledge Engineering for Planning & Scheduling: Tools and Methods
+Author(s): Tiago S. Vaquero, J. Christopher Beck, Thomas L. McCluskey, José Reinaldo Silva
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject with encouragement to resubmit
+[ ] Reject
+
+Normally we will not accept a paper if it requires major revisions.  In addition to your overall evaluation for the editor, please also include comments and suggestions for the authors.
+
+Comments and suggestions
+========================
+
+The article reviews the tools and methods related with Knowledge Engineering for Planning & Scheduling. 
+The review is very interesting and informative and would represent an important added value for the P&S community.
+
+As mentioned in the paper in spite of the recent efforts to apply planning techniques to real world problems there is still a significant gap between the research literature and the real applications. Most of the cited "applications" of Planning are more some "Proofs of Concept" rather than really deployed and actively used applications. Improving planning engines expressivity and efficiency is a necessary but not sufficient condition to bridge this gap and, as stated in the article, Knowledge Engineering is the other key aspect.
+
+My main comment is that I find the article is too much focused on Planning & Scheduling, and even on only Planning itself. 
+
+I think it would be useful to look at what is done for KE in more "mature" connected domains like Optimization (Planning is a particular type of optimization problem) or even Business Rules (creating and maintaining a set of business rules for a domain has similarities with maintaining a set of planning operators). There are tons of real applications in those domains and, just like for Planning, KE is one of the key ingredients for success (together with engines performance).
+
+In Optimization, there is some support for KE in the form of the so called "Optimization modelers" like AIMMS, the development studio of CPLEX Optimization Studio (former OPL) and IBM ODM Enterprise, and, to a certain extent, GAMS or AMPL. These tools (mostly for Math Programing, I'll get back to the specificity of scheduling problems later) provide invaluable facilities in the different phases of the design process. Just to mention some:
+* Requirement specifications: model annotations permitting to link model features and their corresponding requirements and specifying application related semantics (e.g. units of measurement)
+* Knowledge modeling: GUI based modeling, hierarchical views on the model and the data, model annotations, constraint patterns, GUI tools for viewing/modifying data (tables, 2D/3D charts, Gantt charts, graphs, ...), incremental model maintenance, model versioning
+* Model analysis: syntax highlighting and syntactic checker, symbolic checker (e.g. consistency of units of measurement), automatic explanations for model infeasibility, automatic problem relaxation to provide a relaxed solution for an infeasible problem, model debugger
+* Model preparation: support of a portfolio of different solvers, model presolve (this is in general handled by the engines themselves), support for problem decomposition and model chaining (a complex optimization application seldom consists of a single-step resolution of a unique model)
+* Solution synthesis: engine logs and engine statistics dynamic charts, automatic parameter tuning for the engines based on a set of target problems, performance profiler
+* Solution analysis and post-design: pre-defined and user-defined visual representation of solution, definition and calculation of solution KPIs, solution checker, solution comparison, solution post-processing (a.k.a. polishing), solution repair (notion of starting point solution for the search)
++ Several other critical functionalities for designing real applications like access to data source (data bases, Excel, web services, ...), automatic application deployment (client/server), application localization, different types of interaction with the user (e.g. what-if analysis based on scenarios), etc
+
+I do not subscribed to the idea that there has been little effort in KE to support scheduling. It is true that there is not a single modeling language for scheduling problems for real applications, people often use problem specific heuristics, Math Programming models (when it works) or Constraint Programming models (more and more). But one should mention the scheduling language of IBM ILOG CP Optimizer that is supported by CPLEX Optimization Studio/ODM Enterprise and by the AIMMS modeler. For scheduling models using this language, all the Optimization-related KE facilities mentioned above are available plus a few additional ones like predefined Gantt charts, resource charts and evolution of state functions over time.
+
+KE support is even more advanced in Business Rules Management Systems. In particular as far as requirement specification is concerned as the point of business rules is precisely to have the business person directly define the business rules in a "natural language"-like interface and have these rules automatically translated into the internal rule representation. In these systems there is also a strong focus on the maintainability of the knowledge base (agile rules) and on automatic consistency checking of rules.
+
+It would be valuable to see if some lessons can be learned for Planning from the KE tools and methods used in Optimization, Scheduling and Business Rules, even if of course, they do not completely fit the particular needs of Planning. I don't think this requires a major revisiting of the paper, this is mostly a few additions but they could help injecting new ideas in the KEPS field from domains currently used for real applications.
+
+A few more detailed remarks:
+
+p6, section 2.3: "Most work in AI planning is undertaken under the assumption that a deterministic model of actions is adequate, that is a model where actions always produce the same resulton execution." It is not clear if it is a (re)definition of the term "adequate" formally defined in the previous section. In any case I do not see the link between the two definitions.
+
+p8, last paragraph: "This higher level of the design and integration is out of the scope of this paper." Is it not an issue? For instance, getting the right data whatever the data source is (data base, web service, external application, sensors, ...) is often a problem in decision systems (due to uncertainties, impreciseness, incompleteness, incorrectness). At the same time as the design process is iterative, some reasonable data must be available quite early in the process. It is hard to decorelate the design process from the larger context of the application development.
+
+p9: It seems there is a typo for Europa link. It is "europa-pso", not "europapso"
+
+
+Some links:
+
+Optimization:
+
+AIMMS: http://www.aimms.com/aimms/overview
+CPLEX Optimization Studio: http://www-03.ibm.com/software/products/us/en/ibmilogcpleoptistud/ 
+ODM Enterprise: http://www-03.ibm.com/software/products/us/en/ibmilogodmente/
+GAMS: http://www.gams.com/docs/intro.htm
+AMPL: http://www.ampl.com/
+
+Business Rules
+
+IBM BRMS: http://www-01.ibm.com/software/websphere/products/business-rule-management/
+

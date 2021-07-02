@@ -1,0 +1,61 @@
+# INSTANCE: DATA_TDTSP_randomd/10/bench_10_selected/ALL/inst_10_13.txt DATA_TDTSP/tdtsp_bench_255_6h00_12h30_20p_ti_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 10
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 7200
+ ! ----------------------------------------------------------------------------
+ ! Minimization problem - 13 variables, 5 constraints, 1 phase
+ ! Presolve      : 1 extractable eliminated
+ ! SearchType           = DepthFirst
+ ! Workers              = 1
+ ! RelativeOptimalityTolerance = 1e-009
+ ! Initial process time : 0.09s (0.09s extraction + 0.00s propagation)
+ # Extraction breakdown : 0.09s concert translation + 0.00s presolve
+ !  . Log search space  : 34.6 (before), 34.6 (after)
+ !  . Memory usage      : 545.5 kB (before), 545.5 kB (after)
+ ! Using sequential search.
+ # Presolve memory usage: 35.4 kB
+ #  . Model: 9.8 kB (original) + 0 bytes (presolved)
+ #  . Master: 9.2 kB (extractor) + 8.2 kB (converter) + 8.2 kB (other)
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed            Branch decision
+ *          8927       18 0.09s                 on 10
+* 0.095 8927
+ *          8530       39 0.09s                 on 10
+* 0.095 8530
+ *          8280       86 0.09s                 on 10
+* 0.095 8280
+ *          7815      160 0.09s                 on 10
+* 0.096 7815
+ *          7368      346 0.09s                 on 10
+* 0.098 7368
+ *          7086      788 0.10s                 on 10
+* 0.103 7086
+ ! ----------------------------------------------------------------------------
+ ! Search terminated normally, 6 solutions found.
+ ! Best objective         : 7086 (optimal - effective tol. is 0)
+ ! Number of branches     : 952
+ ! Number of fails        : 478
+ ! Total memory usage     : 7.0 MB (0.6 MB CP Optimizer + 6.4 MB Concert)
+ ! Time spent in solve    : 0.10s (0.01s engine + 0.09s extraction)
+ # Extraction breakdown   : 0.09s concert translation + 0.00s presolve
+ ! Search speed (br. / s) : 79333.3
+ ! ----------------------------------------------------------------------------
+# SOLUTION FOUND
+# OPTIMALITY PROVED
+# BEST SOLUTION: 7086
+# NUMBER OF BRANCHES: 952
+# END TIME: 0.106
+## Solution: 
+10
+55 0
+216 678
+107 1663
+73 2428
+204 2741
+79 3431
+74 3741
+77 3985
+147 4884
+57 6621
+# BEST TD SOLUTION: 7086

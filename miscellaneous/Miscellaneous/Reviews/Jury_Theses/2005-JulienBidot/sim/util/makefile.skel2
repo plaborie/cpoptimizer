@@ -1,0 +1,93 @@
+# ##########################################################################
+# General dependencies
+# ##########################################################################
+
+all: $(LIBS)
+
+redoall: clean $(LIBS)
+
+clean: $(CLEANMAKE)
+realclean: $(REALCLEANMAKE)
+keeplib: $(KEEPLIB)
+
+# the touch commands are needed for SGI
+keeplibunix: 
+	$(DEL) $(BENCHEXE)
+	touch foo.bench
+	$(DEL) *.bench
+	touch $(TMPDIR)foo.$O
+	$(DEL) $(TMPDIR)*.$O
+	touch $(TMPDIR)foo.pure
+	$(DEL) $(TMPDIR)*pure*
+	touch $(TMPDIR)*.out
+	$(DEL) $(TMPDIR)*.out
+
+cleanunix: keeplibunix
+	touch $(TMPDIR)foo.a
+	$(DEL) $(TMPDIR)*.a
+	touch foo.a
+	$(DEL) *.a
+
+realcleanunix: cleanunix
+	touch bench/foo.curr
+	$(DEL) bench/*.curr
+	touch foo.old
+	$(DEL) *.old
+	touch foo.log
+	$(DEL) *.log
+
+keeplibpc:
+	$(DEL) *$E
+	$(DEL) *.bench
+	$(DEL) *.$O
+	$(DEL) *.pch
+	$(DEL) *.out
+	$(DEL) *.pch
+
+cleanpc: keeplibpc
+	$(DEL) *.lib
+
+realcleanpc: cleanpc
+	$(DEL) bench\*.curr
+	$(DEL) *.old
+	$(DEL) *.log
+	$(DEL) *.pfy
+	$(DEL) *.pfy.txt
+
+bench: $(BENCH)
+	-$(COPY) $(LIBS) .
+
+diff: 
+	perl $(SIMDIR)$(SEP)util$(SEP)dircomp.pl -c -d bench $(SIMDIR)$(SEP)refbench
+
+#
+# Creation of the HTML documentation
+#
+# HTMLDOCDIR must be relative to sim/include/ilsim
+HTMLDOCDIR=..$(SEP)..$(SEP)htmldoc
+
+htmldocunix: 
+	cd $(INCDIR)$(SEP)ilsim; \
+	docxx -A -p -g $(DOCXXEXTRAARGS) -d $(HTMLDOCDIR) $(HTMLDOCDIR)$(SEP)fileList.txt
+
+htmldocpc: 
+	cd $(INCDIR)$(SEP)ilsim
+	docxx -A -p -g $(DOCXXEXTRAARGS) -d $(HTMLDOCDIR) $(HTMLDOCDIR)$(SEP)fileList.txt
+
+htmldoc: $(HTMLDOC)
+
+
+checkunix:
+	cd /nfs/solver/scripts; \
+	perl dircomp.pl -fa -c $(PWD)/bench $(PWD)/..$(SEP)..$(SEP)..$(SEP)refbench
+	/nfs/solver/scripts/grepbenches
+
+checkpc:
+	echo "Not Implemented Yet"
+
+check: $(CHECK)
+
+
+# ##########################################################################
+# Sim generated test files for benchmarks
+# ##########################################################################

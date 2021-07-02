@@ -1,0 +1,12 @@
+Recommendation: Reject?
+
+The contribution of the paper is very incremental as it mainly consists of a new selection strategy
+for the pair selection for crossover in an already known memetic algorithm for solving the VRPTW.
+The strategy tries to balance exploration and exploitation.
+
+Although the approaches improves the best known results of many instances of some public benchmark
+(which clearly is a good result), the experimental study in particular the analysis of the
+advantage of the proposed pair selection compared to existing ones is not sufficiently convincing.
+If the base method is already a state-of-the-art method, it is not really surprising that some delta
+on top of it (like here the new selection mechanism), even if it does not represent a significative
+added value can improve the results just because it changes the randomized traversal of the search space.

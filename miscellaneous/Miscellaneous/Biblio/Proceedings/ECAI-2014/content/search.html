@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ECAI &amp; STAIRS 2014 - Search</title>
+    <link rel="stylesheet" type="text/css" href="../media/css/style.css" />
+    <script type="text/javascript" src="../media/js/search.js" charset="utf-8"></script>
+</head>
+<body>
+    <div id="header" class="search">
+        <p id="nav">
+            <a href="../index.html">Home</a>
+            <span>/ Search</span>
+        </p>
+        <form id="search" name="searchform" action="search.html" class="noprint">
+            <input type="text" id="query" name="q" maxlength="128" title="Type one or more words, separated by space." />
+            <input type="submit" id="glass" value="Search" />
+            <br/>
+            <select id="location" name="l">
+                <option value="0">Titles</option>
+                <option value="1">Authors</option>
+                <option value="2">Keywords</option>
+                <option value="3">Abstracts</option>
+                <option value="4" selected="selected" class="default">Everywhere</option>
+            </select>
+            <select id="method" name="m">
+                <option value="0" selected="selected" class="default">Any words</option>
+                <option value="1">All words</option>
+            </select>
+            <select id="size" name="s">
+                <option value="0">Case sensitive</option>
+                <option value="1" selected="selected" class="default">Case insensitive</option>
+            </select>
+            <select id="book" name="b">
+                <option value="0">ECAI 2014</option>
+                <option value="1">STAIRS 2014</option>
+                <option value="2" selected="selected" class="default">Both books</option>
+            </select>
+        </form>
+    </div>
+    <div id="searchcontent">
+    </div>
+</body>
+</html>
+

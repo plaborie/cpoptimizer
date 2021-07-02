@@ -1,0 +1,10 @@
+Recommendation: Reject?
+
+The two proposed methods are interesting and this work clearly worth pursuing.
+
+Still, all three reviewers agree on the weaknesses of the current paper:
+
+- The proposed globally optimal solution to the noiseless case is not novel and is in fact quite trivial.
+
+- The experimental evaluation for assessing the robustness of the approaches is not convincing
+  enough as it is based only on syntactic data and lacks a comparison against existing alternative methods

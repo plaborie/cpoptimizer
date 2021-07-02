@@ -1,0 +1,3 @@
+
+CC = lcc -XF
+LD = lcc -XF

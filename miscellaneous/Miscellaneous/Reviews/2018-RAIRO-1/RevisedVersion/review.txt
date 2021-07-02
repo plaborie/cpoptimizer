@@ -1,0 +1,83 @@
+Recommendation:
+  Acceptable without revision
+  Minor revision
+X Major revision
+  Reject
+  
+__________________________________
+Reviewer Blind Comments to Author
+
+Compared to previously submitted version, the paper has been improved, in particular the description of the CP model is now more clear.
+
+But I think the main issues I highlighted in my original review are still not completely fixed.
+
+1/ Experimental study
+
+First, the conclusions from the experimental study that compares the MIP and the CP model are weak, mostly because the results are based on a relatively small number of instances given that the behavior of both models are in fact quite close to each other (no model clearly dominates the other). Even if the problem instances on are not on the same objective function, I think they could be easily re-used and adapted (not necessarily to compare with their results) so that the experiments are performed on a larger set of instances and up to larger problem sizes (there are problems up to 1000 tasks there).
+
+Some statements are presented as the result of the experiments whereas they can be proved without doing any experiment, for instance on p18, "[for Case 3] it can be conjectured that the line efficiency will decrease and cycle time will increase [compared to Case 1 and 2]". Well this is not a conjecture, this is clearly a property given that Case 3 is more constrained than both Case 1 and Case 2.
+
+The comparison based on the number of constraints in both models is not convincing at all ("However, CP models have more number of constraints than MIP models which is an advantage for CP to converge quickly"). First, the number of constraints is not that different between the two models (usually less than a factor 2) and, most importantly, what matters is not the number of constraints but the nature of these constraints and how they are capable of restricting the variables domain and thus, reduce the search space. For instance I suggest below some alternative formulation of constraints in the MIP model, that would largely inflate the number of constraints in the MIP model (and maybe improve its performance) to a point that exceeds the number of constraints in the CP model and in this case your argument would not hold anymore.
+
+In general the arguments for explaining why in some cases the CP model outperforms the MIP one are not enough justified. I know it is very difficult to explain the different performance of two completely different formulations and resolution approaches. I think that each element of explanation should be carefully assessed based on a large number of instances, otherwise it is better not to mention it. I think it is better to say that one cannot really explain why a given approach is better than another one (given the context, this is acceptable), rather than giving vague and ungrounded explanations.
+
+Compared to the original submission, some explanation is provided on how the additional restrictions (in Table 3 and 4) have been selected. But there is something I do not really understand. You say that the restrictions are added in such a way that the optimal solution to the baseline problem (without restriction) satisfies them so that it is still an optimal solution for the more restricted problems. But then how do you explain that the optimal cycle times are not the same on Tables 5,6 and 7. Shouldn't they all be equal to the optimal cycle time of the baseline problem? Also, is it not the case that there is some bias with this way to generate restriction? The generated instances will all be such that if they do not increase the optimal value of the objective. Is it realistic? Also, the number of restrictions added to the different instances on Tables 3 and 4 seem rather small compared to the instance size.
+
+2/ Description of how CP works
+
+The concern I expressed on the description of how CP in general (and CP Optimizer in particular) works has not been really addressed in this new version. In section 3, p7, you should clearly separate the general notions used in CP (problem definition, constraint propagation, tree search) from the description of how they are exploited in a particular solver (CP Optimizer). In particular: 
+
+The description of the general notions used in CP is difficult to understand. For instance: 
+
+- Title of section 3.1 (Constraint programming methodology): I don't think CP is a methodology. It is more an "approach", or a "technique". The methodology of CP is quite similar to the one of MIP for instance.
+
+- "Furthermore, CP solvers have two fundamentals concepts in general: search tree, propagation and domain reduction.". When reading, I parse 3 concepts in this sentence (search tree + propagation + domain reduction)
+
+- "An algorithm which solves CSP consists of two main situations: variable selection and value selection, when all the constraints are satisfied.". I don't understand.
+
+- "Hence, we obtain a consistent assignment at every iteration of the backtracking". I don't understand. When you backtrack because the current partial assignment is detected inconsistent by constraint propagation you do not have a consistent assignment ...
+
+- Algorithm 1 is really difficult to understand and misleading:
+  * "Generate the set of constraints": what does it mean? In general CP search does not generate any constraint after a decision has been taken to assign a value to a variable ...
+  * "If there is not task for assignent then backtrack": what does it mean ? That there is no more tasks for assignment because all tasks have been assigned and we have found a feasible solution? That some variables have an empty domain (but in this case the backtrack occurred before, during constraint propagation) ?
+  * Step 3 (Feasibility): "If any feasible assignment does not satisfy al least one of the constraints then backtrack". I don't think CP solvers work this way. It is in propagation that infeasibility is detected. There is no Step 3.
+  * "Adjust variables and objective value." You never mentioned objective functions and COP before. I think that you should directly present COP instead of CSP in Definition 1.
+
+- "CP supports only discrete variables, and continuous variables are not supported": Even if CP Optimizer does not support them, some CP framework support continuous variables! 
+
+- "Although CP generally needs more memory usage [than MIP] since each variable is defined as a domain". This is generally wrong. 
+
+The description of the CP Optimizer specific features does not bring much as it is described in the paper.
+
+- "Many search strategies can be used to guide the backtracking for obtaining an assignment: depth first, multi-point, restart and automatic. In this study, since we concentrated on the modeling of AR-ALBP and achieving a solution, automatic search strategy is preferred as default setting in OPL to improve the search performance and to guide the current solution towards the optimal solution". This paragraph is very strange in the middle of the description of the general principles of CP as (1) this is very CP Optimizer centric, and (2) you even do not mentioned before what OPL is. I would clearly separate (maybe in different subsections) the general principles of CP and the specifics of CP Optimizer.
+
+- After the description of the CP Optimizer model in the end of section 4 you write "The above procedure can generate all possible task assignments for relevant data set and compute the objective functions for a given number of stations.". First, I would not call the approach a "procedure" as CP Optimizer if a model&run approach, so you only need to give the declarative formulation of your model, there is not any procedure to run. And if you mean the procedure described in Algorithm 1, it is very far from the actual automatic search of CP Optimizer. Furthermore the search will of course not generate *all* possible task assignments but only (hopefully efficiently) explore the search space to find a good or optimal assignment.
+
+- "Overall, modeling the problem as a constraint programming is simpler due to the practical language of CP script". I would not call the CP language a script as a script suggest a procedural language whereas the language of the CP model (like MIP) is purely declarative.
+
+As a final remark on the presentation of CP, I would suggest to make section 3.1 much less detailed. You could focus on the differences between MIP and CP from a modeling point of view (not restricted to linear constraints, availability of global constraints like the pack constraint you use) and explain in a paragraph the main principles of the search. The main contribution of the article is not the presentation of how CP works. And this would leave more place for the presentation of the models and for the experimental section.
+
+3/ Other comments
+
+In the MIP model, for precedence constraints (Eq. 14) and for linked tasks restrictions (Eq 17), did you try some disaggregated formulations? These formulations are known to be stronger in several contexts (see the "disaggregated time-indexed formulation" for RCPSP). These formulations would boil down to something like:
+- For precedences: sum_{t=1}{t=k} (x_ik - x_jk) >= 0    for (i,j) in P_r, k in 1..|W|
+- For linked tasks restrictions: x_ik = x_jk    for (i,j) in LT, k in 1..|W|
+
+In the MIP model, how exactly is constraint (18) linearized ?
+
+In the CP model in section 4, the solution example "For example an assignment A depended on this CSP ..." does not bring anything as the corresponding problem instance is not given.
+
+In the models (both MIP and CP), the formatting of the text could be made clearer because the first-line indents of the paragraphs (Objective function, Decision variable, Precedence relations, ...) makes it hard to differentiate the different items.
+
+Also, in the models it would be easier to use a convention to distinguish variables from constants. For instance lower cases for variables, upper-cases for constants. Here we have variables "StationNumber" and "c".
+
+________________________________________
+Reviewer Confidential Comments to Editor
+
+I let the editor judge if the article should be rejected or (re)accepted with major revision.
+
+From one side, there is still a very important effort to be made to improve the article:
+1. I'm not even sure if the authors have a good understanding of how CP works. Though it is true that this is not fully required in this type of article (so I suggested them as a possibility to remove this part explaining how CP works in section 3)
+2. The experimental study is still far from being convincing.
+
+From the other side, the idea to compare MIP and CP model on this type of very relevant line balancing problem is interesting and should be encouraged. In fact I would really like to see this kind of article published at some point.

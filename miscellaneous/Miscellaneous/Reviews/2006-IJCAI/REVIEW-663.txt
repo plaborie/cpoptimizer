@@ -1,0 +1,85 @@
+
+Evaluation of work and contribution	1-5: 4
+Significance				1-5: 4
+Originality and novelty 		1-5: 4
+Relevance to the call of papers 	1-5: 4
+Readability and organization 		1-5: 2
+Technical quality 			1-5: 3
+Overall recommendation  		1-5: 4
+Confidence				1-5: 4
+
+--------------------------------------------------------
+Comments to author(s):
+
+The authors present a strongly polynomial algorithm for solving the
+STPP problem with piecewise linear convex preference functions. 
+
+To the best of my knowledge this is the first time a strongly
+polynomial algorithm is proposed for solving this problem. So the
+paper is an important contribution for this type of problem.
+
+The paper has two weaknesses. 
+
+First the readability of the paper could be improved.
+
+The organization of the paper is counter-intuitive. It first recaps
+the definition of STPPs, then jump to the definition of MCCPs and its
+LP formulation, then show that the dual of the MCCPs model can be
+rephrased as a special case of STPPs (with linear costs) and in the
+end, describes how to transform an STPP problem with piecewise linear
+convex preference functions into a STPP with linear costs. A linear
+description of the transformation of the original STPP problem would be
+far more easy to follow: (1) show that an STPP problem with piecewise
+linear convex preference can be cast into an STPP with linear cost (2)
+show that the dual of a STPP with linear cost is an MCCP that is known
+to be strongly polynomial.
+
+In section 3.1, the description of the gadget described on Fig 4
+should come before the one of Fig 3 because it is the one that
+directly maps to the cost function with positive cost described in
+section 3. And, in fact the description of the other gadget should
+be simplified for clear symmetry reasons instead of the awkward
+cut&paste paragraph.
+
+The other weakness is in the claim that a strongly polynomial
+algorithm is clearly better than a (not necessarily strongly)
+polynomial algorithm. Although there is a clear theoretical interest
+in proposing such a strongly polynomial algorithm, it not evident
+(unless shown in an experimental study) that in practice it would
+outperform an LP solver. For example, for the problem of a PERT
+temporal network with earliness/tardiness costs (which is a special
+case of STPP problem with piecewise linear convex preference
+functions), there exist some strongly polynomial algorithms but in
+practice, they do not outperform LP solver implementations.
+
+The space freed by not duplicating the description of each gadget in
+section 3.1 could be used to explain more in detail the incremental
+algorithm in section 5. Indeed, in the current state, the description
+of this algorithm is so sketchy that I would rather leave it for the
+description of future work and remove "Incremental" from the paper
+title.
+
+Minor comment: please avoid using "seconds" as the unit of time, use
+something like "time unit" instead.
+
+
+--------------------------------------------------------
+Confidential comments to PC members:
+
+
+
+--------------------------------------------------------
+Summary of review (to author(s) and PC members):
+
+The authors present a strongly polynomial algorithm for solving the
+STPP problem with piecewise linear convex preference functions. This
+is an original contribution.
+
+The organization of the paper should be revised, as well as the claim
+that the proposed algorithm outperforms other approaches using an LP
+solver until an experimental evaluation has been made.
+
+The description of the incremental algorithm should be improved or the
+paper should be less focused on this aspect.
+
+I think the paper is a good candidate for a poster.

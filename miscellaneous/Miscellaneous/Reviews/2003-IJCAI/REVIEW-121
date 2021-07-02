@@ -1,0 +1,43 @@
+This paper represents a significant amount of work and gives some very
+interesting  results.  Furthermore,   it  is  beautifully  written and
+organized.
+
+Identifying some tractable  fragments  of  the soft-CSP  framework  is
+indeed something very  important. It helps,  of course, to  solve some
+particular problems that can be directly captured by this fragment but
+also, and  this  is certainly  more  useful, it allows  to  solve more
+efficiently some complex problems for which  a suitable relaxation can
+be expressed in the tractable fragment.
+
+I have few comments on the content of the paper (everything is clearly
+described) but on the perspectives  of this work. A section describing
+the issues  and  possible extensions would  indeed be  necessary.  For
+example, what about the problem of recognizing  whether a given binary
+evaluation function is   submodular  or not ?    And, in  case  it  is
+submodular, what about  the complexity of computing  its decomposition
+(or the decomposition of a close  enough submodular function that is a
+lower bound to the original evaluation function)  ?  Are there ways to
+reduce the size of the graph on which the  minimum cut is computed (nb
+variables * size of domains) ? What  about the practical applicability
+of the minimal cut algorithm ? Could part of  the results presented in
+this paper be extended to n-ary soft constraints ?
+
+
+
+
+
+
+
+
+
+
+
+
+The paper  describes   a   maximal tractable  class  of    soft binary
+constraints: the  ones  for which the  evaluation  of each constraints
+corresponds   to a  binary submodular   function.   In this  case, the
+evaluations  functions can  be  expressed  as  a  sum of   generalized
+interval functions and the problem can be solved as a minimum weighted
+cut on a directed graph.  Proofs  of tractability and  of the fact the
+language  is maximally  tractable  are sketched.  several examples are
+provided.

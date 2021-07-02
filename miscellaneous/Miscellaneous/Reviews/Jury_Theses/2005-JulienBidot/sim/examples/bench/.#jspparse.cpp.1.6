@@ -1,0 +1,483 @@
+#include <ilsched/iloscheduler.h>
+#include <strstrea.h>
+
+#include <ilsim/ilcuncactivity.h>
+#include <ilsim/timeeventmanager.h>
+
+
+
+
+
+ILCSTLBEGIN
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PROBLEM DEFINITION DefineModel
+//
+///////////////////////////////////////////////////////////////////////////////
+
+IloModel
+DefineModel(const IloEnv& env,
+            IloInt numberOfJobs,
+            IloInt numberOfResources,        
+            IloInt* resourceNumbers,
+            IloInt* durations,
+            IloNumVar& makespan)
+{
+  IloModel model(env);
+
+  /* CREATE THE MAKESPAN VARIABLE. */
+  IloInt numberOfActivities = numberOfJobs * numberOfResources;
+  IloInt horizon = 0;
+  IloInt k;
+  for (k = 0; k < numberOfActivities; k++)
+    horizon += durations[k];
+  makespan = IloNumVar(env, 0, horizon, ILOINT);
+
+  /* CREATE THE RESOURCES. */
+  IloSchedulerEnv schedEnv(env);
+  schedEnv.getResourceParam().setCapacityEnforcement(IloMediumHigh);
+
+  IloInt j;
+  IloUnaryResource *resources = 
+    new (env) IloUnaryResource[numberOfResources];
+  for (j = 0; j < numberOfResources; j++)
+    resources[j] = IloUnaryResource(env);
+
+  /* CREATE THE ACTIVITIES. */
+  char buffer[128];
+  k = 0;
+  IloInt i;
+  for (i = 0; i < numberOfJobs; i++) {
+    IloActivity previousActivity;
+    for (j = 0; j < numberOfResources; j++) {
+      IloActivity activity(env, durations[k]);
+      sprintf(buffer, "J%ldS%ldR%ld", i, j, resourceNumbers[k]);
+      activity.setName(buffer);
+      
+	  model.add(activity.requires(resources[resourceNumbers[k]]));
+      if (j != 0)
+        model.add(activity.startsAfterEnd(previousActivity));
+      previousActivity = activity;
+      k++;
+    }
+    model.add(previousActivity.endsBefore(makespan));
+  }
+
+  /* RETURN THE MODEL. */
+  return model;
+}
+//end:remod
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// UNCERTAIN ACTIVITIES CREATION UncertainActivitiesCreation
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+UncertainActivitiesCreation(IloEnv env, IlcScheduler scheduler, IloRandom randGenerator)
+{
+// iteration with solution iterator
+	for (IlcActivityIterator ite(scheduler); ite.ok(); ++ite)
+	{
+		IlcActivity act = *ite;
+		IloNum average = act.getProcessingTimeMin();
+		IloNum alpha = 0.2;
+		IloNum stdDev = alpha * average;
+		IloNum min, max;
+		min = IloMax(0,average - 5*alpha*average);
+		max = average + 5*alpha*average;
+		
+
+
+// The env dynamic allocation permits us not to take care of the memory management.
+		IluRandomVariableI* var = new (env) IluNormalVariableI(randGenerator, min, max, average, stdDev); 
+
+
+	/*	cout << act.getName() << " [ " << min;
+		cout << " -- ";
+		cout << max;
+		cout << " ], effective time: " << var->getValue() << endl;*/
+
+// The uncertainty model is here created.
+		DurationUM* uModel = new (env) DurationUM(var);
+
+
+// The activities with imprecise processing times are here created.
+		IlcUncActivity* uncAct = new (env) IlcUncActivity(act, uModel);
+	}
+}
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// SEARCH GOAL IloSolveProblem
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ILCGOAL1(ScheduleActivity, 
+         IlcActivity, activity) {
+  // Get the start var of the activity
+  IlcIntVar startVar = activity.getStartVariable();
+  
+  // earliest start possible
+  IlcInt startMin = startVar.getMin();
+  
+  // either the activity starts at its earliest possible start time, or later
+  return IlcOr(startVar == startMin,
+               startVar > startMin);
+}
+
+ILCGOAL1(SolveProblem, IlcActivitySelectorObject, actSel) {
+  // environment
+  IloSolver solver = getSolver();
+  IlcScheduler scheduler = IlcScheduler(solver);
+  
+  // selecting a non scheduled activity 
+  IlcActivity selected;
+  IlcBool anActivityIsSelected = actSel.select(selected, scheduler);
+  
+  // if not all of them are scheduled,
+  // schedule the activity selected and recursively repeat
+  if (anActivityIsSelected) {
+    return IlcAnd(ScheduleActivity(solver, selected),
+                  SolveProblem(solver, actSel));
+  }
+  
+  // if all of them are scheduled, don't do anything
+  return 0;
+}
+
+ILOCPGOALWRAPPER0(IloSolveProblem, solver) {
+  // Create an activity selector that selects the first
+  // activity with an unbound start variable
+  IlcActivitySelectorObject actSel (
+    !IlcActStartVarBoundPredicate(solver)
+  );
+  // Call the solving goal with this selector
+  return SolveProblem(solver, actSel);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF SOLUTIONS PrintSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintSolution(const IlcScheduler& scheduler)//oSchedulerSolution solution)
+{
+  //IloEnv env = solution.getEnv();
+
+// iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]" << endl;
+  }
+}
+
+
+/*
+void
+PrintSolution(const IloSolver& solver)
+{
+  IlcScheduler scheduler(solver);
+  IloEnv env = solver.getEnv();
+  for(IloIterator<IloActivity> ite(env); ite.ok(); ++ite)
+    solver.out() << scheduler.getActivity(*ite) << endl;
+}*/
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF UNCERTAIN SOLUTIONS PrintUncSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintUncSolution(const IlcScheduler& scheduler)//oSchedulerSolution solution)
+{
+  //IloEnv env = solution.getEnv();
+
+// iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]";
+	if (activity.getObject() != 0)
+	{
+		IlcUncActivity* uncAct = (IlcUncActivity*)activity.getObject();
+		DurationUM* durUM = uncAct->getUncModel();
+		IluNormalVariableI* randVar= (IluNormalVariableI*)durUM->getRandDurationVar();
+		IloNum min, max, std;
+		min = randVar->getMin();
+		max = randVar->getMax();
+	//	ave = randVar->getAverage();
+		std = randVar->getStandardDev();
+
+		cout << " : proc. time between " << min << " and " << max << " and stand. dev. of " << std;
+	}
+	cout << endl;
+  }
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PARAMETERS INITIALISATION InitParameters
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+void
+InitParameters(int argc,
+	       char** argv, IloEnv env,
+	       IloInt& numberOfJobs,
+	       IloInt& numberOfResources,		    
+	       IloInt*& resourceNumbers,
+	       IloInt*& durations)
+{
+  char* filename = argv[1];
+  ifstream file(filename);
+  int lineLimit = 1024;
+  char buffer[1024];
+
+  file.getline(buffer, lineLimit);
+  istrstream line(buffer, strlen(buffer));
+  line >> numberOfJobs;
+  line >> numberOfResources;
+
+  resourceNumbers = new (env) IloInt[numberOfJobs * numberOfResources];
+  durations = new (env) IloInt[numberOfJobs * numberOfResources];
+
+  IloInt k = 0;
+  for (IloInt i = 0; i < numberOfJobs; i++) {
+    file.getline(buffer, lineLimit);
+    istrstream jobline(buffer, strlen(buffer));
+
+    for (IloInt j = 0; j < numberOfResources; j++) {
+      jobline >> resourceNumbers[k];
+      jobline >> durations[k];
+      k++;
+    }
+  }
+}
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// MAIN FUNCTION
+//
+///////////////////////////////////////////////////////////////////////////////
+
+int main(int argc, char** argv)
+{
+	try {
+		IluNormalVariableI::Init(); // Only one normal probability distribution is initialized and it is then transformed.
+		IloInt numberOfJobs = 0;
+		IloInt numberOfResources = 0;
+		IloInt* resourceNumbers = 0;
+		IloInt* durations = 0;
+
+		IloEnv env;  // Environment creation
+
+		InitParameters(argc,
+						argv,
+						env,
+						numberOfJobs,
+						numberOfResources,
+						resourceNumbers,
+						durations);
+
+		IloNumVar makespan;
+
+// Model creation
+		IloModel model = DefineModel(env,
+									numberOfJobs,
+									numberOfResources,
+									resourceNumbers,
+									durations,
+									makespan);
+
+		model.add(IloMinimize(env,makespan));
+
+// Solver creation
+		IloSolver solver(model);
+
+		IloGoal rankGoal = IloRankForward(env,
+										makespan,
+										IloSelResMinGlobalSlack,
+										IloSelFirstRCMinStartMax); // This goal picks a resource with minimum global slack
+																   // and then, from that resource, picks a resource constraint
+																   // with minimum start min that can execute first among the
+																   // non-ranked resource constraints.
+		
+		IloGoal setTimesGoal = IloSolveProblem(env);
+
+		solver.startNewSearch(rankGoal);
+
+		if(solver.next()) {
+			//solver.out() << "Solution for makespan" << solver.getValue(makespan) << endl << endl;
+			IlcScheduler scheduler(solver);
+			PrintSolution(scheduler);
+			solver.out() << endl << "The makespan " << solver.getValue(makespan) << " is our first reference." << endl << endl;
+		//	PrintSolution(solver);
+		
+
+
+			env.out() << endl << " Interface with the simulator:" << endl << endl;
+
+// Random generator creation
+		IloRandom randomGenerator = IloRandom(env);
+			
+			
+// Uncertain activities creation
+		UncertainActivitiesCreation(env, scheduler, randomGenerator);
+
+// Uncertain activities caracteristics printing
+		PrintUncSolution(scheduler);
+/*				
+// simulator creation
+		Simulator* sim = new (env) Simulator();
+
+
+// time event manager creation
+		cout << "Time event manager creation" << endl << endl;
+		TimeEventManager tEMgr(sim);
+
+
+		IloInt currentTime = 0;
+		const int nbActivities = numberOfJobs*numberOfResources; // nbActivities will be defined at the execution.
+
+
+
+
+// controllable event list creation (given by the controller)
+		cout << "Controllable event list creation" << endl << endl;
+
+		ActStartEvent** eventArray;
+		eventArray = new (env) ActStartEvent* [nbActivities];
+
+		
+// event selection
+			IloInt index = 0;
+			for(IlcResourceIterator rIte(scheduler) ; rIte.ok() ;  ++rIte) {
+				IlcResource resource = *rIte;s
+				for(IlcResourceConstraintIterator rCIte(resource) ; rCIte.ok() ; ++rCIte) {
+					IlcResourceConstraint resourceConstraint = *rCIte;
+					IlcActivity activity = resourceConstraint.getActivity();
+					if(activity.getStartMin() >= currentTime) {
+						activity.setStartTime(currentTime);
+						eventArray[index] = new ActStartEvent(currentTime, scheduler.getExtractable(activity));
+						index++;
+						break;
+					}
+				}
+			}
+
+			for(IlcActivityIterator aIte(scheduler) ; aIte.ok() ;  ++aIte) {
+				IlcActivity activity = *aIte;
+				eventArray[index] = new ActStartEvent();
+				eventArray[index]->setTime(activity.getStartMin());
+				index++;
+			}
+
+
+
+			tEMgr.addEvents((Event**)eventArray, nbActivities);
+
+
+			while(tEMgr.executableEvents())
+				tEMgr.executeNext();*/
+
+
+
+
+
+
+
+		} else {
+			solver.out() << " Failure for makespan " << solver.getMax(makespan) << endl;
+		}
+
+		IluNormalVariableI::End(); // The normal distribution is here erased.
+
+		env.out() << endl;
+		//solver.printInformation();
+
+
+
+
+		solver.end();
+		env.end();
+	} catch(IloException& exc) {
+		cout << exc << endl;
+	}
+
+	return 0;
+}

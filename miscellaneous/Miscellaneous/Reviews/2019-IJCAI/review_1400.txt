@@ -1,0 +1,101 @@
+Title: Generalized Visual Fog Scheduling
+
+Review
+Relevance [1-10] 6
+Is the paper fully within the scope of the conference? Will the questions and results of the paper be of interest to researchers in the field?
+ 
+Significance [1-10] 6
+Is this a significant advance in the state of the art? Is this a paper that people are likely to read and cite? Does the paper address an important problem? Does it open new research directions? Is it a paper that is likely to have a lasting impact?
+
+Originality [1-10] 7
+Reviewers should recognise and reward papers that propose genuinely new ideas. As a reviewer you should try to assess whether the ideas are truly new. Novel combinations, adaptations or extensions of existing ideas are also valuable.
+
+Technical Quality [1-10] 5
+Are the results technically sound? Are there obvious flaws in the conceptual approach? Are claims well-supported by theoretical analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach?
+
+Clarity and quality of writing [1-10] 3
+Is the paper clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? It may be better to advise the authors to revise a paper and submit to a later conference, than to accept and publish a poorly-written version. However, if the paper is likely to be accepted, please make suggestions to improve the clarity of the paper, and provide details of typos.
+
+Scholarship [1-10] 6
+Does the paper situate the work with respect to the state of the art? Are relevant papers cited, discussed, and compared to the presented work?
+
+Overall Score [1-10] 4
+10- This is best-paper material. 
+9- An excellent paper, a very strong accept. 
+8-A very good paper, a strong accept 
+7-A good paper, accept. 
+6-A good paper overall. I vote for acceptance, although would not be upset if it were rejected because of the low acceptance rate. 
+5-Decent paper, but may be below the IJCAI threshold. I tend to vote for rejecting it, although would not be upset if it were accepted. 
+4-I vote for rejecting it, but could be persuaded otherwise. 
+3-A weak paper, just not good enough. 
+2-A clear rejection. I vote and argue for rejection. Clearly below the standards of the conference. 
+1-A very strong rejection. I will actively fight for rejection.
+
+Confidence on your assessment [1-10] 6
+10-My own current research is on the topic of the paper, 
+9-I have undertaken research on the topic of the paper, 
+8-I am an expert in this area, 
+7-I have up-to-date knowledge in the area, 
+6-I don't have complete knowledge of the area, but can assess the value of the work, 
+5-I have a general understanding of the area, 
+4-My assessment is an informed guess, 
+3-My knowledge in the area is limited, 
+2-My knowledge in the area is very limited, 
+1-My assessment can be wrong
+
+Comments to Authors.
+Make sure you substantiate all the scores for the different criteria above. Give informative content. Be constructive. Write your comments in the same way you would like to receive comments on your own papers.
+
+
+The article is an extension of a AAAI-2018 paper on the problem of scheduling a set of tasks on a set of devices in the context of the analysis of video streams (visual fog scheduling). Whereas the AAAI-2018 paper was focused on the static version of the problem (where both the device connectivity and the dependence between tasks is fixed), the present paper deals with the dynamic version of the problem where these graphs can evolve (addition/removal of tasks and devices, change of connectivity in the graphs).
+
+After a description of the problem (section 2), resolution approaches are proposed in section 3. While section 3.1 describes the MIP approach used to solve the static version of the problem (this is a similar content as in the AAAI-2018 paper), section 3.2 describes an approach unsin LP for the dynamic version.
+
+In general, the problem and the resolution approaches are interesting and the work described seems to be quite original and  significant. But the paper is very difficult to read and understand. Some of these difficulties are listed at the end of this review but I think that the main problem is that you try to put too much detail and information for a 6-page long paper. I admit that, given the complexity of the problem, summarizing the contribution in such a short paper is very difficult. Maybe you should only focus on the minimal number of concepts that permits to understand the main ideas of the approach for solving the D-VFC. Or maybe the content would better fit in a journal article that could be longer (in the domain of Math. Programming, or in the domain of the application). 
+
+Detailed comments:
+
+p1, col1, section 1: "It is forecasted that that the amount of data generated by video surveillance cameras installed globally will be more than 859 petabytes per day by 2017". Well, in 2019, this is not a forecast any more.
+
+p1, col2, section 2: "by formalizing the scheduling problem VFC and the online scheduling problem D-VFC". I did not find the definition of the acronym 'VFC' in the article. This is a bit frustrating ...
+
+p2, col1: when introduing the graphs G_D, you should make it clear right at the begining that you consider 'directed' graphs. And also you should better speak of 'arcs' rather than 'edges'. 'Arc' better convey the 'directed' aspect of the graph.
+
+p2, col1: actually when introducing both graphs G_D and G_J, and the mappings and solutions, a figure would help.
+
+p2, col1: in the task graphs, jobs are restricted to be a sequence of tasks. Is it not restrictive with respect to the application. What about jobs that would consist of (potentially parallel) tasks followed by some aggregation task so that the graph of the job would be a tree. Or even more general job directed-acyclic graphs? What would be the impact on the proposed approach?
+
+p2, col1: "Then the collection of VFC instances ...": Why do you mention a collection of instances here? Do you mean one instance pert time point t ?
+
+p3, col1: I suppose the notation [[x=y]] means a value 1 id x=y and 0 otherwise. I'm not sure the notation you are using is very universal. It would be good to explain this notation.
+
+p3, col1: "where Eq. 8 implies ...": the implication is not clear. Is it because when 2 consecutive tasks are mapped to the same device, then f(e) is the empty set?
+
+p3, col1, section 2.2: the notations are very confusing: sometimes you use G_t, sometimes G^[t]. Is there a reason for these 2 different notations?
+
+p3, col2, section 3.1: the begining of this section with the definition of the reverse schedule h^[t] is quite confusing and furthermore, the notion of reverse schedule h^[t] is not used very much in the sequel of the paper. Do you really need to introduce this concept. I'm asking because even without understanding this concept in detail, the definition of the variables x in equation (18) is quite clear.
+
+p4, col1, "The ordering constraint": when defining I, the property is written in a very weird way. From my undertanding, (e_1+ < e_2+) <=> (e_1- < e_2-) is always true, so the left part of the implication is always true and that would mean that I(e_1) <= I(e_2) is always true. That does not make any sense of course. I suppose that you want to remove the part "<=> (e_1- < e_2-)" ...
+
+p4, col2, section 3.2: I think that you should first give an overview of your approach for solving the dynamic version. In the introduction of the approach you mention the LP approximation but it is not clear if the problem is solved "only" using this LP. Furthermore this statement is not clear: "The algorithm, theoretically, reduces the computation time from exponential using ILP to polynomial using LP, which are verified empirically through our ample experiments." It is unclear whether the experiments show that the complexity is indeed reduced and/or if the LP approximation allows to produce good quality solutions. And I must admit that the experimental section is very unclear too and does not help clarifying it.
+
+p4, col2, "Problem Formulation": I did not get the formulation. In particular because of these "=" signs ...
+
+p6, col1, section 4.1: could you explain the experimental setup in terms of the application (topology of the networks, addition/removal of tasks/devices) and not in terms of ^x_m? As you are only mentioning the ^x_m, does it mean that you only consider the addition of devices and/or tasks in the dynamic version? I must admit that I do not understand the experimental setup at all.
+
+Confidential Comments (Not visible to the authors)
+
+Metareview
+
+Summary of the strong and weak points of the paper. This text should justify your recommendation to the Area Chair about acceptance or rejection of the paper but do not mention anything about acceptance or rejection in the metareview as this text will be read by authors and the final decision on acceptance and rejection will be taken later in the process. Explain the impact of the rebuttal and the discussions and preserve the anonymity of the process.
+
+Recommendation
+Suggest Accept, Borderline or Reject to the Area Chair. 
+You may select Undecided if the discussion is still going on, and Special Case if this is a special case that needs attention of the area chair, such as an inconclusive discussion.
+
+
+
+FROM AAAI-2019 (very similar paper rejected (weak reject))
+
+While the reviewers agree that the problem is relevant and there are some interesting ideas in the paper, after having discussed their reviews and the rebuttal, they all think that the paper still needs more work to reach the level required for a AAAI publication. In particular, the paper should be made easier to follow and the significance of the empirical results should be clarified.
+            

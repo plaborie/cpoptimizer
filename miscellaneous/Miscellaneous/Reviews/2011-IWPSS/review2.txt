@@ -1,0 +1,18 @@
+Title: Multi-Objective Scheduling for the Cluster II Constellation
+Author(s): Mark D. Johnston and Mark Giuliano
+
+Recommendation: Accept
+
+The paper describes a multi-objective scheduling application for the Cluster II constellation. It clearly fits well the workshop topics.
+
+It is a quite complete overview of the application including the architecture, user interaction, scheduling and visualization aspects. In spite of this high level, the paper gives a fairly precise description of the application and of what is going on inside.
+
+Still, the section on the representation of the scheduling problem could give more details in particular about the encoding that is used for the dates at which opportunities are scheduled. You say that the minimum timing for the opportunity is used: does it mean there is no actual decisions on the dates in case there are windows of flexibility? Is it not in contradiction with some preferences (collision, spacing) being directly related with time?
+
+The user interface seems efficient to analyze the possible compromises in the solution space, particularly the notion of "brushed" histograms that looks quite appealing in the context of multi-objective optimization. As the application has been utilized for some time now, it would be interesting to have the users feedback on this type of visualization.
+
+Minor remarks:
+- in the text, the reference number for figures is often wrong.
+- p5, col2: opportunties
+- p7, col1: objecive
+

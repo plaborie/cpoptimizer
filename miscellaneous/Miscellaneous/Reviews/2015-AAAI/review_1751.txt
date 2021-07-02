@@ -1,0 +1,295 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1991608::954233"
+        submission="1751"
+        title="Solving Temporal Planning With Required Concurrency Using Classical Planning"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  --> 6
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  --> 7
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  --> 6
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  --> 7
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  --> 1
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  --> 2
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  --> 3
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  --> 6
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+The main contribution of the paper is an encoding of temporal planning problems into classical planning. Two encodings are proposed in fact:
+1- An encoding for general temporal planning problems (plus a small extension of state representation to handle temporal constraint in the form of a STN).
+2- An extension of the above encoding in the case where required concurrency is only due to single hard envelopes. In these case some completeness results are provided.
+
+I think the paper advances the state-of-the-art in the domain of temporal planning compilation into classical planning. 
+
+The paper is generally well written but a few points would deserve some clarifications:
+
+1. The second reason for incompleteness of the general encoding (p4, top of column 1) is not clear: "the fact that the planner only tracks the state on fluents, potentially causing lifted temporal states to be incorrectly pruned. Since the state on fluents does not include the STN, the planner may decide not to open a lifted temporal state that would have led to a solution". I understand that the absence of STN may lead to a weaker pruning of the nodes (and thus potentially to an unsound search) but why is it related with incompleteness ? May be a small example would help.
+
+2. More generally, you present the approach as being an implementation of the TEMPO algorithm but as suggested by the (in)completeness results it is clear that the two approaches are different. I understand that the underlying idea under the present paper is that as much as possible of the temporal aspects of the TEMPO algorithm should be delegated to a classical planner through action compilation and this may go with sacrificing completeness in some cases. But I would not call it an "implementation" of the TEMPO algorithm.
+
+3. In the section about the compilation of single hard envelopes, you mention that the approach is incomplete in the general case. You show that the approach is sound and complete in special cases. But what about soundness in the general case? 
+
+4. In the experimental section, the difference between solvers TP and TP' is not clear enough as TP also use compilation of single hard envelopes. Does TP use TP' ? What does TP' for problems that do not have single hard envelopes ? Also, on Table 1, the "accumulated makespan" is nor defined. I suppose it is the sum of the solutions makespan but then this measure can be used only to compare two planners that are able to solve the same instances and this is an information we cannot get from the table. I suggest you at least give on the table the total number of instances of each domain so that one can compare the solution quality at least for the solvers that sole all the instances of a given domain.
+
+The approach compiling single hard envelopes seems very specific and fragile. I understand it can be ok on the IPC competition benchmarks but I have some doubts about its robustness in general. First, it is expected to work well (and be complete, and probably also sound) only in case of single hard envelopes but also the number of fluents grows (quadratically) with the duration of the actions. But it is probably, indeed, a good strategy to use opportunistically when it turns out a problem falls in this category.
+
+A small remark on the propagation of the STN during the search. I think you can do it much faster than running a Floyd-Warshall algorithm because you are not interested in maintaining the delays on all pairs but only in checking the consistency of the network (no negative cycle). See for example [1] for an easy to implement incremental algorithm.
+
+[1] Cesta, A. & Oddi, A. Gaining efficiency and flexibility in the simple temporal problem Proc. TIME-96, 1996
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

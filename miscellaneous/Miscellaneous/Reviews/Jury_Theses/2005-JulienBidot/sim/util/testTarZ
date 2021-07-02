@@ -1,0 +1,15 @@
+#!/bin/sh
+# ------------------------------------------------------------
+# To build, launch and remove all the exeamples one by one
+# ------------------------------------------------------------
+
+j=.
+
+for i in `ls ../../src/*.cpp`
+do
+	j=`basename $i .cpp`
+	make $j
+	./$j
+	rm -f $j
+	rm -f $j.o
+done

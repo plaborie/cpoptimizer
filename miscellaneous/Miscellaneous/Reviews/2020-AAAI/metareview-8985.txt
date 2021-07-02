@@ -1,0 +1,5 @@
+Recommendation: Reject
+
+The description of the proposed method is not clear.
+Furthermore it is only tested on one tiny 9x9 instance which, given its size,
+is I guess trivially solved by existing state-of-the-art exact algorithms.

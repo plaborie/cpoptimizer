@@ -1,0 +1,77 @@
+Title: Encoding Domain Transitions for Constraint-Based Planning
+Author(s): Nina Ghanbari Ghooshchi, Majid Namazi, M.A. Hakim Newton and Abdul Sattar
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[ ] Accept with minor revisions
+[X] Reject with resubmission encouraged
+[ ] Reject
+
+
+Comments and suggestions
+========================
+
+The article describes an encoding of classical planning problems into a CSP. In the proposed encoding the only variables are the values of state variables. The preconditions and effects of actions are compiled into table constraints describing the compatibility/incompatibility between state variables values in a transition. The approach was implemented using a classical CSP system (Minion) and evaluated against both other CSP based encoding and some state-of-the-art planners.
+
+The article is clearly written with a good balance between general description of encoding principles and illustration on several examples. To the best of my knowledge, the proposed encoding approach is original. 
+
+The proposed encoding is attractive because it completely rules out the actions from the CSP model: it only deals with state variables and their possible values. In a sense, it results in a more "homogeneous" CSP compared with encodings that refer to both state variables and actions. Maybe that can explain (at a very high level) why the proposed encoding behaves better as, in general, CSP engines tend to be more efficient at solving "homogeneous" problems.
+
+I think there are two issues that should be fixed/clarified before the article can be accepted.
+
+1. Feasibility of decoding
+
+Completely ruling out the actions from the CSP model seems to be a good idea but on condition that a feasible solution to the CSP can always be decoded into an action plan. Stated otherwise, it relies on the fact that the set of negative constraints is "complete" and captures all the possible incompatibilities between actions. This condition is never clearly stated in the paper. If it is clear that the 6 conditions enumerated in section 4.3.2 are sufficient conditions for two actions to be inconsistent, it does not say that this set of conditions is necessary. If that was already proved by Bartak&al or other authors, then you should provide a reference to this result. Otherwise you should provide a proof.
+
+In fact the decoding step is not described in the article and I think it would deserve more attention.
+
+2. Experimental results
+
+Experimental results seem to suggest that the proposed TCPP encoding outperforms PaP-R but you do not provide any analyze of the *reasons* why it is so. Furthermore, as illustrated on Fig 15, the comparison between TCPP and PaP-R highly depends on the CSP solver configuration (variable selection heuristics, propagation level) as for instance with "shortest domain first" and "generalized arc-consistency", the proposed encoding seems to be worse than PaP-R. It would really be useful to provide some explanations for this. 
+
+A possible way to go could be to take particular problem instances and see what are the decisions/propagations occurring during the CSP search in the different encodings in order to explain why some heuristics/inferences are better in one encoding or the other. You could start answering some questions like:
+- why "shortest domain first+generalized arc-consistency" seems to be the worse configuration for both TCPP and PaP-R: does it really do something bad when translated into the original planning problem?
+- why is PaP-R performing so well on Airport problems compared to TCPP, what is the characteristic of the Airport problem that explains it ? 
+- similar question for Block's World for TCPP ...
+
+In the experimental section, the part on "plan length comparison" is, from my point of view, not very useful because except for Symba2, the other planners do not explicitly try to minimize plan length so any impact on plan length is purely incidental (unless shown otherwise but again, this would mean digging into the details of the resolution of the CSP to find some explanation).
+
+
+Some more detailed comments
+----------------------------
+
+- In the introduction a couple of sentences are not clear:
+* "Two possible ... and thus might improve variable and value choices during search": without more context, it is difficult to understand what is the "solution depth" and the "long and entangled chains"
+* "In this paper we investigate the second direction ...": what are the 1st and 2nd directions here?
+
+- In the review of the state of the art in the introduction, you do not mention the POCL planners that also use some Constraint Programming techniques (like CPT [1]). Or do you focus here only on using CSP techniques (so table constraints only) as opposed to CP in general?
+
+[1] V. Vidal and H. Geffner, 2006. Branching and pruning: An optimal temporal POCL planner based on constraint programming. Artificial Intelligence 170(3):298–335.
+
+- On the same line, you say in section 2.4 that "Constraint satisfaction techniques are first applied to AI planning in (van Beek & Chen, 1999). Constraint satisfaction techniques were used in planning earlier than that and in an domain-independent automated planners, see for instance [2].
+
+[2] M. Ghallab and H. Laruelle, 1994. Representation and Control in IxTeT, a Temporal Planner. In AIPS, 61–67.
+
+- In the section on "preliminary knowledge" or even earlier in the introduction, you should make it explicitly clear that the described approach is restricted to "classical planning". Your references to the PDDL language may suggest that your encoding is able to handle the complete PDDL language which is clearly not the case.
+
+- On Fig 3, it is not clear what is the meaning of the numbers (example 2:) on the edges.
+
+Typos:
+------
+
+p3, section 1: "Secion 3 ..."
+
+p9, section 2.3: "... in our model contain don't care values ...". I would suggest to use some typographical effect (e.g. italicize) the "don't care" in all occurrences in the article for slightly easier reading. Also when you first introduce this value here, it would be nice to say a bit more about its exact semantics.
+
+p 31, aknowledgements: "... We are garteful ..."
+
+Summary:
+--------
+
+The article is clearly written. The proposed encoding is original and attractive. I think the article should be resubmitted by addressing two issues:
+1- A more detailed description of the decoding step and in particular a proof that it is feasible
+2- An experimental evaluation that *explains* (and not only *notice*) the advantages of the proposed encoding
+

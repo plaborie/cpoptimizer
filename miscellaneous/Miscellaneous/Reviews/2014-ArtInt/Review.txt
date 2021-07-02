@@ -1,0 +1,118 @@
+AIJ Review Form
+===============
+
+Part A
+------
+
+Please answer the following questions "yes/no" and provide appropriate justification as appropriate.
+
+CONTENT
+                             
+Is the paper technically sound? No
+
+The article seems to suggest that the approach is complete so that if the problem is feasible, the proposed algorithm will solve it in a number of trial that can be upper bounded. This is presented as an argument in favor of the proposed method compared with other approaches like meta-heuristics. But, according to my understanding of the proposed method, I don't think it is complete because in spite of the random selection to break ties, there is always the possibility that ties will be broken in the "wrong way" so one cannot give guarantees that for a particular instance P, there is a time bound tmax(P) for the time required to find a solution. For every value of t, there is a non null probability that instance P won't be solved at time t. In that sense, I think the proposed approach satisfies a weaker property which is probabilistic approximate completeness. But this property is also satisfied by most of the other meta-heuristics.
+
+The definition of "Complete and Repair" methods is not clear at all. It is presented as a set of complete algorithms to solve the problem that work on iterative improvement of a non-feasible solution and it is argued that they require exponential space. But then I really do not see why SWO is classified as a "Complete and Repair" method later in the introduction. For sure its principle is to perform iterative improvement over non-feasible solutions but it neither requires exponential space nor it is a complete method. Furthermore, most of the methods classified as incomplete meta-heuristics (like Local Search or GAs) also work iteratively by improving one (or a set of) non-feasible solutions. Also, in the empirical study, SA is mentioned as being a "Complete and Repair" method, but I don't think it can be considered as complete. 
+
+Is the work described original? Partially
+
+From my understanding of the approach, I think it mostly consists in a particular implementation of SWO where the priority information is stored and updated using two values (f1 and f2) instead of a single one. Furthermore, using randomness to break ties and avoid cyclic deterministic behaviors is something very common in meta-heuristics. The main originality is how the priorities f1 and f2 are updated.
+
+Does it show sufficient applicability to AI? Yes
+
+The application belongs to the field of scheduling and the proposed approach is a meta-heuristic so both the problem and the approach can claim being part of AI. This being said, the scheduling problem is very basic (which of course does not mean it is easy to solve) and has also been studied by the scheduling community in the Operations Research domain (one-machine scheduling problem with release dates and deadlines). 
+
+Does it place new results in appropriate context with earlier work? No
+
+The paper mentions very relevant alternative approaches to solve the same problem (in particular SA,TS,SWO) but it does not satisfactorily compare with these methods. Meta-heuristics, as their name says it, work on top of heuristics, and for a particular problems, there are tons of heuristics that can be used and several variants of each type of meta-heuristic so this gives so many possible implementations that some general statement like "SA is a slow technique, ACO techniques have the stagnation problem, and GA has the premature convergence problem" is not really meaningful. In the experimental section, the proposed approached is compared against SA, TS, SWO and DFS but nothing is said about how these methods were implemented, for instance which heuristic was used to select the next variable in DFS ? How priorities are updated in SWO ? On what kind of representation is the TS working? how is the Tabu list maintained ? etc ... These choices have a huge impact on the performances so without more details on the implementation of these alternative approaches, the experimental study if not very informative.
+
+Is the paper sufficiently novel? (A paper is novel if the results it describes 
+were not previously published by other authors, and were not previously published 
+by the same authors in any archival journal.) Yes
+
+Is the paper complete? (Generally, a paper is complete if it includes all relevant proofs 
+and/or experimental data, a thorough  discussion of connections with the existing literature, 
+and a convincing discussion of the motivations and implications of the presented work.) No
+
+As discussed above, I think the characterization of the proposed approach and its comparison with existing ones needs to be improved. 
+
+Concerning the experimental evaluation, the other approaches are not described in enough details so it is not really possible to assess the performance of the proposed approach. The only alternative approach that is described in detail is the comparison with IBM ILOG CP Optimizer (I suppose this is the tool the authors mean when they mention IBM ILOG solver). But it is a pity that (1) the authors use a 4-years old version of this tool (current version is 12.6 and I guess it has been much improved since then) and (2) it is not true that CP Optimizer does not allow modeling satisfiability problems (the optimization criterion is not mandatory), in fact the model described in appendix C is much too complex, the following model should do it I think (with a parameter setting to increase inference on the noOverlap constraint and, optionally a parameter to use a simple "DepthFirst" search that may be more simple to interpret than the full fledge automatic search):
+
+using CP;
+int n = ...;
+int r[1..n] = ...;
+int c[1..n] = ...;
+int d[1..n] = ...;
+execute {
+  cp.param.NoOverlapInferenceLevel="Extended";
+  // cp.param.SearchType = "DepthFirst";
+}
+dvar interval x[a in 1..n] in r[a]..d[a] size c[a];
+constraints {
+  noOverlap(x);
+}
+
+It would be good to provide the set of instances used in the paper. Also, it is surprising that the size of the problems are rather small (at most 100 jobs). Is it really a typical size for the real application?
+
+Does anything need to be added or deleted?
+
+Is the result important enough to warrant publication? No
+
+Accessibility
+--
+Is the paper accessible to the broad readers of AIJ? Yes
+
+Specifically:
+
+Is the problem addressed in the paper, described in an accessible manner to readers of the journal? Yes
+
+Is it possible for an AI researcher, outside the specific area,  to assess its relevance to  AI in general and  to their own research area, in particular? Yes
+
+Is enough background given (e.g., prior work, preliminaries, methodology) so an AI researcher outside the specific area can  appreciate the paper's contribution? No
+
+The proposed approach is not clearly positioned with respect to existing approaches. There are some claims of completeness which I think are not correct.
+
+----
+
+FORM
+                                                         
+Does the abstract adequately reflect the contents? Yes
+
+Does it contain adequate references to previous work? Yes
+
+It contains adequate references to previous work but the positioning with respect to these works is not clear. Also, when other work is used like in the experimental section, some more details should be given about the heuristics that were implemented.
+
+Does it explain clearly what was done that is new? No
+
+From my understanding, the proposed approach is a variant of SWO. It would be necessary to explain in which extent the proposed approach cannot be considered as a particular way to update the priorities in the SWO meta-heuristic.
+
+Does it clearly indicate why this work is important? Yes
+
+Is the English satisfactory? Yes
+
+Is the presentation otherwise satisfactory? Yes
+
+Are there an appropriate number of figures? Yes
+
+Do the figures help clarify the concepts in the paper? Not always
+
+Some figures are not very clear as Figure 1 (algorithm) or Table 2, see below.
+
+Part B: DETAILED COMMENTS
+-------------------------
+
+Additional comments:
+
+In the title and in the article, the term "timing constraints" is not commonly used in scheduling. Why don't you refer to the more usual scheduling concepts of "release date" and "deadline" ? You could also give the classical alpha|beta|gamma description of the problem, here a one-machine scheduling problem with release dates and deadlines, so "1|ri,di|". 
+
+In the abstract, "current backtracking algorithms" are described as systematical traversal from left to right of the DFS spanning tree. This is extremely reductive. There has been extensive work for providing other types of traversal of a search tree. Some are mentioned in the introduction but other important ones, like the different variants or Limited Discrepancy Search, are completely left aside. Furthermore, it is far from being clear how the proposed method relates with "backtracks" in general. Backtrack is usually related with a search tree and one explicitly backtrack to a particular state visited earlier. Here the method is purely iterative and there is not any stack containing information to restore a particular state one would backtrack to, so it is unclear in which sense the algorithm backtracks. The pseudo-code on Figure 1 does not help: 
+- what is the condition in the while loop at line 28 ? 
+- how is start[Current] updated in the algorithm ? 
+- how is the "mark" used ? 
+- the description mentions a Do while loop starting at 06 and ending at 26 but there are no loop ending at 26. 
+Even the running example in section 3.5 does not really help understanding the algorithm. For instance, it seems that trial 1 schedules the jobs in the order A,B,C,D,E,F,G and indeed, when arriving at D it lead to a conflict. Then in trial 2, D has been prioritized and I would expect the trial to schedule the jobs in the order D,B,C,F,E,A,G but then why this trial fails at B? It seems to me it should fail later.
+
+The experimental protocol in section 4.4 for comparing the proposed approach with the IBM optimization tool (CP Optimizer) is really weird. It consists in selecting a subset of instances where CP Optimizer is not good (selection based on the fact it takes more than 2s to solve) and then, compare with the proposed approaches only on those instances ...
+
+As mentioned earlier, I think Theorem 5.2 does not prove the completeness of the approach but a weaker property which is probabilistic approximate completeness, in that for an instance P and a time limit t(P) large enough, the approach "is able" to produce a feasible solution within t(P) but even for a large enough t(P) one cannot guarantee that it "will" find it. And  probabilistic approximate completeness is not a very difficult property to ensure for any meta-heuristics. For instance here, an approach that just randomly shuffles the order of jobs at every trial and tries to schedule them in this shuffled order will have this property. Indeed as the number of permutations of the jobs if finite, if the problem is feasible, the probability that a feasible order was not visited tends to 0 when t(P)->\infty.
+

@@ -1,0 +1,195 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="2066893::1027548"
+        submission="73"
+        title="Automated Planning and Music Composition: an Efficient Approach for Generating Musical Structures"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="252153" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 strong accept
+  == 2 accept
+  == 1 weak accept
+  == 0 borderline paper
+  == -1 weak reject
+  == -2 reject
+  == -3 strong reject
+  -->
+  -2
+  
+</score>
+<score id="252154" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 (expert)
+  == 4 (high)
+  == 3 (medium)
+  == 2 (low)
+  == 1 (none)
+  -->
+  4
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="266650" name="(Applications track ONLY) Importance (economic, societal, etc) of the application problem being addressed.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications track paper)
+  == 4 very important
+  == 3 moderate
+  == 2 marginal
+  == 1 unimportant
+  -->
+  3
+  
+</score>
+<score id="267402" name="(Applications track ONLY) Novelty of the application and technical approach to the application.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications track paper)
+  == 4 very novel - approach and/or application are new
+  == 3 moderate - application or approach is significantly different
+  == 2 marginal - parts of the application or approach are new
+  == 1 none - similar approach to the same application has been used before
+  -->
+  3
+  
+</score>
+<score id="266652" name="(Applications and Robotics tracks ONLY): Importance of planning/scheduling technology to the solution of the problem.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications or Robotics track paper)
+  == 4 very important - essential to solving the problem
+  == 3 moderately important - adds significant capabilities
+  == 2 marginally important - improves usability, capabilities or performance
+  == 1 not important - could be done without it
+  -->
+  1
+  
+</score>
+<score id="266653" name="(Applications track ONLY) Maturity.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 N/A (not an Applications track paper)
+  == 5 study of the success, acceptance, impact and/or deficiencies of a fielded system
+  == 4 fielded system
+  == 3 mature system with testing on realistic problems
+  == 2 early prototype system
+  == 1 challenge problem
+  -->
+  2
+  
+</score>
+<score id="267403" name="(Applications and Robotics tracks ONLY) Suitable for a demo?">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 N/A (not an Applications or Robotics track paper)
+  == 3 yes
+  == 2 maybe
+  == 1 no
+  -->
+  2
+  
+</score>
+<score id="267404" name="Nominate for Best Paper Award">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 yes
+  == 1 no
+  -->
+  1
+  
+</score>
+<score id="267405" name="Nominate for Best Student Paper Award (if eligible)">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 yes
+  == 1 no
+  -->
+  1
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="252156" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+The paper describes the use of an AI Planning model to generate the structure of some automatically composed musical pieces. 
+
+Not being an expert in musicology, I will not comment here the properties of the targeted structure itself but the way AI planning is used to generate it.
+
+And in fact, unless I'm really missing something, I do not see the reason why AI planning is being used here. 
+
+First, considering the problem and the proposed model, it is clear that the number of actions in the plan is known in advance and equal to the number of phrases (each action take one clear phrase and process it). So one could as well take the phrases pi in the chronological order and randomly (or not) select with which type of operator they are related with one of their randomly selected (or not) predecessor (p1...pi-1). I do not see where AI Planning helps for doing that. And in the tree approach, the top/down approach could work the same. If more complex constraints need to be modeled between the different layers of the tree, then one could typically use a constraint-programming based approach, this resembles a lot what is being done to solve configuration problems [1]. 
+
+The second problem is that the generation of structures as described in the paper fundamentally requires some variety and that this variety is injected into the structure thanks to randomness. In this sense, randomness is essential in the problem. But the role of AI planning (or any other optimization technique) is not to generate randomness, it is to optimize a criterion (randomness may be produced, but it is just a side-effect of the techniques used under the hood by the resolution engine). So it is critical that the optimization criterion models what is expected from a "good" structure. In the model, only a constant cost per action type is mentioned. So if the planning system is efficient, it will only use the cheapest actions. If as mentioned in one section the variation operator has the lowest cost, an optimal plan will only use variation operators (otherwise, it means that the planning system is not efficient enough). If several types of operators have the same cost, it completely depends on the system how ties will be broken (this may result in some randomness being injected in the solution but it is completely accidental). 
+
+
+[1] U. Junker. Handbook of Constraint Programming. Chapter 24: Configuration. 2006.
+
+
+
+
+</text>
+<text id="252157" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional.
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

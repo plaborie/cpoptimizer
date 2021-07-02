@@ -1,0 +1,78 @@
+====== REVIEW FORM (ROUND 1) ==========================================================
+
+Title: Improving Linear Search Algorithms with Model-based Approaches for MaxSAT Solving
+Authors: Ruben Martins, Vasco Manquinho and Ines Lynce
+
+CONTENT
+Please, answer Yes or No.
+
+Is the paper technically sound? Yes
+Is the work described original? Yes
+Does it place new results in appropriate context with earlier work? Yes
+Does anything need to be added or deleted? No
+Is the result important enough to warrant publication? Yes
+
+FORM
+Please, answer Yes or No.
+
+Does the abstract adequately reflect the contents? Yes
+Are the summary and conclusions adequate? Yes
+Does it contain adequate references to previous work? Yes
+Does it explain clearly what was done that is new? Yes
+Does it clearly indicate why this work is important? Yes
+Is the English satisfactory? Yes
+Is the presentation otherwise satisfactory? Yes
+Are there an appropriate number of figures? Yes
+Do the figures help clarify the concepts in the paper? Yes
+
+
+YOUR CONFIDENCE in the paper's topics:
+(Please, delete all categories except one)
+
+- Some
+
+-----------------------------------------------------------------------------------------------
+Detailed comments to authors:
+
+I have no special comments in fact. The authors really made an important effort to extend the approaches presented in the original RCRA paper (with the hybrid approach) and improve the experimental evaluation (larger benchmark, comparison with more state-of-the-art MaxSAT solvers). The extensions are clear, well described and significant. All points in the article are well justified. I particularly appreciate the illustration of the different algorithms with the ongoing example. I think this will be a very interesting article for the MaxSAT community.
+
+-----------------------------------------------------------------------------------------------
+Together with the paper, you received its workshop reviews as
+well as a letter from the authors explaining how they have dealt with these 
+reviews in the current version.
+
+Did authors properly took into account the comments of the workshop reviewers (other than you)? 
+(Please, delete all categories except one)
+
+- Yes, completely (either by improving the paper or by giving convincing evidence 
+  in the accompanying letter that addressing such comments would be out of the scope 
+  of the paper or could/should not be done).
+
+As a former reviewer of the workshop version of this paper, 
+are you satisfied with how authors took into account your own comments?
+(Please, delete all categories except one)
+
+- Yes, I'm fully satisfied
+
+Overall judgement
+(Please, delete all categories except one)
+
+3 - Accept subject to minor revision 
+This is a good paper, of the same or of better quality wrt. the usual quality of articles
+published in the major journals in the area. 
+There are only minor issues that should be solved before publication, but they do not seem 
+critical and appear easy to solve. Although I will take a final decision only after having quickly 
+reviewed the new version of the paper, I'm reasonably confident that there will be no bad surprises. 
+
+
+====== END ====================================================================================
+
+
+
+====== CONFIDENTIAL COMMENTS TO EDITORS =======================================================
+
+Please, write here any confidential comments to editors that you may have. 
+
+
+
+====== END ====================================================================================

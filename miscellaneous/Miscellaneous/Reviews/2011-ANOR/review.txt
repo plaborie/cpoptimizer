@@ -1,0 +1,173 @@
+Recommendation:
+Accept as is
+Minor revisions needed
+* Major revisions needed
+Reject based on report
+Out of scope
+Revise
+
+
+Reviewer Blind Comments to Author
+----------------------------------------
+
+The article studies a very interesting scheduling problem that arises in the context of 
+scheduling the observations and data download activities of an earth observing satellite 
+constellation. 
+
+After a formulation of the problem (section 2), the authors propose a decomposition of the 
+original problem (section 3). Details on the implementation of this approach are described in 
+a separate section (section 4) followed by an experimental study (section 5).
+
+The main issue with the article is the simplification/transformation of the problem described 
+in section 3.4.
+
+The download contention seems to be an important aspect of the problem but it is even not 
+included in the description of the problem (section 2) and the way it is handled raises 
+several issues. As far as I understand, the original download time windows are transformed in 
+a pre-processing step. Two types of transformation are performed:
+1- merging of some time-windows that overlap
+2- splitting of some time-windows
+
+I understand the reasons for splitting the time-windows so as to ensure there will not be any 
+download contention. Could you better justify the reason for merging overlapping time-windows?
+
+Those two transformations have an important impact on the problem:
+
+1- Merging time-windows relaxes the real problem as, by definition of time-windows, each 
+individual opportunity will have more slack for execution in the resulting merged time-windows.
+
+2- Splitting the time-windows, on the contrary, over-constrains the real problem as no 
+opportunity will be allowed to cross the dates where the time-windows are split. In the 
+example of the article, when splitting [150,240][210,260] into [150,210][210,240][240,260], no 
+opportunity will be able for instance to execute over interval [200,220] whereas it was 
+possible in the real problem. If windows are distributed quite randomly and overlap a lot, 
+this may result in a fragmentation of the windows into many small time-windows and prevent 
+many opportunities to be executed. Furthermore, enforcing that opportunities from a single 
+satellite are executed in those split time-windows will artificially introduce waiting time 
+between download activities on the ground stations resulting in sub-optimal solutions.
+
+No evidence is given in the article that those two transformations do not hurt the relevance 
+of the simplified problem that is solved. That should be clarified in a revised version of the 
+article.
+
+The authors mention the use of ILOG CP as an alternative for solving the sub-problems. Is it 
+the "old" version of ILOG optimization suite (that is ILOG CP composed of Solver/Scheduler) or 
+the new generation one (CP Optimizer)?
+
+It would be very relevant to model the global problem (including download contention) and compare 
+with CP Optimizer as this tool has shown to be very efficient for solving over-constrained 
+satellite scheduling problems, see [1] on the problem of [Barbulescu et al (2006)]. I attach 
+a naive version of the corresponding model for information.
+
+[1] P. Laborie,  "IBM ILOG CP Optimizer for Detailed Scheduling Illustrated on Three 
+Problems",  in Proc. CPAIOR, 2009, pp.148-162. 
+
+A way to improve the paper would be to make available to the scheduling community a set 
+of instances of the problem, either the ones used in the experimental section or some 
+generated ones which similar characteristics.
+
+More detailed comments:
+
+In the description of the model, the concept of target is not really formalized. One 
+understand that a target is associated with several opportunities but it is not clear if those 
+opportunities can be performed by one or several satellite. It seems that the set of possible  
+alternative opportunities for a given target can be performed by several satellites.  Also, I 
+find the notations are somehow heavy because the observations and download opportunities are 
+represented by the same sets ALT_i^k, the only difference being in the indexes i. I think it 
+would be clearer to define an opportunity as a pair of activities <observation,download> and 
+use different names for the sets of activities of different type.
+
+Some restrictions seem to be made in the model whereas they are not really needed in the 
+described approach: (1) the duration of the observation is the same as the duration of the 
+download and (2) the memory usage equals the duration of observation. 
+
+Equation 10: it holds between activity start times but as the activities cannot overlap on the 
+satellite, shouldn't it rather hold between the end of the previous activity and the start of 
+the next one?
+
+CP Optimizer model (without transition times).
+
+A slightly extended version is attached (CPOptimizer-EarthObservingSatellite.zip) together 
+with a randomly generated data set for 2 satellites, 100 targets and a single ground station.
+
+This basic model can easily be extended to handle transition times on both satellites and 
+ground stations (in the noOverlap constraints).
+
+It can also be extended to handle the FIFO image access mechanism (with two additional 
+sequence variables one for observation and one for download activities for each satellite and 
+some constraints using expressions typeOfNext/Prev to state that the two sequences are 
+isomorphic).
+
+tuple Satellite {
+  key int id; // satellite index
+  int     q;  // memory capacity
+}
+
+tuple Target {
+  key int id; // target index 
+  int     v;  // reward 
+}
+  
+tuple Opportunity {
+  key int id; // opportunity index
+  int     t;  // target
+  int     k;  // satellite
+  int     od; // observation duration
+  int     oa; // start of observation time-window
+  int     ob; // end of observation time window
+  int     l;  // memory demand
+  int     s;  // ground station
+  int     dd; // download duration
+  int     da; // start of download time-window
+  int     db; // end of download time window
+};
+
+{ Opportunity } opps = ...; // Reading data
+{ Target }      tgts = ...; // Reading data
+{ Satellite   } sats = ...; // Reading data
+
+{int} stations = { w.s | w in opps };
+
+// Decision variables and expressions
+
+dvar interval observation[w in opps] optional in w.oa..w.ob size w.od;
+dvar interval download   [w in opps] optional in w.da..w.db size w.dd;
+dvar interval memoryuse  [w in opps] optional;
+dvar interval target     [t in tgts] optional;
+
+cumulFunction memory[k in sats] = sum(w in opps : w.k == k.id) pulse(memoryuse[w],w.l);
+
+dvar sequence satellite[k in sats] in append(
+    all(w in opps : w.k == k.id) observation[w],
+    all(w in opps : w.k == k.id) download[w]);
+  
+dvar sequence station[s in stations] in all(w in opps : w.s == s) download[w]; 
+  
+// Objective function
+
+maximize sum(t in tgts) (t.v * presenceOf(target[t]));
+
+// Constraints
+
+subject to {
+  forall (t in tgts) {
+    alternative(target[t], all(w in opps: w.t==t.id) download[w]);
+  }    
+  forall (w in opps) {
+    presenceOf(observation[w]) == presenceOf(download[w]);
+    presenceOf(observation[w]) == presenceOf(memoryuse[w]);
+    endAtStart(observation[w], memoryuse[w]);
+    endAtStart(memoryuse[w],   download[w]);
+  }    
+  forall(k in sats) {
+    memory[k] <= k.q;
+    noOverlap(satellite[k]);
+  }    
+  forall(s in stations) {
+    noOverlap(station[s]);
+  }    
+}  
+
+
+Reviewer Confidential Comments to Editor
+----------------------------------------

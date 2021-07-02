@@ -1,0 +1,170 @@
+Recommandation:
+ [ ] Accept
+ [ ] Minor Revision
+ [X] Major Revision
+ [ ] Reject
+
+Overall Manuscript Rating (1 - 100) : 65
+
+For your convenience, and to take advantage of word processing features (e.g., spell-check, bullets, numbering), we suggest you use your regular word processing program (e.g., Microsoft Word, WordPerfect) when typing your review. You should then Copy and Paste your comments into the boxes provided. Click the Save & Submit Later button to save your comments and continue working.
+
+ [ ] In the event that this manuscript is rejected by this journal and transferred to another Elsevier journal I agree that this reviewer report, my name and email address may be transferred alongside it.
+
+   Reviewer Guidelines
+   
+Please rate on a scale of 1-3 whether the Graphical Abstract is a meaningful and an accurate representation of the article. 1 = Meaningful; 2 = Not Meaningful; 3 = Not Provided. For more information, see www.elsevier.com/graphicalabstracts.
+
+3
+
+Please rate on a scale of 1-3 whether the Highlights are a meaningful and accurate representation of the article. 1 = Meaningful; 2 = Not Meaningful; 3 = Not Provided. For more information, see www.elsevier.com/highlights.
+				 
+1 
+
+Reviewer Blind Comments to Author
+Insert Special Character 
+
+
+The article proposes an approach for solving (with an exact approach) an integrated planning and scheduling problem formulated as an AND/OR graph. This problem is very relevant to combinatorial optimization and operations research. 
+
+The manuscript is reasonably well written and easy to read though (1) more details could be given about the CP concepts used in the formulation and (2) the structure of the paper could be slightly improved to make it clearer and avoid some redundancy (more on this below).
+
+In general, I think the contribution is interesting and could be accepted provided some major revisions that would really improve the paper. I review below these points that need improvement, by decreasing order of importance.
+
+1. Clarify and formalize the representation of the problem as an AND/OR graph
+
+1.1 AND/OR graph
+
+The AND/OR graph formalism that is used to represent the problem is borrowed from [deMello&Sanderson-1986]. I think the exact structure and semantics of this graph should be presented in a more formal manner in the article, rather than just illustrating it on the example (but the example is really useful and of course should be kept). More precisely:
+- what exactly is an "OR-link" ? is it a tuple (os, {ot_1,...,ot_n}) where 'os' is the source node/operation and 'ot_i' are a set of target nodes/operations?
+- is it possible to have several "OR-links" with the same source node/operation? For instance after operation 'a' you need to perform 'b' or 'c' AND 'd' or 'e' ?
+- what if the graph is more complex for instance if the OR-links have several targets in common? For instance a->AND{b,c}, b->OR{d,e}, c->OR{e,f}. What are the possible realizations of this graph? Can operation e be executed twice if it is selected for both OR links b->OR{d,e} and c->OR{e,f} ?
+- does the formalism allows representing 'optional' operations, for instance if 'o' is an optional operation between 'a' and 'b', can this be represented as a->OR({o,b}), o->b
+- when some "OR-links" converge on the same target, like the OR links arriving at operation o_1,5 on Fig. 2, it is not clear why these arcs are not just "simple" arcs only representing precedence constraints when the operations are executed
+- can you have at the same time some "OR" and "AND" arcs departing from (resp. arriving at) the same operation?
+
+While the example on Fig.2 is very useful, I think it is very particular and cannot replace a formal mathematical description of the structure.
+
+1.2 Assumptions
+
+Section 3.2.1 presents some assumptions on the problem being addressed (non-preemptivity, machine can perform only one operation at a time, operations of the same job cannot overlap). 
+
+First I think that these assumptions should be described earlier in the description of the problem (so with the current structure of the paper, in should be in section 3.1 but I really think that the problem should be formally and completely described, including the AND/OR graph, the resources/machines allocation and the objective function in a dedicated section followed by an illustration with the example) rather than in the section 3.2.1 that describe how the problem is translated into a CP formulation. Indeed, these restrictions are not related to CP and a CP solver like CP Optimizer can easily relax most of these assumptions (for instance using cumul functions for cumulative resources, or sequence-dependent setup times on machines, etc.).
+
+Also, I'm not sure that the concept of "job" is really useful. In some real problems, operation of a job are not required to be fully ordered and they can overlap. And it seems that with the proposed representation, you could easily add an additional dummy machine that would be used by all the operations of a given job in case operations of this job are required not to overlap. 
+
+
+2. Clarify and complete the part about related work
+
+2.1 Work related with AND-OR graph representation
+
+There are several representations that are close to the AND-OR graph one that could be mentioned in the section about related work. In particular:
+- XorNode/PEX in [Beck&Fox 1999]
+- DTPFD in [Moffitt,Peintner&Pollack 2005]
+- P/A Graphs in [Bartak&Cepek 2007]
+- HTN planning approaches [Georgievski&Aiello 2015]
+
+[Beck&Fox 1999] Beck, J. C., and Fox, M. S. 1999. Scheduling alternative activities. In Proc. AAAI-99.
+
+[Moffitt,Peintner&Pollack 2005] Moffitt, M. D.; Peintner, B.; and Pollack, M. E. 2005. Augmenting disjunctive temporal problems with finite-domain constraints. In Proc. AAAI-2005.
+
+[Bartak&Cepek 2007] Bartak, R., and Cepek, O. Temporal networks with alternatives: Complexity and model. In Proc. FLAIRS-2007.
+
+[Georgievski&Aiello 2015] Georgievski I., and Aiello M. HTN planning: Overview, comparison, and beyond. Artificial Intelligence Volume 222, May 2015, Pages 124-156.
+
+2.2 CP approaches
+
+In the literature about CP approaches for scheduling problems and in particular as far as the integration of planning and scheduling is concerned, I think that CP Optimizer (the solver used in the study) has a particular role because it is the only CP framework that introduces and fully implements the notion of 'optional interval variable' which is central in the translation of the AND-OR graph. In fact the concept of 'optional interval variable' was introduced in [Laborie&Rogerie, 2008] for providing a generic tool to generalize the existing approaches like XorNode, P/A Graphs or AND/OR graphs. Unlike many other CP frameworks, CP Optimizer is used to solve much more complex real industrial scheduling problems than just RCPSPs of typical jobshop scheduling problems (unlike mentioned in the paper). And many of these complex problems involve a mix of planning, resource allocation and scheduling. I would suggest the authors to read a recent overview of CP Optimizer ([Laborie&all,2018], in particular there is a small section on recent scheduling applications using CP Optimizer) and/or just search for ""CP Optimizer" OR "CPOptimizer" OR "ILOG CP"" on Google Scholar to have an idea of the range of different problems solved using this framework. 
+
+[Laborie&all,2018] Laborie P., Rogerie J., Shaw P. & Vilim P. IBM ILOG CP optimizer for scheduling. Constraints. April 2018, Volume 23, Issue 2, pp 210–250
+
+I think the statement (end of section 2) that there is until now no literature reporting successful applications of CP for IPPS problems should be softened. Same think for the statement in section 1: "However, existing literature only reported constraint programming approaches for simple scheduling problems, such as resource-constrained project scheduling (Berthold, Heinz, Lübbecke, Möhring, & Schulz, 2010), typical jobshop scheduling, or hybrid flow-shop scheduling (Baptiste, Le Pape, & Nuijten, 2012). This paper reported an approach of using constraint programming to solve the more complex IPPS problems." Furthermore, you cannot really say that the proposed IPPS problem is more complex than the RCPSP as it (currently) only handle disjunctive scheduling whereas the RCPSP works with cumulative resources which are more general.
+
+A detail: in the introduction: "Some global constraints like nooverlap(.) , alternative(.) and endbeforstart(.) provide substantial
+convenience to model scheduling problems, and efficient algorithms are available in literature to solve them (Barták, 2003).": these constraints, and in particular the alternative(.) one, are typically CP Optimizer constraints and I don't think they were mentioned in (Barták, 2003). Also, endbeforestart(.) is not a global constraint as it only holds between 2 interval variables.
+
+3. Give a bit more detail about the CP Optimizer concepts
+
+The CP model maybe a bit difficult to understand for a reader that do not know the main concepts of the CP Optimizer model. In particular:
+
+- The interval variables could be introduced a little bit more formally by defining their domain (that include a specific 'absence' value), and also mention that here you create some (optional) interval variables by specifying there size (machine dependent size)
+- The constraints used in the model could also be introduced more formally (in particular how they behave in case of absent intervals), there are not many of them: preof(x), endbeforestart(x,y), nooverlap({x_i}), alternative(x,{y_i})
+
+Also, it would be useful to state somewhere that CP Optimizer is a "model&run" optimization engine, like in MIP solvers you only need to formulate the problem, then the resolution is performed by an automatic search. This is also a difference between CP Optimizer and other CP frameworks where you often need to design your own search strategy.
+
+4. The version of CP Optimizer that is used in the experiments (12.5) is very old
+
+This version is from 2012, so about 7 years old now. The CP Optimizer system is evolving quickly (latest version is 12.9), and in particular it made big progress on the capacity to provide optimality proofs. So it would really be interesting the re-evaluate the experiments using a more recent version.
+
+Other more detailed remarks/typos:
+
+* In introduction: "Global constraints, as defined by van Hoeve and Katriel (2006), is a constraint that captures a relation between a non-fixed number." It seems that the end of the sentence is missing. I guess you want to say that a global constraint captures a relation between a non-fixed number of decision variables.
+
+* In introduction in the same paragraph: "This paper reported" -> "reports"
+
+* In introduction, last sentence: conclusion is section 6, not 7.
+
+* In section 3.2.2, you introduce constraints on presence of intervals related with the selection of machines: (2) and (3). These constraints are not in the complete model ("The Graph-Based CP Model for IPPS"). I think that you should say somewhere that these constraints (2) and (3) are subsumed by the alternative(.) constraints (9). And it is indeed the right way to model machine allocation in the problem.
+
+* I think that the part of section 4 that describes the "Applied Graph-Based CP model for IPPS" is mostly redundant with the general model provided in section 3.2.3. If you need to save some place, you could consider removing this part. But in this section, Fig 3 is really nice and helps understanding the formulation.
+
+* You should cite at some point in the article the recent paper [Laborie&all,2018] that provides a fairly complete overview of CP Optimizer for scheduling.
+
+* In the experimental section, I'm wondering why you used a FailLimit instead of a TimeLimit.
+
+* Also, in the experimental section you say "Since the CPLEX solver implements a deterministic search strategy, each problem of the testbed is executed only once and the objective values and running times are recorded". While it is true that the search strategy is deterministic (this is required for a solver used in an industrial context), the search uses some randomized search and you can easily change the random seed used by the random generator (there is a search parameter RandomSeed) to produce run different executions (RandomSeed=1,2,...,n) and measure the robustness/stability of the resolution, just like for the other approaches.
+
+* In the references:
+  - The reference to Bartak,Salido,Rossi 2010 is duplicated
+  - The reference to de Mello, Sanderson 1986 is incomplete
+
+
+Reviewer Confidential Comments to Editor
+Insert Special Character 
+
+For each question, please use the following scale to answer (place an x in the space provided): 
+
+"To what extent does the article meet this criterion?"
+
+0	Fails by a large amount
+1	Fails by a small amount
+2	Succeeds by a small amount
+3	Succeeds by a large amount
+4	Not applicable
+
+The subject addressed in this article is worthy of investigation.
+	
+3
+
+
+The information presented was new.
+
+2
+
+
+
+The conclusions were supported by the data.
+
+3
+
+
+
+Is there a financial or other conflict of interest between your work and that of the authors?
+
+YES __  NO _X_
+
+Please note that your recommendation and reviewer report are expected to cover the Highlights and Graphical Abstract if submitted with the manuscript.
+
+Please give a frank account of the strengths and weaknesses of the article:
+
+Strengths:
+- The problem is interesting, challenging and clearly relevant to the journal topics of interest.
+- The approach that is used is an exact approach that produces very good results, as shown in the experimental section.
+
+Weaknesses:
+ - The formalism used for representing the problem should be presented in a more formal way in order to rule out some possible ambiguities
+ - The translation of the problem into a CP Optimizer model is quite straightforward (though I think it worth being published because this type of approach is mostly overlooked by the OR community who mostly think: exact approach => MIP model)
+ - The review of the state-of-the-art can be improved
+
+
+
+

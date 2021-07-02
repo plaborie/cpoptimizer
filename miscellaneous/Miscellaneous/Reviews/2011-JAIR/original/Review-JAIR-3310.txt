@@ -1,0 +1,72 @@
+Title: Robust Local Search for Solving RCPSP/max with Durational Uncertainty
+Authors: Fu Na, Lau Hoong Chuin, Pradeep Varakantham and Xiao Fei
+
+Overall evaluation:
+===================
+
+ [ ] Accept as is
+ [ ] Accept with minor revisions
+ [X] Reject with encouragement to resubmit
+ [ ] Reject
+ 
+Comments and suggestions for the authors:
+=========================================
+
+The article addresses a challenging topic: producing robust schedules with some robustness guarantee for a quite complex scheduling problem (RCPSP/max). This topic is very relevant to AI.
+
+The structure of the article is fine, it starts with a good introduction to the problem (both deterministic and stochastic aspects) and of some of the tools that will be used (POS). Then sections 3 and 4 present the estimation of the objective function. Sections 5 and 6 describe the global meta-heuristic to solve the problem and an experimental evaluation is provided in the end.
+
+Some technical points should be clarified and there are also some flaws that should be addressed (see below). I think the experimental evaluation should be made stronger too. For these reason, I would recommend the paper to be rejected but with a strong encouragement to resubmit.
+
+Technical soundness
+-------------------
+
+In description of GNLA, some parts of the reasoning to provide upper-bounds on the expected value and variance of two general distributions are not clear. So the technical soundness of this upper bound formulation could be jeopardized. In particular:
+
+* On page 15, given that E|z1-z2| <= sqrt( E (z1-z2)^2 ) it is not clear how one derives from that the next inequality E|z1-z2| <= sqrt( Var[z1] + Var[z2] + E (z1)^2 + E (z2)^2 ). And the argument that "Since expected values for data perturbation can never be negative during computation of robust fitness value" is also not clear. Especially as here, proposition 1 is about general distributions z1 and z2.
+
+* On the top of page 16, it is not clear why: 1/4 Var[z1+z2+|z1-z2|] <= 1/2 (Var[z1+z2] + Var|z1-z2|).
+
+The two points above could probably be improved by providing some additional explanations.
+
+I have serious doubts about the fact the probability that a POS is infeasible can be computed in a simple way as described in section 4.1.  Indeed, in the context of an RCPSP/max the feasibility of a POS subsumes the feasibility of a POS within a given makespan value M as one can always add a max delay arc of value M between the dummy initial and final nodes. The resulting temporal network will be feasible if and only if a there exists a feasible schedule with makespan lower than M. Thus the problem of infeasibility of a POS has the same complexity as the main problem addressed in the paper. This point should be clarified.
+
+Some other issues (less important I think):
+
+- On page 15, eq 34: I think that in case of normally and identically distributed distributions, the value of E[max{z1,z2,z3}] is (3*sigma)/(2*sqrt(pi)) instead of (3*sigma)/(sqrt(2*pi))
+
+- On page 17, there is a mistake in the computation of the number of possible ways to group k parallel activities into a set of activity pairs. It is much larger than k(k-1)/2, and grows exponentially with k. For instance if k=2p, I think it is (2p)! / (p! * 2^p). In the context of the article, anyway, this flaw has no impact because the approach does not enumerate all these sets.
+
+Experimental evaluation
+-----------------------
+
+The experiments on RCPSP/max problems show that in general GNLA behaves better than SLA. That's an interesting piece of information but the reason for that is not really analyzed. A precious additional information would be to analyze how "tight" are the upper bounds provided by both methods. For instance you could compare on the J30 problems like on figure 8, the gap between the actual epsilon-robust makespan (measured by simulation on the POS) to the upper bound computed by both GNLA and SLA. That would give an idea of the quality *in absolute* of the two upper bounds.
+
+Concerning the experiments on job-shop problems, as underlined in the article, it is difficult to compare with CB because the objective function is different. But it seems to me the approach could be adapted quite easily to the minimization of the average makespan as the estimation of the average makespan is already available so it changes only the evaluation of the robust fitness function. It would be interesting to have these results too.
+
+Miscellaneous
+-------------
+
+It would be help to add a small section in the end of section 3 or in section 4 that recaps the results and describes the algorithm for computing the upper-bounds on expected value and variance of the makespan (especially for GNLA) together with its complexity. It seems that these values as well as the upper-bound on the epsilon-robust makespan can be computed in linear time with the size of the POS, is that true?
+
+Detailed remarks
+----------------
+
+- Page 5: It is mentioned that relations start-to-end, end-to-end, etc. can easily be transformed into relation start-to-start. That's true in the deterministic case but in the stochastic case, I do not see how to transform, let say and end-to-start relation into a start-to-start one except for using stochastic time lags in the constraints.
+
+- Page 6: robustmakespan
+
+- Page 13: Max of random variables: "Thus the adjustable variable Sk has a mean": this is not the mean but an upper bound on the mean. 
+
+- Page 16: The transformation of formula 37 into formula 38 is true only if E(z1) and E(z2) are non-negative. This is the case for perturbations but here, the proposition 2 is supposed to hold for any general distribution.
+
+- Page 17: "Instead we are trying to provide a good grouping technique ...": you should explain a little bit more in detail why the proposed grouping is expected to be a good one.
+
+- Page 23, section 6.1.1: "... has all the activity lists that are _there_ T, except ..."
+
+- Page 26, section 7.1.1: As the durations need to be non-negative, the perturbation zi = N(0,sigma) cannot be lower than -d0 so it is somehow truncated. How this truncation is handled? is it just neglected in the computation of the fitness function?
+
+- Page 33: There is a problem with the figure labels (Figure 7.3)
+
+
+

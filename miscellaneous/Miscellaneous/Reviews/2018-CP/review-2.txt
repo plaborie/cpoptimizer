@@ -1,0 +1,39 @@
+Submission: 2
+Title: The Ordered Disjunctive-Cost Constraint
+
+_______________________________________________________________________
+Overall evaluation
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+--> -2
+
+_______________________________________________________________________
+Review:
+
+It seems that the problem described in the paper is a special case of [1] where the author proposes a dynamic programming algorithm for a more general problem that also accounts for variable task duration and idle time cost between tasks in the sequence. In [1] the costs are formulated on the end time of tasks instead of the start time as in the present paper but this is not a fundamental difference. The cited article also exploits the optimal timing algorithm to perform contraint propagation. So I think you should consider this previous work and explain what are the differences with the proposed OrderedDisjunctiveCost constraint. In general, the optimal timing of a known sequence of tasks under different types of objective functions related with start/end dates has been heavily studied in the past (the citations in [1] are a good starting point).
+
+[1] Francis Sourd. Optimal timing of a sequence of tasks with general completion costs. European Journal of Operational Research 165 (2005) p82–96.
+
+In the description of the Ordered Disjunctive-Cost constraint, the unary global constraint (UNARY(T)) is subsumed by the precedence constraints that define the (known) sequence of tasks. Why do you need this constraint in the definition of OrderedDisjunctiveCost ?
+
+ 
+
+_______________________________________________________________________
+Reviewer's confidence
+    == 4 (expert)
+    == 3 (high)
+    == 2 (medium)
+    == 1 (low)
+--> 3
+
+_______________________________________________________________________
+Confidential remarks for the program committee
+
+I think the authors overlooked some existing work in scheduling that already proposed very similar algorithms for an even more general problem. 
+
+
+

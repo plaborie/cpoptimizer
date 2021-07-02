@@ -1,0 +1,158 @@
+================================
+
+A RETOURNER AU PLUS TARD le mardi 5 avril 2006
+
+=============================================================================
+Journées Francophones Planification, Décision, Apprentissage JFPDA'06,
+Toulouse 10-12 mai 2006.
+COMMENTAIRES AUX AUTEURS
+=============================================================================
+
+Titre de l'article    : Apprentissage dans une méthode de recherche arborescente basée sur les divergences
+
+Nom du premier auteur : W. Karoui
+
+Type d'article : Court
+
+-----------------------------------------------------------------------------
+CRITERES D'EVALUATION < Notes allant de 5 (excellent) à 1 (faible) >
+
+* Pertinence de l'article pour JFPDA     : 4
+
+* Importance de la contribution          : 3
+
+* Originalité du travail, nouveauté      : 4
+
+* Comparaison avec les travaux existants : 2
+
+* Qualité scientifique, évaluation       : 3
+
+* Clarté de la rédaction                 : 3
+
+
+RECOMMANDATION < acceptation ferme, possible, rejet ferme> :
+
+Possible.
+
+------------------------------------------------------------------------------
+RESUME DU PAPIER (EN 2-3 LIGNES)
+
+Les auteurs proposent une méthode de recherche qui intègre les notions
+de "divergence/discrepancy" (initialement introduites dans
+l'algorithme de LDS) et des notions d'apprentissage pour focaliser la
+rechercher sur les parties difficiles du problème.
+
+------------------------------------------------------------------------------
+PERTINENCE DU PAPIER POUR JFPDA'06 : 
+
+Le papier est pertinent pour JFPDA'06, deux des thèmes développés dans
+le papier concernant la décision (problème de satisfaction de contraintes) et l'apprentissage, utilisé pour améliorer les
+performances de la résolution du problème.
+
+------------------------------------------------------------------------------
+ORIGINALITE : LES APPROCHES PROPOSEES SONT-ELLES NOVATRICES ? S'AGIT-IL
+D'UNE NOUVELLE TECHNIQUE ? D'UNE COMBINAISON ORIGINALE DE TECHNIQUES
+EXISTANTES ? D'UNE IDEE PROMETTEUSE ?  D'UNE APPLICATION INTERESSANTE ?
+
+Le papier est un résumé du papier des mêmes auteurs à JFPC 2005. Il
+s'agit d'une combinaison d'idées dont la principale consiste à 
+intégrer dans l'heuristique utilisée par une recherche de type LDS une
+composante "apprentissage" visant à faire remonter dans l'arbre de
+recherche les variables les plus contraintes.
+
+------------------------------------------------------------------------------
+COMPARAISON AVEC LES TRAVAUX EXISTANTS : L'APPROCHE PROPOSEE EST-ELLE
+COMPAREE AUX TRAVAUX SIMILAIRES ? 
+
+La comparaison à l'état de l'art est très superficielle dans le
+présent papier. Ceci semble dû aux contraintes de taille du papier
+(elle est plus développée dans le papier JFPC 2005). 
+
+L'utilisation de techniques d'apprentissage pour guider l'heuristique
+de choix de variables et de valeurs en CSP n'est pas nouvelle. Il
+manque des références à ce sujet. Par exemple:
+
+P. Refalo. Impact-Based Search Strategies for Constraint
+Programming. Proc. CP-2004. p557-571. 2004.
+
+
+------------------------------------------------------------------------------
+QUALITE SCIENTIFIQUE / EVALUATION : LE PAPIER EST-IL CORRECT TECHNIQUEMENT ?
+LES FORCES ET LES LIMITES DU TRAVAIL SONT-ELLES DISCUTEES ?
+
+Il y a trop peu de détails pour évaluer la correction technique du
+papier. 
+
+Comme les priorités des variables (données par l'apprentissage) ne
+sont utilisées qu'en deuxième lieu dans une heuristique de type
+lexicographique dont le premier terme est l'heuristique min-domain, il
+semble que, dans un problème hétérogène et structuré (ce qui est le
+cas des problèmes réels) où les domaines des variables (domaine
+initial, puis bien sur, ensuite, domaine après propagation) peuvent
+être de taille très variée, la technique d'apprentissage à peu
+d'influence sur la recherche et sur la réduction de redondance de la
+LDS. Dans le cas extrême où toutes les variables ont des tailles de
+domaines différentes, elle ne semble même avoir aucune
+influence. Exact? Pourquoi n'avoir pas utilisé une heuristique qui
+donne plus d'influence à l'apprentissage? L'apprentissage est-il
+(pourrait-il être) aussi utilisé pour influencer le choix de la
+valeur?
+
+------------------------------------------------------------------------------
+CLARTE: LES PROBLEMES, LES METHODES ET LES RESULTATS SONT-ILS 
+SUFFISAMMENT DECRITS ? LE PAPIER EST-IL BIEN ORGANISE, CLAIR ET 
+COMPREHENSIBLE ? LA LONGUEUR DU PAPIER EST-ELLE APPROPRIEE ?
+
+L'état de l'art devrait être complété.
+
+Certaines justifications sur les choix effectués devraient être
+apportées (voir ci-dessus). 
+
+La description du fait que MDS permet de quitter la recherche plus tôt
+dans le cas de problèmes insolubles, dans la dernière page, n'est pas
+claire. Cela revient-il simplement à dire que étant donné que les
+variables les plus contraintes sont remontées en haut de l'arbre de
+recherche, le nombre maximal de divergences correspondant à une
+exploration complète de cet arbre est réduite?
+
+------------------------------------------------------------------------------
+INSTRUCTIONS AUX AUTEURS EN CAS D'ACCEPTATION DE L'ARTICLE :
+
+1- Compléter l'état de l'art par rapport aux techniques d'apprentissage.
+
+2- Mieux justifier les choix d'intégration de l'heuristique
+d'apprentissage par rapport à l'heuristique min-domain (pourquoi
+seulement en deuxième lieu?).
+
+------------------------------------------------------------------------------
+COMMENTAIRES DETAILLES AUX AUTEURS :
+
+
+
+
+==============================================================================
+Journées Francophones Planification, Décision, Apprentissage JFPDA'06,
+Toulouse 10-12 mai 2006.
+COMMENTAIRES AU COMITE DE PROGRAMME (PARTIE CONFIDENTIELLE)
+==============================================================================
+
+Nom du membre du comité de programme : Philippe Laborie
+
+Nom du rapporteur (si différent)      :
+
+------------------------------------------------------------------------------
+Niveau de confiance en votre critique : 4
+
+
+L'acceptation est-elle conditionnée à des modifications ? 
+
+Oui. Voir les deux points ci-dessus.
+
+
+------------------------------------------------------------------------------
+Commentaire général au CP, raisons de la recommandation effectuée :
+
+Le papier est un résumé du papier original publié à JFPC 2005. L'état
+de l'art est lacunaire. Certains choix ne me semblent pas bien
+justifiés.
+

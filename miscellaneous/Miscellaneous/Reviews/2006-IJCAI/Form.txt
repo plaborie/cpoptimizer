@@ -1,0 +1,25 @@
+For your Overall Recommendation, use the numbers 1-5 with the following meaning:
+    * 1 - reject
+    * 2 - undecided poster or reject
+    * 3 - undecided acceptance as poster or paper
+    * 4 - accept as poster
+    * 5 - accept as paper
+
+
+Evaluation of work and contribution	1-5	 	 	 	 	
+Significance				1-5
+Originality and novelty 		1-5			
+Relevance to the call of papers 	1-5					
+Readability and organization 		1-5			
+Technical quality 			1-5		
+Overall recommendation  		1-5				
+Confidence				1-5
+
+Comments to author(s):
+
+
+Confidential comments to PC members:
+
+
+Summary of review (to author(s) and PC members):
+

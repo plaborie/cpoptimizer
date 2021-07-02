@@ -1,0 +1,124 @@
+----------------------------------------------------------------------
+Paper review  for the  Special  Issue on  Planning of the  Constraints
+Journal
+
+Reviewer: Philippe Laborie
+
+----------------------------------------------------------------------
+Paper title: 
+
+Constraint-based Attribute and Interval Planning
+Jeremy Frank and Ari Jonsson
+
+
+Significance: 
+
+This paper introduces the paradigm  of "constraint-based attribute and
+interval  planning"  which    consists in  applying   constraint-based
+representations and resolution  techniques  to planning  problems. The
+representation is based  on the  notion  of "intervals". I think  this
+work  offers a  significant  advance  in the state   of the  art in AI
+planning.  In   particular,  it  shows  that,  in  the  context  of an
+interval-based representation, constraint-based approaches can support
+a rich expressivity and  flexibility (time, complex domain axioms, and
+more generally, any specific domain-dependent constraint).
+
+The choice of "intervals" and  "attributes" as the main ingredients of
+the  representation  is   well justified    from the  standpoint    of
+constraint-based   approaches   as it    makes   it easy to  implement
+constraint propagation and  search techniques.  But  it has a drawback
+from the modeling  perspective: it is  an "attribute"-centric approach
+instead of the  traditional  --and more  natural--  "operator"-centric
+one.  For example,  adding a new operator in  the  domain will require
+revising all the attributes.   I think, it  should  be fairly easy  to
+automatically translate (compile) an  "operator"-centric model (as for
+example, the one of IxTeT) into the CAIP representation. Of course, as
+far   as  domain axioms  are   concerned,  the  CAIP representation is
+certainly  the  most natural one.   These  modeling issues  should  be
+discussed more in detail in the paper.
+
+
+Originality: 
+
+As  mentioned by the authors, the  work heavily builds on two previous
+contributions: RAP and IxTeT.  More precisely, the originality of this
+contribution  is  to extend  the expressivity of  these planners while
+keeping a sound theoretical   justification and embedding  the overall
+approach into a constraint-based reasoning framework which is known to
+be flexible and efficient.
+
+
+Quality: 
+
+The paper seem to be technically sound. But many issues are left aside
+as for example:
+(1) the already mentioned modeling problem;
+(2) the representation allows  for values description  as a tuple with
+    arguments "p(x1,...,xk)".    Why  is  it  not also  the   case for
+    attribute descriptions, that  is, "a(x1,...,xk)" instead of  "a" ?
+    Without  this additional expressivity,   modeling  for example   a
+    domain  with n rovers requires  multiplying by a  factor n all the
+    attributes and compatibility rules.
+(3) the constraint-propagation algorithms: although  it is clear  that
+    classical temporal constraints  or resource constraint propagation
+    algorithms can (and should) be used, it may still result in a poor
+    sub-optimal propagation  and  more global algorithms  (for example
+    taking into account the finite state automata of attributes or the
+    conjunction of compatibility rules) should surely be designed;
+(4) the search  space exploration  is far  from being  easy: classical
+    heuristics   in  constraint-based       approaches like     simple
+    variable/value ordering will certainly perform very poorly so that
+    heuristics    based on the  characteristic   of   the problem  (AI
+    planning) will have to be developed.
+
+It is clear that  a detailed description of how  to solve these issues
+is out  of the  scope of the  present  paper but  it should  at  least
+mention them and give some evidence that they can be overcome.
+
+It is not said in the paper whether the  approach has been implemented
+and tested on some realistic planning domain.
+
+The distinction between   sequenced  and  non-sequenced intervals   in
+candidate plans is somehow not sufficiently motivated. It's clear that
+there is a global constraint stating that in  a solution plan, all the
+intervals are  sequenced but using  the  notion of sequenced intervals
+for candidate plans  seems to implicitly  assume a forward or backward
+chaining approach or at least that temporal  constraints can be posted
+during  planning only  between sequenced   and not-sequenced intervals
+which  seems  to  be  restrictive. Is  it  not enough   to say  that a
+candidate plan refers to a partially ordered set of intervals ?
+
+
+Clarity: 
+
+The paper is sometimes not very easy to follow. 
+
+For example in  section 3.2.1, it is not  clear whether the "Parameter
+constraint" is  part   of  the condition   or  of the  effect  of  the
+compatibility    structure.   Only after  reading   definition 3.1 one
+understands that it is part of the "effect" of the compatibility rule.
+
+The format for   compatibility rules given  in  section 3.2.1  is  not
+exactly the same as the one used in the examples in sections 3.2.3 and
+3.2.4.  (configuration/configuration rule).   Furthermore, and this is
+more   disturbing,  in section 3.2.4,   I  do not   understand why the
+"Parameter Constraints": p=at-bef-go,  p=turn-bef-go,  etc...  are not
+labeled as "Guards"  (as described  in  the  text).   In general,  the
+format used to describe compatibility  rules is  not  easy to read  at
+all.
+
+Some typos:
+* Section 2.2, p5, paragraph 1: "New now turn ..."
+* Section 3.3, p13, last paragraph:  "Since these add decisions to  th
+  plan ..."
+
+
+Overall comment:
+
+I think  this paper is original  and provides a promising approach for
+embedding planning into  a constraint-based approach.  Nevertheless, I
+think it  should give more theoretical  or experimental evidences that
+the  potential issues raised   by  the approach   (c.f. above)  can be
+overcome  (actually, I personally  do not  doubt  about it). For these
+reasons, I would  lean to accept  this paper for  a publication in the
+Special Issue on Planning of the Constraints Journal.

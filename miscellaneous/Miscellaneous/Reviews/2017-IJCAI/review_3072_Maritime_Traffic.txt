@@ -1,0 +1,165 @@
+Paper# 3072: Resource-Constrained Scheduling for Maritime Traffic Management
+
+========================================================================================================================================
+
+Originality
+[1..10] 4
+> Reviewers should recognise and reward papers that propose genuinely new ideas. As a reviewer you should 
+> try to assess whether the ideas are truly new. Novel combinations, adaptations or extensions of existing ideas are also valuable.
+
+Technical Quality
+[1..10] 3
+> Are the results technically sound? Are there obvious flaws in the conceptual approach? Are claims well-supported by theoretical 
+> analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers 
+> to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach?
+
+Significance
+[1..10] 5
+> Is this a significant advance in the state of the art? Is this a paper that people are likely to read and cite? 
+> Does the paper address an important problem? Does it open new research directions? Is it a paper that is likely to have a lasting impact?
+
+Relevance
+[1..10] 4
+> Is the paper fully within the scope of the conference? Will the questions and results of the paper be of interest to researchers in the field? 
+> Did the authors ignore (or appear unaware of) highly relevant prior work? Is previous work in the area of the paper properly cited?
+
+Quality of writing
+[1..10] 7
+> Is the paper clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? 
+> Are there issues with typos, formatting, references, etc.? It may be better to advise the authors to revise a paper and submit to a 
+> later conference, than to accept and publish a poorly-written version. However, if the paper is likely to be accepted, please 
+> make suggestions to improve the clarity of the paper, and provide details of typos.
+
+Overall Score
+[1..10] 4
+> 10- This is best-paper material. 
+> 9- An excellent paper, a very strong accept. 
+> 8-A very good paper, a strong accept 
+> 7-A good paper, accept. 
+> 6-A good paper overall. I vote for acceptance, although would not be upset if it were rejected because of the low acceptance rate. 
+> 5-Decent paper, but may be below the IJCAI threshold. I tend to vote for rejecting it, although would not be upset if it were accepted. 
+> 4-I vote for rejecting it, but could be persuaded otherwise. 
+> 3-A weak paper, just not good enough. 
+> 2-A clear rejection. I vote and argue for rejection. Clearly below the standards of the conference. 
+> 1-A very strong rejection. I will actively fight for rejection.
+
+Confidence on your assessment
+[1..10] 9 
+> 10-My own current research is on the topic of the paper, 
+> 9-I have undertaken research on the topic of the paper, 
+> 8-I am an expert in this area, 
+> 7-I have up-to-date knowledge in the area, 
+> 6-I don't have complete knowledge of the area, but can assess the value of the work, 
+> 5-I have a general understanding of the area, 
+> 4-My assessment is an informed guess, 
+> 3-My knowledge in the area is limited, 
+> 2-My knowledge in the area is very limited, 
+> 1-My assessment can be wrong
+
+========================================================================================================================================
+Comments to Authors. 
+> Make sure you substantiate all the scores for the different criteria above. Give informative content. 
+> Be constructive. Write your comments in the same way you would like to receive comments on your own papers.
+
+The paper presents an interesting scheduling application for maritime traffic management. The problem is formalized as a small extension of the classical RCPSP problem (namely: variable activity duration and precedence constraints with no-wait time) and a Benders decomposition is proposed to solve the problem. The approach is tested on both a synthetic and some more realistic instances.
+
+I think some approaches for solving similar problem that arise in the context of air and train traffic management (for instance [1,2]) should be mentioned because the problems share some important similarities, in particular the modeling of zones/sections as cumulative resources and the no-wait constraints.
+
+[1] C. Allignol, N. Barnier, P. Flener and J. Pearson, (2012). Constraint programming for air traffic management: a survey. The Knowledge Engineering Review. Volume 27, Issue 3 (Constraint Programming for Air Traffic Management) September 2012, pp. 361-392
+
+[2] J. Rodriguez, J, (2007). A Constraint Programming Model for Real-time Train Scheduling at Junctions. Transportation Research Part B: Methodological, Volume 41, Issue 2, pp 231-245.
+
+Interestingly, CP techniques have often been shown successful on these air and train traffic problems. CP techniques are cited in the present paper but I do not really understand why they are mentioned in the "discrete time" category. Even if in these approaches time is often represented with integers, most of the CP approaches do not need to enumerate time so the size and complexity of the model do not depend on the time granularity and they consider time as a continuous variable. Did you try a CP model for your problem?
+
+It is very difficult to get an idea of the performance of the proposed approach based on the experimental results:
+- On the synthetic benchmark:
+  o what is the typical CPU time required to solve each iteration (because in the end, only the CPU time matters, not the number of iterations) ? how does it scale with problem size ?
+  o Which solver do you use in your experiment ? which version ?
+  o Some information are missing to really make the benchmark reproducible: 
+    * there are many ways to generate random connected graphs, which one are you using ?
+    * how do you exactly generate random paths of fixed length for each vessel ?
+    * the time to traverse an edge is uniformly sampled from [5,10], is it the minimal traversal time? What about the maximal?
+- On the more realistic benchmark:
+  o What are the typical characteristics of the problem you are solving here, in particular: 
+    * number of vessels ? 
+    * average number of activities per vessels? 
+    * number of zones?
+  o What is the typical solve time? Are you solving these problems to optimality and/or enforcing some time-limit?
+  
+If possible it would be very useful to make (at least the synthetic benchmark) either fully reproducible or publicly available.
+
+These questions are particularly important because it is not clear how the proposed approach scales on larger (and probably more realistic) problems given that, from my understanding, the formulation is at least in n^3 with the size of the problem (total number of activities).
+
+For curiosity, I implemented the following formulation of the problem in CP Optimizer (part of IBM ILOG CPLEX Optimization Studio). 
+The formulation is trivial, and its size is of course linear with the size of the problem:
+
+    using CP;
+
+    // READ DATA
+    
+    int nbVessels               = ...;
+    int nbActs                  = ...;
+    int nbZones                 = ...;
+    int relDate[nbVessels]      = ...;
+    int size[nbVessels]         = ...;
+    int capacity[nbZones]       = ...;
+    int zone[nbVessels][nbActs] = ...;
+    int dMin[nbVessels][nbActs] = ...;
+    int dMax[nbVessels][nbActs] = ...;
+
+    // CP OPTIMIZER MODEL
+
+    dvar interval act[i in 1..nbVessels][j in 1..nbActs] size dMin[i][j]..dMax[i][j];
+    
+    minimize max(i in 1..nbVessels) endOf(act[i][nbActs]);
+    subject to {
+      forall (i in 1..nbVessels)
+        relDate[i] <= startOf(act[i][1]);
+      forall (k in 1..nbZones)
+        sum (i in 1..nbVessels, j in 1..nbActs: zone[i][j]==k) pulse(act[i][j], size[i]) <= capacity[k];
+      forall (i in 1..nbVessels, j in 2..nbActs)
+        endAtStart(act[i][j-1], act[i][j]);
+    }
+
+With the automatic search (no parameter change), using version 12.7, it seems to have no difficulty at all to solve to optimality instances with similar characteristics as the ones of the synthetic benchmark (based on randomly generated connected graphs). For 30x5 size problems (the largest ones of the synthetic benchmark), it finds and proves optimality in generally less than 1s and can prove optimality for larger problems too. And the very same model can find feasible solutions and improve on them for problems 100 times larger (3000 vessels, 5 activity per vessel).
+
+The use of the 'makespan' as the optimization criterion is not enough justified in the paper. Usually, in this type of problem one want to minimize some aggregation of the individual delays of the vessels. Do you think the makespan is a satisfactory objective for the problem? 
+
+
+========================================================================================================================================
+Confidential Comments (Not visible to the authors)
+
+
+========================================================================================================================================
+META REVIEW
+========================================================================================================================================
+
+
+> Summary of the strong and weak points of the paper. This text should justify your recommendation to the Area Chair 
+> about acceptance or rejection of the paper but do not mention anything about acceptance or rejection in the metareview 
+> as this text will be read by authors and the final decision on acceptance and rejection will be taken later in the process. 
+> Explain the impact of the rebuttal and the discussions and preserve the anonymity of the process.
+
+Strong points of the paper:
+  - The paper is well written and well organized
+  - The problem is based on an interesting application
+
+Weak points of the paper:
+  - The proposed approach (MIP with Benders decomposition) is not motivated enough:
+    * difficulty to scale to realistic problem size (given that the formulation is in n^3)
+    * difficulty to handle more realistic objective function than the makespan
+  - Experimental section is weak:
+    * missing information about problem characteristics (size, ...), lack or reproducibility
+    * no comparison against other state-of-the-art approaches whereas such a comparison would be easy to do
+  - The choice of makespan as objective function is not well motivated
+
+Impact of rebuttal :
+  - The authors acknowledged that the use of makespan is mostly due to the fact other (probably more realistic) 
+    objective functions like sum of delays are not handled efficiently in the proposed approach (weak Benders cuts)
+
+Summary of discussions:
+  - All the reviewers agreed on the strong and weak points above
+
+RECOMMENDATION: REJECT
+
+

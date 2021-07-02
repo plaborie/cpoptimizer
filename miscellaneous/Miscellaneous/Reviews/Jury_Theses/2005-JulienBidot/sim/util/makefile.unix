@@ -1,0 +1,94 @@
+#------------------------------------------------------------
+# 
+# makefile.unix 
+#
+# Contains all the common macros for Unix ports
+#
+# To customize macros, such as ILMDIR, SOLVERDIR, modify makefile.site
+#
+# Normally this file should not be modified locally
+#
+#------------------------------------------------------------
+
+####################################################
+# Following values may be redefined in makefile.site
+####################################################
+
+DIFF= $(SOLVERDIR)/util/mydiff
+DEL=/bin/rm -f
+COPY=cp
+MORE=more
+MOVE=mv
+CAT=cat
+TOUCH=touch
+
+PURIFYUNIX = purify
+PURECOVUNIX = purecov
+QUANTIFYUNIX = quantify
+
+####################################################
+# Get directories and user's choices
+####################################################
+
+include ../../../util/makefile.site
+
+####################################################
+# Read in correct values (here, for Unix)
+####################################################
+
+ILMDIR=$(ILMDIRUNIX)
+SCHEDDIR=$(SCHEDDIRUNIX)
+SOLVERDIR=$(SOLVERDIRUNIX)
+CONCERTDIR=$(CONCERTDIRUNIX)
+SIMDIR=$(SIMDIRUNIX)
+DISPDIR=$(DISPDIRUNIX)
+
+PURIFY = $(PURIFYUNIX)
+PURECOV = $(PURECOVUNIX)
+QUANTIFY = $(QUANTIFYUNIX)
+
+# CLEANMAKE is needed by makefile.shr in order to know how to clean
+CLEANMAKE=cleanunix
+REALCLEANMAKE=realcleanunix
+KEEPLIB=keeplibunix
+HTMLDOC=htmldocunix
+CHECK=checkunix
+
+
+
+.SUFFIXES : .cpp 
+O=o
+DEF = -D
+INC = -I
+
+LIBS=$(TMPDIR)libsim.a
+
+SIMLIB=$(LIBS)
+
+LDBASEFLAGS=-L$(TMPDIR)./ -L$(SIMLIBDIR) -lsim -L$(SCHEDLIBDIR) -lschedule -L$(SOLVERLIBDIR) -lsolver -L$(CONCERTLIBDIR) -lconcert -lm
+
+LDEXTRAFLAGS =
+
+DUMMY=
+OUTPUT=-o $(TMPDIR)
+EXEOUTPUT=$(OUTPUT)
+OBJOUTPUT=$(OUTPUT)
+
+BREFDIR= ../../../refbench
+
+LDCURRFLAGS=-L.
+
+SEP=/
+
+LDSEARCHFLAGS=-lsearch
+
+#
+# No PCH under Unix
+#
+LIBPCH_H=
+BENCHPCH_H=
+
+include $(SIMDIR)/util/makefile.shr
+include $(SIMDIR)/util/makefile.depend
+
+

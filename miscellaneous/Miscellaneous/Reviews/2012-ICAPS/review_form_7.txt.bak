@@ -1,0 +1,104 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines beginning with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines beginning with *** are used by EasyChair. Do not
+---     remove or modify these lines or the review will become
+---     unusable and will be rejected by EasyChair
+--------------------------------------------------------------
+*** REVIEW FORM ID: 895134::442579
+*** SUBMISSION NUMBER: 7
+*** TITLE: MDD Propagation for Disjunctive Scheduling
+*** AUTHORS: (anonymous)
+--- CATEGORY: full technical paper
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+---  Please provide a detailed review, including justification for
+---  your scores. This review will be sent to the authors unless
+---  the PC chairs decide not to do so. This field is required.
+
+The paper describes an MDD-based approach for representing and pruning the domain of a sequence of activities subject to a no-overlap constraint with sequence-dependent setup times in scheduling. It is an extension (addition of setup-times) and a more detailed description of the approach sketched in Hoda&al (CP-2010). An experimental study is provided.
+
+The approach is very original and to the best of my knowledge, this is the first time MDDs are applied to constraint-based scheduling and proved to be efficient.
+
+From a theoretical perspective, one can understand the interest of the MDD approach because it has the ability to partition the domain of the sequence variable into subsets of states that can be pruned globally and can allow to efficiently compute good lower bounds on the objective. Based on the experimental evaluation, it would be very interesting to understand in which contexts the MDD approach performs better than the pure CP one. For instance it could be that in case the time-windows are quite tight and "reasonably" disjoint, they "quasi-partition" the activities in independent sub-sequences and that the MDD-based domain representation is able to account for this "quasi-decomposition". Or maybe if the durations and the setup-times are very non-homogeneous so that there are different time-scales in the problem, this type of decomposition is also naturally handled by the MDD. I understand this is out of the scope of the present paper given the page limit (and the current density of the paper) but a study of why the approach works and what type of problem structures are captured in the MDD would be very interesting. That could be done by analysing how some indicator values on the instances ("disjointness" of time-windows, non-homogeneity of duration/setup-times, etc.) impact the efficiency of the MDD-based approach.
+
+In the experimental results, the heuristic to select the next activity to schedule first on the schedule is not clear. Are you really using a static order arbitrarily computed before the search? What would be the impact on the results if the order was dynamic and for instance consisted in trying to schedule next the activities ordered by earlier propagated start time as it is classically done in constraint-based scheduling?  
+
+It is not clear how the MDD global constraint is updated and how it is synchronized with the other constraints in the case CP+MDD. I suppose the MDD is incrementally updated at each search node. Is there some complexity bounds for this update procedure? The classical CP algorithms can update the activity bounds as well as the set of precedences. This in turn update the MDD which can infer new bounds and precedences (as described in the paper). Do you iterate until a fix point is reached at each search node? 
+
+Note that as the MDD can deduce new precedence relations, additional propagation algorithms like the precedence-energy [1] could be useful. Or do you think this algorithm is subsumed by the MDD propagation? If the precedences are fully explicited in the MDD is seems that the precedence-energy is indeed subsumed by the MDD (it is exactly the situation of example 3) but I guess the limited-width MDD is in general not able to capture all the precedences of a general precedence graph without loss of information.
+
+I do not understand how tie breaking with size of A_v is used in the refinement phase. If one new node is associated with each of the lowest K-1 values possible for E_v, in which case is there a need to break ties?
+
+Here are a few typos I noticed:
+- Figure 1: the last layer before T is labeled x_2 instead of x_3
+- In the filtering section, I do not understand the index i in equations (21) and (22), this index is never mentioned. I guess it should be replaced by something like \Phi_{u,v}
+- Just under, the equality e_{pi_{j-1}}=\Phi_{u,v} does not make sense to me as e is a scalar and \Phi an activity. 
+- In the section explaining how precedence relations are propagated into the MDD in the sentence "Conversely, suppose we collect the set of precedences ...", the index j seem to be used with two different purposes in the paragraph: as an activity (in i<<j) and as a position in the sequence (layer L_j, L_{j+1}), it makes it quite difficult to understand the equations (24)...(27).
+
+[1] P. Laborie. Algorithms for Propagating Resource Constraints in AI Planning and Scheduling: Existing Approaches and New Results. Artificial Intelligence Journal. Vol 143/2 pp151-188. 2003.
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+---  If you wish to add any remarks for PC members, please write
+---  them below. These remarks will only be used during the PC
+---  meeting. They will not be sent to the authors. This field is
+---  optional.
+
+This is an interesting paper. I'm hesitating to propose it for a best paper award. Some imprecisions mentioned in my review should be fixed. Depending on the answers of the authors in the rebuttal phase, I may be able to propose it for the award.
+
+--------------------------------------------------------------
+--- If the review was written by (or with the help from) a
+--- subreviewer different from the PC member in charge, add
+--- information about the subreviewer in the form below. Do not
+--- modify the lines beginning with ***
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+---  3 (strong accept)
+2 (accept)
+---  1 (weak accept)
+---  0 (borderline paper)
+---  -1 (weak reject)
+---  -2 (reject)
+---  -3 (strong reject)
+
+*** REVIEWER'S CONFIDENCE:
+
+---- 4 (expert)
+3 (high)
+---  2 (medium)
+---  1 (low)
+---  0 (null)
+
+*** I WANT TO RECOMMEND THIS PAPER FOR THE BEST PAPER AWARD,: from 1 (lowest) to 2 (highest)
+
+---  2 (yes)
+1 (no)
+
+*** I WANT TO RECOMMEND THIS PAPER FOR THE BEST STUDENT PAPER AWARD (IF APPLICABLE): from 1 (lowest) to 2 (highest)
+
+---  2 (yes)
+1 (no)
+
+*** END
+--------------------------------------------------------------

@@ -1,0 +1,147 @@
+This is pdfTeX, Version 3.14159-1.10a-RC3 (MiKTeX 2.2) (preloaded format=latex 2000.11.28)  24 MAR 2003 16:44
+**D:/Julien/sim/doc/techniques.tex
+(D:/Julien/sim/doc/techniques.tex{pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for english, french, german, ngerman, du
+mylang, nohyphenation, loaded.
+(d:\Program Files\MiKTeX\tex\latex\base\article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(d:\Program Files\MiKTeX\tex\latex\base\size12.clo
+File: size12.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(d:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(d:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(d:\Program Files\MiKTeX\tex\latex\graphics\graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(d:\Program Files\MiKTeX\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(d:\Program Files\MiKTeX\tex\latex\00miktex\graphics.cfg)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+
+(d:\Program Files\MiKTeX\tex\latex\graphics\pdftex.def
+File: pdftex.def 2001/11/29 v0.03i graphics/color for pdftex
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (techniques.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+
+(d:\Program Files\MiKTeX\tex\context\base\supp-pdf.tex
+(d:\Program Files\MiKTeX\tex\context\base\supp-mis.tex
+loading : Context Support Macros / Missing
+\protectiondepth=\count88
+\scratchcounter=\count89
+\scratchdimen=\dimen105
+\scratchskip=\skip43
+\scratchmuskip=\muskip10
+\scratchbox=\box26
+\scratchread=\read1
+\scratchwrite=\write3
+\nextbox=\box27
+\nextdepth=\dimen106
+\everyline=\toks15
+\!!counta=\count90
+\!!countb=\count91
+\recursecounter=\count92
+)
+loading : Context Support Macros / PDF
+\nofMPsegments=\count93
+\nofMParguments=\count94
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 30.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
+ (d:\Program Files\MiKTeX\tex\latex\base\omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+
+<jobshop.pdf, id=1, 492.93158pt x 200.45892pt>
+File: jobshop.pdf Graphic file (type pdf)
+ <use jobshop.pdf>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 65.
+ [1
+
+{psfonts.map}] <normallaw.pdf, id=27, 660.1262pt x 459.33607pt>
+File: normallaw.pdf Graphic file (type pdf)
+ <use normallaw.pdf>
+<normallaw2.pdf, id=28, 659.46375pt x 459.45651pt>
+File: normallaw2.pdf Graphic file (type pdf)
+ <use normallaw2.pdf>
+Underfull \hbox (badness 10000) in paragraph at lines 83--85
+
+ []
+
+[2 <jobshop.pdf>] [3 <normallaw.pdf>] [4 <normallaw2.pdf>] [5] [6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 153--158
+
+ []
+
+[8] <la11avestd.pdf, id=95, 533.83443pt x 373.75633pt>
+File: la11avestd.pdf Graphic file (type pdf)
+ <use la11avestd.pdf>
+[9 <la11avestd.pdf>] <resched.pdf, id=106, 521.7292pt x 396.82253pt>
+File: resched.pdf Graphic file (type pdf)
+
+<use resched.pdf> [10 <resched.pdf>]
+<makespan.pdf, id=117, 526.18579pt x 366.46913pt>
+File: makespan.pdf Graphic file (type pdf)
+ <use makespan.pdf> [11 <makespan.pdf>] <makespanstd.pdf, id=128, 522.57233pt x
+ 387.30696pt>
+File: makespanstd.pdf Graphic file (type pdf)
+
+<use makespanstd.pdf> [12 <makespanstd.pdf>] (techniques.aux) ) 
+Here is how much of TeX's memory you used:
+ 926 strings out of 95639
+ 10618 string characters out of 1191021
+ 60850 words of memory out of 1059419
+ 3928 multiletter control sequences out of 35000
+ 10065 words of font info for 35 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 607
+ 25i,8n,21p,1981b,295s stack positions out of 1500i,500n,5000p,200000b,32768s
+ 138 PDF objects out of 65536
+ 0 named destinations out of 20000
+ 35 words of extra memory for PDF output out of 65536
+<cmr6.pfb><cmmi6
+.pfb><cmsy8.pfb><cmex10.pfb><cmmi8.pfb><cmr8.pfb><cmmi12.pfb><cmti12.pfb><cmsy1
+0.pfb><cmti10.pfb><cmmi10.pfb><cmr10.pfb><cmr12.pfb><cmbx12.pfb>
+Output written on techniques.pdf (12 pages, 213574 bytes).

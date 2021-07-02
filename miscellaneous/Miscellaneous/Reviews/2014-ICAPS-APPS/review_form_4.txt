@@ -1,0 +1,151 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1597117::821530"
+        submission="4"
+        title="Planning for Mining Operations with Time and Resource Constraints"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="198232" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == -1 weak reject
+  -->
+  
+</score>
+<score id="198233" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 (high)
+  -->
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="203991" name="Significance of the application area being addressed">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very significant
+  -->
+  
+</score>
+<score id="203993" name="Importance of planning and scheduling technology to solution of the problem">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 very important - adds essential capabilities
+  -->
+  
+</score>
+<score id="204009" name="Novelty of the application and technical approach to the application">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 moderately novel - application or approach is significantly different
+  -->
+  
+</score>
+<score id="204010" name="Clarity of the descriptions of the application, techniques used, and results">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 moments of clarity
+  -->
+  
+</score>
+<score id="204011" name="Evaluation of the approach or system">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 poor
+  -->
+  
+</score>
+<score id="204012" name="Level of Maturity">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 Early prototype system
+  -->
+  
+</score>
+<score id="205658" name="Suitable for a demo">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 maybe
+  -->
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="198235" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+The article tackle a very significant planning and scheduling problem in the context of mining. The problem is to allocate blocks to excavators and stockpiles while respecting several types of constraints (spatial constraints, blending constraints for stockpiles, limited number of excavators, travel times) and minimizing the makespan.
+
+The problem is decomposed in two phases: first a planning problem, mostly for allocating blocks to stockpiles, and then a detailed scheduling problem. This type of decomposition approach is quite common for solving complex planing and scheduling problem. The planning problem is solved as a MIP problem whereas the scheduling problem uses AI Planning. 
+
+There are several ambiguities in the description of the problem. I think the problem should be described more formally in the "Problem Description" section. For instance:
+- It is not clear if a block needs to be allocated a single stockpile or if it can be split between several ones. The informal description of the problem and the figures 3 and 4 seem to suggest a single stockpile whereas the fact in the MIP variables x_b,d are continuous suggest that it can be split
+- The temporal constraints due to block accessibility constraints are not clear. In the end it seems that for a given block, they are given as a *disjunctive* set of subset of cleared blocks: in the example \Gamma(b)={{i,j},{j,k}} means that b should be mined (after i and j) OR (after j and k). 
+
+I'm surprised AI Planning was used to solve the second phase of the problem. Once the blocks have been allocated to the stockpiles (in the planning phase), the problem is a pure scheduling problem with resource allocation: all the tasks are known, it is only a matter of allocating the block mining tasks to the excavators and sequencing the tasks on the excavators. The travel times of excavators are sequence-dependent setup times which is something very common in scheduling. The only "non-classical" constraints are the temporal constraints with disjunction but this is something that can be modeled quite easily in modern schedulers. For instance why not to use Constraint Programming to solve this scheduling problem? If you use CPLEX 12.5, it would be interesting to try a scheduling model solved with the CP Optimizer engine that comes with CPLEX 12.5. The disjunctive precedence constraint can easily be modeled with optional interval variables. And the scheduling problems described in the paper look tiny for this type of tools. 
+
+On the same line, in the introduction, nothing is said about constraint-based scheduling (CBS). CBS techniques have shown to be very expressive and efficient to solve scheduling problems, which are problems for which, indeed, MIP is often not well adapted. Compared to AI Planning techniques, CBS exploit the particularities of the problem, in particular the fact the set of tasks to execute if quite well known, in order to perform stronger inference and adapted search strategies. 
+
+
+</text>
+<text id="198236" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

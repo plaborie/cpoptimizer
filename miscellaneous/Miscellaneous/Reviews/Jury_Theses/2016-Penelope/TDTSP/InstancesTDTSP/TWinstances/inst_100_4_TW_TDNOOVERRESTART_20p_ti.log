@@ -1,0 +1,9 @@
+# INSTANCE: InstancesTDTSP/NewTWinstances/inst_100_4_TW.txt InstancesTDTSP/tdtsp_bench_255_6h00_12h30_20p_ti_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 100
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 300
+# NO SOLUTION FOUND
+# OPTIMALITY NOT PROVED
+Error: CP Optimizer Error : (10) IlcIntExpI::getValue non-fixed constrained variable 0000000034E61C20
+

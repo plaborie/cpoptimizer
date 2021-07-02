@@ -1,0 +1,133 @@
+Evaluation of work and contribution	1-5: 3
+Significance				1-5: 3
+Originality and novelty 		1-5: 3
+Relevance to the call of papers 	1-5: 4
+Readability and organization 		1-5: 2
+Technical quality 			1-5: 3
+Overall recommendation  		1-5: 3
+Confidence				1-5: 3
+
+--------------------------------------------------------
+Comments to author(s):
+
+The paper describes and analyzes two different approaches for solving
+the oversubscribed AMC scheduling problem. The first approach
+manipulates indirect representation of the schedule (permutations)
+whereas the second one directly works on the schedule (repair
+method). The main conclusions of the paper are that, for the type of
+objective criterion being considered (hard task priorities), low
+levels of over-subscription tend to favor indirect representations
+(which are able to quickly traverse the search space) whereas high
+levels of over-subscription are better solved by repair methods (which
+focus on local re-arrangements).
+
+The description of task priority rules in section 3 is really not
+clear. I think it should be more formalized. 
+
+First, it is not clear whether there really is a total and hard order
+between all the priority levels. The first digit (priority class)
+seems to play a different role than the two other ones. If i>j, one
+cannot "trade off" between tasks of priority i?? and tasks of priority
+j??. But what about tasks of the same priority class? Can one
+trade-off priority 1A1 missions to get some number of priority 1A2 in
+the schedule? Given the approximation in section 3.3, this seem to be
+the case but it is not explicitly said.
+
+Priorities should be formalized as representing a partial order
+between feasible schedules. If I understand well, if there are p
+priority levels 1,..,p (it is not clear from section 3.1 if there are
+5 or 125 such priority levels) and if a solution S is represented by
+the tuple (s1,..,sp) where si denotes the number of tasks of priority
+i scheduled in S, then, a solution S is better than S' if and only if
+(s1,..,sp) > (s'1,...,s'p) where > is the lexicographical
+order. Optimal solutions are the maximal elements of the poset of
+solutions. 
+
+The "hard constraint" expressing priorities in section 3.2 is also not
+clear. In particular, the term "including additional tasks" is
+ambiguous. Does it mean "a greater number of tasks" (thus reasoning on
+the cardinality of the set) or "the same tasks plus new ones" (thus
+reasoning on the set itself). In this last case, it looks like the
+criterion is not really a lexicographical order between the
+cardinalities but a lexicographical inclusion relation. 
+
+The approximation in section 3.3 is not motivated enough. 
+
+First, the need for such an approximation is not clear. The proposed
+algorithms (TaskSWAP and SWO) seem only need to be able to compare a
+new solution with respect to the current "best" solution in order to
+decide which one to keep. For this, the original partial order defined
+by the priorities should be directly usable.
+
+Furthermore, the choice of the value for the increment is not
+evident. A task of priority 4E5 would be associated a value 10^3+111 =
+1111 whereas a task of priority 5A1 (thus of lower priority class)
+would be associated a value 10^2+155=255. It means that in the
+approximation, a task of priority class 4 can be traded off with 5
+tasks of priority class 5. Is it OK for the application ? Why not to
+take higher values for the increment?
+
+There must be a typo in property 2: a worse priority score should
+correspond to a lower priority, not a higher one.
+
+In the experimental study, it is surprising that the distance used in
+the SWO is not very sensitive to task priorities, it ranges from 212
+(lowest priority tasks) to 260 (highest priority tasks). Were some
+additional experiments made with more sensitive distance functions?
+
+When you mention that SWO finds two additional optimal feasible
+solutions, does it mean that there is no unscheduled tasks in these
+solutions (in this case, they are of course optimal with respect to
+the priority criterion) or that these solutions leave some tasks
+unperformed but the optimality was proved using other approaches?
+
+It is mentioned that in the case of high levels of over-subscription,
+the initial schedule is a pretty good one which explain why local
+rearrangements produced by TaskSwap behave better than SWO. It would
+be good to provide figures about the average improvements over the
+initial schedule for each problem set.
+
+The direction mentioned in the last section about enforcing priorities
+in the schedule builder by processing the permutations in multiple
+layers should definitively be studied. Indeed, the current comparison
+is not really fair in the sense that only the TaskSwap procedure
+really takes into account the "hardness" of the priorities. The SWO
+only takes into account the priorities through an aggregate distance
+function.
+
+Some separation spaces are missing:
+- section 3.3: we consider is[ ]NP ...
+- section 4.1: while running SWO.[]Given ...
+
+--------------------------------------------------------
+Confidential comments to PC members:
+
+
+
+--------------------------------------------------------
+Summary of review (to author(s) and PC members):
+
+
+The paper describes and analyzes two different approaches for solving
+the oversubscribed AMC scheduling problem. The first approach
+manipulates indirect representation of the schedule (permutations)
+whereas the second one directly works on the schedule (repair
+method). The main conclusions of the paper are that, for the type of
+objective criterion being considered (hard task priorities), low
+levels of over-subscription tend to favor indirect representations
+(which are able to quickly traverse the search space) whereas high
+levels of over-subscription are better solved by repair methods (which
+focus on local re-arrangements).
+
+The description of task priority rules in section 3 is really not
+clear and should be more formalized. It makes the sequel of the paper
+hard to follow, in particular why an approximation of the "Hard
+Priority Constraint" is needed. 
+
+The paper claims that indirect representations (such as task
+permutations) make it hard to back-propagate some solution properties
+on the indirect representation (or on the decoding of this
+representation). This is true in general but for the very case of hard
+priority constraints, it seems that, as mentioned by the authors in
+the last section, it should be doable. This kind of weaken the general
+conclusions of the paper.

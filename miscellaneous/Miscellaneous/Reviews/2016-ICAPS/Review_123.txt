@@ -1,0 +1,140 @@
+Title: Cell Design and Routing of Jobs in a Multisite Make-to-Order Enterprise
+Authors:	(anonymous)
+PC member: 	Philippe Laborie
+
+Evaluation
+  Overall evaluation
+    3: strong accept
+    2: accept
+    1: weak accept
+    0: borderline paper <<<
+    -1: weak reject
+    -2: reject
+    -3: strong reject
+    
+  Reviewer's confidence
+    5: (expert)
+    4: (high) <<<
+    3: (medium)
+    2: (low)
+    1: (none)
+    
+Additional scores
+  (Applications track ONLY): Importance (economic, societal, etc) of the application problem being addressed.
+    5: N/A (not an Applications track paper)
+    4: very important
+    3: moderate <<<
+    2: marginal
+    1: unimportant
+  
+  (Applications track ONLY): Novelty of the application and technical approach to the application.
+    5: N/A (not an Applications track paper)
+    4: very novel - approach and/or application are new
+    3: moderate - application or approach is significantly different <<<
+    2: marginal - parts of the application or approach are new
+    1: none - similar approach to the same application has been used before
+  
+  (Applications track ONLY): Importance of planning/scheduling technology to the solution of the problem.
+    5: N/A (not an Applications track paper)
+    4: very important - essential to solving the problem
+    3: moderately important - adds significant capabilities
+    2: marginally important - improves usability, capabilities or performance <<<
+    1: not important - could be done without it
+  
+  (Applications track ONLY) Maturity.
+    6: N/A (not an Applications track paper)
+    5: study of the success, acceptance, impact and/or deficiencies of a fielded system
+    4: fielded system
+    3: mature system with testing on realistic problems
+    2: early prototype system <<<
+    1: challenge problem
+  
+  (Robotics track ONLY): Balance of Robotics and Automated Planning and Scheduling
+    6: N/A (not a Robotics track paper) <<<
+    5: Excellent mix between the two fields
+    4: Good mix between the two fields
+    3: Fair mix between the two fields
+    2: Nothing Robotics specific, pure "classical" AIPS paper
+    1: Nothing on Automated Planning, pure Robotics paper
+  
+  (Robotics Track ONLY): Evaluation on physical platforms/simulators
+    6: N/A (not a Robotics track paper) <<<
+    5: Runs on real robots
+    4: Runs in a standard robot simulator (Gazebo, Morse etc.)
+    3: Could be used with a simulator or robot
+    2: Still some work to have it running on robots
+    1: Unlikely to be ever running on a robot
+  
+  (Robotics Track ONLY): Significance of the contribution
+    6: N/A (not a Robotics track paper) <<<
+    5: Significant in both Robotics and Planning
+    4: Significant in Planning (i.e. planning researchers would care about this paper)
+    3: Significant in Robotics (i.e. robotics researchers would care about this paper)
+    2: Marginally significant in one Robotics and/or Planning
+    1: Not significant
+  
+  (Applications and Robotics tracks ONLY): Suitable for a demo?
+    4: N/A (not an Applications or Robotics track paper)
+    3: yes
+    2: maybe <<<
+    1: no
+    
+  Nominate for Best Paper Award
+    2: yes
+    1: no <<<
+  
+  Nominate for Best Student Paper Award (if eligible)
+    2: yes
+    1: no <<<
+  
+Review
+
+The article describes a real-world problem that encompasses both the "off-line" configuration of work shops and the "on-line" high-level dispatching of jobs to sites in a multi-site enterprise working with a "Make-to-Order" process.
+
+The paper is interesting but I think several technical choices in the approach should be better motivated as explained below.
+
+The article deals with two different problems:
+- the off-line problem of configuring a given work shop (allocating machines to the different cells/rooms)
+- the on-line (higher level) problem of allocating jobs to work shops in a multi-site environment (several work shops)
+
+1- Off-line work shop configuration problem
+
+The work shop configuration problem is a spatial problem that consists in allocating each machine of a given shop to a cell/room so as to minimize a combination of multi-criteria objective (number of late jobs and inter-cellular movements). 
+
+This problem is typically the 1st stage component of a 2-stage optimization problem under uncertainties because the actual jobs that will have to be executed in the work-shop are not known at the time the shop is configured. It would probably clarify the paper if the description of the problem was expressed as a 2-stage stochastic optimization framework. I'll comment on it a bit later.
+
+The only spatial constraint that is considered in the configuration problem is a maximal number of machines per cell. Isn't it a bit oversimplified? For instance I suppose that the machine have different size and/or that some machine-dependent free space around the machine needs to be respected. There may be also other constraint related with the equipments of the room/cells so that not every machine can be allocated to any room. 
+
+My main question for this problem is why the shop configuration problem is performed in two steps: (1) the partition of the *functions* into K cells and then (2) the allocation of machines to the partitioned functions? For me this is completely artificial and over-constraining (you can miss some optimal solutions) ? Why not directly partitioning the set of machines into K cells ? The correspond problem seems to be straightforward to model as a MILP problem for instance and could be solved with an exact solver. The typical problem size mentioned in the experimental section (74 machines, a few cells, 223 jobs) do not seem extremely large and as the problem is an off-line configuration problem, the response time of the optimization process does not seem to be an issue as long as it remains reasonable. Furthermore, modeling the problem as a MILP, you could easily take into account more complex spatial constraints.
+
+Another important question is the optimization criterion that is used in this stage. You mention a set of jobs J to be processed in the shop. But the actual set of jobs is not known at the moment you configure the shop. I suppose the shop is not re-configured each time a new set of jobs arrives! So what is this set of jobs J ? I understand that for instance in assembly lines that perform very repetitive jobs one can configure the assembly line by using some typical patterns and objective targets (e.g. takt time), but in the context of Make-to-Order, by definition, the set of jobs is very "variable". Do you select a "typical" set of jobs J? It seems to me that, at least you should consider several scenarios (several set of jobs J) for the shop configuration. This is what is currently done when solving 2-stage optimization problems.
+
+Considering the criteria themselves, the problem clearly is a multi-criteria problem with number of late jobs and inter-cellular movements. But it is not always clear in the paper how these criteria are balanced. The beginning of the section on "Cell design" clearly focuses on inter-cellular movements whereas in the end of section "Tradeoff between late jobs and inter-cellular movements", you say that "we are always willing to sacrifice inter-cellular movements". 
+
+For on-line job allocation problem, you add an additional decision layer because of the "multi-site" aspect of the problem. Would it make sens to also add this decision layer for the configuration problem? Stated otherwise, does it make sense to consider a more global configuration problem where machines could be moved from on work-shop to another one to achieve a more efficient global configuration?
+
+Do the figures 1 and 2 corresponds to the 3 jobs on Table 1? It would be good if it is so. But there seem to be more functions in the jobs of Table 1 (8 of them). 
+
+2- On-line job allocation problem
+
+From my understanding, the on-line routing and sequencing part *at the level of a given work shop* is out of the scope of the current paper and is performed by the "simulation" tool, so it acts as a black-box. Wouldn't it make sense to open this black-box and also handle these decisions in a more global optimization framework? Indeed, the current approach is a bit strange because it requires a learning step to basically learn what is being done in the "simulation" tool. And by the way, it would be useful to describe which principles are used to take machine allocation and sequencing decisions in the "simulation" tool. Is it some greedy dispatching rules, some meta-heuristics, some exact optimization approach? In particular, in the "configuration" stage it seems that part of the configuration role is to fix/fight against bad decisions made by the simulation tool. This is particularly true in the example you give in the paragraph "Tradeoff between late jobs and inter-cellular movements": the simulation output you mention indeed seems to overuse the machines in cell C1; why does the simulation not better use machine BWPrinter2 to unload machine BWPrinter1 (even if that would increase the inter-cellular movements)?
+
+Now, the present paper adds another decision layer on top of this which is the on-line job allocation to the different work shops in a multi-site context. A bit like for work shop configuration, I do not understand why the multi-site routing problem cannot be fully expressed as a MIP model and solved with an exact solver. Part of the problem is already expressed as a MIP and the additional constraints that each shop already has a current load does not seem very difficult to model as additional constraints. What is the motivation behind the use of an heuristic here? The size of the problem? 
+
+Some more detailed comments:
+
+- All along the paper, the term "routing" is used for something that looks more like "allocation" decisions (allocation of job operations to machines). You could consider using "allocation": instead. But it is true that it also can be seen as a decision on how to route the different operations of the jobs through the different machines. 
+
+- On Figure 2: "Here the number of machines = |M| = 6". Where this 6 comes from? 
+
+- "There are nice theoretical guarantees ... we do not delve upon it in the current paper". You say to much or to few here. And I think these theoretical guarantees can be important, in particular if they can partly justify the use of a heuristic rather than an exact algorithm.
+
+
+Summary
+
+The paper addresses a complex and large scope optimization problem. In this context, it is important to understand the motivation for the different technical choices which can be dictated by the complexity/size of the problem and by the pre-existing tools. My review asks several questions (grab the "?" in the review) that I think should be addressed in the rebuttal phase and the final paper.
+
+Confidential remarks for the program committee
+ 
+ I rated the paper as "borderline paper" knowing that, in its current state it is closer to a "reject" and I ask many questions in my review. I think the answers of the authors in the rebuttal phase will be important and may change my rating.
+  

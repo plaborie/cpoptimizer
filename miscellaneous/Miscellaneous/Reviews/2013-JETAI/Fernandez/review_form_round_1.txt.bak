@@ -1,0 +1,117 @@
+====== REVIEW FORM (ROUND 1) ==========================================================
+
+Title: A Heuristic Algorithm for the Resource Assignment Problem in Satellite Telecommunication Networks
+Authors: David Fernandez, Sergio Gonzalez-Martin, Angel A. Juan and Daniel Riera
+
+
+CONTENT
+Please, answer Yes or No.
+
+Is the paper technically sound? Yes
+Is the work described original? Yes
+Does it place new results in appropriate context with earlier work? Yes
+Does anything need to be added or deleted? Yes
+Is the result important enough to warrant publication? No
+
+
+FORM
+Please, answer Yes or No.
+
+Does the abstract adequately reflect the contents? Yes
+Are the summary and conclusions adequate? No
+Does it contain adequate references to previous work? Yes
+Does it explain clearly what was done that is new? No
+Does it clearly indicate why this work is important? No
+Is the English satisfactory? Yes
+Is the presentation otherwise satisfactory? No
+Are there an appropriate number of figures? No
+Do the figures help clarify the concepts in the paper? No
+
+
+YOUR CONFIDENCE in the paper's topics:
+(Please, delete all categories except one)
+
+- Some
+
+-----------------------------------------------------------------------------------------------
+Detailed comments to authors:
+
+The article describes a greedy method to pack a set of two-dimensional capacity requests (time x frequency) in a two-dimensional space. The problem arise in satellite telecommunication networks.
+
+The main issue with the article is the lack of abstraction from the actual problem. While it is very important to root the models, algorithms and approaches to the real application, at some point it is necessary to provide a formal description of the problem being solved. Here the problem is an optimization problem so a formal description should clearly state what are the decision variables of the problem, what are the constraints and what are the objective functions or the performance indicators used to compare two solutions. Otherwise, the contribution is more an engineering one rather than a scientific one.
+
+I acknowledge the effort of the authors to describe in details why the proposed approach solves a real allocation problem in telecommunication networks but that should be as much as possible disconnected from the description of the models and algorithms themselves. There are so many telecommunication terms and acronyms that are used all along the paper that it makes it very difficult to read for someone who is not a telecom expert. The problem is that the targeted journal is not a telecommunication journal. Furthermore, it seems that many of these terms are not necessary to understand the problem.
+
+There is a tentative to clearly describe the problem in section 2.7 but I think this is still far from being sufficient. In the end, what is the problem? I understand it this way:
+
+Data:
+ - A set of n capacity requests R_i, i in 1..n. 
+ - There are several possible modes M_ik for executing a given capacity request R_i. 
+ - A mode is a pair (f_ik,d_ik). A mode specifies the required duration (d_ik) and the required bandwidth (f_ik) should this mode be selected for the capacity request R_i (this is to account for the (Bw,3T),(2Bw,2T),(3Bw,T))
+Decision variables:
+ - Decision variable x_i tells whether or not capacity request R_i is scheduled in the current time period ([0,P])
+ - Decision variable y_ik in {0,1} tells whether or not mode M_ik is selected for request R_i
+ - Decision variable t_i tells the starting time on capacity request R_i (position on the time dimension)
+ - Decision variable u_i tells the lower value of the frequency window allocated to R_i (position on the frequency dimension)
+Constraints:
+ - forall i, (x_i=1) and (y_ik=1) => t_i+d_ik <= P [Scheduled capacity request must end before the period P]
+ - forall i, (x_i=1) and (y_ik=1) => u_i+f_ik <= B [Scheduled capacity request must only use available frequencies, assuming a max value B]
+ - forall i, sum_k y_ik == x_i [One and only one mode assigned when capacity request is scheduled]
+ - forall i,j ( (x_i=1) and (y_ik=1) and (x_j=1) and (y_ik=1) )
+              => ( (t_i+d_ik<=t_j) or (t_j+d_jk<=t_i) or (u_i+f_ik<=u_j) or (u_j+f_jk<=u_i) ) [No overlap]
+ - forall i in CompulsoryRequest, (x_i=1) and ((y_ik=1) => t_i+d_ik <= D_i ) [I understand that there are some compulsory capacity requests R_i and they are associated some due date D_i]
+ - etc.
+Objective:
+ - maximize sum_i x_i [Maximize number of scheduled capacity requests ... I understand that there are also some priority considerations]
+
+It should be possible to formally describe the problem in a non-ambiguous way.
+
+Because the problem is not abstracted and formally described, the proposed approach is also very hard to follow. In the end, it seems to boil down to two pass (one for the compulsory capacity requests and one for the other requests) of a simple greedy heuristic (BFDH). But even the heuristic is not clearly described: too verbose and not enough maths to disambiguate the description. And the figures do not really help here. For instance, Figures 7 and 8 are not informative at all as there are no axis, no legends and no hint why there are some already scheduled requests (I'm assuming a block on the figure is a request) at these positions. On the other hand, a figure would be very useful to describe the BFDH heuristics.
+
+In the experimental section, the proposed approach is compared against a "do nothing" approach that is also not clearly defined, in particular how this "do nothing" method allocates the bandwidth. 
+
+A second issue is that the resolution techniques used in the paper are not really new. It is a greedy approach based on two passes of an existing heuristics (BFDH). I understand that, as time performance of the resolution algorithm is critical for this type of application, complete search methods may not be appropriate. But for instance what about meta-heuristics? Wouldn't it make sense to perform a few more iterations to try to improve the solution (for instance by using Local search or SWO or whatever)? 
+
+
+-----------------------------------------------------------------------------------------------
+Together with the paper, you received its workshop reviews as
+well as a letter from the authors explaining how they have dealt with these 
+reviews in the current version.
+
+Did authors properly took into account the comments of the workshop reviewers (other than you)? 
+(Please, delete all categories except one)
+
+- No.
+
+If you are not fully satisfied about how authors addressed comments of workshop reviewers, 
+please explain why:
+
+I must say that I did not review the workshop version of the paper and wrote my comments on the article before reading the previous reviewers comments. I think that their comments on the workshop version fully apply to the present extended version.
+
+
+Overall judgement
+(Please, delete all categories except one)
+
+1 - Critical paper
+The paper is not yet mature, or of not sufficient quality for publication in a major journal 
+as JETAI. My opinion is that it is very unlikely that authors could solve the critical issues of the paper 
+in the time given before the resubmission deadline. 
+However, I'm available to review the paper again if the paper is resubmitted.
+
+
+====== END ====================================================================================
+
+
+
+====== CONFIDENTIAL COMMENTS TO EDITORS =======================================================
+
+Please, write here any confidential comments to editors that you may have. 
+
+As for me there is no way this paper can be accepted : 
+1. The article is extremely difficult to read because of the many telecommunication terms that in fact do not bring much to the comprehension of the problem. No effort is made to abstract the problem.
+2. The solved problem is never clearly and formally described, whereas in fact it seems to be extremely simple. I have seldom seen such a gap between the complexity of the description and the (apparent) simplicity of the actual problem being solved (a 2D packing problem with a few specific constraints and objective function)
+3. The proposed approach, as far as I understand it, is very naive, just applying two passes of a greedy algorithm with a very naive heuristics. It is more like an engineering contribution. I'm not sure it brings anything to the AI community. 
+
+
+
+====== END ====================================================================================

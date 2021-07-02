@@ -1,0 +1,337 @@
+#if defined(ILOUSESTL)
+#include <fstream>
+#else
+#include <fstream.h>
+#endif
+#if defined(ILO_WIN32)
+#include <strstrea.h>
+//#else
+//#include <strstream.h>
+#endif
+
+
+#include <ilsim/ilutimeeventmanager.h>
+#include <ilsim/ilumodel.h>
+#include <ilsim/iluscheduler.h>
+#include <ilsched/iloscheduler.h>
+#include <ilsched/ilsched.h>
+#include <ilsim/ilupgsim.h>
+#include <ilsim/iluactivity.h>
+
+
+ILCSTLBEGIN
+
+
+/*
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// SEARCH GOAL IloSolveProblem
+//
+///////////////////////////////////////////////////////////////////////////////
+
+ILCGOAL1(ScheduleActivity, 
+         IlcActivity, activity) {
+  // Get the start var of the activity
+  IlcIntVar startVar = activity.getStartVariable();
+  
+  // earliest start possible
+  IlcInt startMin = startVar.getMin();
+  
+  // either the activity starts at its earliest possible start time, or later
+  return IlcOr(startVar == startMin,
+               startVar > startMin);
+}
+
+ILCGOAL1(SolveProblem, IlcActivitySelectorObject, actSel) {
+  // environment
+  IloSolver solver = getSolver();
+  IlcScheduler scheduler = IlcScheduler(solver);
+  
+  // selecting a non scheduled activity 
+  IlcActivity selected;
+  IlcBool anActivityIsSelected = actSel.select(selected, scheduler);
+  
+  // if not all of them are scheduled,
+  // schedule the activity selected and recursively repeat
+  if (anActivityIsSelected) {
+    return IlcAnd(ScheduleActivity(solver, selected),
+                  SolveProblem(solver, actSel));
+  }
+  
+  // if all of them are scheduled, don't do anything
+  return 0;
+}
+
+ILOCPGOALWRAPPER0(IloSolveProblem, solver) {
+  // Create an activity selector that selects the first
+  // activity with an unbound start variable
+  IlcActivitySelectorObject actSel (
+    !IlcActStartVarBoundPredicate(solver)
+  );
+  // Call the solving goal with this selector
+  return SolveProblem(solver, actSel);
+}
+
+
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF SOLUTIONS PrintSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintSolution(const IlcScheduler& scheduler)
+{
+  
+	IlcInt makespan = 0;
+// iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]" << endl;
+	if (activity.getEndMin() > makespan)
+		makespan = activity.getEndMin();
+  }
+	cout << endl << "The makespan is equal to " << makespan << endl;
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRINTING OF UNCERTAIN SOLUTIONS PrintUncSolution
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrintUncSolution(const IlcScheduler& scheduler)
+{
+ // iteration with solution iterator
+  for (IlcActivityIterator ite(scheduler);
+       ite.ok();
+       ++ite)
+  {
+    IlcActivity activity = *ite;
+    cout << activity.getName() << " [ ";
+	
+	if(activity.getStartMin() < activity.getStartMax())
+		cout << activity.getStartMin() << ".." << activity.getStartMax();
+	else
+		cout << activity.getStartMin();
+	cout << " -- ";
+	
+	if(activity.getDurationMin() < activity.getDurationMax())
+		cout << activity.getDurationMin() << ".." << activity.getDurationMax();
+	else
+		cout << activity.getDurationMin();
+	cout << " --> ";
+
+	if(activity.getEndMin() < activity.getEndMax())
+		cout << activity.getEndMin() << ".." << activity.getEndMax();
+	else
+		cout << activity.getEndMin();
+	cout << " ]";
+	if (activity.getObject() != 0)
+	{
+		IluActivityI* uncAct = (IluActivityI*)activity.getObject();
+		IluNormalVariableI* randVar= (IluNormalVariableI*)uncAct->getRandomVar();
+		IloNum min, max, std;
+		min = randVar->getMin();
+		max = randVar->getMax();
+	//	ave = randVar->getAverage();
+		std = randVar->getStandardDev();
+
+		cout << " : proc. time between " << min << " and " << max << " and stand. dev. of " << std;
+	}
+	cout << endl;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// PRECEDENCE GRAPH CREATION PrecedenceGraphCreation
+//
+///////////////////////////////////////////////////////////////////////////////
+
+void
+PrecedenceGraphCreation(IloEnv env, IloRandom randGen, IluSchedulerI* uncScheduler, IloInt precision)
+{
+	
+	const char* filename = "default.graph";
+	ofstream out(filename);
+	
+	IloNum now = 0.0;
+	IlcScheduler sched = uncScheduler->getScheduler();
+	// simulator creation
+	IluSimulatorI* simP = new (env) IluSimulatorI(env, sched, randGen);
+
+	simP->initPG(env, sched, randGen, now);
+
+	out << now << "\t" <<  simP->getHist()->getAverage() << "\t" <<  simP->getHist()->getStandardDev() << endl;
+
+// time event manager creation + controllable and contingent lists creation
+//	cout << "Time event manager creation" << endl << endl;
+	IluTimeEventManagerI* tEMgrP = new (env) IluTimeEventManagerI(simP, (IlcInt)now);
+
+	IloNum increment, nextExecutionTime;
+	increment = IloIntMax;
+
+	do {
+// schedule execution starts
+
+// Is their at least one activity that can be executed now?
+
+		nextExecutionTime = tEMgrP->executeNext((IlcInt)now);
+		for (IlcActivityIterator actite3(sched); actite3.ok(); ++actite3) {
+			IlcActivity act = *actite3;
+			if (simP->getPrecGraph()->isExecutable(((IluActivityI*)act.getObject())->getIndex())) {
+				//cout << "Activity " << (*actite3).getName() << " is executable at " << now << "." << endl;
+				IluActStartEventI* eventP = new (env) IluActStartEventI((IlcInt)now, ((IluActivityI*)act.getObject()));
+				tEMgrP->addCtrlEvent(eventP);
+			}
+		}
+		nextExecutionTime = tEMgrP->executeNext((IlcInt)now);
+		nextExecutionTime = IloMax(0, nextExecutionTime); // Generation of the end time events.
+	
+		simP->getHist()->clean();
+		simP->getPrecGraph()->simulate(now, 1000);	// We generate a sample for getting the probability distribution of the makespan.
+	//	simP->getHist()->display("curve.dat", 250);
+		cout << "Time " << now;
+		cout << "\t... avg=" << simP->getHist()->getAverage();
+		cout << ";\t dev=" << simP->getHist()->getStandardDev() << endl;
+		out << now << "\t" <<  simP->getHist()->getAverage() << "\t" <<  simP->getHist()->getStandardDev() << endl;
+	
+		if (simP->getThreshold() <= simP->getHist()->getAverage()) { // We re-schedule.
+			sched = uncScheduler->solve(now); // sched is our current indicative schedule.
+		
+// The execution policy is to execute the activities as early as possible.
+
+// We start simulating this current indicative schedule.
+
+// Uncertain activities caracteristics printing
+//			PrintSolution(sched);
+
+			env.out() << endl << " Precedence graph creation + execution as soon as possible " << endl << endl;
+		//	delete simP->getPrecGraph();
+			simP->initPG(env, sched, randGen, now);
+	
+			out << now << "\t" <<  simP->getHist()->getAverage() << "\t" <<  simP->getHist()->getStandardDev() << endl;
+		}
+		now += increment;
+		now = IloMin(now, nextExecutionTime);
+	}
+	while (tEMgrP->executableEvents());
+
+	out.close();
+
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// MAIN FUNCTION
+//
+///////////////////////////////////////////////////////////////////////////////
+
+int main(int argc, char** argv)
+{
+	try {
+		IluNormalVariableI::Init(); // Only one normal probability distribution is initialized and it is then transformed.
+
+		IloEnv env;  // Environment creation
+
+//		env.setDeleter(IloSafeDeleterMode); // This mode is used to delete extractables.
+
+		char* filename = argv[1];
+
+		IloNum alpha = 0.2;
+		if (argc > 2)
+			alpha = atof(argv[2]);
+		cout << "The alpha value is " << alpha << "."<< endl;
+
+		IloInt seed = 9;
+		if (argc > 3)
+			seed = atoi(argv[3]);
+		cout << "The number generator seed is " << seed << "." << endl;
+
+		IloInt precision = 1000;
+		if (argc > 4)
+			precision = atoi(argv[4]);
+		cout << "The precision used is " << precision << "." << endl;
+
+// Random generator creation
+		IloRandom randomGenerator(env);
+		randomGenerator.reSeed(seed);
+
+// Initial uncertain model creation
+		IluModelI* uncModel = new (env) IluModelI(env, filename, randomGenerator, alpha, precision);
+		uncModel->getModel().add(IloMinimize(env,uncModel->getMakespan()));
+		
+
+		IloGoal rankGoal =  IloRankForward( env,
+											uncModel->getMakespan(),
+											IloSelResMinGlobalSlack,
+											IloSelFirstRCMinStartMax); 
+														// This goal picks a resource with minimum global slack
+													    // and then, from that resource, picks a resource constraint
+													    // with minimum start min that can execute first among the
+													    // non-ranked resource constraints.
+		
+		IloGoal goal = IloLimitSearch(env, rankGoal, IloTimeLimit(env, 10));
+
+// Uncertain schedule creation
+		IluSchedulerI* uncScheduler = new (env) IluSchedulerI(env, uncModel, goal);
+
+		IlcScheduler sched = uncScheduler->solve(0.0); // sched is our current indicative schedule.
+		
+// The execution policy is to execute the activities as early as possible.
+
+// We start simulating this current indicative schedule.
+
+// Uncertain activities caracteristics printing
+//		PrintSolution(sched);
+
+//		env.out() << endl << " Precedence graph creation + execution as soon as possible " << endl << endl;
+
+		PrecedenceGraphCreation(env, randomGenerator, uncScheduler, precision);
+
+		IluNormalVariableI::End(); // The normal distribution is here erased.
+
+		env.out() << endl;
+
+		env.end();
+	} catch(IloException& exc) {
+		cout << exc << endl;
+	}
+
+	return 0;
+}

@@ -1,0 +1,60 @@
+PAPER  : #38
+TITLE  : Greedy Randomized Search for Scalable Compilation of Quantum Circuits
+AUTHORS: Angelo Oddi, Riccardo Rasconi
+
+SCORE:
+    ==  3 strong accept
+    ==  2 accept
+    ==  1 weak accept
+    ==  0 borderline paper
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+
+1
+
+REVIEWER'S CONFIDENCE
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+
+3
+
+REVIEW
+
+> Please provide a detailed review, including a justification for your scores. 
+> Both the score and the review text are required.
+
+The paper is on a very challenging planning and scheduling problem arising in the context of the compilation of quantum circuit. This problem was recently formalized as a planning problem in [7].
+
+The proposed approach consists of a greedy randomized heuristic that builds the plan in a chronological way and selects the next action based on an estimation of the its impact on the makespan objective. 
+
+The paper is clearly written and well structured.
+
+While the proposed approach is not very involved (clearly, as acknowledged by the authors it is a first step toward exploiting the specificities of the problem and integrating it with more generic approaches), it holds very interesting results on the benchmark.
+
+Interestingly, the proposed heuristic ressembles classical heuristics used in forward state-planning approaches. Even in the way the individual subgoals (here the subgoals would be to perform each operation) are combined using min/max or sum aggregations. It would be interesting to look if the heuristic proposed in the paper has some more general interpretation in the general planning formulation of the problem as for instance proposed in [7]. I guess this is something like this you have in mind when mentioning the integration of the two techniques in the conclusion.
+
+Another possible extension could be the use of more involved meta-heuristics on top of the proposed heuristic, like local search, LNS or population-based ones.
+
+From a combinatorial optimization point of view, it would also be interesting to have so guarantees on the quality of the solutions. Typically by computing some lower bounds on the optimal makespan. For instance by relaxing the global planning and scheduling problem into a more classical scheduling problem (a simple way would be to relax the swap operations and only consider a minimal transition time between the "productive gates" P-S and MIX). From this perspective, it would be interesting to give an idea of the ratio of swap operators introduced to satisfy the nearest-neighbor constraint compared to the "productive" P-S and MIX operators. This would give an idea of the "distance" of the problem to a pure scheduling problem where all the operations are given beforehand.
+
+More detailed comments and typos:
+* p5, when introducing the Max-Cut problem, maybe it would be useful to recap here that the MaxCut problem is the problem solved by the quantum circuit. This is explicitly said before in the beginning of the section 3 but it wouldn't hurt to repeat it, otherwise the reader may think the MaxCut problem is used as a tool in the proposed heuristic.
+* p5, just before equation (1): "a quadratic objective func[t]ion"
+* p6, "TC is a set of simple precedence constraints imposed by the sets P-S and MIX, such that ... all mix gates [...] must be executed after all P-S gates". What you describe here is a particular precedence graph. But I take it that the proposed heuristic does not rely on the particular structure of the graph and could handle any directed acyclic graph as precedence graph.
+* p7, in the very beginning of section 4, maybe it could be useful to explicitly say that the greedy procedure works by building the solution chronologically
+* p7, in Algorithm 1 and in several other places in the paper there is a missing "e" in the name of procedure "SelectEx[e]cutableOperation" whereas in some other places the "e" is here
+* p11, section 6.1: "inst[e]nces"
+
+
+CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE 
+
+> If you wish to add any remarks intended only for PC members please
+> write them below. These remarks will only be seen by the PC members
+> having access to reviews for this submission. They will not be sent
+> to the authors. This field is optional.
+
+

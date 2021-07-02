@@ -1,0 +1,14 @@
+PC member:	Philippe Laborie
+Time:	May 02, 12:48
+Confiance dans votre jugement:	3: (moyenne)
+Évaluation globale:	2: (accept)
+
+L'article porte sur l'étude théorique de la taille (en nombre de clauses et en nombre de littéraux) de diverses formulations des contraintes de cardinalité type (sum_i xi <= k, xi variable booléenne) en SAT.
+
+Le papier est bien écrit et structuré ce qui favorise grandement sa lisibilité malgré la combinatoire des différentes formulations et cas distingués. Ce travail est une contribution très interessante à l'analyse et la comparaison des différentes formulations de ce type de contraintes.
+
+Il est clair, comme reconnu par l'auteur dans la conclusion, que cette analyse théorique ne présage pas de la performance relative en pratique des différentes formulations (puisque la difficulté de résolution pratique d'instances SAT dépend de bien d'autres paramètres que simplement le nombre de clauses et/ou de littéraux), mais le papier décrit une contribution importante et originale.
+
+A noter que dans la communauté CP, les contraintes de cardinalité désignent aussi souvent une contrainte sur le nombre de valeurs différentes prises par un ensemble de variables (entières) x_i (global cardinality constraint). Il serait peut-être bon de rappeler la sémantique des contraintes de cardinalité dans le cadre SAT en introduction pour éviter la confusion.
+
+Remarques confidentielles pour le comité de programme:	

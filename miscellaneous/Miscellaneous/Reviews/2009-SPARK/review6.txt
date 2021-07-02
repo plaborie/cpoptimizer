@@ -1,0 +1,164 @@
+=============================================================================
+SPARK'09
+
+ICAPS'09 Scheduling and Planning Applications workshop
+http://decsai.ugr.es/~lcv/SPARK/09/index.htm
+
+**please return reviews by Thursday 20 July at the latest to L.Castillo@decsai.ugr.es
+
+Paper ID: 6
+
+Paper title: A Constraint-Based Approach for Plan Management in Intelligent Environments
+
+Paper author(s): Federico Pecora and Marcello Cirillo
+
+Committee member: Philippe Laborie
+
+Additional reviewer:
+
+-----------------------------------------------------------------------------
+
+1 - What is your overall judgement of this paper?
+
+[ ]  I will champion this paper for acceptance
+
+[X]  I would accept this paper, but I will not strongly advocate it
+
+[ ]  I would reject this paper, but I will not fight strongly against it
+
+[ ]  I will argue to reject this paper
+
+
+2 - What is your overall expertise concerning the subject areas?
+
+[X]  I am an expert
+
+[ ]  I am knowledgeable in the area, though not an expert
+
+[ ]  I am not an expert; my evaluation is that of an informed outsider
+
+
+3 - What are the main contributions of this paper (check all that apply)?
+
+[ ]  Research/theoretical
+
+[X]  Experience/practice
+
+[ ]  Position/opinion
+
+
+4 - How do you rate the paper in the following aspects?
+
+
+Relevance:                 weak [ ]  fair [ ]  strong [X]
+
+Originality:               weak [ ]  fair [X]  strong [ ]
+
+Clarity and presentation:  weak [ ]  fair [X]  strong [ ]
+
+Technical strength:        weak [ ]  fair [X]  strong [ ]  N/A [ ]
+
+
+5 - What presentation format do you suggest?
+
+
+[ ]  Full plenary presentation
+
+[X]  Brief plenary presentation
+
+[ ]  Poster/demo session
+
+[ ]  None
+
+-----------------------------------------------------------------------------
+
+PUBLIC COMMENTS AND QUESTIONS
+(will be sent to authors and distributed amongst attendees)
+
+How is the goal/objective handled in your approach? There do not seem
+to be any explicit mention of an objective or any notion of plan
+quality. Is it because of the nature of the application (implicitely:
+do as a much, as many activities as possible to assist the human)?
+
+
+-----------------------------------------------------------------------------
+
+GENERAL COMMENTS
+(will be sent to authors)
+
+The paper presents an integrated approach for reasoning on sensors
+data (for recognizing some situations) and planning activities in the
+context of a service-providing environment.
+
+These two types of reasoning have been extensively studied and
+generally, independently but some previous approaches are able to
+perform the two types of reasoning based on the same modeling
+language. For instance the IxTeT language can support both planning
+and scheduling taking into account exogenous events (see [1] and
+related more recent works) and chronicle recognition (see [2] and
+related more recent works). I think a comparison with these previous
+works would clarify the contributions of the present paper; one of the
+originality being that here, the two types of reasoning (and not only
+the model) are integrated even if somehow they are quite "simplified".
+
+The proposed approach seems to rely on some assumptions that should be
+explicited and clarified (see below). Maybe these assumptions make
+sense for the type of application being treated but, from a general
+perspective, they appear quite strong.
+
+For the scheduling and planning of the actuators, it is not clearly
+mentioned what is the objective or the goal (in the planning
+sense). Does it try to apply all possible synchronizations in some
+kind of greedy way? The section on future work seem to suggest it but
+I think this type of strong assumption should be stated before.
+
+There does not seem to be a fundamental difference in the way the
+time-points are handled depending on whether or not they correspond
+to an assumption on the end time of a contingent sensor event or an
+event computed from sensor information (example: the human is watching
+TV, the end time is a contingent event: we can't decide of its date)
+and controllable events corresponding to commands send to actuators
+for which the date can be decided by what is actually a decision. For
+instance, in the example, how the system can decide to DeliverDrink
+(an action that is planned to be executed in the future) given that we
+are not sure the human will be WatchingTV at this date (even if this
+is not incompatible with the current and past data from the sensors).
+
+A few more detailed comments:
+
+- p3, col1: typo: "occur occur" occurs twice
+
+- The term "decision" used in the paper (this term comes from the OMPS
+framework) is very misleading in the present context when it deals
+with sensors information as those are contingent events, one cannot
+directly "decide" neither on the fact they occur or not, neither on
+their occurrence date.
+
+
+[1] Ghallab, M. & Laruelle, H. Representation and Control in IxTeT, a
+Temporal Planner. Proc. AIPS-94, 1994, 61-67.
+
+[2] Dousson, C.; Gaborit, P. & Ghallab, M. Situation Recognition:
+Representation and Algorithms. Proc. IJCAI-93, 1993.
+
+-----------------------------------------------------------------------------
+
+CONFIDENTIAL COMMENTS
+(for committee only)
+
+
+Do you think that this paper may represent a seed for a journal paper?
+
+YES [ ]    NO [X]
+
+
+Additional Comments:
+
+In the current state of the work, it is probably much too early for a
+journal paper. But the approach with a tight interaction between
+reasonning on sensors data and planning in the same framework is very
+attractive and promising, even if not completely original.
+
+
+
+=============================================================================

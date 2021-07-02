@@ -1,0 +1,60 @@
+This paper deals with the problem of minimizing the makespan of a
+multi-mode RCPSP with a single resource per mode (resource
+flexibility) and simple precedence constraints. The contribution of
+the paper is a set of heuristics for computing a first solution and an
+adaptation a limited-discrepancy search for exploring some relevant
+discrepancies of the heuristics.
+
+The description of the adaptation of the LDS should be improved. In
+particular, whereas it is clear that discrepancies are applied only on
+a subset of the variables (the ones corresponding to tasks that delay
+the availability of a resource that would have been the quickest to
+perform a given task ti but was not chosen for ti because of this
+delay), it is not clear how, and if, the alternative branches
+corresponding to other variables are explored. In other words, the
+notion of "not applying discrepancy" to a task is not clearly defined.
+
+There are some more minor unprecisions in the paper:
+- it is mentioned in the problem statement that tasks are subject to
+  release dates and deadlines, this is not consistent with the
+  statement in the section "Heuristics for the computation of an
+  initial solution" that says that task finish times are not
+  constrained.
+- in this very same section on the heuristics, it is not true that
+  even in the absence of deadline, the described process will always
+  produce a solution. It works only if the tasks priorities correspond
+  to a topological sort of the initial precedence graph, this should
+  be clearly said.
+- in the definition of the tail q_i, I think something like q_i=0 if
+  Succ_i={} should be added, otherwise, q_i is ill-defined
+- in the section "Resource ordering heuristics", the notion of "less
+  required resource" is not formally defined
+- in the experiments, R_max is defined as the maximal number of
+  resource alternative per tasks. Does it mean that all tasks have
+  exactly R_max alternatives and if not, how and how many
+  alternatives are defined given the parameter R_max. Similar question
+  with P_max, which, by the way, does not seem to be a parameter of
+  the instances.
+
+There are two issues with respect to the experiments. The first one is
+that it is very hard to have an idea of how the proposed approach
+compares with other approaches that solves the same or more complex
+MRCPSP problems. A comparative study would be very informative. The
+second one is that I do not understand why the experimental study was
+not performed on bigger problems given that the CPU time for the small
+problem considered in the paper (81 activities for the buggest
+problems) is very small (less than 50ms). Furthermore, the
+quasi-linear CPU time on figure 10 whereas the number of tasks on the
+x-axis increases in n^2 seems to suggest a complexity in O(sqrt(n))
+whereas I cannot imagine how it can get better than O(n) as there is
+at least n search nodes for computing the first solution !
+
+
+
+
+The paper is about minimizing the makespan of a multi-mode RCPSP with
+a single resource per mode and simple precedence constraints. It
+proposes some heuristics used in conjunction with an adaptation of a
+LDS approach. Although such kind of adaptation of the LDS is of clear
+interest, the description of the approach suffers several unprecisions
+and the experimental study is really not convincing.

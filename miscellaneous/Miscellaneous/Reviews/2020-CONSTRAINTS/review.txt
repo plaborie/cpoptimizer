@@ -1,0 +1,34 @@
+Reviewer Recommendation and Comments for Manuscript Number CONS-D-20-00017
+
+Recommendation:
+[X] Accept as is
+[ ] Accept subject to minor revisions
+[ ] Major revision necessary
+[ ] Reject
+
+-----------------------------------------------------------------------
+Reviewer Blind Comments to Author
+
+The manuscript is an extended and improved version of a paper accepted at CPAIOR 2020.
+
+The paper proposes a pre-processing step to solve a production scheduling problem with power saving states and time-varying energy prices.
+
+The main idea is to precompute the optimal transitions (related with the power saving strategy) between two consecutive tasks. These optimal transitions can be computed as shortest paths in a graph.
+
+The precomputed optimal transition costs are then injected in an ILP and a CP model that are both much simpler than the original models (who handle the transition computation).
+
+An experimental study compares the two proposed models with pre-computation (ILP and CP) against a reference model using a single ILP. The experimental study clearly shows the interest of the approach as most of the results are improved. In particular, the pre-computed ILP formulation (ILP-SPACES) is able to solve to optimality all the instances of the benchmark.
+
+While the CP-SPACE formulation finds decent solutions, it is not able to provide optimality proofs, which is not so surprising given the type of objective function that is not really expected to back-propagate efficiently. What is more surprising is that CP is not able to provide feasible solutions for the large instances. In fact many different CP formulation were studied (35 of them) but I wonder why they were considered only on small instances of the problem (30-60 jobs) whereas the larger instances contains 190 jobs. It seems that the selected best formulation for relatively small problems (Element-Free-SumLengths) do not scale well, probably because it introduces many decision variables (indeed, in this formulation the number of free intervals to represent the spaces look prohibitive for large problems), whereas more compact formulations (like the ones that do not introduce additional variables for the spaces) would probably scale much better. In fact I do not see any reason why a CP formulation like the ones only modeling the jobs and using a no-overlap constraint (so the number of decision variables is in the same order as the number of jobs) would not trivially find a feasible solution, for instance by scheduling the jobs in any order, one starting just after the other. Indeed a formulation with only a noOverlap constraint on the jobs, captures all the constraints of the problem. The remaining of the formulation is only about the (complex) objective function. I think the manuscript could be improved by explaining why such a simple formulation of the constraints of the problem has difficulties to produce feasible solutions.
+
+Also, note that there could be another CP formulation of the problem by using the 'isomorphism' constraint. If 'n' denotes the number of jobs, you could represent the "solution" as a chain of 2n+1 interval variables of variable length representing both the jobs and the transitions: t1 -> itvj1 -> tr2 -> itvj2 ... -> itvjn -> trn+1. Then create n interval variables for the actual jobs j1, ..., jn and post an isomorphism constraint 'isomorphism([j1,...,jn],[itvj1,...,itvjn])' that maps the actual jobs 'j' on their slots 'itvj'. Then the objective function can be expressed using the start/end time of the jobs 'j' (like in the current model) and, for the cost related with the transition, by using the start/end of the transition intervals 't_i'.
+
+
+
+
+-----------------------------------------------------------------------
+Reviewer Confidential Comments to Editor
+
+Summarize briefly the reasons for your recommendation:
+
+I was one of the reviewers of the conference version of the paper. The authors have improved the conference version by giving additional details on the CP formulation of the problem and trying different variants.

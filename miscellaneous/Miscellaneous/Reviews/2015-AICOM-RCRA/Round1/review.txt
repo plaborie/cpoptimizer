@@ -1,0 +1,68 @@
+http://mstracker.com/rev.php?r=55984&m=55778
+
+Reviewer Instructions:
+
+Enter your review ratings and narrative(s) below and click the Submit button
+when finished. If pasting a narrative portion of the review from an external
+file, please save it as plain text before doing so.
+
+RATINGS
+(low/poor)  1   2   3   4   5   (high/excellent)  N/A
+Significance to Field  4
+Relevance to Journal   4
+Methodology            3
+Data Analysis          2
+Literature Review      4
+Writing Style/Clarity  4
+
+
+Recommendation: (choose the option that most closely summarizes your recommendation)
+  Accept as is
+  Accept Pending Minor Revisions
+X Revise and Resubmit After Major Revisions
+  Reject Outright
+
+Narrative: (sent to corresponding author and other reviewers)
+
+Compared to the RCRA version, the article has been improved to give more details and precisions about the differential mutations. A second extension is the experiments on the version of the problem with makespan minimization where very good results are reported. In the end, the article describes well the approach and the reported results are even more solid than in the workshop version. 
+
+But I have the same main concern as for the workshop version about the lack of evidence in the experiments that DE really brings an added value in the overall approach. 
+
+> Criticism: In fact, my main comment and question about the paper is that, although differential
+> mutation seems to be an interesting and original tool in this type of problem, the experiments do not
+> really provide an evidence for that. The experiments seem to clearly indicate that the overall approach
+> performs very well on the problem, but the differential evolution is only one of the ingredients of the
+> approach beside the crossover, the way selection is performed, the use of a constructive heuristic in
+> the initial population, the local search, the restart, etc. It would for instance be very informative to see
+> how the approach behaves when differential mutation (in line 4 of algorithm 2) is replaced by, let's say,
+> the random selection of an individual in the population or a purely random individual, or the result of a
+> path relinking between two randomly selected individuals, ... Otherwise, in the end, even if the idea of
+> differential mutation looks attractive, there is no real proof that it is the main ingredient to the success
+> of the approach.
+
+>> Answer: It worths to note that: (1) AGA (see paper references) employs our same crossover and their
+>> performances seems to be inferior, (2) population restart should be regarded as a sort of endemic
+>> component of differential evolution (DE); indeed, DE population is not able to evolve when all the
+>> individuals are the same, also in the original and continuous DE, (3) hybridization of population-based
+>> algorithms with local searches is a widely exploited technique in the field (see for example AGA or
+>> HGM-EDA), (4) the same is true for the construction of initial solutions by means of heuristic methods
+>> (see for example AGA or IG). Summarizing, local searches, restarts, and guided initialization are widely
+>> adopted in any other state-of-the-art algorithm. 
+
+(1) Yes, but is the difference between AGA and the approach described in the paper only due to the DE crossover ? I don't think. And even if that was the case, due to the many implementation details, the only way to measure the impact of the DE component of the approach is I think to try to replace it with a more naive component and perform a comparison in the same implementation framework
+(2-4) I know that restarts, hybridization with LS, construction of initial solutions with heuristics, etc are widely used in this type of approaches. I do not question the fact that the proposed approach needs all these ingredients to be competitive, this is to be expected. My point is just that the article focuses on Differential Evolution algorithms (which is a great idea because as mentioned these methods are not very used in discrete optimization) but the experimental study does not really show that *this* ingredient helps.
+
+>> Anyway, we are working on an experiment that allows to objectively made more clear the contribution 
+>> of our differential mutation.
+
+Indeed, that would definitively help improving the article. I think it should not be very difficult to rerun the experiments using the same approach but just replacing the crossover operator by a simpler one that do not use DE and compare the results to demonstrate the added value of DE.
+
+On a similar line, as the complexity of the randomized bubble sort is in O(n^2), is it not expensive on large instances? As far as I see, the comparisons are based on a fixed number of iterations or objective function evaluation. On PFSP, objective function evaluation is in O(n) so the number of evaluation, at least in case of DE, does not seem to give a good evaluation of the running time of the approaches. I know it is difficult to compare with running times due to different machine performance, implementation effort, programming language, etc. At least, if you study the impact of using DE or a more naive approach for the crossover in your implementation framework, as you are working in the same framework and same machines, a comparison using running times would make sense. 
+
+I think the reported results of the overall approach are extremely good and I don't doubt that Differential Evolution is a key element of the approach. So my recommendation is to resubmit a revision of the article that includes the ongoing experiments that you mention in the accompanying letter so that the interest of using DE in the approach is clearly demonstrated. 
+
+
+Comments for the Editor ONLY:
+
+My recommendation to resubmit the article was not easy to take. The article is very clearly written, the approach is interesting and there are really good results reported in the article. But, from my point of view, it really misses the experimental proof that the main contribution (DE mutation) really helps. As a big part of the results were already published in the workshop version and as the authors already seem to be working on providing such an experimental proof, I think a journal article would be much better if it includes it.
+

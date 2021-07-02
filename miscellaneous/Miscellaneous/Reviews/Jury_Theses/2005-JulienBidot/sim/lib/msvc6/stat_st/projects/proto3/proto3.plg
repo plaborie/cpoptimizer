@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: proto3 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\jbidot\LOCALS~1\Temp\RSPC49.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "c:\ilog\concert13\include" /I "c:\ilog\solver53\include" /I "c:\ilog\sched53\include" /I "c:\Julien\sim\include" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/proto3.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\JULIEN\SIM\src\ilurandom.cpp"
+"C:\JULIEN\SIM\examples\src\realization.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\jbidot\LOCALS~1\Temp\RSPC49.tmp" 
+Creating temporary file "C:\DOCUME~1\jbidot\LOCALS~1\Temp\RSPC4A.tmp" with contents
+[
+concert.lib solver.lib schedule.lib wsock32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/proto3.pdb" /machine:I386 /out:"Release/proto3.exe" /libpath:"c:\ilog\concert13\lib\msvc6\stat_st" /libpath:"c:\ilog\solver53\lib\msvc6\stat_st" /libpath:"c:\ilog\sched53\lib\msvc6\stat_st" 
+.\Release\ilurandom.obj
+.\Release\realization.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\jbidot\LOCALS~1\Temp\RSPC4A.tmp"
+<h3>Output Window</h3>
+Compiling...
+ilurandom.cpp
+realization.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+proto3.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

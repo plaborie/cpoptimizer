@@ -1,0 +1,12 @@
+OBJECTS = \
+	dtc_bfs_tree$o\
+	dtc_cfnp$o\
+	dtc_cfnp_turbo$o\
+	dtc_hk_1$o\
+	dtc_hk_2$o\
+	dtc_italiano$o\
+	dtc_italiano_gen$o\
+	dtc_italiano_nr$o\
+	dtc_italiano_opt$o
+
+

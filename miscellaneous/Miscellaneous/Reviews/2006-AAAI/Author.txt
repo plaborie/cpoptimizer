@@ -1,0 +1,58 @@
+
+>Concerning the example of weak propagation by the second reviewer,
+>that is true, but this propagation cannot be used when the constraint
+>is open (which is our aspiration). 
+
+If the constraint is open, one can still do a lot to propagate more if
+one knows the rules that governs the insertion of new activities in
+the schedule (which is the case in planning). For instance, if state A
+must be directly followed by state B and then state C and if in the
+current schedule, an activity of state A is followed (not directly) by
+an activity of type C and no activity of type B currently in the
+schedule are possibly between A and C, then, we can infer that an
+operator containing an activity of type B must be added between and C.
+
+>There is another motivation of our research and this is using this
+>approach in planning problems where open constraints are required. We
+>did not include this motivation to keep the paper clear and within the
+>page limit.
+
+>For the same reason, we focused only on qualitative (precedence)
+>reasoning in the paper, but as we mentioned, this can be extended to
+>quantitative reasoning, for example handling time windows (Bartak,
+>FLAIRS06)-forthcoming.
+
+OK, my comment was more a question than a negative comment on the
+paper. I slightly rephrased it.
+
+>We agree that experiments are valuable, but the instances from
+>(Focacci, Laborie, Nuijten) cannot be used there and there is not
+>enough space to propose a new benchmark in a single paper. Moreover,
+>there is not another approach to directly compare with so the question
+>is what the experiments bring new.
+
+As said in my comment, the benchmark could easily have been adapted
+and the purpose of the benchmark would have been to give an idea of
+how the approach scales with problem size and allow to analyse the
+influence of the different propagation rules.
+
+>Note also that the above paper does not describe the algorithms in
+>enough details for implementation and the paper refers to an internal
+>ILOG report (Laborie 99) describing maintaining precedence graphs,
+>which is NOT accessible to general public!
+
+The implementaion of the precedence graph is indeed not detailed but
+the propagation rules are provided. 
+
+>Also, the next edge from this paper is not identical to our
+>DirectlyBefore as the second reviewer suggested.
+
+DirectlyBefore corresponds to prev edges.
+
+>Concerning open global constraints, there are only two published
+>papers (Bartak, CPAIOR01) and (Regin, CPAIOR06)-forthcoming. Some
+>constraints in ILOG Scheduler are open, but the incremental algorithms
+>for them are NOT published! We see the incrementality of our approach
+>as the main advantage over traditional monolithic algorithms when
+>speaking about open constraints.
+

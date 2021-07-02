@@ -1,0 +1,7 @@
+Recommendation: Reject?
+
+The reviewers recognize the interest of the approach to approximate decoupled robustness envelopes
+but, even if there has been slight improvements since the IJCAI 2019 submission, they agree that
+the paper still falls short for assessing the practical interest on realistic domains
+(scaling with number of parameters, comparison with the cost of replanning, comparison against
+other approaches for addressing flexibility/uncertainty).

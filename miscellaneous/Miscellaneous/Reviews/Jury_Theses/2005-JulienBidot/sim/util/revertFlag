@@ -1,0 +1,23 @@
+#!/bin/sh
+#########################################################################
+# revertFlag - Reverses some #ifdef/#ifndef flags
+# Usage: revertFlag FLAG OPPOSITEFLAG
+# Example: revertFlag PGRAPH NOPGRAPH
+#########################################################################
+
+SIMDIR=.
+FILE=
+OLDFILE=
+
+for i in src/ilc/*.cpp src/ilo/*.cpp include/ilsim/*h
+do
+        echo "Change $i"
+        FILE=$SIMDIR/$i
+        OLDFILE=$SIMDIR/$i.old
+        OLDFILE2=$SIMDIR/$i.old2
+        chmod 664 $FILE
+        mv $FILE $OLDFILE
+        sed -e s/\!defined\($1\)/defined\($2\)/g $OLDFILE > $OLDFILE2
+	sed -e s/defined\($1\)/\!defined\($2\)/g $OLDFILE2 > $FILE
+        /bin/rm -f $OLDFILE $OLDFILE2
+done

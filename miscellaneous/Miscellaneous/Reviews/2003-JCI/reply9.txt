@@ -1,0 +1,322 @@
+Cover Letter
+------------------------------------
+
+PAPER TITLE: Multi-agent Constraint Systems with 
+Preferences: Efficiency, Solution Quality, and Privacy Loss
+
+AUTHOR(S): M.S. Franzin, E.C. Freuder, F. Rossi, R. Wallace
+------------------------------------------------------------
+ESSENTIAL CHANGES:
+
+1. High-level reorganization of sections in accordance with
+recommendations of reviewer 2, together with removal of
+redundant passages - so each section is now more focused.
+2. Thorough revision of Introduction; we believe it is much
+more coherent now.
+3. Better description of protocols - added pseudocode to explain
+general procedure.
+4. Clearer description of experimental setup and methodology.
+5. Improved discussion of relations to related work.
+6. Better account of implications of using soft constraint
+framework - especially in relation to earlier work in the domain
+of our case study (meeting scheduling).
+7. Brought out more adequately some novel aspects of the present
+work, especially the use of agent knowledge and the development
+of a concrete conception of privacy loss.
+
+------------------------------------------------------------
+RESPONSES TO REVIEWERS' COMMENTS
+
+In the following we respond to the comments of the 
+anonymous reviewers who read the first version of the 
+paper submitted to this special issue.
+
+First review:
+
+>I think that it may be  interesting to extend  the way preferences are
+>combined to get a global preference. Generally  - and unlike suggested
+>in  the  meeting  scheduling  example,  each agent   will have several
+>private variables   (not only one)   and several soft  constraints. It
+>would be interesting to have two levels for combining preferences: one
+>for  each agent that  allows  computing an agent  preference value for
+>each agent by  combining its  private soft  constraints into a  single
+>indicator and  one  at the  global level  that  allows aggregating all
+>agent preferences  into    a single  global   preference  level.   The
+>combination operators could be different: for instance fuzzy operation
+>at the agent level and pareto optimality at the global level.
+
+We completely agree about this. In fact, our framework is general enough to 
+allow for these two levels of preferences. This is now reflected in the 
+main formal definitions, specifically definition 2. 
+However, the implementation described in the paper 
+has been left as it was: agents have different preferences for different
+meetings, and for the purposes of this paper we don't need to say which
+aggregation operator they use. Then, the preferences of the agents are
+combined with the fuzzy criterion in some experiments and with the Pareto
+optimality in other experiments.    
+
+>In the introduction,  as well as in section  5, it  is said that  each
+>agent  maintains  an    "approximation" of   other  agents  constraint
+>networks.  Is    this really  an   "approximation" or  is  it   not  a
+>"relaxation".  If it is a general  "approximation", it means that some
+>(optimal) solutions may be missed.   Furthermore, it  is not clear  if
+>this approximation  is represented as a  constraint network and if, in
+>this context, "inference" means constraint  propagation or if it means
+>something else. In particular  in the meeting scheduling problem, were
+>CSP techniques used to infer information on this "approximation" ?
+
+In our view, an approximation is a more general term than a relaxation:
+relaxing a constraint problem means that we enlarge the set of its solutions,
+while approximating it may mean both enlarging and 
+restricting the set of solutions. In addition, the word "approximation"
+better conveys the idea that agents' views are only partial, and that
+the approximations become better as search proceeds. (It would be odd
+to say that agents develop worsening relaxations as search proceeds.) 
+
+Inference means constraint propagation. This is clearer in the new version
+of the paper. In particular, we use arc-consistency rules to eliminate 
+domain elements from the domains of the variables of the approximation CSP
+which are inconsistent with the information gained during the agent interaction. 
+
+>*** The concept of privacy loss is misleading in this example.  In the
+>description of  the general framework, after definition  1, it is said
+>that "agents may want to communicate as little information as possible
+>about their local  constraint problem".  I  completely agree with this
+>definition of  the privacy issue: loss  of privacy is directly related
+>with the information that is  communicated to the  other agents but it
+>is NOT  linked with  what other agents   will do  with  this piece  of
+>information, in particular whether other agents are intelligent enough
+>to draw all  the consequences of  what  was communicated to them.   In
+>this context, I do not understand why,  in section 9.1, inferring more
+>information  (I would rather    say   being smart  enough  to    infer
+>"redundant" information) represents a loss  of privacy.  I think  that
+>the concept of privacy  loss could be  introduced in the general model
+>as a function of the reduction of the set  of possibilities (the basic
+>entropic formula)  a "maximally  smart" agent  could perform  given  a
+>piece of information that is communicated.  This way, the privacy loss
+>only depends on the piece of  information that are communicated (thus,
+>on  the   agent communication  protocol) and  not   on  the ability of
+>individual  agents  to infer  redundant  information.  The compromises
+>between quality (or efficiency) and  privacy loss can then be explored
+>by changing the agent strategies and the agent communication protocol.
+
+We discuss this issue in a new paragraph in the Conclusions section,
+in particular the problematical character of the idea of maximal
+privacy loss. We also include worst-case upper bounds that represent the
+maximum possible privacy loss; in terms of the definition given in
+section 4.1.2, this is the smallest possible resultant set.
+
+It also seems to us that it is useful to know the actual privacy
+loss under different experimental conditions, which is what we have
+measured in our experiments.
+
+>*** The conclusion drawn on the Pareto  optimization only holds in the
+>very  restricted  context of the  experiment.   Indeed,  as the Pareto
+>optimization doesn't consider at all  the fuzzy criterion, it does not
+>make a  lot of sense to  compare (according to  the fuzzy criterion) a
+>Pareto solution with  a solution  found  by an  approach that aims  at
+>minimizing the fuzzy criterion.  For instance  the solution (0.001, 1,
+>1) may turn out to  be Pareto optimal although the  value of the fuzzy
+>criterion is very  bad.  So I  think the general  conclusion about the
+>interest of the Pareto optimization should be changed.
+
+We agree that this is a problem when making such comparisons, but at
+the same time, it is useful to make some such comparison in practice.
+In response to this criticism,  we have also compared fuzzy and Pareto 
+using mean preference value (in addition to the min). However, as we say
+at the end of section 4, the results were similar, although the largest 
+differences (for 5 and 10 initial meetings) are halved.
+ 
+>*** In   section 7, the  description of   the strategies for  avoiding
+>interpersonal  comparison of utility is not  clear.  If each agent has
+>n+1 ordered preference  values,   it seems to  me  that  the "step-up"
+>strategy is exactly the same as  the basic strategies but where agents
+>would communicate a scale of preferences (0, 1/n,  2/n, ..., n-1/n, 1)
+>instead  of their actual preferences.  This  will  clearly work if the
+>distortion of the scale of the agent with  respect to the linear scale
+>above  is  small.  This may  be  the  case  if preferences are uniform
+>random variables in [0,1] as it seems to be the case in the experiment
+>but,  again, the  relevance of these strategies seems  to  be very
+>dependent on the problem.
+
+The only assumption needed for avoiding comparison of utility
+is that the scales of the agents' preferences are invariant up 
+to an ordinal transformation.
+We have tried to clarify this issue, as well as providing better motivation
+for these strategies in the introductory paragraph in section 3.4.
+
+>The system at the URL address given in the paper doesn't work: I tried
+>it   on several  computers with  different   configurations (a HP  and
+>several PCs) and the applet  always  throws a  Java exception when  it
+>opens.
+
+It now works.
+
+>In the end of   section  9.1: how do   you  explain that the    strong
+>inference (illustrated on   figures 5 and  6) has  few  effect  on the
+>number of proposals ? On figure 6, I do not catch why privacy loss for
+>"future meetings"  and  "preferences" is smaller when  using inference
+>than  with  the baseline  strategy.
+
+Given the limited amount of information communicated directly in
+these experiments, the inference strategies could not rule out future
+possibilities other than outright rejections. The slight decrease in
+privacy loss in the inference condition is due to the improvement in
+efficiency: other things being equal, the sooner a solution is found
+the less private information is revealed.
+
+>    Furthermore, the definition  of
+>privacy loss for preferences does not seem to be defined.
+
+We now define this in the paper, in terms of the possible preference
+values used in this experiment. This is a very restrictive measure in
+this case, but it gives some idea of information loss in these
+experiments.
+
+>In section  9.2, it would be interesting  to see whether when limiting
+>to  first solutions, inference leads  to  better results than baseline
+>strategy and if privacy loss is similar to the one of section 9.1.
+
+We now note that with fewer initial meetings relative improvement is
+comparable for the first and the optimal solutions; for more than
+15 initial meetings there is no reliable improvement for the first
+solution, while there is still improvement for the optimal one.
+
+>Some typos:
+>
+>p3, paragraph 3, "(I)n many cases"
+>p5, paragraph 3, unbalanced parenthesis "(That such issues ..."
+>p11, paragraph 3, "knoweldge"
+>p13, paragraph 1, "in certain in certain"
+
+We fixed them.
+
+----------------------------------------------------------------------------
+
+Second review
+--------------
+
+>One of the main contributions of this paper is the fairly detailed
+>discussion of experimental results.  However, the discussion focuses
+>on the evaluation of the results and the discussion of the generation
+>of the experiments and the figures lacks some detail.
+
+We revised the paper by describing the experimental scenario 
+in more detail and by writing pseudo-codes for the algorithms.
+
+>In particular, some of the metrics (e.g. "open slots discovered") some
+>of the experimental parameters (e.g. "baseline" and "inference") are
+>not defined adequately.  Also, it is not clear how the experimental problems
+>(especially the number of agents and their preferences) are randomly
+>generated.  This prevents future researchers from reproducing the
+>results.
+
+We defined better both the metrics and the parameters.
+
+It should be clearer now that random generation is simply performed via a 
+random generator which generates preferences for each city in each slot
+for each agent using a uniform distribution over [0,1].
+The number of agents in not randomly generated but set to 3 for the
+experiments of this paper.
+
+>The paper would improve significantly with a full disclosure of the
+>experimental setup.  Ideally, the authors would summarise the
+>parameters of the experiments in tables and provide formal definitions
+>of all employed metrics (as was done for privacy loss).
+
+We added more details and we now think that the whole experimental 
+setup has been described. From the information in the paper 
+it should be possible to reproduce the experiments.
+
+>Actually, the paper is not incomprehensible at all.  However, major
+>revisions would be needed to make it more enjoyable to read.  The
+>main problem is that one needs to go through the whole paper to
+>extract the ideas in it.  Although the individual sentences and
+>paragraphs read fine, I found the overall structure confusing and
+>ad-hoc.  A major restructuring of the material would make the inherent
+>qualities of the work much more visible.
+>
+>I suggest changing the overall structure to the following pattern:
+>1.  Introduction
+>2.  Theoretical background
+>3.  Multi-agent meeting scheduling
+>     3.1  The problem
+>     3.2  Solution methods
+>     3.3  Application
+>4.  Results
+>     4.1  Experimental setup
+>     4.2  Results for the fuzzy scenario
+>     4.3  Results with Pareto optimisation
+>5.  Related work
+>6.  Conclusion
+
+We changed the structure of the paper to follow the reviewer's comment above.
+We agree that now the paper is more readable and less confusing.
+
+>Certain sections also need some revision.  In particular, the
+>introduction is too long and lacks focus.  It should introduce the
+>problem, motivate its significance and outline the contents and
+>outcomes of the paper.  In its current version, the introduction
+>presents a significant portion of the background material, including
+>representational issues before moving on to the actual problem that is
+>being addressed.  This puts the readership off from continuing to
+>explore what is otherwise a very interesting piece of work.
+
+We substantially revised the introdution to follow the reviewer's comment
+above.
+
+>The background material is spread out over the first four sections in
+>various partially related chunks.  Although the location of these bits
+>of background material was not selected illogically, I believe it
+>would be better to put all of this material together.  This would make
+>it easier to find information and help make the rest of the paper more
+>focused.
+
+Now all the background material is in section 2.
+
+>The presentation of the search algorithms could also be improved.
+>Currently, an informal abstract discussion is given.  And, although
+>certain parts of the algorithm are illustrated with an example, the
+>algorithms are not illustrated entirely.  It would be useful to extend
+>the current example to demonstrate how the entire algorithm work.
+>Pseudocode, or a graphical illustration of the optimisation procedure
+>would also improve the presentation of this work.
+
+Now the algorithm for agent communication is described via pseudo-code
+(see section 3.3).
+The descriptions of the fuzzy and Pareto procedures has been improved.
+
+>The paper employs soft constraints to describe preferences.  The
+>authors motivate this approach for its simplicity and generality.
+>This motivation could be improved by explaining why this is a good
+>approach in the context of scheduling.  How easy is it to express
+>preferences for meeting times and places, and in what ways can the
+>user's considerations be incorporated into
+>
+
+We discuss this in connection with Related Work (see especially the
+paragraphs at the end of Sect. 5).
+
+>While reading the paper, a number of additional questions arose.  It
+>would be beneficial to the paper if these issues were be addressed:
+>- A central issue is the notion of privacy loss in the context of the
+>   common assignment problem.  But surely, a server could the same
+>   scheduling problem as a semiring-based CSP without the need for the
+>   user to disclose any information to other human agents.  Why is the
+>   proposed multi-agent approach better?
+
+In many scenario, concentrating all constraints in one single 
+site/problem is not feasible, for example for space reasons, 
+and it is instead only possible to keep them separate.
+
+>- Finding a preferred meeting schedule appears to involve many rounds
+>   of proposals (sometimes over 100).  Does this not make finding a
+>   meeting time very time consuming for the users?  Or can the
+>   generation of preferences in any way be automated?
+
+The whole point of our work is to study the posibility of automating
+distributed meeting scheduling. The fact that our study shows that 
+in many cases several proposals are needed confirms the need for
+authomated meeting scheduling systems like the one simulated by our 
+implementation.  We say this also in the last paragraph 
+of the conclusions.

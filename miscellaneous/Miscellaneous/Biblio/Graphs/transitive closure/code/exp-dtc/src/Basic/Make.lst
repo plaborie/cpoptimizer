@@ -1,0 +1,5 @@
+OBJECTS = \
+	dga_base$o \
+	graph_recorder$o \
+	msg_graph$o \
+	msg_graph_copy$o

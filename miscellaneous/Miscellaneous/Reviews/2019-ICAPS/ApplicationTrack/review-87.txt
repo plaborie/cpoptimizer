@@ -1,0 +1,70 @@
+Significance. Does the paper contribute a major breakthrough or an incremental advance? (Text is optional.)
+ 3: substantial contribution or strong impact
+*2: modest contribution or average impact
+ 1: minimal contribution or weak impact
+
+Soundness. Is the technical development accurate? (Text is optional.)
+*3: correct
+ 2: minor inconsistencies or small fixable errors
+ 1: major errors
+ 
+Scholarship. Is related work cited and discussed? (Text is optional.)
+ 3: excellent coverage of related work
+*2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+Clarity. Is the paper clearly organized and clearly written? (Text is optional.)
+ 3: well organized and well written
+*2: mostly readable with some room for improvement
+ 1: hard to follow
+ 
+Reproducibility. Can the work be reproduced or verified based on the paper and any supporting information or data? (Text is optional.)
+ 5: code and domains (whichever apply) are already publicly available
+ 4: authors promise to release code and domains (whichever apply)
+*3: authors describe the implementation and domains in sufficient detail
+ 2: some details missing but still appears to be replicable with some effort
+ 1: difficult to reproduce because of missing detail
+ 
+Importance and novelty of the application. Importance and novelty of the application. (Text is optional.)
+ 5: very significant - approach and/or application are new and important
+ 4: novel - approach and/or application are new but not so important
+*3: moderate - moderate significance of approach and/or application
+ 2: marginal - parts of the application or approach are new
+ 1: none - similar approach to the same application has been used beforeMaturity. 
+ 
+Maturity. (Text is optional.)
+ 6: study of the success, acceptance, impact and/or deficiencies of a fielded system
+ 5: fielded system
+*4: mature system with testing on realistic problems
+ 3: early prototype system with testing on realistic problems
+ 2: early prototype system with testing on artificial data
+ 1: challenge problem
+
+Overall evaluation.* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+*1: weak accept
+ 0: borderline paper
+ -1: weak reject
+ -2: reject
+ -3: strong reject
+
+Review.
+
+The article extends a previously described problem and CP model for rotating workforce scheduling. The two main extensions are:
+1- Some condition checking and some redundant constraints to make it easier for the engine to detect infeasible instances
+2- Additional constraints and objective functions related with the distribution of rest time during the week
+
+Though the contribution is quite incremental, the proposed extensions are important in real applications of rotating workforce scheduling and I think they really make sense in the context of an application paper. 
+
+Given that this work is supposed to be integrated in a real application, one important topic that is not addressed here is, when an instance is proved to be infeasible, to provide the user with an explanation for the infeasibility. This is something that is often asked by users. Do you also plan to address this question ?
+
+The experimental study shows that the proposed CP formulation of the problem can be solved efficiently. It would be useful to recap the typical size of the problems of the benchmark (number of employees).
+
+
+
+
+Confidential remarks for the program committee:	
+
+I don't find this paper particularly exciting and it is a bit incremental. But the proposed extensions are interesting from an applicative point of view and in the end, it manages to solve quite realistic problems of reasonable size.
+ 

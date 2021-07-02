@@ -1,0 +1,69 @@
+Title: Watching and Acting Together: Concurrent Plan Recognition and Adaptation for Human-Robot Teams
+Author(s): Steven J. Levine, Brian C. Williams
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject with resubmission encouraged
+[ ] Reject
+
+
+Comments and suggestions
+========================
+
+The article describes an important contribution in the domain of the dynamic execution of plans in a multi-agent context (robots and humans). The main idea underlying the approach is the one of handling together the problem of the recognition of the other agent's intents and the one of the adaptation of the current plan. Both problems are handled in an elegant framework based on the integration of causal links and TPNU (Temporal Plan Network under Uncertainty).
+
+The article is well written and reasonably easy to read. The structure of the manuscript is ok, it is based on set of layers describing the approach in increasing level of details (a very high level description in 1.1 -> a general description of the architecture of the approach and of the different structures in section 2 -> the description of the online execution algorithm in section 3 -> and then more fine grain details in sections 4 and 5). This being said, because most of the details are not provided in the earliest sections, the readability of these sections could be improved by providing more pointers to the later sections. For instance, in the beginning of section 2.3, when introducing the labelled APSP, I think you should point to section 4.1 otherwise it is difficult to understands what the labels are (the labels are LVS and their use is explained in detail in section 4.1). Similarly, in the same section, you mention the "labeled causal links" but this notion has not been introduced before: you should shortly describe them here or at least, say that they will be described in detail in section 4.
+
+The article is well illustrated with examples and figures. Note that some figures illustrating TPNUs are very difficult (if not impossible) to read because of the small size of elements of the network (culminating on Fig. 18). I'm not sure how this could be improved. Maybe by keeping the figure (it gives a global view of the structure of the network) and adding a zoom on a typical sub-graph?
+
+In a few places, the article makes some hints about the complexity of the online execution strategy (for instance in the beginning of section 3) but this important topic is not addressed in the manuscript. I think this is missing. From my understanding, the problem of ensuring that there exists at least one correct execution of a candidate sub-plan clearly is NP-Hard (for example any NP-Complete scheduling problem on unary machines can be formulated as a TPNU with additional causal links for expressing task disjunction, just like on Fig. 9 and 10). In this context, an important (unanswered) question is how to balance the complexity between the offline complexity of generating a flexible plan and the complexity of the online execution strategy for executing this plan. The proposed approach is very expressive: except for the fact that you need to explicitly give all the possible actions in the plan, it seems that you can encode in the proposed TPNU+causal_link framework the set of all plans of a given length, and thus, let the planning problem of task selections to satisfy the goals be (almost) fully solved online at run time. So I'm really wondering where to put the cursor: should we provide plans that are so flexible that most of the planning is done at run time (but then, one can question the performance of the proposed approach given that it seems very computationally expensive for this task) or should the planner provide reasonably rigid plans where only a few alternative choices are open (like in the example with the juice/coffee choice)? 
+
+The execution algorithm, as described in Algorithm 1, seems to select the first non-executed event that can be executed and that ensures that the plan remains consistent. What happens if there are several events that satisfy these conditions? Do you use some heuristics to select the event to be executed. In the context of a least-commitment approach it would make sense to select the one that has a minimal impact on the number of feasible realizations of the remaining plan (or any indicator of flexibility implementing a similar idea). This can probably be implemented by comparing the set of constraints {F1,...,Fn} returned by the different events. Do you (could you) do something like this? 
+
+All in all, I think that the contribution of the article is sufficient enough to justify its acceptance but I think it would be good if the questions above were addressed in the final version.
+
+Here are some more detailed comments/questions (some are aligned with the questions above) :
+
+- You never mentioned how the flexible plans are generated. How was it done in case of the two examples used in section 6.1? Manually or using some AI Planning system? 
+
+- In section 1.2, you say "Our approach focuses on plans and models that contain explicitly defined temporal constraints and choices." My understanding is that thanks to the causal links, the approach can handle an exponential combination of choices and thus an exponential number of possible realizations. So, some of the choices (like how to solve a thread) are not really explicit in the model.
+
+- p10, in the description of the set of events E: "Event e will be executed (i.e., a time scheduled for it) by the executive *iff* it is activated". Is it really a necessary and *sufficient* condition to be executed? I guess an event can be activated but not necessarily executed.
+
+- Figure 3: the text in the environment is very large compared to the tiny text in the candidate sub-plans (which is not readable except for enlarging the picture).
+
+- p14, after definition 2.12. Do you have some guarantees on the maximal size of the LVSs when used in your approach? Even after filtering the dominated pairs, it seems that they can be very large and potentially exponential with the size of the network.
+
+- p15, last paragraph: "we treat each activity as begin controllable (Vidal, 2000), meaning that our executive controls the start times of activities but may not arbitrarily and instantaneously choose their end times". This is a bit misleading, I thought that the start times of human actions were not controllable from the point of view of the robot.
+
+- p17, when you introduce the KB, I think you should point to the section were it is more formally defined. Also, here (or maybe later) you should make it clear that the size of this KB can grow exponentially with the size of the network (at least that is what I understand)
+
+- p17: "During online execution, we make use of the dispatchable form Dij": you did not really explain what is the "dispatchable" form of the table
+
+- p18: "Each execution window is divided into two parts: lower bound(ei) and upper bound(ei)": the formulation is a bit awkward. Usually if you divide a window/interval into two parts, you get two sub-windows, not two integers ...
+
+- p22: The notation s_{p,e_c}=e_p for the causal links is introduced only after the example (equations 2), as a result, when parsing the example, one really wonders what it is about. I think the example should be moved after the explanation of the notation.
+
+- p23: In the example that is given, there is nothing about x_A4=bagel on Fig.5. 
+
+- On the same example, like event e6 is an optional event, it is not clear what is the meaning of the element (0.001,{}) in the lower bound. Also, it could be interesting to show the type of upper-bound that are computed for this event in case you have a deadline for the complete plan. I see a lot of similarities here with the way temporal constraints are propagated in a framework using optional interval variables like the one of CP Optimizer [1]. For instance here, as you can recognize that x_A1=mug <=> x_A2=coffee, by considering all the intervals [e5,e6], [e19,20],[e21,e22] as intervals with same presence status, it would very cheaply deduce that upper_bound(e6) <= upper_bound(e16) - (4*epsilon+3+epsilon+0.5+epsilon).
+
+[1] P. Laborie, J. Rogerie. Reasoning with Conditional Time-intervals. Proc. 21th International FLAIRS Conference (FLAIRS 2008).
+
+- p24: In the example, is it not a bit strange that you will probably receive x_A1=mug at the time the human is executing e_5 but then the executives decides to execute e_3 which is a predecessor of e_5 ?
+
+- p33: "The space of all correct executions is vizualized in Figure 10b": indeed, and the figure clearly suggest the potential explosion of the number of these convex regions when you consider the interaction between many threads and causal links.
+
+- in the experimental section 6.2, it is not clear from the description of the generation of the input plans if the one shown on Figure 18 is representative of the typical size of the generated plans. At first sight, it seems to be. But then, these plans do not appear to be very large (the one on Figure 18 has 25 possible activities). I understand of course that the possible interactions of the activities with the causal links may produce a large number of possible realizations, even for small size networks. Do the compilation times reported on Figure 19 correspond to networks similar to the one on Figure 18? Also, how do you evaluate the number of sub-plans of the TPNU on the x axis?
+
+Some typos :
+
+p7: complimentary -> complementary
+p7: planing -> planning
+p10: the set A represent[s]
+p35: construct[ruct]ing
+

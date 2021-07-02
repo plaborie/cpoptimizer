@@ -1,0 +1,1357 @@
+\documentclass[mathserif]{beamer}
+
+% Setup appearance:
+
+%\usetheme{Darmstadt}
+%\usefonttheme[onlylarge]{structurebold}
+%\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+
+
+\usepackage[english]{babel}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{outlines}
+\usepackage{ifthen}
+\usepackage[T1]{fontenc}
+\usepackage{txfonts}
+\usepackage{inconsolata}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+
+%\usepackage[texcoord,grid,gridunit=mm,gridcolor=red!20,subgridcolor=green!20]{eso-pic}
+
+% Setup TikZ
+
+\usepackage{tikz}
+
+\usetikzlibrary{
+  arrows,
+  shapes.misc,% wg. rounded rectangle
+  shapes.arrows,
+  shapes.geometric,
+  chains,
+  matrix,
+  positioning,% wg. " of "
+  scopes,
+  decorations.pathmorphing,% /pgf/decoration/random
+  shadows,
+  fit,
+  calc
+}
+
+
+% Setup beamer
+% It is copied from http://tex.stackexchange.com/questions/4009/latex-beamer-how-to-get-distinct-page-numbers-when-using-overlays
+
+\newcounter{slidenumber}
+\newcounter{myframestartpage}
+
+\defbeamertemplate*{footline}{infolines theme frame plus slide}{
+    \setcounter{slidenumber}{\insertpagenumber}%
+    \addtocounter{slidenumber}{-\insertframestartpage}%
+    \addtocounter{slidenumber}{1}%
+    \setcounter{myframestartpage}{\insertframestartpage}%
+%    \addtocounter{myframestartpage}{1}%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+            \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber%
+            \ifthenelse{\insertframestartpage=\insertframeendpage}{}{.\arabic{slidenumber}{}}%
+            /\inserttotalframenumber%
+            \hspace*{2ex} 
+        \end{beamercolorbox}}%
+        \vskip0pt%
+    }
+
+
+%\addtobeamertemplate{frametitle}{\hspace{1.5ex}}{}
+
+\pgfdeclareimage[width=9cm]{ibmanalytic}{ibm.png}
+\pgfdeclareimage[width=2cm]{ibmanalyticsmall}{ibm.png}
+\pgfdeclareimage[height=0.7cm]{bgsmall}{bgsmall.png}
+
+% Add IBM logo to every normal slide
+% Copied from http://tex.stackexchange.com/questions/54577/how-do-i-customize-beamer-template
+\addtobeamertemplate{frametitle}{%
+  % First parameter: inserted before the title itself.
+  % Make space for colored picture:
+  \hspace*{0.55cm}
+}%
+{%
+  \begin{tikzpicture}[remember picture, overlay]
+  \node[xshift=-1cm,yshift=-5mm] at (current page.north east) {\pgfuseimage{ibmanalyticsmall}};
+  \node[xshift=6mm,yshift=-5mm] at (current page.north west) {\color{red}$\blacksquare$};
+  \node[xshift=6mm,yshift=-5mm] at (current page.north west) {\pgfuseimage{bgsmall}};
+  % Line below the slide title:
+  \draw[black,thick] ([yshift=-1cm]current page.north west)
+                  -- ([yshift=-1cm]current page.north east);
+  \end{tikzpicture}
+  \vspace*{1mm}
+}
+
+\setbeamercolor{title}{fg=black}
+%\setbeamercolor{frametitle}{fg=black}
+
+\titlegraphic{\includegraphics[width=\textwidth,keepaspectratio]{titleimg.png}}
+
+% Setup listings
+
+\newcommand*{\textsmallunderscore}{%
+  \begingroup
+    \fontencoding{T1}\fontfamily{lmtt}\selectfont
+    \textunderscore
+  \endgroup
+}
+
+\lstloadlanguages{C++}
+\lstset{
+  language=C++,
+  escapechar=\#,
+  extendedchars,
+  morekeywords={fail, require},
+  texcl,
+  %numbers=left,
+  basicstyle=\ttfamily,
+  keywordstyle=\ttfamily\bfseries,%\bfseries,%\ttfamily\bfseries,
+  commentstyle=\rmfamily\color{green!40!black},
+  stringstyle=\rmfamily,
+  identifierstyle=\ttfamily,
+  frame=htb,
+  numberbychapter=false
+  emph={ILCCLOCK, ILCLINEARCLOCK, ILCBILINEARCLOCK, clock, tick, tock, tickTock, ticks, tocks, ILCSAFELINEARCLOCK, ILCSAFEBILINEARCLOCK, clock1, clock2},
+  emphstyle={\color{red}\bf\ttfamily},
+  frame=none,
+  columns=flexible
+}
+
+\lstdefinelanguage{cpo}{
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries,
+  morekeywords={intervalVar, internals, version, architecture, ids, noOverlap, startBeforeEnd, parameters, SearchType, DepthFirst, LogVerbosity, Quiet, size, start, intervalmax, intervalmin, end, optional, present, absent, minimize, endOf, length, alternative, forbidExtent, stepFunction, presenceOf, alldiff, strong, allowedAssignments},
+  keywordstyle=\bfseries,%\color{blue!70!black}
+  columns=flexible,
+  morecomment={[l][\color{green!40!black}]{//}},
+  commentstyle=\rmfamily\color{green!40!black},
+  stringstyle=\color{blue},
+  literate={_}{\textsmallunderscore}1,
+  showstringspaces=False,
+  morestring={[b]"},
+  escapeinside=||,
+}
+\lstMakeShortInline[language=cpo]@
+
+% Setup tcolorbox
+\tcbuselibrary{skins}
+\tcbset{
+  basic/.style={
+    top=0mm,
+    bottom=0mm,
+    left=4mm,
+    right=0mm,
+    boxsep=1.5mm,
+    enlarge top by=2mm,
+  },
+  idea/.style={
+    basic,
+    colback=red!5!white,
+    colframe=red!75!black,
+    coltext=red!75!black,
+  }
+}
+
+% Change tt font to proportional to save space:
+\renewcommand{\ttdefault}{zi4} %{txtt} %{lmvtt}
+
+% Decrease spacing around math environment
+% Copied from http://tex.stackexchange.com/questions/69662/how-to-globally-change-the-spacing-around-equations
+\AtBeginDocument{%
+ \abovedisplayskip=3pt plus 3pt minus 2pt
+ \abovedisplayshortskip=0pt plus 3pt
+ \belowdisplayskip=3pt plus 3pt minus 2pt
+ \belowdisplayshortskip=4pt plus 3pt minus 4pt
+}
+
+% Author, Title, etc.
+
+\title%[shorter title]
+{%
+  Making of a commercial constraint-based scheduling solver
+}
+
+\author
+{
+  Petr Vilím
+}
+
+\institute[IBM]
+{
+  IBM Czech Republic
+}
+
+% My macros:
+\def\cplx{ {\mathcal O} }
+
+\newif\iftaskcontributes
+% Parameters for \drawtask macro:
+\def\tasksmin{0}
+\def\taskemax{0}
+\def\taskdur{9}
+\def\taskcap{9}
+\def\tasksminstyle{black}
+\def\taskemaxstyle{black}
+\def\taskstyle{solid}
+\def\taskypos{0}
+\taskcontributesfalse
+% The following macro draws a task. It requires the parameters above to be defined.
+\def\drawtask{
+  \fill[lightgray,draw=black,\taskstyle] (\tasksmin/2 + \taskemax/2 - \taskdur/2, \taskypos) rectangle (\tasksmin/2 + \taskemax/2 + \taskdur/2, \taskypos + \taskcap);
+  \iftaskcontributes
+    % Fixed part contributing to the timetable:
+    \fill[gray,draw=black] (\taskemax - \taskdur, \taskypos) rectangle (\tasksmin + \taskdur, \taskypos + \taskcap);
+  \fi
+  % Duration and capacity:
+  \draw (\tasksmin/2 + \taskemax/2, \taskypos + \taskcap/2) node {$ \taskdur \times \taskcap $};
+  % Bracket for smin:
+  \draw[thick,\tasksminstyle] (\tasksmin cm + 7pt, \taskypos) -- (\tasksmin, \taskypos) --
+    node[left=1pt] {$\tasksmin$}
+    (\tasksmin, \taskypos + \taskcap) -- (\tasksmin cm + 7pt, \taskypos + \taskcap);
+  % Bracket for emax:
+  \draw[thick,\taskemaxstyle] (\taskemax cm - 10pt, \taskypos) -- (\taskemax, \taskypos) --
+    node[right=1pt] {$\taskemax$}
+    (\taskemax, \taskypos + \taskcap) -- (\taskemax cm - 10pt, \taskypos + \taskcap);
+  % Line from task to smin:
+  \draw[\tasksminstyle] (\tasksmin, \taskypos + \taskcap/2) -- (\tasksmin/2 + \taskemax/2 - \taskdur/2, \taskypos + \taskcap/2);
+  % Line from task to emax:
+  \draw[\taskemaxstyle] (\taskemax, \taskypos + \taskcap/2) -- (\tasksmin/2 + \taskemax/2 + \taskdur/2, \taskypos + \taskcap/2);
+}
+
+% Tohle funguje, ale za SubItem musi byt dalsi item, ne konec itemize..
+%\let\OldItem\item
+%\newcommand{\SubItemStart}[1]{%
+%    \let\item\SubItemEnd
+%    \begin{itemize}%
+%        \OldItem #1%
+%}
+%\newcommand{\SubItemMiddle}[1]{%
+%    \OldItem #1%
+%}
+%\newcommand{\SubItemEnd}[1]{%
+%    \end{itemize}%
+%    \let\item\OldItem
+%    \item #1%
+%}
+%\newcommand*{\SubItem}[1]{%
+%    \let\SubItem\SubItemMiddle%
+%    \SubItemStart{#1}%
+%}%
+
+% Wrapper for outline environment:
+\newcommand{\ITEMS}[1]{%
+  \begin{outline}%
+  #1%
+  \end{outline}%
+}
+% Wrapper for block and outline environments:
+\newcommand{\BLOCK}[2]{
+  \begin{block}{#1}
+  \begin{outline}
+  #2
+  \end{outline}
+  \end{block}
+}
+
+\newcommand{\EM}{\usebeamercolor[fg]{palette secondary}}
+
+\newcommand{\IDEA}[1]{%
+  \begin{tcolorbox}[idea]%
+  \centering #1%
+  \end{tcolorbox}
+}
+
+% The main document
+
+\begin{document}
+
+% ===========================================================================================
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ===========================================================================================
+
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+% ===========================================================================================
+
+\section{Introduction}
+
+% ===========================================================================================
+
+\begin{frame}{Outline}
+  \BLOCK{From my talk in 2011:}{
+    \1 What are the features of an {\EM ideal/future industrial solver}.
+    \1 How this vision drives development of CP Optimizer.
+       \2 CP Optimizer versus ILOG Solver and Scheduler.
+       \2 Optional interval variables
+       \2 Automatic search
+       \2 \dots
+  }
+  \BLOCK{This talk:}{
+    \1 Revisit features of {\EM ideal solver}.
+    \1 Review advances of CP Optimizer and design changes.
+       \2 presolve, automatic search, modeling aids (warnings and failure explanations), cpo file format, optimization as a service, isomorphism constraint, ..
+  }      
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Ideal solver (from business point of view)}
+  \ITEMS{
+    \1 ``Model and Run'' paradigm
+       \2 Rich and intuitive modelling language \uncover<2>{{$\rightarrow$2011, \EM isomorphism}}
+       \2 Strong default search \uncover<2>{{$\rightarrow$ 2011, FDS}}
+       \2 \alert{Explain problems} \uncover<2>{{\EM $\rightarrow$ warnings, failure explanations}}
+       \2 \alert{Optimization as a service} \uncover<2>{{\EM $\rightarrow$ demo}}
+    \1 State of the art performance
+       \2 Portfolio of methods (CP/AI/OR) and hybrids \uncover<2>{{$\rightarrow$ 2011}}
+       \2 Model analysis \uncover<2>{{\EM $\rightarrow$ presolve}}
+       \2 Machine learning \uncover<2>{{$\rightarrow$ 2011}}
+       %\2 \alert{Robust}
+    \1 \alert{Easy to get support}  \uncover<2>{{\EM $\rightarrow$ cpo file format}}
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\section{Presolve}
+
+\begin{frame}[plain]
+\begin{center}
+\structure{\Huge Presolve}
+\end{center}
+\end{frame} 
+
+% ===========================================================================================
+
+\begin{frame}{Interval variable, optionality}
+Interval variable models possibly optional activity that has start and end time. Its domain is:
+\[
+   Domain(a) \subseteq \{\bot\} \cup \{\, [s,e)\; | \;s,e \in {\mathbb Z},\, s\le e \,\}
+\]
+
+%\vspace{-3mm}
+
+\BLOCK{Initially and during the search interval variable can be:}
+{
+  \1 {\EM Present} if $\bot \not\in Domain(a)$ (the time can still be unbound).
+  \1 {\EM Absent} if $Domain(a) = \{\bot\}$.
+  \1 {\EM Optional} otherwise.
+}
+
+\BLOCK{In a solution, interval variable can be:}{
+  \1 {\EM Absent $a=\bot$}: it is left unperformed.
+  \1 {\EM Present $a=[s,e)$}: it starts at time $s$ and ends at time $e$.
+}
+
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Semantics of optional interval variables}
+  \ITEMS{
+    \1 Most constraints ignore absent intervals. For example:\\
+         \hspace{1cm} {\tt {\bfseries endsBeforeStart}(a, b)} \\
+       is automatically satisfied if $a$ or $b$ are absent.
+    \1 Resource requirements of absent intervals are ignored.
+    \1 There are ``accessor functions'' for attributes of interval variable: 
+       \2 \footnotesize {\tt {\bfseries presenceOf}($a$)}: a constraints, values 0/1.
+       \2 {\tt {\bfseries startOf}($a$)}: integer expression, 0 when absent.
+       \2 {\tt {\bfseries endOf}($a$, 1000)}: integer expression, 1000 when absent.
+       \2 {\tt {\bfseries lengthOf}($a$)}: integer expression, 0 when absent.
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\tikzset{
+  activity/.style={
+%    align=left,
+    rectangle,
+    fill=black!20!white,
+    draw=black,
+    very thick,
+    minimum height=0.85cm
+  },
+  optional/.style={
+    activity,
+    dotted
+  },
+  constraint/.style={
+    align=center,
+    activity,
+    fill=white,
+    draw=blue!65!black,
+    text=blue!65!black
+  }
+}
+
+\pgfdeclareimage[height=5mm]{plane}{plane.png}
+\pgfdeclareimage[height=8mm]{car}{car.jpg}
+\pgfdeclareimage[height=7mm]{train}{train.png}
+\pgfdeclareimage[height=5mm]{coin}{coin.png}
+
+\begin{frame}{Alternative constraint}
+  \transdissolve<2>
+  \begin{tikzpicture}
+    \only<1>{
+      \node (CBig) [activity,fill=black!10!white,text width=4cm] {};
+      \node (C) [activity,text width=1cm,anchor=west] at (CBig.west) {\centering C\\};
+    }
+    \only<2>{\node (C) [activity,text width=1cm,align=center] {C};}
+    \node (plane) [optional,below=1.2cm of C.south west,anchor=north west,text width=1cm] {Plane};
+    \uncover<2->{
+      \draw [very thick, draw=red] (C.south west) -- (plane.north west);
+      \draw [very thick, draw=red] (C.south east) -- (plane.north east);
+    }
+    \node (train) [optional,below=0.6cm of plane.south west,anchor=west,text width=3.5cm] {Train};
+    \node (car) [optional,below=0.6cm of train.south west,anchor=west,text width=4cm] {Car};
+    \node (alternative) [constraint,minimum width=2cm] at ($(C.west) !0.5! (plane.west) - (12mm,0)$) {alternative};
+    \node [circle,fill=black,minimum size=2mm,inner sep=0mm] at (C.west) {};
+    \draw [thick] (alternative.north) |- (C.west);
+    \draw [thick] (alternative.south) |- (train.west);
+    \draw [thick] (alternative.south) |- (plane.west);
+    \draw [thick] (alternative.south) |- (car.west);
+    \node (planeimg) [anchor=west] at ($(plane.east)+(1mm,0)$) {\pgfuseimage{plane}};
+    \node [anchor=west] at ($(planeimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(4mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(5mm,0)$) {\pgfuseimage{coin}};
+    \uncover<1>{
+      \node (carimg) [anchor=west] at ($(car.east)+(1mm,0)$) {\pgfuseimage{car}};
+      \node [anchor=west] at ($(carimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(carimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(carimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(carimg.east)+(4mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(carimg.east)+(5mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(carimg.east)+(6mm,0)$) {\pgfuseimage{coin}};
+      \node (trainimg) [anchor=west] at ($(train.east)+(1mm,0)$) {\pgfuseimage{train}};
+      \node [anchor=west] at ($(trainimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(trainimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+      \node [anchor=west] at ($(trainimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+    }
+    \uncover<2>{
+      \draw [thick, draw=red] (train.south west) -- (train.north east);
+      \draw [thick, draw=red] (train.south east) -- (train.north west);
+      \draw [thick, draw=red] (car.south west) -- (car.north east);
+      \draw [thick, draw=red] (car.south east) -- (car.north west);
+    }
+  \end{tikzpicture}
+  
+  \bigskip
+  
+  \begin{center}
+  {\tt {\bfseries alternative}(C, [Plane, Train, Car]);}
+  \end{center}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Cost of an alternative}
+  \begin{tikzpicture}
+    \node (CBig) [activity,fill=black!10!white,text width=4cm] {};
+    \node (C) [activity,text width=1cm,anchor=west] at (CBig.west) {\centering C\\};
+    \node (plane) [optional,below=1.2cm of C.south west,anchor=north west,text width=1cm] {Plane};
+    \node (train) [optional,below=0.6cm of plane.south west,anchor=west,text width=3.5cm] {Train};
+    \node (car) [optional,below=0.6cm of train.south west,anchor=west,text width=4cm] {Car};
+    \node (alternative) [constraint,minimum width=2cm] at ($(C.west) !0.5! (plane.west) - (12mm,0)$) {alternative};
+    \node [circle,fill=black,minimum size=2mm,inner sep=0mm] at (C.west) {};
+    \draw [thick] (alternative.north) |- (C.west);
+    \draw [thick] (alternative.south) |- (train.west);
+    \draw [thick] (alternative.south) |- (plane.west);
+    \draw [thick] (alternative.south) |- (car.west);
+    \node (planeimg) [anchor=west] at ($(plane.east)+(1mm,0)$) {\pgfuseimage{plane}};
+    \node [anchor=west] at ($(planeimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(4mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(planeimg.east)+(5mm,0)$) {\pgfuseimage{coin}};
+    \node (carimg) [anchor=west] at ($(car.east)+(1mm,0)$) {\pgfuseimage{car}};
+    \node [anchor=west] at ($(carimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(carimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(carimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(carimg.east)+(4mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(carimg.east)+(5mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(carimg.east)+(6mm,0)$) {\pgfuseimage{coin}};
+    \node (trainimg) [anchor=west] at ($(train.east)+(1mm,0)$) {\pgfuseimage{train}};
+    \node [anchor=west] at ($(trainimg.east)+(1mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(trainimg.east)+(2mm,0)$) {\pgfuseimage{coin}};
+    \node [anchor=west] at ($(trainimg.east)+(3mm,0)$) {\pgfuseimage{coin}};
+  \end{tikzpicture}
+  
+  \bigskip
+  
+  {\tt \footnotesize
+  {\bfseries alternative}(C, [Plane, Train, Car]);\\
+  \vspace{-4mm}
+  \begin{flalign*}
+  \text{\tt cost} = \;\;
+         & 5*\text{\tt {\bfseries presenceOf}(Plane) +} && \\
+         & 3*\text{\tt {\bfseries presenceOf}(Train) +} &&\\
+         & 6*\text{\tt {\bfseries presenceOf}(Car);} &&
+  \end{flalign*}
+  }
+  
+  \uncover<2->{
+  \begin{tikzpicture}[overlay, remember picture]
+    \node[anchor=south east,xshift=-3mm,yshift=7mm,text width=5.5cm] 
+      at (current page.south east)
+      {
+        \begin{tcolorbox}[idea]
+        It does not propagate well: $\text{\tt cost} \in [0, 14]$ versus $[3,6]$.
+        \end{tcolorbox}
+      };
+  \end{tikzpicture}
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{The problem: How to model alternative cost?}
+ 
+   It is a design problem for the modelling language.
+  
+  \bigskip
+
+  \footnotesize
+
+  {\small \EM \tt {\bfseries alternative}(C, [Plane,Train,Car], [5,3,6], cost);}
+  \ITEMS{
+    \1 Does not work for hierarchy of alternatives.
+    \1 Mixes constraint with objective.
+  }
+  
+  \medskip
+  
+  {\small \EM \tt cost = 3 + 2*!{\bfseries presenceOf}(Train) + {\bfseries presenceOf}(Car);}
+  \ITEMS{
+    \1 No one will write this.
+    \1 Hard to extend to more variables.
+  }
+  
+  \medskip
+    
+  {\small \EM \tt
+    {\bfseries alternative}(C, [Plane,Train,Car], indexVar);\\
+    cost = {\bfseries element}(indexVar, [5,3,6])
+  }
+  \ITEMS{
+    \1 Requires variable {\tt indexVar}.
+    \1 Does not work for hierarchy of alternatives.
+  }
+  
+  \medskip
+  \pause
+  \IDEA{All those possibilities are clumsy and non-intuitive.}
+  
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Alternative cost}
+  \BLOCK{Our decision:}{
+    \1 Use the simplest expression:
+      \begin{flalign*}
+  \text{\tt cost} = \;\;
+         & 5*\text{\tt {\bfseries presenceOf}(Plane) +} \hspace{3cm} \\
+         & 3*\text{\tt {\bfseries presenceOf}(Train) +} \\
+         & 6*\text{\tt {\bfseries presenceOf}(Car);} 
+  \end{flalign*}
+    \1 Presolve it into expression that propagates better.
+  }
+  
+  \BLOCK{Benefits:}{
+    \1 Intuitive language, no specialized function to learn.
+    \1 Easy to upgrade. No need to rewrite the model.
+    \1 Internal implementation can change at any time.
+  }
+  
+  \vspace{-2mm}
+  \pause
+  \IDEA{Capabilities of presolve affect language design.}
+\end{frame}
+
+% ===========================================================================================
+
+\tikzset{
+  part/.style={
+    align=center,
+    rectangle,
+    fill=black!20!white,
+    draw=black,
+    very thick,
+    minimum width=3cm,
+    minimum height=1.7cm
+  },
+  newpart/.style={
+    part,
+    fill=blue!20!white,
+    draw=blue!65!black,
+    text=blue!65!black
+  }
+}
+
+\begin{frame}{CP Optimizer scheme \only<1>{(old)}\only<2>{(new)}}
+  \transdissolve<2>
+  %\begin{center}
+  \begin{tikzpicture}%[scale=0.7]
+  %\fill [fill=blue!20!white,draw=blue,thick] (-3.5,4.8) rectangle (0,0.2);
+  \node (concert) [part] {User model\\(Concert)\\ \scriptsize OPL, C++, Java, C\#};
+  \uncover<2>{
+    \node (layer) [newpart, right=10mm of concert] {Temporary model\\(presolve)};
+  }
+  \node (engine) [part, right=10mm of layer] {CPO engine\\(solve)};
+  \uncover<2>{
+    \draw[thick,->] ($(concert.east)+(0,2mm)$) -- ($(layer.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(concert.east)+(0,-2mm)$) -- ($(layer.west)+(0,-2mm)$);
+    \draw[thick,->] ($(layer.east)+(0,2mm)$) -- ($(engine.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(layer.east)+(0,-2mm)$) -- ($(engine.west)+(0,-2mm)$);
+  }
+  \uncover<1>{
+    \draw[thick,->] ($(concert.east)+(0,2mm)$) -- ($(engine.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(concert.east)+(0,-2mm)$) -- ($(engine.west)+(0,-2mm)$);
+  }
+  \draw[thick,->] ($(concert.west)-(-3mm,20mm)$) -- ($(concert.east)-(3mm,20mm)$) node[pos=0.5,above] {\small model flow};
+  \draw[thick,<-,dotted] ($(concert.west)-(-3mm,28mm)$) -- ($(concert.east)-(3mm,28mm)$) node[pos=0.5,above] {\small domains flow};
+  \end{tikzpicture}
+  %\end{center}
+  
+  \bigskip
+  
+  \begin{overprint}%
+  \onslide<1>%
+  \ITEMS{%
+    \1 Limitted presolve done during translation of user model into engine.%
+  }%
+  \onslide<2>%
+  \ITEMS{%
+    \1 All presolves are done in the temporary model.%
+    \1 Each module uses completely different way to store the model (as the requirements are different).%
+  }%
+  \end{overprint}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Examples of presolves}
+  \ITEMS{
+    \1 Partial expression evaluation
+    \1 Common sub-expression elimination
+    \1 Precedence strengthening
+       \2 If $a$ and $b$ cannot overlap and {\tt {\bfseries startsBeforeStart}(a,b)}
+       \2 Then {\tt {\bfseries endsBeforeStart}(a,b)}
+    \1 Precedence recognition
+       \2 If $\text{\tt \bfseries endOf}(a, -\infty) \le \text{\tt \bfseries startOf}(b, \infty)$
+       \2 Then {\tt {\bfseries endsBeforeStart}(a,b)}
+       \2 Precedences are aggreated into ``time net'' for faster and stronger propagation.
+    \1 2-SAT clauses recognition
+       \2 $\text{\tt \bfseries presenceOf}(a) \le \text{\tt \bfseries presenceOf}(b)$
+       \2 $\text{\tt \bfseries presenceOf}(a) = \text{\tt \bfseries presenceOf}(b)$
+       \2 Such clauses are aggregated into ``logical net'' for stronger propagation.
+    \1 {\EM Strong constraint}
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Strong constraint}
+  \ITEMS{
+    \1 Sometimes, there is a small group of variables tightly tied together by a set of constraint.
+       \2 However those constraint do not propagate well together (global view is missing).
+    \1 Standard recommendation used to be to replace those constraint by a table constraint ({\tt allowedAssignments} or {\tt forbiddenAssignments}).
+       \2 However it is a pain to do and hard to maintain.
+    \1 The new recommendation is to use constraint {\tt strong}. It automatically:
+       \2 Computes all feasible tuples over given set of variables.
+          \3 It uses whole model to verify the feasibility.
+       \2 Creates table constraint from them.
+       \2 Removes now redundant original constraints.
+    \1 Strong constraint is handled during presolve.
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}[fragile]{Strong constraint: example}
+\small
+\begin{lstlisting}[language=cpo]
+...
+home1x1 != away1x1;
+game1x1 == 9*home1x1 + away1x1 - (away1x1 > home1x1);
+strong([home1x1, away1x1, games1x1]);
+...
+\end{lstlisting}
+
+\pause
+{\Huge \quad\quad\quad\quad\quad $\color{red}\Downarrow$}
+
+\medskip
+
+\begin{lstlisting}[language=cpo]
+...
+allowedAssignments([home1x1, away1x1, games1x1], [
+  [1, 2, 10], [1, 3, 11], [1, 4, 12], [1, 5, 13], [1, 6, 14],
+  [1, 7, 15], [1, 8, 16], [1, 9, 17], [2, 0, 18], [2, 1, 19],
+  .. // 54 tuples instead of 90,000 possibilities
+]);
+...
+\end{lstlisting}
+
+\end{frame}
+
+% ===========================================================================================
+
+\section{Optimization as a service}
+
+\begin{frame}[plain]
+\begin{center}
+\structure{\Huge Optimization as a service}
+
+\bigskip
+
+\EM \tt \underline{http://www-969.ibm.com/software/analytics/docloud/}
+\end{center}
+\end{frame} 
+
+% ===========================================================================================
+
+\begin{frame}{The problem}
+  \ITEMS{
+    \1 Some customers ask for cloud
+      \2 Powerful machines
+      \2 Or on contrary, use optimization only occasionally
+      \2 No need to buy and maintain HW and SW
+    \1 Great for consulting companies, proof of concepts, sizing, ..
+    \1 Free to try, attract more customers
+  }
+  \BLOCK{Challenges}{
+    \1 Safety
+    \1 Reliability
+    \1 Split modelling and solving, network API
+    \1 Data throughput
+    \1\dots
+  }  
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Optimization as a service: demo}
+\begin{center}
+\EM \tt \underline{http://www-969.ibm.com/software/analytics/docloud/}
+\end{center}
+\pgfdeclareimage[width=11cm]{dropsolve}{dropsolve.png}
+\pgfuseimage{dropsolve}
+\end{frame}
+
+% ===========================================================================================
+
+\section{cpo file format}
+
+\begin{frame}[plain]
+\begin{center}
+\structure{\Huge cpo file format}
+\end{center}
+\end{frame} 
+
+% ===========================================================================================
+
+\begin{frame}{The problem}
+  \ITEMS{
+    \1 Client makes changes in existing application and has a performance problem.
+    \1 Client asks for support.
+    \1 Application is written in C++, Java or C\#, connects to databases and receives data over network.
+       \2 Could be debugged only on the client side.
+    \1 The only solution is to send an expert to the client and go through the code of the whole application.
+    \1 Slow responds, time consuming work, ineffective, expensive, frustrating.
+  }
+  \pause
+  \IDEA{Need to export the model regardless what API was used to make it. And import it back.}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{CP Optimizer scheme \only<1>{(old)}\only<2->{(new)}}
+  \transdissolve<2->
+  %\begin{center}
+  \begin{tikzpicture}%[scale=0.7]
+  %\fill [fill=blue!20!white,draw=blue,thick] (-3.5,4.8) rectangle (0,0.2);
+  \node (concert) [part] {User model\\(Concert)\\ \scriptsize OPL, C++, Java, C\#};
+  \node (engine) [part, right=10mm of layer] {CPO engine\\(solve)};
+  \uncover<2->{
+    \node (layer) [newpart, right=10mm of concert] {Temporary model\\(presolve)};
+    \draw[thick,->] ($(concert.east)+(0,2mm)$) -- ($(layer.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(concert.east)+(0,-2mm)$) -- ($(layer.west)+(0,-2mm)$);
+    \draw[thick,->] ($(layer.east)+(0,2mm)$) -- ($(engine.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(layer.east)+(0,-2mm)$) -- ($(engine.west)+(0,-2mm)$);
+  }
+  \uncover<3>{
+    \node (file) [newpart, below=10mm of layer,minimum width=2cm, minimum height=1.3cm] {cpo file};
+    \draw[thick,<->] ($(layer.south)+(-2mm,0)$) -- ($(file.north)+(-2mm,0)$);
+    \draw[thick,->,dotted] ($(layer.south)+(2mm,0)$) -- ($(file.north)+(2mm,0)$);
+  }
+  \uncover<1>{
+    \draw[thick,->] ($(concert.east)+(0,2mm)$) -- ($(engine.west)+(0,2mm)$);
+    \draw[thick,<-,dotted] ($(concert.east)+(0,-2mm)$) -- ($(engine.west)+(0,-2mm)$);
+  }
+  \draw[thick,->] ($(concert.west)-(-3mm,20mm)$) -- ($(concert.east)-(3mm,20mm)$) node[pos=0.5,above] {\small model flow};
+  \draw[thick,<-,dotted] ($(concert.west)-(-3mm,28mm)$) -- ($(concert.east)-(3mm,28mm)$) node[pos=0.5,above] {\small domains flow};
+  \end{tikzpicture}
+  %\end{center}
+  
+  \bigskip
+  
+  \uncover<3>{
+  \BLOCK{Facilities of cpo files:}{
+    \1 Export model before/instead solve.
+    \1 Import model instead of normal modelling.
+    \1 Export model during solve (with current domains).
+    \1 Developers only: export model after presolve.
+  }
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Structure of cpo file}
+  \ITEMS{
+    \1 Human readable, but not expected to be written by humans.
+    \1 Flat. No cycles, forall statements etc.
+    \1 No user defined data types.
+    \1 Internal information such as version of CP Optimizer or platform used.
+    \1 Easy to parse (25MB/s on my laptop).
+  }
+  \BLOCK{Benefits}{
+    \1 Complete serialization of the model. Possibility to transmit the model over a network.
+    \1 Debugging: user can see the actual model.
+    \1 User can send the model to IBM and get help.
+  }  
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}[fragile]{Example of a cpo file}
+\vspace{-3mm}
+\scriptsize
+\begin{lstlisting}[language=cpo]
+internals {
+  version(12.6.1.0);
+  architecture("x86-64_linux/static_pic", 64);
+  ids(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
+}
+
+// Interval-related variables:
+a = intervalVar(size=5, optional);
+b = intervalVar(start=1..intervalmax, size=5);
+c = intervalVar(start=2..intervalmax, end=0..14, size=7);
+x = intervalVar(start=-100..intervalmax, end=intervalmin..intervalmax, size=1);
+
+// Objective:
+minimize(endOf(a) + endOf(b) + endOf(c) + endOf(x));
+
+// Constraints:
+noOverlap([a, b, c, x]);
+startBeforeEnd(b, a, -6);
+#line foo.cpp 150
+startBeforeEnd(a, x, -10);
+
+parameters {
+  LogVerbosity = Quiet;
+}
+\end{lstlisting}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Why we did not chose flatzinc?}
+  \ITEMS{
+    \1 Support for interval variables.
+    \1 Do not split expressions into {\tt int\_plus}, {\tt int\_times} etc.
+       \2 Not necessary for CP Optimizer.
+       \2 Easier to read by humans.
+    \1 Function names are the same as in C++ or OPL.
+       \2 Simpler to understand by users.
+    \1 Possibility to include non-model information such as parameters.
+    \1 Serialization of the model including internal IDs of objects.
+  }
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{How I use cpo file format}
+  \BLOCK{When I want to improve performance of some model:}{
+    \1 Dump the model multiple times during the solve.
+    	\2 E.g. failing nodes or branches that is hard to escape.
+        \2 Those models contain current domains.
+    	\2 And they are typical infeasible.
+    \1 Import those models back and use conflict refiner to find minimum infeasible submodel (conflict).
+    \1 See if a pattern emerge and look for improvements:
+        \2 Add redundant constraint?
+        \2 Improve propagation of some constraint?
+        \2 Add some presolve? Add {\tt strong} constraint?
+  }
+  
+  Often I think that I know how the model and solver is working. And then I'm surprised by the result of this analysis.
+\end{frame}
+
+% ===========================================================================================
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\pgfplotsset{
+  % Solid dot for piecewise functions:
+  soldot/.style={color=blue!60!black,only marks,mark=*},
+  % Hollow dot for piecewise functions:
+  holdot/.style={color=blue!60!black,fill=white,only marks,mark=*},
+  % Style for the function pieces:
+  func/.style={line width=1.5pt, color=blue!60!black},
+  % Axis:
+  every axis/.append style={
+    set layers, % Enable layers so that we can draw "behind" the grid
+    axis x line=bottom,
+    axis y line=middle,
+    %axis line style={<->}, % arrows on the axis
+    clip=false, % Otherwise thick line at the bottom would be partially clipped
+    grid=major,
+    grid style = {black!40!white, dashed},
+%    ticklabel style={fill=white} % Erase grid bellow tick labels
+%   x tick label style = { yshift=-1mm },
+%   y tick label style = { xshift=-1mm }
+  },
+}
+
+\tikzset {
+  % Style for connections of the pieces:
+  notfunc/.style={
+    line width=1.5pt, dotted, blue!60!black
+  },
+  % Style for dashed connection lines
+  conline/.style = {
+    dashed,draw=black!60!white
+  },
+  itvrange/.style = {
+    very thick, black
+  },
+  % For drawing braces connecting some points
+  rbrace/.style={
+     decoration={brace, mirror,amplitude=0.6em},
+     decorate
+  },
+  rbracedesc/.style = {
+    pos=0.5,
+    right=0.6em
+  },
+  lbrace/.style={
+     decoration={brace, amplitude=0.6em},
+     decorate
+  },
+  lbracedesc/.style = {
+    pos=0.5,
+    left=0.6em
+  },
+  % The following style allows to easily draw rectangle nodes with given corner coordinates
+  corners/.style={draw,fit={#1},rectangle,inner sep=0}
+}
+
+
+\begin{frame}[fragile]{Example of a conflict}
+\vspace{-5mm}
+\small
+\begin{lstlisting}[language=cpo]
+task = intervalVar(present, length=2..5, start=1..17, end=3..19);
+weekends = stepFunction((0,1),(5,0),(7,1),(12,0),(14,1),(19,0));
+forbidExtent(task, weekends)
+|\onslide<2->|
+mode1 = intervalVar(optional, length=2, start=1..17, end=3..19);
+mode2 = intervalVar(optional, length=5, start=1..6, end=6..11);
+alternative(task, [mode1, mode2]);
+|\onslide<3->|presenceOf(mode2); // Search decision
+\end{lstlisting}
+
+\onslide<1->
+\begin{tikzpicture}
+\pgfplotsset{set layers}
+\begin{axis}[
+  ymin=0,ymax=125,width=12.5cm,height=2.9cm,
+  xmin=-1, xmax=21,
+  xtick =       {0,5,7,12,14,19},
+  xticklabels = {0,5,7,12,14,19},
+  ytick = {0, 100},
+  yticklabels = {0,1},
+  minor xtick ={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21},
+  minor tick length={0.7cm},
+  tick align=inside
+]
+% We have to plot the function piece by piece otherwise the pieces would be connected.
+\addplot[domain=-1:0,func] {0};
+\addplot[domain=0:5,func] {100};
+\addplot[domain=5:7,func] {0};
+\addplot[domain=7:12,func] {100};
+\addplot[domain=12:14,func] {0};
+\addplot[domain=14:19,func] {100};
+\addplot[domain=19:21,func] {0};
+% Connections between the pieces:
+\draw[notfunc] (axis cs:0,100) -- (axis cs:0,0);
+\draw[notfunc] (axis cs:5,100) -- (axis cs:5,0);
+\draw[notfunc] (axis cs:7,100) -- (axis cs:7,0);
+\draw[notfunc] (axis cs:12,100) -- (axis cs:12,0);
+\draw[notfunc] (axis cs:14,100) -- (axis cs:14,0);
+\draw[notfunc] (axis cs:19,100) -- (axis cs:19,0);
+% Dots at the end of pieces:
+\addplot[holdot] coordinates{(0,0)(5,100)(7,0)(12,100)(14,0)(19,100)};
+\addplot[soldot] coordinates{(0,100)(5,0)(7,100)(12,0)(14,100)(19,0)};
+% Days:
+\node[rotate=90,anchor=west] at (axis cs:0.5,0) {\footnotesize Mo};
+\node[rotate=90,anchor=west] at (axis cs:1.5,0) {\footnotesize Tu};
+\node[rotate=90,anchor=west] at (axis cs:2.5,0) {\footnotesize We};
+\node[rotate=90,anchor=west] at (axis cs:3.5,0) {\footnotesize Th};
+\node[rotate=90,anchor=west] at (axis cs:4.5,0) {\footnotesize Fr};
+\node[rotate=90,anchor=west] at (axis cs:5.5,0) {\footnotesize Sa};
+\node[rotate=90,anchor=west] at (axis cs:6.5,0) {\footnotesize Su};
+\node[rotate=90,anchor=west] at (axis cs:7.5,0) {\footnotesize Mo};
+\node[rotate=90,anchor=west] at (axis cs:8.5,0) {\footnotesize Tu};
+\node[rotate=90,anchor=west] at (axis cs:9.5,0) {\footnotesize We};
+\node[rotate=90,anchor=west] at (axis cs:10.5,0) {\footnotesize Th};
+\node[rotate=90,anchor=west] at (axis cs:11.5,0) {\footnotesize Fr};
+\node[rotate=90,anchor=west] at (axis cs:12.5,0) {\footnotesize Sa};
+\node[rotate=90,anchor=west] at (axis cs:13.5,0) {\footnotesize Su};
+\node[rotate=90,anchor=west] at (axis cs:14.5,0) {\footnotesize Mo};
+\node[rotate=90,anchor=west] at (axis cs:15.5,0) {\footnotesize Tu};
+\node[rotate=90,anchor=west] at (axis cs:16.5,0) {\footnotesize We};
+\node[rotate=90,anchor=west] at (axis cs:17.5,0) {\footnotesize Th};
+\node[rotate=90,anchor=west] at (axis cs:18.5,0) {\footnotesize Fr};
+\node[rotate=90,anchor=west] at (axis cs:19.5,0) {\footnotesize Sa};
+\node[rotate=90,anchor=west] at (axis cs:20.5,0) {\footnotesize Su};
+% Background colors for weekends:
+\pgfonlayer{axis background} % Draw behind the grid
+\addplot[fill=red!25!white,draw=none] coordinates {(5, -250) (5, 100) (7, 100) (7, -250)} -- cycle;
+\addplot[fill=red!25!white,draw=none] coordinates {(12, -250) (12, 100) (14, 100) (14, -250)} -- cycle;
+\addplot[fill=red!25!white,draw=none] coordinates {(19, -250) (19, 100) (21, 100) (21, -250)} -- cycle;
+\endpgfonlayer
+% task:
+\node[fill=black!20!white, draw=black, 
+      corners={(axis cs:7,-60)(axis cs:12,-100)},
+] {};
+\node[fill=black!40!white, draw=black, 
+      corners={(axis cs:8,-60)(axis cs:10,-100)},
+      label=center:{\footnotesize task}
+] (task) {};
+\draw[itvrange] (axis cs: 1.2, -60) -- (axis cs: 1,-60) -- (axis cs:1, -100) -- (axis cs:1.2, -100);
+\draw[itvrange] (axis cs: 18.8, -60) -- (axis cs: 19, -60) -- (axis cs: 19, -100) -- (axis cs: 18.8, -100);
+\draw[<-] (axis cs:1,-80) -- (axis cs: 7, -80);
+\draw[->] (axis cs:12,-80) -- (axis cs: 19, -80);
+\only<2->{
+  % mode1:
+  \node[fill=black!40!white, draw=black, 
+        corners={(axis cs:8,-130)(axis cs:10,-170)},
+        label=center:{\footnotesize mode1}
+  ] (mode1) {};
+  \draw[itvrange] (axis cs: 1.2, -130) -- (axis cs: 1,-130) -- (axis cs:1, -170) -- (axis cs:1.2, -170);
+  \draw[itvrange] (axis cs: 18.8, -130) -- (axis cs: 19, -130) -- (axis cs: 19, -170) -- (axis cs: 18.8, -170);
+  \draw[<-] (axis cs:1,-150) -- (axis cs: 8, -150);
+  \draw[->] (axis cs:10,-150) -- (axis cs: 19, -150);
+  % mode2:
+  \node[fill=black!40!white, draw=black, 
+        corners={(axis cs:4,-200)(axis cs:9,-240)},
+        label=center:{\footnotesize mode2}
+  ] (interval) {};
+  \draw[itvrange] (axis cs: 1.2, -200) -- (axis cs: 1,-200) -- (axis cs:1, -240) -- (axis cs:1.2, -240);
+  \draw[itvrange] (axis cs: 10.8, -200) -- (axis cs: 11, -200) -- (axis cs: 11, -240) -- (axis cs: 10.8, -240);
+  \draw[<-] (axis cs:1,-220) -- (axis cs: 4, -220);
+  \draw[->] (axis cs:9,-220) -- (axis cs: 11, -220);
+}
+\only<3->{
+  \draw[red,very thick] (axis cs:4, -200) -- (axis cs:9, -240);
+  \draw[red,very thick] (axis cs:9, -200) -- (axis cs:4, -240);
+}
+\end{axis}
+\end{tikzpicture}
+
+\transdissolve<3->
+
+\uncover<4->{
+\begin{tikzpicture}[overlay, remember picture]
+  \node[text width=8cm, anchor=center] 
+    at ($(current page.south east) !0.5! (current page.north west) + (0, 2.2cm)$)
+    {
+      \begin{tcolorbox}[enhanced,idea, enlarge by=2mm,fuzzy shadow={0mm}{0mm}{-3mm}{0.3mm}{yellow!75!red}]
+      \centering
+      New presolve: alternatives should inherit {\tt \bfseries forbidExtent} constraint from the master.
+      \end{tcolorbox}
+    };
+\end{tikzpicture}
+}
+
+\end{frame}
+
+% ===========================================================================================
+
+\section{Explain problems}
+
+\begin{frame}[plain]
+\begin{center}
+\structure{\Huge Explain problems}
+\end{center}
+\end{frame} 
+
+% ===========================================================================================
+
+\begin{frame}[fragile]{Failure explanations}
+\small
+\begin{lstlisting}
+// Build model:
+...
+// Create CP object:
+IloCP cp(model);
+// Use only one thread:
+cp.setParameter(IloCP::Workers, 1);
+// Simple tree search:
+cp.setParameter(IloCP::SearchType, IloCP::DepthFirst);
+// Show failure numbers:
+cp.setParameter(IloCP::LogSearchTags, IloCP::On);
+// Explain particular failures:
+cp.explainFailure(IloIntArray(env, 4, 3, 10, 11, 12));
+// Solve and explain:
+cp.solve();
+\end{lstlisting}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}[fragile]{Failure explanation}
+\scriptsize
+\begin{verbatim}
+ - Failure #1
+ - Failure #2
+ - Failure #3
+-- Possible conflict explaining failure
+// Model constraints
+element(store1, [location1, location2, location3, location4, location5]) == 1;
+element(store2, [location1, location2, location3, location4, location5]) == 1;
+element(store3, [location1, location2, location3, location4, location5]) == 1;
+element(store4, [location1, location2, location3, location4, location5]) == 1;
+element(store5, [location1, location2, location3, location4, location5]) == 1;
+element(store6, [location1, location2, location3, location4, location5]) == 1;
+element(store7, [location1, location2, location3, location4, location5]) == 1;
+element(store8, [location1, location2, location3, location4, location5]) == 1;
+count([store1, store2, store3, store4, store5, store6, store7, store8], 0) <= 3;
+count([store1, store2, store3, store4, store5, store6, store7, store8], 3) <= 4;
+// Branch constraints
+location2 == 0;
+location3 == 0;
+location5 == 0;
+\end{verbatim}
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}[fragile]{Warnings}
+  \BLOCK{Like a compiler, CP Optimizer can print warnings}{
+    \1 When there is something suspicious in the model.
+       \2 Especially for scheduling
+    \1 Regardless how the model was created (C++, OPL, ..)
+    \1 Including guilty part of the model in the cpo file format
+    \1 Including source code line numbers (if known)
+    \1 3 levels of warnings, more than 50 types of warnings
+  }
+  
+\scriptsize
+\begin{verbatim}
+foo.cpp:24: Warning: Unused interval variable 'x'.
+             x = intervalVar(start=1..50, size=5..10)
+foo.cpp:30: Warning: Constraint 'alternative': master interval variable 'task' 
+                     is optional but alternative interval 'mode1' is present.
+             alternative(task, [mode1, mode2])
+file.cpo:7: Warning: Constraint 'alternative': array of alternatives is empty. 
+                     Interval variable 'A' will be set to absent.
+             alternative(A, [])
+\end{verbatim}
+\end{frame}
+
+% ===========================================================================================
+
+\section{Isomorphism constraint}
+
+\begin{frame}[plain]
+\begin{center}
+\structure{\Huge Isomorphism constraint}
+\end{center}
+\end{frame} 
+
+% ===========================================================================================
+
+\tikzset{
+  tasksol/.style = {
+    activity,
+    thin,
+    fill = blue!25!white,
+    minimum height = 0.4cm
+  },
+  task/.style = {
+    optional,
+    thin,
+    fill = blue!25!white,
+    minimum height = 0.4cm
+  },
+  slot/.style = {
+    activity,
+    thin,
+    fill = red!30!white,
+    minimum height = 0.4cm
+  }
+}
+
+\small
+\begin{frame}{Isomorphism constraint}
+\begin{tikzpicture}[yscale=0.78]
+% Colored backgrounds:
+\begin{pgfonlayer}{background}
+  \fill [red!10!white] (0,0) rectangle (10cm,3cm);
+  \fill [black!10!white] (-0.3cm,3.1cm) rectangle (10.3cm,3.9cm);
+  \fill [blue!10!white] (0cm,4cm) rectangle (10cm, 7cm);
+\end{pgfonlayer}
+% Isomorphism statement:
+\only<1-2>{
+  \node at (5cm, 3.5cm) {\tt {\textbf{isomorphism}}(slots, tasks)};
+}
+\only<3->{
+  \node at (5cm, 3.5cm) {\tt {\textbf{isomorphism}}(slots, tasks, {\color{red}map, absentVal})};
+}
+% Tasks:
+\footnotesize
+\only<1>{
+  \node (task0) [task] at (1cm, 6cm) {\tt task0};
+  \node (task1) [task, minimum width=2.5cm] at (3cm, 5cm) {\tt task1};
+  \node (task2) [task, minimum width=3cm] at (5cm, 6cm) {\tt task2};
+  \node (task3) [task, minimum width=2cm] at (8cm, 6cm) {\tt task3};
+  \node (task4) [task, minimum width=2cm] at (7cm, 5cm) {\tt task4};
+}
+\only<2->{
+  \node (task0) [task] at (8cm, 6cm) {\tt task0};
+  \node (task1) [tasksol, minimum width=2.5cm,anchor=west] at (3.5cm, 5cm) {\tt task1};
+  \node (task2) [tasksol, minimum width=3cm,anchor=west] at (6.5cm, 5cm) {\tt task2};
+  \node (task3) [tasksol, minimum width=2cm,anchor=west] at (0.5cm, 5cm) {\tt task3};
+  \node (task4) [tasksol, minimum width=2cm,anchor=west] at (2.0cm, 6cm) {\tt task4};
+  \draw [thick,red] (task0.north west) -- (task0.south east);
+  \draw [thick,red] (task0.south west) -- (task0.north east);
+}
+% Slots:
+\only<1>{
+  \node (slot0) [slot,anchor=north west, minimum width=3cm] at (0.5cm, 3.0cm) {\tt slot0};
+  \node (slot1) [slot,anchor=north west, minimum width=3cm] at (2.0cm, 2.4cm) {\tt slot1};
+  \node (slot2) [slot,anchor=north west, minimum width=3cm] at (3.5cm, 1.8cm) {\tt slot2};
+  \node (clean) [slot,anchor=north west, minimum width=4cm,fill=black!30!white] at (5.0cm, 1.2cm) {\tt clean};
+  \node (slot4) [slot,anchor=north west, minimum width=3cm] at (6.5cm, 0.6cm) {\tt slot4};
+}
+\only<2->{
+  \node (slot0) [slot,anchor=north west, minimum width=2cm] at (0.5cm, 3.0cm) {\tt slot0}; %3
+  \node (slot1) [slot,anchor=north west, minimum width=2cm] at (2.0cm, 2.4cm) {\tt slot1}; %4
+  \node (slot2) [slot,anchor=north west, minimum width=2.5cm] at (3.5cm, 1.8cm) {\tt slot2}; %1
+  \node (clean) [slot,anchor=north west, minimum width=4cm,fill=black!30!white] at (5.0cm, 1.2cm) {\tt clean};
+  \node (slot4) [slot,anchor=north west, minimum width=3cm] at (6.5cm, 0.6cm) {\tt slot4}; %2
+  % Connections between slots and tasks:
+  \begin{pgfonlayer}{background}
+    \draw[dashed] (task3.south west) -- (slot0.north west);
+    \draw[dashed] (task3.south east) -- (slot0.north east);
+    \draw[dashed] (task4.south west) -- (slot1.north west);
+    \draw[dashed] (task4.south east) -- (slot1.north east);
+    \draw[dashed] (task1.south west) -- (slot2.north west);
+    \draw[dashed] (task1.south east) -- (slot2.north east);
+    \draw[dashed] (task2.south west) -- (slot4.north west);
+    \draw[dashed] (task2.south east) -- (slot4.north east);
+  \end{pgfonlayer}
+}
+% Delay arrows for slots:
+\draw[<->, >=latex,black!40!white, line width=3pt] (0.5cm, 2.1cm) -- (2.0cm, 2.1cm);
+\draw[<->, >=latex,black!40!white, line width=3pt] (2.0cm, 1.5cm) -- (3.5cm, 1.5cm);
+\draw[<->, >=latex,black!40!white, line width=3pt] (3.5cm, 0.9cm) -- (5.0cm, 0.9cm);
+\draw[<->, >=latex,black!40!white, line width=3pt] (5.0cm, 0.3cm) -- (6.5cm, 0.3cm);
+\end{tikzpicture}
+
+\footnotesize
+\begin{overprint}
+\onslide<1-2>
+  \ITEMS{
+    \1 {\tt tasks}, {\tt slots}: arrays of interval variables.
+    \1 Map 1:1 {\tt tasks} on {\tt slots}. Absent intervals are not mapped.
+  }
+\onslide<3->
+  \ITEMS{
+    \1 {\tt map}: Array of integer variables.
+    \1 {\tt absentVal}: Value for absent variables (integer constant).
+    \1 {\tt map[3]=0}, {\tt map[4]=1}, {\tt map[1]=2}, {\tt map[2]=4}, {\tt map[0]=absentVal}.
+  }
+\end{overprint}
+  
+\end{frame}
+
+% ===========================================================================================
+
+\lstset{language=cpo}
+
+\begin{frame}[fragile]{Isomorphism and presolve}
+  \BLOCK{There are many possibilities for presolve}{
+    \1 \lstinline@noOverlap(slots)@ $\Rightarrow$ \lstinline@noOverlap(tasks)@
+    \1 \lstinline@slots@ have common \lstinline@forbidExtent@ $\Rightarrow$ same \lstinline@forbidExtent@ on \lstinline@tasks@.
+    \1 \lstinline@alldiff(map)@
+    \1 \dots
+  }  
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}{Disclaimers}
+
+\tiny
+\begin{itemize}
+\item
+The information contained in this publication is provided for informational purposes only. While efforts were made to verify the completeness and accuracy of the information contained in this publication, it is provided AS IS without warranty of any kind, express or implied. In addition, this information is based on IBM’s current product plans and strategy, which are subject to change by IBM without notice. IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, this publication or any other materials. Nothing contained in this publication is intended to, nor shall have the effect of, creating any warranties or representations from IBM or its suppliers or licensors, or altering the terms and conditions of the applicable license agreement governing the use of IBM software.
+\item
+References in this presentation to IBM products, programs, or services do not imply that they will be available in all countries in which IBM operates. Product release dates and/or capabilities referenced in this presentation may change at any time at IBM’s sole discretion based on market opportunities or other factors, and are not intended to be a commitment to future product or feature availability in any way.  Nothing contained in these materials is intended to, nor shall have the effect of, stating or implying that any activities undertaken by you will result in any specific sales, revenue growth or other results. 
+\item
+Performance is based on measurements and projections using standard IBM benchmarks in a controlled environment.  The actual throughput or performance that any user will experience will vary depending upon many factors, including considerations such as the amount of multiprogramming in the user's job stream, the I/O configuration, the storage configuration, and the workload processed.  Therefore, no assurance can be given that an individual user will achieve results similar to those stated here.
+\item
+IBM, the IBM logo, CPLEX and SPSS are trademarks of International Business Machines Corporation in the United States, other countries, or both. 
+\item
+Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in the United States, other countries, or both.
+\end{itemize}
+
+\end{frame}
+
+% ===========================================================================================
+
+\begin{frame}[plain]
+%\pgfdeclareimage[width=11cm]{titleimg}{titleimg.png}
+\begin{center}
+\structure{\fontsize{50}{60}\selectfont Questions?}\\
+\vspace*{0.5cm}
+\pgfuseimage{ibmanalytic}\\
+%\bigskip
+%\pgfuseimage{titleimg}
+\end{center}
+\end{frame} 
+
+\end{document}

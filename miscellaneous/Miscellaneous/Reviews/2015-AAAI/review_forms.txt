@@ -1,0 +1,1389 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1987393::954233"
+        submission="457"
+        title="A mathematical programming-based approach to determining objective functions from qualitative and subjective comparisons"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  -->
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  -->
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>
+
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1990030::954233"
+        submission="1123"
+        title="Resolving Over-constrained Probabilistic Temporal Problems through Chance Constraint Relaxation"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  -->
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  -->
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>
+
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1990843::954233"
+        submission="1420"
+        title="Algorithm Selection via Ranking"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  -->
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  -->
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>
+
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1991160::954233"
+        submission="1549"
+        title="Sorting Sequential Portfolios in Automated Planning"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  -->
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  -->
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>
+
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1991608::954233"
+        submission="1751"
+        title="Solving Temporal Planning With Required Concurrency Using Classical Planning"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="264254" name="Significance of the Contribution">
+<!--
+  == Includes novelty in terms of questions addressed or solutions proposed
+  == or impact potential on science or applications. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264255" name="Soundness and Positioning with Respect to Related Work">
+<!--
+  == Also includes all other aspects of technical quality other than the
+  == depth of the theoretical and experimental analysis. If references to
+  == relevant related work are missing, please provide several complete
+  == example references. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264256" name="Depth of Theoretical and/or Experimental Analysis (as appropriate)">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="264257" name="Quality of Presentation">
+<!--
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261216" name="SUMMARY RATING">
+<!--
+  == Scores from + to +++++ indicate that the submission could be accepted
+  == (with either a poster presentation or a talk). The stronger your
+  == feeling, the higher your score. Scores from - to - indicate that the
+  == submission should be rejected. 
+
+  == The summary rating does not need to be an "average" of the other
+  == ratings. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 +++++ (highly positive)
+  == 4 ++++
+  == 3 +++
+  == 2 ++
+  == 1 + (slightly positive)
+  == -1 - (slightly negative)
+  == -2 --
+  == -3 ---
+  == -4 ----
+  == -5 ----- (highly negative)
+  -->
+  
+</score>
+<score id="261217" name="REVIEWER'S CONFIDENCE">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 I am certain of my scores
+  == 2 I am somewhat certain of my scores
+  == 1 I am uncertain of my scores
+  -->
+  
+</score>
+<score id="264258" name="Breadth of Interest to the AI Community">
+<!--
+  == Helps the SPC and PC chairs to decide the presentation format of the
+  == submission, if accepted, or rule it out of scope of AAAI-15. 
+
+  == Scores from + to +++++ indicate that the submission is in scope of
+  == AAAI-15..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 +++++ (almost all AAAI-15 participants will be interested)
+  == 5 ++++
+  == 4 +++
+  == 3 ++
+  == 2 + (only a very small number of AAAI-15 participants will be interested)
+  == 1 - (no AAAI-15 participants will be interested; out of scope of AAAI-15)
+  -->
+  
+</score>
+<score id="264259" name="Easily Accessible Paper">
+<!--
+  == Helps the SPC and PC chairs to decide which papers to label as "easily
+  == accessible" in the program. An easily accessible paper is one that
+  == makes good reading material for people with a general background
+  == knowledge of artificial intelligence but no detailed knowledge of the
+  == subarea covered in the paper. 
+
+  == Scores from + to +++++ indicate that the submission could be labeled
+  == as "easily accessible" in the program. 
+
+  == Take a stance: try to avoid scores of + (slightly positive) and -
+  == (slightly negative)..
+  ==
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 10 +++++ (highly positive)
+  == 9 ++++
+  == 8 +++
+  == 7 ++
+  == 6 + (slightly positive)
+  == 5 - (slightly negative)
+  == 4 --
+  == 3 ---
+  == 2 ----
+  == 1 ----- (highly negative)
+  -->
+  
+</score>
+<text id="264262" name="Comments for the Authors">
+<!--
+  == The comments should address all criteria above. The purpose of the
+  == comments is to explain your scores to the authors and PC members,
+  == including the SPC and PC chairs (to enable the PC members to reach
+  == consensus and the SPC and PC chairs to make more informed decisions
+  == than just basing them on scores) but also to help the authors to
+  == improve their submissions. Scores from - to - should be justified
+  == especially carefully, as should the opinion that the submission is out
+  == of scope of AAAI-15. AAAI has always been proud of the quality of the
+  == reviews and the depth of the thoughts that the PC members put into
+  == them. Typical reviews should be at least 400 words long but are often
+  == longer than that. 
+
+  == For resubmissions, comment on how well the authors have addressed the
+  == issues brought up in the previous reviews. 
+
+  == If needed, add questions for the authors (that you want them to
+  == address in their author feedback) at the very end of your comments..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264263" name="Confidential Remarks for the Program Committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional. 
+
+  == If you feel that that the potential significance of the submission is
+  == so high that it should be accepted despite larger deficits in other
+  == areas, explain your position here..
+  -->
+
+
+
+
+
+
+</text>
+<text id="264264" name="Nomination for Best Paper or Best Student Paper">
+<!--
+  == If you want to nominate the submission for best paper or best student
+  == paper, explain why. Otherwise, leave this box empty. If you do not see
+  == information on EasyChair whether the primary author is a student,
+  == nominate the submission for best student paper if, in your judgment,
+  == the submission would be a candidate if the lead author were a student.
+  == These remarks will only be seen by the PC members having access to
+  == reviews for this submission. They will not be sent to the authors.
+  == This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

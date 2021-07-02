@@ -1,0 +1,193 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="2317535::1142674"
+        submission="116"
+        title="Deterministic estimation of the expected makespan of a POS under duration uncertainty"
+        authors="Michele Lombardi,
+                 Alessio Bonfietti,
+                 Michela Milano"
+        pc_member="Philippe Laborie">
+<score id="312136" name="Relevance">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="312137" name="Significance">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="312138" name="Originality">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="312139" name="Technical Quality">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 3
+  
+</score>
+<score id="312140" name="Presentation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="286882" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 strong accept
+  == 2 accept
+  == 1 weak accept
+  == 0 borderline paper
+  == -1 weak reject
+  == -2 reject
+  == -3 strong reject
+  --> 1
+  
+</score>
+<score id="312141" name="Best Paper candidate?">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 yes
+  == 0 no
+  --> 0
+  
+</score>
+<score id="312142" name="Best Student Paper? (if applicable)">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 yes
+  == 0 no
+  --> 0
+  
+</score>
+<score id="286883" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 (expert)
+  == 4 (high)
+  == 3 (medium)
+  == 2 (low)
+  == 1 (none)
+  --> 4
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="286885" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This field is required unless you add an attachment..
+  -->
+
+There are two quite different contributions in the paper:
+
+1- A theoretical contribution (section 2) with the definition of the notion of worst-case distribution, theorem 1 that identifies a particular subset of worst-case distributions and leads to an exact algorithm in O(n^3) to compute the worst-case expected makespan
+
+2- A closed-form formula to approximate the worst-case expected makespan that can be used in a CP context while building a POS; this formula is justified and the error of the approximation is estimated in an experimental section
+
+I really appreciate the first contribution. The notion of worst-case distribution and worst-case expected makespan are very original and the reasoning behind the cubic algorithm is really smart. 
+
+A question that is not addressed in the paper is to estimate how much the worst-case expected makespan is "pessimistic" when compared to a more realistic distribution of durations. For instance it could be informative to compare on a set of POSs the distance of the worst-case expected makespan to the expected makespan using some Beta distributions with the same characteristics (minimal, maximal and average durations). Or maybe this could also be addressed by studying the size of the bounding-box for the expected makespan that is [LB,UB] with LB = makespan with expected values and UB = worst-case expected makespan. 
+
+I'm a bit more skeptical about the second contribution. The justification for formula (7) goes through quite a number of approximations. I acknowledge the authors carefully describe all these approximations and try to provide some justification for each of them but these justifications are not always clear. In particular the use of the layered graph with identical activity duration is justified by having a similar behavior as the real POSs as illustrated on Fig. 1. It is not really surprising that the two plots resemble each other as if in the solution POSs the resources are very full, the shape is necessarily something in D/w where D is the sum of durations (in fact that is even the way w is defined), so in 1/w for the normalized makespan. And behavior is also clearly in 1/w by construction of the simplified graphs. That could be fine if the experimental study would show that the approximation formula really fits well the exact value of the worst-case expected makespan but results on Table 1 seem to be mitigated. By the way, the Table is difficult to read, some charts summarizing the results would allow a better visual comparison.
+
+Another question that is not addressed is the fact that the approximation formula is justified with respect to a "solution" POS, that is a leaf in the search tree, but what about the nodes closer to the root for which the POS may have a quite different structure. As far as I understand the interest of the closed form formula is to allow for some constraint propagation so in this context an important property would be that the expression is monotonous (adding a constraint in the POS like typically a new precedence should not decrease the value of the expression). My feeling is that the proposed expression probably is monotonous but it would be interesting to made this result explicit in the paper.
+
+Some minor comments and typos:
+
+p2: "is the lack +of+ reliable"
+p2: "Our estimator consists instead of a non-linear formula" -> The estimator consists of a non-linear formula, but then "instead" means instead of what ?
+p5, Algorithm 1: "Di" should read "di" at line 2
+p7: "Then the results should +be+ compared with ..."
+p7, at the end: "if w is not a multiple of |A|", I suppose you mean "if |A| is not a multiple of w"
+p9, at the end: "to have access +to+ general information"
+p14, Proof of Theorem 1: "Let us assume that *the* worst case distribution", as there is not a unique worst case distribution I would use *a*.
+
+
+
+</text>
+<text id="286886" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+The paper is very unbalanced. The theoretical part of the paper described in section 2 is really interesting and original. Unfortunately, part 3 is more weak. I recommend acceptance of the paper mostly because of the work described in section 2.
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

@@ -1,0 +1,123 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 150184::90353
+*** SUBMISSION NUMBER: 91
+*** TITLE: SOHO Keyhole Periods Problem: Definition and a Solving Model
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+
+The paper describes the scheduling of SOHO data recording and
+downlinking during keyhole periods. The proposed approach decomposes
+the horizon into a set of time intervals with decision variables
+corresponding to quantities of data recorded or downloaded for each
+time interval. The problem is transformed into a layered max-flow
+problem with one layer per time-interval and solved using classical
+max-flow algorithms. As the decision variables may aggregate several
+aspects (e.g. the recorded data on SSR may come from several
+non-equivalent instruments), a special care is taken when building the
+actual detailed schedule from the (aggregated) solution of the
+max-flow problem. The method is currently under implementation.
+
+At the first reading of the paper one may have the impression that the
+duration of each interval t_j is a decision variable of the problem
+(not a constant) and it makes it hard to understand how the max-flow
+model can be decorrelated from the temporal dimension. I think it
+should be clearly stated that the intervals t_j are
+fixed. Furthermore, it should also be clearly stated that (as I
+understand it) in the interval list, each communication interval is
+followed by a no-communication interval and vice-versa. In this case,
+it seems that a layer of the max-flow graph (as the one illustrated on
+Figure 5) represents 2 time-intervals, the upper part represents a
+no-communication time-interval t_j (where data is produced) and the
+lower part represents the following time-interval t_{j+1} which is a
+communication interval where data is dumped. The figure seems to
+suggest that it is all about the same time-interval t_j.
+
+It is not clear how the different data rates for instruments are
+related with the importance or priority of the data collected by these
+instruments as it seems to be suggested in section "Data production
+and on-board storage". In this type of application one could expect
+that the objective function (maximize amount of downloaded data) also
+need to take into account the importance of the data itself which
+probably depends (among other things) on the instrument that produced
+it. I do not see how a physical constraint like the data rate of an
+instrument can account for that and in this context, the way
+activities are created for SSR recording activities from the solution
+of the max-flow need more justification.
+
+Detail comments:
+
+p3, col2: Figure 3, when printed on a monochrome printer, it is hard
+to distinguish the different colors, I would suggest to also use some
+different patterns. On this figure, it would help to name the
+different intervals: t_1,...,t_8 to better link it with the section on
+model variables. It could also help to add on this figure, for each
+interval, the related decision variables (d_ij, \delta_ij, etc)
+
+p3, col2: Typo in paragraph on model variables: t-j => t_j
+
+p4, col1: One deduces from constraints (1) and (2) that one cannot
+have on the same interval data recording (d_ij>0) and data dumping
+(\delta_ij>0) but it is not explicitly stated.
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+
+
+--------------------------------------------------------------
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+1 (weak accept)
+
+*** REVIEWER'S CONFIDENCE:
+
+3 (high)
+
+*** RELEVANCE TO CONFERENCE/SPECIAL TRACK: from 1 (lowest) to 5 (highest)
+
+4 (mostly relevant)
+
+*** ORIGINALITY & SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+3 (Somewhat original and significant)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+4 	(Paper has only minor technical flaws, mostly sound.)
+
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+3 (Generally readable but some editing is required.)
+
+*** SHOULD THIS SUBMISSION BE CONSIDERED FOR BEST PAPER?: from 1 (lowest) to 3 (highest)
+
+1 (no)
+
+*** END
+--------------------------------------------------------------

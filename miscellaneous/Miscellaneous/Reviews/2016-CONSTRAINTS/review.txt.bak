@@ -1,0 +1,37 @@
+Reviewer Recommendation and Comments for Manuscript Number CONS-D-16-00021
+
+Recommendation:
+[ ] Accept as is
+[X] Accept subject to minor revisions
+[ ] Major revision necessary
+[ ] Reject
+
+-----------------------------------------------------------------------
+Reviewer Blind Comments to Author
+
+The article is an extended version of a CP-2015 paper. 
+
+As in the original paper, the main contribution is a set of filtering and lazy clause generation algorithms for cumulative resource with calendars in case the resource is released by suspended activities. These algorithms are an extension of classical time-table and time-table edge-finding propagation. These extensions are original and, in the experimental section, they are shown to outperform alternative models using existing constraints on the RCPSP with max delays and calendars. The experiments are quite impressive as the approach closes many of the instances up to problems with 500 tasks.
+
+The article is clearly written and well illustrated with examples.
+
+The main originality of the paper is the treatment of resources that are released by suspended activities (\rho =0), the case of where resources stay engaged (\rho=1) is much more classical. In this context, the proposed extensions of the time-tabling and time-table edge-finder are significant. 
+
+It is a bit surprising that the time-table edge-finder does not help more for proving optimality or infeasibility (see tables 7,8,9), it seems to have quite a small impact both on the number of solved instances and on the number of choice points. Do you have a possible explanation for that? On the other hand, it seems to be more helpful on destructive lower bounds.
+
+In the article, all the temporal constraints are modeled as time lags between the start times of both activities. I understand that because the problem include the capability to handle calendars on the delays, all types of precedence constraints (between start and/or end) can be reformulated as time lags between start times only. But in practice, I think that many (and may be most of the) temporal constraints in a project are constraints with null time lag between the end of a task and the start of the following one. In this case, it seems clearly counter-productive to express it as a constraint start-start with a delay (duration of the first task) subject to the same calendar as the first task. Did you try reformulating those constraints (of course, I don't know how realistic the benchmark is and if there are many of these constraints end-start in it) ?
+
+On a similar line, in the CP Optimizer model (section 3.5), I think that it would be better to model precedence constraints as additional interval variables with their own intensity function representing the calendar C_ij of the precedence. This is the usual way to model this quite common feature and it leads to a faster and better propagation on the min/max bounds of the intervals (because for instance it will compute the actual endmin corresponding to the current startmin and not just rely on endmin=startmin+globalmindelay) and of course it removes a dependency on the time granularity.
+
+Still on the CP Optimizer model, I do not see why the allowed intervals Wi for start are modeled with a set of constraints IloStartOf(i)!=t that clearly depends on the time granularity whereas one can just use a forbidStart constraint on the suitable step function. All in all, the only reason I see why the CP Optimizer model would depend on the time granularity are the constraints (14) and (15) for resources that are released by suspended activities, which is indeed something that cannot be directly modeled.
+
+So I think the suggestions above should be considered in order to improve the CP Optimizer model and update the experimental results. 
+
+
+-----------------------------------------------------------------------
+Reviewer Confidential Comments to Editor
+
+Summarize briefly the reasons for your recommendation:
+
+As detailed in my review, I think the CP Optimizer model in section 3.5 should be improved to better take advantage of the existing concepts in order to avoid some dependency to time granularity. I think this could be done quite easily. Otherwise I recommend to accept the paper because of the significant contribution on the new propagators.
+

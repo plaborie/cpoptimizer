@@ -1,0 +1,9 @@
+This directory contains the demo program
+
+  - dtc_demo             contains some dynamic transitive
+                         closure data structures
+
+The program takes no parameters. It opens a window and displays a
+graph which can be edited. The current dynamic graph data structures
+react interactively on the user actions.
+

@@ -1,0 +1,58 @@
+# INSTANCE: DATA_TDTSP_randomd/10/bench_10_selected/ALL/inst_10_18.txt DATA_TDTSP/tdtsp_bench_255_6h00_12h30_mirrored.txt
+# ALGORITHM: TDNOOVERLAP RESTART
+# NUMBER OF VISITS: 10
+# NUMBER OF TIME WINDOWS: 130
+# TIME LIMIT: 7200
+ ! ----------------------------------------------------------------------------
+ ! Minimization problem - 13 variables, 5 constraints, 1 phase
+ ! Presolve      : 1 extractable eliminated
+ ! SearchType           = DepthFirst
+ ! Workers              = 1
+ ! RelativeOptimalityTolerance = 1e-009
+ ! Initial process time : 0.10s (0.10s extraction + 0.00s propagation)
+ # Extraction breakdown : 0.10s concert translation + 0.00s presolve
+ !  . Log search space  : 34.6 (before), 34.6 (after)
+ !  . Memory usage      : 545.5 kB (before), 545.5 kB (after)
+ ! Using sequential search.
+ # Presolve memory usage: 35.4 kB
+ #  . Model: 9.8 kB (original) + 0 bytes (presolved)
+ #  . Master: 9.2 kB (extractor) + 8.2 kB (converter) + 8.2 kB (other)
+ ! ----------------------------------------------------------------------------
+ !          Best Branches  Non-fixed            Branch decision
+ *          9809       18 0.10s                 on 10
+* 0.103 9809
+ *          9747       41 0.10s                 on 10
+* 0.103 9747
+ *          9175      767 0.11s                 on 10
+* 0.112 9175
+ *          9167      798 0.11s                 on 10
+* 0.112 9167
+            9167     1000         11        F   on 7
+ ! ----------------------------------------------------------------------------
+ ! Search terminated normally, 4 solutions found.
+ ! Best objective         : 9167 (optimal - effective tol. is 0)
+ ! Number of branches     : 1356
+ ! Number of fails        : 680
+ ! Total memory usage     : 8.0 MB (0.6 MB CP Optimizer + 7.4 MB Concert)
+ ! Time spent in solve    : 0.12s (0.01s engine + 0.10s extraction)
+ # Extraction breakdown   : 0.10s concert translation + 0.00s presolve
+ ! Search speed (br. / s) : 79764.7
+ ! ----------------------------------------------------------------------------
+# SOLUTION FOUND
+# OPTIMALITY PROVED
+# BEST SOLUTION: 9167
+# NUMBER OF BRANCHES: 1356
+# END TIME: 0.12
+## Solution: 
+10
+133 0
+91 950
+109 2910
+241 5128
+132 5392
+74 6421
+43 7336
+38 7524
+127 7771
+39 8004
+# BEST TD SOLUTION: 9167

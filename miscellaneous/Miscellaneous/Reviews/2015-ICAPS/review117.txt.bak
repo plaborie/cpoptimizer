@@ -1,0 +1,233 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="2067584::1027548"
+        submission="117"
+        title="Automated Planning for Urban Traffic Control: Strategic Vehicle Routing to Respect Air Quality Limitations"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="252153" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 strong accept
+  == 2 accept
+  == 1 weak accept
+  == 0 borderline paper
+  == -1 weak reject
+  == -2 reject
+  == -3 strong reject
+  -->
+-2
+  
+</score>
+<score id="252154" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 (expert)
+  == 4 (high)
+  == 3 (medium)
+  == 2 (low)
+  == 1 (none)
+  -->
+4
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="266650" name="(Applications track ONLY) Importance (economic, societal, etc) of the application problem being addressed.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications track paper)
+  == 4 very important
+  == 3 moderate
+  == 2 marginal
+  == 1 unimportant
+  -->
+  4
+  
+</score>
+<score id="267402" name="(Applications track ONLY) Novelty of the application and technical approach to the application.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications track paper)
+  == 4 very novel - approach and/or application are new
+  == 3 moderate - application or approach is significantly different
+  == 2 marginal - parts of the application or approach are new
+  == 1 none - similar approach to the same application has been used before
+  -->
+  3
+  
+</score>
+<score id="266652" name="(Applications and Robotics tracks ONLY): Importance of planning/scheduling technology to the solution of the problem.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 N/A (not an Applications or Robotics track paper)
+  == 4 very important - essential to solving the problem
+  == 3 moderately important - adds significant capabilities
+  == 2 marginally important - improves usability, capabilities or performance
+  == 1 not important - could be done without it
+  -->
+  3
+  
+</score>
+<score id="266653" name="(Applications track ONLY) Maturity.">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 6 N/A (not an Applications track paper)
+  == 5 study of the success, acceptance, impact and/or deficiencies of a fielded system
+  == 4 fielded system
+  == 3 mature system with testing on realistic problems
+  == 2 early prototype system
+  == 1 challenge problem
+  -->
+  1
+  
+</score>
+<score id="267403" name="(Applications and Robotics tracks ONLY) Suitable for a demo?">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 N/A (not an Applications or Robotics track paper)
+  == 3 yes
+  == 2 maybe
+  == 1 no
+  -->
+  2
+  
+</score>
+<score id="267404" name="Nominate for Best Paper Award">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 yes
+  == 1 no
+  -->
+  1
+  
+</score>
+<score id="267405" name="Nominate for Best Student Paper Award (if eligible)">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 yes
+  == 1 no
+  -->
+  1
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="252156" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+The article describes an approach using AI Planning to re-route a set of vehicles in a urban area so as to reduce pollution (or more precisely to comply with pollution limits) without delaying too much the vehicles.
+
+The paper is well structured and clearly written.
+
+The issue I see with the paper can be summarized by the end of the abstract: "Results show the feasibility of using AI planning technology to deliver efficient routes for vehicles that avoid the breaking of air quality limits, and that balance traffic flow through the network". I do not think the paper gives enough evidence for that and, on the contrary, I would rather say that the paper illustrates the many challenges this type of AI Planning approach has to face in order to solve the problem in a realistic context. I see at least the four challenges below, and I would be happy if the authors could comment on them in the rebuttal phase.
+
+1. Scaling of the approach
+
+I think the size of the actual problem will fundamentally impact the selection of techniques used to handle the problem. In the beginning of section 3, you mention investigating the related problem with two major conurbations both with over 1 million citizens. But in the experimental section, you seem to handle a much smaller city (the diameter of which does not seem to exceed 1km). What is the target of the project? Large conurbations or (reasonably) small cities?
+
+Even if one focuses on cities like the one mentioned in the experiments, I'm not sure the typical problem size that is studied in the experiments is very realistic. The network is very simplified (6 road sections in the city center) but I think that can make sense given that they seem to correspond with the few main roads in this relatively small city center. What seems not realistic is the number of vehicles that are handled (20-50) during one run of the system. In fact, it is never really mentioned in the paper how often the system is supposed to be run (see also a related point in item 3 below) but it cannot be less than the running time of the approach (which ranges in the experiments from 60s to 1h). Are there so few cars to be handled in the city within such a time window? An aerial picture of the city of Fig. 3 (e.g. in google maps) suggests that, even if to restrict to a given time t, there are many more vehicles driving on the modeled network. So the problem size, in particular the number of vehicles, really seems to be extremely challenging here. Especially given that the approach already has problems with 20/30 vehicles.
+
+2. Accuracy / relevancy of the micro-model
+
+The AI planning model for traversing the city is of course very simplified. Several of those simplifications are acknowledged in the paper (at most one vehicle passing through a junction at once, each section belongs to a single pollution zone, ...) but some important ones are missing.
+
+The pollution emission depends on the vehicle which is fine, but it is surprising that in the model it does not depend also on the road section that is traversed. One would expect it to depend at least on the section length (that should be quite easy to integrate in the model) and/or on the time it takes the vehicle to traverse the section (that may be more difficult to consider). 
+
+It is also not clear how the model behaves in case of very congested areas, in particular congested contiguous areas (before entering the head of a section, a vehicle needs to wait that the tail becomes free and thus, may block its current section) and if this results in a realistic propagation of traffic congestion. 
+
+A similar situation may appear for the pollution constraint, in particular I suppose the model needs a planner that is able to handle required simultaneity of actions as for instance if you suppose two contiguous areas for which pollution max is reached, according to the model it should still be possible to synchronize two "drive-through-junction" operators that would swap two vehicles with similar pollution emission between the two areas.
+
+The paper does not formally describe the cost function that is to be minimized. You say "we minimise a cumulative time needed to navigate vehicles from their initial to their goal positions". Which criterion is it exactly? The sum of all vehicle's makespan? This may lead to a not very fair repartition of delays ... or max delay, max relative delay ?
+
+Also, in section 6.2, when you mention "solved" instances, what does "solve" means in this context? That a feasible solution was found? Or an optimal solution with respect to the minimization function?
+
+3. Global control assumption
+
+A very important assumption made by the approach (and at least, by the experiments) is that the system can control all the vehicles that are traversing the city and be able to know in advance and with a reasonable accuracy the date and position they are expected to arrive. This assumption seems to be very strong. 
+
+Also, the approach seems to ignore the vehicles that only travel inside the city. Can they really be ignored when computing the detailed routes of the vehicle traversing the city?
+
+The approach, or at least the experiments, performs a resolution from scratch of the problem. It is not explained how the requests for vehicles to traverse the city are aggregated and when a computation should be launched. Request are received at a time "tr" for a vehicle entering the city at a time "te". How much in advance before "te" should the request be received? Should a plan be computed with a certain frequency? As soon as a certain amount of vehicles is reached? What is clear is that there should be some temporal overlap between the requests and that it is probable that when solving a problem for a set of vehicles at time t, you need to consider other vehicles together with their (fixed) route that has been computed before. How would you do that?
+
+4. Local v.s. global pollution
+
+It is not clear how many pollution zones are considered in the experiments. Section 6.1 suggests that only 2 zones were considered (ring road sections with loose pollution limitation and the area within the ring road with stricter pollution limits). In any case, it seems that globally, as the impact of rerouting some vehicles is to increase their driving time in or around the city (you mention 20% increase in one experiment, it would be good also to have an idea of the traveled distance increase), one can expect that it increases the amount of pollution at the global level of the city. I understand that the objective here is a better balance of the pollution between the different zones but the global increase of pollution requires I think to better argument the definition of the different zones and an accurate modeling of pollution emission.
+
+A few more detailed comments:
+
+* In the illustrative example, it is strange that the rig road is considered one time as being outside of the area (for excluding vehicles v1 and v5) and the next time as being inside the area (for re-routing some vehicles on the ring road). I guess this is because you suppose there is no pollution limit on the ring road?
+
+* When computing a new plan, an initial solution is available that may violate some pollution limit constraints. Do you think this "unfeasible" solution could be exploited to speed-up the resolution of the new problem? For instance by doing so sort of repair or local search ?
+
+* In general, what happens in case the pollution limitation constraint makes the global problem infeasible ? It is clear that for a single run of the re-routing you can always delay the vehicles but this may not be a stable solution (in the sense of queue theory)
+
+* In order to better follows the plan on Fig. 4, it would help to have the names of the sections on Fig. 3.
+
+* p4, col1, typo: moght -> might
+
+* p5, col1, typo: necessaary
+
+* p6, col2, typo: as strict pollution limits -> has strict pollution limits
+ 
+</text>
+<text id="252157" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

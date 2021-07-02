@@ -1,0 +1,124 @@
+PAPER 706: Load Scheduling of Simple Temporal Networks Under Dynamic Resource Pricing
+
+1.		[Summary] Please summarize the main claims/contributions of the paper in your own words.
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+
+The paper first formulates the problem of STN under dynamic resource pricing. 
+
+The main result of the paper is that this problem has polynomial complexity for piecewise constant functions. This is a new and significant result. 
+The problem can be thought off as an allocation problem where you must find the best allocation of events to the different segments of the piecewise constant function so as to minimise total resource price. Generally speaking the set of feasible allocations, or complementarily the set of infeasible allocations, can be represented as an hypergraph. The authors show that in fact, this hypergraph can be reduced to a graph (theorem 6) and even that this graph is the one of a POSET relation (theorem 13). Finding the optimal solution to the original problem then boils down to finding the maximum weighted independent set of this graph, which is a polynomial problem. 
+
+The authors describe a constructive polynomial algorithm for solving the problem. They also discuss some extensions of the problem where the function is piecewise linear and may also depend on the total demand.
+
+2.		[Relevance] Is this paper relevant to an AI audience?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Not relevant
+[ ] Of limited interest to an AI audience
+[X] Relevant to researchers in subareas only
+[ ] Likely to be of interest to a large proportion of the community
+
+
+3.		[Significance] Are the results significant?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Not significant
+[ ] Moderately significant
+[X] Significant
+[ ] Highly significant
+
+4.		[Novelty] Are the problems or approaches novel?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Not novel
+[ ] Somewhat novel or somewhat incremental
+[X] Novel
+[ ] Very novel
+
+5.		[Soundness] Is the paper technically sound?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Has major errors
+[ ] Has minor errors
+[X] Technically sound
+
+6.		[Evaluation] Are claims well-supported by theoretical analysis or experimental results?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Not convincing
+[ ] Somewhat weak
+[X] Sufficient
+[ ] Very convincing
+
+7.		[Clarity] Is the paper well-organized and clearly written?
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Poor
+[ ] Satisfactory
+[X] Good
+[ ] Excellent
+
+8.		[Detailed Comments] Please elaborate on your assessments and provide constructive feedback.
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+
+The main result of the paper is clearly interesting and, to the best of my knowledge, original. 
+It is significant because it holds for any stepwise function f(t) and does not rely on other properties of the function. 
+This is a strong theoretical result.
+
+The paper is well written, with a real effort to explain and illustrate all the steps that lead to the polynomiality proof. 
+
+My main question (but I understand that is is perfectly legitimate to consider it as being out of the scope of the present paper) is on the practical application of the proposed algorithm to solve problems of realistic size (see questions).
+
+Here are some more detailed comments:
+
+* Fig 3: The figure is nice with colours, but much more difficult to understand in monochrome. Maybe you should use different line styles in addition of colours, and avoid mentioning the colours in the caption. 
+
+* Concerning the extension to model (A) with piecewise linear function, I do not understand why the function is piecewise linear only on narrow intervals. It seems to me it depends on the duration of the processes: if you have long processes, you will probably have long intervals where the function is piecewise linear. In particular if the duration of processes is in the same order (or larger than) the typical intervals where f is constant, the resulting function will mostly be piecewise linear. 
+
+* Although the problems are apparently different, it seems to me that for the case of concave functions mentioned in the paper, it could be worth having a look at this recent article [1]. At least, it also suggest an alternative energy consumption model (C) where the processes are free to consume their entire energy requirement Wi as they want along time (elastic processes).
+
+[1] M. Nattaf, C. Artigues and P. Lopez. "Cumulative scheduling with variable task profiles and concave piecewise linear processing rate functions". Constraints (2017) Vol. 22, p530-547.
+
+
+9.		[QUESTIONS FOR THE AUTHORS] Please provide questions for authors to address during the author feedback period.
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+
+I really enjoyed the paper. My questions are more forward looking.
+
+The complexity of the algorithm in O(K^2 N |E|), so O(N^3 |E|) if you have costs on all tasks of the network, looks at first sight quite large for solving realistic problems. I'm wondering if you have some ideas how this complexity could be improved ? 
+
+In the paper, you assume fixed duration of processes. Did you try to analyse the implications of having a variable duration ? (Both for model (A) and model (B))
+
+Concerning piecewise linear functions, you propose to discretise them in order to get back to the case of step functions. This may be a good idea in some practical cases but from a theoretical point of view, it only shows that the problem with pwl functions is pseudo-polynomial. What about some (hard) polynomiality results for the problem with pwl functions ?
+
+
+10.		[OVERALL SCORE]
+ 		( Required, Visible To Authors During Feedback and After Decision Notification )
+ 		
+[ ] Trivial, wrong, or known
+[ ] Strong reject
+[ ] Clear reject
+[ ] Reject
+[ ] Marginally below threshold
+[ ] Marginally above threshold
+[X] Accept
+[ ] Accept (Top 50% accepted papers (est.))
+[ ] Accept (Top 15%)
+[ ] Accept (Top 5%)
+
+11.		[CONFIDENCE]
+ 		( Required, Visible To Authors Only After Decision Notification )
+ 		
+[ ] Reviewer made an educated guess
+[ ] Reviewer is knowledgeable but out of the area
+[X] Reviewer is knowledgeable in the area
+[ ] Reviewer is an expert in the area
+
+12.		[Award] Should this paper be considered for an outstanding paper award?
+ 		( Optional )
+ 		
+[ ] YES
+[ ] NO
+
+13.		Confidential comments to SPC, AC, and Program Chairs
+ 		( Optional )

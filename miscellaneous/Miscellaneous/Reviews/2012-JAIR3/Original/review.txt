@@ -1,0 +1,68 @@
+Overall evaluation
+==================
+
+Accept with minor revisions
+
+
+Comments and suggestions
+========================
+
+The article is an extension of the author's ICAPS-2011 paper on scheduling an aircraft repair shop. 
+The following extensions are provided:
+- A complexity proof of NP-completeness of the problem
+- The dynamic version of the problem is introduced together with some approaches to handle it 
+- The experimental section is extended to handle the dynamic version of the problem
+
+The problem is challenging as it mixes allocation decisions (allocation of aircrafts to waves) 
+and detailed scheduling (scheduling of repair activities in the shop) in a dynamic and uncertain 
+environment.
+
+The proposed logic-based Benders decomposition is very judicious as it exploits the limited correlation 
+between the two types of decision variables in the problem. The Benders cuts are very interesting.
+
+Could you give a little bit more precisions in the article on how the CP (sub)problems are modeled and solved. 
+Both for the case the master sub-problem uses CP and for the scheduling problem. In particular, did you 
+try some more recent CP solvers than Solver/Scheduler. I would expect that the advanced techniques used 
+for instance in CP Optimizer can improve the performance of CP particularly for solving the master problem 
+(the scheduling sub-problem seems to be easier).
+
+The static version of the problem does not take into account the planes that participate into a flight 
+and re-enter the repair shop because they did not pass a subsequent check. This explains why it is 
+not really interesting to schedule too many waves in advance because for waves too far in the future, 
+the repair shop will be in the reality much more loaded than what it is in the current static approach. 
+Did you investigate or have some ideas about how the static approach could be extended to better handle 
+this stochastic flow of new aircrafts entering the repair shop? Could that be handled by somehow leaving 
+some availability slack on the repair resources for future waves?
+
+I think there is a flaw in the proof of the NP-completeness of the problem: activities of processing 
+time xi and resource requirement yi cannot be considered as a rectangle of size (xi,yi) in a 2D knapsack 
+because each unit of capacity in [1,yi] does not have to be allocated to "contiguous" resources. 
+It is well known that the "scheduling" problem is less constrained than the 2D packing. 
+This being said, it is clear that the considered problem is NP-complete and a more direct problem 
+related with it is the "Multiprocessor scheduling problem" (referenced SS8 in Garey-Johnson's 
+Guide to the Theory of NP-Completeness). I think this should be fixed in the published version.
+
+In the section about experiments, is the selected problem size (number of aircrafts in [10,30]) 
+representative of the real problems? If real problems are larger one may need to sacrifice 
+optimality proofs and focus on providing good quality solutions. In this context, it would
+be useful in the experiments to also study the objective value of the best solutions found 
+by the different approaches on larger problems (not necessarily proved to be optimal).
+
+Some more detailed remarks:
+
+p3: in the description of the problem, when introducing set Ik it would help to precise that aircrafts 
+of set Ik are the ones initially in the repair shop at t=0.
+
+p5, section 3.1: in the reduced problem, the first wave is supposed to require all m aircrafts, right?
+
+p6, table 1: it should be made clear that the ith due date assigned to job j is the start time of the 
+ith wave (ordered by increasing due dates)
+
+p11: I find policy P33 has a very limited interest. It should be clear that it is always inferior to P13 as 
+it will re-inject in the repair shop the aircrafts failing in the first two waves only when the problem 
+is rescheduled. It's only interest is to re-schedule less often.
+
+p16: you mention that "if the number of available aircraft is more than the requirements,
+the aircraft that fly are randomly selected from those that passed the pre-flight check". Does it really work 
+like that in practice? Are all the available aircrafts systematically checked before each wave or only a 
+subset of them until the desired number is reached? 

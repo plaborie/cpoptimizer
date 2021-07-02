@@ -1,0 +1,69 @@
+Energy-efficient frozen food transports: the Refrigerated Routing Problem
+
+*= Required Fields [Yes/No]
+
+* 1. Does the paper make a new and significant contribution to the Production Research literature?	
+Yes
+
+* 2. Does the paper provide evidence of real or potential application for Production Systems?	
+Yes
+
+* 3. Is adequate credit given to other contributors in the field and are references sufficiently complete?	
+Yes
+
+* 4. Does the paper appropriately compare the performance of proposed methodologies with those found in the published literature?
+Yes
+
+* 5. Does the paper state what the author(s) propose to do in the future?	
+Yes
+
+* 6. Are the character and contents of the paper clear from the title and abstract?	
+Yes
+
+* 7. Is the paper clearly, concisely, accurately, and logically written?	
+Yes
+
+* 8. Could it benefit from condensing or expansion? If yes, please explain why in the comments to author section.	
+Yes
+
+* 9. Is the subject matter of relevance to Production Research and appropriate for IJPR?	
+Yes
+
+* 10. Are all references relevant? If not please indicate in your review not relevant references.	
+Yes
+ 
+Would you be willing to review a revision of this manuscript?
+[X] Yes
+[ ] No
+
+Recommendation
+[ ] Accept
+[X] Minor Revision
+[ ] Major Revision
+[ ] Reject but allow Resubmission
+[ ] Reject
+
+
+Confidential Comments to the EIC
+Only confidential information that you do not wish to be passed to the Authors should be entered here.
+
+
+*Comments to the Author
+Please give your remarks to the authors. Without this, your review will be cancelled.
+
+The manuscrit has been improved since last submission. In particular, the CP formulation of the problem and the performance study, which is now more acceptable. So I recommend acceptance. Here are a few suggestions to improve the article before it is published (references are page/lines of the proof):
+
+- on p15, line 40 (equation 1): I think at this point you should say that T_o and T_i respectively denote the outdoor and indoor temperatures
+
+- on p16, in paragraph starting at line 19: you describe t_stop, but then explain how a quantity t_drop is computed. What is the relation between t_stop and t_drop? Are they the same variable?
+
+- on p18, line 53 (equation 6): because of the form of the objective function as a sum over the nodes i, I think you should say that the variables fuelX[i] account for both the incremental use of fuel at node i together with the travel from i to the next node in the route.
+
+- on p19, in equations 8c and 8d, the definition of the content of the array 'Days' is unclear. It seems it is some sort of 0/1 value that says whether or not the current month is j ... In fact I do not see the interest of a sum over all the months j here. I suppose that for a particular instance of the problem, the current month j is known so maybe you can just take into account the current month in the definition of slotT[i] in equation 7 to return the suitable index for accessing the arrays To, COP, etc... 
+
+- on p28, about future work: the current study focuses indeed on the exact resolution of the problem with CP and, for larger (maybe more realistic) problems, it may indeed be the case that one should go with more heuristic approaches (like local search). But there exists CP systems used in industrial problems (like CP Optimizer [1]) that are much less relying on constraint propagation and implement some sophisticated automatic search that exploits the objective function, even when the objective functions are complex. So maybe it would also be interesting to study the possible use of this type of CP engine for more complex/larger versions of the problem (without the need to implement problem-specific algorithms like dedicated local search). 
+
+[1] P. Laborie, J. Rogerie, P. Shaw, P. Vilim. IBM ILOG CP Optimizer for Scheduling.  Constraints Journal. 23(2), p210-250. 2018. 
+
+
+

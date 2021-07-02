@@ -1,0 +1,49 @@
+Title: Integrating Queueing Theory and Scheduling for Dynamic Scheduling Problems 
+Author(s): Daria Terekhov, Tony T. Tran, Douglas G. Down, J. Christopher Beck 
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[X] Accept with minor revisions
+[ ] Reject with encouragement to resubmit
+[ ] Reject
+
+Normally we will not accept a paper if it requires major revisions. In addition to your overall evaluation for the editor, please also include comments and suggestions for the authors.
+
+Comments and suggestions
+========================
+
+The article investigates the integration between queueing theory and combinatorial scheduling in the context of dynamic scheduling on two simple problems. Beside the results provided on these two problems, three general conclusions can be drawn from the paper in the context of dynamic scheduling:
+- Stability conditions can be provided even for combinatorial scheduling algorithms
+- Queueing theory and combinatorial scheduling approaches can be compared and this comparison provides some interesting insight on the problem
+- Queueing theory and combinatorial scheduling approaches can be combined to exploit their complementarity
+
+To the best of my knowledge, the work described in this article is original. Not only the results provided in the two specific examples are original but also, more generally, the focus of the paper on comparing and integrating queueing theory and combinatorial scheduling. 
+
+This work is very relevant. The concept of stability (in the queueing theory sense, not in the sense often used in dynamic scheduling of minimizing some change) has not been studied much in dynamic scheduling whereas, it is important from a theoretical but also from a practical point of view (example: what is the maximal throughput of dynamic orders my factory can satisfy given my current production capacities and organization). 
+
+The article is well structured and clearly written. In general, the claims are well justified and the experiments are convincing. Occasionally some parts could be improved (see detailed comments below).
+
+Detailed comments:
+
+In the very end of section 2.1 when mentioning "classic scheduling" that focuses on the combinatoric aspect of time and resources, it would be good to mention and to position "stochastic scheduling" and more generally, the field of scheduling with uncertainties. This topic is touched in the end of section 2.2 but it would be interesting to elaborate a little more.
+
+In the description of the dynamic flow-shop problem in section 3, it is not clear whether the problem deals with permutation or non-permutation flowshop. Although a remark about the Johnson's rule on page 9 seem to suggest that not only permutation schedules are allowed. 
+
+In the experiment experiments with this flowshop problem, you mention that the completionTime model does not always find the optimal solution after 1s and that some experiments were done with an increased time limit of 5s. Does the model always find the optimal solution in this case? Does it find better solutions?
+
+In the discussion about the results of these experiments, maybe you could mention that the range you consider for the processing time distributions (100 to 10.53) is in the stability domain (> 10). In the study, it could be interesting to have some figures showing the average size of the sub-problems as a function of the loads. One can imagine that indeed, as mentioned, the "scheduling" method will help mostly when the sub-problem is large enough.
+
+For the second problem in section 4, I think you should explicitly say that the "allocation linear program" is solved off-line once and for all. And also, in the description of MinFT policy, that this policy does not exploit the affinity computed by the allocation linear program.
+
+In the performance analysis section (4.3.1), the small example for explaining the poor efficiency of the hybrid policy at low load is really not clear. This maybe due to the fact the explanation uses some parameter \alpha that does not seem to be defined anywhere. Also, I think (1/\mhu_{jk}) should rather read (1/\mhu_{1k}) here. 
+
+The explanation for the smaller variances of the scheduling models compared to the queueing approaches for the second problem is not really convincing. It seems to me a similar argument would also hold for the first problem whereas on the first problem variances are quite similar for all approaches. Furthermore, as you mention, the variances in the second problem are in general much smaller than those of the first problem (independently of the approach). Do you have some explanation for this phenomenon?
+
+Overall, besides those minor issues that could be improved in the final version, I find this article very innovative and I recommend its acceptance. 
+
+Typo(s):
+
+p3, section 2.1: there must (be?) an online process to make decisions
+

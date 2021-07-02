@@ -1,0 +1,63 @@
+Reviewer: P. LABORIE
+
+A. Coles, M. Fox, K. Halsey, D. Long, A. Smith
+
+Managing Coordination in Temporal Planning using Planner-Scheduler
+Interaction
+
+AI 3932
+-------------------------------------------------------------------------------
+       
+CONTENT
+						
+Is the paper technically sound?  Yes
+Is the work described original?  Yes
+Does it show sufficient applicability to AI? Yes
+Does it place new results in appropriate context with earlier work? Yes
+
+Since the original version, the references have been improved and a
+specific section has been added about earlier temporal planning
+approaches.
+
+Does anything need to be added or deleted? No
+Is the result important enough to warrant publication? Yes
+
+FORM
+						
+Does the abstract adequately reflect the contents? Yes
+Are the summary and conclusions adequate? Yes
+Does it contain adequate references to previous work?  Yes
+Does it explain clearly what was done that is new?  Yes
+Does it clearly indicate why this work is important?  Yes
+Is the English satisfactory? Yes
+Is the presentation otherwise satisfactory?  Yes
+Are there an appropriate number of figures? Yes
+Do the figures help clarify the concepts in the paper? Yes
+
+
+RECOMMENDATION - 
+
+Accept for publication
+
+------------------------------------------------------------------------------
+Comments to editor:
+
+------------------------------------------------------------------------------
+Comments to author(s):
+
+The paper has been improved since the original submission and I think
+all the points I mentioned in my original review has been
+satisfactorily addressed in the revised version.
+
+A few minor remarks:
+
+Figure 2 could be simplified by using less activities in the example.
+
+The numbering of the subsections is strange. The conclusion is section
+13, it starts with some text and then starts a unique sub-section
+13.1. Same problem in section 3 (unique subsection 3.1), in section 4
+(unique subsection 4.1), in subsection 7.5 (unique subsection 7.5.1,
+in subsection 9.2 (unique subsection 9.2.1).
+
+In beginning of section 2: "In practice, the decisions about what to do
+and when to "do" it ..."

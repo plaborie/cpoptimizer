@@ -1,0 +1,118 @@
+Number: 71
+Title: Investigating Constraint Programming for Real World Industrial Test Laboratory Scheduling
+Authors:	Tobias Geibinger, Florian Mischek, and Nysret Musliu
+
+Review:
+
+The paper describes an extension of multi-mode RCPSP problem applied to a scheduling problem in test laboratories. The problem is interesting and has several characteristics of a real industrial scheduling problem with complex resource allocation and heterogeneous cost function (tardiness, project spans, preferred resources, ...).
+
+The problem is modeled in Minizinc and solved with the Chuffed solver. The main issue with the paper is that there is no real comparison with other approaches/models to solve the problem and it is really hard to have an idea of the quality of the proposed solutions except for small problems for which the problem is solved to optimality. 
+
+There is a comparison with MIP solvers (CPLEX) but only on the basis of the automatic translation of the Minizinc model into a MIP, not with a "dedicated" MIP model of the problem. This being said, MIP are known not to work well on this type of problem so it is not a big issue, but I think the claim in the conclusion that "We also compared our CP based approach to a state-of-the-art MIP solver and showed that CP technology performs better for this problem" should be somehow softened.
+
+I think the proposed approach should be compared to a direct CP Optimizer model. As you already use CPLEX, it is strange not to use CP Optimizer which is available as an alternative engine in the CPLEX product and is dedicated to solving this type of industrial scheduling problem. CP Optimizer of course needs a different model to take advantage of the particular modeling concepts of CP Optimizer for scheduling (optional interval variables, alternatives, ...). But I think a comparison with CP Optimizer would really help. This system is often used in the industry and the modeling of the proposed problem in CP Optimizer is quite simple  (I sketch a possible formulation, in LaTeX, in the end of this review) and the automatic search should be tried. My feeling is that the notion of 'optional interval variables', together with the generalized 'alternative' constraints that permit to formulate the allocation of a subset of resources of given cardinality r among a set of candidates (which is something common in real problems) would really help to obtain some strong inferences on the problem compared to the Minizinc formulation that cannot maintain "hypothetical" bounds (on start/end values of jobs) for the different possible allocations of the jobs to the resources. And the search of CP Optimizer on interval variables automatically consider, among other things, strategies like the ones used in the article. Also, a CP Optimizer model would be insensitive to the actual time granularity that is considered (the number/size of the h time slots). A possible CP Optimizer model is attached (pdf file).
+
+As a side note, I think that the part about the time-indexed approach for the non-overlap constraints could be removed from the paper. It is clear that it does not scale and introducing a dependency to the number of time-points in the horizon is really not a good idea in real problems and it is something that is in general not used in CP.
+
+It seems to me there is a mistake (or just a typo) in the formulation of redundant constraint (19). Shouldn't we read \min_{m \in M_j} instead of \max_{m \in M_j} for the resource consumption quantity in the cumulative? Otherwise, it over-constrains the problem.
+ 
+Also, I think there is a typo in Eq. 20 and one should read r^{Em}_{m_j} (sub-index j missing).
+
+A small comment on the terminology: in scheduling, usually what you denote \omega is a 'deadline' (hard constraint) whereas what you denote \overline{\omega} is a 'due-date'. A due-date can be exceeded at a certain (tardiness) cost.
+
+Looking at the experiments, it is difficult to get a real idea of the size of the problems because there are no figure about the typical number of resource candidates (employees, workbenches, equipments) for a given task. Only the number of tasks and the total numbers of resources are given.
+
+In the section about soft constraints, you say "At the moment, the values of the weights wi (1-5) are being determined in correspondence with a real-world laboratory. Currently all these weights are set to 1.". Did you analyse the impact of this choice? For example in the problem instances in the experimental section, it seems that the number of employees coud be quite small compared to the time values (tardiness, project span). Does it mean that the cost terms related with the employees allocation (s2,s5) has less importance in these instances? Maybe it would be interesting, in the tables like table 4 to give the individual value of the different terms of the objective.
+
+As a consequence of the two points above, it is difficult to get an idea of the actual complexity of the problems.
+
+
+&&&& START CP Optimizer model in LaTeX
+\documentclass[letterpaper]{article} 
+\setcounter{secnumdepth}{2}  
+\usepackage{amsmath}
+
+%% CP OPTIMIZER OPERATORS
+\DeclareMathOperator{\minimize}{minimize}
+\DeclareMathOperator{\cpoEndOf}                 {endOf}
+\DeclareMathOperator{\cpoLengthOf}              {lengthOf}
+\DeclareMathOperator{\cpoNoOverlap}             {noOverlap}
+\DeclareMathOperator{\cpoEndBeforeStart}        {endBeforeStart}
+\DeclareMathOperator{\cpoStartBeforeStart}      {startBeforeStart}
+\DeclareMathOperator{\cpoPresenceOf}            {presenceOf}
+\DeclareMathOperator{\cpoAlternative}           {alternative}
+\DeclareMathOperator{\cpoSpan}                  {span}
+\DeclareMathOperator{\cpoPulse}                 {pulse}
+\DeclareMathOperator{\cpoInterval}              {interval}
+\DeclareMathOperator{\cpoSize}                  {size}
+\DeclareMathOperator{\cpoOptional}              {optional}
+
+\begin{document}
+
+\section{CP Optimizer model}
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\min \quad w_1 \cdot \sum \limits_{j \in J} \max(0,\cpoEndOf(a_j)-\overline{\omega}_j) & \label{eq1}\\
+&\quad \quad + w_2 \cdot \sum_{j \in J} \sum_{e \in (E \setminus E^{Pr}_j)} \cpoPresenceOf(a^{Em}_{ej}) & \label{eq2}\\
+&\quad \quad + w_3 \cdot \sum_{p \in P} \sum_{e \in E} \big( 0 < \sum_{j \in J_p} \cpoPresenceOf(a^{Em}_{ej}) \big) & \label{eq3}\\
+&\quad \quad + w_4 \cdot \sum_{p \in P} \cpoLengthOf(b_p) & \label{eq4}\\
+&\cpoSpan(b_p, [a_j]_{j \in J_p}) \ & \forall p \in P \label{eq5}\\
+&\cpoEndBeforeStart(a_k,a_j) \quad & \forall k \in P_j \label{eq6}\\
+&\cpoAlternative(a_j, [a_{ij}]_{ i \in M_j} , 1) & \forall j \in J \label{eq7}\\
+&\cpoAlternative(a_{ij}, [a^{EmM}_{eij}]_{e \in E_j} , r^{Em}_{ij}) & \forall j \in J, i \in M_j \label{eq8}\\
+&\cpoAlternative(a^{Em}_{ej}, [a^{EmM}_{eij}]_{i \in M_j} , 1) & \forall j \in J, e \in E_j \label{eq9}\\
+&\cpoNoOverlap([a^{EmM}_{eij}]_{j \in J, i \in M_j : e \in E_j}) &  \forall e \in E  \label{eq10}\\
+&\cpoNoOverlap([a^{Em}_{ej}]_{j \in J : e \in E_j}) &  \forall e \in E  \label{eq11}\\
+&\cpoPresenceOf(a^{Em}_{ej})==\cpoPresenceOf(a^{Em}_{ek}) & \forall j \in J, k \in L_i, e \in E \label{eq12}\\
+&\cpoAlternative(a_{j}, [a^{Wb}_{bj}]_{b \in B_j} , r^{Wb}_{j}) & \forall j \in J \label{eq13}\\
+&\cpoNoOverlap([a^{Wb}_{bj}]_{j \in J : b \in B_j}) &  \forall b \in B  \label{eq14}\\
+&\cpoAlternative(a_{j}, [a^{Eq}_{gdj}]_{d \in G_{gj}} , r^{Eq}_{gj}) & \forall j \in J, g \in G^* \label{eq15}\\
+&\cpoNoOverlap([a^{Eq}_{gdj}]_{j \in J : d \in G_{gj}}) &  \forall g \in G^*, d \in G_{g}  \label{eq16}\\
+&\cpoInterval\ b_p & \forall p \in P \label{eq17}\\
+&\cpoInterval\ a_j \subset [\alpha_j, \omega_j) & \forall j \in J \label{eq18}\\
+&\cpoInterval\ a_{ij}\ \cpoOptional\ \cpoSize\ d_{ij} \ & \forall j \in J, i \in M_j \label{eq19}\\
+&\cpoInterval\ a^{EmM}_{eij}\ \cpoOptional\  & \forall j \in J, i \in M_j, e \in E_j \label{eq20}\\
+&\cpoInterval\ a^{Em}_{ej}\ \cpoOptional\  & \forall j \in J, e \in E_j \label{eq21}\\
+&\cpoInterval\ a^{Wb}_{bj}\ \cpoOptional\  & \forall j \in J, b \in B_j \label{eq22}\\
+&\cpoInterval\ a^{Eq}_{gdj}\ \cpoOptional\  & \forall j \in J, g \in G^*, d \in G_{gj} \label{eq23}
+\end{alignat}
+
+Decision variables are defined in equations \ref{eq17}-\ref{eq23}:
+\begin{itemize}
+\item In Eq. \ref{eq17}, $b_p$ represent a sub-project $p$, it starts at the start time of the project and ends at its end time. 
+\item In Eq. \ref{eq18}, $a_j$ represents a job j. A project $b_p$ spans all its jobs (constraint in Eq. \ref{eq5}).
+\item Eq. \ref{eq19} defines a set of optional interval variables $a_{ij}$ for each job $j$ and each possible model $i$. Interval variable $a_{ij}$ will be present if and only if mode $i$ is selected for job $j$. The duration of jobs is mode-dependent that is why each optional interval variable $a_{ij}$ is defined its own size $d_{ij}$. Constraint \ref{eq7} specifies that among the different modes for job $j$ one and only one will be selected.
+\item For a given job $j$ executed in a given mode $i$, several employee allocations are possible. Eq. \ref{eq20} defines one optional interval $a^{EmM}_{eij}$ for each possible allocated employee perform job $j$ in mode $i$. Constraint \ref{eq8} specifies that exactly $r^{Em}_{ij}$ employees will have to be selected (intervals will be present) for each interval $a_{ij}$. The $r^{Em}_{ij}$ selected intervals will start and end at the same value as the master interval variable $a_{ij}$.
+\item Eq. \ref{eq21} defines a set of optional interval variables $a^{Em}_{ej}$ for each job $j$ and each possible employee $e$. Constraint \ref{eq9} states that if an employee is selected for a given job $j$ then it must be selected by one of the possible modes. This type of multi-level alternative constraints are common in CP Optimizer models.
+\item Intervals defined in Eq. \ref{eq22} represent the possible allocation of a workbench to a job $j$. The selection of $r^{Wb}_{j}$ for a job $j$ is formulated by constraint \ref{eq13}.
+\item Similarly, for each group of equipments, intervals defined in Eq. \ref{eq23} represent the possible allocation of an equipment from a given group to a job $j$. The selection of $r^{Eq}_{gj}$ for a job $j$ is formulated by constraint \ref{eq15}.
+\end{itemize}
+
+The unary resource constraints (employees, workbenches, equipments) are formulated as no-overlap constraints in Eq. \ref{eq11},\ref{eq14},\ref{eq16}. Equation \ref{eq10} is a redundant constraint.
+
+Precedence constraints between jobs are modeled as $\cpoEndBeforeStart$ constraints in Eq. \ref{eq6}.
+
+Linked jobs are formulated in Eq. \ref{eq12}. In practice, this constraint can be posted only on the subset of common employees between job $j$ and job $k$. A constraint $!\cpoPresenceOf(a^{Em}_{ej})$ or $!\cpoPresenceOf(a^{Em}_{ek})$ should be posted on the employees not in $E_j \cap E_k$.
+
+The objective function is similar to the one in the paper, except that the project span can directly be formulated as the length of the project interval variables $b_p$.
+
+Note that the same redundant constraints as in the paper can be formulated using cumulative functions in the CP Optimizer model. For instance a constraint similar to (20) would be:
+
+\setcounter{equation}{0}
+\begin{alignat}{2}
+&\sum_{j \in J, i \in M_j} \cpoPulse(a_{ij}, r^{Em}_{ij}) \leq |E| & 
+\end{alignat}
+
+\end{document}
+
+&&&& END CP Optimizer model in LaTeX
+
+
+Reviewer's confidence:	
+5: (expert)
+
+Confidential comments:
+
+The problem is interesting. The proposed formulation is not really original. The main problem is that it is difficult to get an idea of the quality of the solution found by the model. There is no real comparison with alternative approaches.
+

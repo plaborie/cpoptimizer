@@ -1,0 +1,352 @@
+\documentclass[]{article}
+
+\usepackage{framed}
+\usepackage{color}
+\usepackage{array} %don't know why this is needed; get csname error otherwise
+
+\definecolor{shadecolor}{gray}{0.85}
+\definecolor{shadecolor2}{gray}{0.75}
+
+\renewenvironment{shaded}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \colorbox{shadecolor}}%
+  \MakeFramed{\advance\hsize-\width \FrameRestore\FrameRestore}}%
+ {\endMakeFramed}
+
+% automatically number warnings and errors throughout document
+\newcounter{warnno}
+\newenvironment{warnings}
+{
+\begin{flushleft}
+\begin{tabular}{>{(W\refstepcounter{warnno}\thewarnno)}rp{10cm}}
+}
+{
+\end{tabular}
+\end{flushleft}
+}
+\newcounter{errno}
+\newenvironment{errors}
+{
+\begin{flushleft}
+\begin{tabular}{>{(E\refstepcounter{errno}\theerrno)}rp{10cm}}
+}
+{
+\end{tabular}
+\end{flushleft}
+}
+
+
+\title{SmartDeliveries Engine Documentation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\pagestyle{plain}
+
+\begin{table}[h]
+	\centering
+		\begin{tabular}{rcl}
+			Executable & : & {\tt cpo\_optimod} \\
+      Version    & : & {\tt 1.0.0}\\
+      Date       & : & {\tt 10/12/2014}\\
+      Built on   & : & IBM ILOG CPLEX Optimization Studio {\tt 12.6.1.0}
+		\end{tabular}
+\end{table}
+
+
+\section{SmartDeliveries engine state}
+
+The state of the SmartDeliveries engine consists of 5 elements:
+\begin{enumerate}
+\item A travel time tensor
+\item A visit duration specification
+\item A forbidden times specification 
+\item A precedence constraints specification
+\item The terminal visit specification (if any)
+\end{enumerate}
+
+The specification of each of these elements is described in the following subsections.
+
+\subsection{Travel time tensor}
+
+Let $n$ denote the number of visits, $m$ the number of time steps and $d$ the duration of a time step. The time-dependent travel time tensor is defined by the 3 above integers followed by $n^2\,m$ integers defining the travel times:
+
+\begin{shaded}
+\begin{verbatim}
+TravelTimeTensor n m d x[0] x[1] x[2] ...
+\end{verbatim}
+\end{shaded}
+
+The travel time from a visit of index $0 \leq i < n$ to a visit of index $0 \leq j < n$ when starting at $0 \leq t < m \, d$ is given by:
+\[ TT(i,j,t) = x[(j + i \, n) \, m + \lceil t / d \rceil ] \]
+
+\underline{Important remarks:}
+\begin{itemize}
+\item The travel time tensor implicitly defines the set of visits of the route: a route must visit {\bf all the $n$ visits} that define the tensor. 
+\item The travel time tensor implicitly defines the initial (depot) visit of the route which is the {\bf visit of index $0$}.
+\end{itemize}
+
+\underline{Remarks:}
+\begin{itemize} 
+\item Integer $n$ should be positive otherwise a warning (W\ref{w17}) is generated and the specification of durations is ignored.
+\item Integer $m$ should be positive otherwise a warning (W\ref{w18}) is generated and the specification of durations is ignored.
+\item Integer $d$ should be positive otherwise a warning (W\ref{w19}) is generated and the specification of durations is ignored.
+\item If more than $n^2\,m$ travel times are provided, only the first $n^2\,m$ ones will be considered. 
+\item If less than $n^2\,m$ travel times are provided, the behavior is unspecified.
+\item Each of the travel times {\tt x} should be non-negative otherwise a warning (W\ref{w20}) is generated the travel time is considered to be $0$.
+\end{itemize}
+
+\subsection{Visit duration specification}
+
+The duration of visits is specified by passing a vector of integer durations.
+
+\begin{shaded}
+\begin{verbatim}
+Durations n d[0] d[1] d[2] ... d[n-1]
+\end{verbatim}
+\end{shaded}
+
+\underline{Remarks:}
+\begin{itemize}
+\item Integer $n$ should be non-negative otherwise a warning (W\ref{w0}) is generated and the specification of durations is ignored.
+\item If more than $n$ durations are provided, only the first $n$ ones will be considered. 
+\item If less than $n$ durations are provided, the behavior is unspecified.
+\item Integers $d[i]$ should be strictly positive integers. In case a null or negative duration is provided, a warning (W\ref{w1}) will be generated and the duration will be supposed to be $1$ (the smallest non-zero duration)
+\item The specification of a distance vector completely replaces the current vector in case one was previously specified.
+\item At solve time, if the size $n$ of the tensor is larger than the size of the duration vector, by default the duration of the remaining visits with no specified duration will be supposed to be $1$ (the smallest non-zero duration) and a warning (W\ref{w3}) will be generated.
+\item At solve time, if no duration vector was specified, all durations are supposed to be $1$ and a warning (W\ref{w4}) will be generated.
+\item At solve time, if a duration was specified for a visit $i$ that is larger than the size $n$ of the tensor so that $i$ is not a visit of the route, a warning (W\ref{w16}) will be generated.
+\end{itemize}
+
+\subsection{Forbidden times specification}
+
+A set of forbidden time windows can be specified for any visit. The syntax is as follows:
+
+\begin{shaded}
+\begin{verbatim}
+ForbiddenTimes i f a[0] b[0] a[1] b[1] ... a[f-1] b[f-1]
+\end{verbatim}
+\end{shaded}
+
+It means that visit $i$ has $f$ forbidden time windows $[a[0],b[0])$, $[a[1],b[1])$, ..., $[a[f-1],b[f-1])$ meaning that the visit cannot overlap any of the time windows $[a[j],b[j])$ for $0 \leq j < f$.
+
+\underline{Remarks:}
+\begin{itemize}
+\item Visit index $i$ must be a non-negative integer otherwise a warning (W\ref{w5}) will be generated and the specification is ignored.
+\item Number of time-windows $f$ must be a non-negative integer otherwise a warning (W\ref{w6}) will be generated and the specification is ignored.
+\item If more than $f$ time-windows are provided, only the first $f$ ones will be considered. 
+\item If less than $f$ time-windows are provided, the behavior is unspecified.
+\item Each of the time-windows $a[j],b[j]$ must be consistent that is such that: $0 \leq a[j] < b[j]$ otherwise a warning (W\ref{w7}) will be generated and the inconsistent time-window will be ignored.
+\item If a visit $i$ was not specified any forbidden time windows it behaves as if it was explicitly specified 0 time-windows using {\tt ForbiddenTimes i 0}. No warning is generated in this case.
+\item The specification of a set of forbidden time windows for a visit $i$ completely replaces the current set of forbidden time windows in case one was previously specified.
+\item At solve time, if a forbidden time specification holds on a visit $i$ that is larger than the size $n$ of the tensor so that $i$ is not a visit of the route, a warning (W\ref{w16}) will be generated.
+\end{itemize}
+
+\subsection{Precedence constraints specification}
+
+A set of precedence constraints between visits can be specified. The syntax is as follows:
+
+\begin{shaded}
+\begin{verbatim}
+Precedences q p[0] s[0] p[1] s[1] ... p[q-1] s[q-1]
+\end{verbatim}
+\end{shaded}
+
+Each precedence constraint $0 \leq i < q$ defines the predecessor visit $p[i]$ and the successor visit $s[i]$.
+
+\underline{Remarks:}
+\begin{itemize}
+\item Number of precedences $q$ must be a non-negative integer otherwise a warning (W\ref{w9}) will be generated and the specification is ignored.
+\item If more than $q$ precedences are provided, only the first $q$ ones will be considered. 
+\item If less than $q$ precedences are provided, the behavior is unspecified.
+\item Indexes of visits in each precedence constraint $p[i] \rightarrow s[i]$ must be non-negative integers otherwise a warning (W\ref{w10}) will be generated and the precedence constraint will be ignored.
+\item Precedence constraints $p[i] \rightarrow s[i]$ must hold on different visits. If $p[i]=s[i]$ a warning (W\ref{w11}) will be generated and the precedence constraint will be ignored.
+\item If no precedence constraints were specified, it behaves as if it was explicitly specified 0 precedences using {\tt Precedences 0}. No warning is generated in this case.
+\item The specification of a set of precedence constraints completely replaces the current set of precedence constraints in case one was previously specified.
+\item At solve time, if a precedence constraint holds on a visit $i$ that is larger than the size $n$ of the tensor so that $i$ is not a visit of the route, a warning (W\ref{w16}) will be generated.
+
+\end{itemize}
+
+\subsection{Terminal visit specification}
+
+One of the visit in the tensor can be specified to be the terminal visit. For instance, often, the last index in the tensor will be a duplicate of the depot (index 0) and will be specified to be the terminal visit.
+
+\begin{shaded}
+\begin{verbatim}
+TerminalVisit i
+\end{verbatim}
+\end{shaded}
+
+It is possible to remove the terminal visit specification by using:
+
+\begin{shaded}
+\begin{verbatim}
+ClearTerminalVisit
+\end{verbatim}
+\end{shaded}
+
+In this case, the route can end at any visit. 
+
+\underline{Remarks:}
+\begin{itemize}
+\item Index $i$ of the terminal visit should be a non-negative integer otherwise a warning (W\ref{w12}) will be generated and the specification is ignored.
+\item The specification of a terminal visit replaces the current terminal visit specification so, by construction, at most one terminal visit can be specified.
+\item If no terminal visit was specified, it behaves as if it was explicitly specified {\tt ClearTerminalVisit}. No warning is generated in this case.
+\item At solve time, if a terminal visit $i$ was specified and if the size $n$ of the tensor is smaller than $i$ so that $i$ is not a visit of the route, a warning (W\ref{w16}) will be generated and no terminal visit will be considered.
+\end{itemize}
+
+\subsection{State reset}
+
+The current state of the engine can be reset to the original state where nothing was defined using:
+
+\begin{shaded}
+\begin{verbatim}
+Reset
+\end{verbatim}
+\end{shaded}
+
+
+\subsection{Verbosity}
+
+The verbosity level of the engine can be controlled by a parameter with levels {\tt l} in 0..9. 
+
+\begin{shaded}
+\begin{verbatim}
+Verbosity l
+\end{verbatim}
+\end{shaded}
+
+Here are some specifications of the verbosity levels (they will possibly be refined later):
+\begin{itemize}
+\item Default (if no verbosity level was specified) is level 0
+\item If specified level is negative, it is considered as 0
+\item If specified level is larger than 9, it is considered as being 9
+\item At level 0, no warning is generated and during solve, no information about the search is generated on the {\tt stderr} stream. Still, errors are send on the {\tt stderr} stream.
+\item At level 2 and higher, all warnings are send on the {\tt stderr} stream but no information about the search is generated.
+\item At level 4 and higher, some information about the search can be generated on the {\tt stderr} stream.
+\end{itemize}
+
+\subsection{Version}
+
+The {\tt Version} instruction displays the version of the executable on the {\tt stderr} stream.
+
+\begin{shaded}
+\begin{verbatim}
+Version
+\end{verbatim}
+\end{shaded}
+
+\noindent For instance:
+
+\begin{verbatim}
+Executable  :  cpo_optimod
+   Version  :  1.0.0
+      Date  :  10/12/2014
+  Built on  :  IBM ILOG CPLEX Optimization Studio 12.6.1.0
+\end{verbatim}
+
+
+\section{Problem resolution and output}
+
+The instruction to solve the TDTSP problem defined by the current state is specified by a time limit $tl$ and a Boolean telling whether or not all solutions visited by the search should be send on the standard output (value 1) or only the best solution found at the time-limit (value 0, this is the default):
+
+\begin{shaded}
+\begin{verbatim}
+Solve tl 0|1
+\end{verbatim}
+\end{shaded}
+
+The engine extracts the TDTSP problem defined by the current state and will start a search using a time limit {\tt tl}. If the Boolean is 1  all the solutions found by the engine will be sent to the standard output otherwise, only the best solution found at the time limit will be sent. After the time-limit is reached the engine will be available to read new input.
+
+If no travel time tensor has been specified in the current state an error (E\ref{e1}) will be generated.
+
+Instruction {\tt Quit} ends the process:
+
+\begin{shaded}
+\begin{verbatim}
+Quit
+\end{verbatim}
+\end{shaded}
+
+\renewenvironment{shaded}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \colorbox{shadecolor2}}%
+  \MakeFramed{\advance\hsize-\width \FrameRestore\FrameRestore}}%
+ {\endMakeFramed}
+
+Solutions of a TDTSP instance consists of a permutation of the $n$ visits. Additionally, it specifies the end time $t$ of the route.
+The keyword {\tt Optimal} is appended to the message in case the engine proved the optimality of the returned solution.
+
+\begin{shaded}
+\begin{verbatim}
+Solution n v[0] v[1] ... v[n-1] t [Optimal]
+\end{verbatim}
+\end{shaded}
+
+When the Boolean to display all solution is 1, intermediary solutions are displayed using the keywork {\tt CurrentSolution} instead of {\tt Solution}:
+
+\begin{shaded}
+\begin{verbatim}
+CurrentSolution n v[0] v[1] ... v[n-1] t
+\end{verbatim}
+\end{shaded}
+
+If the problem is shown to be infeasible, the output is: 
+
+\begin{shaded}
+\begin{verbatim}
+Infeasible
+\end{verbatim}
+\end{shaded}
+
+If no solution was found at the time-limit, the output is: 
+
+\begin{shaded}
+\begin{verbatim}
+NoSolutionFound
+\end{verbatim}
+\end{shaded}
+
+
+If an error occurred during the solve the output is: 
+
+\begin{shaded}
+\begin{verbatim}
+Error
+\end{verbatim}
+\end{shaded}
+
+\section{Warnings and errors}
+
+Warnings and errors are send on the {\tt std::err} output. Here is a list of errors:
+
+\begin{errors}
+\label{e1}  & Cannot solve: no travel time tensor was defined\\
+\label{e2}  & Engine exception: {\tt EXCEPTION} \\
+\end{errors}
+
+Here is a list of warnings:
+
+\begin{warnings}
+\label{w17} & Non-positive number of visits, ignoring tensor specification\\
+\label{w18} & Non-positive number of time steps, ignoring tensor specification\\
+\label{w19} & Non-positive step duration, ignoring tensor specification\\
+\label{w20} & Negative travel time {\tt (<i>,<j>)} at time-step {\tt <k>}, using 0\\
+\label{w0}  & Negative number of visits, ignoring duration specification\\
+\label{w1}  & Non-positive duration replaced by duration 1 for visit {\tt <i>}\\
+%\label{w2}  & Duration for visits of index larger than {\tt <n>} will be ignored\\ 
+\label{w5}  & Negative visit index  {\tt <i>}, ignoring time-window specification\\
+\label{w6}  & Negative number of time-windows for visit {\tt <i>}, ignoring specification\\
+\label{w7}  & Ignoring inconsistent time-window {\tt <a>..<b>} for visit {\tt <i>}\\
+%\label{w8}  & Forbidden time-windows with index greater than {\tt <f>} will be ignored for visit {\tt <i>}\\
+\label{w9}  & Negative number of precedences {\tt <q>}, ignoring specification\\
+\label{w10} & Ignoring precedence {\tt <i>..<j>} using negative visit index\\
+\label{w11} & Ignoring inconsistent precedence  {\tt <i>..<i>}\\
+\label{w12} & Negative visit index {\tt <i>}, ignoring terminal visit specification\\
+\label{w3}  & Non-specified duration for visits {\tt <i>..<j>}, using duration 1\\
+\label{w4}  & Non-specified duration vector, using duration 1 for all visits\\
+\label{w16} & Ignoring specifications on visit {\tt <i>} who is outside of the route\\
+\end{warnings}
+
+
+\end{document}
+

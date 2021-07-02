@@ -1,0 +1,87 @@
+===========================================================
+------------------ WIPIS 04 Review Form -------------------
+===========================================================
+Paper number: 06
+
+Author(s):  K. Helsey, D. Long and M. Fox
+
+Paper Title:  CRIKEY - A Temporal Planner Looking at the Integration of Scheduling and Planning
+
+ 
+					bad 		middle 		good 
+  					1 	2 	3 	4 	5
+Evaluation of work and contribution: 			3
+Originality or novelty: 				3	
+Relevance to the workshop: 			2
+Readability and organization: 			2
+Overall recommendation:				2
+
+Should the author(s) be invited to present this at the workshop?
+No
+
+Why or why not?  
+
+The main problem is that this paper is not very relevant to the
+workshop. WIPIS is about "Integrating Planning INTO Scheduling". As
+underlined in the call for paper, "the central theme of the workshop
+is that planning techniques are necessary to the solution of these
+problems [scheduling problems with a planning component], but must be
+integrated into scheduling algorithms and frameworks." In this paper,
+the only "scheduling" algorithm or framework is the Floyd-Warshall's
+algorithm running on top of a STN and it is even not clear such an
+expensive algorithm is necessary (see comments below).
+
+Comments to author(s):
+
+The contribution of the paper is an extension of a planner to better
+handle durative actions when it is necessary to have action
+parallelism in a plan. The authors propose:
+1- some methods that avoid splitting durative actions (both in the
+   relaxed plan graph and for selecting actions) when it is not
+   necessary
+2- to use an STN to filter the set of possible actions to be applied
+   at a given state.
+
+About the second point, I'm not sure a Floyd-Warshall's algorithm
+running on top of the STN is necessary. The STN seems to be used only
+to ensure feasibility and, testing the feasibility of a STN does not
+require a Floyd-Warshall's algorithm that maintains
+path-consistency. A simple arc-consistency algorithm (Bellman-Ford)
+with positive cycle detection should be enough and would be much
+quicker and much less greedy in memory, see for instance [1].
+
+The paper is not very clear about cases more complex than the Match
+domain where the concept of envelope (as defined in the paper by a
+single action) does not ensure that the final plan is
+schedulable. What happens for instance with 4 actions a1,a2,b if in a
+solution plan, one must have: start(a1)<start(a2)<end(a1)<end(a2) and
+start(a1)<start(b)<end(b)<end(a2) (that is, the envelope containing b
+is (a1,a2) ? This doesn't seem to be detected by the proposed
+algorithms.
+ 
+The proposed contribution is relevant in the context of the extension
+of planners to handle metric constraints but is not really in the
+scope of WIPIS. That's why I would suggest the authors to clarify and
+improve the paper according to the two points above and submit it to
+a workshop or a conference that fits better.
+
+A few typos:
+
+p1,col1, "langauge"
+
+p2,col1, in the action LOAD-TRUCK-INV, I suppose instead of predicate
+"load-truck-inv" one should read "load-inv"
+
+p3, col2, under Fig 4, in (i.e. (cond\add)!=0), one should read =0
+
+p5, col1, "scheudlable"
+
+[1] A. Cesta and A. Oddi. "Gaining efficiency and flexibility in the
+simple temporal problem".  Proc. 3rd Workshop on Temporal
+Representation and Reasoning (TIME'96).
+
+Confidential comments to PC members:
+
+
+=============================================================
+

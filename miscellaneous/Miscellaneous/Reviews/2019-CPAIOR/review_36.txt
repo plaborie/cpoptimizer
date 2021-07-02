@@ -1,0 +1,27 @@
+Number: 36
+Title: Exact Methods for a Paint Shop Scheduling Problem from the Automotive Supply Industry
+Authors:	Felix Winter and Nysret Musliu. 
+
+Review:
+0: borderline paper
+
+The article describes a challenging and complex problem for sequencing activities of a paint shop in the automotive supply industry.
+
+I think the presentation should be improved to clarify the problem and its formulation. In particular the article relly lacks an example of complete solution to a small instance where you could illustrate the different variables (both decitions and helper variables) and some of the constraints. Here are some of the difficulties I noticed when trying to understand the problem in details:
+1- The examples on Fig. 2 are a bit misleading because it does not explain how the transiiton between the two rounds (for instance for the optimal solution on the right) is exactly implemented on the conveyor belt. The explanation for the infeasibility of the middle transtion just says that it is "technically not possible" but a more detailed explanation why would help.
+2- On the same topic, in the sentence "However, if carriers of the same type are scheduled in two consecutive rounds it may be possible to reuse some of them as long as the sequence of kept carriers is compatible with the scheduled carrier sequence in the succeeding round.". But it does not say what is this "compatibility" relation. It is only in the end of the paragraph that one guess that a transition is feasible if the order of the sub-sequence of the common carriers is the same (at least this is my understanding).
+3- The notions of "skids" and "historical round" is nt explicitely defined. My understanding is that the historical round defines some initial state (initial round that is fixed).
+4- The definition of the forbidden carrier type sequence in 3.1 is not clear. Maybe you should give some intuition about it in 3.1. It is only later, when looking at constraint 8 that one guess it concerns the sequence of carriers in a given round (and not the sequence of carriers at a given position between two rounds for example).
+5- In section 3.3 when explaining the sequence variables seq_ij, what is the "length" of the history round? Is it the number of carriers scheduled in this round?
+6- For increasing the clarity, when describing the helper variables in section 3.3 it would be good to point to the constraints that "define" these helper variables 
+7- Constraints in equaltions (9) and (10) are really complex. It would help to first explain them informally.
+8- Simlarly, in section 3.6, the introduced variables kept^1_ij and kept^2_ij should be described informally.
+
+I find the section on the DFAs model more clear. I think that if you need to consider saving some space to improve the description of the problem, maybe you could only describe the model with DFA for the sequences; given that it is the most efficient one. And you could just mention that you tried an alternative model that is less efficient without describing it in details.
+
+In the empirical evaluation, it would be informative to have more details about the size of the resulting models (number of decision variables, number of helper variables) for each of the instances. Also, do you consider the instances solved by the CP model (I1-I10) as of realistic size for the real problem?
+
+
+
+Reviewer's confidence:	
+4: (high)

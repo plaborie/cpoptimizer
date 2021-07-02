@@ -1,0 +1,89 @@
+Relevance:	 	 	7	 	 	 	 	 	 	
+Significance 			6		
+Technical soundness 		7								
+Novelty 			6							
+Quality of Evaluation 		6								
+Clarity 			6							
+OVERALL 			6/7							
+CONFIDENCE			8	
+
+
+RELEVANCE:
+
+The paper is relevant both for people working in the CSP community and
+for people working in temporal reasoning and scheduling.
+
+SIGNIFICANCE:
+
+The paper presents an interesting presolving technique for HSPs that
+consists in reformulating the constraints so that constraint
+propagation at solving time will be stronger. This general idea is not
+new but as far as I know, its application to HSPs is original.
+
+My main concern is that the approach is applied on a type of
+finite-domain constraints that is not very expressive (typically,
+constraints of the form: x==a where a is a constant or x in A where A
+is a subset of the variable domain). The efficiency of the approach
+seems to rely on the fact that disjunctions of such constraints can be
+easily checked during the search as the presolve adds new elements to
+the disjunctions of finite-domain constraints of the original
+problem. It would be interesting to evaluate the approach on more
+complex n-ary constraints. My feeling is that in this case, the
+approach would be less efficient because the larger disjunctions
+would slow down the propagation but would not result in a much
+stronger propagation as the disjunction would be rather weak.
+
+A second, and somehow symmetrical, limitation is the fact the approach
+seems to consider only disjuncts of temporal constraints that rely on
+the same pair of temporal variables. In this case, the subsumption
+relation between such disjuncts is indeed quite easy to check but in the
+general case this is NP-complete. 
+
+Anyway, this work, even if it focuses on a particular fragment of the
+HSP formalism is an interesting direction and I think it should be
+encouraged. 
+
+TECHNICAL SOUNDNESS:
+
+The paper seems to be technically sound.
+
+NOVELTY:
+
+To the best of my knowledge the approach seems to be original and it
+is carefully compared with existing state of the art, in particular
+DTP_FD. 
+
+QUALITY OF EVALUATION:
+
+The experimental part clearly shows the interest of the approach on
+HSPs involving disjunctions of unary finite-domain constraints and
+disjuncts of temporal constraints that rely on the same pair of
+temporal variables. This is less evident for more general HSPs.
+
+Note that given the huge speed-up on the random instances when using
+the proposed approach, it would be more interesting to give the
+improvement values in term of ratio rather than percentage of
+improvement (saying it runs 42 times quicker is more informative than
+saying the time improvement is 97.60%).
+
+It would have been interesting to experimentally compare the presented
+approach with DTP_FD.
+
+CLARITY:
+
+The paper is clearly written and well organized.
+
+REBUTTAL QUESTIONS:
+
+1. If we restrict to problems that can be expressed and solved by
+DTP_FD, is it the case that using the constraint tightening approach
+described in the paper results in exactly the same propagation as the
+approach proposed in DTP_FD ? This seems to be assumed in the
+paragraph about DTP_FD in section "Analysis of the HCT Algorithm" but
+it does not seem evident and no proof is mentioned.
+
+Main reasons for your recommendation:
+
+The approach is original. In the current state, it is not a real
+breakthrough in the domain but it is an interesting starting point.
+

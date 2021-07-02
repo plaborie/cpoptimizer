@@ -1,0 +1,162 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="1597117::821530"
+        submission="4"
+        title="An Extended Petri-Nets Method for Resource Constrained Multi-Project Scheduling under Certain and Uncertain Duration"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<score id="198232" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == -2 reject
+  -->
+  
+</score>
+<score id="198233" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 4 (high)
+  -->
+  
+</score>
+<!-- ======== Additional scores ======== -->
+<score id="203991" name="Significance of the application area being addressed">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 moderately significant
+  -->
+  
+</score>
+<score id="203993" name="Importance of planning and scheduling technology to solution of the problem">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 not important - could be done without it
+  -->
+  
+</score>
+<score id="204009" name="Novelty of the application and technical approach to the application">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 marginally novel - parts of the application or approach are new
+  -->
+  
+</score>
+<score id="204010" name="Clarity of the descriptions of the application, techniques used, and results">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 moments of clarity
+  -->
+  
+</score>
+<score id="204011" name="Evaluation of the approach or system">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 poor
+  -->
+  
+</score>
+<score id="204012" name="Level of Maturity">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 2 Early prototype system
+  -->
+  
+</score>
+<score id="205658" name="Suitable for a demo">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 no
+  -->
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="198235" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This review will be sent to the authors unless the PC chairs
+  == decide not to do so. This field is required unless you have an
+  == attachment..
+  -->
+
+The paper presents a Petri-Net model used (apparently) in simulation mode to compute solutions to RCPSP problems. Both the classical version of RCPSP is handled (fixed task duration) together with a variant where the duration of tasks depends on the allocated resource quantity.
+
+I do not understand the use of the term "uncertain duration" used in the paper. Usually a duration is uncertain when it is not precisely known at scheduling time because it depends on some external contingent events of the environment (for instance a task duration depending on the weather). From what I understand here, the duration is not uncertain at all; it just depends on the allocated quantity of resource which is an additional decision variable of the problem (compared to the classical version of the RCPSP where activity duration is fixed). I think it would be much better to speak of "variable duration" or "capacity related durations".
+
+The introductory part only mentions IP and meta-heuristics as approaches for solving RCPSP. It would be good to cite Constraint Programming (CP) approaches that are also very successful on this type of problem. CP approaches have some advantages of the IP approaches (they are in particular able to prove optimality of solutions) but they are much more expressive in terms of modeling, especially for scheduling problems. See for instance [1] for a reference of CP on the RCPSP problem.
+
+The use of Petri-Nets for solving the problem is not well justified. I understand that they are used to model the constraints of the problem (precedence constraints + resource contention constraints). But nothing is clearly said in the paper about how the problem is solved ? For instance, there is no link between the Petri-Net model and the number of generated schedules in section 3. How is a schedule generated ? One can only guess that solutions are produced by simulating the evolution of the Petri-Net and that (maybe) the number of schedules is the number of different executions of the Petri Nets (as there are some randomization inside, as explained in item 3 in subsection 2.2.3). But then, the interest of using Petri-Nets is not evident. This seems to boil down to the execution of some simple scheduling rule (or some variant): select the first task that is available among the ones that have all their predecessors scheduled and schedule it as soon as possible in order to satisfy the resource capacity constraints, break ties randomly.
+
+I'm in fact quite surprised that this approach seems, at first sight, to achieve quite good results in the experimental section. In fact the experimental section is far from being clear:
+- First, as said above, nothing is said about how the Petri Net is used to generate solutions. 
+- Then, the experimental section distinguishes between "Petri-Nets" and "Extended Petri-Nets". It seems that the paper focuses on "Extended Petri-Nets" but it does not describes what (common) Petri-Nets are in this context.
+- The notion of "success rate" is used but is not defined anywhere. What does it mean? that the approach produces an optimal solution ? It hardly can be that as several of the studied instances are open (especially in the j120 group).
+- Table 4 and 5 are entitled "Average Deviation of optimal makespan". Again, for several of these instances, the optimal makespan is not known so I'm wondering what these figures really mean here ...
+- Title of Table 5 concerns j90 group whereas in the text below, it is j120 that is used
+
+My understanding is that the numbers on Figures 4 and 5 are the average deviations from the critical path lower bound which is a measure that has been used by several researchers to compare their approaches on the problem. But then, there is another issue. Let's consider the j60 group. I computed the critical path LB for all the 480 instances of this benchmark and compared it with the makespan LB that is available from the PSPLib page (http://www.om-db.wi.tum.de/psplib/files/j60lb.sm). It is clear that for a given instance, as one cannot find a solution with a better makespan than the LB, so the average deviation from the critical path lower bound of the makespan LB is itself a lower bound on the deviation. I may have done some mistake but I get a minimal deviation of more than 9.42%. In this context, I do not see how the Petri-Nets can find deviations below this lower bound on Table 4. I attach the details in a separate file in order for the authors to double-check. 
+
+
+[1] A. Schutt, T. Feydy, P.J. Stuckey, and M. G. Wallace. Why cumulative decomposition is not as bad as it sounds. In Proc. of the 15th International Conference on Principles and Practice of Constraint Programming, volume 5732 of LNCS, 746-761. Springer-Verlag, 2009.
+
+
+
+
+
+</text>
+<text id="198236" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members, please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

@@ -1,0 +1,239 @@
+---------------------------------------------------------------------------
+-------------------------- Misc Tools in /util ----------------------------
+---------------------------------------------------------------------------
+
+ 1) makeport.pl: see <delivery.HOWTO.txt> file.
+
+    - Uses files: PORTS.CONFIG and PRODUCT.CONFIG
+                  makefile.msv, makefile.msv.norsp,
+		  makefile.site, genmakefile.pl,
+		  UserMake.share...
+
+ 2) incgraph.pl / incguard.pl
+
+#########################################################################
+## incgraph.pl - prints the inclusion graph of header file(s), along
+##               with the nest depth. Will take #ifdef into account.
+##               Takes care dispatcher/solver/concert include files.
+##               
+## Usage: incguard.pl [.h files...]
+##    Without argument, will run through all files in the
+##    current directory.
+## NOTE: will not modify files!!!
+#########################################################################
+
+#########################################################################
+## incguard.pl - adds or checks for the presence of include guards.
+## Usage: incguard.pl - run through all files in the current directory
+##      and check all the include guards are correct.
+##      Print details of any missing or incorrect guards.
+##      NOTE: will not modify files!!!
+##    incguard.pl -w - same as above but rather than just checking the
+##         new include guards are written (-w = write) into
+##         the files.
+#########################################################################
+
+ 3) hweight.pl / hweight.parse.pl / hweight
+
+#########################################################################
+## hweight.pl - Measures the time needed to compile .h files (separately).
+##              Actually, it cats the concerned .h file into $srcext tmp
+##              file and add an empty main() before compiling it.
+##              Reports 'ko' if the .h cannot be compiled alone. Otherwise,
+##              compile time report can be parse by 'hweight.parse.pl'
+## Usage: hweight.pl [.h files...]
+##        Without arguments: opens $dir/$incext dir and greps all the .h.
+#########################################################################
+
+#########################################################################
+## hweight.parse.pl - Parse out the output of 'hweight.pl', and reports
+##                    individual user-time consumption, as well as global/
+##                    average statistics. This output can be processed
+##                    by 'timeparse.pl'.
+## Possible usage:
+## perl ../../../util/hweight.pl |& perl ../../../util/hweight.parse.pl
+#########################################################################
+
+ 4) xmpgen.pl  (=>dspgen.pl / dswgen.pl)
+
+#########################################################################
+# xmpgen.pl - This script uses dswgen.pl, which uses dspgen.pl,
+#             to create the project for all examples in the    
+#             distribution on all platforms.                   
+#                                                              
+#########################################################################
+#########################################################################
+## dswgen.pl - This script uses dspgen.pl for examples in the distribution
+##             for a particular combination of platforms and subplatforms.
+## It calls dspgen.pl and is called by xpmgen.pl  
+##
+#########################################################################
+#########################################################################
+## dspgen.pl - This script generates a project for making either
+##             a client or a bench example, in both debug and
+##             release mode. It is used by both genmsvc.pl and
+##             dswgen.pl. The latter is used by xpmgen.pl
+##
+## This script should not be called directly!
+##########################################################################
+
+ 5) genmsvc.pl / libgen.pl
+
+##########################################################################
+## genmsvc.pl - This script generates the projects for creating the
+##              bench examples and the lib. It calls dspgen.pl and
+##              libgen.pl respectively for the two tasks.
+##
+##########################################################################
+##########################################################################
+## libgen.pl - This script generates sim.dsp, which is used to create
+##             Sim lib in release and debug. It is called by genmsvc.pl   
+##
+##########################################################################
+
+ 6) timemake.pl / timeparse.pl
+
+#########################################################################
+## timemake.pl - Measures the time needed to compile .o files (separately).
+##               Roughly speaking, it runs `time make blah.o` on every blah.
+## Usage: timemake.pl [.o files...]
+##        Without arguments: opens the makefile.shr file and parse out
+##        the list of object files to scrutinize.
+#########################################################################
+
+#########################################################################
+## timeparse.pl - Parses the output of hweight.parse.pl
+######################################################################### 
+
+ 7) u2d.pl and d2u.pl:
+
+#########################################################################
+## u2d.pl - perl-scrip equivalent of 'unix2dos -ascii' command available on
+##          Sparcs: adds the trailing ^M.
+##          Doesn't work under Windows.
+#########################################################################
+#########################################################################
+## d2u.pl - perl-scrip equivalent of 'dos2unix -ascii' command available on
+##          Sparcs: removes the trailing ^M.
+##          Doesn't work under Windows.
+#########################################################################
+
+ 8) dircomp.pl / dircomp.in.pl / dcdiff.pl
+
+#########################################################################
+## dircomp.pl - Compares .curr bench output to the ones in /refbench.
+##              Reports errors and stats. Margins are customizable
+##              in 'perl.site.pl'
+#########################################################################
+#########################################################################
+## dircomp.in.pl - Only to be called by 'dircomp.pl'.
+#########################################################################
+#########################################################################
+## dcdiff.pl - Only to be called by 'dircomp.pl'.
+#########################################################################
+
+ 9) genmakefile.pl / genmakefile.in.pl
+
+#########################################################################
+## genmakefile.pl - Generates the shared makefile 'makefile.shr' (and
+##                  'makefile.depend' if applicable)
+## options:
+##   -d : creates dependency file (makefile.depend)
+##   -c : allows benches to be 'c'ontinued, that is they only depend
+##        on the source and lib files, not on the presence (or absence)
+##        of the final executable.
+##  Uses scripts: 'perl.site.pl', 'genmakefile.in.pl'.
+##  Uses files: makefile.skel1, makefile.skel2
+#########################################################################
+
+10) perl.site.pl:
+
+#########################################################################
+## perl.site.pl - Configuration file used by 'benchcomp.pl',
+##                'genmakefile.pl', and 'makeport.pl'
+## Used to define $toolPath (where to find the tools dir), margins
+## for dircomp.pl, $diff executable to use ('diff' or 'fc'), etc...
+#########################################################################
+
+11) sim.config.pl:
+
+#########################################################################
+## sim.config.pl - The scripts declares source files and directories
+##                   required in order to build the Sim library.
+##  Is used by 'genmakefile.pl' and 'libgen.pl'
+##  not to call directly.
+#########################################################################
+
+12) revertFlag
+
+#########################################################################
+# revertFlag - Reverses some #ifdef/#ifndef flags
+# Usage: revertFlag FLAG OPPOSITEFLAG
+# Example: revertFlag PGRAPH NOPGRAPH
+#########################################################################
+
+---------------------------------------------------------------------------
+-------------------------- Misc files in /util ----------------------------
+---------------------------------------------------------------------------
+
+1) makefile.site
+
+#-----------------------------------------------------------
+#
+# makefile.site
+#
+# This makefile is intended to be locally modified for personnal
+# installation. Note that normally these modifications should not
+# be commited in the CVS base
+#
+# This makefile is included in makefile.unix, makefile.msv, makefile.bc.
+#
+#
+#------------------------------------------------------------
+
+2) makefile.unix
+
+#------------------------------------------------------------
+#
+# makefile.unix
+#
+# Contains all the common macros for Unix ports
+#
+# To customize macros, such as ILMDIR, SOLVERDIR, modify makefile.site
+#
+# Normally this file should not be modified locally
+#
+#------------------------------------------------------------
+
+3) makefile.msv / makefile.msv.norsp (used by makeport.pl)
+
+#------------------------------------------------------------
+#
+# makefile.msv 
+#
+#
+# You can do modifications on this makefile but it should not
+# be commited.
+#
+# To customize your installation, ie change change value for
+# ILMDIR, SOLVERDIR, etc change macros in makefile.site
+#
+#------------------------------------------------------------
+
+
+---------------------------------------------------------------------------
+--------------------- Seemingly deprecated stuff --------------------------
+---------------------------------------------------------------------------
+
+1) Files:
+
+- makeUserMake (now in makeport.pl)
+- analinc / analinc.in (incgraph.pl seems to be more appropriate)
+- version.sed (this script is dangerous)
+- libheader
+
+2) Directories:
+
+- alphaVMS / alphadir
+- bc
+

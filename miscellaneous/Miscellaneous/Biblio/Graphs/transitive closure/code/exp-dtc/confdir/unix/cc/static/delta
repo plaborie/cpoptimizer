@@ -1,0 +1,3 @@
+
+CC = DCC
+LD = DCC

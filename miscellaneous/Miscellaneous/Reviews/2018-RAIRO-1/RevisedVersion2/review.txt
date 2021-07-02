@@ -1,0 +1,44 @@
+Recommendation:
+  Acceptable without revision
+  Minor revision
+  Major revision
+X Reject
+  
+__________________________________
+Reviewer Blind Comments to Author
+
+The new version of the manuscript brings some minor improvements to the previous version but my main concerns are still not satisfactorily addressed. In particular:
+
+1- The section that describes CP (3.1) is still very unclear.
+
+Algorithm 1 is artificially complex and confusing. What does it mean "define variables" ? Initialize variables domains ? ... Furthermore the section is about CP in general but the algorithm is using the terminology of the application (for instance it speaks of "tasks" instead of "variables"). Also, 
+
+The section still contains some errors like when saying "Hence, we obtain a consistent assignment at every iteration of the domain reduction." Because there is no guarantee that the current (partial) assignment will satisfy all constraints (in this case you would need global consistency and would never need to backtrack).. So the new version of the sentence is not better than the previous one.
+
+There are also some awkward formulations:
+"In search tree, a decision variable is declared as a node" -> "At each node of the search tree, a variable is selected"
+
+And, as I mentioned in my previous review, the section still mixes general CP elements with particular features of the system that was used (CP Optimizer) like: "Many search strategies can be used to guide the backtracking for obtaining an assignment: depth first, multi-point, restart and automatic". This is purely related with CP Optimizer, not CP in general ...
+
+
+2- The generation of the new instances with restrictions was not really clarified
+
+You say that the restrictions are added in such a way that the optimal solution to the baseline problem (without restriction) satisfies them so that it is still an optimal solution for the more restricted problems. And you confirm it in your new answer: "We added additional restrictions in a way that it does not change the known optimal solution, deliberately". I know that you did it this way deliberately. And precisely this is what I'm questioning in my comment:
+a) It seems to me it biases the instances because the instances are such that there exists an optimal solution such that all the added restrictions are "inactive" (if you remove them you get the same optimal solution)
+b) If optimal solution to the unrestricted problem are also feasible in the restricted problem, then it is (by definition) not possible that you get a different optimal cycle time solution in tables 5,6,7 as they should all be equal to the one of the unrestricted problem (and thus, all be equal)
+So when you say "However, it may have changed the optimal solution unintentionally (This is expected and led to property/conjecture above, but not done calculatedly).", I'm totally lost ...
+I think it would be not very difficult to imagine a way to generate the restrictions so that the problem is guaranteed to be feasible (make sure that you introduce no cycle in the temporal constraints network when adding station restrictions, etc.), while not relying on the constraint that the optimal solution to the unrestricted problem should remain feasible.
+
+I still think that the article would benefit from working with a larger set of instances adapted from the literature. 
+
+The arguments for explaining the relative behavior of CP and MIP based on their number of variables and constraints is still not convincing at all. So, as I mentioned, it would be better just to remove it.
+
+The formatting of the formulations in sections 4 and 5 is still difficult to parse. I understand that the journal enforces some particular LaTeX style but I'm pretty sure it is possible to improve the format while satisfying those journal style constraints.
+
+________________________________________
+Reviewer Confidential Comments to Editor
+
+I let the editor judge if the article should be rejected or (re)accepted with major revision.
+
+Like last time, I think there is still a very important effort to be made to improve the article. But it is already the third version and given that it only very incrementally improves from version to version, this time I'm leaning toward a rejection.
+

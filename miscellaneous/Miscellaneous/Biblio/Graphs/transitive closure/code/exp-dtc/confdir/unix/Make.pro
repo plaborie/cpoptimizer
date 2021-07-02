@@ -1,0 +1,24 @@
+
+IFLAGS = -I../incl
+
+o = .o
+e =
+
+include ../Make.lst
+
+all:  $(PROGS)
+
+.c.o:
+	$(CC) $(CFLAGS) $(FLAGS) $(DFLAGS) $(IFLAGS) $(IPATH) -c $*.c
+
+.o:
+	$(LD) -o $* $*.o $(XLIB_PATH) $(LDFLAGS) $(LPATH) $(UNIXLIB)
+
+.c:
+	$(CC) $(CFLAGS) $(FLAGS) $(DFLAGS) $(IFLAGS) $(IPATH) -c $*.c
+	$(LD) -o $* $*.o $(XLIB_PATH) $(LFLAGS) $(LDFLAGS) $(LPATH) $(UNIXLIB)
+
+
+clean:
+	@ $(RM) *.o $(PROGS) core
+

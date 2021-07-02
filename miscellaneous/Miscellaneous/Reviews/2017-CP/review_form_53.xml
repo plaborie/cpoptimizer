@@ -1,0 +1,267 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="3280075::1582699"
+        submission="53"
+        title="A Model-Based Genetic Algorithm Framework for Constrained Optimisation Problems"
+        authors="(anonymous)"
+        pc_member="Philippe Laborie">
+<field id="434156" name="Relevance">
+  <!--
+    == How relevant is the submission to the scope of the conference (all
+    == aspects of computing with constraints)?
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Relevance
+    == below. This field is required.
+    -->
+
+The article describes a generic Genetic Algorithm framework for implementing the search for solving a CP model. I think the topic is clearly relevant to the CP conference.
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 4
+    
+  </score>
+</field>
+<field id="434157" name="Significance">
+  <!--
+    == How significant are the contributions of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434158" name="Originality">
+  <!--
+    == What is the level of originality of this submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434159" name="Technical Quality">
+  <!--
+    == What is the level of technical quality of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 2
+    
+  </score>
+</field>
+<field id="434160" name="Presentation">
+  <!--
+    == What is the level of presentation of the submission?
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 excellent
+    == 4 good
+    == 3 fair
+    == 2 poor
+    == 1 very poor
+    --> 3
+    
+  </score>
+</field>
+<field id="409476" name="Overall evaluation">
+  <!--
+    == Please provide a detailed review, including a justification for your
+    == scores. Both the score and the review text are required.
+    -->
+  <text required="required">
+  <!--
+    == Enter the text for the field
+    ==   Overall evaluation
+    == below. This field is required.
+    -->
+
+The paper describes a Genetic Algorithm (GA) for solving Constrained Optimization Problems. 
+
+I find that the paper describes CP in a quite naive way, as if a plain Branch and Bound tree-search was something good enough to compare to whereas it is well known that such an approach produces very bad solutions for optimization problems and many hybridations of CP with meta-heuristics have been proposed resulting in much better results (LNS as used in the article is indeed one of them). This should mitigate the statement that "research in CP has focused largely on finding feasible slutions, rather than near-optimal solutions". This may have been true 20 years ago but not nowadays.
+
+The use of GA on top of CP is not something new. The authors mention CP Optimizer. This CP engine implements (since about 10 years) an automatic search based on GAs known as "Multi-Point" search. See for instance:  
+
+R. Dumeur. "Evolutionary Multi Point Search in CPLEX Studio's Constraint Programming Solver Engine". INFORMS 2014 Annual Meeting.
+
+There are even a few patents about the implementation of this approach:
+- Systems and methods for applying evolutionary search to generate robust search strategies: https://www.google.com/patents/US20090228414
+- Approximate assignment operator for constrained based evolutionary search https://www.google.com/patents/US20150120778
+
+I think the authors should at least compare their approach with the one implemented in CP Optimizer. 
+
+One issue that the proposed GA does not handle is the case where finding a feasible solution is difficult. The GA approach in CP Optimizer handles this problem by allowing infeasible solutions encoded in the genotype and, in a first stage of the search, try to maximize the solution completness in order to build feasible solutions, before switching to the optimization of the objective. 
+
+Another aspect, not treated in the present article but that seems important when solving real problems is the use of Lamarckian operators to re-inject some features of the decoded solutions into the genotype.
+
+The idea to prefer the values of the two parents over the other values is interesting but it looks a bit rigid: often, one would like to select a "similar" value (according to some criteria, for instance the smallest one in the domain) but not necessarily the "same" value (as selecting a "similar" value will depend on the instantiation of the other variables). It would I think make (more?) sense to encode for each variable, not the value itself, but the strategy that is used to select the value (I think this is also something quite common in GAs working on top of optimization problems). Then, for most of the problems, selecting a random value (this is what is done in the proposed GA when the two prefered values from the parent do not work) really not good. Think for instance of the jobshop problem, it will try to fix the start time of the operation at a random time in the domain! In general, it seems that the selection strategies controlled by the GA (random selection of variables, random selection of values beside the two preferred ones) are so bad that even a "good" GA may have difficulty driving these heuristics toward a good solution. 
+
+The problems used in the experimental section are of course NP-hard problems but they are very "pure" ones that do not reflect the complexity of real optimization problems (with different sources of complexity). You say in the introduction that "modelling COPs [in CP] is nearly trivial". Did you try for example to extent the CVRP problem with a few additional features like: trucks with different capacity and speed, time-windows for visits, possibility to return to the depot to reload the truck when it is empty, etc. Do you have an idea how the proposed GA would behave on this type of more heterogeneous problem?
+
+The experimental section is not really convincing. I'll leave aside the comparison with plain B&B, which I think is not informative because this approach just does not work on optimization problems. The proposed GAs seems not really competitive with the LNS approach but, what worries me even more is that for most of the problems (except maybe for bin-packing), the normalised cost of ConGA can be very large (up to almost 3 for CVRP, 9 for JSSP, 3 for TSP). The normalised cost is not formally defined (it should) but I suppose it is the ratio between the value of the cost of the solution found by an algorithm compared to the optimal cost. But then, these normalised costs are really very large ...
+
+A remark concerning parallelization: it is completly true that parallelization would help improving the performance of the GA, but the same can be said about LNS: the exploration of different large neighborhoods can be parallelized too.
+
+In section 3.4, you mention a Figure 6 that is not included in the paper. 
+
+  </text>
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 3 strong accept
+    == 2 accept
+    == 1 weak accept
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+    --> -2
+    
+  </score>
+</field>
+<field id="409477" name="Reviewer's confidence">
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+    --> 4
+    
+  </score>
+</field>
+<field id="434161" name="Best Student Paper">
+  <!--
+    == Consideration for best student paper
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434162" name="Best Paper Award">
+  <!--
+    == Consideration for best paper award
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="434163" name="Journal-First Track">
+  <!--
+    == Consideration for Journal-First Track
+    -->
+  <score>
+  <!--
+    == Select your choice from the options below and write its number below,
+    == before the </score> tag.
+    ==
+    == 1 yes
+    == 0 no
+    --> 0
+    
+  </score>
+</field>
+<field id="409478" name="Confidential remarks for the program committee">
+  <!--
+    == If you wish to add any remarks intended only for PC members please
+    == write them below. These remarks will only be seen by the PC members
+    == having access to reviews for this submission. They will not be sent
+    == to the authors. This field is optional.
+    -->
+  <text optional="optional">
+  <!--
+    == Enter the text for the field
+    ==   Confidential remarks for the program committee
+    == below. This field is optional.
+    -->
+
+I find this paper really naive, both about CP in general and about the capability of the proposed GA (even if, of course, using a GA on top of CP clearly makes sense).
+
+  </text>
+</field>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

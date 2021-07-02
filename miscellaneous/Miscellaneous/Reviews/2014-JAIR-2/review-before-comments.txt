@@ -1,0 +1,106 @@
+Title: Scheduling Conservation Designs for Maximum Flexibility via Network Cascade Optimization
+Author(s): Shan Xue, Alan Fern and Daniel Sheldon
+
+
+Overall evaluation
+==================
+
+[ ] Accept as is
+[ ] Accept with minor revisions
+[ ] Reject with encouragement to resubmit
+[ ] Reject
+
+Normally we will not accept a paper if it requires major revisions. In addition to your overall evaluation for the editor, please also include comments and suggestions for the authors.
+
+Comments and suggestions
+========================
+
+The article deals with a very interesting and original application for scheduling 
+flexible conservation designs. The problem is seen as a stochastic optimization 
+problem where the problem is to maximize schedule flexibility (formulated as a 
+cost minimization) while ensuring a minimum reward (amount of population spread 
+at the schedule horizon).
+
+The problem is solved in the following way:
+1- A deterministic model is built (network cascade) using a scenario-based approach
+2- This deterministic model is generalized as a new problem on graphs: set-weighted 
+   directed steiner graph (SW-DSG)
+3- A MIP formulation of the SW-DSG problem is provided, which is shown not to scale 
+   well enough for the application
+4- A Primal-Dual approach is proposed for the SW-DSG problem that boils down to a 
+   greedy algorithm that provides a feasible solution and a lower-bound on the cost
+
+The article is well structured, well illustrated with figures and easy to read, 
+except maybe the beginning of section 5.1 where some more details could be given 
+about the dual formulation of the problem.
+
+The adequacy of the article with AI is not evident. It for sure deals with an
+optimization problem but the method itself consists of a greedy algorithm (no search, 
+no real inference mechanism) that is more based on classical OR concepts (Math 
+Programming, Graph theory).
+
+One thing that is not clear in the paper is whether the original problem formulated in 
+section 3.3 is "equivalent" to the SW-DSG problem. The article proves that the 
+original problem can be expressed as a SW-DSG problem but the original problem could 
+be simpler. It is shown that SW-DSG problem is NP-Hard even for acyclic graphs, but in 
+the original problem there is an additional property that is related with some 
+particular structure of the subsets { Ei }. For instance, there is a partition of the 
+{ Ei } in P1, ..., Pp (These subsets P corresponds to the parcels) such that (1) for 
+i!=j, any subset Eik of Pi is disjoint from any subset Ejl of Pj (each patch is 
+associated a unique parcel), (2) for each i, subsets Eik of Pi are included in one 
+another like russian dolls (this is the fact a parcel purchased before t-1 is also 
+considered as purchased at time t) and (3) the smallest subsets Eik of the Pis form a 
+partition of the terminal nodes (the terminal nodes are the ones at the horizon of the 
+schedule, which corresponds to the smallest subsets Eik). For me, it is still not 
+clear whether the original problem is NP-Hard or not. For instance the reduction of 
+weighted set cover to the SW-DSG problem results in a subset family that does not seem 
+to satisfy the above properties. This being said, I admit that the proposed SW-DSG 
+problem is very interesting in itself.
+
+It is strange that in the description of the problem, there seem to be some focus on 
+defining a partial order between the schedules (relation <c) and the fact there is not 
+a unique solution. This may suggest that one could be interested in computing several 
+non-dominated solutions. But in the sequel of the paper, relation <c is aggregated as 
+a unique surrogate objective function (section 4.1) and the relation between this 
+function and the partial order is not reconsidered anymore in the paper. I'm wondering 
+if it would not simplify the paper just to avoid mentioning this partial order and 
+starting right from the surrogate function which can be considered as making sense as 
+it could be related with some net present value. 
+
+When \epsilon=0, the number of cascades N plays a double role: N should be big enough 
+to have a good model for uncertainties (so a good estimation of the reward), but if N 
+is too big, this will necessarily decrease the flexibility of the schedule (when N 
+tends to infinity, the schedule tend to the upfront non-flexible schedule). So the 
+selected value for N should I think be more motivated in the experimental section. 
+Currently, the selected value N=10 is motivated only in light of the expected reward:
+"We also see that 10 cascades is quite close to get the best performance and the rate 
+of improvement is slowing down. Thus, the remainder of our experiments use 10 cascades 
+for the SAA."
+
+It is difficult to assess the quality of the proposed approach in terms of how close 
+it is to the optimal solution. Well, this is unfortunately true as soon as one works 
+on large complex problems like here. Figure 8 suggests that the approach is about 15% 
+above the optimal solution found by the MIP on small problems. This gap is difficult 
+to interpret, especially as the cost objective is an aggregated function with 
+exponential terms. It would be very informative to compare the cost curves with the 
+optimal ones for these small problems. On a similar line, I think you should justify 
+why you consider that a lower bound that is within a factor 2 is quite informative 
+because in general, such a gap would be considered as quite large.
+
+Some more detailed remarks and typos:
+
+In section 3.3, when explaining the graph representation ("More concretely ..."), it 
+would be good to explicitly mention how extinction is modeled even if this is trivial 
+(no arc between t and t+1).
+
+Page 20, "The the SAA"
+
+Page 22, in subsection "Number of Cascades in the Scenario Graph". When you say you 
+are running 20 simulations, these are simulations that are used to evaluate the 
+approach. This is not related with the number N of scenarios used in the cascade mode, 
+right? There is some possible ambiguity here.
+
+In the end of section 6.3, it would be good to add a figure for the cost curves of the 
+early-stopping schedules.
+
+

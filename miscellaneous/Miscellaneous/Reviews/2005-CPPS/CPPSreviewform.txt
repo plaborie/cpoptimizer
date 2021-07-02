@@ -1,0 +1,57 @@
+
+TITLE:
+AUTHOR(S):
+
+1) SUMMARY (please provide brief answers)
+
+- What is/are the main contribution(s) of the paper?
+
+
+2) TYPE OF THE PAPER
+
+The paper reports on:
+ [ ] Preliminary research
+ [ ] Mature research, but work still in progress
+ [ ] Completed research
+
+
+3) GENERAL RATINGS
+
+Please rate the 6 following criteria by, each time, using only one of the
+five following words: BAD, WEAK, FAIR, GOOD, EXCELLENT 
+
+3a) Relevance:
+3b) Originality: 
+3c) Significance, Usefulness: 
+3d) Technical soundness:
+3e) References: 
+3f) Presentation: 
+
+
+4) SUGGESTED/REQUIRED MODIFICATIONS;
+
+
+5) GENERAL RECOMMENDATION
+
+5SA) [ ] recommended for acceptance as it is (full paper)
+5WA) [ ] recommended for acceptance after necessary modifications
+5PA) [ ] recommended for acceptance as a short paper
+5SR) [ ] not recommended for acceptance
+
+
+6) REVIEWER'S CONFIDENCE IN THE SUBJECT AREA OF THE PAPER
+
+  [ ] High
+  [ ] Medium
+  [ ] Low
+
+
+
+----- INFORMATION FOR PROGRAMME COMMITTEE ------------------------
+
+Name of the reviewer:
+Comments for the Program Committee only (use this slot only if
+necessary):
+
+
+

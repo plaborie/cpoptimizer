@@ -1,0 +1,181 @@
+<!--
+  == For your convenience, this form can be processed by EasyChair
+  == automatically. You can fill out this form offline and then upload it
+  == to EasyChair. Several review forms can be uploaded simultaneously.
+  == You can modify your reviews as many times as you want.
+  == 
+  == When filling out the review form please mind the following rules:
+  == 
+  == (1) Blocks such as this are comments. EasyChair will ignore them.
+  ==     Do not write any text into these blocks as it will be ignored.
+  ==     You can add comments to the review form or remove them.
+  == (2) Write only into the tags where instructed. Do not modify any
+  ==     tags and attributes, or the review will become unusable and will
+  ==     be rejected by EasyChair.
+  -->
+<review id="2316966::1142674"
+        submission="91"
+        title="A Global Constraint for a Tractable Class of Temporal Optimization Problems"
+        authors="Alban Derrien,
+                 Jean-Guillaume Fages,
+                 Thierry Petit,
+                 Charles Prud'Homme"
+        pc_member="Philippe Laborie">
+<score id="312136" name="Relevance">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="312137" name="Significance">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 3
+  
+</score>
+<score id="312138" name="Originality">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 3
+  
+</score>
+<score id="312139" name="Technical Quality">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="312140" name="Presentation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 excellent
+  == 4 good
+  == 3 fair
+  == 2 poor
+  == 1 very poor
+  --> 4
+  
+</score>
+<score id="286882" name="Overall evaluation">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 3 strong accept
+  == 2 accept
+  == 1 weak accept
+  == 0 borderline paper
+  == -1 weak reject
+  == -2 reject
+  == -3 strong reject
+  --> 1
+  
+</score>
+<score id="312141" name="Best Paper candidate?">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 yes
+  == 0 no
+  --> 0
+  
+</score>
+<score id="312142" name="Best Student Paper? (if applicable)">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 1 yes
+  == 0 no
+  --> 0
+  
+</score>
+<score id="286883" name="Reviewer's confidence">
+<!--
+  == Select your choice from the options below and write its number below,
+  == before the </score> tag.
+  ==
+  == 5 (expert)
+  == 4 (high)
+  == 3 (medium)
+  == 2 (low)
+  == 1 (none)
+  --> 4
+  
+</score>
+<!-- ======== Review ======== -->
+<text id="286885" name="Review">
+<!--
+  == Please provide a detailed review, including justification for your
+  == scores. This field is required unless you add an attachment..
+  -->
+
+The paper describes an interesting constraint between an interval variable (task) and a set of fixed intervals saying that at the interval variable mus satisfy a given Allen composite relation with at least one of the fixed intervals. A global form of this constraint is proposed that propagates the above constraint for a sequence of interval variables.
+
+The paper is well written and organized and pleasant to read. A naive propagation is first proposed which runs in O(m.n), an optimized version of the propagation that exploits the ordering of both the interval variables and the fixed intervals runs in O(n+m), it is based on a single iteration that advances both the cursor on the interval variables and the fixed intervals. 
+
+In the experimental study, the two versions of the propagation are compared together and against a model using  composite constraints (disjunctions of basic constraints).
+
+In the problem of the experimental study, the proposed ExistAllen constraint is only used for constraint (2). What about constraint (3) and the objective function, how were they modeled in the study ?
+
+One question that is not really addressed in the paper is the one of the genericity of the proposed constraint. In the study, the constraint is used with the "covers" Allen constraint ({fi,di,eq,si}). Do you see other relations that could be useful in other types of applications and would not be covered by classical existing constraints ? The conclusion mentions the visibility windows for satellite communication scheduling with a "during" Allen relation, but this boils down to a much more classical constraint that is commonly used for instance in constraint-based scheduling (no-overlap with a set of fixed forbidden windows). Do you see other real use-cases beside the video summarization problem ?  
+
+
+</text>
+<text id="286886" name="Confidential remarks for the program committee">
+<!--
+  == If you wish to add any remarks intended only for PC members please
+  == write them below. These remarks will only be seen by the PC members
+  == having access to reviews for this submission. They will not be sent to
+  == the authors. This field is optional..
+  -->
+
+
+
+
+
+
+</text>
+<reviewer>
+  <!--
+    == If the review was written by (or with the help from) a subreviewer
+    == different from the PC member in charge, add information about
+    == the subreviewer below. Write subreviewer's first name, last name
+    == and email between the tags below.
+    -->
+  <first_name>  </first_name>
+  <last_name>   </last_name>
+  <email>  </email>
+</reviewer>
+</review>

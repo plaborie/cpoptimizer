@@ -1,0 +1,124 @@
+Evaluation of work and contribution	1-5: 3
+Significance				1-5: 4
+Originality and novelty 		1-5: 4
+Relevance to the call of papers 	1-5: 4
+Readability and organization 		1-5: 3
+Technical quality 			1-5: 4
+Overall recommendation  		1-5: 3
+Confidence				1-5: 4
+
+--------------------------------------------------------
+Comments to author(s):
+
+This paper describes the following contributions:
+- an extension of the DTPP framework, called MC-DTPP, to allow the
+expression of multi-criteria and compose them using Multi-Attribute
+Utility Theory (MAUT).
+- two algorithms for solving the problem
+- an experimental evaluation 
+
+The model extension mainly consists in using a MAUT objective function
+with a two-additive Choquet integral as aggregation function. The
+approach is not new but its application to DTPP seems to be
+original. The extension is well motivated by an interesting example
+inspired from an actual application.
+
+The time numbers on Figure 1 are not at the right place, they should
+be lifted to the left as one gets the feeling that lunch time is
+between 11:30 and 12:30.
+
+In section 4.2, after the definition of u_i in equation (5), it is
+not clear why if all constraints are satisfied to their lowest
+preference levels, the utility is 0. Can't the lowest preference level
+of a constraint be strictly positive?
+
+The claim that the MC-DTPP can express any of the existing DTPP
+objective functions (col1, p4) does not seem to be true as, precisely,
+the maximin criterion cannot be modelled with the two-additive Choquet
+integral. For that, one needs the full Choquet integral which may be
+more complex to compute and seems to be, for that reason, outside the
+scope of MC-DTPP. I think this claim of additional expressivity should
+be softened.
+
+The algorithms for solving MC-DTPP use the existing MCS framework
+which is composed of two ingredients:
+- a mono-criterion search 
+- a way to combine mono-criterion searches in order to reach a global
+  optimum
+
+In the paragraph that describes the principles of the MCS approach, it
+should be precised that the global optimality is ensured only if some
+"weak completeness" property of the mono-criterion search holds.
+
+The mono-criterion search proposed in the paper is a direct adaptation
+of the preference slicing algorithm already described in [1] where it
+is explained how to convert a DTPP into a VDTP. In the present paper,
+only the objective function changes.
+
+The way to combine mono-criterion searches is not detailed in the
+paper. It makes it really hard to assess the interest of the
+preliminary experimental results. I think the paper should give more
+details about the algorithms and save some space in section 4.1
+that describes the motivating example. 
+
+In the experimental study, you should say something about the way the
+matrix A is generated. How realistic is this criterion, how "far" is
+it from the utilitarian one (sum), or from the local approximation of
+maximin mentioned on page 4?
+
+The comparison between Multilitis-MC/MP and Multilitis-BB is not
+really informative given that the heuristics are not described in the
+paper (they probably have a strong impact on the performances) and
+that the two approaches explore the search space in very different
+ways (iterative solve v.s. unique search tree).
+
+For the comparison between Multilitis-BB and WeightWatcher, was the
+same heuristic used to solve the meta-CSP? 
+
+Some typos:
+col1,p4, section 5: "an DTPP"
+col1, p5, section 5.2: "An Multi-Criteria ..."
+references: [17]: preferece
+
+[1] M. Moffitt, M. Pollack. Temporal preference optimization as
+weighted constraint satisfaction. In Proc. AAAI'06. July 2006.
+
+--------------------------------------------------------
+Confidential comments to PC members:
+
+The paper is a sum of small contributions and putting several existing
+techniques together in the context of DTPP. The paper is nice but I'm
+not sure the global contribution is sufficient for IJCAI.
+
+--------------------------------------------------------
+Summary of review (to author(s) and PC members):
+
+This paper describes the following contributions:
+- an extension of the DTPP framework, called MC-DTPP, to allow the
+expression of multi-criteria and compose them using Multi-Attribute
+Utility Theory (MAUT).
+- two algorithms for solving the problem
+- some preliminary experimental results 
+
+The model extension mainly consists in using a MAUT objective function
+with a two-additive Choquet integral as aggregation function. The
+approach is not new but its application to DTPP seems to be
+original. The extension is well motivated by an interesting example
+inspired from an actual application.
+
+The algorithms for solving MC-DTPP use the existing MCS framework
+which is composed of two ingredients:
+- a mono-criterion search 
+- a way to combine mono-criterion searches in order to reach a global
+  optimum
+
+The mono-criterion search proposed in the paper is a direct adaptation
+of the preference slicing algorithm already described in [1] where it
+is explained how to convert a DTPP into a VDTP. In the present paper,
+only the objective function changes.
+
+The way to combine mono-criterion searches is not detailed in the
+paper. It makes it really hard to assess the interest of the
+preliminary experimental results. I think the paper should give more
+details about the algorithms and save some space in section 4.1
+that describes the motivating example.

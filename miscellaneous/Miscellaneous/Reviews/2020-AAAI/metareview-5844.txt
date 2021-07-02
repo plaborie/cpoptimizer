@@ -1,0 +1,13 @@
+Recommendation: Accept?
+
+The contribution of the paper is on complexity analysis of a problem for optimizing reachability
+sets in temporal graphs by different forms of delaying.
+
+All reviewers agree on the importance, interest and originality of the contribution.
+
+The article is more on the theoretical side (complexity analysis) than about a practical resolution of the problem.
+The paper provides non-trivial results and is technically sound.
+
+The main discussion is whether or not such a complexity analysis paper fits the topics of AAAI conference.
+I think it does, in light of many complexity analysis papers accepted in past AAAI conferences,
+even if, I agree, the paper could be improved by briefly describing some use-cases for the proposed delaying schemes.

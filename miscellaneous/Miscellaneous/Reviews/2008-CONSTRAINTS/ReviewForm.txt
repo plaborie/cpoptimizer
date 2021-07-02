@@ -1,0 +1,63 @@
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Paper title: 
+Evaluating the Impact of AND/OR Search on 0-1 Integer Linear Programming
+
+Authors: Radu Marinescu, Rina Dechter
+
+
+The article builds on previous work of the authors on AND/OR search
+spaces. The present article applies and extends this previous work to
+0-1 ILP and describes techniques such as dynamic variables ordering
+and caching to speed-up the search.
+
+This work is significant for 0-1 ILP and more generally for ILP and
+MIP. The experimental results although limited to 3 types of problems
+are encouraging.
+
+I think the paper could be improved on two aspects:
+
+1. Highlighting the original contribution of the present paper with
+respect to previous work of the authors on AND/OR search spaces. I
+have noticed that the authors payed attention to thoroughly refer to
+previous work of their own but it is not always clear on each
+particular topic (e.g. caching or dynamic variable ordering) what was
+done previously and how the present approach exploits the
+particularity of 0-1 ILP compared to more general constraint
+optimization problems.
+
+2. Making it more self-contained. In general, the paper is well
+written but some particular points should be more detailed in order to
+make the article more self-contained. For instance:
+
+ - the notion of induced graph should be better explained, maybe with
+ a figure. I find the following sentence confusing: "For each node all
+ its earlier neighbors are connected, including neighbors connected by
+ previously added edges".
+
+ - in the definition of the notion of pseudo-tree, it is not clear
+ whether E' has to be a subset of E (in the example on Figure 2 it is
+ the case but I guess it does not have to)
+
+ - the notions of context and cache should be more detailed in the
+ paper, even if it has already been described in previous work.
+
+In the future work, I was surprised that the generalization of the
+presented approach to general ILP and to MIP was not mentioned. I have
+the feeling that the approach can easily be generalized to MIP and
+that would dramatically improve the scope of the approach. 
+
+Some more detailed comments:
+
+p4: "One of the most important constraint optimization problems ...":
+this sentence describes general ILP and then, just under, the
+definition is not the one of general ILP as one could expect but the
+one of the more restricted 0-1 ILP.
+
+p34: Typo: "Our depth-first AND Branch-and-Bound" => AND/OR.
+
+
+
+----------------------------------------------------------------------
+Reviewer: Philippe Laborie

@@ -1,0 +1,123 @@
+--------------------------------------------------------------
+--- For your convenience, this form can be processed by EasyChair
+--- automatically. You can fill out this form offline and then
+--- upload it to EasyChair. Several review forms can be uploaded
+--- simultaneously. You can modify your reviews as many times as
+--- you want.
+--- When filling out the review form please mind
+--- the following rules:
+--- (1) Lines starting with --- are comments. EasyChair will
+---     ignore them. Do not start lines in your review with ---
+---     as they will be ignored. You can add comments to the
+---     review form or remove them
+--- (2) Lines starting with *** are used by EasyChair. Do not
+---     remove or modify these lines.
+--------------------------------------------------------------
+*** REVIEW FORM ID: 149689::90353
+*** SUBMISSION NUMBER: 65
+*** TITLE: Finding Sub-optimal Solutions for Problems of Path Planning for Multiple Robots in θ-like Environments
+*** AUTHORS: (anonymous)
+*** PC MEMBER: Philippe Laborie
+--------------------------------------------------------------
+*** REVIEW:
+
+The paper describes an algorithm for solving a special case of
+multi-robot path planning: the one on theta-like graphs and with only
+one unoccupied vertex.
+
+The work relies on a very interesting exploitation of some existing
+theoretical results on the decomposition of permutations into
+transpositions and/or 3-cycle rotations.
+
+The paper is well written, especially the part about the theoretical
+foundations and the one about the solving algorithm. The section about
+the improved IDA* is less clear and would deserve, if possible, a
+figure illustrating how the algorithm traverses the different
+arrangements of robots.
+
+The problem studied in the paper seems to be very specific: special
+type of graph (theta-like) and only one unoccupied vertex. It is
+mentioned both in the introduction and in the conclusion that (1) this
+case is one of the most difficult case of the problem "in a certain
+sense" and (2) solving the general problem can exploit the special
+case algorithm described in the paper. But those two claims are not
+supported in the paper and I think this is the main weakness of the
+paper. Something should be said about the reason why this specific
+case is so important.
+
+The experimental comparison with the MIT algorithm is quite impressive
+but it should be highlighted that the MIT algorithms works on an
+arbitrary graph (an an arbitrary number of unoccupied places?) whereas
+the proposed approach is dedicated to theta-graphs and 1 unoccupied
+position. From the other side, one has the feeling that we probably
+lose a lot in the sense of solution length when decomposing the
+permutation into transpositions and 3-cycles. It would really be
+interesting to have some good lower bounds on the length of the
+optimal solution in order to quantify what is lost with the
+decomposition.
+
+Detailed comments:
+
+p3, col1: it should be made clear that for G(2,3,2), only some
+transpositions are feasible (if I get it well)
+
+p3, col1: it would be good to have a reference for the statement that
+when there is no cycle of odd length only arrangements corresponding
+to even permutations are reachable.
+
+p3, col1: after proposition 4: is O(|V^4|) the size of the sub-optimal
+solution or the algorithmic complexity to build it, or both ?
+
+p3,col1: I guess the size of the table for transpositions is O(n^2)
+whereas the size of the table for 3-cycles is O(n^3) if n is the size
+of the graph. The position of the unoccupied position does not enter
+into consideration here, maybe it should be mentioned why.
+
+
+--------------------------------------------------------------
+*** REMARKS FOR THE PROGRAMME COMMITTEE:
+
+
+
+--------------------------------------------------------------
+*** REVIEWER'S FIRST NAME: (write in the next line)
+
+*** REVIEWER'S LAST NAME: (write in the next line)
+
+*** REVIEWER'S EMAIL ADDRESS: (write in the next line)
+
+--------------------------------------------------------------
+--- In the evaluations below, uncomment the line with your
+--- evaluation or confidence. You can also remove the
+--- irrelevant lines
+*** OVERALL EVALUATION:
+
+2 (accept)
+
+*** REVIEWER'S CONFIDENCE:
+
+3 (high)
+
+*** RELEVANCE TO CONFERENCE/SPECIAL TRACK: from 1 (lowest) to 5 (highest)
+
+3 (somewhat relevant)
+
+*** ORIGINALITY & SIGNIFICANCE: from 1 (lowest) to 5 (highest)
+
+4 (Mostly original and significant)
+
+*** TECHNICAL QUALITY: from 1 (lowest) to 5 (highest)
+
+4 (Paper has only minor technical flaws, mostly sound.)
+
+*** PRESENTATION: from 1 (lowest) to 5 (highest)
+
+4 (Easy to read and understand with only minor)
+
+
+*** SHOULD THIS SUBMISSION BE CONSIDERED FOR BEST PAPER?: from 1 (lowest) to 3 (highest)
+
+1 (no)
+
+*** END
+--------------------------------------------------------------

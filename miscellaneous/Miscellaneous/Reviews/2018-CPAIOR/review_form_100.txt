@@ -1,0 +1,100 @@
+PAPER  : #100
+TITLE  : Fleet Scheduling in Underground Mines using Constraint Programming
+AUTHORS: Max Astrand, Mikael Johansson and Alessandro Zanarini
+
+SCORE:
+    ==  3 strong accept
+    ==  2 accept
+    ==  1 weak accept
+    ==  0 borderline paper
+    == -1 weak reject
+    == -2 reject
+    == -3 strong reject
+-1
+
+
+REVIEWER'S CONFIDENCE
+    == 5 (expert)
+    == 4 (high)
+    == 3 (medium)
+    == 2 (low)
+    == 1 (none)
+5
+
+
+REVIEW
+
+> Please provide a detailed review, including a justification for your scores. 
+> Both the score and the review text are required.
+
+The problem is interesting, in particular because of the way the blasting activities are constrained.
+
+This being said, there are a few things that are not clear in the model.
+
+First, why do you need a disjunctive constraint on the faces? (constraint 10). It seems to me the precedence constraints between the activities of the face are sufficient as the total order of activities is known for a given face.
+
+Second, for a given type of machines, the machines are all equivalent, why don't you use a discrete resource and a cumulative constraints instead of handling resource allocation that introduces a lot of symmetries in the problem?
+
+It is surprising that you mention that the model is based on optional interval variables (which indeed make a lot of sense in your context) as, if I do not mistake, Gecode does not handle this type of decision variables.
+
+I think that it would be interesting to try an optional interval variable model with a solver like CP Optimize that would have the additional advantages that:
+1- some of the constraints that require reified constraints/expressions in the proposed model (through the o^f_ir boolean variables like the unary constraints and the objective expression) or for modeling interruptible activities could be modeled as direct constraints in CP Optimizer (with optiona interval variables in the first case and ith the notion of intensity function for interruptible activities and forbidden time windows during blast)
+2- most of the search methods proposed as future work (like LNS and use of math-programming model for the machine allocation part) are already available in the automatic search of CP Optimizer
+
+By curiosity I tried to formulated the problem with a very simple CP Optimizer model and tried to solve the largest instance 10F2CCM shown on Figure 1 (or a very similar one as getting the exact durations/times from the figure is not very easy). I attach the complete model below. Using 12.8, an optimal solution and its optimality proof is found by the automatic search (no parameter change) in a couple of seconds. 
+
+Of course, if you have to handle travel times of machines, machine allocation need to be handled. But the CP Optimizer model can very easily be adapted to use unary machines with htravel times (noOverlap constraint with a transition distance matrix).
+
+The studied instances are in fact quite small. Do you think this is a realistic size for the actual mining application?
+
+ using CP;
+ 
+ tuple Activity {
+   key int face; // Face the activity is working on
+   key int pos;  // Position of the activity in the chain for its face
+   int mach;     // Machine type used by the activity
+   int duration; // Duration
+   int delay;    // Delay with next activity in the chain
+   int blast;    // Equals 1 for blasting activity
+   int interruptible; // Equals 1 if activity is interruptible
+ }
+ 
+ {Activity} Acts = ...;
+ {int} Faces = union (a in Acts) { a.face };
+ range Machines = 1..8;
+ int Capacity[Machines] = ...;
+ 
+ int NbActs[f in Faces] = max(a in Acts: a.face==f) a.pos;
+ 
+ stepFunction blasting[0..1] = [
+   stepwise { 100->1; 0->2; 100->10; 0->11; 100->17; 0->18; 100->25; 0->26; 100->34; 0->35; 100->41; 0->42; 100->49; 0->50; 100->58; 0->59; 100->65; 0->66; 100->73; 0->74; 100 },
+   stepwise { 100->100; 100 }
+ ];
+ 
+ stepFunction notblasting = stepwise { 0->1; 100->2; 0->10; 100->11; 0->17; 100->18; 0->25; 100->26; 0->34; 100->35; 0->41; 100->42; 0->49; 100->50; 0->58; 100->59; 0->65; 100->66; 0->73; 100->74; 0 };
+ 
+ dvar interval act[a in Acts] size a.duration intensity blasting[a.blast];
+ 
+ minimize sum(f in Faces) endOf(act[<f,NbActs[f]>]);
+ subject to {
+   forall(a1,a2 in Acts: a1.face==a2.face && a1.pos==a2.pos-1)
+     endBeforeStart(act[a1], act[a2], a1.delay);  // Activity chain for each face
+   forall(m in Machines)
+     sum(a in Acts: a.mach==m) pulse(act[a],1) <= Capacity[m]; // Machine capacity
+   forall(a in Acts: a.interruptible==0)
+     forbidExtent(act[a],blasting[0]); // Non-interruptible activities do not overl blast time
+   forall(a in Acts: a.blast==1)
+     forbidExtent(act[a],notblasting); // Blasting activities executed during blast time
+ }
+ 
+
+
+CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE 
+
+> If you wish to add any remarks intended only for PC members please
+> write them below. These remarks will only be seen by the PC members
+> having access to reviews for this submission. They will not be sent
+> to the authors. This field is optional.
+
+The problem is interesting but the approach, so far, is quite naive and the results are not really impressive.
+

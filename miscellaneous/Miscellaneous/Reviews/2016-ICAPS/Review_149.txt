@@ -1,0 +1,107 @@
+Title: Deploying a Schedule Optimization Tool for Vehicle Testing
+Authors:	(anonymous)
+PC member: 	Philippe Laborie
+
+Evaluation
+  Overall evaluation
+    3: strong accept
+    2: accept
+    1: weak accept
+    0: borderline paper
+    -1: weak reject <<<
+    -2: reject
+    -3: strong reject
+    
+  Reviewer's confidence
+    5: (expert)
+    4: (high) <<<
+    3: (medium)
+    2: (low)
+    1: (none)
+    
+Additional scores
+  (Applications track ONLY): Importance (economic, societal, etc) of the application problem being addressed.
+    5: N/A (not an Applications track paper)
+    4: very important
+    3: moderate <<<
+    2: marginal
+    1: unimportant
+  
+  (Applications track ONLY): Novelty of the application and technical approach to the application.
+    5: N/A (not an Applications track paper)
+    4: very novel - approach and/or application are new
+    3: moderate - application or approach is significantly different <<<
+    2: marginal - parts of the application or approach are new
+    1: none - similar approach to the same application has been used before
+  
+  (Applications track ONLY): Importance of planning/scheduling technology to the solution of the problem.
+    5: N/A (not an Applications track paper)
+    4: very important - essential to solving the problem
+    3: moderately important - adds significant capabilities
+    2: marginally important - improves usability, capabilities or performance <<<
+    1: not important - could be done without it
+  
+  (Applications track ONLY) Maturity.
+    6: N/A (not an Applications track paper)
+    5: study of the success, acceptance, impact and/or deficiencies of a fielded system
+    4: fielded system
+    3: mature system with testing on realistic problems <<<
+    2: early prototype system
+    1: challenge problem
+  
+  (Robotics track ONLY): Balance of Robotics and Automated Planning and Scheduling
+    6: N/A (not a Robotics track paper) <<<
+    5: Excellent mix between the two fields
+    4: Good mix between the two fields
+    3: Fair mix between the two fields
+    2: Nothing Robotics specific, pure "classical" AIPS paper
+    1: Nothing on Automated Planning, pure Robotics paper
+  
+  (Robotics Track ONLY): Evaluation on physical platforms/simulators
+    6: N/A (not a Robotics track paper) <<<
+    5: Runs on real robots
+    4: Runs in a standard robot simulator (Gazebo, Morse etc.)
+    3: Could be used with a simulator or robot
+    2: Still some work to have it running on robots
+    1: Unlikely to be ever running on a robot
+  
+  (Robotics Track ONLY): Significance of the contribution
+    6: N/A (not a Robotics track paper) <<<
+    5: Significant in both Robotics and Planning
+    4: Significant in Planning (i.e. planning researchers would care about this paper)
+    3: Significant in Robotics (i.e. robotics researchers would care about this paper)
+    2: Marginally significant in one Robotics and/or Planning
+    1: Not significant
+  
+  (Applications and Robotics tracks ONLY): Suitable for a demo?
+    4: N/A (not an Applications or Robotics track paper)
+    3: yes
+    2: maybe <<<
+    1: no
+    
+  Nominate for Best Paper Award
+    2: yes
+    1: no <<<
+  
+  Nominate for Best Student Paper Award (if eligible)
+    2: yes
+    1: no <<<
+  
+Review
+
+The application described in the paper is very interesting but I think it is really missing a section that describes the problem with its main decision variables, constraints and optimization criteria.
+
+I also find that the description of the technical approach falls a bit short. In particular it is difficult to see to which extent the "intelligent" scheduling framework that is being used (Aurora) is smart in the context of the application. From the description in the paper, it seems to mostly consist in a set of more or less problem-dependent heuristics each of them being executed in a single pass (or a few passes). The optimization process seems mostly to be manual and there is no real global optimization of the schedule. For instance you say in the introduction that "The result of this work is a scheduling tool that optimizes the overall given test schedule in order to complete the work in a given time window while minimizing the total number of vehicles required for the test schedule." This seems to suggest a well identified objective function (number of required vehicles) and a fully automated optimization process but the selected scheduling techniques do not seem to support this claim. Note that I may be wrong but then, the description of the scheduling techniques used in the application should be improved. Could you elaborate on this point? 
+
+In this context, it would be interesting to compare the proposed approach with the work of Limtanyakul&Schwiegelshohn on a very similar problem [1,2]. These authors are using CP techniques to solve the problem and their approach performs some global optimization of the schedule with the potential to provide and prove optimality of the solutions. It is to be noted that the state of the art in constraint-based scheduling advances very fast and that the CP tools used by Limtanyakul&Schwiegelshohn in 2007 (namely: ILOG Scheduler) has probably already been superseded by new generation generic solvers like CP Optimizer that provides an efficient and robust automatic search able to handle very large scheduling problems.
+
+[1] Kamol Limtanyakul, Uwe Schwiegelshohn: "Scheduling Tests on Vehicle Prototypes using Constraint Programming". Proceedings of the 3rd Multidisciplinary International Scheduling Conference: Theory and Applications, 336--343, 2007 
+
+[2] Kamol Limtanyakul, Uwe Schwiegelshohn: "Improvements of constraint programming and hybrid methods for scheduling of tests on vehicle prototypes". Constraints 17(2): 172-203 (2012)
+
+I understand that a scheduling application is much more than just a model of the problem and some resolution techniques. The acquisition and transformation of data, the interactions with the user (in particular through visualization tools, explanations, what-if analysis, etc.) are also essential but these aspects are not treated enough in detail to understand if the paper brings something really original here.
+
+Confidential remarks for the program committee
+
+Nothing very exciting in this paper even if the application is nice. 
+  

@@ -1,0 +1,170 @@
+Title:	Faster Dynamic-Consistency Checking for Conditional Simple Temporal Networks
+Number: #209
+
+Evaluation
+
+Significance / Importance.
+* Does the paper contribute a major breakthrough or an incremental advance? If the paper describes an application, is the application important?
+ 3: substantial contribution or strong impact
+ 2: modest contribution or average impact
+ 1: minimal contribution or weak impact
+
+2
+
+Soundness.
+* Is the technical development accurate? Does the paper present convincing evidence that supports their claims?
+ 3: correct
+ 2: minor inconsistencies or small fixable errors
+ 1: major errors
+
+2
+
+Novelty.
+* Is the research approach described novel? For an application paper, is the application novel?
+ 3: novel - approach and/or application are new and only a few other similar approaches and/or applications exist
+ 2: moderate - approach and/or application have been developed before, but significant improvements are presented
+ 1: marginal - only parts of the application and/or approach are new
+
+2
+
+Scholarship.
+* Is related work cited and discussed?
+ 3: excellent coverage of related work
+ 2: relevant literature cited but could be expanded
+ 1: important related work missing, or mischaracterizes prior research
+
+2
+
+Clarity.
+* Is the paper clearly organized and clearly written? Does the submission make explicit claims about the capabilities or behavior of the approach?
+ 3: well organized and well written
+ 2: mostly readable with some room for improvement
+ 1: hard to follow
+
+2
+
+Technology Readiness Level.
+* How would you characterize the Technology Readiness Level of the contribution
+ 9: Actual system proven through successful mission operations
+ 8: Actual system completed and qualified through test and demonstration
+ 7: System prototype demonstration in an operational environment
+ 6: System/subsystem model or prototype demonstration in a relevant environment
+ 5: Component and/or breadboard validation in relevant environment
+ 4: Component and/or breadboard validation in laboratory environment
+ 3: Analytical and experimental critical function and/or characteristic proof of concept
+ 2: Technology concept and/or application formulated
+ 1: Basic principles observed and reported
+ 0: N/A - not applicable
+
+3
+
+Reproducibility.
+* Can the work be reproduced or verified based on the paper and any supporting information or data?
+ 5: code and domains (whichever apply) are already publicly available
+ 4: authors promise to release code and domains (whichever apply)
+ 3: authors describe the implementation and domains in sufficient detail
+ 2: some details missing but still appears to be replicable with some effort
+ 1: difficult to reproduce because of missing detail
+ 0: N/A - nothing to reproduce
+
+3
+
+Suitability for Special Track.
+* Is the paper suitable to the track it was submitted to
+ 12: Special Track on Humans and Robotics - Almost all focus is on humans
+ 11: Special Track on Humans and Robotics - Almost all focus is on robotics
+ 10: Special Track on Humans and Robotics - Almost all focus is on planning
+ 9: Special Track on Humans and Robotics - Good balance between planning and robotics
+ 8: Special Track on Planning and Learning - Almost all focus is on learning
+ 7: Special Track on Planning and Learning - Almost all focus is on planning
+ 6: Special Track on Planning and Learning - Good balance between planning and learning
+ 5: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Does not describe a knowledge engineering approach or system architecture.
+ 4: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes an innovative knowledge engineering approach/aspect
+ 3: Special Track on Knowledge Engineering, Integrated Execution, and System Architectures - Describes a general system architecture that incorporates both planning and plan execution
+ 2: Novel Applications - Planning & Scheduling are not Important for the Application
+ 1: Novel Applications - Planning & Scheduling are Important for the Application
+ 0: N/A - submitted to the main track
+
+0
+
+Overall evaluation.
+* Please provide an overall score.
+ 3: strong accept
+ 2: accept
+ 1: weak accept
+ 0: borderline paper
+ -1: weak reject
+ -2: reject
+ -3: strong reject
+
+1
+
+Review.
+* Detailed review. (Required)
+
+The paper builds on previous work for checking dynamic consistency of conditional temporal networks
+(by Cairo et al. 2016, Hunsberger & Posenato 2018,2019). The contribution of the article is a new
+algorithm that is experimentally shown to be faster than the existing ones.
+
+The paper is very technical and detailed. Even if it builds on previous work, I think it is self-contained enough.
+
+It is clearly written, even if it is far from being easy to read. But I think the main reason is
+inherent in the technicality of the article.
+Maybe some notations could be simplified, in particular the name of the rules, or even the name of the algorithms.
+
+I think two topics should be discussed in the paper:
+- even if one can understand that each of the edge-generation rules are correct,
+  there is no proof that they are complete in the sense that applying these rules until
+  a fix point will always produce either a non-consistency or a consistency proof
+
+- it is never mentioned to which complexity class the problem of checking dynamic consistency
+  belongs to. Is it known to be polynomially solvable, is it NP-Complete? Also, it could be
+  interesting to include a worst case complexity study of the proposed algorithm.
+
+
+Detailed comments and typos
+
+p1,col2: when introduced the first time, it is not clear what edge expressions <-\infty,\alpha> stand for.
+
+p2,col2: "However, negative q-loops are not always benign": it would be useful to give an intuition why
+
+p2, col2, definition 1: set \cal{P} has not been introduced before (one has to look in the appendix for its definition)
+
+p4, col1, definition 3: it is not clear which rule from algorithm \piDC_19 can generate this
+type of (non-self) constraint X -(-\infty,\alpha)->Y. Rule pInf only generates self-arcs.
+Is it produced by the propagation of these self-arcs by other rules in the network?
+
+p6, figure 4: it is not clear what represents the x-axis here, it seems to be a number of
+instances but it is not really informative. Also, beside the figure, maybe you should mention
+in the text that the different benchmarks correspond to different problem size
+
+
+
+Reviewer's confidence.
+* Reviewer's confidence
+ 4: (expert)
+ 3: (high)
+ 2: (medium)
+ 1: (low)
+
+ 2
+
+Suitable for a demo?.
+* Suitable for a demo?
+ 3: yes
+ 2: maybe
+ 1: no
+
+Nominate for Best Paper Award?.
+* Nominate for Best Paper Award?
+ [ ] yes
+
+Nominate for Best Student Paper Award (assuming it is eligible) ?.
+* Nominate for Best Student Paper Award (assuming it is eligible)?
+ [ ] yes
+
+Confidential remarks for the program committee. If you wish to add any remarks intended only for PC members please write them below. These remarks will only be seen by the PC members having access to reviews for this submission. They will not be sent to the authors. This field is optional.
+
+I'm only moderately confident in my review. I'm not an expert in the domain and the paper is very technical.
+My understanding is that the proposed rules underlying the new algorithm are correct and that the paper brings an interesting contribution.
+But I do not have any intuition about the completeness of the algorithm and its worst case complexity and there is no proof in the article.
