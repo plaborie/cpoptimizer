@@ -1,7 +1,0 @@
-SheetConnection sheet("PPP.xls");
-
-numBoats from SheetRead(sheet,"A2");
-boatSize from SheetRead(sheet,"B2:B43");
-crewSize from SheetRead(sheet,"C2:C43");
-
-

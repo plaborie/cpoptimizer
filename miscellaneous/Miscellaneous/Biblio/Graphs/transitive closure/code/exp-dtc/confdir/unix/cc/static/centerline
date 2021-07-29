@@ -1,3 +1,0 @@
-
-CC = CC -D__ATTCFRONT__
-LD = CC

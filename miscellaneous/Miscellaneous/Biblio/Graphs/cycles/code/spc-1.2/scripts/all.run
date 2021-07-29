@@ -1,5 +1,0 @@
-# families used in the main experiment
-sqncs.run $1
-rand_5.run $1
-pnc.run $1
-lnc.run $1

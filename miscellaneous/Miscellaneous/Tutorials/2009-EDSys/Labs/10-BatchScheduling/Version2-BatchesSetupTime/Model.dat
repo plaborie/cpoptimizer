@@ -1,7 +1,0 @@
-
-SheetConnection data( "Problem.xls" ); 
-Jobs  from SheetRead(data, "Jobs!A2:C43");
-Ops   from SheetRead(data, "Operations!A2:C80");
-Tools from SheetRead(data, "Tools!A2:B18");
-Modes from SheetRead(data, "Modes!A2:D682");
-SetupTimes from SheetRead(data, "SetupTimes!A2:C37");

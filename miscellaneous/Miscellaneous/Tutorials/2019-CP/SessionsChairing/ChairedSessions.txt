@@ -1,34 +1,0 @@
-
-TUESDAY 1
-
-13:30 - 14:30 Scheduling (Chair: Philippe Laborie) Room B
-
-Giacomo Da Col and Erich Teppan.
-  Industrial Size Job-Shop Scheduling tackled by Present-Day CP Solvers
-
-John Hooker.
-  Improved Job Sequencing Bounds from Decision Diagrams
-
-
-WEDNESDAY 2
-
-14:45 - 15:15 Applications (Chair: Philippe Laborie) Room B
-
-Adriana Pacheco, Cédric Pralet and Stephanie Roussel.
-  Decomposition and Cut Generation Strategies for Solving Multi-Robot Deployment Problems
-
-
-THURSDAY 3
-
-14:45 - 15:45 Tutorial 3 (Chair: Christian Schulte) Room A
-
-Philippe Laborie.
-Planning/Scheduling with CP Optimizer
-
-
-FRIDAY 4
-
-14:45 - 15:15 Applications (Chair: Philippe Laborie) Room B
-
-Stanislav Murín and Hana Rudová.
-  Scheduling of Mobile Robots using Constraint Programming

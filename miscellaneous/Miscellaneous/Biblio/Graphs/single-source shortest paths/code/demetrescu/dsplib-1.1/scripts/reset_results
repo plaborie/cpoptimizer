@@ -1,9 +1,0 @@
-#!/bin/tcsh
-
-# delete previous results
-
-rm -f ../results/$1_bfm
-rm -f ../results/$1_bfmp
-rm -f ../results/$1_bfmk
-rm -f ../results/$1_bfmpk
-rm -f ../results/$1_dfmn

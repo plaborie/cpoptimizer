@@ -1,8 +1,0 @@
-7961 Efficient Algorithms For Rotation Averaging Problems                                                                   R  R  A   <<<<
-5844 Optimizing Reachability Sets in Temporal Graphs by Delaying                                                           MA  A  R   <<<<
-3411 Efficient Anytime Computation and Execution of Decoupled Robustness Envelopes for Temporal Plans                       R MA MB   <<
-5923 The Complexity Landscape of Resource-Constrained Scheduling                                                            R MA MB   <<
-6521 Balancing exploration and exploitation in the memetic algorithm via a switching mechanism for the large-scale VRPTW   MB MB MB
-5458 Generalizable Meta-Heuristic based on Temporal Estimation of Rewards for Large Scale Blackbox Optimization             R  R MB
-5450 One-Shot Global Optimization of Ridesharing Using A Set-Based Differential Evolution Algorithm                         R  R  R
-8985 Transgenic genetic algorithm to minimize the makespan in the job shop scheduling problem                               R  R  R  

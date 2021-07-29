@@ -1,5 +1,0 @@
-
-CC      = CC -pto -noex -pic -DSHARED_LIB
-CCLIB   = CC -G
-LD      = CC
-

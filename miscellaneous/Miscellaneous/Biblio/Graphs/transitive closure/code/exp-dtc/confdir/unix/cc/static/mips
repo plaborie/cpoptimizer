@@ -1,3 +1,0 @@
-
-CC = CC -Olimit 4500
-LD = CC

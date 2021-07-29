@@ -1,5 +1,0 @@
-
-CC      = g++ -g -fpic -DSHARED_LIB
-CCLIB   = g++ -G
-LD      = g++
-

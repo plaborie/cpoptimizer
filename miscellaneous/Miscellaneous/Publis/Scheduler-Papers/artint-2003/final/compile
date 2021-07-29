@@ -1,4 +1,0 @@
-pdflatex article
-bibtex article
-pdflatex article
-pdflatex article

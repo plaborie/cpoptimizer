@@ -1,7 +1,0 @@
-\frametitle{Isomorphism and presolve}
-\BLOCK{There are many possibilities for presolve}{
-    \1 \lstinline@noOverlap(slots)@ $\Rightarrow$ \lstinline@noOverlap(tasks)@
-    \1 \lstinline@slots@ have common \lstinline@forbidExtent@ $\Rightarrow$ same \lstinline@forbidExtent@ on \lstinline@tasks@.
-    \1 \lstinline@alldiff(map)@
-    \1 \dots
-  }
